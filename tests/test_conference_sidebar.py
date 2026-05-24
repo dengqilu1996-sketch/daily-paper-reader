@@ -60,8 +60,8 @@ class ConferenceSidebarTest(unittest.TestCase):
             self.assertIn("* Conference Papers", text)
             self.assertIn("  * ICML 2025 <!--dpr-conference:icml-2025-->", text)
             self.assertNotIn("推荐论文", text)
-            self.assertIn("    * rl <!--dpr-conference-topic:icml-2025:query-rl-->", text)
-            self.assertIn("      * <a class=\"dpr-sidebar-item-link dpr-sidebar-item-structured\"", text)
+            self.assertNotIn("<!--dpr-conference-topic:", text)
+            self.assertIn("    * <a class=\"dpr-sidebar-item-link dpr-sidebar-item-structured\"", text)
             self.assertIn("href=\"#/conference/icml-2025/openreview-icml-2025-abc123-a-conference-paper\"", text)
             self.assertIn("A Conference Paper", text)
             self.assertIn("https://openreview.net/forum?id=abc123", text)
@@ -134,7 +134,7 @@ class ConferenceSidebarTest(unittest.TestCase):
             self.assertFalse((tmp_path / "docs" / "conference" / "icml-2025" / "openreview-icml-2025-low-score-three-paper.md").exists())
             self.assertTrue((tmp_path / "docs" / "conference" / "icml-2025" / "openreview-icml-2025-keep-score-four-paper.md").exists())
 
-    def test_update_sidebar_replaces_existing_topic_block(self):
+    def test_update_sidebar_replaces_existing_conference_block(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = pathlib.Path(tmp)
             sidebar = tmp_path / "_sidebar.md"
@@ -148,7 +148,7 @@ class ConferenceSidebarTest(unittest.TestCase):
             text = sidebar.read_text(encoding="utf-8")
 
             self.assertEqual(text.count("<!--dpr-conference:icml-2025-->"), 1)
-            self.assertEqual(text.count("<!--dpr-conference-topic:icml-2025:query-rl-->"), 1)
+            self.assertNotIn("<!--dpr-conference-topic:", text)
             self.assertNotIn("First Title", text)
             self.assertIn("Second Title", text)
 
@@ -174,8 +174,7 @@ class ConferenceSidebarTest(unittest.TestCase):
 
             text = sidebar.read_text(encoding="utf-8")
             self.assertEqual(text.count("<!--dpr-conference:icml-2025-->"), 1)
-            self.assertIn("<!--dpr-conference-topic:icml-2025:query-rl-->", text)
-            self.assertIn("<!--dpr-conference-topic:icml-2025:query-llm-sr-->", text)
+            self.assertNotIn("<!--dpr-conference-topic:", text)
             self.assertIn("RL Topic Paper", text)
             self.assertIn("LLM Topic Paper", text)
 
