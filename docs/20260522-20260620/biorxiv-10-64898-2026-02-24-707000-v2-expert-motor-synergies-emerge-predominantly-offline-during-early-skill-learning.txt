@@ -1,0 +1,514 @@
+Title: Early Skill Learning Is Shaped by the Offline Emergence of Expert Synergies
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.02.24.707000v2.full.pdf
+
+Number of Pages: 49
+
+Markdown Content:
+1
+
+# Early Skill Learning Is Shaped by the Offline 1
+
+# Emergence of Expert Synergies 23
+
+Authors 4William Kistler 1,2 , Rawan Fakhreddine 1, Giselle R Rodriguez 1, Margaret Hayward 1,5Ethan R. Buch 1, Sven Bestmann 2,3* and Leonardo G. Cohen 1*6
+
+7
+
+Affiliations 81Human Cortical Physiology and Neurorehabilitation Section, National Institute of 9Neurological Disorders and Stroke, NIH, 9000 Rockville Pike, Bethesda, MD, USA 10 2 Department of Clinical and Movement Neuroscience, UCL Queen Square Institute of 11 Neurology, 33 Queen Square, London, United Kingdom 12 3 Department of Imaging Neuroscience, UCL Queen Square Institute of Neurology, 13 London, United Kingdom 14 15 *Equal contributions. 16 
+
+17 
+
+Corresponding authors: William Kistler (william.kistler.17@ucl.ac.uk) and Leonardo G 18 Cohen (cohenl@ninds.nih.gov) 19 
+
+20 
+
+Highlights: 21 Expert multi-digit synergies form during early skill learning 22 Higher-order synergies emerge across brief rest breaks 23 Fatigue spares expert synergy use during early learning 24 Skill gains mirror multi-digit synergy expression 25 26 
+
+eTOC blurb: 27 “Expert multi-digit synergies emerge early in motor learning, strengthen across brief rest 28 breaks, track skill gains, and resist fatigue” 29 30 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+231 
+
+Authors Contributions: 32 L.G.C. and E.R.B. conceived of the presented idea. W.K., E.R.B. and L.G.C. designed 33 the experiment. W.K., R.F., G.R.R. and M.H. carried out the experiment. W.K. 34 developed and tested the analysis pipeline. W.K. L.G.C. and S.B. carried out the 35 analyses. W.K., S.B. and L.G.C. wrote the manuscript. W.K., S.B. and L.G.C. reviewed 36 and edited the manuscript. 37 38 
+
+Resource Availability: 39 
+
+Lead Contact : William D. Kistler (william.kistler.17@ucl.ac.uk). 40 
+
+Materials availability : This study did not generate new unique reagents. 41 
+
+Data and Code Availability : Data used in this study (subject to participant consent) will 42 be made available upon reasonable request to the lead contact. All custom code used 43 for processing, embedding, clustering, and statistical analysis is publicly available and 44 archived at Zenodo [https://zenodo.org/records/10717889]. 45 
+
+46 
+
+Acknowledgments 47 This research was supported by the Intramural Research Program of the National 48 Institutes of Health (NIH). The contributions of the NIH author(s) are considered Works 49 of the United States Government. The findings and conclusions presented in this paper 50 are those of the author(s) and do not necessarily reflect the views of the NIH or the U.S. 51 Department of Health and Human Services. This research was also supported by the 52 NIMH-UCL Graduate partnership program. 53 54 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+3
+
+# Summary 55 Everyday skilled actions depend on the formation of coordinated motor synergies that 56 integrate multiple digits into stable, low-dimensional control units. Although initial 57 practice of a new skill leads to rapid performance improvements, it is unclear whether 58 the underlying movement kinematics reorganize on a similar timescale and in a way that 59 directly relates to these gains. It also remains uncertain whether such reorganization 60 occurs mainly during active practice or instead during brief rest breaks. Here, we 61 tracked the temporal evolution of multi-digit synergy formation during early learning of a 62 naturalistic keypress skill. Initial practice rapidly sculpted the motor repertoire 63 toward higher-order, temporally compressed and overlapping multi-digit synergies. 64 These synergies emerged after only minutes of practice and continued to be expressed 65 along the full training session. Notably, they were primarily shaped across brief rest 66 breaks and robustly predicted individual skill proficiency. Across learning, distinct 67 synergy subtypes emerged, differing in their heuristic prevalence . Rarely expressed 68 synergies reflected transient novice patterns, synergies expressed 69 at intermediate levels could index exploratory and trial-initiation strategies, and highly 70 expressed synergies emerged later to dominate performance, reflecting the 71 consolidation and expansion of skilled motor control. Together, these findings indicate 72 that skilled performance is supported by the early formation of a compact repertoire of 73 expert multi-digit synergies that emerge preferentially across rest periods and 74 predict subsequent skill gains. They further raise the hypothesis that explicitly training 75 such expert synergies alongside task goals could enhance learning in domains such as 76 the arts, sport, and neurorehabilitation. 77 78 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+4
+
+# Introduction 79 Activities of daily living, from walking and handwriting to athletic play, depend on the 80 precise orchestration of temporally ordered motor sequences 1-4 . Fluency develops as 81 the motor system learns to coordinate fingers in new ways. These task-specific 82 movement patterns link motions within and across digits so that they work together to 83 meet the demands of the object, the required force, timing, and accuracy 5,6 . With 84 practice, discrete keypresses become coarticulated into coordinated multi-digit 85 synergies, reducing effective control dimensionality and stabilizing execution, thereby 86 optimizing performance across skills such as grasping 7-9 , typing 10 , finger spelling 11 ,87 and haptic exploration 12 . Studying how motor synergies emerge and reorganize 88 provides a direct window into the neuromotor mechanisms that support the acquisition, 89 refinement, and generalization of skilled actions 13 .90 91 Early learning of naturalistic skills is characterized by prominent initial performance 92 improvements 14-16 . Over the course of learning, skill performance fluctuates during 93 practice and brief rest periods as a result of the dynamic interplay between 94 performance-enhancing processes, such as learning, and performance-limiting 95 mechanisms, including motor or cognitive fatigue (sometimes referred to collectively as 96 reactive inhibition) 17,18 . However, how these competing processes are expressed in the 97 kinematic signatures that drive the transition from novice movement patterns to expert 98 multi-digit synergies, particularly during the earliest phases of skill acquisition, is not 99 known. Early gains in skill may arise from several, non-mutually exclusive, kinematic 100 adjustments: faster execution 19 , greater temporal overlap among digit movements 101 (coarticulation) 20-22 , reparameterization of velocity profiles 23 , improved spatial 102 accuracy 24 or their combination. In the temporal domain, the formation of multi-digit 103 synergies characteristic of expertise could unfold rapidly, on the order of seconds, or 104 accrue more slowly over minutes to hours 25,26 . Such reorganization may also proceed 105 during brief rest intervals 27 or instead manifest primarily during active practice, in 106 parallel with expansion of memory capacity 28 . This pattern could suggest a dissociation 107 between the time course of behavioral improvement and the optimization of underlying 108 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+5kinematics. In addition, learning processes such as exploration, prospective planning 29 ,109 and expansion of memory capacity 28 may be distinctly expressed in the transition from 110 novice patterns to expert multi-digit synergies. 111 Here, we addressed these questions by characterizing the temporal evolution of multi-112 digit kinematics, including the emergence and reorganization of skill-specific synergies, 113 during the early learning of a naturalistic motor skill. We found that complex multi-digit 114 synergies emerge rapidly with practice, are most strongly expressed across early rest 115 periods, and show no evidence of fatigue-related reduction in use. These synergies, 116 composed of small, rapid, and overlapping digit movements, developed gradually over 117 initial training trials and reliably predicted subsequent skill gains, underscoring the 118 evolution of their neural representations in supporting the newly acquired skill. 119 
+
+# Results 120 We examined kinematic features of early skill acquisition in twenty healthy adults (12 121 female; mean age 30 years) trained on a well-characterized motor sequence task 14,30-33 .122 Subjects were tasked with repetitively typing a 5-item keypress sequence displayed on 123 the screen (4-1-3-2-4) as quickly and accurately as possible with 4 digits (index, middle, 124 ring and little fingers) of their left, non-dominant hand. Each trial comprised 10 seconds 125 of practice followed by 10 seconds of rest, yielding a session of approximately 15 126 minutes length ( Figure 1A ). Motor skill was indexed by the rate of correct sequences 127 per second (cs/s) 34,35 . The early learning period encompassed the training trials during 128 which 95% of maximum performance was reached 15,35 , which, at the group level, 129 occurred by trial 12 ( Figure 1B ). 130 131 
+
+Characterization of movement synergies 132 
+
+133 Digit trajectories were recorded at 120 Hz with a front-facing high-speed camera 134 (Figure 1C, top ). Markerless pose estimation 36-38 tracked distal interphalangeal joints, 135 yielding ~42,500 x–y frames per participant across the full practice session. The x-axis 136 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+6primarily captured in-plane lateral motion (adduction–abduction), whereas the y-axis 137 reflected vertical flexion–extension perpendicular to the keyboard ( Figure 1C-E ). For 138 each practice trial, digit trajectories were represented as multivariate time series 139 comprising eight features (four digits × two spatial axes; Figure 1E ). Using complex 140 Morlet wavelets centered on five frequencies known to be relevant for digit 141 movements 39,40 , we decomposed the time series to obtain time-resolved estimates of 142 amplitude and phase ( Figure 1F ). For each time point, we formed feature vectors from 143 amplitude and phase across digits and frequencies, embedded them into two 144 dimensions with UMAP ( Methods ) using all practice time points per subject, and 145 applied HDBSCAN (Methods ) to identify density-defined clusters (behavioural 146 synergies) while labelling low-density points as noise (Figure 1G ). To quantify training-147 dependent changes in behavioural synergies, we computed the Jensen–Shannon 148 divergence (JSD) between distributions of cluster occupancy across time, comparing 149 consecutive segments within practice trials (online) and across rest periods (offline) 150 (Figure S1 shows example cluster distributions and JSD computation). Kinematic 151 features of individual synergies, including keypress count, keypress rate, duration, and 152 inter-digit overlap, were obtained by projecting cluster labels back into the original 153 feature space (Figure 1H ). 154 
+
+Emergence of multi-digit synergies during early skill learning 155 Training was associated with a progressive increase in both the mean keypress count 156 per synergy ( Figure 2A ) and the overall typing rate ( Figure 2B ). In parallel, the duration 157 of individual synergies decreased ( Figure 2C ), while temporal overlap among digit 158 movements increased ( Figure 2D ), together indicating a shift from predominantly 159 isolated single-digit synergies toward more integrated, multi-digit, coarticulated 160 synergies. Indeed, from Trials 1 to 12, one-keypress synergies fell to near extinction, 161 while 2- and 3-keypress synergies rose steeply early on and then declined once skill 162 plateaued. In contrast, 4- keypress synergies increased progressively during early 163 learning ( Figures 2E, S2) .164 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+7Synergy structure changed predominantly during Trials 1–12 ( Table 1 ; Stouffer’s p ≈ 6 × 165 10 ⁻¹). In the later phase (Trials 12–36), the corresponding effect did not reach 166 significance at the group level (p = 0.107; Table 2 ). This non-significant result was not 167 accompanied by evidence for stability, as individual JSD values remained non trivial and 168 an equivalence test ( δ = 0.15 JSD) did not support equivalence . Critically, the % use of 169 4-keypress synergies correlated with the magnitude of skill learning (R² = 0.83, p < 170 0.001; SEM = 0.0398; Figures 2F and Figures S2 D, E) . Collectively, these findings 171 indicate that early practice rapidly prunes the motor repertoire toward temporally 172 compressed, overlapping, high-order multi-digit synergies predictive of the magnitude of 173 the acquired skill. 174 
+
+No detectable fatigue-related reduction in expert synergy use. 175 We next asked whether accumulating fatigue with continued practice 41 might influence 176 this kinematic transformation. Fatigue-related motor slowing 42 could result in the 177 progressive attrition of multi-digit synergies, either within individual 10-s practice trials or 178 cumulatively across the 36-trial session. Contrary to these predictions, once multi-digit 179 synergies were established by the end of early learning, their expression showed no 180 decline within individual trials at the end of training (when fatigue could be expected, 181 
+
+Figure S3 ) nor across the entire training session (Figure 2E) . Thus, early learning of a 182 naturalistic skill proceeds without detectable fatigue-related reduction in use of multi-183 digit synergies. 184 
+
+Higher-Order Multi-Digit Synergies Emerge Across Rest Intervals Interleaved 185 
+
+Practice 186 Prior work indicates that early gains in challenging, naturalistic motor skills may accrue 187 across brief rest intervals (“micro-offline”) to a larger extent than during active practice 188 (“micro-online”) 15 . Here, we replicated this observation. On average, micro-online 189 changes were negligible (relative to 0, no change, mean = −0.297 ± 0.325 cs/s; two-190 tailed one-sample t-test, t ₁₉  = −0.53, p = 0.60), whereas micro-offline gains were robust 191 (mean = 1.006 ± 0.317 cs/s; two-tailed one-sample t-test, t ₁₉  = 4.61, p = 1.92 × 10 ⁻). 192 Micro-offline gains significantly exceeded micro-online changes (paired t-test, t ₁₉  = 3.68, 193 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+8p = 0.0016) and were statistically indistinguishable from total early learning (mean = 194 0.709 ± 0.055 cs/s; paired t-test, t ₁₉  = 1.86, p = 0.079). 195 Changes in HDBSCAN-derived synergy maps ( Figure 1G ) developed predominantly 196 across rest (mean = 0.596; SEM ±0.026) rather than practice (mean = .316; SEM 197 ±0.028) intervals ( Figure 3A ). JSD divergence across rest intervals predicted early 198 learning (R² = 0.711, p < 0.001; Figure 3C ), whereas JSD divergence during practice 199 bouts did not (R² = 0.104, p = 0.166; Figure 3B ). This result was robust across different 200 hyperparameter settings, yielding comparable effect sizes and significance levels 201 (Figure S3 B, C, D ). 202 Together with the absence of a detectable fatigue effect on multi-digit synergy use 203 during acquisition of this challenging naturalistic skill, these findings are consistent with 204 the view that the transition to higher-order multi-digit coordination may be shaped 205 predominantly by micro-offline processes unfolding across brief rest intervals. 206 
+
+Synergies subserving early learning of a naturalistic skill 207 Next, we quantified the emergence, decay, and overall prevalence of 1–5-keypress 208 synergies at two timescales, within trials and across the full course of training, using 209 broad prevalence bins for visualization ( Figure 4 , representative single subject; Figure 210 
+
+5, group data). Because prevalence varied continuously and showed no clear natural 211 boundaries, synergies were grouped by session-wide percent usage into four heuristic 212 categories: <5%, 6–20%, 21–49%, and >50%. These bins provided sufficient 213 observations within each category while distinguishing rarely expressed from more 214 prevalent synergies. 215 Synergies used for <5% of training time appeared almost exclusively in the earliest 216 trial(s), comprised 1-2 keypresses/synergy and then disappeared (green arrow in 217 
+
+Figure 4C ; Figure 5E ). Synergies expressed for 6–20% of training time, emerged and 218 faded mid-practice and likewise comprising 1–2 keypresses per synergy (dark blue 219 arrow in Figure 4C ; 5D ). Synergies expressed for 21–49% of training time included a 220 type that occurred reliably at the start of trials as performance approached asymptote, 221 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+9persisted through session end, and encompassed 3-4 keypresses per synergy (red 222 arrow in Figure 4C; 5C ). Finally, synergies present for >50% of training time comprised 223 the “predominant/expert” patterns, which arose mid-training, became dominant toward 224 the end of practice, and could encompass up to 5 keypresses per synergy (purple arrow 225 in Figure 4C ; 5B ). 226 The most prevalent composition of the predominant expert multi-digit synergies 227 observed in the last practice trial was “4–1–3–2” in 52% of subjects ( Figure S4 , S5 and 228 
+
+S6 ). The second most prevalent was “4–1–3–2-4” in 21% of subjects , the full trained 229 sequence, which incorporate a repeated “4” spanning the sequence boundary (last 230 keypress of one sequence followed by the first keypress of the next) to gain speed 43 .231 Next was “4-4-1” present in 16% of the subjects, also taking advantage of the 4–4 232 double tap. Finally, “4-4-1-3-2” was the predominant synergy in 11% of the subjects. 233 Note that the last two expert synergy types crossed individual sequence boundaries. 234 Together, these findings indicate that skilled performance in this task is supported by a 235 relatively small repertoire of expert multi-digit synergies some of which exploit boundary 236 double taps and possibly sequence fractionation (chunking) 44 .237 238 
+
+# Discussion 239 Here we show that complex, multi-digit synergies emerge rapidly after practice onset 240 and increase progressively during the early phases of naturalistic skill learning, with 241 their most prominent development occurring across intervening rest breaks. The 242 synergies that supported acquisition of the trained skill were characterized by small, 243 rapid, and overlapping digit movements that gradually crystallized over early trials and 244 robustly predicted subsequent performance gains. Notably, we did not observe fatigue-245 dependent reductions in multi-digit synergy use. 246 247 
+
+High-Order Multidigit Synergies Underlie Improvements in Naturalistic Skill 248 249 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+10 Motor learning, from everyday skills such as typing to highly trained behaviors like 250 musical performance, relies on the production of temporally precise action sequences 251 that form the basis of fine motor expertise 16,44-46 . These sequences are not controlled 252 muscle by muscle, but through coordinated motor synergies, making their 253 reorganization central to skilled performance. Accordingly, examining how motor 254 synergies reorganize with learning provides a direct window into the neuromotor 255 processes that support the acquisition, refinement, and generalization of skilled actions. 256 257 To address this question, we recorded movements with a high-speed camera while 258 subjects learned a new sequential motor skill. Markerless pose estimation software 47 259 and a dimensionality reduction strategy 47 allowed us to characterize synergies (unique 260 combinations of covarying four-digit movements over one to five keypresses), as the 261 new skill was learnt. Multi-digit synergies are the ultimate expression of efficient 262 modular control strategies used by the central nervous system to execute sequential 263 skills, like playing musical instruments 48-53 . We observed that synergy morphology 264 evolved remarkably quickly, changing within seconds of training onset. Early practice 265 rapidly sculpted the motor repertoire toward temporally compressed, overlapping, 266 higher-order multi-digit synergies, whose dominance from approximately the twelfth 267 practice trial onward, when performance near plateaued, robustly predicted the degree 268 of skill acquisition and likely reflected an expansion of underlying memory capacity 28 .269 270 Synergies involving single digits, which predominated during the earliest trials, 271 progressively transitioned into coordinated multi-digit patterns as training advanced. 272 This rapid reorganization of synergy structure closely mirrored the time course of 273 behavioral improvement. This transition may parallel the rapid shift from stimulus-bound 274 responding to internally generated sequence production, in which actions are guided by 275 an internal memory representation rather than discrete external cues, as is typical of 276 reaction-time–based paradigms 54 . The swift emergence of this internally driven mode of 277 control suggests that developing motor kinematics, associated with an expanding skill 278 memory 28 , may become primary constraints on behavior. 279 280 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+11 
+
+Mechanisms Underlying the Formation of Expert Synergies 281 282 How might multi-digit synergies emerge preferentially across rest rather than during 283 practice? We found that behavioral improvements occurred primarily across the brief 284 rest periods interleaved with practice (i.e., micro-offline gains), consistent with prior 285 reports 15,19,27,34,55-57 . In the context of challenging skills, micro-offline skill gains are up 286 to four times larger than those identified following overnight sleep 15 , are reproducible 57-287 61 and persist even when practice bouts are shortened to as little as 5 seconds, arguing 288 against recovery from performance fatigue as their primary source 58 . It has been 289 proposed that this form of micro-offline gains represent a form of memory 290 consolidation 15,54,62 , a view supported by mechanistic work 34 60,61 62 .291 292 Our results extend prior work by demonstrating that motor synergy maps can reorganize 293 across rest periods, revealing a previously unrecognized neural–motor correlate of 294 micro–offline learning. More broadly, our findings suggest that practice and rest make 295 distinct yet complementary contributions to naturalistic skill learning. Practice itself may 296 primarily encode elemental action representations and provide the feedback necessary 297 to optimize movement kinematics 63,64 . Rest intervals interleaved with practice may 298 promote the binding of individual action components into higher-order synergies, 299 effectively compressing the action space and freeing capacity for further online 300 learning 28 . This interpretation accords with prior accounts suggesting that the relative 301 contributions of online and offline processes to learning are shaped by task 302 configuration 28 and context 65 , and that these processes are complementary rather than 303 competitive 18 .304 305 Although our design followed published guidelines to minimize it 42 , accumulating 306 fatigue with continued practice 41 could, in principle, reduce the use of expert multi-digit 307 synergies either within individual 10-s practice trials or cumulatively across the 36-trial 308 session 66,67 . We found no evidence this occurred. Once multi-digit synergies were 309 established by the end of early learning, their use showed no decline within trials at the 310 end of training (when fatigue would be maximal in the session, Figure S3 ) or across the 311 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+12 entire training session (Figure 2E) . Thus, across these two independent measures we 312 found no evidence that use of expert synergies during early learning of a challenging 313 naturalistic skill is reduced by motor or cognitive fatigue. 314 315 
+
+Do Distinct Synergy Subtypes Subserve Early Naturalistic Learning? 316 317 To aid interpretation, we classified synergies by the proportion of training time during 318 which they were expressed. These categories were intended as descriptive rather than 319 as discrete synergy classes. Because prevalence varied continuously across the 320 session and showed no clear natural boundaries, we grouped synergies into four 321 heuristic bins (<5%, 6–20%, 21–49%, and >50%) that balanced interpretability with 322 adequate sampling. This framework distinguished relatively rare from more predominant 323 synergies and allowed us to consider whether expression frequency may relate to 324 distinct functional roles during skill acquisition. A set of synergies expressed for <5% of 325 total training time (1–2 keypresses/synergy) appeared predominantly in the first few 326 trials and then vanished ( Figure 4C , green arrow; Figure 5E ). These “novice” synergies 327 likely reflect provisional kinematic solutions to the demands of a newly acquired skill, 328 which are rapidly supplanted by higher-order, multi-digit synergies as learning unfolds. 329 A second subgroup consisted of synergies expressed for 6–20% of training time (1–2 330 keypresses per synergy), which emerged and faded mid-practice ( Figure 4C, dark blue 331 arrow; Figure 5D ). These “exploratory” synergies may reflect kinematic experimentation 332 during the transition from stimulus-driven to internally generated execution of the 333 naturalistic skill. Synergies expressed 21–49% of training time (1–4 keypresses per 334 synergy) appeared consistently at trial onset as performance neared asymptote and 335 remained present until the end of the session ( Fig. 4C, red arrow ; 5C ). These “trial-336 initiation” synergies may index the contribution of advance planning to the earliest 337 phase of trial performance, a possibility consistent with estimates of the preplanning 338 capacity of 2-4 keypresses in sequence learning 68-70 , 71 .339 340 Synergies expressed for >50% of total training time (up to five keypresses per synergy) 341 constituted the “predominant/expert” class: they first appeared around mid-training and 342 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+13 progressively came to dominate behavior toward the end of practice ( Figure 4C, purple 343 arrow; Figure 5B ). The dominant features of these expert synergies were optimized 344 speed–accuracy for repeated taps on the same key (or double taps) 43 and systematic 345 fractionation of the trained sequence into preferred chunks 72-74 . This reorganization of 346 skill synergies likely supports the early integration of fragmented, independent 347 movements into highly coordinated, multi-digit actions, effectively reducing the 348 functional degrees of freedom in expert performers 5,6,75 .349 350 The tight coupling between a small set of expert multi-digit synergies and high skill 351 levels raises an intriguing translational question: could explicit training of these expert 352 synergies complement conventional practice and accelerate learning in domains such 353 as sport, musical performance, or post-stroke neurorehabilitation 76 ? More broadly, a 354 deeper understanding of the kinematic mechanisms that underlie skill acquisition may 355 inform the design of more effective assistive and rehabilitative technologies, for example 356 by guiding synergy-based control strategies in neuroprosthetics or robotics 7,77 .357 358 
+
+Limitations and Future Directions 359 360 Several limitations of the present work suggest fruitful avenues for future research. First, 361 employing multi-camera motion capture would permit full three-dimensional kinematic 362 reconstruction, enabling a more comprehensive characterization of movement structure 363 than was possible here. Second, extending synergy analyses beyond distal digit 364 segments to include additional digits and proximal effectors that support manual 365 function, such as the wrist, arm, and shoulder, may uncover further kinematic 366 contributions to skilled performance and clarify how distal and proximal control are 367 integrated. Finally, future studies should test whether the kinematic mechanisms 368 underlying sequence learning generalize to multi-limb coordination, postural control, and 369 other forms of motor learning, an issue central to evaluating their broader relevance for 370 neurorehabilitation of skilled function. 371 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+14 
+
+# STAR Methods 372 Key Resources Table 373 374 REAGENT or RESOURCE SOURCE IDENTIFIER Deposited data Zenodo [https://zenodo.org/records/10717889] Video data This paper N/A Software and algorithms MATLAB 2021b The Mathworks, Natick, MA, USA https://www.mathworks.com/ Python Python 3.10.8 https://www.python.org/download s/release/python-3712/ DeepLabCut DeepLabCut 2.22 https://github.com/DeepLabCut/D eepLabCut HUB-DT https://github.com/Loken85/HUB_ DT Other NIH HPC Biowulf Cluster NIH, Bethesda, MD, USA https://hpc.nih.gov/ 
+
+375 
+
+EXPERIMENTAL MODEL AND SUBJECT DETAILS 376 
+
+PARTICIPANTS 377 Twenty right-handed, neurologically healthy adults (12 women; mean age = 29.2 ± 2.12 378 years, SD) completed participation under a protocol approved by the NIH Combined 379 Neuroscience Institutional Review Board. Although active musicians were excluded to 380 minimize the influence of extensive fine motor training, we did not formally quantify 381 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+15 typing experience or keyboard proficiency. Seventeen additional participants were 382 excluded due to technical issues with video capture, yielding a final dataset of 20 383 participants. The sample size was determined a priori based on our primary planned 384 analysis, a linear regression testing whether keypress sequence skill learning is 385 predicted by the prevalence of 4-digit synergies. Because no published data were 386 available to estimate the expected strength of this specific relationship, we used the 387 average R 2-value from two previously reported associations between learning in this 388 task and neural activity features (neural replay density 34 and representation distance 54 )389 as a proxy. We assumed that the association between two behavioral measures would 390 be at least as large as this proxy estimate. For α = 0.05, 99% power (1 - β = 0.99) and 391 an anticipated large effect-size (R 2 = 0.5097), a sample-size of 20 participants was 392 determined to be sufficient for detecting a significant linear relationship between skill 393 learning and 4-digit synergy prevalence. 394 
+
+395 
+
+TASK 396 Participants performed a 5-digit sequence-typing task (41324) with their non-dominant 397 (left) hand on a standard 104-key QWERTY keyboard. The little, ring, middle, and index 398 fingers were mapped to numeric keys 1 through 4, respectively; the thumb was not 399 used. Each trial consisted of 10 s of practice followed by 10 s of rest, and participants 400 completed 36 such trials within a single session. Throughout practice, the target 401 sequence was continuously displayed, and each keypress elicited an asterisk, providing 402 real-time feedback on sequence progression but not on accuracy. During rest periods, 403 the sequence was replaced by five “X” characters to discourage overt or covert 404 rehearsal. The task was administered, and all responses were recorded, using 405 PsyToolkit (www.psytoolkit.org). 406 407 
+
+DATA ANALYSIS 408 
+
+409 
+
+POSE ESTIMATION 410 Digit kinematics were captured at 120 frames/s using a high-speed camera positioned 411 in front of the left hand ( Figure 1C , top). Markerless pose estimation 36,37 was used to 412 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+16 localize the distal interphalangeal joints of the four active fingers ( Figure 1C , top) 413 38 , yielding approximately 43,000 frames of x–y pose data per participant over the full 414 practice period ( STAR Methods ). The x coordinate primarily indexed lateral motion 415 within the keyboard plane (adduction–abduction), whereas the y coordinate reflected 416 vertical displacement perpendicular to the keyboard surface (flexion–extension; Figure 417 
+
+1C–E, STAR Methods ). 418 Pose estimation was implemented in DeepLabCut v2.2.2 (Python 3.10.8) with GPU 419 acceleration via CUDA Toolkit 11.2 and cuDNN 8.2. Sixty frames per participant (1,200 420 total) were manually annotated for the x,y positions of all four fingers. A ResNet-50 421 backbone was trained for 400,000 iterations using DLC default settings (three color 422 channels, pairwise terms enabled, unsupervised refinement disabled). For a single 423 shuffle, training and test errors were 2.12 and 2.18 pixels, respectively (image 424 resolution: 1280 × 720) ( Figure S6 ). 425 Framewise predictions with likelihood < 0.95 were flagged as low confidence and 426 subjected to visual inspection. Missing samples were linearly interpolated when gaps 427 were ≤ 3 consecutive frames; longer gaps were excluded from further analysis. No 428 temporal smoothing or filtering was applied to the resulting trajectories prior to 429 downstream analyses. 430 
+
+431 
+
+SKILL MEASUREMENT 432 Motor skill was operationalized as the number of correct sequences produced per second (cs/s). 433 A sequence was scored as correct if it matched the canonical pattern (41324) or any of its 434 circular permutations (e.g., 13241, 32414). For each 10 s trial, we computed the average 435 instantaneous cs/s. To characterize learning over time, cs/s data were fit with an 436 exponential growth function: 437 
+
+>     ⡩   ⡰  1 ⡹ゐぇ
+
+438 where (C 1) denotes baseline performance, (C 2) the asymptotic learning gain, and 439 (\lambda) the rate constant. Parameters were estimated using constrained nonlinear 440 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+17 least-squares (trust-region-reflective algorithm). Cumulative learning was quantified by 441 integrating (L(t)) over practice time and normalizing trial-wise gains by the total area 442 under the curve. Across participants, 95% of total gains (period defining early learning) 443 were achieved by Trial 12. 444 
+
+445 
+
+ONLINE AND OFFLINE LEARNING CONTRIBUTIONS 446 Microscale changes in skill performance were decomposed into online and offline 447 components using correct sequences per second (cs/s) as the behavioral metric. Micro-448 online gains were defined as the within-trial change in cs/s, computed as the difference 449 between the average performance in the first and last second of each 10-s practice trial. 450 Micro-offline gains were defined as the between-trial change in cs/s, computed as the 451 difference between the last second of a given trial and the first second of the 452 subsequent trial. These measures were calculated over the first 12 trials, corresponding 453 to the early learning phase. Cumulative micro-online and micro-offline changes were 454 then summed across this interval to estimate their relative contributions to overall skill 455 acquisition. 456 To characterize structural changes in motor behavior, we examined trial-level synergy 457 distributions based on HDBSCAN-derived cluster labels assigned to each video frame. 458 For each 10-s trial, we extracted the first and last 1-s windows (120 frames each at 120 459 fps) and quantified the composition of behavioral clusters (synergies) within each 460 window as a normalized histogram, excluding frames labeled as noise. Jensen– 461 Shannon divergence (JSD) was computed between the first and last second of each 462 trial to index online synergy reorganization, and between the last second of one trial and 463 the first second of the next to index offline reorganization. This approach enabled a 464 direct comparison between kinematic reconfiguration and skill change at the microscale. 465 
+
+466 
+
+POSE TRANSFORMATION AND SYNERGY EXTRACTION 467 To incorporate temporal structure into the pose data, we applied Morlet wavelet 468 transforms to the x- and y-coordinates of each digit at five frequencies (0.75, 1.45, 1.95, 469 2.35, and 2.75 Hz), chosen to span the range of rhythmic, voluntary finger movements 470 observed in pilot recordings. This yielded a time–frequency representation for each 471 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+18 frame in which each digit’s position was decomposed into oscillatory amplitudes at each 472 frequency. The aim was to capture behavioral variation across multiple timescales and 473 to allow for coordination between digits operating at potentially different frequencies— 474 for example, distinct rhythmic patterns expressed by the pinky and index fingers within 475 the same behavioral segment. The resulting feature vector for each frame comprised 40 476 dimensions (4 digits × 2 coordinates × 5 wavelets). 477 478 We performed dimensionality reduction using Uniform Manifold Approximation and 479 Projection (UMAP), as implemented in HUB-DT 78 . For each participant, frame-wise 480 feature vectors comprising wavelet-derived amplitude and phase across four digits and 481 frequencies were embedded into a two-dimensional space (n_neighbors = 40, 482 n_components = 2, min_dist = 0.1, metric = Manhattan). All time points from the 483 practice session were included in the embedding. The resulting two-dimensional 484 representation was used as input to HDBSCAN for density-based clustering of 485 behavioural synergies. 78 486 
+
+487 
+
+CLUSTERING OF BEHAVIOURAL DATA 488 To identify motor synergies, we applied HDBSCAN (Hierarchical Density-Based Spatial 489 Clustering of Applications with Noise) to the two-dimensional UMAP embedding of the 490 wavelet-transformed pose data 78 . Each point in this embedding corresponded to a 491 single video frame, representing the instantaneous kinematic state derived from the 492 wavelet-transformed features. HDBSCAN grouped points into clusters based on local 493 density (minimum cluster size = 200, minimum samples = 30, cluster selection = “leaf”, 494 cluster_selection_epsilon = 0.14), labelling sparsely populated regions as noise (label 495 −1). Each resulting cluster was treated as a discrete behavioral unit, or motor synergy, 496 whereas noise labels captured transitional or non-repetitive movements. 497 498 The resulting labels provided frame-level, fully unsupervised classifications of 499 movement, enabling objective segmentation of behavioral structure across training. To 500 characterize each synergy, we computed mean wavelet amplitude profiles across all 501 frames within a cluster. These profiles summarized the dominant spatial and frequency 502 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+19 features of each motor pattern, including digit-specific rhythmic contributions. For each 503 trial, we computed the proportion of frames assigned to each synergy as a normalized 504 histogram (summing to 1). Frames labelled as noise were excluded from this 505 quantification. These normalized synergy distributions served as the kinematic 506 fingerprint of each trial and were used in all between-trial comparisons. 507 508 
+
+JENSEN-SHANNON DIVERGENCE AND PERMUTATION TESTING 509 
+
+510 To quantify how motor synergy distributions changed with learning, we computed the 511 Jensen–Shannon divergence (JSD) between behavioral label distributions at different 512 trial time points. JSD was chosen because it is symmetric, bounded, and robust to zero 513 probabilities 79 . Further, JSD captures proportional changes across all labels in a scale-514 invariant and interpretable way, avoids directional bias, and uses smoothing that 515 prevents divergence due to missing cluster labels. 516 517 For each participant, synergy labels within a trial were converted into a probability 518 distribution by computing the relative frequency of each cluster. For each pair of trials, 519 JSD was then calculated between these distributions to index changes in synergy 520 composition. To assess whether observed JSD values exceeded chance, we used a 521 nonparametric permutation test: cluster labels were randomly reassigned 100,000 times 522 between the two distributions, recomputing JSD on each iteration to generate a null 523 distribution. The empirical p-value was defined as the proportion of permuted JSD 524 values greater than or equal to the observed value, preserving marginal structure while 525 randomizing label correspondence. 526 527 For group-level inference, individual p-values were transformed to z-scores using the 528 inverse standard normal distribution and combined across participants using Stouffer’s 529 method, yielding a single aggregate z-statistic and Stouffer’s p-value. 530 
+
+531 
+
+QUANTIFICATION AND STATISTICAL ANALYSIS 532 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+20 All modeling and statistical analyses were conducted in Python 3.10.8 using NumPy, 533 SciPy, UMAP-learn, HDBSCAN, and scikit-learn. Exponential fits were obtained 534 with scipy.optimize.curve_fit using boundary-constrained nonlinear least squares. JSD 535 was computed using log-sum averaging, and permutation tests were implemented with 536 custom Python code. Individual z-scores were combined at the group level using 537 Stouffer’s method. Statistical significance was defined as α = 0.05. All code and 538 configuration files are available on Zenodo [https://zenodo.org/records/10717889]. 539 540 
+
+DECLARATION OF INTERESTS 541 The authors declare no competing interests. 542 543 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+21 544 545 546 547 548 549 550 551 
+
+# FIGURES 552 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 22 
+
+553 554 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 23 555 
+
+FIGURE 1: Data analysis 556 557 
+
+(A) Subjects learned a motor sequence over 36 practice trials in a single training session 32,80 .558 Each trial alternated between 10 s training (sequence typing) and 10 s rest periods. (B) Skill 559 was quantified as the rate of correctly typed sequences per second. Early learning, the training 560 period during which 95% of maximum performance was reached, developed within the initial 12 561 trials (mean ± 95% CI; logarithmic model fit shown 15 ). The dashed vertical line indicates the trial 562 by which 95% of maximum performance was reached. (C) High-definition videos captured from 563 a frontal viewpoint (top) were analysed using markerless pose estimation to track digit positions 564 on each frame (bottom). (D) For a representative participant, digit displacement trajectories 565 along the lateral (x) and vertical (y) axes are shown across the first 12 trials, plotted as raw pixel 566 coordinates derived from DeepLabCut. As practice progressed, the amplitude of digit 567 movements increased, becoming especially pronounced by trial 12. (E) Digit trajectories during 568 a single practice trial (10sec) in a representative subject yielding 8 features (four digits × two 569 axes). Digit coding as in D. (F) We used complex Morlet wavelets cantered on five frequencies 570 known to be relevant during performance of digit movements 39,40 . We decomposed the time 571 series and obtained time-resolved estimates of amplitude and phase. (G) Left: Wavelet-572 transformed digit movements (panel F) were embedded into a two-dimensional space using 573 Uniform Manifold Approximation and Projection (UMAP) shown here for a single participant 574 across the full 36-trial practice session. Each point corresponds to one video frame sampled at 575 120 Hz. Right : Clustering performed on the UMAP embedding using Hierarchical Density-576 Based Spatial Clustering of Applications with Noise (HDBSCAN) to identify density-defined 577 clusters (behavioural synergies) (H) The kinematic properties of a representative synergy 578 cluster (circled in panel G, right) are shown, including the number of keypresses (5 kp), 579 keypress rate (6 kp/s), duration (840 ms), and the proportion of temporal digit overlap within the 580 synergy (75%). 581 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+24 582 
+
+FIGURE 2: Kinematic properties of motor synergies. 583 
+
+(A) Mean keypress count (kp/synergy) rose steadily across the early practice trials, 584 attaining an asymptote near trial 12 (blue arrow), after which it plateaued. (B) The 585 mean keypress rate (kp/second), normalized by synergy duration, exhibited progressive 586 increases across practice, reflecting steady gains in typing speed. These improvements 587 continued through trial 36. (C) The mean duration of individual synergies within each 588 trial decreased rapidly during early practice. (D) Digit overlap—defined as the mean 589 proportion of the synergy interval during which multiple digits move concurrently— 590 
+
+ls, he ve ts ch an —
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+25 increased progressively with training. Blue arrows in panels A–D indicate trial 12, the 591 point at which participants had achieved approximately 95% of their maximum 592 performance, marking the end of early learning 15 . (E) Stacked bar plots show the 593 proportional deployment of synergies comprising one, two, three, or four keypresses 594 across training. Note that with practice, participants gradually reweighted their repertoire 595 from early reliance on single/double keypress synergies (light blues) to preferential use 596 of synergies containing three and four keypresses (darker blues). (F) Linear regression 597 was used to quantify the relationship between the proportion of four-keypress synergies 598 and skill (cs/s), with each point representing a single trial and color-coded by trial 599 number (1–36). Across practice, increased reliance on four-keypress synergies closely 600 paralleled improvements in skill (R² = 0.83, p < 0.001; SEM = 0.0398). 601 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+26 602 603 604 605 
+
+FIGURE 3. HDBSCAN-derived synergy maps reorganize more during rest than 606 
+
+during practice in early learning. 607 
+
+(A) During early learning (trials 1–12), Jensen–Shannon divergence (JSD) between 608 consecutive synergy maps was greater across rest intervals than across practice 609 intervals, indicating stronger reorganization during brief pauses. (B) Changes in synergy 610 maps across practice intervals (online JSD) did not reliably predict early learning (R² = 611 0.104, p = 0.166, SEM = 0.485). (C) By contrast, changes in synergy maps across rest 612 intervals (offline JSD) strongly correlated with early learning (R² = 0.711, p < 0.001, 613 SEM = 0.292), suggesting that key aspects of synergy reconfiguration supporting early 614 performance gains occur predominantly offline. 615 616 
+
+gy 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+27 617 618 
+
+Figure 4: Emergence of expert synergies during early learning in a representative 619 
+
+subject. 620 
+
+(A) Bar plot depicting the temporal distribution of synergy clusters across each 10-s 621 practice interval over 36 trials in the same representative participant depicted in Fig 1G .622 Gray segments mark epochs within a trial in which no stable synergies were identified 623 (noise). Across training, a single predominant synergy (purple) emerges and 624 progressively dominates behavior, illustrating the stabilization of a preferred 625 
+
+ve 
+
+.
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+28 coordination pattern with practice. (B): Timeline of synergy cluster occurrences 626 (excluding noise), normalized to trial duration (0–1) for the same representative 627 participant. This bar plot parallels panel A but omits gray noise epochs, showing only 628 the sequence of identified synergies across each 10-s practice interval (n = 36 trials). 629 This noise-free, time-normalized representation was used for all subsequent JSD-based 630 statistical analyses ( Figure S1 ). The number of keypresses and digits per synergy is 631 indicated on the right. Early in training, synergies predominantly comprise single or 632 double digits, whereas later-emerging, dominant synergies recruit multiple digits, 633 reflecting the development of higher-order coordination. (C) Synergies were 634 subsequently classified according to their overall percentage of use across all training 635 trials (>50%, 21–49%, 6–20%, and <5%). Several distinct temporal profiles emerged in 636 this subject. Some synergies were expressed almost exclusively in the very first trial(s) 637 (e.g., green arrow, “novice”), whereas others appeared transiently during mid-practice 638 (e.g., dark blue arrow, “exploratory”). Certain synergies were expressed predominantly 639 at trial onset as performance approached asymptote (e.g., red arrow, “trial initiation”), 640 while others emerged around mid-training and became increasingly dominant toward 641 the end of practice (e.g., purple arrow, “expert”). This qualitative pattern, illustrated here 642 for a single participant, was also observed at the group level ( Fig. 5 ). 643 644 645 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+29 Fig 5 646 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 30 647 
+
+Figure 5. Synergy types emerging during early learning of a challenging 648 
+
+naturalistic skill. 649 
+
+(A) Synergies were classified according to their overall percentage of use across all 650 training trials (>50%, 21–49%, 6–20%, <5%). Group-level stacked bars show the 651 average percent use of each synergy class across trials (1–36). (B–E) Group-averaged 652 percent use (± SEM) for each synergy type across trials and subjects. The learning 653 curve is overlaid in panel B (dashed line) for reference. Gray bars to the right of each 654 panel indicate the mean number of keypresses encompassed by each synergy type (± 655 SEM). At the group level, the pattern observed in the single-subject example ( Fig. 4 ) is 656 preserved: predominant 5-keypress synergies late in training ( B, “expert”), trial initiation 657 2-4 keypress synergies expressed relatively uniformly across training ( C, “trial 658 initiation”), synergies engaging variable number of keypresses that emerge and fade 659 mid-training ( D, “exploratory”), and early 1–2-keypress synergies largely confined to the 660 first trial ( E, “novice”). 661 
+
+662 663 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+31 
+
+TABLES 664 
+
+Table 1 665 Permutation Test Between Trials 1 and 12 Participant ID Observed JSD Permutation P-value Z-score 001 0.8321 0.0228 2.2763 002 0.723 0.4831 0.7014 003 0.8305 0.0036 2.9147 004 0.7644 0.3933 0.8537 005 0.7864 0.1287 1.5191 006 0.8326 0.0226 2.2793 007 0.8016 0.3568 0.9215 008 0.8173 0.0641 1.8514 009 0.7972 0.6688 0.4277 010 0.8183 0.5271 0.6325 011 0.7709 0.4274 0.7936 012 0.8176 0.1939 1.2991 013 0.8186 0.2591 1.1285 014 0.7509 0.416 0.8134 015 0.8021 0.3161 1.0026 016 0.7057 0.5075 0.6627 017 0.8029 0.3199 0.9947 018 0.8298 0.0264 2.2195 019 0.8309 0.0269 2.2128 020 0.8272 0.03 2.1702 Stouffer’s P: 6.083e-10 666 
+
+667 
+
+Table 2 668 Permutation Test Between Trials 12 and 36 Participant ID Observed JSD Permutation P-value Z-score 001 0.8055 0.3724 0.8921 002 0.6119 0.8466 0.1935 003 0.4169 0.985 0.0188 004 0.4043 0.9645 0.0445 005 0.4633 0.9721 0.035 006 0.5681 0.7679 0.2951 007 0.4554 0.931 0.0866 008 0.4066 0.989 0.0138 009 0.8326 0.0112 2.5355 010 0.6235 0.8024 0.2502 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+32 011 0.3905 0.9668 0.0416 012 0.6548 0.7542 0.3131 013 0.7429 0.3663 0.9034 014 0.6653 0.6777 0.4157 015 0.7945 0.4672 0.727 016 0.3753 0.9754 0.0308 017 0.4596 0.8104 0.2399 018 0.3812 0.9785 0.027 019 0.4742 0.9174 0.1037 020 0.4269 0.9591 0.0512 Stouffer’s P: 1.065e-1 669 
+
+TABLES (1-2): 670 671 
+
+Permutation tests comparing synergy distributions between early and late 672 
+
+training trials. 673 674 Jensen–Shannon Divergence (JSD) quantified differences in synergy distributions 675 between pairs of trials for each participant. Permutation tests assessed the statistical 676 significance of observed JSD values (permutation p-values), which were converted into 677 Z-scores. Across participants, Z-scores were combined to produce a group-level 678 significance using Stouffer’s method (Stouffer’s p). Table 1 (top) compares Trials 1 and 679 12, revealing a significant change in synergy distributions across participants (Stouffer's 680 p = 6.083e-10). Table 2 (middle) compares Trials 12 and 36, indicating no significant 681 change across participants (Stouffer's p = 0.1065). 682 683 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+33 684 
+
+685 
+
+686 
+
+687 
+
+688 
+
+689 
+
+690 
+
+691 
+
+# Supplementary figures 692 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 34 693 694 
+
+Figure S1, related to STAR Methods. 695 
+
+(A) UMAP embedding of an illustrative participant’s behavioral data (same as in Figure 696 
+
+1G ), highlighting selected multi-digit synergy clusters. (B) Normalized synergy 697 distributions for three illustrative trials (noise removed). Each vertical bar depicts the 698 proportional contribution of each synergy within a trial. (C) Top . Synergy data from (B) 699 reorganized to enable direct comparison of synergy proportions across trials. Bars of 700 the same color correspond to the same synergy label, and bar height indicates that 701 synergy’s proportion within a trial. When a synergy occurred multiple times in a trial, its 702 contributions were summed (e.g., blue synergy in trials 2 and 3). Jensen–Shannon 703 divergence (JSD) values quantify differences between synergy distributions for each 704 trial pair (e.g., trials 1 vs. 2, 2 vs. 3), providing a numerical index of behavioral 705 reorganization during learning. Bottom . Conceptual overview of the permutation test 706 used to assess the statistical significance of observed JSD values. Original synergy 707 distributions (left) are randomly reassigned across synergy labels (center) to generate a 708 null distribution of JSD values (right). The empirical JSD (pink dot) is then evaluated 709 against this null distribution to determine whether the observed behavioral change 710 exceeds chance. 711 712 
+
+a
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+35 713 714 
+
+Figure S2. Relationship between the mean number of digits recruited per synergy 715 
+
+and corresponding kinematics during early learning (trials 1–12) related to Figure 716 
+
+2. The emergence of higher-order (multi-digit) synergies was associated with 717 progressively faster keypress rates ( A, R² = 0.777, p < 0.001) and increased temporal 718 overlap of digit movements ( B, R² = 0.805, p < 0.001), but not with changes in synergy 719 duration ( C, R² = 0.169, p = 0.184). Data points from Trial 36 (green). We tested 720 whether expression of the predominant synergy simply reflected faster typing. Across 721 participants, Trial 1 typing speed did not predict Trial 1 expression of the predominant 722 synergy (r = 0.0007, p = 0.998; D), arguing against the interpretation that expert-like 723 synergy structure is merely a mechanical consequence of baseline speed. E. We further 724 assessed the within-participant relationship between synergy use and performance 725 using a linear mixed-effects model with participant as a random effect. Predominant 726 synergy use significantly predicted typing speed above and beyond the effect of trial ( β727 (SE) = 0.0197 (0.0032); 95% CI = 0.0134, 0.0260; z = 6.11; p = <0.001), while trial also 728 showed an independent positive effect ( β (SE) = 0.0061 (0.0009); 95% CI = 0.0044, 729 0.0079; z = 6.96; p = <0.001), consistent with learning across practice. The synergy × 730 stage interaction was not significant ( β (SE) = -0.0052 (0.0044); 95% CI = -0.0139, 731 0.0035; z = -1.17; p = 0.243), indicating that the synergy–performance relationship did 732 not differ reliably between early and late learning. Consistent with this, the correlation 733 
+
+y
+
+er o
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+36 between synergy use and typing speed was moderate early in learning (r = 0.45) and 734 weaker later (r = 0.22). Together, these findings indicate that synergy structure captures 735 variance in skill beyond what is explained by skill speed. Mean % accuracy errors 736 across participants was 3.1+0.51% (SEM). 737 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 37 738 739 740 
+
+Figure S3. A. No sign of reduction in use of predominant multi-digit synergies 741 
+
+late in training , related to Figures 3, 4 and 5 . We examined whether accumulating 742 fatigue during the 10-s practice interval of a late trial (Trial 35)—at the end of Day 1, 743 when fatigue would be most likely—reduced the percentage use of the predominant 744 multi-digit synergies (see Figure. 4 , Figure. 5 ). No such deterioration was observed: 745 multi-digit synergies remained prominently and stably expressed throughout the 10-s 746 interval of this late training trial in all participants. Thus, we found no evidence that 747 accumulating fatigue measurably influenced multi-digit synergy use. B, C and D . Use 748 
+
+of nearby sets of UMAP/HDBSCAN hyperparameters rendered comparable 749 
+
+results . B. Synergy count. The number of inferred synergies was stable across 750 alternative HDBSCAN parameter settings, indicating that the identified synergy structure 751 was not driven by local changes in clustering thresholds. C. Predominant synergy 752 
+
+use. The increase in predominant synergy use from early to late learning was preserved 753 across parameter settings, with clear early/late separation in all cases. D. Offline 754 
+
+divergence and performance. The association between offline JSD and average 755 typing speed was also preserved across parameterizations, with similar effect sizes and 756 significance levels despite minor changes in slope and dispersion. Together, these 757 analyses show that the main findings are robust across a local range of 758 UMAP/HDBSCAN hyperparameters. 759 760 
+
+es 
+
+ng 
+
+1, 
+
+nt 
+
+d: 
+
+s
+
+at 
+
+se le 
+
+ss 
+
+re 
+
+gy 
+
+ed 
+
+ne 
+
+ge 
+
+nd 
+
+se 
+
+of 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+38 761 762 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 39 
+
+Figure S4. Kinematic Profile of an expert synergy, related to Figure 4 (same 763 
+
+subject as shown in Figure 4 ). (A) A single expert synergy across 36 practice trials. 764 Each vertical bar represents one trial, indicating the % use per trial of this synergy as 765 training progressed. This particular synergy encompasses all keypresses in the 766 learned sequence. (B) Individual digit kinematics (Y-position, camera frame pixels) 767 during execution of a single 5-keypress (red stars) expert synergy (117 frames, 975ms). 768 
+
+(C) Mean digit trajectories of the same expert synergy averaged across all occurrences 769 in the course of training (95% confidence intervals). The pattern highlights stable and 770 consistent multi-digit coordination for the expert synergy once it is created. (D) 771 Kinematic features of this expert synergy averaged in the course of training (+SDM): 772 mean velocity (pixels/frame, left), acceleration (pixels/frame², middle) and digit overlap 773 (% of frames with digit overlap in the course of training). 774 775 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+40 776 777 
+
+Figure S5, Video with pose-estimated labels at full-speed, related to Figure 4. 778 The video displays the predominant expert synergy illustrated in Figure S4 (117 779 frames), repeated consecutively 10 times. This synergy encompasses all keypresses in 780 the learned sequence. Video 1 shows the synergy at its original temporal scale (total 781 duration ≈10 s). 782 783 784 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+41 
+
+785 
+
+786 
+
+Figure S6, Video with pose-estimated labels at half-speed, related to Figure 4. 787 The video displays the predominant expert synergy illustrated in Figure S4 (117 788 frames), repeated consecutively 10 times. This synergy encompasses all keypresses in 789 the learned sequence. This video presents the same synergy as Figure S5 at half-790 speed (total duration ≈ 20 s), affording clearer visualisation of the underlying temporal 791 dynamics and inter-keypress coordination. 792 
+
+793 794 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+42 795 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 43 796 
+
+105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint 44 
+
+Figure S7. DeepLabCut network training performance and example marker 797 
+
+labelling, related to STAR Methods (A) A DeepLabCut neural network was trained to 798 track digit movements using default parameters (400,000 training iterations, RGB input, 799 pairwise terms enabled, without additional supervision). Network performance was 800 evaluated using 1 shuffle split. Root Mean Square Error (RMSE) decreased steadily 801 with training iterations, reaching 2.12 pixels on the training set and 2.18 pixels on the 802 held-out test set (image resolution: 1280 × 720). Error was assessed at intervals of 803 25,000 iterations. The stability and convergence of both training and test errors indicate 804 that the algorithm learned successfully. ( B) Representative video frames showing 805 predicted marker placements (coloured dots) on the fingernails of the index, middle, 806 ring, and little fingers. Each marker corresponds to a tracked key anatomical point 807 manually defined during training. Marker predictions shown here were generated by the 808 trained DeepLabCut model and used as input for downstream kinematic analyses of 809 digit position and motion. 810 811 During the preparation of this work the authors used GPT-5.2 for editing purposes. After 812 using this tool/service, the authors reviewed and edited the content as needed and take 813 full responsibility for the content of the published article. 814 
+
+815 816 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+45 
+
+# References 817 1 Willingham, D. B. The Neural Basis of Motor-Skill Learning. Curr Dir Psychol Sci 8, 178– 818 182 (1999). 819 2 Leggio, M. & Molinari, M. Cerebellar sequencing: a trick for predicting the future. 820 
+
+Cerebellum 14 , 35–38 (2015). https://doi.org/10.1007/s12311-014-0616-x 821 3 Kadmon Harpaz, N., Hardcastle, K. & Olveczky, B. P. Learning-induced changes in the 822 neural circuits underlying motor sequence execution. Curr Opin Neurobiol 76 , 102624 823 (2022). https://doi.org/10.1016/j.conb.2022.102624 824 4 Wang, J., El-Jayyousi, Y. & Ozden, I. A neural network model for timing control with 825 reinforcement. Front Comput Neurosci 16 , 918031 (2022). 826 https://doi.org/10.3389/fncom.2022.918031 827 5 Schieber, M. H. & Santello, M. Hand function: peripheral and central constraints on 828 performance. J Appl Physiol (1985) 96 , 2293–2300 (2004). 829 https://doi.org/10.1152/japplphysiol.01063.2003 830 6 Greene, P. H. Why is it easy to control your arms ? J Mot Behav 14 , 260–286 (1982). 831 https://doi.org/10.1080/00222895.1982.10735280 832 7 Santello, M., Flanders, M. & Soechting, J. F. Postural hand synergies for tool use. J. 833 
+
+Neurosci. 18 , 10105–10115 (1998). 834 8 Santello, M. Kinematic synergies for the control of hand shape. Arch Ital Biol 140 , 221– 835 228 (2002). 836 9 Mason, C. R., Gomez, J. E. & Ebner, T. J. Hand synergies during reach-to-grasp. J. 837 
+
+Neurophysiol. 86 , 2896–2910 (2001). https://doi.org/10.1152/jn.2001.86.6.2896 838 10 Soechting, J. F. & Flanders, M. Flexibility and repeatability of finger movements during 839 typing: analysis of multiple degrees of freedom. J. Comput. Neurosci. 4, 29–46 (1997). 840 https://doi.org/10.1023/a:1008812426305 841 11 Klein Breteler, M. D., Simura, K. J. & Flanders, M. Timing of muscle activation in a hand 842 movement sequence. Cereb Cortex 17 , 803–815 (2007). 843 https://doi.org/10.1093/cercor/bhk033 844 12 Thakur, P. H., Bastian, A. J. & Hsiao, S. S. Multidigit movement synergies of the human 845 hand in an unconstrained haptic exploration task. J Neurosci 28 , 1271–1281 (2008). 846 https://doi.org/28/6/1271 [pii] 847 10.1523/JNEUROSCI.4512-07.2008 848 13 Overduin, S. A., d'Avella, A., Roh, J., Carmena, J. M. & Bizzi, E. Representation of 849 Muscle Synergies in the Primate Brain. J Neurosci 35 , 12615–12624 (2015). 850 https://doi.org/10.1523/JNEUROSCI.4302-14.2015 851 14 Karni, A. et al. Functional MRI evidence for adult motor cortex plasticity during motor skill 852 learning. Nature 377 , 155–158 (1995). https://doi.org/10.1038/377155a0 853 15 Bönstrup, M. et al. A Rapid Form of Offline Consolidation in Skill Learning. Curr Biol 29 ,854 1346–1351 e1344 (2019). https://doi.org/10.1016/j.cub.2019.02.049 855 16 Brown, R. M. & Robertson, E. M. Inducing motor skill improvements with a declarative 856 task. Nat Neurosci 10 , 148–149 (2007). 857 17 Hull, C. L. Principles of behavior . (Appleton-Century- Crofts, 1943). 858 18 Eysenck, H. J. A Three-Factor Theory of Reminiscence. Br J Psychol 56 , 163–182 859 (1965). https://doi.org/10.1111/j.2044-8295.1965.tb00956.x 860 19 Robertson, E. M. Skill Memory: Mind the Ever-Decreasing Gap for Offline Processing. 861 
+
+Curr Biol 29 , R287–R289 (2019). https://doi.org/10.1016/j.cub.2019.03.007 862 20 Natraj, N., Silversmith, D. B., Chang, E. F. & Ganguly, K. Compartmentalized dynamics 863 within a common multi-area mesoscale manifold represent a repertoire of human hand 864 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+46 movements. Neuron 110 , 154–174 e112 (2022). 865 https://doi.org/10.1016/j.neuron.2021.10.002 866 21 Sporn, S., Chen, X. & Galea, J. M. The dissociable effects of reward on sequential motor 867 behavior. J Neurophysiol 128 , 86–104 (2022). https://doi.org/10.1152/jn.00467.2021 868 22 Sporn, S. & Galea, J. M. The effects of haloperidol on motor vigour and movement 869 fusion during sequential reaching. PLoS One 20 , e0316894 (2025). 870 https://doi.org/10.1371/journal.pone.0316894 871 23 Dhawale, A. K., Wolff, S. B. E., Ko, R. & Olveczky, B. P. The basal ganglia control the 872 detailed kinematics of learned motor skills. Nat Neurosci 24 , 1256–1269 (2021). 873 https://doi.org/10.1038/s41593-021-00889-3 874 24 Fitts, P. M. The information capacity of the human motor system in controlling the 875 amplitude of movement. J Exp Psychol 47 , 381–391 (1954). 876 25 Latash, M. L., Shim, J. K. & Zatsiorsky, V. M. Is there a timing synergy during multi-877 finger production of quick force pulses? Psychopharmacology (Berl) 177 , 217–223 878 (2004). https://doi.org/10.1007/s00213-004-1933-4 879 26 Kang, N., Shinohara, M., Zatsiorsky, V. M. & Latash, M. L. Learning multi-finger 880 synergies: an uncontrolled manifold analysis. Exp Brain Res 157 , 336–350 (2004). 881 https://doi.org/10.1007/s00221-004-1850-0 882 27 Jacobacci, F. et al. Rapid hippocampal plasticity supports motor sequence learning. 883 
+
+Proc Natl Acad Sci U S A 117 , 23898–23903 (2020). 884 https://doi.org/10.1073/pnas.2009576117 885 28 Iwane, F., Hayward, W., Dushyanthi Karunathilake, I. M., Buch, E. R. & Cohen, L. G. 886 Motor Memory Expansion Shapes Micro-Scale Dynamics of Naturalistic Skill Learning. 887 
+
+bioRxiv (2025). https://doi.org/10.1101/2025.11.13.686780 888 29 Ariani, G. & Diedrichsen, J. Sequence learning is driven by improvements in motor 889 planning. J Neurophysiol 121 , 2088–2100 (2019). https://doi.org/10.1152/jn.00041.2019 890 30 Walker, M. P., Brakefield, T., Hobson, J. A. & Stickgold, R. Dissociable stages of human 891 memory consolidation and reconsolidation. Nature 425 , 616–620 (2003). 892 https://doi.org/10.1038/nature01930 893 31 Walker, M. P. et al. Sleep and the time course of motor skill learning. Learn Mem 10 ,894 275–284 (2003). 895 32 Censor, N., Horovitz, S. G. & Cohen, L. G. Interference with existing memories alters 896 offline intrinsic functional brain connectivity. Neuron 81 , 69–76 (2014). 897 https://doi.org/10.1016/j.neuron.2013.10.042 898 33 Censor, N., Sagi, D. & Cohen, L. G. Common mechanisms of human perceptual and 899 motor learning. Nat Rev Neurosci 13 , 658–664 (2012). https://doi.org/10.1038/nrn3315 900 34 Buch, E. R., Claudino, L., Quentin, R., Bönstrup, M. & Cohen, L. G. Consolidation of 901 human skill linked to waking hippocampo-neocortical replay. Cell Rep 35 , 109193 902 (2021). https://doi.org/10.1016/j.celrep.2021.109193 903 35 Vahdat, S., Fogel, S., Benali, H. & Doyon, J. Network-wide reorganization of procedural 904 memory during NREM sleep revealed by fMRI. Elife 6 (2017). 905 https://doi.org/10.7554/eLife.24987 906 36 Mathis, A. et al. DeepLabCut: markerless pose estimation of user-defined body parts 907 with deep learning. Nat Neurosci 21 , 1281–1289 (2018). https://doi.org/10.1038/s41593-908 018-0209-y 909 37 Nath, T. et al. Using DeepLabCut for 3D markerless pose estimation across species and 910 behaviors. Nat Protoc 14 , 2152–2176 (2019). https://doi.org/10.1038/s41596-019-0176-0 911 38 Chambers, C., Kong, G., Wei, K. & Kording, K. Pose estimates from online videos show 912 that side-by-side walkers synchronize movement under naturalistic conditions. PLoS 913 
+
+One 14 , e0217861 (2019). https://doi.org/10.1371/journal.pone.0217861 914 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+47 39 Liu, W., Forrester, L. & Whitall, J. A note on time-frequency analysis of finger tapping. J915 
+
+Mot Behav 38 , 18–28 (2006). https://doi.org/10.3200/JMBR.38.1.18-28 916 40 Barchet, A. V., Henry, M. J., Pelofi, C. & Rimmele, J. M. Auditory-motor synchronization 917 and perception suggest partially distinct time scales in speech and music. Commun 918 
+
+Psychol 2, 2 (2024). https://doi.org/10.1038/s44271-023-00053-6 919 41 Enoka, R. M. & Duchateau, J. Translating Fatigue to Human Performance. Med Sci 920 
+
+Sports Exerc 48 , 2228–2238 (2016). https://doi.org/10.1249/MSS.0000000000000929 921 42 Pan, S. C. & Rickard, T. C. Sleep and motor learning: Is there room for consolidation? 922 
+
+Psychol Bull 141 , 812–834 (2015). https://doi.org/10.1037/bul0000009 923 43 Johnson, B. P. et al. Generalization of procedural motor sequence learning after a single 924 practice trial. NPJ Sci Learn 8, 45 (2023). https://doi.org/10.1038/s41539-023-00194-7 925 44 Dehaene, S., Meyniel, F., Wacongne, C., Wang, L. & Pallier, C. The Neural 926 Representation of Sequences: From Transition Probabilities to Algebraic Patterns and 927 Linguistic Trees. Neuron 88 , 2–19 (2015). https://doi.org/10.1016/j.neuron.2015.09.019 928 45 Doyon, J. & Benali, H. Reorganization and plasticity in the adult brain during learning of 929 motor skills. Current opinion in neurobiology 15 , 161–167 (2005). 930 https://doi.org/10.1016/j.conb.2005.03.004 931 46 Dayan, E. & Cohen, L. G. Neuroplasticity subserving motor skill learning. Neuron 72 ,932 443–454 (2011). https://doi.org/10.1016/j.neuron.2011.10.008 933 47 Pezzotti, N. et al. Approximated and User Steerable tSNE for Progressive Visual 934 Analytics. IEEE Trans Vis Comput Graph 23 , 1739–1752 (2017). 935 https://doi.org/10.1109/TVCG.2016.2570755 936 48 Poggio, T. & Bizzi, E. Generalization in vision and motor control. Nature 431 , 768–774 937 (2004). https://doi.org/10.1038/nature03014 938 49 Gentner, R. & Classen, J. Modular organization of finger movements by the human 939 central nervous system. Neuron 52 , 731–742 (2006). 940 50 Tresch, M. C. & Jarc, A. The case for and against muscle synergies. Curr Opin 941 
+
+Neurobiol 19 , 601–607 (2009). https://doi.org/10.1016/j.conb.2009.09.002 942 51 Santello, M., Baud-Bovy, G. & Jorntell, H. Neural bases of hand synergies. Front 943 
+
+Comput Neurosci 7, 23 (2013). https://doi.org/10.3389/fncom.2013.00023 944 52 Fricke, C., Gentner, R., Alizadeh, J. & Classen, J. Linking Individual Movements to a 945 Skilled Repertoire: Fast Modulation of Motor Synergies by Repetition of Stereotyped 946 Movements. Cereb Cortex 30 , 1185–1198 (2020). https://doi.org/10.1093/cercor/bhz159 947 53 Shahbazi, M., Ariani, G., Kashefi, M., Pruszynski, J. A. & Diedrichsen, J. Neural 948 Correlates of Online Action Preparation. J Neurosci 44 (2024). 949 https://doi.org/10.1523/JNEUROSCI.1880-23.2024 950 54 Dash, D. et al. Sequence action representations contextualize during early skill learning. 951 
+
+Elife 13 (2025). https://doi.org/10.7554/eLife.102475 952 55 Mylonas, D. et al. Maintenance of Procedural Motor Memory across Brief Rest Periods 953 Requires the Hippocampus. J Neurosci 44 (2024). 954 https://doi.org/10.1523/JNEUROSCI.1839-23.2024 955 56 Hayward, W. et al. Procedural Motor Memory Deficits in Patients With Long-COVID. 956 
+
+Neurology 102 , e208073 (2024). https://doi.org/10.1212/WNL.0000000000208073 957 57 Brooks, E., Wallis, S., Hendrikse, J. & Coxon, J. Micro-consolidation occurs when 958 learning an implicit motor sequence, but is not influenced by HIIT exercise. NPJ Sci 959 
+
+Learn 9, 23 (2024). https://doi.org/10.1038/s41539-024-00238-6 960 58 Bönstrup, M., Iturrate, I., Hebart, M. N., Censor, N. & Cohen, L. G. Mechanisms of offline 961 motor learning at a microscale of seconds in large-scale crowdsourced data. NPJ Sci 962 
+
+Learn 5, 7 (2020). https://doi.org/10.1038/s41539-020-0066-9 963 59 Jacobacci, F. et al. Rapid hippocampal plasticity supports motor sequence learning. 964 
+
+Proceedings of the National Academy of Sciences 117 , 23898–23903 (2020). 965 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+48 60 Chen, P. C., Stritzelberger, J., Walther, K., Hamer, H. & Staresina, B. P. Hippocampal 966 Ripples during Offline Periods Predict Human Motor Sequence Learning. J Neurosci 45 967 (2025). https://doi.org/10.1523/JNEUROSCI.1502-25.2025 968 61 Sjogard, M. et al. Hippocampal ripples predict motor learning during brief rest breaks in 969 humans. Nat Commun 16 , 6089 (2025). https://doi.org/10.1038/s41467-025-61136-y 970 62 Griffin, S. et al. Ensemble reactivations during brief rest drive fast learning of sequences. 971 
+
+Nature (2025). https://doi.org/10.1038/s41586-024-08414-9 972 63 Ebrahimi, S. & Ostry, D. J. The human somatosensory cortex contributes to the 973 encoding of newly learned movements. Proc Natl Acad Sci U S A 121 , e2316294121 974 (2024). https://doi.org/10.1073/pnas.2316294121 975 64 Beukema, P., Diedrichsen, J. & Verstynen, T. D. Binding During Sequence Learning 976 Does Not Alter Cortical Representations of Individual Actions. J Neurosci 39 , 6968–6977 977 (2019). https://doi.org/10.1523/JNEUROSCI.2669-18.2019 978 65 Heald, J. B., Lengyel, M. & Wolpert, D. M. Contextual inference in learning and memory. 979 
+
+Trends Cogn Sci 27 , 43–64 (2023). https://doi.org/10.1016/j.tics.2022.10.004 980 66 Gupta, M. W. & Rickard, T. C. Dissipation of reactive inhibition is sufficient to explain 981 post-rest improvements in motor sequence learning. NPJ Sci Learn 7, 25 (2022). 982 https://doi.org/10.1038/s41539-022-00140-z 983 67 Das, A., Karagiorgis, A., Diedrichsen, J., Stenner, M.-P. & Azanon, E. “Micro-offline 984 gains” convey no benefit for motor skill learning. bioRxiv , 2024.2007.2011.602795 985 (2024). https://doi.org/10.1101/2024.07.11.602795 986 68 Sternberg, S., Monsell, S., Knoll, R. L. & Wright, E. W. The Latency and Duration of 987 Rapid Movement Sequences: Comparisons of Speech and Typewriting. Information 988 
+
+Processing in Motor Control , 117–152 (1978). 989 https://doi.org/https://doi.org/10.1016/B978-0-12-665960-3.50011-6 990 69 Novembre, G. & Keller, P. E. A conceptual review on action-perception coupling in the 991 musicians' brain: what is it good for? Front Hum Neurosci 8, 603 (2014). 992 https://doi.org/10.3389/fnhum.2014.00603 993 70 Engel, K. C., Flanders, M. & Soechting, J. F. Anticipatory and sequential motor control in 994 piano playing. Exp Brain Res 113 , 189–199 (1997). https://doi.org/10.1007/BF02450317 995 71 Ariani, G., Shahbazi, M. & Diedrichsen, J. Cortical areas for planning sequences before 996 and during movement. J Neurosci (2024). https://doi.org/10.1523/JNEUROSCI.1300-997 24.2024 998 72 Du, Y. & Clark, J. E. New insights into statistical learning and chunk learning in implicit 999 sequence acquisition. Psychon Bull Rev 24 , 1225–1233 (2017). 1000 https://doi.org/10.3758/s13423-016-1193-4 1001 73 Ramkumar, P. et al. Chunking as the result of an efficiency computation trade-off. Nat 1002 
+
+Commun 7, 12176 (2016). https://doi.org/10.1038/ncomms12176 1003 74 Diedrichsen, J. & Kornysheva, K. Motor skill learning between selection and execution. 1004 
+
+Trends Cogn Sci 19 , 227–233 (2015). https://doi.org/10.1016/j.tics.2015.02.003 1005 75 Park, S. & Caldwell, G. E. Muscle synergies are modified with improved task 1006 performance in skill learning. Hum Mov Sci 83 , 102946 (2022). 1007 https://doi.org/10.1016/j.humov.2022.102946 1008 76 Patel, V. et al. Synergy Repetition Training versus Task Repetition Training in Acquiring 1009 New Skill. Front Bioeng Biotechnol 5, 9 (2017). https://doi.org/10.3389/fbioe.2017.00009 1010 77 Latash, M. L. Understanding and Synergy: A Single Concept at Different Levels of 1011 Analysis? Front. Syst. Neurosci. 15 , 735406 (2021). 1012 https://doi.org/10.3389/fnsys.2021.735406 1013 78 Lindsay, A. & Seamans, J. K. HUB-DT: A tool for unsupervised behavioural discovery 1014 and analysis. (2024). https://doi.org/https://doi.org/10.1101/2024.01.08.57469 1015 
+
+> 105 and is also made available for use under a CC0 license. (which was not certified by peer review) is the author/funder. This article is a US Government work. It is not subject to copyright under 17 USC The copyright holder for this preprint this version posted June 3, 2026. ;https://doi.org/10.64898/2026.02.24.707000 doi: bioRxiv preprint
+
+49 79 Lin, J. Divergence measures based on the Shannon entropy. IEEE Transactions on 1016 
+
+Information Theory, 37 , 145–151 (1991). https://doi.org/10.1109/18.61115 1017 80 Walker, M. P., Brakefield, T., Morgan, A., Hobson, J. A. & Stickgold, R. Practice with 1018 sleep makes perfect: sleep-dependent motor skill learning. Neuron 35 , 205–211 (2002). 1019 https://doi.org/10.1016/s0896-6273(02)00746-8 1020 
+
+1021

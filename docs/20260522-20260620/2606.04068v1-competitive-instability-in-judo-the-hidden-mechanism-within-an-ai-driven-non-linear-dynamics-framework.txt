@@ -1,0 +1,3021 @@
+Title: 2606.04068v1.pdf
+
+URL Source: https://arxiv.org/pdf/2606.04068v1
+
+Published Time: Thu, 04 Jun 2026 00:02:18 GMT
+
+Number of Pages: 36
+
+Markdown Content:
+1
+
+# Competitive Instability in Judo: The Hidden Mechanism 
+
+# within an AI -Driven Non -Linear Dynamics Framework 
+
+# Author  Attilio Sacripanti  IJF Academy 
+
+# Acknowledgments  The author gratefully acknowledges Romeo Fabi for his friendly and valuable 
+
+assistance. 
+
+ùAbstract .
+
+This  study  presents a unified nonlinear dynamical framework for understanding, modelling, and teaching 
+
+competitive judo. The Tori –Uke dyad is formalised as a constrained multibody system whose behaviour 
+
+emerges from symmetry breaking, coupling dynamics, and transitio ns between attractor basins. Two 
+
+fundamental instability archetypes —rotational collapse (Uchi -mata type) and gravitational -lever collapse 
+
+(Seoi -otoshi, suwari version) —are identified as the core pathways through which all throwing techniques 
+
+evolve. 
+
+A Functional Instability Index  𝐼 (𝑡 )is introduced as a dimensionless order parameter integrating geometric, 
+
+dynamic, and coupling -related variables, enabling the quantification of critical transitions such as Kuzushi, 
+
+Tsukuri, and Kake. Fractional Brownian Motion models the global displaceme nt of the dyad, linking tactical 
+
+exploration to the persistence structure of the interaction. 
+
+An AI -based pipeline extracts instability signatures from high -frequency competition video, providing 
+
+objective measures such as finite -time Lyapunov exponents, attractor topology, and coupling stiffness. 
+
+Building on these principles, a three -level teachin g framework is proposed, shifting judo pedagogy from a 
+
+technique -centred to an instability -centred approach. 
+
+This study establishes the first theoretical foundations for a predictive science of judo performance and 
+
+outlines future directions for empirical validation, athlete monitoring, injury -risk modelling, and cross -sport 
+
+applications. 
+
+# . Introduction 
+
+The formalization of the interaction within combat sports under a rigorous physical framework is not 
+
+entirely new. Early attempts to define the Tori -Uke dyad through the lenses of classical rational mechanics 
+
+and structural symmetries successfully mapped t he macroscopic forces at play : such as gravitational loads, 
+
+push/pull forces, and friction boundaries —by introducing interaction gradient potentials borrowed from 
+
+molecular physics, such as Morse and Lennard -Jones archetypes (Sacripanti , 199 7). However, while that 
+
+foundational hybrid deterministic -statistical model accurately described the boundary conditions and 
+
+macroscopic constraints of the contest, it couldn't fully account for the emergent properties, continuous 
+
+symmetry breaking, and non -deterministic tactical exploration typical of high -level judo. 
+
+The present work represents the natural evolution of that framework, shifting the paradigm from classical 
+
+interaction potentials to a fully non -linear dynamical systems approach driven by stochastic structures and 
+
+phase transitions. 
+
+Judo competition is not a sequence of isolated techniques but a nonlinear dynamical system (Stergiou & 
+
+Decker, 2011; Strogatz, 2024) in which two athletes form an evolving interpersonal synergy (Krabben, 
+
+2019). Contact through Kumi -kata creates a shared co nfiguration space where the movement of one 
+
+athlete immediately reshapes the possibilities of the other (Kelso, 1982 -2012; Sacripanti, 2011). Earlier 
+
+work by the author on Kumi -kata formalised grips as biomechanical and informational constraints, 
+
+anticipat ing recent findings from AI -based posture analysis (Kato & Yamagiwa, 2022). Ecological -dynamics 2
+
+studies confirm that attack decisions emerge from transitions in interpersonal coordination rather than 
+
+from pre -programmed actions (Lopes, 2024). The dyad behaves as a single system whose stability is highly 
+
+sensitive to micro -perturbations, timing, and g rip -induced constraints (Preatoni et al., 2010, 2012; Krabben, 
+
+2019).  To formalise this interaction, the dyad is modelled as a constrained multibody system governed by 
+
+both physical and virtual tactical constraints (Banerjee, 2016; Wang, 2023). Its global  displacement on the 
+
+tatami follows a stochastic process described by Fractional Brownian Motion, where the Hurst parameter 
+
+encodes the informational structure of the fight (Sacripanti, 2016, 2021). Within this nonlinear landscape, 
+
+instability emerges as t he central organising principle of judo: not an error, but the mechanism that drives 
+
+the transition from symmetry to collapse. 
+
+Building on th is perspective, the present study introduces two fundamental instability archetypes ,vertical 
+
+rotational instability (Uchi -mata model) and gravitational collapse instability (Seoi -otoshi, suwari version) 
+
+treated as dynamic abstractions rather than techniques. These archetypes define a continuum onto which 
+
+all throwing actions can be mapped (Sacripanti, 1987, 2021), each characterised by specific dynamical 
+
+signatures such as Lyapunov divergence, attractor f ormation, and nonlinear amplification (Winter, 2023; 
+
+Strogatz, 2024). This leads to a new classification of judo, grounded not in static mechanical categories but 
+
+in the instability pathways that govern the evolution of the dyad. 
+
+To quantify the evolving loss of stability, we introduce the Functional Instability Index  𝐼 (𝑡 ), a dimensionless 
+
+measure integrating geometric, dynamic, and coupling -related variables: COM displacement, finite -time 
+
+Lyapunov exponents, asymmetry, rotational torque, downward acceleration, and grip stiffness. This index 
+
+provides the formal order parame ter that Krabben et al. (2019) identified as missing in combat -sport 
+
+theory. 
+
+Artificial intelligence plays a central role in operationalising this framework. Modern pose -estimation and 
+
+machine -learning methods can detect micro -instabilities, quantify symmetry breaking, and identify hidden 
+
+patterns in competition videos (Kato & Yam agiwa, 2022; Winter et al., 2024; Dindorf, 2024). These tools 
+
+allow the extraction of instability signatures imperceptible to the human eye, enabling new analytical, 
+
+classificatory, and didactic applications. 
+
+Finally, this work proposes a three -level pedagogical model derived from nonlinear dynamics, aimed at 
+
+teaching athletes to perceive instability, navigate meta -stable regions, and explo it critical transitions. As a 
+
+foundational theoretical contribution, this study does not present experimental measurements; rather, it 
+
+establishes the conceptual and mathematical framework upon which future empirical studies may be built. 
+
+It represents a c oherent attempt to articulate a complex -systems perspective on judo, grounded in decades 
+
+of theoretical development and supported by appropriate nonlinear and AI -based methods .
+
+Th e theoretica l Instability index w as also  util ised  in a t ranslational applications,  as rehabilitative tool for 
+
+Parkinson’s disease  (Sacripanti A. 2022).  Its effectiveness, quantitatively demonstrated in a recent IJF 
+
+Academy study,  (Sacripanti A. Fabi R., Galea E. 2025)  illustrates the broader potential of a systemic 
+
+approach to judo for motor learning, neuroplasticity, and functional recovery. 
+
+# 2. Multibody Formalism and Virtual Constraints in the Dyad 
+
+During the transition phase of a throwing action, the two athletes can no longer be considered as 
+
+independent systems. Instead, they evolve into a single, coupled configuration , t he dyad , whose behaviour 
+
+must be described through the dynamics of a constrained multibody system. To formalise this interaction 
+
+during the Tsukuri and Kake phases, we introduce the following equation of motion (Wang, 2023; Banerjee, 
+
+2016; see Appendix B): 
+
+𝑀 (𝑞 )𝑞 ̈ + 𝑁 (𝑞 , 𝑞 ̇ ) + 𝐺 (𝑞 ) = 𝑄 musc  + 𝐽 𝑞 
+
+> 𝑇
+
+(𝜆 physics  + 𝜆 tactics ) (1)
+
+where:  
+
+> •
+
+𝑞  is the vector of generalised coordinates,  
+
+> •
+
+𝑀 (𝑞 ) is the mass matrix,  
+
+> •
+
+𝑀 (𝑞 )𝑞 ̈ + 𝑁 (𝑞 , 𝑞 ̇ ) + 𝐺 (𝑞 ) represents the intrinsic dynamics of the body segments, including 
+
+nonlinear Coriolis, centrifugal, and gravitational forces, 3 
+
+> •
+
+𝐽 𝑞  
+
+> 𝑇
+
+is the Jacobian matrix of constraints (Trench, 2013). 
+
+Physical constraints 
+
+𝐽 𝑞 
+
+> 𝑇
+
+𝜆 physics  represents the classical Lagrange multipliers associated with physical constraints: foot –tatami 
+
+contact (unilateral constraint), grips (bilateral constraints with elastic and dissipative components), elastic 
+
+collisions between body segments. 
+
+Virtual tactical constraints 
+
+A key innovation of this model is the introduction of: 
+
+𝐽 𝑞 
+
+> 𝑇
+
+𝜆 tactics 
+
+which represents virtual constraints (Banerjee, 2016). These encode Tori’s tactical actions aimed at: 
+
+saturating Uke’s degrees of freedom (DoF), modulating grip stiffness and direction, managing space and 
+
+rhythm, intentionally creating symmetry breaking be fore the throw (Makikomi and Tai Atari) (Sacripanti et 
+
+al., 2026). 
+
+Integrating virtual constraints into the multibody formulation allows the model to capture not only the 
+
+physical dynamics of the dyad but also the strategic component of judo interaction. Variations in virtual 
+
+constraints modify the system’s structure and  influence local stability, contributing to the emergence of 
+
+functional instability (Krabben, 2019). 
+
+Muscular input 
+
+𝑄 musc  represents the internal metabolic forces transformed into external mechanical torques applied by 
+
+Tori at the moment of Kake. 
+
+2.1 Global Motion as Fractional Brownian Motion 
+
+Once the internal dynamics of the dyad are defined by Eq. (1), its global displacement on the tatami can be 
+
+modelled as a stochastic process governed by Fractional Brownian Motion (fBm) (Sacripanti, 1987, 2012, 
+
+2021). This framework captures the high -entro py exploratory behaviour typical of the Kumi -kata phase 
+
+(Sacripanti, 2011). Equation (5) (Appendix B) explains why a technique fails when “space” remains open for 
+
+Uke: if  𝜆 tactics  ≈ 0, Uke retains too many degrees of freedom, enabling active defence and 
+
+making  𝑄 musc  insufficient to overcome inertia. 
+
+2.2  𝑸 𝐦𝐮𝐬𝐜  as a Control Parameter and Phase Transition Trigger 
+
+From a nonlinear -dynamics perspective,  𝑄 musc  acts as the control parameter of the dyadic system 
+
+(Ladevèze & Pelle, 2004; Amato, 2006). While the dyad moves in a high -entropy state during Kumi -kata 
+
+(modelled via fBm), the strategic application of  𝑄 musc  triggers a phase transition. For Tori, this transition 
+
+corresponds to the saturation of Uke’s degrees of freedom: Tori does not merely apply force, but 
+
+compresses Uke’s available phase space. 
+
+As a result: the configurational entropy of the dyad collapses (Vervoorts et al., 2021), the stochastic tactical 
+
+search becomes a deterministic projection toward the functional attractor (Ippon), and the global 
+
+stochastic motion is transformed into a deter ministic trajectory ending in a lever -based or couple -based 
+
+mechanical tool (Sacripanti, 1987, 2021). 
+
+These multibody equations describe the structural and constraint -based organisation of the dyad. 
+
+However, the emergence of effective throwing actions cannot be understood through mechanical structure 
+
+alone. Once physical and virtual constraints shape the c onfiguration space, the dyad evolves according to 
+
+nonlinear dynamics in which symmetry breaking, divergence, and attractor formation govern the transition 
+
+from stability to col lapse. This motivates the shift to the dynamical analysis developed in Section 3. 4
+
+# 3. Nonlinear Dynamics of the Dyad 
+
+3.1 Symmetry, Asymmetry, and Symmetry Breaking 
+
+Understanding judo interaction requires distinguishing two fundamental forms of symmetry breaking that 
+
+underlie effective  Kuzushi in competition (Sacripanti, 2014, 2021). Stability depends on the base of support 
+
+and the position of the centre of mass (COM). We therefore differentiate: static symmetry breaking 
+
+(postural asymmetry) and dynamic symmetry breaking (interactional a symmetry). 
+
+A) Static symmetry breaking (postural asymmetry) 
+
+This occurs when Uke’s configuration is inherently unbalanced before any dynamic action. A rotated torso, 
+
+lateral lean, or uneven stance shifts the COM and creates a stability gradient. Uke may appear stable on 
+
+one side but becomes globally less mobile. Th is reduction in mobility provides Tori with a predefined attack 
+
+direction. The system’s symmetry is broken by geometry alone, allowing Tori to exploit a structural 
+
+weakness without initially injecting high kinetic energy (Sacripanti, 2014, 2021). 
+
+Fig. 1  – Static postural symmetry breaking: Blue targeting White right side 
+
+B) Dynamic symmetry breaking (interactional asymmetry) 
+
+Dynamic symmetry breaking emerges from the coupling of movement and Tori’s kinetic input. The dyad 
+
+transitions from a reciprocal equilibrium to a chaotic regime characterised by a positive Lyapunov exponent 
+
+(Winter et al., 2023). Kato & Yamagiwa (2022) dem onstrated that Kumi -kata acts not only as a mechanical 
+
+constraint but also as an informational constraint: the configuration of arms, torso, and contact predicts 
+
+the direction of instability and the family of emerging techniques. Small perturbations, rhyth m changes, or 
+
+entries (Tsukuri) can drive the system from reciprocal exchange to divergent instability (Kuznetsov, 2023). 
+
+Identifying and exploiting both forms of symmetry breaking is central to effective Kuzushi (Sacripanti, 
+
+2021). Once symmetry is broken, the dyad no longer evolves in a neutral configuration space. The 
+
+interaction becomes progressively channelled toward spe cific coordination tendencies, or attractors, which 
+
+define the functional landscape of instability. 
+
+Fig. 2  – Dynamic symmetry breaking, interactional asymmetry action in competition 
+
+Practical application: identifying the target 
+
+Coaches should train athletes to “read” static asymmetry. When Uke presents a rotated torso, certain 5
+
+degrees of freedom become effectively locked. AI can quantify this by measuring COM deviation relative to 
+
+the base of support and identifying the side where defensive response is slowest. 
+
+3.2 Attractors and Functional Instability: Instability as the Core of Judo Dynamics 
+
+A technique should not be viewed as an isolated motor pattern but as a trajectory in the configuration space 
+
+of the dyad (Riley & Turvey, 2002). Lopes (2024) showed that the fight evolves through stable, meta -stable, 
+
+and unstable states, and that attack de cisions correspond to transitions between coordination patterns. This 
+
+supports the view that instability is an emergent property of the dyad and represents the dynamic core of 
+
+competitive judo.  In dynamical systems, an attractor is a region of phase space toward which the system tends 
+
+to evolve (Strogatz, 2024; Stergiou & Decker, 2011). In judo, attractors correspond to functional tendencies 
+
+such as preferred imbalance directions, characteristic  rhythms, or rotational pathways that facilitate 
+
+instability.  Tori’s task is not simply to “apply a throw,” but to drive the dyad toward a functional attractor 
+
+(Winter et al., 2024; Yearby et al., 2024) that reduces Uke’s ability to recover balance. A thro w succeeds when 
+
+the system enters an unstable basin where collapse becomes inevitable, like Tai Atari, (Strogatz, 2024), after 
+
+which the mechanical tool (lever or couple) finalises the projection (Sacripanti, 1987, 2021). 
+
+• A. Instability as an emergent property of the dyad: Tori and Uke form a coupled system in which 
+
+each micro -action instantly modifies the other’s capabilities. Krabben et al. (2019) describe this as 
+
+an “interpersonal synergy.” Instability arises when this s ynergy is disrupted. 
+
+• B. Instability as manipulation of interpersonal synergy: Instability emerges from symmetry breaking, 
+
+local divergence (Lyapunov), COM variations, changes in coupling stiffness Kg(t), and transitions 
+
+between attractor basins. Skilled performance requires op erating in meta -stable regions (Krabben, 
+
+2019). The Instability Index I(t) formalises this concept. 
+
+• C. Instability as a critical transition (bifurcation): Every technique crosses a critical threshold where 
+
+the dyad transitions from stability to collapse. Small changes in constraints can cause sudden 
+
+transitions (Krabben, 2019). This is the essence of non linear amplification and explains why Tori 
+
+must guide the dyad toward a functional attractor (Winter, 2023). 
+
+3.3 Functional Instability Index  𝑰 (𝒕 )
+
+To quantify evolving stability, we introduce the Instability Index  𝐼 (𝑡 ), a normalized measure (0 –1) 
+
+integrating geometric, dynamic, and coupling -related variables: COM displacement relative to base of 
+
+support, finite -time Lyapunov exponent, static and dynamic asymmetry, rotational torque, downward 
+
+acceleration, grip stiffness  𝐾 𝑔 (𝑡 ). Kato & Yamagiwa (2022) showed that Kumi -kata posture contains 
+
+predictive signals about future behaviour. Lopes (2024) demonstrated that transitions can be quantified 
+
+through collective variables such as relative angular velocity and running correlation.  The Instability Index 
+
+extends this logic by integrating multiple variables into a single dimensionless measure (see Appendix B). 
+
+Definition (normalized form) 
+
+𝐼 (𝑡 ) = 𝑆  (𝛼 Λ𝑁 (𝑡 ) + 𝛽 𝑇 rot ,𝑁 (𝑡 ) + 𝛾𝐴 (𝑡 ) + 𝛿 𝑑 𝑁 (𝑡 ) + 𝜖 𝑎 𝑧 ,𝑁 (𝑡 ) − 𝜁 𝐾 𝑔 ,𝑁 (𝑡 )
+
+𝐶 ) (2)
+
+Biomechanical rationale : Geometric contributors ( 𝑆 , 𝐴 , 𝑇 rot ) describe spatial evolution toward instability. 
+
+Dynamic contributors ( 𝜆 , 𝑎 𝑧 ) quantify divergence rate. Stabilizing contributors ( 𝐾 𝑔 ) represent resistance to 
+
+instability  through grips 
+
+• D. Instability as hidden order: Instability follows attractors, basins, Poincaré maps, FTLE, and the 
+
+Hurst parameter. Krabben et al. (2019) emphasise the need for order parameters; the archetypes 
+
+Uchi -mata and Seoi -otoshi provide such structures. 
+
+• E. Instability as a tactical tool: Instability is induced, not endured. Eq. (1) (constraints), Eq. (5) 
+
+(energy flow), and Eq. (2) (Instability Index) formalise this process. 6
+
+• F. Instability as a measurable variable: The Instability Index is the first quantitative proposal 
+
+integrating geometry, dynamics, coupling, and acceleration to identify collapse windows and 
+
+distinguish instability archetypes. 
+
+• G. Instability as expert skill: The three -level teaching model trains athletes to perceive instability, 
+
+navigate meta -stable regions, and act at the singularity point.  Krabben et al. (2019) describe this as 
+
+expert brinkmanship. 
+
+3.3.1 Two Fundamental Instability Archetypes 
+
+The dyad transitions from stability to collapse through two fundamental instability pathways. 
+
+These  archetypes are not techniques but dynamic structures that organise the evolution of the Tori –Uke 
+
+system. 
+
+I)  Rotational Archetype (Uchi -mata Type) 
+
+Instability emerges through the progressive formation of a rotational attractor. Tori applies a 
+
+lateral -vertical couple of forces that generates a dominant torque around an oblique axis. The 
+
+resulting angular dynamics increase Uke’s rotational velocity unt il recovery becomes 
+
+impossible. The COM trajectory exhibits a characteristic lateral deviation, and collapse occurs 
+
+when the projection of the COM exits the support polygon. This archetype corresponds to a 
+
+smooth, rotationally driven loss of stability. 
+
+Fig. 3  Uchi -mata : loss of symmetry creates an instability collapse. On the side, illustrative 
+
+representations of the displacement of the COM in real space and Uchi -mata’s chaotic circular attractor 
+
+in phase space 
+
+II) Gravitational -Lever Archetype (Seoi -otoshi, suwari version) 
+
+This archetype combines: 
+
+1.  a rapid drop of Tori’s COM, creating a vertical void beneath Uke, and 
+
+2.  a lever action applied through a migrating fulcrum. 
+
+The effective fulcrum is not fixed. It initially lies at the feet –tatami contact, where friction provides 
+
+transient resistance. Once friction is overcome, the fulcrum migrates to the contact between Uke’s shins 
+
+and Tori’s crouched body, which becomes the m ain pivot of the lever. The shoulder acts as a strong 
+
+kinematic constraint but not as a fixed point. Because the fulcrum moves and the applied force has both 
+
+vertical and lateral components, Uke’s COM follows a descending helical trajectory. Collapse is ab rupt and 
+
+irreversible once the COM projection leaves the support polygon. This archetype represents a  mixe d7
+
+gravitational - lever instability with a characteristic helical fall. A full mathematical treatment of both 
+
+instability archetypes is provided in Appendix B.6.   
+
+> Fig. 4 –Seoi -otoshi, suwari version: the functional asymmetry required to generate momentum (higher energy and
+> lower stability). On side, illustrative representations of the displacement of the COM in real space and collapse
+> chaotic attractors in Seoi -oto shi indicating motion variability and internal dynamics.
+
+3.4 A New Instability -Based Classification of Judo Throws 
+
+Nonlinear analysis shows that the core of competitive dynamics is not the technique itself but the 
+
+instability induced within the dyad. Each technique corresponds to a specific instability basin. Tori then 
+
+applies one of the two operational tools —lever or  couple —to finalise the projection. All techniques can be 
+
+ordered along a continuum between the two archetypes: Uchi -mata and Seoi -otoshi (suwari variation). This 
+
+classification complements  Kano’s five principles and Sacripanti’s biomechanical classification (Kano, 1895, 
+
+1986; Sacripanti, 1987, 2021). 
+
+If instability archetypes define the qualitative structure of throws, phase transitions describe the precise 
+
+moment in which the dyad crosses the threshold from stability to collapse. Section 3.5 formalises these 
+
+transitions using nonlinear tools such as L ya punov exponents and Poincaré maps. 
+
+3.5 Phase Transitions, Thresholds, and Nonlinear Amplification 
+
+Every technique passes through a critical threshold where the dyad transitions from stability to instability 
+
+(Riechl, 1992; Kuznetsov, 2023). Small changes in COM, timing, or entry angle can produce nonlinear 
+
+amplification. Quantitative tools such as Lyapu nov exponents and Poincaré maps measure divergence and 
+
+regime changes (Winter, 2023; Strogatz, 2024). 
+
+Lyapunov exponent 
+
+𝜆  = lim  
+
+> 𝑡 →∞
+> 1
+> 𝑡
+
+log  ∥𝛿𝑥 (𝑡 )∥ 
+
+> ∥𝛿𝑥 (0)∥
+
+(3) 
+
+A positive value indicates rapidly growing instability (Strogatz, 2024). In judo, finite -time Lyapunov 
+
+exponents (FTLE) are used due to the transient nature of interaction. 
+
+Poincaré map 
+
+Σ → Σ𝑥 : 𝑥 𝑛  ↦ 𝑥 𝑛 +1 (4)
+
+Useful for identifying recurring interruptions in rotation or rhythm (Parker & Chua, 1989). 8
+
+3.5.1 Phase Transition in Kumi -kata 
+
+Grips transmit both mechanical force and informational signals (Sacripanti, 2011). The energy flow between 
+
+Tori and Uke can be expressed as:  
+
+> 𝑑𝐸
+> 𝑑𝑡
+
+# = 𝐹 kumi (𝑡 ) Δ𝑣 COM (𝑡 ) + 𝜁 𝑑𝐻 (𝑡 ) 
+
+> 𝑑𝑡
+
+# (5)
+
+where:  
+
+> •
+
+𝐹 kumi (𝑡 ): force transmitted through the grip (the “control vector”),  
+
+> •
+
+Δ𝑣 COM (𝑡 ): difference in velocity between the centres of mass,  
+
+> •
+
+𝜁 : “tactical work” coefficient that correlates the rate of change of persistence of 
+
+motion  (𝑑𝐻 /𝑑𝑡 ) to Tori’s capability to saturate Uke’s degrees of freedom; it has the dimension of 
+
+work,  
+
+> •
+
+𝐹 kumi (𝑡 ) Δ𝑣 COM (𝑡 ): macroscopic deterministic component of mechanical power,  
+
+> •
+
+𝜁  𝑑𝐻 (𝑡 )/𝑑𝑡 : power related to the complexity of tactical work and its temporal persistence. 
+
+The Hurst parameter  𝐻  reflects the memory and persistence of motion: 
+
+𝐻  > 0.5: persistent behaviour; disruptive actions accumulate. 
+
+𝐻  < 0.5: anti -persistent behaviour; rapid compensatory feedback. 
+
+A rapid change in  𝐻  indicates a phase transition from stochastic exploration to coordinated attack. The 
+
+Hurst parameter thus measures the informational quality of control exerted by Tori. 
+
+Practical Example : when the  pressure  rhythm  of the kumi -kata becomes persistent (H>0.5), it is time to 
+
+attack. If, however, Uke , absorbing the pressure,  continues to change direction (H<0.5), it is better to 
+
+persist with the study to find or produce  a symmetry breaking moment. 
+
+# 4. Dyadic Displacement and Internal Dynamics 
+
+To understand the “hidden order” of judo, the global movement of the Tori –Uke dyad must be 
+
+decomposed into two coupled scales: 
+
+1.  the macro -scale displacement of the dyad on the tatami, and 
+
+2.  the micro -scale internal dynamics between the athletes (Sacripanti, 2021; Wang, 2023). 
+
+traditionally, global displacement has been interpreted as a sequence of random steps. Here, it is modelled 
+
+as a stochastic process governed by Fractional Brownian Motion (fBm). Recent advances in deep learning 
+
+and computer vision (Zheng et al., 2024; Rojas -Valverde et al., 2025) allow the detection of subtle 
+
+symmetry -breaking events within this motion. These AI -driven insights reveal that the transition from 
+
+Tsukuri to Kake corresponds to a bifurcation point, where the system’s stability is intentionally 
+
+co mpromised to achieve the throw. 
+
+4. 1 Fractional Brownian Motion 
+
+To capture the multiscale structure of judo, global dyadic motion must be separated from micro -scale 
+
+instability. As shown in previous work (Sacripanti, 1987, 2015, 2021), the movement of the dyad does not 
+
+follow a linear path, a standard random walk, or c lassical Brownian motion. Instead, it is better described 
+
+by Fractional Brownian Motion (fBm). 9
+
+Fig. 5  – Trajectories on the tatami of the collective COM of a couple of athletes  (dyad) . Realization for 16 
+
+virtual competitions (Sacripanti, 1987, 2015, 2021) 
+
+Mathematical implication 
+
+The trajectory of the dyad’s collective COM exhibits long -range dependence or memory (Meerson et al., 
+
+2022). Movement is not a sequence of independent steps but a persistent or anti -persistent process in 
+
+which past displacements influence future ones. 
+
+𝐻  = lim 
+
+> 𝑇 →∞
+
+log  Var  ∣ 𝑋 (𝑡  + 𝑇 ) − 𝑋 (𝑡 ) ∣
+
+2 log  𝑇  ( 6)
+
+Practical takeaway (Hurst exponent) 
+
+Bryce & Sprague (2012) showed that short, non -stationary time series require robust methods to estimate 
+
+long -range dependence; many popular techniques (e.g., DFA) introduce biases in nonlinear contexts. The 
+
+Hurst parameter indicates whether dyadic motion t ends to: persist in the same direction ( 𝐻  > 0.5), reverse 
+
+direction frequently ( 𝐻  < 0.5), or behave as memoryless noise ( 𝐻  ≈ 0.5). 
+
+4.1.1 Global Motion Model 
+
+Once the internal dynamics of the dyad are defined by Eq. (1), its global displacement is modelled as an 
+
+fBm -driven stochastic process (Biagini et al., 2008). In this framework, fBm becomes an indicator of 
+
+strategic dominance: movement on the tatami is not  noise but a search for a critical configuration. 
+
+Correct interpretation requires distinguishing between fGn and fBm signals (Eke et al., 2002). The dyad’s 
+
+COM evolution can be expressed through the fractional stochastic differential equation: 
+
+𝑑𝑋 (𝑡 ) = 𝜇 (𝑋 , 𝑡 ) 𝑑𝑡  + Σ 𝑑 𝐵 𝐻 (𝑡 ) (7)
+
+where: 
+
+𝜇 (𝑋 , 𝑡 ): deterministic drift (Tori’s biomechanical intention), 
+
+𝑑 𝐵 𝐻 (𝑡 ): increment of fractional Brownian motion governed by  𝐻 .
+
+Interpretation in judo competition (Sacripanti, 1987, 2015, 2021):  
+
+> a.
+
+Study phase ( 𝐻  ≈ 0.5): motion is stochastic; neither athlete controls the dyad.  
+
+> b.
+
+Attack/persistence phase ( 𝐻  > 0.5): symmetry is broken; movement becomes directional; this 
+
+corresponds to Kuzushi leading to Tsukuri.  
+
+> c.
+
+Defence/anti -persistence phase ( 𝐻  < 0.5): Uke performs rapid corrective actions to restore 
+
+balance. 
+
+Practical application 
+
+For coaches, this confirms that the “tactical dance” before a throw is not random but a search for an 
+
+optimal configuration in both real space and phase space. 
+
+4.2 Individual Dynamics Beyond Classical Mechanics 
+
+While the dyad moves according to fBm , the individual movement of each athlete during a technique 
+
+cannot be fully explained by classical mechanics. Instead, nonlinear dynamics provide a more accurate 
+
+approximation. 10 
+
+Limitations of classical models 
+
+Classical mechanics treats the athlete as a system of levers and pulleys in a vacuum. In reality, the athlete is 
+
+an open system, continuously exchanging energy and information with the opponent and interacting with 
+
+frictional forces. 
+
+Nonlinear individual response 
+
+Each athlete behaves as a complex system capable of sudden state transitions. The apparent simplicity of 
+
+global dyadic movement is an emergent property of highly complex, nonlinear musculoskeletal 
+
+adjustments. 
+
+Symmetry and target identification 
+
+As noted in Section 3.1, static symmetry breaking creates a non -uniform stability landscape. Nonlinear 
+
+models reveal how Tori’s movement penetrates Uke’s weakest stability points rather than overcoming 
+
+them through brute force. 
+
+Practical Application: Training the “Nonlinear Athlete” 
+
+Coaches should shift from teaching static positions to training dynamic situations. AI -based tools can 
+
+provide:  early -warning indicators of symmetry breaking,  visualisation of entries,  objective timing metrics, 
+
+stability landscape maps,  micro -timing windows,  corrective drills,  comparative athlete profiles. 
+
+These outputs can be integrated into a coaching dashboard to support decision -making and targeted 
+
+training. 
+
+# 5. Discussion, Limitations, and Future Work 
+
+The combined analysis of global dyadic displacement (fBm) and micro -scale internal dynamics reveals that 
+
+competitive judo is governed by multiscale interactions linking stochastic exploration to deterministic 
+
+collapse. These findings provide the conceptual  basis for the broader implications discussed in this section, 
+
+including theoretical coherence, methodological limitations, and future empirical developments. 
+
+5.1 Summary of Contributions 
+
+This foundational theoretical study proposes a unified framework that reframes judo throwing actions as 
+
+instability processes emerging from the nonlinear interaction of the Tori –Uke dyad.  The principal 
+
+contributions are: 
+
+1.  Formalisation of the dyad as a constrained multibody system incorporating both physical and 
+
+tactical (virtual) constraints (Eq. 1). 
+
+2.  Introduction of two fundamental instability archetypes , vertical rotational collapse (Uchi -mata 
+
+model) and gravitational collapse (Seoi -otoshi, suwari version) , defining a continuum onto which all 
+
+throwing techniques can be mapped. 
+
+3.  Definition of the Functional Instability Index  𝐼 (𝑡 ) (Eq. 2), a dimensionless order parameter 
+
+integrating geometric, dynamic, and coupling -related variables. 
+
+4.  Presentation of t hre e level pedagogical model derived from nonlinear dynamics, aimed at teaching 
+
+athletes to perceive instability, navigate meta stable regions, and exploit critical transitions. 
+
+5.  Incorporation of the Hurst parameter  𝐻  as an indicator of the informational structure of Kumi -kata 
+
+and its role in the stochastic -to -deterministic phase transition. 
+
+6.  Specification of an AI pipeline (Appendix A) for extracting instability signatures from competition 
+
+video, enabling operationalisation of the framework for coaches and analysts. 
+
+5.2 Limitations 
+
+The limitations of this work fall into three categories: foundational, technical, and domain -specific. 
+
+5.2.1 Foundational Limitations 
+
+Empirical validation.  As a foundational theoretical paper, this work does not provide empirical datasets, 
+
+effect sizes, or statistical tests to validate thresholds such as Lyapunov exponent sign changes, critical 
+
+values of  𝐼 (𝑡 ), or Hurst parameter ranges. These constructs require validation against labelled competition 11 
+
+data. The framework should therefore be interpreted as a roadmap for future empirical research, not as a 
+
+validated model. 
+
+Model identifiability.  The study introduces dynamical constructs , attractors, basins of attraction, finite -time 
+
+Lyapunov exponents , without specifying parameter -identification procedures or uncertainty quantification. 
+
+Estimating Lyapunov exponents from short, noisy time series (typical of judo exchanges lasting a few 
+
+seconds) is challenging, and their reliability under competition cond itions remains untested. 
+
+Generalisability.  The framework is presented as universal, but its applicability across weight categories, age 
+
+groups, genders, and tactical cultures has not been evaluated. Dynamical signatures may vary 
+
+systematically with morphology, strength -to -weight r atios, or national styles. 
+
+5.2.2 Technical Limitations 
+
+Parameter estimation from video.  The AI pipeline (Appendix A) proposes estimating grip stiffness, 
+
+rotational torque, and finite -time Lyapunov exponents from standard competition video. These estimates 
+
+rely on pose -estimation algorithms that introduce error s under occlusion, rapid motion, or suboptimal 
+
+camera angles. The sensitivity of  𝐼 (𝑡 ) to such errors has not been quantified. 
+
+Weight calibration.  Equation (2) contains six coefficients  (𝛼 , 𝛽 , 𝛾 , 𝛿 , 𝜖 , 𝜁 ) plus a normalisation constant. 
+
+These must be calibrated via supervised learning on expert -labelled sequences, but the paper does not 
+
+provide data on inter -rater reliability or on the stability of learned weights across datasets or competition 
+
+contexts. 
+
+Computational requirements.  The proposed pipeline , high -frequency video capture (120 -240 fps), 3D pose 
+
+estimation, multibody dynamics, nonlinear time -series analysis , is computationally intensive. Real -time 
+
+implementation for in -competition feedback remains technically challenging. 
+
+5.2.3 Domain -Specific Limitations 
+
+Intrinsic complexity of judo competition.  As noted in the author’s 2015  Judo Optimization  presentation 
+
+(Toledo), competitive judo is a nonlinear system with fractal trajectories and continuously evolving open 
+
+skills. Coaches often cannot plan optimisation in real time. Figure  6 illustrates rapid transitions between 
+
+standing (Nage -waza) and ground fighting (Ne -waza), which only high -frequency AI analysis (240 -300 fps) 
+
+can resolve.Transitional and ground phases.  The framework focuses primarily on standing throwing actions. 
+
+Ne -waza  dynamics —where the objective shifts from creating instability to creating maximum stability , are 
+
+only briefly mentioned. A complete dynamical  theory must address both regimes and their transitions. 
+
+Fig. 6  – Ne -waza and Nage -waza continuous transition in competition 
+
+Environmental and contextual factors.  Competition outcomes depend on factors beyond dyadic interaction: 
+
+referee decisions, mat -edge constraints, fatigue, psychological pressure, and strategic fouling. These are 
+
+not captured by the current  model.  For a practical example of applying the Instability Index to a match 
+
+situation, see Appendix C. 
+
+5.3 Future Work 
+
+The limitations above define a structured research programme for translating this theoretical framework 
+
+into validated, practical tools. 12 
+
+Empirical validation studies.  The immediate priority is applying the AI pipeline to large, diverse competition 
+
+datasets —ideally from World Judo Tour events —and validating  𝐼 (𝑡 ) against expert -labelled events (Kuzushi 
+
+onset, Tsukuri completion, Kake initiation). Sensitivity analyses should include weight classes, rule changes, 
+
+recording conditions, and pose -estimation algorithms. 
+
+Parameter estimation and uncertainty quantification.  Future work should develop robust methods for 
+
+estimating dynamical quantities from short, noisy time series, including bootstrap confidence intervals for 
+
+Lyapunov exponents and Bayesian calibration of  𝐼 (𝑡 ). Identifiability of attractor structures should be tested 
+
+using surrogate data. 
+
+Longitudinal athlete monitoring.  The framework may support long -term monitoring of elite athletes, 
+
+identifying the emergence of Tokui -waza attractors, detecting early performance degradation, or 
+
+quantifying injury effects on dynamical signatures. 
+
+Expansion to Ne -waza.  The dynamical principles established for throwing techniques should be extended to 
+
+ground fighting, where stability and instability play complementary roles.  Probably in Ne -Waza the 
+
+functional Instability index could be adapted or even hypothetically inverted , because in Ne -Waza  Tori, 
+
+into  the dyad , try to obtain the maximum stability : as in  Osae -Komi . The transition between Nage -waza and 
+
+Ne -waza (Figure 6) is particularly rich for nonlinear analysis. 
+
+Injury prevention.  The relationship between instability signatures (e.g., large or rapidly growing Lyapunov 
+
+exponents during Sutemi -waza or counter -throws) and injury risk should be investigated. 
+
+A validated injury -risk model could provide real -time warnings to referees or medical staff. 
+
+Referee support and scoring objectivity.  Objective stability metrics derived from  𝐼 (𝑡 ) could complement 
+
+current scoring criteria, especially in borderline cases between Waza -ari and Ippon. 
+
+Transfer to other combat sports.  The framework’s applicability to wrestling, Brazilian Jiu -Jitsu, sambo, and 
+
+other grappling sports should be evaluated, adapting instability archetypes and AI tools to sport -specific 
+
+constraints. 
+
+Ethical and practical considerations.  Future work must address informed consent, data privacy, and 
+
+potential misuse of performance analytics. Transparency, reproducibility, and open -science practices 
+
+should guide the transition from theory to application. 
+
+# 6.  Methods 
+
+This study employs a multi -layered analytical  approach combining nonlinear dynamics, multibody 
+
+formalism, stochastic modelling, and artificial intelligence to construct a unified theoretical framework for 
+
+judo competition. No empirical data were collected or analysed; the methods described here concer n the 
+
+conceptual and mathematical development of the framework. The AI pipeline summarised below is 
+
+presented in full detail in Appendix A and is included here to contextualise its role within the overall 
+
+methodology. 
+
+6.1 Modelling Framework 
+
+The core of the framework is the formalisation of the Tori –Uke dyad as a constrained multibody system 
+
+(Section 2, Eq. 1). The Lagrangian formulation (Appendix B.1, B.3) defines the system’s kinetic and potential 
+
+energy, while constraints are imposed throug h Lagrange multipliers:  
+
+> •
+
+physical constraints:  foot –tatami contact, grip coupling, joint limits;  
+
+> •
+
+tactical virtual constraints:  space closure, degree -of -freedom saturation (Makikomi), directional 
+
+forcing (Tai Atari). 
+
+Internal muscular torques  𝑄 musc  act as the control parameter driving the system from stochastic 
+
+exploration toward deterministic projection. The global motion of the dyad on the tatami is modelled as 
+
+Fractional Brownian Motion (fBm) (Section 4.1.1, Eq. 7), with the Hurst parameter  𝐻  quantifying 
+
+persistence or anti -persistence. This stochastic layer captures the tactical search process that precedes the 
+
+biomechanical execution of a throw. 
+
+6.2  Instability Analysis 
+
+Two complementary instability archetypes —vertical rotational collapse (Uchi -mata) and gravitational 
+
+collapse (Seoi -otoshi, suwari version) —are introduced as dynamical abstractions defining a continuum onto 13 
+
+which all throwing techniques can be mapped (Section 3.3.1). These archetypes exhibit distinct dynamical 
+
+signatures:  Rotational archetype: progressive Lyapunov divergence, formation of rotational attractors. 
+
+Gravitational archetype: discontinuous phase transitions, gravitational acceleration amplification. 
+
+The Functional Instability Index  𝐼 (𝑡 ) (Eq. 2, Section 3.3) is constructed as a normalised, dimensionless order 
+
+parameter integrating six variables: finite -time Lyapunov exponent  𝜆 𝑁 (𝑡 ), normalised rotational 
+
+torque  𝑇 rot ,𝑁 (𝑡 ), asymmetry index  𝐴 (𝑡 ), normalised COM displacement  𝑑 𝑁 (𝑡 ), normalised downward 
+
+acceleration  𝑎 𝑧 (𝑡 ), normalised grip stiffness  𝐾 𝑔 ,𝑁 (𝑡 ). A sigmoid soft -threshold function  𝑆  maps the 
+
+weighted sum onto  [0, 1], where 0 indicates stable reciprocal interaction and 1 indicates irreversible 
+
+collapse. (Full derivation and normalisation are provided in Appendix B.4). 
+
+6.3 Analytical Tools 
+
+The framework employs established tools from nonlinear time -series analysis, adapted to the transient, 
+
+non -stationary nature of judo interactions:  
+
+> 1.
+
+Finite -Time Lyapunov Exponents (FTLE, Eq. 3):  Estimated via the Rosenstein algorithm over sliding 
+
+windows to capture local divergence during the Kuzushi -to -Kake transition.  
+
+> 2.
+
+Poincaré Maps (Eq. 4):  Constructed at characteristic phases of dyadic motion (e.g., foot -plant 
+
+events) to reveal attractor structures and detect interruptions in rotational or directional flow.  
+
+> 3.
+
+Hurst Parameter Estimation (Eq. 6):  Computed from the variance of dyadic COM displacements 
+
+across time scales to classify tactical regimes: stochastic exploration, persistent attack, 
+
+anti -persistent defence.  
+
+> 4.
+
+Phase Transition Detection:  Critical thresholds in Kumi -kata are identified through abrupt changes 
+
+in: grip topology, relative  orientation, derivative of the Hurst parameter  𝑑𝐻  
+
+> 𝑑𝑡
+
+(Eq. 5). 
+
+6.4 AI Pipeline (Overview) 
+
+The translation of the theoretical framework into practical coaching tools is mediated by a multistage AI 
+
+pipeline (full details in Appendix A).  The pipeline proceeds through six stages: 
+
+1.  Data Acquisition  – High -frequency video capture (120 -240 fps, single or multi -camera). 
+
+2.  Pose Estimation  – Deep -learning extraction of 2D/3D keypoints for both athletes, followed by 
+
+segmental COM computation. 
+
+3.  Dyadic Feature Extraction  – Computation of symmetry indices, micro -instability markers, relative 
+
+displacement, and Kumi -kata transition metrics. 
+
+4.  Nonlinear Metric Computation  – Estimation of FTLE, Poincaré maps,  𝐼 (𝑡 ), and Hurst parameters 
+
+from extracted trajectories. 
+
+5. Machine Learning Classification  
+
+> o
+
+Unsupervised clustering (HDBSCAN) for technique discovery.  
+
+> o
+
+Supervised calibration of  𝐼 (𝑡 ) weights using expert -labelled sequences. 
+
+6.  Coaching Outputs  – Generation of instability heat maps, early -warning indicators, critical -event 
+
+summaries, and longitudinal  athlete profiles. 
+
+The pipeline is designed to be modular: each stage can be refined independently as algorithms improve and 
+
+as larger, higher -quality datasets become available. The current specification represents a blueprint for 
+
+implementation, not a report of completed empirical work. 
+
+# 7. Towards a New Advanced Didactic Program for High -Level Competition 
+
+The nonlinear dynamical framework developed in this study not only reinterprets judo interactions but also 
+
+provides the foundation for a structured, instability -centred teaching methodology. Traditional judo 
+
+pedagogy is typically organised around technique s, biomechanical principles, or tactical scenarios. When 
+
+judo is reframed as a coupled dynamical system, the primary pedagogical variable becomes instability —its 
+
+perception, manipulation, and exploitation. In line with the applicative implications discusse d by Lopes 
+
+(2024), training should expose athletes to goal -stable regions, promote perceptual -motor exploration, and 
+
+facilitate the perception of projection affordances. The three -level educational model proposed here 
+
+integrates fully with this perspective .14 
+
+7.1 The Unified Nonlinear Didactic Program: Integrating Equations 1, 2, and 7 
+
+Within the Ecological Dynamics framework (Yearby et al., 2024; Davids et al., 2015), training can be 
+
+organised into three levels of complexity. The nonlinear classification developed in this study demonstrates 
+
+that techniques are not isolated entities but  continuous applications of a single principle: instability. 
+
+The  three core equations of the model define the pedagogical structure: 
+
+1.  Eq. 1  – The Tool:  defines the constraint structure and the archetype to employ. 
+
+2.  Eq. 7  – The Map:  dictates how to navigate the stochastic field (environment). 
+
+3.  Eq. 2  – The Trigger:  establishes when to initiate system collapse. 
+
+Once collapse begins, Tori  applies the mechanical tool (lever or couple). Artificial intelligence functions as a 
+
+virtual sensor, enabling coaches and athletes to visualise these structures and transform intuitive mastery 
+
+into a repeatable, quantifiable, scientifically validated tra ining protocol. 
+
+Level 1  – Perception of Instability 
+
+Focus on static asymmetry detection. Athletes learn to read posture, COM deviation, and grip -induced 
+
+constraints. Techniques are reclassified by their internal constraint configuration  𝐽 𝑞 
+
+> 𝑇
+
+𝜆 (𝑡 ), transforming each 
+
+throw into an optimised mechanical solution. 
+
+Examples:  Vertical rotational progression (Uchi -mata) building a rotational attractor; Gravitational collapse 
+
+(Seoi -otoshi, suwari) amplifying asymmetry  to trigger instantaneous collapse. 
+
+Level 2  – Manipulation of Instability 
+
+The second level focuses on inducing instability through dynamic symmetry breaking. Athletes learn to 
+
+manipulate rhythm, timing, coupling, micro -perturbations, grip modulation, and controlled entries 
+
+(Tsukuri). This generates local divergence measurable th rough finite -time Lyapunov exponents. 
+
+This level corresponds to the intermediate regime of  𝐼 (𝑡 ), where dynamic contributors (FTLE, rotational 
+
+torque, coupling variations) dominate. 
+
+Stochastic Navigation and Field Perception (Eq. 7  – fBm) 
+
+The tatami is conceptualised as a fractional Brownian field. Athletes learn to exploit the “memory” of 
+
+movement (persistence) to conserve energy and use the opponent’s stochastic noise to fuel projection. 
+
+Scientific Core: fBm defines the “texture” of combat. Didactic Objective: developing Hurst sensitivity. 
+
+Application: “surfing” stochastic  fluctuations to position the dyad in optimal basins of attraction. 
+
+Level 3  – Exploitation of Instability and Archetype -Specific Finalisation 
+
+At the third level, the athlete learns to exploit the instability previously created, guiding the dyad into one 
+
+of the two fundamental attractors: rotational attractor (Uchi -mata archetype) or gravitational collapse 
+
+attractor (Seoi -otoshi archetype). The a thlete must recognise the point of no return, where the system 
+
+crosses the instability threshold and enters irreversible collapse. 
+
+In the Rotational Instability Archetype: maintain flow continuity and amplify vertical -rotational torque. 
+
+In the Gravitational -Lever Instability Archetype: maximise descent velocity and remove vertical support 
+
+beneath Uke’s COM. 
+
+This corresponds to the upper region of  𝐼 (𝑡 ), where instability becomes self -amplifying and the mechanical 
+
+tool finalises the throw. 
+
+Triggering the Singularity (Eq. 2  – Instability Index) 
+
+The student learns to identify the moment of maximum instability and apply a minimal  𝑄 musc  to trigger 
+
+collapse. 
+
+Scientific Core: monitoring  𝐼 (𝑡 ). Didactic Objective : singularity timing. 
+
+Outcome : controlled dynamic symmetry breaking, converting the hidden order of Kumi -kata into the 
+
+physical reality of projection (lever or couple). 
+
+7. 2 Summary 
+
+This nonlinear teaching framework transforms judo pedagogy from a technique -centred to an 
+
+instability -centred approach. By aligning perceptual, coordinative, and tactical skills with the dynamical 
+
+structure of the Tori –Uke dyad, the model provides a coherent progression reflecting the true nature of 
+
+competitive interactions. AI integration strengthens this  approach by offering measurable indicators that 15 
+
+support athlete development and scientific validation. This program transforms the coach into a system 
+
+analyst and the athlete into a controller of complex dynamics. 
+
+Practical Application: Training the Phase Transition 
+
+The most critical skill for a modern judoka is managing the transition between scales. Coaches should 
+
+implement  Topological Randori , where the goal is not the throw but achieving a specific asymmetric 
+
+configuration in Uke. The AI pipeline (Appendix A) provides the objective ground truth to verify whether 
+
+the athlete correctly identifies these hidden opportunities. 
+
+Table 1 Mapping Between Nonlinear Dynamics Concepts and the Three -Level Teaching Framework 
+
+Theoretical 
+
+Construct 
+
+Description (Dynamics of the 
+
+Dyad) 
+
+Didactic 
+
+Level  Teaching Focus  Measurable Indicators 
+
+Static Symmetry 
+
+Breaking 
+
+Postural asymmetry; COM shift; 
+
+locked DoF  Level 1 
+
+Perception of 
+
+instability; reading 
+
+posture 
+
+COM offset  𝑑 𝑁 (𝑡 ); torso 
+
+angle asymmetry; grip -
+
+induced constraints 
+
+Dynamic 
+
+Symmetry 
+
+Breaking 
+
+Perturbation -driven divergence; 
+
+rhythm -induced instability  Level 2 
+
+Manipulation of 
+
+instability; timing and 
+
+rhythm 
+
+FTLE (short window); 
+
+timing mismatch; coupling 
+
+variation 
+
+Coupling 
+
+Stiffness  𝐾 𝑔 (𝑡 )
+
+Grip tension as 
+
+stabilizing/destabilizing 
+
+parameter 
+
+Level 1 –2
+
+Understanding grip 
+
+effects; modulating 
+
+stiffness 
+
+Grip force; stiffness index; 
+
+bilateral tension asymmetry 
+
+Local Divergence 
+
+(FTLE) 
+
+Sensitivity to initial conditions; 
+
+onset of chaos  Level 2 
+
+Entering meta -stable 
+
+regions; inducing 
+
+divergence 
+
+FTLE > 0 threshold; 
+
+divergence rate 
+
+Attractors 
+
+(Rotational / 
+
+Collapse) 
+
+Stable tendencies of the dyad; 
+
+phase -space structure  Level 3  Guiding the dyad into 
+
+the correct attractor 
+
+Attractor shape; rotational 
+
+continuity; descent 
+
+acceleration 
+
+Rotational 
+
+Torque  𝑇 𝑟𝑜𝑡 (𝑡 )
+
+Vertical –rotational instability 
+
+(Uchi -mata archetype)  Level 3  Exploiting rotational 
+
+instability 
+
+Torque peak; hip –shoulder 
+
+alignment timing 
+
+Downward 
+
+Acceleration 
+
+𝑎 𝑧 (𝑡 )
+
+Gravitational collapse (Seoi -
+
+otoshi archetype)  Level 3  Exploiting gravitational 
+
+discontinuity 
+
+Acceleration spike; drop 
+
+velocity 
+
+Instability Index 
+
+𝐼 (𝑡 )
+
+Global measure of instability 
+
+(0 –1)  Level 1 –3 Recognizing the 
+
+instability window 
+
+Threshold crossing; 
+
+instability growth rate 
+
+Hurst Parameter 
+
+(H) 
+
+Exploration vs. deterministic 
+
+attack  Level 1  Understanding tactical 
+
+exploration 
+
+H < 0.5 (anti -persistent); H 
+
+> 0.5 (deterministic) 
+
+Virtual 
+
+Constraints 
+
+(Atactics) 
+
+Tactical saturation of Uke’s DoF  Level 2 –3
+
+Reducing Uke’s phase 
+
+space; controlling 
+
+transitions 
+
+DoF  reduction; constraint 
+
+activation timing 16 
+
+# 8. Broader AI Applications in Judo and Beyond 
+
+The integration of nonlinear dynamics with artificial intelligence opens a broad spectrum of applications 
+
+extending far beyond the analysis of individual throwing actions. When judo is treated as a coupled 
+
+dynamical system, AI becomes both a microscope for  hidden instability patterns and a predictive tool for 
+
+performance optimisation. The following domains represent the most promising directions for translating 
+
+this theoretical framework into practical impact. 
+
+8.1 Tactical Pattern Recognition 
+
+The AI pipeline described in this work (Appendix A) can be extended to automated tactical scouting. By 
+
+analysing large corpora of competition footage, the system identifies recurring dyadic signatures such as: 
+
+preferred Hurst regimes before attacking, char acteristic symmetry -breaking configurations, vulnerability 
+
+windows following specific Kumi -kata transitions. 
+
+Coaches can query the system with questions such as:  “When does Athlete (X) most frequently enter the 
+
+rotational instability archetype?”  The system provides data -driven answers grounded in nonlinear metrics 
+
+rather than subjective observation. This transforms match preparation from qualitative video review into 
+
+quantitative analysis of dynamical tendencies. 
+
+8.2 Match Analysis Based on Nonlinear Dynamics 
+
+Traditional match analysis quantifies discrete events (attacks, grip breaks, scores). The proposed framework 
+
+enables a fundamentally different approach: continuous monitoring of the dyad’s stability landscape 
+
+throughout the match. 
+
+By computing the Functional Instability Index  𝐼 (𝑡 ) over full competition time series, analysts can generate 
+
+instability profiles that reveal: proximity to phase transitions, meta -stable configurations, persistent 
+
+dominance in Hurst space, near -threshold fluctuations invisible to conventional statistics. A  match that 
+
+appears uneventful in terms of scores may exhibit rich dynamical structure that predicts future outcomes 
+
+more reliably than traditional metrics. 
+
+8.3 Injury -Risk Modelling 
+
+Nonlinear dynamics offers a novel lens for injury prevention. High -injury scenarios often involve 
+
+unexpected collapses, counter -throws, or landings where instability exceeds the athletes’ capacity for 
+
+controlled decoupling. AI can identify dangerous transi tions by detecting: Lyapunov exponents exceeding 
+
+safe thresholds during Sutemi -waza, asymmetry indices indicating loss of controlled landing posture, 
+
+instability spikes preceding counter -throws. 
+
+Over longitudinal tracking, an athlete’s instability footprint may reveal fatigue -related degradation of 
+
+control, providing an early -warning system for overuse or acute injury risk before clinical symptoms appear. 
+
+8.4 Automated Technical Classification 
+
+The instability -based classification proposed in Section 3.4 —mapping all throwing techniques onto a 
+
+continuum between rotational and gravitational collapse archetypes —naturally lends itself to automated 
+
+labelling. 
+
+Unsupervised clustering algorithms (e.g., HDBSCAN; Appendix A.5) can: organise large datasets of 
+
+competition throws by dynamical signature, reveal hybrid techniques not captured by traditional 
+
+nomenclature, validate or refine existing classification system s, provide objective criteria for distinguishing 
+
+new techniques from stylistic variants. This shifts classification from static labels to dynamic signatures. 
+
+8.5 Cross -Domain Extensions 
+
+Although developed for judo, the core architecture —coupled dyadic systems, symmetry breaking, 
+
+instability indices, stochastic navigation via fBm —is transferable to other grappling and combat sports, 
+
+including: Brazilian Jiu -Jitsu, freestyle and Greco -Roman  wrestling, Sambo, striking sports with coupled 
+
+timing (boxing, fencing). 17 
+
+Beyond sport, the mathematical structure may inform: human -robot physical interaction, rehabilitation 
+
+robotics, cooperative manipulation tasks, any domain involving two agents interacting through physical 
+
+coupling and tactical intention. 
+
+8.6 AI -Based Match Analysis Pipeline (Summary) 
+
+The complete pipeline for operationalising these applications follows the architecture detailed in Appendix 
+
+A and proceeds through six stages: 
+
+1.  High -frequency video acquisition (120 -240 fps). 
+
+2. Pose estimation. 
+
+3.  Dyadic feature extraction (symmetry indices, micro -instability markers, grip topology transitions). 
+
+4.  Nonlinear metric computation (FTLE, Poincaré maps, Instability Index). 
+
+5.  Machine learning clustering and classification. 
+
+6.  Coaching outputs (instability heat maps, early -warning indicators, longitudinal profiles). 
+
+AI applied to judo must operate on properly detrended signals. As highlighted by Bryce & Sprague (2012), 
+
+DFA introduces artefacts in the presence of nonlinear trends, compromising feature quality. This confirms 
+
+the need for AI pipelines based on physically  interpretable measures rather than biased scalability 
+
+estimates. This pipeline bridges the gap between the conceptual framework and actionable, data -driven 
+
+coaching tools. 
+
+Table 2  – Stages of the Proposed Pipeline 
+
+Step  Process  Technical content 
+
+1 Input Video  Video capture of the match; single or multi -camera. 
+
+2 Pose Estimation  Detection of the two athletes' keypoints; reconstruction of the dyad 
+
+configuration. 
+
+3 Dyadic Features 
+
+Extraction 
+
+- Symmetry indices / symmetry breaking  - Micro instabilities  - Relative 
+
+displacement  - Kumi kata transitions 
+
+4 Non -linear Metrics  - Trajectory Divergence  - Critical Thresholds  - Nonlinear Amplification  -
+
+Instability Classification 
+
+5 Tactical Interpretation 
+
+Layer 
+
+- Windows of vulnerability  - Tactical opportunities  - Recurring adversary 
+
+patterns 
+
+6 Output: Dynamic Match 
+
+Report 
+
+Summary of critical events, detected instabilities, tactical opportunities 
+
+and overall dynamics of the encounter. 
+
+# 9. Conclusion 
+
+This foundational theoretical work applies nonlinear dynamics to competitive judo, enabled by recent 
+
+advances in artificial intelligence that allow the evaluation of transient situations imperceptible to the 
+
+human eye. Viewing competition as a dynamic cont inuum shifts the classical perspective from a catalogue 
+
+of throwing techniques to the more subtle and decisive task of generating instability within the dyad. In this 
+
+view, competition becomes the systematic creation of static or dynamic instability in the  opponent to 
+
+enable the application of the two fundamental mechanical tools of projection: Couple or Lever. 
+
+Paradoxically, in Ne -waza (ground fighting), the logic reverses: while standing techniques aim to create 
+
+instability, osaekomi requires the progressive construction of maximum stability. This duality reinforces the 
+
+central role of stability –instability dyn amics across all phases of judo. 
+
+This framework demonstrates that judo excellence lies in the mastery of instability. By integrating 
+
+nonlinear dynamics with AI, coaching moves beyond qualitative intuition toward a predictive science of 
+
+fight. Recent research (Dindorf et al., 2024; Rojas -Valverde, 2025) confirms that real -time quantification of 
+
+Lyapunov exponents and entropy shifts will soon allow coaches to evaluate the mechanical quality of an 18 
+
+attack before its completion. This work therefore sets the stage for a digital transformation of judo, where 
+
+the intuition of the Master is supported by the mathematical structure of complex systems (Appendix B). 
+
+We propose a unified conceptual and methodological framework combining nonlinear dynamics and AI to 
+
+expose the hidden structure of instability in judo competitions. By reframing techniques as dynamical 
+
+transitions between basins of attraction across critic al thresholds and via symmetry breaking, we identified 
+
+two complementary archetypes: 
+
+1. Vertical Rotational Collapse (e.g., Uchi -mata), 
+
+2. Gravitational Collapse (e.g., Seoi -otoshi, suwari version). 
+
+These archetypes capture the fundamental pathways to projection. All throwing techniques can be viewed 
+
+as points on a manifold stretched between these two poles of instability. Sutemi -waza techniques cluster 
+
+toward the Seoi -otoshi pole (maximal gravitation al instability), while Ashi -waza techniques involving pure 
+
+rotation gravitate toward the Uchi -mata pole. This instability -based classification is particularly significant 
+
+because it remains independent of athlete morphology, focusing exclusively on the phy sics of the 
+
+competitive event. 
+
+Crucially, transitions along this manifold are governed by the Hurst parameter  𝐻 , which quantifies the 
+
+informational persistence of Kumi -kata. As  𝐻  shifts from stochastic noise ( 𝐻  ≈ 0.5) to a persistent signal 
+
+(𝐻  → 1), the system is driven across a critical threshold  𝜃 . At this singularity, the informational phase ends 
+
+and the mechanical execution begins through the application of the two fundamental physical tools: Levers 
+
+for linear amplification and Couples for angular momentum transfer. 
+
+Quantitative dynamical measures —Lyapunov exponents, Poincaré analysis, basin mapping —and the 
+
+AI -based video pipeline (Appendix A) make these concepts operational. They enable: objective detection of 
+
+micro -timing windows, classification of archetypal signat ures, longitudinal tracking of athlete -specific 
+
+attractors such as Tokui -waza. 
+
+While this manuscript serves as a foundational theoretical contribution, robust empirical validation using 
+
+competition datasets remains essential. Future studies should apply the pipeline to diverse datasets, 
+
+perform sensitivity analyses across recording c onditions and weight classes, and evaluate the practical 
+
+impact of AI -guided training through controlled trials. Additional research directions include: injury -risk 
+
+identification, referee support and scoring objectivity, transfer to other grappling sports , integration into 
+
+long -term athlete development programs. Careful attention to data quality, athlete consent, and 
+
+reproducibility will be critical for translating these theoretical insights into reliable coaching tools and 
+
+evidence -based practice. 
+
+For a step -by -step illustration of the Instability Index applied to a real competition sequence, 
+
+see Appendix C. 19 
+
+# References (APA 7) 
+
+Amato, F. (2006).  Robust control of linear systems subject to uncertain time -varying parameters . Springer. 
+
+https://doi.org/10.1007/3 -540 -23950 -2 (doi.org in Bing) 
+
+Banerjee, A. K. (2016).  Flexible multibody dynamics: Efficient formulations and applications . Wiley. 
+
+Biagini, F., Hu, Y., Øksendal, B., & Zhang, T. (2008).  Stochastic calculus for fractional Brownian motion and applications .
+
+Springer.  https://doi.org/10.1007/978 -1-84628 -797 -8
+
+Bryce, R. M., & Sprague, K. B. (2012). Revisiting detrended fluctuation analysis.  Scientific Reports, 2 , 315. 
+
+https://doi.org/10.1038/srep00315 
+
+Part Affinity Fields.  IEEE Transactions on Pattern Analysis and Machine Intelligence, 43 (1), 172 –186. 
+
+https://doi.org/10.1109/TPAMI.2019.2929257  (doi.org in Bing) 
+
+Dindorf, C., Bartaguiz, E., Gassmann, F., & Fröhlich, M. (2024).  Artificial intelligence in sports, movement, and health .
+
+Springer. https://doi.org/10.1007/978 -3-031 -67256 -9 (doi.org in Bing) 
+
+Eke, A., Herman, P., Kocsis, L., & Kozak, L. R. (2002). Fractal characterization of complexity in temporal physiological 
+
+signals.  Physiological Measurement, 23 (1), R1 –R38. 
+
+Horsthemke, W., & Lefever, R. (1984).  Noise -induced transitions . Springer.  https://doi.org/10.1007/3 -540 -36852 -3
+
+Kano, J. (1986).  Kodokan judo . Tokyo: Kodansha International . ISBN 4 -7700 -1799 -5
+
+Kato, S., & Yamagiwa, S. (2022).  Predicting successful throwing technique in judo from factors of Kumite posture 
+
+based on a machine -learning approach.  Computation, 10 (10), 175.  https://doi.org/10.3390/computation10100175 
+
+Kelso, J. A. S. (2012). Coordination dynamics. In  Springer handbook of motor control  (pp. 1 –30). Springer. 
+
+https://doi.org/10.1007/978 -1-4614 -3433 -6
+
+Krabben, K., Orth, D., & van der Kamp, J. (2019).  Combat as an interpersonal synergy: An ecological dynamics 
+
+approach to combat sports.  Sports Medicine, 49 , 1825 –1836.  https://doi.org/10.1007/s40279 -019 -01173 -y
+
+Kuznetsov, Y. A. (2023).  Elements of applied bifurcation theory  (3rd ed.). Springer.  https://doi.org/10.1007/978 -3-031 -
+
+22007 -4
+
+Ladevèze, P., & Pelle, J. P. (2004).  Mastering calculations in linear and nonlinear mechanics . Springer. 
+
+Lopes, H. A. S. (2024).  The ecological dynamics of decision -making in judo  (Master’s thesis). Universidade de Lisboa. 
+
+Meerson, B., Bénichou, O., & Oshanin, O. (2022). Path integrals for fractional Brownian motion and fractional Gaussian 
+
+noise.  Physical Review E, 106 , 062102. 
+
+Parker, T. S., & Chua, L. O. (1989). Poincaré maps. In  Practical numerical algorithms for chaotic systems . Springer. 
+
+https://doi.org/10.1007/978 -1-4612 -3486 -9_2 
+
+Preatoni, E., Ferrario, M., Donà, G., Hamill, J., & Rodano, R. (2010).  Motor variability in sports: A nonlinear analysis of 
+
+race walking.  Journal of Sports Sciences, 28 (12), 1327 –1336. 
+
+Preatoni , E., Hamill, J., Harrison, A. J., Hayes, K., Van Emmerik, R. E. A., & Wilson, C. (2012). Movement variability and 
+
+skills monitoring in sports.  Sports Biomechanics, 12 (2), 69 –92. 
+
+Riley, M. A., & Turvey, M. T. (2002). Variability and determinism in motor behavior.  Journal of Motor Behavior, 34 (2), 
+
+99 –125.  https://doi.org/10.1080/00222890209601934 
+
+Rojas -Valverde, D., Gómez -Carmona, C. D., Gutiérrez -Vargas, R., & Pino -Ortega, J. (2019). From big data mining to 
+
+technical sport reports: The case of inertial measurement units.  BMJ Open Sport & Exercise Medicine, 5 (1). 
+
+https://doi.org/10.1136/bmjsem -2019 -000565 
+
+Sacripanti, A. (199 7). Contest Dynamics: General Biomechanical Theory of the Contest Sports. arXiv preprint. 
+
+University of Tor Vergata / ENEA.  https://arxiv.org/pdf/0806.4069v1 -
+
+Sacripanti, A. (2011).  Kumi -kata: From dojo to high -level competition .
+
+https://www.researchgate.net/publication/312026674_Kumi_Kata_from_dojo_to_high_level_competition .
+
+Sacripanti, A. (2021).  Judo biomechanical science for IJF Academy . IJF Academy Edition. 
+
+Sacripanti, A. (2022).  Gensoku No Genkei ( 
+
+原則の原型 ): A journey into the simplicity of movement . IJF Academy  –
+
+Educating Judo Coaches for Older Practitioners. 
+
+Sacripanti, A.,  Fabi, R.  Galea E., & (2025).  Ju Do ( 
+
+柔道 ) as a complementary therapeutic tool for Parkinson's disease: A 
+
+quantitative single -study case . IJF Art and Science of Judo. 
+
+Sacripanti, A., Galea, E., & Lascau, F. D. (2026).  Biomechanics of Tori body motion during competition: Sutemi, 
+
+Makikomi, Tai Atari  (Version 1). arXiv.  https://doi.org/10.48550/arXiv.2601.00937 
+
+Stergiou, N., & Decker, L. M. (2011). Human movement variability, nonlinear dynamics, and pathology.  Human 
+
+Movement Science, 30 (5), 869 –888.  https://doi.org/10.1016/j.humov.2011.06.002 
+
+Strogatz, S. H. (2024).  Nonlinear dynamics and chaos  (3rd ed.). CRC Press. 
+
+Trench, W. F. (2013).  The method of Lagrange multipliers . Trinity University. 
+
+Trench, W. F. (2013).  Introduction to real analysis . Trinity University. 20 
+
+Vervoorts, P., Keupp, J., Schneemann, A., Hobday, C. L., Daisenberger, D., Fischer, R. A., Schmid, R., & Kieslich, G. 
+
+(2021). Configurational entropy driven high -pressure behaviour of a flexible metal –organic framework.  Angewandte 
+
+Chemie International Edition, 60 , 787 –793. https://doi.org/10.1002/anie.202011004  (doi.org in Bing) 
+
+Wang, J. (2023).  Multiscale multibody dynamics: Motion formalism implementation . Springer. 
+
+https://doi.org/10.1007/978 -981 -19 -8441 -9
+
+Winter, L., Taylor, P., Bellenger, C., Grimshaw, P., & Crowther, R. (2024). The application of the Lyapunov exponent to 
+
+analyse human performance: A systematic review.  Journal of Sports Sciences, 41 (22), 1994 –2013. 
+
+https://doi.org/10.1080/02640414.2024.2308441 
+
+Yearby, T., Myszka, S., Grahn, A., Sievewright, S., Singer, A., & Davids, K. (2024). Applying an ecological dynamics 
+
+framework to mixed martial arts training.  Sports Coaching Review . https://doi.org/10.1080/21640629.2024.2325822 
+
+(doi.org in Bing) 
+
+Zheng, C., Wu, W., Chen, C., Yang, T., Zhu, S., Shen, J., Kehtarnavaz, N., & Shah, M. (2024). Deep learning -based human 
+
+pose estimation: A survey.  ACM Computing Surveys, 56 (1), 11:1 –11:37.  https://doi.org/10.1145/3603618 21 
+
+# Glossary of Nonlinear Dynamics for Judo Coaches 
+
+A Practical Guide to Essential Dynamical Concepts for Understanding Instability in Competition 
+
+Attractor 
+
+A configuration or state toward which the system "naturally tends." In judo, every technique has its attractor: the 
+
+position of maximum imbalance from which Uke can no longer recover. 
+
+On the tatami: Tori's task is not to "apply a technique" but to guide the dyad toward the specific attractor of that 
+
+throw. When you reach it, the fall becomes inevitable. 
+
+Example: In Uchi -mata , the attractor is a rotational configuration in which Uke's body is tilted forward and rotating, at 
+
+first around his centre of mass beyond the base of support 
+
+Basin of Attraction 
+
+The set of all starting positions from which the system will inevitably end up in a given attractor. The wider the basin, 
+
+the more "robust" the technique (it works even if execution is not perfect). 
+
+On the tatami: Techniques with a wide basin (e.g., a well -set O -soto -gari) forgive small errors. Techniques with a 
+
+narrow basin (e.g., dropping Seoi -otoshi) demand millimetric timing. 
+
+Coaching implication: Teach techniques with wide basins first to build confidence; then refine toward narrower basins 
+
+for high -level competition. 
+
+Bifurcation 
+
+The critical moment when the system can take two completely different paths. In judo, it is that point where an 
+
+extremely small variation decides whether the attack succeeds or fails. 
+
+On the tatami:The bifurcation is the "point of no return." Before it, Uke can still defend. After it, fate is sealed. 
+
+Practical signal: When you see Uke stop making micro -corrections and "accept" the direction imposed by Tori, you 
+
+have entered the bifurcation zone. 
+
+Coupling / Coupled System 
+
+Two athletes in grip are not two separate bodies: they form a single system in which each movement of one instantly 
+
+modifies the other's possibilities. This is what we call "the Dyad." 
+
+On the tatami: You cannot think only about your own action. You must "feel" how Uke reacts and adapts in real time. 
+
+The grip (Kumi -kata) is the channel through which this connection lives. 
+
+Coaching implication: Training grip sensitivity is as important as training strength. An athlete who "feels" the coupling 
+
+can anticipate the opponent's intentions. 
+
+Degrees of Freedom  – DoF 
+
+The number of independent directions or movements an athlete can perform. The more degrees of freedom Uke has, 
+
+the more defensive options they possess. 
+
+On the tatami: Tori's tactical objective is to saturate Uke's degrees of freedom: close spaces, limit escape directions, 
+
+constrain movements through grips. When Uke has zero functional degrees of freedom, they are ready to be thrown. 
+
+Practical rule: If Uke can still freely move their head, hips, or pivot foot, they still have available degrees of freedom. 
+
+The attack is premature. 
+
+Deterministic / Stochastic 
+
+A deterministic process is predictable: given the cause, the effect necessarily follows. A stochastic process contains 
+
+randomness or noise. The Kumi -kata phase is predominantly stochastic (exploration, continuous adaptation); the Kake 
+
+phase is predominantl y deterministic (the fall follows physical laws). 
+
+On the tatami: Do not attack during the stochastic phase. Wait until you have reduced the "noise" and created a 
+
+condition in which your action produces a predictable effect. 
+
+Key transition: The passage from stochastic to deterministic is the heart of Tsukuri. It is the moment you stop 
+
+"searching" and start "executing." 
+
+Divergence 
+
+Two nearly identical situations that evolve in completely different ways. In judo, this explains why the very same 
+
+movement can succeed in one instant and fail a moment later. 
+
+On the tatami: Divergence is amplified in unstable systems. Your task is to create conditions in which divergence plays 
+
+in your favour: a small push produces a large imbalance. 
+
+Implication for video analysis: When reviewing a failed attack, do not look only for the gross error. Look for the micro -
+
+difference (an angle of 3°, a delay of 50 ms) that made the system diverge toward failure. 22 
+
+Entropy 
+
+A measure of disorder or uncertainty in the system. High entropy = many possibilities, low predictability. Low entropy 
+
+= few possibilities, high predictability. 
+
+On the tatami: At the start of a bout, entropy is high: both athletes have many options. A good Kumi -kata strategy 
+
+progressively reduces Uke's entropy, "freezing" their options until only one path remains: falling. 
+
+Tactical objective: Your action must reduce the opponent's entropy faster than they reduce yours. 
+
+Finite -Time Lyapunov Exponent  – FTLE 
+
+A number that measures how quickly two nearly identical trajectories separate over time. If positive, the system is 
+
+unstable and small causes produce large effects. If negative or zero, the system is stable. 
+
+On the tatami: This is the "instability growth rate." When FTLE becomes positive and grows rapidly, you are in the Kake 
+
+window: every micro -action by Tori is amplified into a large imbalance in Uke. 
+
+For video analysis: With high -speed cameras (240 fps), AI can compute FTLE and tell you exactly in which frame the 
+
+instability began to grow irreversibly. 
+
+Fractional Brownian Motion  – fBm 
+
+A mathematical model describing how the couple of athletes moves on the tatami. Unlike a random walk, fBm has 
+
+"memory": past movements influence future ones. 
+
+On the tatami: Movement on the tatami is not random. If Tori is dominating tactically, the movement will show 
+
+persistence (continuing in the same direction). If Uke is reacting well, it will show anti -persistence (frequent direction 
+
+changes). 
+
+Tactical reading: An opponent moving with a persistent pattern is likely "committed" in one direction and easier to 
+
+surprise with a change. 
+
+Hurst Parameter  – H
+
+A value between 0 and 1 that quantifies the "memory" of movement. H = 0.5: random movement (no memory). H > 
+
+0.5: persistence (movement continues in the current direction). H < 0.5: anti -persistence (movement tends to reverse 
+
+direction frequently). 
+
+On the tatami: Monitoring H during a bout tells you who is controlling the rhythm. An H rising toward 1 indicates Tori is 
+
+imposing their direction. An H falling toward 0 indicates Uke is making continuous defensive micro -corrections. 
+
+Coaching implication: Train your athletes to recognise the "texture" of the opponent's movement. An opponent with H 
+
+< 0.5 is in reactive mode and can be led into making mistakes. 
+
+Instability Index  – I(t) 
+
+A number from 0 to 1 measuring how close the Tori -Uke system is to collapse. 0 = perfectly stable. 1 = inevitable fall. It 
+
+integrates geometry, dynamics, forces, and grip into a single measure. 
+
+On the tatami: The objective is not to apply brute force but to raise I(t) as efficiently as possible. An I(t) value around 
+
+0.7 –0.8 is the "golden window" for initiating Kake. Earlier is too soon; later is too late. 
+
+Future application: 
+
+With AI, I(t) could be estimated in real time from video, providing objective feedback on attack quality before the 
+
+throw is even completed. 
+
+Multibody System 
+
+A mathematical model describing a system composed of multiple rigid bodies connected by constraints. The Tori -Uke 
+
+dyad in grip is a multibody system with physical constraints (foot -mat contact, grips) and tactical constraints (saturation 
+
+of degrees of free dom). 
+
+On the tatami: When you grip Uke, you are not just pulling a sleeve: you are creating a complex mechanical structure 
+
+in which your levers and constraints determine the movement possibilities of both athletes. 
+
+Coaching implications: Teaching grips not as "grabbing" but as "building a constrained structure" will change how 
+
+athletes understand Kumi -kata. 
+
+Nonlinear Amplification 
+
+In a linear system, a small input produces a small output. In a nonlinear system, a small input can produce a huge and 
+
+disproportionate output. Judo is nonlinear: a small symmetry break can generate an Ippon. 
+
+On the tatami: You do not need to be stronger. You need to apply the right force, at the right moment, in the right 
+
+direction, when the system is in the configuration that amplifies that input. 
+
+Key teaching: Perfect technique is not the one with maximum force, but the one with maximum amplification. 23 
+
+Phase Space 
+
+An abstract space in which each point represents the complete state of the Dyad system (positions, velocities, 
+
+orientations of both athletes). The trajectory in this space tells the entire story of the interaction. 
+
+On the tatami: You cannot see phase space with the naked eye, but you can "feel" it. When an opponent is in a 
+
+position from which they have few options, they are in a "narrow" region of phase space. That is where you must 
+
+attack. 
+
+With AI: Artificial intelligence can reconstruct and visualise phase space, showing coaches the regions where the 
+
+athlete is most vulnerable or most effective. 
+
+Phase Transition 
+
+A sudden and qualitative change in the state of the system. Just as water turns to ice, the dyad passes from "stable" to 
+
+"falling" through a phase transition. 
+
+On the tatami: The phase transition is the passage from Tsukuri to Kake. It is not gradual: it is a jump. Recognising the 
+
+exact moment of transition is what distinguishes a champion from a good athlete. 
+
+Practical indicator: When you feel Uke's resistance suddenly "give way" and the system flows without further 
+
+obstacles, you have crossed the phase transition. 
+
+Poincaré Map 
+
+A "periodic snapshot" of the system that reveals the hidden structure of movement, like observing a dancer always at 
+
+the same point in the choreography. It reduces complexity by revealing repetitive patterns. 
+
+On the tatami: Taking "snapshots" of the system at key moments (e.g., every foot plant) allows you to see whether the 
+
+movement is evolving in the desired direction or whether there are interruptions in the flow of the attack. 
+
+For video analysis: AI can automatically generate Poincaré maps to compare different executions of the same 
+
+technique and identify where fluidity breaks down. 
+
+Saddle Point 
+
+A point of unstable equilibrium: the system can stay there, but the slightest perturbation will make it fall one way or 
+
+the other. It is the "ridge" between success and failure. 
+
+On the tatami: The saddle point is the moment of maximum uncertainty in the attack: Uke is teetering, and a small 
+
+push will decide whether they fall or recover. Great champions recognise and exploit this instant. 
+
+Coaching implication: Train your athletes to "feel" the saddle point and to apply the decisive impulse exactly at that 
+
+instant. 
+
+Self -Organisation 
+
+The system's capacity to spontaneously form coordinated patterns without central control. In judo, the dyad self -
+
+organises: the movements of Tori and Uke coordinate into patterns that neither planned individually. 
+
+On the tatami: You cannot control everything. You must learn to "let the system do its work" once you have set the 
+
+right initial conditions. 
+
+Coaching implication: Free Randori is essential precisely because it trains this capacity for adaptation to the system's 
+
+self -organisation. 
+
+Stability Landscape 
+
+A visual metaphor: imagine a surface with valleys (stable zones) and hills (unstable zones). The dyad moves across this 
+
+landscape. Attacking means pushing the system out of a valley and toward a descent leading to  Ippon. 
+
+On the tatami: Your opponent is in a "valley of stability." Kuzushi consists of bringing them to the ridge. Kake is the 
+
+descent on the other side. 
+
+For coaches: Visualising the stability landscape helps explain why certain positions are more dangerous than others, 
+
+even if they appear similar. 
+
+Symmetry / Symmetry Breaking (Sacripanti) 
+
+Symmetry is the perfect balance between Tori and Uke (both stable, same degrees of freedom). Symmetry breaking is 
+
+the moment this balance is disrupted in favour of one of the two. 
+
+On the tatami: Two types exist: (1) Static  – when Uke already has an asymmetrical posture (e.g., rotated torso, weight 
+
+on one leg); (2) Dynamic  – when asymmetry is created by Tori's movement and timing. Recognising static symmetry 
+
+gives you a target; creati ng dynamic symmetry is the essence of Kuzushi. 
+
+Practical rule: If Uke is symmetrical and balanced, do not attack with force: first break the symmetry. 
+
+Virtual Constraints 
+
+Unlike physical constraints (grip, the ground), virtual constraints are "tactical impositions" that limit the opponent's 
+
+options: space management, rhythm, direction of movement, attack threat. 24 
+
+On the tatami: When you "close the space" or "cut the escape direction" with body positioning, you are applying a 
+
+virtual constraint. There is no physical wall, but Uke cannot go there without exposing themselves. 
+
+Coaching implication: Teach footwork not as "moving" but as "building virtual constraints around Uke." 
+
+Note for coaches : This glossary is a translation tool. You do not need to memorise the mathematical definitions, but to 
+
+assimilate the concepts through experience on the tatami. Every time you observe a sudden transition, a small action 
+
+producing a large effect, or a mome nt when "everything flows," you are observing nonlinear dynamics in action. AI is 
+
+your new eye for seeing what experience alone could only intuit. 25 
+
+# APPENDIX A 
+
+Detailed AI Pipeline for Operationalising Nonlinear Dynamics in Judo 
+
+The transition from qualitative coaching observation to quantitative dynamical analysis is mediated by a 
+
+multistage AI pipeline designed to process high -dimensional, noisy data from elite judo competitions. This 
+
+appendix provides the full technical specifi cation of the pipeline referenced throughout the manuscript. 
+
+# A.1 Data Acquisition and Pre -processing 
+
+High -frequency capture: Raw video is ideally recorded at 120 -240 fps to resolve “micro -times” during the 
+
+transition from Tsukuri to Kake. Geometric calibration: For multi -view setups, Direct Linear Transformation 
+
+(DLT) or equivalent algorithms map 2D coord inates into a unified 3D global space centred on the tatami. 
+
+# A.2 3D Pose Estimation and Biomechanical Reconstruction 
+
+Skeletal extraction: Deep -learning architectures (e.g., Stacked Hourglass Networks, HRNet) extract 2D/3D 
+
+coordinates for 17 -25 keypoints per athlete. COM calculation: Global centres of mass (COM) for Tori and 
+
+Uke are estimated using weighted segmental mass  models. Contact -tension proxies: Micro -variations in 
+
+distance and relative acceleration between grip points and Uke’s torso serve as mathematical proxies for 
+
+grip stiffness or coupling strength. 
+
+# A.3 Feature Extraction for Symmetry Analysis 
+
+Asymmetry indicators: The system computes deviations of Uke’s COM from the central axis of the base of 
+
+support (BOS), quantifying Static Symmetry Breaking (Section 2). Rotational torque vs. vertical drop: AI 
+
+distinguishes between accumulation of angular mo mentum (rotational archetype) and rapid increases in 
+
+downward acceleration (gravitational archetype). 
+
+# A.4 Dynamical Modelling (Core Engine) 
+
+Lyapunov exponent estimation: The Rosenstein algorithm is applied to reconstructed COM phase -space 
+
+trajectories. A shift from negative to positive values ( 𝜆  > 0) automatically signals the onset of Kuzushi. 
+
+Poincaré mapping: Stroboscopic “slices” of motion at specific phases of the fBm displacement reveal 
+
+underlying attractors corresponding to athlete -specific Tokui -waza. 
+
+# A.5 Machine Learning Clustering and Classification 
+
+Unsupervised discovery: Hierarchical Density -Based Spatial Clustering (HDBSCAN) identifies clusters of 
+
+techniques without prior labels, enabling discovery of hybrid archetypes not captured by traditional 
+
+nomenclature. Expert calibration: Clusters are mappe d back to the theoretical archetypes (rotational vs. 
+
+gravitational) to generate actionable feedback. 
+
+# A.6 Coaching Outputs and Visualisation 
+
+Instability maps: Temporal heat maps showing when and where stability is lost. Early -warning system: By 
+
+monitoring “flickering” in the Lyapunov exponent, the AI can predict a successful throw 200 -300 ms before 
+
+Ippon —an actionable defensive window. 
+
+# Implementation and Estimation from Video (Practical Steps) 
+
+1.  Estimate  𝐼 (𝑡 ) from pose data: compute COM, joint angles, FTLE over sliding windows  Δ𝑡 ; rotational 
+
+torque proxies from relative angular velocities and segment inertias; grip stiffness proxies from 
+
+hand -displacement variance. 
+
+2.  Estimate  𝑄 musc (𝑡 ) indirectly via acceleration magnitudes and segment inertias (inverse dynamics 
+
+with estimated contact forces), or via EMG when available. 
+
+3.  Estimate  𝜆 tact (𝑡 ) from grip geometry: relative hand positions, grip contact -area proxies, short -term 
+
+stiffness from local compliance to micro -perturbations. 
+
+4.  Estimate  𝑆 (𝑡 ) as the log -determinant of the short -window covariance matrix  Σ of dyadic state 
+
+variables (COMx, COMy, orientation, key joint angles):  𝑆  ∝ 1 
+
+> 2
+
+log  (det  Σ).
+
+5.  Calibrate coefficients  (𝛼 , 𝛽 , 𝛾 , 𝛿 , 𝜖 , 𝜁 ) in Eq. 2 via supervised learning on labelled windows 
+
+(Kuzushi/Tsukuri/Kake), using cross -validation and regularisation.  Confidence intervals are obtained 
+
+via bootstrap. 26 
+
+# APPENDIX B 
+
+# Multibody Dynamics of the Tori –Uke Dyad and Formal Definition of the Functional 
+
+# Instability Index 
+
+# B.1. Lagrangian Formulation of the Dyad 
+
+Let  𝑞  ∈ ℝ𝑛 be the vector of generalized coordinates describing the Tori –Uke dyad (segment angles, pelvis 
+
+translation, trunk orientation, grip coordinates, etc.). 
+
+The Lagrangian is defined as: 
+
+𝐿 (𝑞 , 𝑞 ̇ ) = 𝑇 (𝑞 , 𝑞 ̇ ) − 𝑉 (𝑞 )
+
+where: Kinetic energy 
+
+𝑇 (𝑞 , 𝑞 ̇ ) = 1
+
+2 𝑞 ̇ 𝑇 𝑀 (𝑞 )𝑞 ̇
+
+with  𝑀 (𝑞 )the configuration -dependent mass matrix of the coupled system. 
+
+Potential energy 
+
+𝑉 (𝑞 ) = ∑ 𝑚 𝑖 
+
+> 𝑁
+> 𝑖 =1
+
+𝑔  𝑧 𝑖 (𝑞 )
+
+where  𝑧 𝑖 (𝑞 )is the vertical position of segment  𝑖 .
+
+This formulation treats the dyad as a  single multibody system , consistent with the idea that Tori and Uke 
+
+form a coupled entity during Tsukuri –Kake. 
+
+# B.2. Unconstrained Euler –Lagrange Equation 
+
+The Euler –Lagrange equation is: 
+
+𝑑 
+
+𝑑𝑡 (∂𝐿 
+
+∂𝑞 ̇ ) − ∂𝐿 
+
+∂𝑞 = 𝑄 musc 
+
+Computing the derivatives yields the standard multibody dynamics form: 
+
+𝑀 (𝑞 )𝑞 ̈ + 𝐶 (𝑞 , 𝑞 ̇ )𝑞 ̇ + 𝐺 (𝑞 ) = 𝑄 musc 
+
+where:  𝐶 (𝑞 , 𝑞 ̇ )𝑞 ̇ collects Coriolis and centrifugal effects (Christoffel -based formulation), 
+
+𝐺 (𝑞 ) = ∂𝑉 
+
+> ∂𝑞
+
+is the gravity vector, 
+
+𝑄 musc are generalized muscular torques. 27 
+
+# B.3. Physical and Tactical Constraints 
+
+During competition, the dyad is subject to two classes of constraints. 
+
+B.3.1 Physical constraints 
+
+These include: foot –tatami unilateral contact, bilateral grip constraints, joint limits, segmental collision 
+
+avoidance.  They are expressed as: 
+
+ℎphys (𝑞 ) = 0
+
+with Jacobian: 
+
+𝐽 phys (𝑞 ) = ∂ℎphys 
+
+∂𝑞 
+
+B.3.2 Tactical (virtual) constraints 
+
+These represent  intentional actions  by Tori that reshape Uke’s available phase space: modulation of grip 
+
+geometry, closure of lateral or frontal space, saturation of Uke’s degrees of freedom, (Makikomi, Tai Atari), 
+
+directional steering of the dyad, thechniques rotational application .
+
+They are expressed as: 
+
+ℎtact (𝑞 , 𝑡 ) = 0
+
+with Jacobian: 
+
+𝐽 tact (𝑞 , 𝑡 ) = ∂ℎtact 
+
+∂𝑞 
+
+These constraints do  not  represent physical limitations, but  strategic restrictions  imposed by Tori. 
+
+B.3.3 Constrained multibody equation 
+
+Define the full constraint Jacobian: 
+
+𝐽 (𝑞 , 𝑡 ) = [ 𝐽 phys (𝑞 )
+
+𝐽 tact (𝑞 , 𝑡 )]
+
+and the vector of Lagrange multipliers: 
+
+𝜆  = [𝜆 phys 
+
+𝜆 tact 
+
+]
+
+The constrained dynamics become: 
+
+𝑀 (𝑞 )𝑞 ̈ + 𝐶 (𝑞 , 𝑞 ̇ )𝑞 ̇ + 𝐺 (𝑞 ) = 𝑄 musc  + 𝐽 (𝑞 , 𝑡 )𝑇 𝜆 
+
+This formalizes the dyad as a  constrained multibody system  in which tactical actions act as  virtual 
+
+constraints  that reshape the stability landscape before the mechanical execution of the throw. 
+
+# B.4. Normalization Strategy for the Functional Instability Index 
+
+The Instability Index integrates heterogeneous variables: divergence rates, torques, accelerations, 
+
+geometric offsets, asymmetry, grip stiffness. Each variable is transformed into a  dynamic ratio  relative to a 
+
+physically meaningful reference value derived from competition datasets or multibody simulations. 
+
+Because the weighted sum of six variables may exceed  [0, 1], a  global normalisation constant  is 
+
+introduced:  𝐶  = 𝛼  + 𝛽  + 𝛾  + 𝛿  + 𝜀  + 𝜁 
+
+The weights are calibrated using supervised learning on expert -labelled sequences (Kuzushi, Tsukuri, Kake). 
+
+Sensitivity analysis evaluates robustness to noise, occlusion, and pose -estimation errors. Following Eke et 
+
+al. (2002), the pipeline includes prelim inary classification of the signal as fGn or fBm to avoid 
+
+misinterpretation of scaling measures. 28 
+
+1.  Finite -Time Lyapunov Exponent (FTLE) 
+
+𝜆 𝑁 (𝑡 ) = 𝜆 (Δ𝑡 )
+
+𝜆 max (comp )
+
+2.  Rotational Torque 
+
+𝑇 rot ,𝑁 (𝑡 ) = 𝑇 rot (𝑡 )
+
+𝐼 eff 𝜔 max 
+
+3. Downward acceleration 
+
+𝑎 𝑧 ,𝑁 (𝑡 ) = max (0, −𝑎 𝑧 (𝑡 ))
+
+𝑔 
+
+4. COM offset 
+
+𝑑 𝑁 (𝑡 ) = 𝑑 uke (𝑡 )
+
+𝐵 sup 
+
+5. Asymmetry index 
+
+𝐴 (𝑡 ) ∈ [0,1]
+
+6. Grip stiffness 
+
+𝐾 𝑔 ,𝑁 (𝑡 ) = 𝐾 𝑔 (𝑡 )
+
+𝐾 𝑔 ,max 
+
+B.4.2 Logistic Activation Function 
+
+The nonlinear transition is modeled by: 
+
+𝑆 (𝑢 ) = 1
+
+1 + 𝑒 −𝑘 (𝑢 −𝜃 )
+
+with:  𝑘 : growth rate (sensitivity),  𝜃 : instability threshold. 
+
+B.4.3 Final Normalized Instability Index 
+
+𝐼 (𝑡 ) = 𝑆  (𝛼 Λ𝑁 (𝑡 ) + 𝛽 𝑇 rot ,𝑁 (𝑡 ) + 𝛾𝐴 (𝑡 ) + 𝛿 𝑑 𝑁 (𝑡 ) + 𝜀 𝑎 𝑧 ,𝑁 (𝑡 ) − 𝜁 𝐾 𝑔 ,𝑁 (𝑡 )
+
+𝐶 )
+
+Interpretation: 
+
+1.  𝐼 (𝑡 ) ≈ 0: stable reciprocal interaction 
+
+2.  𝐼 (𝑡 ) ≈ 1: irreversible collapse (Kuzushi/Kake window) 
+
+Thus,  𝐼 (𝑡 ) acts as a  constructed order parameter  summarising the stability of the constrained Lagrange 
+
+system. 29 
+
+# B.5. Sensitivity Analysis 
+
+The Functional Instability Index  𝐼 (𝑡 )integrates geometric, dynamic, and coupling -related variables into a 
+
+single normalized measure of the evolving stability of the Tori –Uke dyad. Because the index combines 
+
+heterogeneous quantities through weighted normalization and a nonlinear activation function, a formal 
+
+sensitivity analysis is requ ired to understand how variations in each component influence the global 
+
+instability estimate. 
+
+B.5.1 Mathematical Structure 
+
+Let: 
+
+𝑢 (𝑡 ) = 𝛼 𝜆 𝑁 +𝛽 𝑇 rot ,𝑁 +𝛾𝐴 +𝛿 𝑑 𝑁 +𝜀 𝑎 𝑧 −𝜁 𝐾 𝑔 ,𝑁 
+
+> 𝐶
+
+Then: 
+
+𝐼 (𝑡 ) = 𝑆 (𝑢 )
+
+B.5.2 Local Sensitivity (Partial Derivatives) 
+
+∂𝐼 
+
+∂𝑥 𝑖 
+
+= 𝑆 ′(𝑢 ) 𝑤 𝑖 
+
+𝐶 
+
+where  𝑤 𝑖 is the weight of variable  𝑥 𝑖 .
+
+The logistic derivative: 
+
+𝑆 ′(𝑢 ) = 𝑘  𝑆 (𝑢 ) [1 − 𝑆 (𝑢 )]
+
+Biomechanical interpretation: 
+
+Sensitivity is maximal when  𝐼 (𝑡 ) ≈ 0.5, i.e., in the  meta -stable Kuzushi region .
+
+B.5.3 Normalised Sensitivity Index 
+
+𝑆 𝑖 (𝑡 ) =∣ ∂𝐼 
+
+∂𝑥 𝑖 
+
+⋅ 𝑥 𝑖 
+
+𝐼 (𝑡 ) ∣
+
+Expected patterns:  Uchi -mata:  high sensitivity to torque and FTLE;  Seoi -otoshi:  high sensitivity to 
+
+downward acceleration and COM offset;  Hybrid techniques:  shifting sensitivities 
+
+B.5.4 Global Sensitivity (Weight Variation) 
+
+∂𝐼 
+
+∂𝑤 𝑖 
+
+= 𝑆 ′(𝑢 ) (𝑥 𝑖 
+
+𝐶 − 𝑊 
+
+𝐶 2)
+
+Large variables (e.g.,  𝑎 𝑧 in Seoi -otoshi) produce strong sensitivity to weight changes. 
+
+B.5.5 Zones of Maximum and Minimum Sensitivity  
+
+> •
+
+Maximum:  
+
+> o
+
+𝐼 (𝑡 ) ∈ [0.4,0.7] 
+
+> o
+
+FTLE > 0  
+
+> o
+
+meta -stable region  
+
+> •
+
+Minimum:  
+
+> o
+
+𝐼 (𝑡 ) < 0.2(stable)  
+
+> o
+
+𝐼 (𝑡 ) > 0.85 (collapse)  
+
+> o
+
+𝐾 𝑔 ,𝑁  → 1(strong coupling) 30 
+
+B.5.6 Summary Table 
+
+Summary Table 
+
+Variable  Meaning  Expected Sensitivity  Dominant Archetype 
+
+𝐴 𝑁  FTLE (local divergence)  High in meta -stability  Uchi -mata 
+
+𝑇 rot  Rotational torque  High  Uchi -mata 
+
+𝐴  Asymmetry  Medium  Both 
+
+𝑑 𝑁  COM offset  High near collapse  Seoi -otoshi 
+
+𝑎 𝑧  Downward acceleration  Very high  Seoi -otoshi 
+
+𝐾 𝑔  Grip stiffness  Stabilizing  Both 
+
+B.5.7 Conclusions 
+
+The  sensitivity analysis demonstrates that: the index is most responsive in the  Tsukuri –Kake transition ,
+
+each archetype exhibits a distinct sensitivity signature, the logistic activation ensures numerical stability 
+
+and biomechanical interpretability, the model is robust to weight variations except for variables dominating 
+
+specific archetypes. This analysis  strengthens the theoretical foundation of the Instability Index as a 
+
+meaningful order parameter for the dyadic system. 
+
+# B.6 Mathematical Characterisation of the Two Instability Archetypes 
+
+B.6.1 Notation 
+
+Let:  
+
+> a.
+
+𝐶 𝑈 (𝑡 ): Uke’s centre of mass  
+
+> b.
+
+𝐶 𝑇 (𝑡 ): Tori’s centre of mass  
+
+> c.
+
+𝐵 𝑈 : Uke’s support polygon  
+
+> d.
+
+𝐹 ⃗ (𝑡 ): resultant force applied by Tori  
+
+> e.
+
+𝜏 ⃗ (𝑡 ): torque acting on Uke  
+
+> f.
+
+𝐹 (𝑡 ): time -dependent fulcrum (feet → shins)  
+
+> g.
+
+𝐈 𝐹 (𝑡 ): inertia tensor of Uke with respect to the instantaneous fulcrum  
+
+> h.
+
+𝐑 (𝑡 ): rotation matrix around the instantaneous axis  
+
+> i.
+
+𝑑 ⃗ (𝑡 ): downward translation induced by gravity and Tori’s drop 
+
+Irreversible instability occurs when: 
+
+𝐼 (𝑡 ) > 1, 𝑑𝐼 
+
+𝑑𝑡 > 0.
+
+B.6.2 Rotational Instability Archetype (Uchi -mata Type) 
+
+Instability is dominated by a torque around an oblique axis  𝑘 ̂ 𝑅 . Let  𝑟 ⃗ (𝑡 )be the lever arm from the COM to 
+
+the point of force application. 
+
+𝜏 ⃗𝑅 (𝑡 ) = 𝑟 ⃗ (𝑡 ) × 𝐹 ⃗ (𝑡 ),
+
+𝐈 𝑈 𝜔 ⃗⃗⃗̇ (𝑡 ) = 𝜏 ⃗𝑅 (𝑡 ),
+
+𝑘 ̂ 𝑅 (𝑡 ) = 𝜏 ⃗𝑅 (𝑡 )
+
+∥ 𝜏 ⃗𝑅 (𝑡 ) ∥.
+
+The COM trajectory is: 31 
+
+𝐶 𝑈 (𝑡 ) = 𝐶 𝑈 (0) + ∫ 𝐑 (𝜏 )
+
+> 𝑡
+> 0
+
+𝑣 ⃗ (𝜏 ) 𝑑𝜏 .
+
+Instability becomes irreversible when: 
+
+proj 𝐵 𝑈 (𝐶 𝑈 (𝑡 )) ∉ 𝐵 𝑈 .
+
+B.6.3 Mixed Gravitational –Lever Instability Archetype (Seoi -otoshi, Suwari Version) 
+
+This archetype combines: 
+
+1.  a gravitational collapse (rapid drop of Tori’s COM), and 
+
+2.  a lever action with a migrating fulcrum. 
+
+The shoulder is a  kinematic constraint , not a fixed pivot. 
+
+B.6.3.1 Time -dependent fulcrum 
+
+𝐹 (𝑡 ) = {𝐹 1, 0 ≤ 𝑡  < 𝑡 𝑐 (feet –tatami  friction dominates)  𝐹 2, 𝑡  ≥ 𝑡 𝑐 (shins  on  Tori  friction  dominate) 
+
+Torque about the moving fulcrum: 
+
+𝜏 ⃗𝐹 (𝑡 ) = 𝑟 ⃗𝐹 (𝑡 )→𝐶 𝑈 (𝑡 ) × 𝐹 ⃗ (𝑡 ),
+
+𝐈 𝐹 (𝑡 ) 𝜔 ⃗⃗⃗̇ 𝐹 (𝑡 ) = 𝜏 ⃗ 𝐹 (𝑡 ).
+
+B.6.3.2 Helical descent of the COM 
+
+Because the fulcrum moves and the applied force has both vertical and lateral components, the COM 
+
+follows a  descending helical trajectory :
+
+𝐶 𝑈 (𝑡 ) = 𝐹 (𝑡 ) + 𝐑 (𝑡 ) 𝜌 ⃗ + 𝑑 ⃗ (𝑡 ),
+
+where:  𝜌 ⃗ : fixed vector from fulcrum to COM ;  𝐑 (𝑡 ): rotation around an oblique axis through  𝐹 (𝑡 )
+
+𝑑 ⃗ (𝑡 ): downward translation ( 𝑑 ̇𝑧 (𝑡 ) < 0)
+
+Irreversible collapse occurs when: 
+
+proj 𝐵 𝑈 (𝐶 𝑈 (𝑡 )) ∉ 𝐵 𝑈 32 
+
+# APPENDIX C 
+
+# Illustrative Application of the Instability Framework: A Theoretical Walk -Through 
+
+# for Coaches 
+
+Arbuzov vs. Grigalashvili  — World Championship 2025 
+
+This appendix provides a step -by -step theoretical interpretation of a real competition sequence using the 
+
+Instability Framework and the Functional Instability Index  𝐼 (𝑡 ). The numerical values are illustrative, not 
+
+derived from measured kinematic data, and are intended to demonstrate how coaches may apply the 
+
+model in practice. 
+
+# C.1 Frame -by -Frame Dynamical Interpretation 
+
+Frame 1  — 03:38  — Dyadic Equilibrium 
+
+State : Both athletes are within their stable 
+
+basins of attraction. 
+
+Dynamics : Potential energy is balanced; 
+
+transient static  symmetry breaking is present. 
+
+(Abuzov). 
+
+Interpretation : Maximum stability;  𝐼 (𝑡 ) = 0.
+
+Frame 2  — 03:39  — Dynamic Instability Trigger 
+
+Event:  Grigalashvili (Blue)  rightly,  initiates 
+
+dynamic instability  against Arbuzov .
+
+Action : He shifts  rotating  to increase directional 
+
+stability in preparation for Yoko -sutemi, but 
+
+positions himself slightly too far. 
+
+Interpretation : First  dynamic 
+
+symmetry -breaking event; instability begins to 
+
+rise. 
+
+Frame 3  — 03:40 A  — The Bifurcation Point 
+
+Event : Arbuzov (White)  avoids the attack and 
+
+intercepts the motion. 
+
+State:  The dyad reaches a saddle point, where 
+
+the dyadic  balance is critically compromised. 
+
+Interpretation:  This is the critical bifurcation; 
+
+small perturbations determine the outcome. 33 
+
+Frame 4  — 03:40 B  — Emerging FTLE 
+
+Divergence 
+
+Event:  The Finite -Time Lyapunov Exponent 
+
+(FTLE ) becomes positive. 
+
+State : The system enters a region of high 
+
+sensitivity; trajectories diverge. 
+
+Interpretation : The dyad is now in the 
+
+meta -stable Kuzushi window. 
+
+Frame 5  — 03:40 C  — Rotational Acceleration 
+
+Event : Arbuzov redirects Grigalashvili’s kinetic 
+
+energy. 
+
+State : Rotational flow accelerates toward the 
+
+floor. 
+
+Interpretation : Dynamic instability dominates; 
+
+rotational attractor emerges. 
+
+Frame 6  — 03:40 D  — Irreversible Collapse 
+
+System State : The dyad transitions to a new 
+
+attractor: the ground state (Ippon). 
+
+Grigalashvili is fully decoupled from the tatami, 
+
+unable to return to his original stability basin of 
+
+attraction. 
+
+Arbuzov maintains a stable dynamic axis while 
+
+accelerating rotational veloc ity. 
+
+Physical Concept:  Total divergence; the 
+
+evolution is now deterministic. 
+
+Frame 7  — 03:40 E  — System Decoupling 
+
+Event:  Finalisation of the throw. 
+
+State:  Arbuzov re -establishes individual 
+
+dynamic  stability  in Ne Waza ; the dyad 
+
+decouples. Outcome: Ippon. 
+
+# C.2 Final Considerations for Coaches 
+
+Modern judo excellence is not merely the application of force, but the mastery of the dyadic phase space.  A
+
+winning action occurs when Tori: 34 
+
+1.  Recognises static instability in the opponent, 
+
+2.  Transforms it into dynamic instability, 
+
+3.  Maximises FTLE to ensure total divergence of Uke’s trajectory, 
+
+4.  Drives the system into irreversible gravitational collapse. 
+
+This is the essence of the perfect Ippon. 
+
+# C.3 Application of the Instability Index  𝐼 (𝑡 ) A Theoretical Example for Coaches 
+
+The following example illustrates how the Functional Instability Index  𝐼 (𝑡 ) can be applied to a real match 
+
+sequence. A normalisation constant  𝐶  = 100  is used for demonstration. 
+
+The index is computed here in a  simplified didactic form  that groups the six original variables into three 
+
+macro -categories: 
+
+𝐼 (𝑡 ) = 𝛼 𝜈 𝛼  + 𝛽 𝜈 𝛽  + 𝜆 𝜈 𝜆 
+
+where:  
+
+> •
+
+𝛼  (Static -Geometric): base of support, asymmetry, positional constraints  
+
+> •
+
+𝛽  (Kinetic -Dynamic): velocity and acceleration vectors  
+
+> •
+
+𝜆  (Tactical -Relational):  (timing ) moment of  interception  (De -ai), distance (Ma -ai), grip efficiency 
+
+# C.4 Table C 
+
+Frame  Weight and Variable Distribution  Value  Sequential Evolution of 
+
+Time 
+
+(mm:ss) 
+
+Weights 
+
+( )
+
+Raw components 
+
+( ) Technical Phase  Dyadic State 
+
+03:38  (0.4, 0.3, 0.3)  (0.00, 0.00, 0.00)  0.00  Initial Equilibrium  Maximum stability 
+
+03:39  (0.3, 0.5, 0.2)  (0.20, 0.45, 0.07)  0.30  Grigalashvili Attack  Initiation of instability 
+
+03:40 A  (0.2, 0.3, 0.5)  (0.45, 0.58, 0.87)  0.70  Saddle Point  Critical bifurcation 
+
+03:40 E  (0.0, 1.0, 0.0)  (0.00, 1.00, 0.00)  1.00  Ippon  Total system saturation 
+
+# C. 5 Technical Note on Weight Evolution 
+
+The shift in weights over 0.02 seconds is crucial  — a timescale only AI can reliably detect.  
+
+> •
+
+At equilibrium (03:38),  𝛼  ≈ 0.4 dominates: geometry and posture matter most.  
+
+> •
+
+During attack (03:39),  𝛽  = 0.5 dominates: kinetic energy drives instability.  
+
+> •
+
+At the saddle point (03:40 A),  𝜆  = 0.5 dominates:  (tactical timing ) moment of interception  (De -ai) 
+
+becomes decisive. 
+
+This demonstrates mathematically that Arbuzov’s success is due to tactical synchronisation, not superior 
+
+force. Note that the dynamic weights used here are purely illustrative and serve a didactic purpose; the 
+
+complete  𝐼 (𝑡 ) defined in Eq. (2) employs calibrated, fixed coefficients after supervised learning. 
+
+# C. 6 Conclusions 
+
+This dyadic model confirms that elite judo performance depends on the precise management of instability 
+
+variables.  The Arbuzov –Grigalashvili exchange illustrates how:  tactical synchronisation can dominate kinetic 
+
+initiation,  instability can be amplified through timing rather than force,  the Instability Index  𝐼 (𝑡 ) can serve 
+
+as a future metric for: coaching evaluation, athlete profiling, and potentially even Elo -style ranking based 
+
+on the ability to generate instability. 35 
+
+# APPENDIX D 
+
+# A Thr ee-Level Teaching Framework Based on Dynamic Instability 
+
+This appendix presents a structured pedagogical model derived from the nonlinear dynamical framework 
+
+developed in the main text. Its purpose is to translate theoretical constructs —instability, symmetry 
+
+breaking, attractors, FTLE, coupling stiffness, and th e two archetypes —into a coherent, measurable, and 
+
+progressive teaching methodology for coaches and athletes. 
+
+The model is articulated into three levels, each corresponding to a specific set of perceptual, coordinative, 
+
+and tactical skills. Each level is associated with quantifiable indicators derived from the Functional 
+
+Instability Index  𝐼 (𝑡 ), symmetry metrics, COM displacement, and coupling dynamics. 
+
+Level 1  – Perception of Instability and Static Asymmetry 
+
+Objective:  Develop the athlete’s ability to perceive the opponent’s stability landscape, identifying static 
+
+asymmetries, COM deviations, and grip -induced constraints before initiating dynamic actions. 
+
+Theoretical Foundations:  Static symmetry breaking (postural asymmetry); COM offset  𝑑 𝑁 (𝑡 ); grip 
+
+stiffness  𝐾 𝑔 (𝑡 ) as a stabilising parameter; Hurst parameter as an indicator of exploratory vs. deterministic 
+
+behaviour. 
+
+Key Skills:  Reading the opponent’s stability gradient; identifying locked degrees of freedom; recognising 
+
+exploitable postural biases; distinguishing stable vs. meta -stable configurations. 
+
+Suggested Drills:  COM reading drills (identify lateral/sagittal COM shifts visually and via tactile feedback); 
+
+head inclination;  grip constraint mapping (classify grips by stabilising/destabilising effect); static asymmetry 
+
+scenarios (Uke presents predefined asymmetries; Tori identifies optimal attack direction). 
+
+AI Integration:  Automatic detection of COM deviation from the base of support; heat maps of static 
+
+asymmetry; quantification of grip -induced stiffness. 
+
+Level 2  – Manipulation of Instability and Dynamic Symmetry Breaking 
+
+Objective:  Train the athlete to induce instability through controlled perturbations, rhythm changes, and 
+
+dynamic coupling manipulation. 
+
+Theoretical Foundations:  Dynamic symmetry breaking; local divergence (FTLE); coupling modulation 
+
+through Kumi -kata; transitions between basins of attraction. 
+
+Key Skills:  Creating micro -perturbations that accumulate into instability; manipulating rhythm to enter 
+
+meta -stable regions; saturating Uke’s degrees of freedom (virtual constraints)  ex: wrapping grips ;
+
+recognising the onset of positive FTLE. 
+
+Suggested Drills:  Rhythm perturbation drills (alternating slow -fast entries); dynamic grip modulation 
+
+(varying grip tension to alter coupling stiffness); meta -stability navigation (maintain the system near 
+
+instability without crossing collapse threshold). 
+
+AI Integration:  FTLE estimation over short windows; detection of timing mismatches; visualisation of 
+
+coupling stiffness variations; identification of entry into meta -stable regions. 
+
+Level 3  – Exploitation of Instability and Finalisation (Archetype -Specific) 
+
+Objective:  Enable the athlete to finalise instability by guiding the dyad into the appropriate attractor 
+
+rotational (Uchi -mata archetype) or gravitational collapse (Seoi -otoshi archetype). 
+
+Theoretical Foundations:  Rotational attractor formation; gravitational discontinuity (catastrophic jump); 
+
+downward acceleration  𝑎 𝑧 (𝑡 ); rotational torque  𝑇 rot (𝑡 ); Instability Index  𝐼 (𝑡 ) approaching 1. 
+
+Key Skills:  Recognising the point of no return; executing the mechanical tool (lever or couple) at the 
+
+singularity; maintaining flow continuity in rotational archetypes; maximising descent velocity in collapse 
+
+archetypes. 
+
+Suggested Drills:  For Uchi -mata (rotational instability): rotational flow continuity (continuous circular 
+
+contact drills); hip –shoulder alignment timing synchronisation.  For Seoi -otoshi (gravitational collapse): drop 
+
+timing drills (practising drops faster than Uke’s neuromuscular reaction time); COM vacuum creation 
+
+(exercises focused on removing vertical support under Uke’s COM). 36 
+
+AI Integration:  Detection of rotational flow interruptions; measurement of descent velocity; identification 
+
+of instability spikes; archetype classification through attractor shape. 
+
+Summary of the Teaching Framework 
+
+This three -level model provides a structured pathway from perception to manipulation to exploitation of 
+
+instability. It aligns with the nonlinear dynamics of the Tori –Uke dyad and offers measurable indicators for 
+
+each stage. The integration of AI tools enhances feedb ack precision and supports both athlete development 
+
+and coaching strategies.

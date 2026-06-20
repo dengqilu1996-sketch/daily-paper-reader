@@ -1,0 +1,259 @@
+Title: Quantifying defensive pressure on the ball carrier in soccer based on minimum arrival time
+
+URL Source: https://arxiv.org/pdf/2606.09452v1
+
+Published Time: Tue, 09 Jun 2026 02:20:06 GMT
+
+Number of Pages: 11
+
+Markdown Content:
+# Quantifying defensive pressure on the ball carrier in soccer based on minimum arrival time 
+
+## Takuma Narizuka ∗1, Ikuya Sakamoto 2, Ken Yamamoto 3, and Yoshihiro Yamazaki 41Faculty of Data Science, Rissho University, Kumagaya, Saitama 360-0194, Japan 
+
+> 2
+
+## Department of Physics, Faculty of Science and Engineering, Chuo University, Bunkyo, Tokyo 112-8551, Japan 
+
+> 3
+
+## Faculty of Science, University of the Ryukyus, Nishihara, Okinawa 903-0213, Japan 
+
+> 4
+
+## Department of Physics, School of Advanced Science and Engineering, Waseda University, Shinjuku, Tokyo 169-8555, Japan 
+
+Abstract 
+
+Defensive pressure on the ball carrier is a fundamental component of soccer tactics. Existing pressure measures often involve additional modeling assumptions, which may reduce interpretability. In this study, we quantify defensive pressure as the opponent minimum arrival time to the ball-carrier location, computed from a physics-based motion model. Using synchronized event and tracking data from all 306 matches in the top division of the Japan Professional Football League during the 2023 season, we analyze the statistical characteristics and temporal evolution of this quantity during ball-possession intervals. The results show that the opponent minimum arrival time tends to decrease during possession and to increase again at the start of the next possession after ball release. We also find that possessions starting under stronger defensive pressure tend to yield smaller ball progression, and that, for intentional open-play passes, possessions ending under stronger pressure are more likely to be lost. These findings indicate that minimum arrival time provides an interpretable and physically grounded measure of immediate defensive pressure on the ball carrier. The proposed framework provides a simple and interpretable baseline for quantifying pressing dynamics from tracking data. 
+
+Keywords— soccer, defensive pressure, minimum arrival time, tracking data, physics-based motion model 
+
+## 1. Introduction 
+
+Soccer (football) is a complex team sport in which 22 players interact continuously in a large field. Recent advances in synchronized event and tracking data [2] have enabled quantitative analyses of player movements and tactical behaviors at high temporal resolution [10, 17]. From a statistical-physics per-spective, soccer can be viewed as a system of interacting self-propelled agents, where local interactions between attackers and defenders are reflected in their relative positions, velocities, and arrival times. One key aspect of soccer tactics is spatial control [7, 14]. Attacking players attempt to create space and provide passing options, whereas defenders aim to restrict these opportunities by applying pressure on the ball carrier. Such local interactions strongly influence subsequent on-ball outcomes, including ball progression, possession retention, pass success, and shot creation. Motivated by the importance of defensive pressure, a number of approaches have been proposed to quantify it. Early work described pressure using geometric relationships such as relative distances and angles between players [1], and such formulations were later adapted to analyze pressure in different game contexts [8, 11]. Other studies have focused on detecting pressing situations using supervised learning or rule-based approaches [3, 15], or on evaluating the effectiveness of pressing strategies from a risk–reward 
+
+> ∗
+
+E-mail address : narizuka.takuma@gmail.com 
+
+1
+
+> arXiv:2606.09452v1 [physics.soc-ph] 8 Jun 2026
+
+perspective [12]. More recently, time-to-intercept measures derived from motion models have been used to construct probabilistic representations of defensive pressure [4, 16]. These previous studies have substantially advanced the quantitative analysis of pressing. At the same time, existing approaches are designed either to detect specific pressing events or to transform arrival-time information into more elaborate pressure scores. Such formulations are useful for particular applications, but they may also introduce additional assumptions that make interpretation less direct. From this perspective, minimum arrival time itself provides a simple and interpretable measure of immediate defensive pressure. It directly represents how quickly a defender can reach the ball-carrier location under a specified motion model [9, 13]. Because it is defined directly from player kinematics, it enables pressure to be quantified with fewer additional assumptions than more elaborate pressure scores. This makes it suitable as a baseline quantity for describing pressing dynamics in an interpretable manner. In this study, we analyze defensive pressure on the ball carrier using the opponent minimum arrival time derived from a physics-based motion model. Using synchronized tracking and event data from 306 J1 League matches, we investigate the statistical characteristics and temporal evolution of this quantity during ball-possession intervals. We further examine how the opponent minimum arrival time is associated with two key possession outcomes, namely ball progression and possession loss. Overall, this study shows that the opponent minimum arrival time can be interpreted as a local first-arrival-time measure of defensive interaction around the ball carrier and provides an interpretable baseline for quantifying immediate defensive pressure from tracking data. 
+
+## 2. Method 
+
+2.1 Data and preprocessing 
+
+We used synchronized event and tracking data from all 306 matches in the top division of the Japan Professional Football League (J1 League) during the 2023 season. The tracking data consist of the absolute coordinates (x, y ) for all players, recorded at 25 frames per second, while the event data contain time-stamped on-ball actions such as passes, shots, and fouls. The datasets were provided by DataStadium Inc., Japan [6], and we obtained explicit permission to use them in this study. Following a preprocessing procedure used in a previous study [5], measurement noise in the track-ing data was reduced using the Savitzky–Golay filter and cubic spline interpolation. Player velocities were then computed from the smoothed trajectories. Player locations were represented in a pitch-fixed coordinate system, and attacking direction was standardized across halves. 
+
+2.2 Motion model and minimum arrival time 
+
+To quantify spatial pressure in terms of the time required to reach a location, we computed the minimum arrival time using a simplified physics-based motion model. Specifically, we used the Fujimura– Sugihara model [9], in which the motion of player p is governed by 
+
+m d2⃗x p(t)
+
+dt 2 = F⃗ n − k d⃗ x p(t)
+
+dt , (1) where ⃗x p(t) is the position vector of player p at time t, m is the player mass, F⃗ n is a constant driving force in direction ⃗n, and k is a viscous resistance coefficient. Under the assumption that the direction of the driving force ⃗n can change freely, the set of reachable locations after time t forms a circle with center ⃗c p(t) and radius rp(t):⃗x p(t) = ⃗x p(0) + 1 − exp( −αt )
+
+α⃗ v p(0) + Vmax 
+
+
+
+t − 1 − exp( −αt )
+
+α
+
+⃗n
+
+=⃗c p(t) + rp(t)⃗n, (2) where ⃗c p(t) = ⃗x p(0) + 1 − exp( −αt )
+
+α⃗ v p(0) ,rp(t) = Vmax 
+
+
+
+t − 1 − exp( −αt )
+
+α
+
+
+
+.
+
+(3) Here, α = k/m and Vmax = F/k are kinetic parameters. Following our previous validation study of the Fujimura–Sugihara model under soccer players’ sprint conditions [13], we used α = 1 .0 s −1 and 
+
+Vmax = 10 .0 m s −1.
+
+2Given a target location ⃗x, the arrival time τ p(⃗x, t ) for player p is computed by numerically solving 
+
+rp(τp) = ∥⃗x −⃗c p(τp)∥. (4) The minimum arrival time to location ⃗x at time t is then defined as the minimum over all candidate players. 
+
+2.3 Pressure on the ball carrier 
+
+To evaluate defensive pressure on the ball carrier, we identified ball-possession intervals from the synchronized event and tracking data. A ball-possession interval was defined as a continuous interval in the synchronized event-tracking record during which a single player was identified as controlling the ball. We denote the possession start time by tget and the ball-release time by trel . Intervals with trel > t get were classified as possession plays, whereas those with trel = tget were classified as direct plays. Goalkeeper possessions were excluded from all analyses because their tactical role and surrounding pressure structure differ substantially from those of outfield players. Let ⃗x b denote the ball-carrier location at time t. Using the motion model in Subsection 2.2, we computed the opponent and teammate minimum arrival times to the ball-carrier location as 
+
+τopp (⃗x b, t ) = min  
+
+> p∈opponents
+
+τp(⃗x b, t ), τsame (⃗x b, t ) = min  
+
+> p∈teammates
+
+τp(⃗x b, t ).
+
+The ball carrier was excluded from the calculation of τsame . In particular, we extracted τopp (⃗x b, t get ) and 
+
+τopp (⃗x b, t rel ) at possession start and ball release, respectively, and used them as measures of immediate defensive pressure on the ball carrier. A schematic illustration of τopp (⃗x b, t ) and τsame (⃗x b, t ) is shown in Fig. 1. For the possession-loss analysis in Subsection 3.4, we further restricted the release actions to in-tentional teammate-directed open-play passes, namely ordinary passes and through passes as labeled in the event data. Ball loss was defined as the situation in which possession switched to the opponent or play stopped after the action. The numbers of analyzed possessions and passes are reported for the ball-progression and possession-loss analyses. 𝒙 𝐛   
+
+> 𝝉 𝐬𝐚𝐦𝐞 (𝒙 𝐛 ,𝒕 )
+> 𝝉 𝐨𝐩𝐩 (𝒙 𝐛 ,𝒕 )
+
+Fig. 1. Schematic illustration of the opponent and teammate minimum arrival times to the ball-carrier location, τopp (⃗x b, t ) and τsame (⃗x b, t ), respectively. 
+
+## 3. Results 
+
+3.1 Distribution of minimum arrival times to the ball carrier 
+
+We first examined the overall distributions of the minimum arrival times to the ball carrier. Figure 2 compares the opponent and teammate minimum arrival times, τopp (⃗x b, t ) and τsame (⃗x b, t ), during ball-possession intervals across 306 matches. The distribution of τsame (⃗x b, t ) is approximately symmetric, whereas τopp (⃗x b, t ) is clearly concentrated at shorter times. This asymmetry indicates that opponents tend to reach the ball carrier more quickly than teammates. This is consistent with their different tactical roles: opponents apply pressure to the ball carrier, whereas teammates are often positioned to maintain their formation while providing support. Since the main focus of this study is defensive pressure on the ball carrier, the following analyses concentrate on the temporal behavior and consequences of the opponent minimum arrival time to the ball-carrier location. 
+
+30.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 
+
+Minimum arrival time [s] 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> Probability density  [s −1]
+> Opponent ( τopp )
+> Teammate ( τsame )
+
+Fig. 2. Distributions of the opponent and teammate minimum arrival times, τopp (⃗x b, t ) and 
+
+τsame (⃗x b, t ), to the ball-carrier location during ball-possession intervals across 306 matches. 
+
+3.2 Temporal evolution of defensive pressure during possession 
+
+We next investigated how defensive pressure evolves during ball possession. Figure 3 shows a typical time series. The two teams are distinguished by line style and marker shape, and the shaded bands indicate individual ball-possession intervals. As shown in Fig. 3, the opponent minimum arrival time, 
+
+τopp (⃗x b, t ), tends to decrease while a player is in possession and to increase again at the start of the next possession after ball release. These observations suggest that defensive pressure gradually builds up on the current ball carrier and is partially relieved when the next possession begins. 780 790 800 810 820 830 840 850  
+
+> Time since start of half [s]
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Opponent minimum arrival time  [s]
+
+Fig. 3. Typical time series of the opponent minimum arrival time to the ball-carrier location, 
+
+τopp (⃗x b, t ), from Matchweek 2 of the 2023 J1 League season between F.C. Tokyo and Urawa Red Diamonds. F.C. Tokyo possessions are shown by solid lines with triangle markers, whereas Urawa Red Diamonds possessions are shown by dashed lines with square markers. The shaded bands indicate individual ball-possession intervals. 
+
+To quantify these tendencies, we compared τopp (⃗x b, t get ) and τopp (⃗x b, t rel ) for all possessions ex-cluding direct plays. Figure 4(a) shows the normalized two-dimensional histogram of τopp (⃗x b, t get ) and 
+
+τopp (⃗x b, t rel ). Most observations lie below the identity line, indicating that τopp is typically smaller at ball release than at possession start. Figure 4(b) shows the distribution of the difference τopp (⃗x b, t get ) −
+
+τopp (⃗x b, t rel ), which is shifted toward positive values. The mean difference was 0.276 s and the standard deviation was 0.400 s, confirming that defensive pressure tends to increase during possession. We then examined whether this increase in defensive pressure is followed by a reduction at the start of the next possession after ball release. Here, ⃗x next b and t next get denote the ball-carrier location and possession-start time in the next possession, respectively. Figure 5(a) compares τopp (⃗x b, t rel ) in one possession with τopp (⃗x next b , t next get ) at the start of the next possession. Most observations lie above the identity line, indicating that the opponent minimum arrival time tends to be larger at the start of the 
+
+4(a) (b) Fig. 4. Temporal change in the opponent minimum arrival time during possession. (a) Nor-malized two-dimensional histogram of τopp (⃗x b, t get ) and τopp (⃗x b, t rel ) for all possessions ex-cluding direct plays; the dashed line indicates equality. (b) Distribution of the difference 
+
+τopp (⃗x b, t get ) − τopp (⃗x b, t rel ).
+
+next possession than at the end of the previous one. Note that this comparison does not track the same player over time. Rather, it compares the immediate defensive pressure on the ball carrier at the end of one possession with that on the ball carrier at the start of the subsequent possession. To examine how defensive pressure changes across consecutive possessions, we analyzed the difference between τopp (⃗x b, t rel ) in one possession and τopp (⃗x next b , t next get ) at the start of the next possession as a function of τopp (⃗x b, t rel ). Figure 5(b) shows that this difference varies systematically with τopp (⃗x b, t rel ).In particular, when the current possession ends under stronger pressure, the next possession tends to begin under lower immediate pressure relative to the end of the previous one. These results suggest that the ball carrier in the next possession tends to face lower immediate defensive pressure than the player who released the ball in the previous possession. (a) (b) 
+
+Fig. 5. Change in the opponent minimum arrival time after ball release. (a) Normalized two-dimensional histogram of τopp (⃗x b, t rel ) in one possession and τopp (⃗x next b , t next get ) at the start of the next possession; the dashed line indicates equality. (b) Mean value of τopp (⃗x b, t rel ) −
+
+τopp (⃗x next b , t next get ), plotted as a function of τopp (⃗x b, t rel ). Error bars indicate the standard de-viation within each bin. 53.3 Association between defensive pressure and ball progression 
+
+We next examined how defensive pressure is associated with ball progression during a possession. In particular, we analyzed how the opponent minimum arrival time at possession start, τopp (⃗x b, t get ),is related to subsequent ball progression. Here, ball progression was defined as the decrease in the ball carrier’s distance to the opponent goal from possession start to end. This analysis included N =167735 ball-possession intervals after excluding goalkeeper possessions and direct plays, corresponding to approximately 548 intervals per match on average. Figure 6(a) shows that possessions starting under stronger defensive pressure tend to result in smaller ball progression. Figure 6(b) shows the probability that ball progression exceeds 0 m, 3 m, or 6 m as a function of τopp (⃗x b, t get ). Overall, these results suggest that stronger immediate defensive pressure is associated with reduced ball progression during possession. One possible confounding factor in this relationship is field location. Possessions starting closer to the opponent goal tend to have less room for further ball progression and may face stronger defensive pressure because defenders are more densely positioned near the goal. To examine whether the association in Fig. 6(a) simply reflects such field-location effects, we repeated the analysis after dividing possession plays into three zones according to the ball carrier’s distance to the opponent goal at possession start. The three zones were defined using thresholds of 35 m and 70 m. The same qualitative relationship between 
+
+τopp (⃗x b, t get ) and ball progression was observed in all three zones (Supplementary Fig. S1), indicating that the association between stronger immediate defensive pressure and smaller ball progression is not explained solely by field location. (a) (b) 
+
+Fig. 6. Association between defensive pressure and ball progression. (a) Mean ball progression as a function of the opponent minimum arrival time at possession start. Error bars indicate the standard deviation within each bin. (b) Progression success probability as a function of the opponent minimum arrival time at possession start. The curves indicate the probability that ball progression exceeds 0 m, 3 m, or 6 m. 
+
+3.4 Association between defensive pressure and possession loss 
+
+In addition to constraining ball progression, defensive pressure at ball release may also increase the risk of losing possession. To examine this possibility, we analyzed intentional teammate-directed open-play passes, as defined in Subsection 2.3. The analysis included N = 237596 passes in total (approximately 777 per match on average), consisting of N = 153164 possession plays (approximately 501 per match) and N = 84432 direct plays (approximately 276 per match). Figure 7(a) shows the ball loss probability as a function of the opponent minimum arrival time at ball release, τopp (⃗x b, t rel ), separately for possession plays and direct plays. For both play types, the ball loss probability increased as τopp (⃗x b, t rel ) decreased, indicating that possessions ending under stronger immediate defensive pressure were more likely to be lost. This tendency was stronger for direct plays, whose loss probability remained higher than that of possession plays, especially when τopp (⃗x b, t rel ) was small. To interpret this tendency, we next considered the difference between the opponent and teammate minimum arrival times to the realized end location of each pass, 
+
+τopp (⃗x end , t rel ) − τsame (⃗x end , t rel ).
+
+6Here, ⃗x end denotes the actual end location of the attempted pass, and the arrival times are evaluated at the release time trel . This quantity compares how quickly opponents and teammates can reach that realized pass-end location. Smaller values indicate that teammates have less time advantage over opponents at the realized pass-end location. Figure 7(b) shows that this quantity tended to be smaller when τopp (⃗x b, t rel )
+
+was smaller, for both possession plays and direct plays. This indicates that passes released under stronger pressure tended to end at locations where teammates had less time advantage over opponents. For a given value of τopp (⃗x b, t rel ), direct plays also tended to have smaller values than possession plays. Thus, under comparable pressure at ball release, direct plays were associated with less time advantage for teammates over opponents at the realized pass-end location than possession plays. (a) (b) (c) 
+
+Fig. 7. Association between defensive pressure at ball release, the relative safety of the realized pass-end location, and possession loss. (a) Ball loss probability as a function of the opponent minimum arrival time at ball release, τopp (⃗x b, t rel ), for possession plays (circles) and direct plays (squares). (b) Mean value of τopp (⃗x end , t rel )−τsame (⃗x end , t rel ) as a function of τopp (⃗x b, t rel ), shown separately for possession plays (circles) and direct plays (squares). (c) Ball loss probability as a function of τopp (⃗x end , t rel ) − τsame (⃗x end , t rel ), pooled over all intentional open-play passes. Here, ⃗x end denotes the end location of each attempted pass. 
+
+We then examined whether passes ending with less time advantage for teammates over opponents were more likely to be lost. Figure 7(c) shows that the ball loss probability increased monotonically as 
+
+τopp (⃗x end , t rel ) − τsame (⃗x end , t rel )
+
+decreased. This indicates that passes were more likely to be lost when teammates had less time advantage over opponents at the realized pass-end location. Combined with Fig. 7(b), this result supports the interpretation that passes released under stronger pressure were more likely to be lost, and that this tendency was associated with less favorable realized pass-end situations. Since this analysis uses the realized end location ⃗x end , it should be interpreted as a post hoc explanation of observed pass outcomes rather than as a prediction of pass risk available at the moment of ball release. 
+
+7We also repeated the analysis in Fig. 7(a) after dividing analyzed open-play passes into the same three field-location zones defined by the ball carrier’s distance to the opponent goal at possession start. The same qualitative relationship between τopp (⃗x b, t rel ) and ball loss probability was observed in all three zones for both possession plays and direct plays (Supplementary Fig. S2), indicating that the association between stronger defensive pressure at ball release and higher ball loss probability is not explained solely by field location. 
+
+## 4. Discussion and Conclusion 
+
+This study examined defensive pressure on the ball carrier in soccer using the opponent minimum arrival time, τopp (⃗x b, t ), derived from a physics-based motion model. Using synchronized tracking and event data from 306 J1 League matches, we analyzed both the statistical characteristics of this quantity and its temporal evolution during ball-possession intervals, and examined how it is associated with two key possession outcomes: ball progression and possession loss. The results revealed several consistent patterns. First, the distribution of τopp (⃗x b, t ) was concentrated at shorter times compared with that of τsame (⃗x b, t ), indicating that opponents tend to reach the ball carrier more quickly than teammates. Second, τopp (⃗x b, t ) typically decreased while a player was in possession and increased again at the start of the next possession after ball release. Third, stronger defensive pressure was associated with smaller ball progression during a possession and, for intentional open-play passes, with a higher probability of losing possession at ball release. Taken together, these results show that immediate defensive pressure on the ball carrier evolves systematically over time and is meaningfully associated with subsequent possession outcomes. A central advantage of the present approach is its interpretability and physical grounding. Unlike ap-proaches that transform arrival-time information into more elaborate composite or probabilistic pressure scores, the present measure is defined directly from player kinematics through a physics-based motion model. In particular, this quantity has a clear physical meaning as the time required for the fastest opponent to reach the ball-carrier location. Moreover, the underlying Fujimura–Sugihara model has pre-viously been validated under soccer players’ sprint conditions using tracking data [13]. These features make the opponent minimum arrival time a transparent and interpretable baseline measure of immediate defensive pressure. Several limitations should be noted. First, τopp (⃗x b, t ) is computed from a simplified motion model with fixed kinetic parameters. Therefore, it should be interpreted as a proxy for immediate defensive pressure rather than as a complete description of future defensive behavior. Second, the proposed metric focuses on the ball-carrier location and does not explicitly incorporate contextual factors such as body orientation, passing lanes, coordinated team movement, continuous field-position effects, or game state. These factors may also influence ball progression and possession loss. Although the zone-based analyses in Subsections 3.3 and 3.4 suggest that the main associations are not explained solely by coarse field location, more detailed contextual modeling remains for future work. Third, in the possession-loss analysis, the quantity 
+
+τopp (⃗x end , t rel ) − τsame (⃗x end , t rel )
+
+was evaluated at the realized pass-end location. Accordingly, this part of the analysis should be interpreted as a post hoc explanation of observed pass outcomes rather than as a prediction of pass risk available at the moment of ball release. Fourth, the analysis is based on a single league and season, namely the 2023 J1 League, and the generality of the observed relationships should be examined in other competitions and tactical contexts. One plausible interpretation of Fig. 7, where increased pressure on the passer is associated with a lower time advantage at ⃗x end , is that stronger immediate pressure reduces the availability of pass options or passing lanes that provide sufficient time advantage for teammates over opponents. It is also possible that stronger pressure makes the ball carrier’s pass selection or execution more difficult. However, this post hoc analysis does not determine which explanation is more important in actual matches. The present analysis focused on the ball-carrier location in order to quantify immediate defensive pressure in a simple and interpretable manner. This focus also points to several natural directions for extension. One important next step is to analyze τsame (⃗x b, t ) as a complementary measure of local support around the ball carrier. It will also be useful to extend the framework from the ball-carrier location to nearby space in order to evaluate passing options and local spatial structure more directly. More broadly, incorporating contextual information such as defensive orientation, passing lanes, coordinated team movement, and game state may help connect local arrival-time-based pressure measures to broader pressing behavior at the team level. 
+
+8In conclusion, this study showed that the opponent minimum arrival time provides a simple, inter-pretable, and physically grounded measure of immediate defensive pressure on the ball carrier. The results indicate that this quantity captures meaningful temporal structure during possession and is associated with key possession outcomes such as ball progression and possession loss. The proposed framework therefore provides an interpretable baseline for quantifying pressing dynamics from tracking data and for relating local defensive pressure to possession outcomes in soccer. 
+
+## Data and code availability 
+
+The raw event and tracking data analyzed in this study are not publicly available and cannot be deposited in a public repository because they were provided by DataStadium Inc. under a data-use agreement. Anonymized and processed data, together with analysis code sufficient for verifying the analyses and reproducing the figures, are available from the corresponding author under controlled access conditions, subject to approval by DataStadium Inc. and an appropriate data-sharing agreement. Access is limited to editors, reviewers, or approved researchers for verification purposes and for a limited period; redistribution, secondary use, and transfer to third parties are not permitted. 
+
+## Author contributions 
+
+Takuma Narizuka : Conceptualization, Methodology, Data curation, Software, Formal analysis, Investigation, Visualization, Supervision, Funding acquisition, Writing – original draft, Writing – review & editing. Ikuya Sakamoto : Conceptualization, Data curation, Software, Investigation, Visualization, Writing – original draft. Ken Yamamoto : Supervision, Funding acquisition, Writing – review & editing. 
+
+Yoshihiro Yamazaki : Supervision, Writing – review & editing. All authors discussed the results and approved the final manuscript. 
+
+## Declaration of competing interests 
+
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper. 
+
+## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process 
+
+During the preparation of this work, the authors used ChatGPT to support language editing and manuscript organization. After using this tool, the authors reviewed and edited the content as needed and take full responsibility for the content of the published article. 
+
+## Acknowledgments 
+
+The authors are grateful to DataStadium Inc., Japan, for providing the data for this study. This work was partially supported by the Data-Centric Science Research Commons Project of the Research Organization of Information and Systems, Japan, a Grant-in-Aid for Early-Career Scientists (Grant Number JP23K16729) from the Japan Society for the Promotion of Science (JSPS), and a Grant-in-Aid for Scientific Research (C) (Grant Number JP23K03264) from JSPS. The funders had no role in the study design, data collection and analysis, interpretation of results, preparation of the manuscript, or the decision to submit the article for publication. 
+
+## References 
+
+[1] Andrienko, G., Andrienko, N., Budziak, G., Dykes, J., Fuchs, G., von Landesberger, T., Weber, H., 2017. Visual analysis of pressure in football. Data Mining and Knowledge Discovery 31, 1793–1839. doi: 10.1007/s10618-017-0513-2 .[2] Bassek, M., Rein, R., Weber, H., Memmert, D., 2025. An integrated dataset of spatiotemporal and event data in elite soccer. Scientific Data 12, 195. doi: 10.1038/s41597-025-04505-y .[3] Bauer, P., Anzer, G., 2021. Data-driven detection of counterpressing in professional football. Data Mining and Knowledge Discovery 35, 2009–2049. doi: 10.1007/s10618-021-00763-7 .
+
+9[4] Bekkers, J., 2025. Pressing intensity: An intuitive measure for pressing in soccer. arXiv preprint arXiv:2501.04712. doi: 10.48550/arXiv.2501.04712 .[5] Brink, L., Ha, S.K., Snowdon, J., Vidal-Codina, F., Rauch, B., Wang, F., Wu, D., López-Felip, M.A., Clanet, C., Hosoi, A.E., 2023. Measuring skill via player dynamics in football dribbling. Scientific Reports 13, 19004. doi: 10.1038/s41598-023-45914-6 .[6] DataStadium Inc., 2026. Official website. https://www.datastadium.co.jp/en . Accessed: 2026-03-14. [7] Fernandez, J., Bornn, L., 2018. Wide open spaces: A statistical technique for measuring space creation in professional soccer, in: Proceedings of the MIT Sloan Sports Analytics Conference, pp. 1–19. [8] Forcher, L., Forcher, L., Altmann, S., Jekauc, D., Kempe, M., 2024. The keys of pressing to gain the ball – characteristics of defensive pressure in elite soccer using tracking data. Science and Medicine in Football 8, 161–169. doi: 10.1080/24733938.2022.2158213 .[9] Fujimura, A., Sugihara, K., 2005. Geometric analysis and quantitative evaluation of sport teamwork. Systems and Computers in Japan 36, 49–58. doi: 10.1002/scj.20254 .[10] Gudmundsson, J., Horton, M., 2017. Spatio-temporal analysis of team sports. ACM Computing Surveys 50, 1–34. doi: 10.1145/3054132 .[11] Herold, M., Hecksteden, A., Radke, D., Goes, F., Nopp, S., Meyer, T., Kempe, M., 2022. Off-ball behavior in association football: A data-driven model to measure changes in individual defensive pressure. Journal of Sports Sciences 40, 1412–1425. doi: 10.1080/02640414.2022.2081405 .[12] Merckx, S., Robberechts, P., Euvrard, Y., Davis, J., 2021. Measuring the effectiveness of pressing in soccer. Proceedings of the 8th Workshop on Machine Learning and Data Mining for Sports Analytics. [13] Narizuka, T., Takizawa, K., Yamazaki, Y., 2023. Validation of a motion model for soccer players’ sprint by means of tracking data. Scientific Reports 13, 865. doi: 10.1038/s41598-023-27999-1 .[14] Narizuka, T., Yamazaki, Y., Takizawa, K., 2021. Space evaluation in football games via field weight-ing based on tracking data. Scientific Reports 11, 5509. doi: 10.1038/s41598-021-84939-7 .[15] Peters, A., Parmar, N., Davies, M., James, N., 2026. A rule-based approach to classify counterpress-ing – analysis of its risks and relationship with rest defence. International Journal of Performance Analysis in Sport 26, 206–222. doi: 10.1080/24748668.2025.2473799 .[16] Spearman, W., Basye, A., Dick, G., Hotovy, R., Pop, P., 2017. Physics-based modeling of pass probabilities in soccer, in: Proceedings of the MIT Sloan Sports Analytics Conference, pp. 1–14. [17] Wang, Z., Veličković, P., Hennes, D., Tomašev, N., Prince, L., Kaisers, M., Bachrach, Y., Elie, R., Wenliang, L.K., Piccinini, F., Spearman, W., Graham, I., Connor, J., Yang, Y., Recasens, A., Khan, M., Beauguerlange, N., Sprechmann, P., Moreno, P., Heess, N., Bowling, M., Hassabis, D., Tuyls, K., 2024. TacticAI: an AI assistant for football tactics. Nature Communications 15, 1906. doi: 10.1038/s41467-024-45965-x .
+
+10 Supplementary Material 
+
+## S1. Zone-stratified analyses 
+
+For the zone-stratified analyses, possessions were divided into three zones according to the ball car-rier’s distance to the opponent goal at possession start. The thresholds were 35 m and 70 m, yielding three zones: < 35 m , 35–70 m, and ≥ 70 m . These analyses were performed to examine whether the associations reported in the main text were explained solely by field location. 0.0 0.5 1.0 1.5 2.0 2.5 3.0 
+
+τopp (~xb, t get ) [s]     
+
+> 0
+> 2
+> 4
+> 6
+> Ball progression [m]
+> Zone 1 ( <35 m )
+> Zone 2 ( 35 −70 m )
+> Zone 3 ( ≥70 m )
+
+Fig. S1. Zone-stratified association between defensive pressure at possession start and ball pro-gression. Possession plays were divided into three zones according to the ball carrier’s distance to the opponent goal at possession start: < 35 m , 35–70 m, and ≥ 70 m . The figure shows mean ball progression as a function of τopp (⃗x b, t get ) for each zone. (a) (b) 
+
+Fig. S2. Zone-stratified association between defensive pressure at ball release and possession loss. Intentional teammate-directed open-play passes were divided into three zones according to the ball carrier’s distance to the opponent goal at possession start: < 35 m , 35–70 m, and ≥ 70 m .Panels (a) and (b) show ball loss probability as a function of τopp (⃗x b, t rel ) for possession plays and direct plays, respectively. Bins containing fewer than 50 passes were not plotted. 11

@@ -1,0 +1,529 @@
+Title: Physiologically Constrained Musculoskeletal Neural Network for Multi-DoF Joint Kinematics Estimation from Partially Observed sEMG
+
+URL Source: https://arxiv.org/pdf/2606.07476v1
+
+Published Time: Mon, 08 Jun 2026 01:14:59 GMT
+
+Number of Pages: 11
+
+Markdown Content:
+> 1
+
+# Physiologically Constrained Musculoskeletal Neural Network for Multi-DoF Joint Kinematics Estimation from Partially Observed sEMG 
+
+Wending Heng 1, Mingming Zhang 2, Glen Cooper 1, and Zhenhong Li 1,†
+
+1University of Manchester 2Southern University of Science and Technology 
+
+Abstract — This paper investigates multi-degrees of free-dom (DoF) joint kinematics estimation under partially ob-served surface electromyography (sEMG), where only a subset of task-relevant muscles can be measured due to anatomical inaccessibility or sensor constraints. A novel musculoskeletal neural network (MSK-NN) is proposed to estimate multi-DoF joint angles while simultaneously infer-ring activations for both measured and unmeasured mus-cles. MSK-NN consists of a CNN-based muscle activation estimator and an embedded MSK forward dynamics mod-ule, forming a fully differentiable architecture. Unlike exist-ing hybrid neural frameworks that require additional biome-chanical labels (e.g., muscle-tendon forces, joint torques), MSK-NN is trained without direct supervision of internal biomechanical variables. A composite physics-physiology loss is designed by incorporating a joint kinematics loss, a data-driven muscle synergy loss, and an anatomy-guided trend loss. The proposed method is evaluated on two-DoF wrist kinematics estimation across three rhythmic motions with unconstrained speed and amplitude, and one random motion. Compared with CNN, Bi-LSTM, CNN-LSTM, and PET baselines, MSK-NN achieves lower normalized root mean square error (NRMSE) and higher coefficient of de-termination ( R2), especially for the random motion. More importantly, the optimized MSK parameters remain within physiological limits, and the estimated activation of an input-excluded muscle exhibits strong temporal agreement with its recorded sEMG envelope, demonstrating the capa-bility of musculoskeletal (MSK)-NN to recover physiologi-cally plausible activations. 
+
+Index Terms — Surface electromyography (sEMG), mus-culoskeletal model, continuous joint kinematics, partial ob-servability 
+
+I. I NTRODUCTION 
+
+# SURFACE electromyography (sEMG)-based continuous joint kinematics estimation has been widely used to de-code human motion intention in rehabilitation [1]–[4], biome-chanics analysis [5], [6], and human-robot interaction [7]–[10]. Model-free approaches employ data-driven regressors to learn a direct mapping from sEMG to joint kinematics without explicitly modeling the underlying neuromuscular and biomechanical mechanisms (i.e., musculoskeletal (MSK) forward dynamics) [11]–[13]. Although these methods may achieve high kinematic estimation accuracy under training-like conditions, they often lack physiological interpretability  
+
+> †
+
+Corresponding Author (email:zhenhong.li@manchester.ac.uk) 
+
+and may produce biomechanically inconsistent predictions for movement patterns with speeds or amplitudes different from those seen during training [1], [14]. In contrast, model-based approaches explicitly represent the MSK forward-dynamics chain through activation dynamics, muscle–tendon dynamics, and joint dynamics. Beyond joint kinematics, they also provide intermediate variables (e.g., muscle activations, muscle forces, and joint torques) that are valuable for biomechanical analysis, clinical interpretation, and rehabilitation assessment. However, their performance is often limited by the fidelity of the underlying MSK model [15], [16]. Unmeasured muscles, such as deep or small muscles inaccessible to sEMG recordings, are often omitted even though they may contribute substan-tially to joint torque and stability. This incomplete muscle-drive representation can lead to physiologically implausible force sharing and degraded kinematic estimation accuracy. Moreover, the uniform activation dynamics commonly used in model-based approaches do not fully capture heterogeneous neuromuscular characteristics across muscles. To improve physiological and biomechanical consistency, hybrid neural frameworks have been proposed by combining data-driven learning with prior neuromusculoskeletal knowledge. Physics-informed neural network (PINN) methods incorporate joint dynamics into the loss function as soft constraints, guiding predicted muscle–tendon forces and joint kinematics toward prescribed physical relationships [17]–[20]. However, soft constraints cannot always be guaranteed, especially when they compete with other objectives during training. To address this limitation, Physics-Embedded Neural Network (PENN) embeds MSK forward dynamics into the network architecture to enforce physical consistency and uses a residual network to correct the remaining kinematic discrepancy, achieving high kinematic estimation accuracy [21]. Nevertheless, existing hybrid neural frameworks either cannot provide physiolog-ically plausible intermediate variables or require expensive biomechanical labels (e.g., muscle-tendon forces or inverse-dynamics joint torques) for supervision, which limits their scalability. More importantly, they assume a one-to-one map-ping between sEMG channels and modeled muscles, as in conventional model-based approaches. This assumption ex-cludes unmeasured muscles and can lead to physiologically implausible force sharing between muscles. In this paper, we investigate multi-degrees of freedom 
+
+> arXiv:2606.07476v1 [eess.SY] 5 Jun 2026 2
+
+Fig. 1 : Overview of the proposed MSK-NN framework. It is composed of a Muscle Activation Estimator and an Embedded MSK Forward Dynamics Module. The estimator takes the enveloped sEMG from measured muscles ut = [ ui,t ]nm 
+
+> i=1
+
+as input and jointly estimates activations of both measured muscles (shown in blue) and unmeasured muscles (shown in orange), 
+
+ˆat = [ˆ ai,t ]nm+nu 
+
+> i=1
+
+. A Physics-Physiology Embedded Loss jointly constrains the Muscle Activation Estimator and the muscles parameters pi, enforcing consistency across kinematics, measured-muscle synergies, and unmeasured-muscle trends. (DoF) joint kinematics estimation under partially observed sEMG, where some task-relevant muscles are unmeasurable because of anatomical inaccessibility or sensor constraints (e.g., deep or small muscles). A novel MSK-NN framework is proposed to estimate the joint kinematics while inferring physiologically plausible activations for both measured and unmeasured muscles. To improve interpretability, MSK-NN adopts an architecture similar to model-based approaches, consisting of a muscle activation estimator and an MSK forward-dynamics module composed of embedded Hill-based muscle-tendon dynamics and joint dynamics. To remove the requirement for one-to-one sEMG-to-muscle mapping, the ac-tivation estimator uses a convolutional neural network (CNN)-based encoder to jointly estimate activations for measured and unmeasured muscles, allowing task-relevant unobserved muscles to contribute to kinematics estimation through phys-iologically structured torque generation. Inspired by prior sEMG generation studies that use muscle synergy and co-contraction patterns of functional grouped muscles to re-construct sEMG in a low-dimensional space [22]–[26], we design a composite physics-physiology loss to regularize the underdetermined latent muscle activation estimation. This loss includes a joint kinematics loss on angle and angular velocity, a muscle-synergy loss on measured muscles, and an anatomy-guided trend loss linking unmeasured muscles with function-ally related measured muscles to encourage shared temporal coordination structure. MSK-NN is fully differentiable, and parameters of CNN-based encoder and parameters of Hill-based muscle-tendon dynamics are optimized through end-to-end backpropagation. The framework is evaluated on two-DoF wrist kinematics estimation across three rhythmic motions at unconstrained speeds and amplitudes, plus a random motion, and demonstrates superior performance in normalized root mean square error (NRMSE) and coefficient of determination (R2) compared with Bidirectional LSTM (Bi-LSTM) [11], CNN-LSTM [12], and parallel efficient transformer (PET) [13] baselines, particularly under the random motion (demonstrat-ing strong generalizability). More importantly, the estimated activation of an input-excluded muscle shows strong temporal agreement with its recorded sEMG envelope, demonstrating the capability of MSK-NN to provide physiologically plausible muscle activations from partially observed sEMG. Muscle ab-lation analysis further shows progressive performance degrada-tion as modeled unmeasured muscles are removed, confirming their importance for kinematics estimation. 
+
+II. M ETHODOLOGY 
+
+A. Problem Formulation 
+
+Consider the rotational motion of a single joint with d-DoF driven by n muscle–tendon units. The index set of muscles with measurable sEMG is denoted by Mm = {1, . . . , n m},where |M m| = nm. Muscles whose sEMG is unmeasurable due to anatomical inaccessibility or sensor constraints (e.g., deep or small muscles, and accessible muscles that are not measured because of limited sensor availability) are denoted by Mu = {nm + 1 , . . . , n m + nu}, where |M u| = nu. The complete muscle set is M = Mm ∪ M u, with |M| = n.The objective is to estimate the joint angle θ ∈ Rd based on sEMG measured over muscles in Mm, while estimating activations for muscles in M. This task requires multi-DoF kinematics estimation under partially observed sEMG while providing physiologically plausible activations for both mea-surable and unmeasurable muscles. 3
+
+B. MSK-NN Framework 
+
+The proposed MSK-NN framework consists of an activation estimator and a MSK forward dynamics module, as shown in Fig. 1. The estimator takes pre-processed sEMG from mea-surable muscles as input and estimates the activations of both measurable and unmeasurable muscles. These activations are propagated through Hill-type muscle-tendon dynamics models [27], [28] to generate muscle forces, which are then mapped to joint torques via moment arms and integrated within a subject-specific joint dynamics model to predict multi-DoF joint angles. The activation estimator and the MSK forward dynamics module are jointly optimized through end-to-end backpropa-gation with a composite physics-physiology loss that combines kinematic supervision, synergy regularization on measured muscles, and anatomy-guided trend regularization on unmea-sured muscles. 
+
+C. MSK-NN Architecture 
+
+1) Muscle Activation Estimator: The Muscle Activation Es-timator employs a lightweight CNN-based encoder. At time step t, a sliding window of L consecutive samples from nm
+
+sEMG channels is first preprocessed to calculate the sEMG envelope ut = [ui,t ]nm 
+
+> i=1
+
+as described in [2]. The encoder takes ut as input and outputs the estimated activations for both the nm measured and nu unmeasured muscles, ˆat =[ˆ ai,t ]nm+nu 
+
+> i=1
+
+. The encoder consists of two convolutional blocks, implemented as one-dimensional convolutional layers with 32 and 64 filters (kernel size 5, stride 1, padding 2), each followed by ReLU activation and dropout. Global average pooling then compresses the temporal dimension into a single feature per channel, yielding a 64-dimensional feature vector. This vector is processed by a residual fully connected block with two lay-ers of 128 neurons, where the output of the first hidden layer is added to the second. A final linear projection followed by a sigmoid activation produces instantaneous muscle activation estimates ˆai,t ∈ [0 , 1] , ∀i ∈ M .
+
+2) Embedded MSK Forward Dynamics Module: 
+
+a) Hill-based Muscle-tendon Dynamics: For ith muscle, the muscle–tendon force at time t is given by 
+
+F mt i,t =  F ai,t + F pi,t 
+
+ cos φi,t , ∀i ∈ M (1) where F ai,t and F pi,t denote the active contraction force and passive force generated by muscle stretch, respectively. φi,t is the pennation angle between the muscle fiber and the tendon. The active force is given by 
+
+F ai,t = F mo,i f a ¯lai,t 
+
+ f v (¯ vi,t ) ai,t (2) where F mo,i is the maximum isometric force. f a(·) is the active force–length characteristic curve, f v (·) is the force–velocity characteristic curve, and ai,t is the muscle activation at time 
+
+t. The active force–length characteristic is given by 
+
+f a(¯lai,t ) = e−(¯lai,t −1) 2/k a (3) where ka is fixed at 0.45 [27], and normalized muscle fiber length corresponding to the activation level is given by 
+
+¯lai,t = lmi,t 
+
+lmo,i (λ(1 − ai,t ) + 1) (4) where lmi,t is the current muscle fiber length, and lmo,i is the optimal muscle fiber length. λ is set to 0.15 following [29]. The force–velocity characteristic is given by 
+
+f v (¯ vi,t ) = 
+
+
+
+0.3(¯ vi,t + 1) 
+
+−¯vi,t + 0 .3 ¯vi,t ≤ 02.34¯ vi,t + 0 .039 1.3¯ vi,t + 0 .039 ¯vi,t > 0
+
+(5) where vo,i is the maximum shortening velocity, defined as 
+
+vo,i = 10 lmo,i /s [30]. vi,t is the time derivative of the muscle fiber length, and ¯vi,t = vi,t /v o,i is the normalized fiber velocity. The passive muscle-stretch force is given by 
+
+F pi,t =
+
+
+
+0 lmi,t ≤ lmo,i 
+
+f p ¯lmi,t 
+
+ F mo,i lmi,t > l mo,i 
+
+(6) where ¯lmi,t = lmi,t /l mo,i is the normalized muscle fiber length used for the passive force–length characteristic, and the passive force–length characteristic is 
+
+f p  ¯lmi,t 
+
+ = e10 (¯lmi,t −1)
+
+e5 (7) The pennation angle is given by 
+
+φi,t = arcsin lmo,i sin φo,i 
+
+lmi,t 
+
+!
+
+(8) where φo,i is the optimal pennation angle corresponding to the optimal fiber length lmo,i , and the current muscle-fiber length is given by 
+
+lmi,t =
+
+q lmo,i sin φo,i 
+
+2 +  kmt i lmt i,t − lti
+
+2 (9) where kmt i is a length-scaling coefficient, and lmt i,t is the muscle–tendon unit length approximated by polynomial fitting to OpenSim simulations [31]. lti is the tendon length, which is modeled as rigid [32]. Note that, for each muscle i ∈ M, the MSK pa-rameters of Hill-based muscle-tendon dynamics pi =[F mo,i , l mo,i , l ti , φ o,i , k mt i ]⊤ ∈ R5 are optimized during training through end-to-end backpropagation. 
+
+b) Joint Dynamics: The joint dynamics are described in the general form 
+
+ˆτt = M (ˆθt) ¨ˆθt + C(ˆθt, ˙ˆθt) + G(ˆθt) (10) where ˆτt ∈ Rd denotes the estimated joint torque at time t,generated by n muscles. The estimated joint angle is ˆθt ∈
+
+Rd, and ˙ˆθt, ¨ˆθt ∈ Rd are the corresponding angular velocity and acceleration vectors obtained by numerical differentiation. 
+
+M (ˆθt) ∈ Rd×d is the inertia matrix, C(ˆθt, ˙ˆθt) ∈ Rd is the Coriolis and centrifugal torque, and G(ˆθt) ∈ Rd is the gravitational torque. 4
+
+The joint torque is equivalently expressed as the sum of muscle contributions 
+
+ˆτt = X
+
+> i∈M
+
+ri(ˆθt) F mt i,t (11) where ri(ˆθt) ∈ Rd denotes the moment arm vector of muscle 
+
+i, which is obtained by polynomial fitting to simulation data exported from OpenSim [31]. The joint accelerations ¨ˆθt
+
+obtained by solving (10) and (11) are numerically integrated using a semi-implicit Euler method. 
+
+D. Loss function design 
+
+The overall loss consists of three components: a joint kinematics loss Ltraj , a synergy regularization loss on the measured muscles Lsyn , and a trend consistency loss that links unmeasured muscles with functionally related measured muscles Ltrd . The joint trajectory loss penalizes discrepancies between predicted and reference angles and angular velocities, and is defined as 
+
+Ltraj = 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+
+
+α∥ˆθt − θt∥22 + β∥ ˙ˆθt − ˙θt∥22
+
+
+
+(12) where T is the number of samples. θt denotes the ground truth joint angle at time t, while ˙θt is the corresponding angular velocity. α and β are weighting coefficients for the position and velocity errors, respectively. The nonnegative matrix factorization (NMF)-based synergy loss is defined as 
+
+Lsyn = γ 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+min  
+
+> st≥0
+
+∥ˆaMm 
+
+> t
+
+− W s t∥22 (13) where ˆaMm 
+
+> t
+
+= [ˆ ai,t ]nm 
+
+> i=1
+
+∈ Rnm denotes the predicted activa-tions of the measured muscles at time t. W ∈ Rnm×r is the synergy basis extracted offline via NMF from the recorded sEMG envelopes of the measured muscles in the training set, where r denotes the dimensionality of the retained synergy subspace. W is kept frozen during network optimization to serve as a fixed physiological reference, and st ∈ Rr 
+
+> ≥0
+
+denotes the corresponding non-negative synergy coefficients obtained from the inner minimization. Intuitively, Lsyn penalizes the distance from ˆaMm 
+
+> t
+
+to the non-negative cone spanned by W ,thereby constraining the predicted activations to lie within the physiologically plausible coordination subspace learned from sEMG data. Since W is fixed, the inner minimization is solved as a non-negative least-squares problem at each time step, and the resulting synergy loss remains differentiable with respect to ˆaMm 
+
+> t
+
+. γ is the weighting coefficient for the synergy loss term. The trend loss couples each unmeasured muscle with anatomically related measured muscles, encouraging their ac-tivation patterns to share temporal coordination structure. For each unmeasured muscle i ∈ M u, define its anatomically related measured muscles as Ri ⊆ M m, then the complete set of paired muscles can be defined as P = {(i, j ) | i ∈Mu, j ∈ R i}. To capture coordinated temporal dynamics rather than absolute amplitudes, we define the activation 
+
+TABLE I : Initial value of pi for six muscles                                         
+
+> Muscle lmo,i (m) Fmo,i (N) lti(m) φo,i (rad) kmt i
+> FCR 0.0628 59.7 0.2185 0.054 1FCU 0.0510 102.6 0.2420 0.210 1ECRL 0.0936 65.7 0.2026 0.044 1ECRB 0.0585 122.9 0.2205 0.155 1ECU 0.0620 117.0 0.2310 0.061 1APL 0.0710 57.9 0.1250 0.130 1
+
+temporal differences as ∆ˆ ai,t = ˆ ai,t − ˆai,t −1 for t = 2 , . . . , T 
+
+and i ∈ M .The trend loss is then formulated as 
+
+Ltrd = δ
+
+|P| 
+
+X
+
+> (i,j )∈P
+
+ 1 − ρi,j 
+
+ (14) 
+
+ρi,j =
+
+PTt=2 ∆ˆ ai,t ∆ˆ aj,t 
+
+qPTt=2 (∆ˆ ai,t )2
+
+qPTt=2 (∆ˆ aj,t )2
+
+(15) where ρi,j ∈ [−1, 1] measures the temporal correlation be-tween the activation differences of muscles i and j, and δ is the weighting coefficient for the trend consistency loss. The loss is minimized when paired unmeasured and measured mus-cles exhibit aligned moment-to-moment activation changes, transferring temporal coordination structure from observed to unobserved muscles. 
+
+III. E XPERIMENTAL SETUP AND EVALUATION PROTOCOL 
+
+A. Experimental Scenario and Muscle Configuration 
+
+The proposed framework is validated on four wrist motions involving both Flexion/Extension (FE) and Radial/Ulnar De-viation (RUD) at unconstrained speeds and amplitudes: clock-wise circumduction (CW); counterclockwise circumduction (CCW); ∞-shaped motion; random motion (RND). Six muscle-tendon units are considered in the embedded MSK forward dynamics module: flexor carpi radialis (FCR), flexor carpi ulnaris (FCU), extensor carpi radialis longus (ECRL), extensor carpi radialis brevis (ECRB), extensor carpi ulnaris (ECU), abductor pollicis longus (APL). For notation consistency, muscle indices are assigned as follows: FCR (i = 1 ), FCU ( i = 2 ), ECRL ( i = 3 ), ECRB ( i = 4 ), ECU (i = 5 ), and APL ( i = 6 ). The first five are superficial muscles commonly adopted in sEMG-based wrist MSK modeling [32]. APL is a deep muscle that cannot be measured by sEMG [33], yet it plays a critical role in radial deviation torque generation [34]. It is therefore included in the model as an anatomically unmeasured muscle. In addition, although ECRB can be measured by sEMG, its signal is intentionally excluded from the input of MSK-NN to define an artificially unmeasured muscle. The recorded sEMG envelope of ECRB is then used as a ground-truth reference to validate the physiological plausibility of the corresponding activation estimated by MSK-NN. For the unmeasured muscles i ∈ {4, 6} (i.e., ECRB and APL), the anatomically related measured-muscle sets are defined by index as R4 = {3} and R6 = {1}, reflecting their functional grouping based on moment-arm contributions to the corresponding DoF. 5
+
+Fig. 2 : Experiment setup: 14 reflective markers are attached on subject’s right upper limb. Electrodes are placed on five primary muscles of wrist joint, including FCR, FCU, ECRL, ECRB and ECU. 
+
+B. MSK Parameter Initialization 
+
+The MSK parameters pi, for i = 1 , . . . , 6, are initialized based on the OpenSim hand-wrist model [35], as summarized in Table I. The parameters are further optimized during train-ing through end-to-end backpropagation, allowing subject-specific personalization of muscle-tendon dynamics. For the two-DoF wrist implementation, the Coriolis and cen-trifugal terms are omitted given their negligible contribution to wrist rotations [36]. The remaining velocity-dependent joint resistance is approximated as a linear viscous damping term, with coefficients adopted from in vivo wrist dynamics mea-surements [37]. The inertia matrix and gravitational torque are computed from subject-specific anthropometric measurements, including body mass and hand length, following established segment inertial parameter models [38]. Following NMF-based muscle synergy analysis [22], the synergy dimension r of W in Lsyn is determined as the minimum value achieving a variance accounted for (VAF) of at least 0.90 in reconstructing the measured-muscle sEMG envelopes, yielding r = 3 across all subjects in this study. 
+
+C. Data Acquisition and Processing 
+
+The experimental protocol is approved by the University Research Ethics Committee at the University of Manchester (Reference No. 2024-20628-36971). Six healthy subjects par-ticipated in the study with written informed consent. Height, body mass, and hand length are recorded before data collec-tion. During the experiment, participants perform wrist move-ments in a seated position while maintaining a neutral forearm posture and avoiding forearm pronation and supination. Kinematic data are captured using a Vicon motion capture system (Vicon Motion Systems Ltd., Oxford, UK) at 250 Hz. 14 reflective markers are placed according to the Vicon upper-limb model protocol, as illustrated in Fig. 2. sEMG signals are recorded from five wrist muscles (FCR, FCU, ECRL, ECRB, and ECU) using Delsys Avanti sensors (Delsys Inc., Natick, MA, USA) at 2000 Hz. Electrode placement follows the SENIAM recommendations [39]. The two systems are hardware-synchronized via a trigger interface. Each participant performs four types of continuous wrist motion patterns without constraints on speed or amplitude: CW, CCW, ∞-shaped, and RND. For each pattern, six 40 strials are recorded, with the middle 30 s retained to remove transient effects. Raw sEMG signals are band-pass filtered (20–450 Hz, fourth-order Butterworth), rectified, and low-pass filtered (4 Hz, fourth-order Butterworth) to obtain sEMG envelopes. Maximum voluntary contraction (MVC) of each muscle is recorded before the experiment, and the envelopes are normal-ized by the MVC peak amplitude of each muscle. Processed sEMG envelopes are resampled to 250 Hz to match the kinematic sampling rate. 
+
+D. MSK-NN Training 
+
+The preprocessed dataset is split at the trial level into training, validation, and test sets with a 4:1:1 ratio. A subject-specific model is trained using all four motions pooled to-gether, with evaluation conducted separately for each motion type. During training, sequences from the training set are divided into overlapping segments of 64 time steps with a step size of 32. Each CNN input consists of a sliding sEMG window of L = 32 time steps, advanced with a stride of 1. This segmentation increases the number of training samples and stabilizes optimization by averaging the loss over time within each segment. Validation and testing are performed on full sequences using continuous sequential inference without segment-level resetting. The model is optimized using AdamW with a learning rate of 1 × 10 −4 [40]. The loss weighting coefficients are set to α = 0.6, β = 0.2, γ = 0.1, and 
+
+δ = 0 .1. A batch size of 64 is used, and a dropout rate of 0.2 is applied to the neural encoder for regularization. Early stopping with a patience of 30 epochs is applied based on validation performance. 
+
+E. Evaluation Criteria 
+
+For each DoF, kinematics estimation performance is eval-uated using NRMSE for amplitude discrepancy and R2 for correlation with ground truth. 
+
+NRMSE = 
+
+q 1
+
+> T
+
+PTt=1 (θt − ˆθt)2
+
+θmax − θmin 
+
+(16) 
+
+R2 = 1 −
+
+PTt=1 (θt − ˆθt)2
+
+PTt=1 (θt − ¯θ)2 (17) where θmax = max 1≤t≤T θt and θmin = min 1≤t≤T θt.Physiological plausibility of the estimated muscle activation is evaluated using Pearson correlation coefficient (CC) and Spearman rank correlation coefficient (SC) between the esti-mated activation of ECRB and the measured sEMG envelope of ECRB. For ith muscle, the CC and SC are defined as 
+
+CC i =
+
+PTt=1 
+
+ ai,t − ¯ai
+
+  ui,t − ¯ui
+
+qPTt=1 
+
+ ai,t − ¯ai
+
+2 PTt=1 
+
+ ui,t − ¯ui
+
+2 (18) 
+
+SC i =
+
+PTt=1 
+
+ T (ai,t ) − ¯Ta,i 
+
+  T (ui,t ) − ¯Tu,i 
+
+qPTt=1 
+
+ T (ai,t ) − ¯Ta,i 
+
+2 PTt=1 
+
+ T (ui,t ) − ¯Tu,i 
+
+2
+
+(19) 6
+
+where T is the number of samples, and ¯ai and ¯ui denote the mean values of the estimated activation and recorded sEMG envelope for the ith muscle, respectively. T (·) denotes rank transformation, which maps each element of a sequence to its rank in ascending order. ¯Ta,i and ¯Tu,i denote the mean ranks of {T (ai,t )}Tt=1 and {T (ui,t )}Tt=1 , respectively. 
+
+F. Baseline Methods 
+
+The proposed MSK-NN is compared with four data-driven baselines: a CNN regressor (comparison for showing the contribution of embedded MSK dynamics), Bi-LSTM [11] (recurrent temporal-modeling baseline), CNN-LSTM [12] (convolutional–recurrent spatiotemporal baseline), and PET [13] (transformer-based sequence-modeling baseline). All baselines are implemented and trained on the same dataset using the same subject-wise data splits, input sEMG channels, and two-DoF wrist-angle targets as MSK-NN. Baseline hyper-parameters follow the cited implementations where applicable and adjusted only to match the input dimension and prediction horizon of the present task. 
+
+IV. R ESULTS 
+
+The proposed MSK-NN is evaluated from four perspectives. First, its multi-DoF kinematics prediction performance is com-pared against state-of-the-art deep learning baselines. Second, the inferred input-excluded ECRB activation is compared with the recorded ECRB sEMG envelope, which is withheld from the input and used only for physiological plausibility assessment. Third, the optimized MSK parameters are exam-ined against physiological ranges. Finally, a muscle ablation analysis is conducted to assess the contribution of unmeasured muscles to kinematics estimation performance. 
+
+A. Kinematics Decoding Performance Comparison 
+
+Fig. 3 compares the wrist joint angles θFE and θRUD 
+
+estimated by MSK-NN and the baseline methods against the ground truth across the four motions for subject S1. MSK-NN aligns most closely with the ground truth in both DoFs, preserving amplitude and temporal consistency across the four motions. For CW, CCW, and ∞-shaped motions, the baselines mainly show local deviations near peaks and rapid transitions. This tendency becomes more pronounced under RND, especially in segments with more irregular and rapid variations, as reflected more clearly in RUD. In contrast, MSK-NN maintains smoother and more consistent tracking, demonstrating stronger prediction robustness. Tables II and III summarize the NRMSE and R2 averaged over six subjects. MSK-NN consistently achieves the lowest NRMSE and highest R2 across all motions and both DoFs, indicating superior overall estimation accuracy. The smaller standard deviations further suggest more consistent perfor-mance across subjects. RND represents the most challenging condition, as all methods show increased errors compared with the more structured motions. Notably, under RND, the baseline 
+
+R2 values drop markedly, whereas MSK-NN remains above 
+
+0.80 in both FE and RUD. Paired t-tests with Holm–Bonferroni correction are con-ducted between MSK-NN and each baseline. For each motion, NRMSE and R2 are analyzed separately using pooled FE and RUD results from all subjects, with results summarized in Fig. 4. MSK-NN significantly outperforms CNN and Bi-LSTM across all conditions. Since the CNN baseline iso-lates the activation-estimator component of MSK-NN, the consistent performance gains of MSK-NN over this baseline highlight the contribution of the embedded MSK forward dynamics module. For CNN-LSTM and PET, significant im-provements are observed in most comparisons, except for the 
+
+∞-shaped RUD comparison against PET. The significance levels are generally stronger under RND, further highlighting the advantage of MSK-NN in more challenging movement conditions. 
+
+B. Unmeasured Muscle Activation Consistency 
+
+Latent activation plausibility is assessed by comparing the inferred input-excluded ECRB activation with its recorded sEMG envelope after amplitude normalization. Fig. 5 shows representative time-series results for Subject 1 across the four wrist motions. The inferred activation generally follows the recorded sEMG envelope, capturing activation timing, peak locations, and cyclic patterns across both structured and ran-dom movements. Fig. 6 summarizes the CC and SC between the inferred activation and recorded sEMG envelope across all subjects and motions. All CC values fall within the strong correlation range ( > 0.67 ) defined in [24], [41]. High CC and SC values indicate agreement in amplitude co-variation and temporal trend consistency, with limited variability across subjects and motion types. These results suggest that MSK-NN can infer physiologically plausible latent activations for unmeasured muscles under partially observed sEMG. 
+
+C. MSK Parameter Personalization 
+
+Subject-specific MSK parameters are optimized during training. Table IV reports the optimized parameters of a repre-sentative subject for all six modeled muscles along with their corresponding physiologically plausible ranges. All parameters remain within physiologically plausible bounds [32], [42], indicating that MSK-NN effectively preserves physiological feasibility. 
+
+D. Unmeasured Muscle Ablation Analysis 
+
+To investigate the contribution of unmeasured muscles within the proposed framework, an ablation analysis is con-ducted by progressively reducing the muscle set included in the MSK forward dynamics module. Three configurations are compared: the full six-muscle model, a five-muscle model without APL, and a four-muscle model without both APL and ECRB. Each configuration is evaluated across the four motions (CW, CCW, ∞-shaped, and RND) for both FE and RUD. As shown in Fig. 7(a), NRMSE increases as muscles are removed, with larger degradation in RUD and under the more complex ∞-shaped and RNDs. Fig. 7(b) shows a corresponding decrease in R2, indicating weaker agreement 7           
+
+
+
+
+
+> θFE  
+
+      
+
+ 
+
+
+
+
+
+> θRUD  
+
+(a) CW  
+
+
+
+ 
+
+
+
+> θFE  
+
+      
+
+ 
+
+
+
+
+
+> θRUD  
+
+(b) CCW 
+
+
+
+> θFE  
+
+      
+
+ 
+
+
+
+
+
+
+
+> θRUD  
+
+(c) ∞-shaped motion  
+
+
+
+ 
+
+
+
+> θFE  
+
+      
+
+ 
+
+
+
+
+
+> θRUD  
+
+(d) RND motion 
+
+Fig. 3 : Comparison of estimated wrist joint angles by MSK-NN, CNN, Bi-LSTM, CNN-LSTM, and PET against the ground truth for a representative subject (S1) across four motions. 
+
+TABLE II : NRMSE comparison across four wrist motions.                                                                                                                                    
+
+> Methods CW CCW ∞-shaped RND
+> FE RUD FE RUD FE RUD FE RUD CNN 0.123 ±0.026 0.128 ±0.022 0.131 ±0.019 0.116 ±0.024 0.116 ±0.011 0.109 ±0.024 0.143 ±0.026 0.143 ±0.023 Bi-LSTM 0.123 ±0.024 0.127 ±0.014 0.121 ±0.015 0.113 ±0.011 0.101 ±0.016 0.109 ±0.018 0.153 ±0.030 0.143 ±0.015 CNN-LSTM 0.109 ±0.021 0.107 ±0.014 0.094 ±0.015 0.095 ±0.018 0.101 ±0.024 0.092 ±0.017 0.119 ±0.026 0.125 ±0.009 PET 0.101 ±0.018 0.101 ±0.019 0.110 ±0.031 0.109 ±0.037 0.091 ±0.016 0.089 ±0.016 0.134 ±0.032 0.121 ±0.019 MSK-NN 0.079 ±0.013 0.088 ±0.014 0.080 ±0.010 0.083 ±0.018 0.078 ±0.012 0.083 ±0.010 0.091 ±0.020 0.101 ±0.009
+
+between the estimated and ground-truth joint angles as the muscle set becomes less complete. Removing APL has a limited effect on FE estimation but markedly degrades RUD performance, consistent with its established role in radial deviation torque generation [34]. Further removing ECRB amplifies errors across both DoFs, particularly in motions requiring coordinated extensor contributions. These findings show that including muscles unavailable to the network improves the completeness of the muscle-drive representation and contributes to more accurate multi-DoF wrist kinematics estimation under partial sEMG observability. 8
+
+TABLE III : R2 comparison across four wrist motions. 
+
+Methods CW CCW ∞-shaped RND 
+
+FE RUD FE RUD FE RUD FE RUD CNN 0.783 ± 0.087 0.807 ± 0.079 0.763 ± 0.083 0.813 ± 0.079 0.770 ± 0.062 0.818 ± 0.064 0.645 ± 0.110 0.627 ± 0.115 Bi-LSTM 0.793 ± 0.068 0.808 ± 0.051 0.800 ± 0.035 0.805 ± 0.019 0.823 ± 0.066 0.822 ± 0.061 0.575 ± 0.170 0.587 ± 0.092 CNN-LSTM 0.830 ± 0.075 0.860 ± 0.040 0.880 ± 0.042 0.878 ± 0.043 0.838 ± 0.060 0.872 ± 0.050 0.723 ± 0.120 0.687 ± 0.060 PET 0.867 ± 0.046 0.885 ± 0.043 0.825 ± 0.133 0.810 ± 0.115 0.862 ± 0.050 0.883 ± 0.034 0.665 ± 0.174 0.710 ± 0.092 MSK-NN 0.918 ± 0.029 0.910 ± 0.040 0.925 ± 0.019 0.916 ± 0.032 0.900 ± 0.045 0.900 ± 0.040 0.835 ± 0.057 0.803 ± 0.051 
+
+(a) CW (b) CCW 0.10 
+
+> 0.15
+> NRMSE
+> *** ** *
+> 0.8
+> 1.0
+> R
+> 2
+> *** *** ** *
+
+(c) ∞-shaped motion (d) RND motion 
+
+Fig. 4 : Comparison of MSK-NN and baseline methods across four wrist motions. Violin plots illustrate the distribution of subject-wise performance over six subjects, with colored dots representing individual subjects. The thick black bar indicates the interquartile range and the white dot marks the median value. Asterisks indicate the statistically significant difference between methods (*: p < 0.05 , **: p < 0.01 , and ***: p < 0.001 ). 
+
+TABLE IV : Optimized MSK parameters of a representative subject (S3) vs physiological limits. 
+
+lmo,i (m) F mo,i (N) lti (m) φo,i (rad) kmt i
+
+Muscle index Optimized Range Optimized Range Optimized Range Optimized Range Optimized Range FCR 0.0624 0.052–0.072 61.0 30.5–91.5 0.2163 0.206–0.226 0.0543 0.051–0.056 0.918 0.9–1.2 FCU 0.0509 0.041–0.061 101.4 50.7–152.1 0.2410 0.231–0.251 0.2105 0.200–0.221 0.937 0.9–1.2 ECRL 0.0940 0.084–0.104 64.8 32.4–97.2 0.2042 0.194–0.214 0.0433 0.041–0.046 0.973 0.9–1.2 ECRB 0.0581 0.048–0.068 118.3 59.2–177.5 0.2161 0.206–0.226 0.1558 0.148–0.163 0.943 0.9–1.2 ECU 0.0615 0.052–0.072 115.5 57.8–173.3 0.2289 0.219–0.239 0.0613 0.058–0.064 0.943 0.9–1.2 APL 0.0713 0.061–0.081 56.2 28.1–84.3 0.1287 0.119–0.139 0.1270 0.121–0.134 0.953 0.9–1.2 
+
+V. D ISCUSSION 
+
+In this section, the proposed MSK-NN framework is dis-cussed from three perspectives: modularity and extensibility, its capability to estimate muscle activations under partially observed sEMG, and its computational feasibility for real-time execution. 
+
+A. Modularity and Extensibility of the Framework 
+
+MSK-NN seamlessly integrates two components: a neural activation estimator and an embedded MSK forward dynamics module, coupled only through the muscle activation vector that serves as a well-defined physiological interface between the data-driven and physics-based stages. This compositional structure allows either component to be replaced independently without altering the overall framework. MSK-NN outperforms state-of-the-art baseline methods de-spite using a lightweight CNN architecture for the activation estimator. For more demanding tasks, this estimator can be replaced with more expressive architectures, such as temporal convolutional network (TCN) or dual-transformer encoders [43], [44], according to application-specific requirements in data scale, temporal complexity, and latency. On the biome-chanical side, the embedded Hill-type rigid-tendon model can be replaced with higher-fidelity MSK formulations. The physics-physiology loss is architecture-agnostic and can be extended with additional plug-in constraints, such as co-contraction regularization [45], to satisfy goal-specific objec-tives. 9 
+
+> (a) CW
+> (b) CCW
+> (c) ∞-shaped motion
+> (d) RND motion
+
+Fig. 5 : Comparison of the min–max normalized recorded sEMG envelope and estimated activation of ECRB for arepresentative subject (S1) across four motions. 
+
+Fig. 6 : Distribution of CC and SC between the estimated activation and recorded sEMG envelope of ECRB across all subjects. Each box summarizes results aggregated over four motions. 
+
+B. Estimation of Latent Muscle Activations under Partially Observed sEMG 
+
+Accurate kinematics estimation under partial sEMG observ-ability requires the network to infer activations for muscles unavailable from the input, making the problem underdeter-mined from kinematic supervision alone. MSK-NN addresses this through two levels of constraints. At the architecture level, the embedded MSK forward dynamics eliminates angle estimations that violate biomechanical causality. At the loss level, synergy and trend terms provide soft physiological constraints. The muscle synergy loss constrains the estimated measured-muscle activations to lie within a NMF-derived coordination subspace, thereby encouraging activation patterns that are consistent with low-dimensional muscle coordination structure rather than arbitrary muscle-wise predictions. The   
+
+> (a) Average NRMSE across four wrist motions.
+> (b) Average R2across four wrist motions.
+
+Fig. 7 : Muscle ablation analysis across six subjects for three muscle configurations (six, five, and four muscles) across four wrist motions. The five muscle configuration excludes APL, and the four muscle configuration additionally excludes ECRB. muscle trend loss incorporates anatomical prior knowledge to couple the inference of unmeasured-muscle activations with functionally related measured-muscle activations, allowing in-formation from observed muscles to guide latent activation estimates for muscles unavailable from the sEMG input. The effectiveness of this design is supported by the input-excluded ECRB analysis in Section IV-B and the muscle ablation results in Section IV-D. The agreement between the inferred ECRB activation and its recorded sEMG envelope suggests physiologically plausible latent activation inference, while the degradation caused by removing APL confirms the importance of representing muscles unavailable from the network input. 
+
+C. Computational Feasibility for Real-Time Execution 
+
+The proposed MSK-NN is evaluated for single-step model latency at 250 Hz on a laptop equipped with an NVIDIA GeForce RTX 4080 Laptop GPU, an Intel Core i9-13980HX processor, and 32 GB RAM. The CNN-based muscle ac-tivation estimator requires 0.55 ms (95th percentile: 0.66 ms), the muscle-tendon dynamics module requires 1.38 ms (95th percentile: 1.60 ms), and the joint dynamics module requires 0.43 ms (95th percentile: 0.51 ms). The total inference computation time per step is 2.65 ms (95th percentile: 3.17 ms). These results indicate that the computational core of MSK-NN is feasible for real-time execution at 250 Hz. 
+
+VI. C ONCLUSION 
+
+In this work, we introduced MSK-NN, a physics-embedded neural network for multi-DoF joint modeling under partially observed sEMG. By integrating a CNN-based activation es-timator with a differentiable MSK forward dynamics mod-ule, the framework enables joint kinematics estimation while providing physiologically consistent latent muscle activations. Experimental results across multiple motions and subjects demonstrate superior kinematic estimation performance com-pared with baselines and strong temporal agreement between 10 
+
+inferred muscle activations and recorded sEMG envelopes. Ablation analysis confirms the importance of both superficial and deep muscles for joint kinematics estimation. Compared with conventional model-free and hybrid approaches, MSK-NN delivers robust performance under sparse sensing while providing interpretable intermediate muscle activations for scientific and engineering applications. In addition, MSK-NN maintains strong performance on random wrist motions, demonstrating robust generalizability. These findings indi-cate that the framework can potentially support studies of neuromuscular control under unseen motions, and provide a general template for coupling data-driven estimation with physiologically constrained dynamics. 
+
+REFERENCES 
+
+[1] Z. Wei et al. , “Continuous Motion Intention Prediction Using sEMG for Upper-Limb Rehabilitation: A Systematic Review of Model-Based and Model-Free Approaches,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 32, pp. 1487–1504, 2024. [2] Y. Zhao et al. , “Adaptive Cooperative Control Strategy for aWrist Exoskeleton Using Model-Based Joint Impedance Estimation,” 
+
+IEEE/ASME Transactions on Mechatronics , vol. 28, no. 2, pp. 748–757, Apr. 2023. [3] Z. Zheng et al. , “Adaptive Compliance Control for a Wearable Lower Limb Rehabilitation Robot Based on Online Estimation of User’s Joint Stiffness,” IEEE/ASME Transactions on Mechatronics , vol. 30, no. 6, pp. 5590–5602, Dec. 2025. [4] I. Campanini et al. , “Surface emg in clinical assessment and neuroreha-bilitation: Barriers limiting its use,” Frontiers in Neurology , vol. 11, p. 934, Sep. 2020. [5] A. Esrafilian et al. , “An electromyography-assisted musculoskeletal simulation with concurrent optimization of muscle excitations and knee joint kinematics,” Journal of Biomechanical Engineering , vol. 147, no. 9, p. 091002, 2025. [6] J. Berman et al. , “An efficient framework for personalizing emg-driven musculoskeletal models based on reinforcement learning,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 32, pp. 4174–4185, 2024. [7] A. Cimolato et al. , “Emg-driven control in lower limb prostheses: a topic-based systematic review,” Journal of NeuroEngineering and Rehabilitation , vol. 19, p. 43, 2022. [8] N. Jiang et al. , “Bio-robotics research for non-invasive myoelectric neural interfaces for upper-limb prosthetic control: A 10-year perspective review,” National Science Review , vol. 10, no. 5, p. nwad048, Apr. 2023. [9] C. Zeng et al. , “Simultaneously encoding movement and semg-based stiffness for robotic skill learning,” IEEE Transactions on Industrial Informatics , vol. 17, no. 9, pp. 6248–6257, 2021. [10] T. Zhang et al. , “An electromyography signals-based human-robot collaboration method for human skill learning and imitation,” Journal of Manufacturing Systems , vol. 64, pp. 330–343, Jul. 2022. [11] C. Ma et al. , “A Bi-Directional LSTM Network for Estimating Contin-uous Upper Limb Movement From Surface Electromyography,” IEEE Robotics and Automation Letters , vol. 6, no. 4, pp. 7217–7224, Oct. 2021. [12] T. Bao et al. , “A CNN-LSTM Hybrid Model for Wrist Kinematics Estimation Using Surface Electromyography,” IEEE Transactions on Instrumentation and Measurement , vol. 70, pp. 1–9, 2021. [13] C. Lin et al. , “A parallel and efficient transformer deep learning network for continuous estimation of hand kinematics from electromyographic signals,” Scientific Reports , vol. 15, no. 1, p. 36150, Oct. 2025. [14] D. Z. Xiong et al. , “Deep learning for emg-based human-machine interaction: A review,” IEEE/CAA Journal of Automatica Sinica , vol. 8, no. 3, pp. 512–533, Mar 2021. [15] T. S. Buchanan et al. , “Neuromusculoskeletal Modeling: Estimation of Muscle Forces and Joint Moments and Movements from Measurements of Neural Command,” Journal of Applied Biomechanics , vol. 20, no. 4, pp. 367–395, Nov. 2004. [16] Y. Zhao et al. , “Computationally Efficient Personalized EMG-Driven Musculoskeletal Model of Wrist Joint,” IEEE Transactions on Instru-mentation and Measurement , vol. 72, pp. 1–10, 2023. [17] J. Zhang et al. , “Physics-Informed Deep Learning for Musculoskeletal Modeling: Predicting Muscle Forces and Joint Kinematics From Sur-face EMG,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 31, pp. 484–493, 2023. [18] Y. Shi et al. , “A physics-informed low-shot adversarial learning for semg-based estimation of muscle force and joint kinematics,” IEEE Journal of Biomedical and Health Informatics , vol. 28, no. 3, pp. 1309– 1320, Mar. 2024. [19] R. Kumar et al. , “Predicting multi-joint kinematics of the upper limb from emg signals across varied loads with a physics-informed neural network,” arXiv preprint arXiv:2312.09418 , 2023. [20] J. Zhang et al. , “Boosting Personalized Musculoskeletal Modeling With Physics-Informed Knowledge Transfer,” IEEE Transactions on Instrumentation and Measurement , vol. 72, pp. 1–11, 2023. [21] W. Heng et al. , “Physics-embedded neural networks for semg-based con-tinuous motion estimation,” in 2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , 2025, pp. 16 538–16 543. [22] M. C. Tresch et al. , “Matrix factorization algorithms for the identification of muscle synergies: Evaluation on simulated and experimental data sets,” Journal of Neurophysiology , vol. 95, no. 4, pp. 2199–2212, 2006. [23] N. A. Bianco et al. , “Can measured synergy excitations accurately construct unmeasured muscle excitations?” Journal of Biomechanical Engineering , vol. 140, no. 1, p. 011011, 2018. [24] D. Ao et al. , “EMG-driven musculoskeletal model calibration with estimation of unmeasured muscle excitations via synergy extrapolation,” 
+
+Frontiers in Bioengineering and Biotechnology , vol. 10, p. 962959, Sep. 2022. [25] D. Ao and B. J. Fregly, “Comparison of synergy extrapolation and static optimization for estimating multiple unmeasured muscle activations dur-ing walking,” Journal of NeuroEngineering and Rehabilitation , vol. 21, no. 1, p. 194, Nov. 2024. [26] M. F. Rabbi et al. , “Muscle synergy-informed neuromusculoskeletal modelling to estimate knee contact forces in children with cerebral palsy,” Biomechanics and Modeling in Mechanobiology , vol. 23, pp. 1077–1090, 2024. [27] D. G. Thelen, “Adjustment of Muscle Mechanics Model Parameters to Simulate Dynamic Contractions in Older Adults,” Journal of Biome-chanical Engineering , vol. 125, no. 1, pp. 70–77, Feb. 2003. [28] Y. Zhao et al. , “An EMG-driven musculoskeletal model for estimation of wrist kinematics using mirrored bilateral movement,” Biomedical Signal Processing and Control , vol. 81, p. 104480, Mar. 2023. [29] D. G. Lloyd and T. F. Besier, “An EMG-driven musculoskeletal model to estimate muscle forces and knee joint moments in vivo,” Journal of Biomechanics , vol. 36, no. 6, pp. 765–776, Jun. 2003. [30] F. E. Zajac, “Muscle and tendon: Properties, models, scaling, and application to biomechanics and motor control,” Critical Reviews in Biomedical Engineering , vol. 17, no. 4, pp. 359–411, 1989. [31] S. L. Delp et al. , “OpenSim: Open-Source Software to Create and Analyze Dynamic Simulations of Movement,” IEEE Transactions on Biomedical Engineering , vol. 54, no. 11, pp. 1940–1950, Nov. 2007. [32] Y. Zhao et al. , “An EMG-Driven Musculoskeletal Model for Estimating Continuous Wrist Motion,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 28, no. 12, pp. 3113–3120, Dec. 2020. [33] J. Eschweiler et al. , “Anatomy, Biomechanics, and Loads of the Wrist Joint,” Life , vol. 12, no. 2, p. 188, Jan. 2022. [34] D. S. Shah et al. , “The importance of abductor pollicis longus in wrist motions: A physiological wrist simulator study,” Journal of Biomechan-ics , vol. 77, pp. 218–222, Aug. 2018. [35] R. V. Gonzalez et al. , “How muscle architecture and moment arms affect wrist flexion-extension moments,” Journal of Biomechanics , vol. 30, no. 7, pp. 705–712, Jul. 1997. [36] S. K. Charles and N. Hogan, “Dynamics of wrist rotations,” Journal of Biomechanics , vol. 44, no. 4, pp. 614–621, 2011. [37] K. Park et al. , “ In Vivo Estimation of Human Forearm and Wrist Dynamic Properties,” IEEE Transactions on Neural Systems and Re-habilitation Engineering , vol. 25, no. 5, pp. 436–446, May 2017. [38] P. De Leva, “Adjustments to Zatsiorsky-Seluyanov’s segment inertia parameters,” Journal of Biomechanics , vol. 29, no. 9, pp. 1223–1230, Sep. 1996. [39] D. F. Stegeman and H. J. Hermens, “Standards for surface electromyog-raphy: The european project surface emg for non-invasive assessment of muscles (seniam),” Roessingh Research and Development , pp. 12–108, 2007. [40] I. Loschilov and F. Hutter, “Decoupled weight decay regularization,” 
+
+International Conference on Learning Representations (ICLR) , 2019. 11 
+
+[41] R. Taylor, “Interpretation of the correlation coefficient: A basic review,” 
+
+Journal of Diagnostic Medical Sonography , vol. 6, no. 1, pp. 35–39, 1990. [42] K. R. Saul et al. , “Benchmarking of dynamic simulation predictions in two software platforms using an upper limb musculoskeletal model,” 
+
+Computer Methods in Biomechanics and Biomedical Engineering ,vol. 18, no. 13, pp. 1445–1458, October 2015. [43] J. Du et al. , “A novel tcn-lstm hybrid model for semg-based continuous estimation of wrist joint angles,” Sensors , vol. 24, no. 5631, pp. 1–17, 2024. [44] Z. Wang et al. , “Dual Transformer Network for Predicting Joint Angles and Torques From Multi-Channel EMG Signals in the Lower Limbs,” 
+
+IEEE Journal of Biomedical and Health Informatics , pp. 1–13, 2025. [45] Y. Wang et al. , “Assessing stroke-induced abnormal muscle coactivation in the upper limb using the surface emg co-contraction index: A sys-tematic review,” Journal of Electromyography and Kinesiology , vol. 81, p. 102985, 2025.

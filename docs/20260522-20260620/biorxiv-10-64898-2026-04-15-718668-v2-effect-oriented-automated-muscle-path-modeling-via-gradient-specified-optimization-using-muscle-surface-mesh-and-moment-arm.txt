@@ -1,0 +1,1840 @@
+Title: Effect-oriented automated muscle path modeling via gradient-specified optimization using muscle surface mesh and moment arm
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.04.15.718668v2.full.pdf
+
+Number of Pages: 25
+
+Markdown Content:
+# Eff ect-oriented automated muscle path modeling via gradient-specified optimization using muscle surface mesh and moment arm 
+
+Ziyu Chen a,b , Tingli Hu c, Sami Haddadin c, David W. Franklin b,d,e 
+
+> aNeuromuscular Diagnostics, Department Health and Sport Sciences, TUM School of Medicine and Health, Technical University of Munich, Munich, Germany
+> bFaculty of Sport Sciences, Paris-Saclay University, Gif-sur-Yvette, France
+> cMohamed bin Zayed University of Artificial Intelligence (MBZUAI), Abu Dhabi, United Arab Emirates
+> dMunich Institute of Robotics and Machine Intelligence (MIRMI), Technical University of Munich, Munich, Germany
+> eMunich Data Science Institute (MDSI), Technical University of Munich, Munich, Germany
+
+Abstract 
+
+There is more to musculotendon path modeling than aligning a cable to reflect the geometric features of a muscu-lotendon unit. From the perspective of simulation accuracy, the key is to replicate the length– and moment arm–joint angle relations of the target muscle. In this study, we propose an e ff ect-oriented approach of automated path model-ing, via hybrid calibration based on muscle surface mesh and moment arm. The task is formulated as a least-squares optimization problem with a threefold objective for the path to: (1) pass through multiple ellipses representing mus-cle cross-sections, (2) yield moment arms that match experimental measurements, and (3) yield moment arms in the expected functional directions. We demonstrate the performance of our optimization framework with the muscu-loskeletal surface mesh from the Visible Human Male and moment arm datasets from literature—producing 42 paths that are anatomically realistic and biomechanically accurate within 20.1 minutes. Our optimization framework is gradient-specified, which is faster and more accurate than using the default numerical gradient, making it applicable for large-scale subject-specific uses. 
+
+Keywords: Gradient, Model calibration, Moment arm, Musculoskeletal model, Muscle geometry, Muscle path, Optimization 
+
+1. Introduction 1
+
+In musculoskeletal modeling, a musculotendon path is a simplification of the 3-D musculotendon geometry, and 2
+
+often it is a cable that reflects the shape of a musculotendon unit 1 as well as its tendinous attachments on the bones 3
+
+(Garner and Pandy, 2000; Hicks et al., 2015; Modenese and Kohout, 2020). Depending on how simplified the mus-4
+
+culotendon geometry needs to be, the path is configured based on anchor points (i.e., the origin, via, and insertion 5
+
+points) and wrapping obstacles (e.g., cylinders): The simplest path is a straight cable defined by the origin and inser-6
+
+tion, while via points and wrapping obstacles may be used for extra geometric features such as turnings and curvatures 7
+
+(Delp et al., 1990; Garner and Pandy, 2001; Ma’touq et al., 2019). Importantly, the locations of the anchor points (and 8
+
+obstacles) are not defined with respect to the same bone, so the path geometry will change due to joint rotation as the 9
+
+musculotendon geometry does. 10 
+
+Despite such geometric simplification, a well-modeled path should retain two properties of the muscle across 11 
+
+di ff erent joint configurations, namely its length and its moment arm (Garner and Pandy, 2001; Hicks et al., 2015). 12 
+
+These are crucial properties that the accuracy of musculoskeletal simulations depends on: In a forward simulation, 13 
+
+given the neuromuscular signal, muscle length is related to how much force can be exerted (Guo et al., 2022; Millard 14 
+
+et al., 2024), and muscle moment arm determines how much joint moment (hence what motion and how much end-15 
+
+eff ector force) is to be generated from this force (McFarland et al., 2023; Ong et al., 2016; Zajac, 1993). In an inverse 16     
+
+> 1Following the convention in biomechanics, the musculotendon unit is referred to simply as a muscle , and the same rule applies when the term is used attributively (e.g., muscle length, moment arm, or path). Exception in this article: the geometry (or surface mesh) of the muscle is explicitly distinguished from that of the tendon.
+> Preprint submitted to Journal of Biomechanics May 27, 2026
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+simulation, given the dynamic motion, muscle lengths and moment arms (especially the latter) are the key to estimating 17 
+
+joint reaction forces and muscle activations (Beaucage-Gauvreau et al., 2019; Erdemir et al., 2007; Hamner and Delp, 18 
+
+2013; Karabulut et al., 2020; Prilutsky and Zatsiorsky, 2002). Therefore, the mission of muscle path modeling is in 19 
+
+some sense to replicate the length–joint angle relation as well as the moment arm–joint angle relation of the target 20 
+
+muscle. 21 
+
+In general, there are two approaches to replicate these relations. One is the cause -oriented approach, where the 22 
+
+bones and adjacent tissues are regarded as the cause of muscle deformation (Lloyd et al., 2021; Wang et al., 2025). In 23 
+
+other words, the wrapping obstacles and via points should represent specific anatomical structures. The assumption 24 
+
+is, with the right origin and insertion, so long as the anatomical obstructions are correctly reflected, the paths should 25 
+
+deform at appropriate joint configurations as real muscles do; accordingly, the length– and moment arm–joint angle 26 
+
+relations should be accurate. On the other hand, if length or moment arm data are available, they can be directly used 27 
+
+to calibrate the muscle path as an eff ect -oriented approach (Chen et al., 2026; Livet et al., 2022; Modenese and Kohout, 28 
+
+2020). That is, the length– and moment arm–joint angle relations are regarded as the e ff ect of muscle deformation. 29 
+
+Regardless of whether the anatomical obstructions are reflected in the muscle path, as long as the key relations are 30 
+
+replicated, the simulations should be accurate. 31 
+
+In Chen et al. (2026), we demonstrated an automated method of e ff ect-oriented muscle path calibration: With 32 
+
+artificial moment arm data from a reference model as the target value, a muscle path is configured to yield almost 33 
+
+the same moment arm–joint angle relation as in the reference path. The process of parameter tuning for matching 34 
+
+moment arms is formulated as a least-squares optimization problem, and our method features specifying the gradient 35 
+
+of the cost function in its analytical form, which enables e ffi cient computation and rapid convergence compared with 36 
+
+using the numerical gradient. 37 
+
+Nevertheless, there are two issues remaining to be accounted for. First, although we succeeded in replicating the 38 
+
+high-dimensional moment arm–joint angle relation using in silico data (Chen et al., 2026), it is crucial that the method 39 
+
+remains e ff ective with experimental measurements, which are generally less comprehensive. The moment arm–joint 40 
+
+angle relation is high-dimensional in the sense that a muscle may actuate multiple degrees of freedom (DoF): It may 41 
+
+have multiple moment arms (McCullough et al., 2011; Vaarbakken et al., 2014; Wretenberg et al., 1996), and each 42 
+
+moment arm is susceptible to the motion in each of the relevant DoFs (Delp et al., 1999; Hintermann et al., 1994; 43 
+
+Wolfram et al., 2018). However, moment arm measurement is generally limited to the dominant DoF (e.g., ankle 44 
+
+plantarflexion for the triceps surae or knee flexion for the hamstring), and the available moment arm–joint angle 45 
+
+relation is mostly a curve (Chen and Franklin, 2025). Moreover, small muscles such as the gluteus minimus, the 46 
+
+pectineus, and the gemelli have no moment arm measurement at all (Chen and Franklin, 2025). It is not entirely clear 47 
+
+how our method would perform based only on the dominant moment arms, and alternative sources of data are needed 48 
+
+to model muscles lacking moment arm measurements. Second, if moment arm is the only property to be calibrated, 49 
+
+then length may not be well matched, and the resultant muscle path may be partially unrealistic in appearance. Notice 50 
+
+that muscle moment arm is the partial derivative of muscle length with respect to the correspondent joint angle (An 51 
+
+et al., 1984; Sherman et al., 2013), and matching muscle moment arm only guarantees matching the derivative of 52 
+
+muscle length, not the property itself. 53 
+
+With regard to these issues, it is important that morphological information is brought into the optimization prob-54 
+
+lem; e.g., MR images of the muscles. Such information is useful in two perspectives: First, with 3-D mesh recon-55 
+
+structed from medical images, we may confine the muscle path to pass through the mesh volume, making it appear 56 
+
+anatomically realistic and have its length fall in a reasonable range. Second, for muscles with few or no moment 57 
+
+arm measurements, the geometric features as well as the alignment relative to the bones are a valuable indication of 58 
+
+how the moment arms should be (An et al., 1984; Herzog and Read, 1993). Recently, Modenese and Kohout (2020) 59 
+
+proposed a method of automated path modeling based on musculotendon surface mesh: By extracting cross-sections 60 
+
+from the 3-D mesh, one or multiple paths can be defined by connecting anchor points defined at the same relative 61 
+
+positions in each cross-section (imagine the hollow pathways in a lotus root). Essentially, this method aims to match 62 
+
+muscle length, and the paths modeled in this fashion will appear anatomically realistic; yet the moment arm–joint 63 
+
+angle relations are not necessarily correct. Although they manipulate the kinematics of the anchor points to avoid 64 
+
+aberrant path deformation, the related parameters are not tuned based on muscle length or moment arm. In other 65 
+
+words, the visual resemblance of the path does not guarantee biomechanical accuracy across a vast range of motion 66 
+
+(RoM). 67 
+
+In this work, we develop a hybrid calibration based on muscle surface mesh and moment arm for path modeling 68 
+
+2 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 1. Workflow of the proposed method.
+
+in the lower limb. Rather than focusing on a single source of data, we utilize surface mesh as a confinement and place 69 
+
+additional emphasis on moment arm calibration. The goal is to have the path retain su ffi cient geometric features while 70 
+
+yielding moment arms that match experimental measurements and remain consistent with known muscle functions. 71 
+
+An overview is shown in Fig 1 for the workflow of the proposed method. 72 
+
+2. Methods 73 
+
+2.1. Kinematic Model 74 
+
+As a prerequisite for muscle path modeling, a 6-DoF lower-limb kinematic model is developed with the bone 75 
+
+surface mesh from the Visible Human Male (VHM) dataset (Ackerman, 1998; Andreassen et al., 2023) and the kine-76 
+
+matics replicated from the Arnold lower-limb model (Arnold et al., 2010). The six DoFs include: 77 
+
+1. hip extension /flexion, 78 
+
+2. hip ab-/adduction, 79 
+
+3. hip ex-/internal rotation, 80 
+
+4. knee extension /flexion, 81 
+
+5. ankle dorsi-/plantarflexion, and 82 
+
+6. ankle ever-/inversion. 83 
+
+The sign rule for angle and moment arm in each DoF is based on the ISB recommendations (Derrick et al., 2020; Wu 84 
+
+et al., 2002) except for knee extension /flexion, which is reversed so that moment arms for anti-gravity motions share 85 
+
+the negative sign. 86 
+
+For each rotation, the center is manually determined on the VHM skeleton to visually match the relative position 87 
+
+in the Arnold model, while the axis has the same direction as defined in the Arnold model; exceptions are discussed in 88 
+
+the Joint Kinematics subsection. Since the VHM skeleton is obtained from a cadaveric specimen (Ackerman, 1998), it 89 
+
+3
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+is posed in the fixation position, and we manually adjusted each DoF to pose it into a neutral position visually similar 90 
+
+to the default position of the Arnold model. The joint configuration for the VHM fixation position is defined as 1 .5◦
+
+> 91
+
+hip extension, 6 ◦ hip abduction, 10 ◦ hip internal rotation, 0 ◦ knee flexion, 25 ◦ ankle plantarflexion, and 30 ◦ ankle 92 
+
+inversion. Importantly, we also follow the convention in both OpenSim (Delp et al., 2007) and the Arnold model for 93 
+
+the Euler angle sequences. This way, given any joint configuration, our model will be posed the same as the Arnold 94 
+
+model does in OpenSim. 95 
+
+2.2. Composite objective optimization 96 
+
+Muscle path modeling is formulated as a least-squares problem with the composite objective cost function 97 
+
+J(ppp) = JSM (ppp) + JvMA (ppp) + JsMA (ppp) → min (1) where ppp denotes path-related parameters, and JSM (ppp), JvMA (ppp), and JsMA (ppp) are the cost terms related to surface mesh 98 
+
+and moment arm. The indications of these terms will be further explained in the following subsections. As a brief 99 
+
+summary, the threefold objective is to have the muscle path 100 
+
+1. pass through multiple ellipses that represent cross-sections of the muscle, 101 
+
+2. yield moment arms that match experimental measurements, and 102 
+
+3. yield moment arms with the correct signs (i.e., functional directions). 103 
+
+We use the obstacle-set method (Garner and Pandy, 2000) to configure the muscle path. The composition of ppp104 
+
+and other details regarding the path configuration are explained in detail in Chen et al. (2026). Here, a muscle may be 105 
+
+simplified as a straight path (OI), a path with one via point (OVI), a path with two via points (OV 1V2I), a path with 106 
+
+one cylinder as wrapping obstacle (OCI), or a path with two cylindrical obstacles (OC 1C2I). In terms of the points, a 107 
+
+muscle path may come in one of the following form: 108 
+
+1. O − I, 109 
+
+2. O − V − I, 110 
+
+3. O − V1 − V2 − I, 111 
+
+4. O − WC ⌢ WC′ − I, 112 
+
+5. O − WC1 ⌢ WC′ 
+
+> 1
+
+− WC2 ⌢ WC′ 
+
+> 2
+
+− I; 113 
+
+where O and I are the origin and insertion points, and V and W denote the via and wrapping points; if wrapped, each 114 
+
+cylindrical obstacle (C) produces at most one pair of wrapping points. Accordingly, a path can be divided into one, 115 
+
+two, three, or six sub-segments, indicated by “ −” (straight) and “ ⌢” (curved). 116 
+
+The reference frames for the anchor points and obstacles are predetermined based on the anatomy (Gilroy et al., 117 
+
+2020; Platzer, 2015). For instance, the origin and insertion points of the gastrocnemius lateralis are fixed respectively 118 
+
+on the femur and the calcaneus. If a single via point (or cylinder) is required to reach the objectives, it will be fixed 119 
+
+on the tibia. If a second via point (or cylinder) is required, its reference frame depends on the muscle; in the case of 120 
+
+the gastrocnemius, it will be fixed on the tibia, since the muscle spans mostly on this bone. 121 
+
+As we recently demonstrated in Chen et al. (2026), gradient-specified optimization is advantageous in terms of 122 
+
+both speed and accuracy compared with when the gradient is computed numerically. For the analytical gradient to 123 
+
+exist, the cost terms in Eq. 1 must be di ff erentiable across the entire domain. In the following subsections, we will 124 
+
+show how to structure these terms in a continuous form by replacing the conditional statements and nondi ff erentiable 125 
+
+components with soft functions. 126 
+
+2.3. Surface Mesh 127 
+
+With the morphological information from the surface mesh, we aim to limit the muscle path from forming aberrant 128 
+
+routes, and the path length will roughly match the muscle length. In this study, we use the muscle meshes from 129 
+
+Andreassen et al. (2023) for both their easy accessibility and their compatibility with our kinematic model. As is with 130 
+
+the bone meshes, the muscle meshes are also obtained in the fixation position. 131 
+
+There are multiple ways to confine a path to the surface mesh. For example, if the tendon mesh is included along 132 
+
+with the muscle mesh, we can determine some centerline for the entire mesh, and directly set it as the path. However, 133 
+
+4 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 2. Muscle surface mesh as a confinement for the path (exampled by the adductor longus). Left: Identify two vertices on the muscle mesh directing the entry (red) and exit (blue) of the path. Center-left: Construct a harmonic scalar field over the mesh with the entry and exit points as boundary constraints—a scalar value between 0 and 1 (indicated by the color) is assigned to each vertex. Center: Extract a number of vertex sets based on the field isolines. Center-right: Fit an ellipse to each vertex set in representation of a muscle cross-section. Right: The path is expected to intersect all cross-sectional ellipses.
+
+this leaves little room for the path to be tuned for moment arm calibration, and for many muscles, the tendon is absent 134 
+
+in Andreassen et al. (2023)—so the mesh centerline no longer represents the entire muscle-tendon unit. Therefore, 135 
+
+we compute multiple ellipses that represent cross-sections of the muscle belly, and the objective is set so that the path 136 
+
+pass through each ellipse. This way, the path will still form the necessary turnings and curvatures as the muscle does, 137 
+
+and it can be adjusted of the moment arms while staying within the mesh volume. 138 
+
+The relative position between the path and the mesh is determined by computing path intersection with each of 139 
+
+the Nell cross-sectional ellipses. The cost term for surface mesh is structured based on the number of unintersected 140 
+
+ellipses 141 
+
+JSM (ppp) = 12Nell 
+
+> Nell
+
+X
+
+> i=1
+
+1 − nint ,i(ppp)2
+
+, (2) where nint denotes the boolean for valid intersection, and the term 1/2Nell is a weight factor for cost normalization (see 142 
+
+Appendix D). Notice there are ways to determine the positional relativity directly with the mesh vertices, but the use 143 
+
+of ellipses reduces the computational cost significantly with little impact on the results. 144 
+
+Figure 2 shows how the ellipses are obtained from a muscle surface mesh. A key is to identify two vertices on the 145 
+
+surface mesh directing the entry and exit for the path (Fig 2, left). This can be done manually for each muscle, but in 146 
+
+the spirit of automation, here we use the pseudocode in Appendix A to find such vertices. With them as boundary 147 
+
+constraints, a harmonic scalar field is constructed over the muscle mesh (Dong et al., 2005): Each vertex is assigned 148 
+
+a value between 0 and 1 depending on its relative position between the entry and exit points (Fig 2, mid-left). Based 149 
+
+on the field isolines, we can then extract a series of vertex sets (Fig 2, middle), each of which will be fitted with an 150 
+
+ellipse as an approximate estimation of a cross-section (Fig 2, mid-right; see Appendix B). 151 
+
+A path is considered to pass through the muscle mesh if each cross-sectional ellipse is intersected by at least 152 
+
+one of the sub-segments (Fig 2, right). As described in Appendix C, for each sub-segment, we first compute its 153 
+
+intersection point on the plane in which the ellipse lies and the scalar indicator s1 describing the relative location of 154 
+
+the intersection point on the sub-segment. Then we compute a second scalar indicator s2, which describes the location 155 
+
+of the intersection point relative to the ellipse. 156 
+
+Importantly, the intersection is valid if two conditions are satisfied: 0 < s1 < 1, and s2 > 0. The first condition 157 
+
+ensures it is the sub-segment itself (rather than its extended line) that intersects the ellipse, and the second ensures it is 158 
+
+the ellipse itself (rather than its expanded space) that is intersected by the sub-segment. In combination, this twofold 159 
+
+conditional statement contains four branches, only one of which leads to a valid intersection. For the optimization, 160 
+
+we expect it to find the “valid” branch without getting trapped in the “invalid” branches. 161 
+
+Take the example of when 0 < s1 < 1, we have nint = 1 if s2 > 0, and nint = 0 if s2 < 0. In both cases, ∂nint /∂ ppp = 000, 162 
+
+and nint (ppp) is not di ff erentiable at s2 = 0. This means that, apart from returning NaN at s2 = 0, such a gradient might 163 
+
+not direct the optimization to proceed from the domain where s2 < 0 to where s2 > 0—reflected as a path sub-segment 164 
+
+5
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+being adjusted from outside an ellipse to inside. The same issue exists as s1 tends to 0 and 1. 165 
+
+To address this issue, we use a soft ReLU function to modify the quadruple-branched nint into a smooth form 166 
+
+nint = fsoftReLU 
+
+4(1 − s1)s1
+
+ fsoftReLU (s2), (3) where 167 
+
+fsoftReLU (x) = x + √x2 + a
+
+2 ≈
+
+
+
+x, x > 00, x ≤ 0 . (4) Here, a should be a su ffi ciently small number (e.g., 0.01). If s1 < 0, s1 > 1, or s2 < 0, the input for fsoftReLU is negative, 168 
+
+and nint tends to 0; otherwise, nint is positive and tends to 4(1 − s1)s1 s2, whose maximal value is approximately 1. 169 
+
+The validity of intersection is evaluated pairwise between all ellipses and all sub-segments ( Nell × Nseg ). A sub-170 
+
+segment may intersect multiple ellipses, but if an ellipse is intersected by multiple sub-segments, only one is counted. 171 
+
+For this, we have 172 
+
+nint ,i(ppp) = 2 fsoftStep 
+
+> Nseg
+
+X
+
+> j=1
+
+nint ,i, j(qqqfix , ppp)
+
+!
+
+− 1, (5) where qqqfix is joint configuration for the VHM fixation position and the subscripts indicate the evaluation is between 173 
+
+the i-th ellipse and j-th sub-segment, and 174 
+
+fsoftStep (x) = 1
+
+e−2x + 1 ≈
+
+
+
+1, x > 00.5, x = 00, x < 0
+
+. (6) If an ellipse is intersected (regardless how many times), the input for fsoftStep is positive, and its output approaches 1. 175 
+
+In the case of no intersection (or if the input is su ffi ciently small), the soft function yields approximately 0.5 instead 176 
+
+of 0, thus it is normalized in Eq. 5 so that nint ∈ (0 , 1) . 177 
+
+In Eq. 2, JSM tends to 0 if each ellipse is intersected by at least one sub-segment. Since nint is smoothed with 178 
+
+fsoftStep and fsoftReLU , the analytical form of ∂nint /∂ ppp can be derived using the chain rule, then we may specify the 179 
+
+gradient for JSM (ppp). See an example of the mathematical derivation of gradients in Chen et al. (2026). 180 
+
+2.4. Moment Arm 181 
+
+If measurements are available for any moment arm of a muscle, then we simply refer to our recent work for the 182 
+
+calibration (Chen et al., 2026). For example, we can evaluate if the model moment arm falls in a certain range of the 183 
+
+measurement with 184 
+
+JvMA (ppp) =
+
+> 6
+
+X
+
+> k=1
+> Nvk
+
+X
+
+> n=1
+
+ωvk,nϕ2vMA ,k(qqqvk,n, ppp),ϕvMA ,k(qqqvk,n, ppp) = rtarget ,k(qqqvk,n) − rmodel ,k(qqqvk,n, ppp)0.1 rtarget ,k(qqqvk,n) + 5 ,
+
+(7) where rtarget ,k and rmodel ,k denote the target value and the model output for the k-th moment arm (with the unit of mm) 185 
+
+at joint configuration qqqvk,n, and ωvk,n is a weight factor (see Appendix D). Apparently, ϕvMA ,k depends on the ratio of 186 
+
+the di ff erence between rtarget ,k and rmodel ,k with respect to the tolerance of (10% rtarget ,k + 5) mm. 187 
+
+In preparation for the present study, we have previously summarized 300 moment arm datasets in the hip, knee, 188 
+
+and ankle (Chen and Franklin, 2025). However, for many muscles, there are only a few measurements or even no 189 
+
+measurements at all. In this case, the most we can do is to designate a moment arm to carry the sign indicated by the 190 
+
+anatomy. For example, the adductors longus, brevis and magnus are obviously hip adductors, and as an easy objective, 191 
+
+the paths should yield a positive moment arm in the sagittal plane of the hip. This can be achieved with 192 
+
+JsMA (ppp) =
+
+> 6
+
+X
+
+> k=1
+> Nsk
+
+X
+
+> n=1
+
+ωsk,nϕ2sMA ,k(qqqsk,n, ppp)
+
+ϕsMA ,k(qqqsk,n, ppp) = fsoftStep 
+
+−starget ,k(qqqsk,n)rmodel ,k(qqqsk,n, ppp),
+
+(8) 6 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 3. Path configurations for the iliopsoas and the gluteal muscles. Left: Iliopsoas. Center: Superficial gluteal muscles. Right: Deep gluteal muscles. The origin and insertion points are colored in yellow, and the via points are in green.
+
+where starget ,k is the target sign for the k-th moment arm at joint configuration qqqsk,n, and ωsk,n is a weight factor (see 193 
+
+Appendix D). When the sign of rmodel ,k matches starget ,k, the input for fsoftStep is negative, and ϕsMA ,k tends to 0; 194 
+
+otherwise, it tends to 1. 195 
+
+As a focus of our recent work, we derived the analytical form of ∂rrrmodel /∂ qqq (Chen et al., 2026). With the chain 196 
+
+rule, we may easily specify the gradients for both JvMA (ppp) and JsMA (ppp) without much extra work. 197 
+
+2.5. Calibration 198 
+
+With the analytical form of ∂J/∂ ppp, we used the nonlinear least-squares solver ( lsqnonlin ) in MATLAB to solve 199 
+
+Eq. 1. Notice the outcome of Eq. 1 is a ff ected by the composition of ppp, which depends on how the path is structured. 200 
+
+To find the best possible solution, the calibration was programmed to iterate through each path structure unless the 201 
+
+optimization cost reaches a su ffi ciently small level (e.g., 0.03): For any muscle, we start with OI—the most simple 202 
+
+structure—and incrementally increase structural complexity if necessary, progressing in the order of OVI, OV 1V2I, 203 
+
+OCI, and OC 1C2I. Then, from all available solutions, the final solution is selected considering the trade-o ff between 204 
+
+calibration accuracy and structural simplicity. More complex path structures incur higher cost penalties: 1.25 for OVI, 205 
+
+1.5 for OV 1V2I, 2 for OCI, and 4 for OC 1C2I. 206 
+
+The optimization was performed on a 2.9-GHz Intel Core i9 with 64 GB RAM and 14 CPU cores using parallel 207 
+
+computing ( parfor ). For each path structure, we arranged parallel computing to optimize 14 initial points simulta-208 
+
+neously, with the aim to reduce the risk of local minimum. See Appendix E for other configuration details and the 209 
+
+generation of the initial points. 210 
+
+For surface mesh calibration, we extracted four ellipses from each muscle mesh. For moment arm calibration, we 211 
+
+selected appropriate measurements from the literature as the target values ( rtarget ) and determined muscle functions 212 
+
+based on Gilroy et al. (2020) and Platzer (2015) for the target signs ( starget ). See Appendix F for the target values and 213 
+
+target signs in detail. All calibration data can be found in Supplementary Materials. 214 
+
+3. Results 215 
+
+The calibration of 42 muscle paths was completed in 20.1 min, and the configurations of the resultant paths are 216 
+
+visualized in Figs. 3–5. For 29 paths, the iteration over potential structures terminated in advance by reaching below 217 
+
+the cost threshold, and the final structures were either straight or via point–based. For the other 13 paths, although all 218 
+
+7
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Figure 4. Path configurations for the thigh muscles. Top left: Superficial layer of medial compartment. Top right: Deep layer of medial compartment. Bottom left: Anterior compartment. Bottom center: Muscles that co-insert into the pes anserinus. Bottom right: Posterior compartment (i.e., hamstrings). The origin and insertion points are colored in yellow, and the via points are in green. 
+
+five structures were iterated, none of the final structures were obstacle-based. Overall, 10 paths were structured as OI, 219 
+
+20 paths as OVI, and 12 as OV 1V2I. 220 
+
+The cost and time of calibration as well as the final structure for individual paths are reported in Appendix F. 221 
+
+Other details regarding the calibration process and results can be found in Supplementary Materials. Representative 222 
+
+cases are discussed in the next section. 223 
+
+8
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 5. Path configurations for the leg muscles. Top left: Anterior compartment. Top center: Superficial layer of posterior compartment. Top right: Deep layer of posterior compartment. Bottom left: Muscles that insert into the lateral foot. Bottom right: Muscles that insert into the medial foot. The origin and insertion points are colored in yellow, and the via points are in green. 
+
+4. Discussion 224 
+
+4.1. Muscle with Su ffi cient Moment Arm Data 225 
+
+As we reported in Chen and Franklin (2025), available moment arm measurements are mainly found in the sagittal 226 
+
+plane, and it is rather di ffi cult to gather su ffi cient data for the moment arm–joint angle relations across all actuating 227 
+
+DoFs of a muscle. For instance, to accurately calibrate a monoarticular muscle across the 3-DoF hip joint, we need 228 
+
+measurements of three moment arm relations, each of which have three dependent variables (i.e., the joint angle in 229 
+
+each of the three DoFs); this is equivalent to three 3-D heatmaps and so far no such data exist. 230 
+
+In our kinematic model, the knee is simplified as a 1-DoF joint as in Arnold et al. (2010), so there is a lower 231 
+
+demand for the calibration data of its monoarticular muscles, such as the vasti, the short head of the biceps femoris, 232 
+
+and the popliteus. Figure 6 shows the results for these muscles: With the moment arm–joint angle relation being a 233 
+
+9
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 6. Calibration results of monoarticular muscles in the knee. Left and Center-left: Ellipse–path intersections and 1-D moment arm relations of the extensors. Center-right and Right: 1-D moment arm relations and ellipse–path intersections of the flexors. In the models, each cyan node along the path denotes a valid intersection with one of the ellipses. In the charts, the blue curves depict the model moment arms, the yellow scatters depict measurements from Buford et al. (1997), and the yellow areas represent the tolerance ranges for moment arm calibration. 
+
+single curve, the path is easily aligned within the muscle mesh, and there is no risk of potential inaccuracy in the hip 234 
+
+and ankle DoFs. 235 
+
+4.2. Muscle with Limited Moment Arm Data 236 
+
+For muscles with more actuating DoFs, there are more practical issues. Take the example of the soleus, a major 237 
+
+ankle plantarflexor with a role in ever-/inversion. In theory, its plantarflexion moment arm is dependent on both the 238 
+
+dorsi-/plantarflexion and ever-/inversion angles; in other words, the relation is depicted by a surface. In our case, due to 239 
+
+data scarcity, the calibration is based on only two curves, one with the dorsi-/plantarflexion angle as the variable (while 240 
+
+ever-/inversion is neutral) and another with varying ever-/inversion (neutral dorsi-/plantarflexion); see Fig. 7 (top right, 241 
+
+blue curves). Although these two “orthogonal” curves form the “backbone” of the 2-D relation, it is still possible that 242 
+
+the plantarflexion moment arm is inaccurate in other joint configurations; e.g., when the ankle is dorsiflexed while 243 
+
+inverted. To e ff ectively calibrate such a moment arm relation, the ideal data would be measurements spreading across 244 
+
+the ankle RoM, or should at least cover joint configurations involved in the musculoskeletal simulation. A similar issue 245 
+
+exists with the ever-/inversion moment arm of the soleus, where only three curves are available for the calibration of 246 
+
+a surface (Fig. 7, bottom right). 247 
+
+A key message here is that, as the moment arm–joint angle relation gets more complex, the amount of data required 248 
+
+for calibration increases drastically. If the available data are limited, it is di ffi cult to tell if the uncalibrated part of the 249 
+
+moment arm relation is accurate. In particular, when an uncalibrated configuration is far from the calibrated ones in 250 
+
+the joint space, there is a higher risk of inaccuracy—in the worst case, the muscle may even function as an antagonist. 251 
+
+For muscles lacking moment arm measurements, we have the sign-based cost term (Eq. 8) to prevent them from 252 
+
+becoming antagonists in the designated joint space. Take the example of the lower part of the gluteus maximus, which 253 
+
+is a hip extensor, adductor, and external rotator. As shown by the 3-D heatmaps in Fig. 8 (top right and bottom), each 254 
+
+of its three moment arms are theoretically dependent on the angles in all three DoFs of the hip. However, for each 255 
+
+10 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Figure 7. Calibration results of the soleus. Left: Ellipse–path intersections (denoted by the cyan nodes). Top right: 2-D relation of ankle plantarflexion moment arm with ankle angles; in comparison with measurements from Maganaris et al. (2000) and Wolfram et al. (2018), depicted by the yellow and purple scatters. Bottom right: 2-D relation of ankle eversion /inversion moment arm with ankle angles; in comparison with measurements from McCullough et al. (2011) and Hintermann et al. (1994), depicted by the yellow and purple scatters. The asterisks in the axis labels denote that the kinematics are slightly di ff erent (see the Joint Kinematics subsection). In the 3-D charts, the blue surfaces depict the model moment arms, the yellow and purple areas represent the tolerance ranges for moment arm calibration, and the blue curves denote the intersections between the blue surface and the yellow /purple areas, depicting the 1-D moment arm relations in the correspondent joint configurations. 
+
+Figure 8. Calibration results of the gluteus maximus. Top left: Paths representing the upper, middle, and lower parts. Top right and Bottom right: 3-D relations of hip extension /flexion and ab-/adduction moment arms with hip angles (lower path); in comparison with measurements of String 4 
+
+from Eng et al. (2015), depicted by the colored scatters. Bottom left: 3-D relation of hip ex-/internal rotation moment arm with hip angles (lower path); in comparison with measurements of String 6 from Delp et al. (1999), depicted by the colored scatters. The moment arm value is indicated by the color. The gray surface depicts the joint configurations where hip extension /flexion moment arm is greater than −5 mm. 
+
+moment arm, the available dataset is only 1-dimensional, containing measurements with one angle as the variable, 256 
+
+shown as the colored scatters in Fig. 8. Calibration based on these data has no demand on the muscle functions as 257 
+
+in other joint configurations, so we need to establish additional rules. For instance, considering the relative position 258 
+
+11 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Figure 9. Calibration results of the adductor longus. Left: Ellipse–path intersections (denoted by the cyan nodes). Top right: 3-D relation of hip extension /flexion moment arm with hip angles. Bottom right: 3-D relation of hip adduction moment arm with hip angles. The moment arm value is indicated by the color. The gray surface depicts the joint configurations where hip extension /flexion moment arm is zero. 
+
+between the gluteus maximus and the femur head, it is hard to imagine this muscle functioning as a hip flexor at all, 259 
+
+so we designated the hip extension /flexion moment arm sign to remain negative in any joint configuration. In Fig. 8 260 
+
+(top right), the slices of 3-D heatmaps are mostly blue (indicating a negative moment arm), and the little joint space 261 
+
+where the moment arm is great than −5 mm (the path being too close to the rotation center) is marked out in gray. For 262 
+
+the other two moment arms, it is unclear within what RoM the lower part of the gluteus maximus contributes to hip 263 
+
+adduction and external rotation. Therefore, we did not designate the moment arm signs for a series of extreme joint 264 
+
+configurations, and the results are shown in Fig. 8 (bottom). 265 
+
+4.3. Muscle with No Moment Arm Data 266 
+
+In the complete absence of moment arm data, the calibration must reply on the surface mesh and the designated 267 
+
+muscle functions. If a muscle is simple (e.g., the gemelli) and the interested RoM is not too large, the moment arms 268 
+
+are practically “clamped” in the correct signs, once the path is configured to go through the muscle mesh. That is, the 269 
+
+muscle mesh provides enough information to determine the appropriate functions—notice this is partially the rationale 270 
+
+behind the cause-oriented approach of path modeling—and the sign-based cost term could be somewhat redundant. 271 
+
+Nevertheless, such mesh-based “clamping” is often not reliable. If a muscle is large, there will be multiple 272 
+
+possibilities of path alignment, some of which could lead to abnormal moment arms. There is a similar issue if 273 
+
+the interested RoM covers distant area in the joint space, such as when the joint is posed in extreme positions. Also, 274 
+
+a muscle may actuate a motion in both directions, and it will be di ffi cult to tune the path for its moment arm sign to 275 
+
+“flip” at certain joint configurations. In these cases, similar to the example of the gluteus maximus, it is necessary to 276 
+
+establish additional rules for the moment arm signs. 277 
+
+For example, according to Gilroy et al. (2020), the adductor longus functions as a hip flexor when hip flexion is 278 
+
+below 70 ◦, otherwise it functions as an extensor. With this, we set it as an objective for moment arm calibration, and 279 
+
+as shown in Fig. 9 (top right, gray surface), the function of the adductor longus switches from hip flexion to extension 280 
+
+when hip flexion is around 70 ◦. Furthermore, considering the major function of the addutor longus, another objective 281 
+
+is that it remains a hip adductor throughout the joint space, and the result is shown in Fig. 9 (bottom right). 282 
+
+12 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+4.4. Joint Kinematics 283 
+
+The muscle moment arm rrr(qqq, ppp) depends not only on the path configuration ppp, but also on the joint kinemat-284 
+
+ics qqq. Hence, before moment arm calibration is possible, the joint kinematics must be su ffi ciently accurate. More 285 
+
+specifically, the rotation center and axis of each modeled motion should match those of the actual motion. 286 
+
+In this work, we transplanted the joint kinematics from the Arnold model (Arnold et al., 2010) to the VHM skeleton 287 
+
+(Andreassen et al., 2023): The rotation centers were manually determined by matching the relative positions in the 288 
+
+bones, and the rotation axes were replicated. This approach works better for the hip, since the acetabulofemoral joint 289 
+
+is a simple ball-and-socket joint. For the knee and the ankle, there are no specific bony landmarks that the rotations 290 
+
+center around, and the axes may also di ff er across individuals. If the motions (or poses) are su ffi ciently recorded, 291 
+
+the modeling of the joint kinematics is not particularly prone to error. Unfortunately, the images for the VHM were 292 
+
+obtained in only one pose (Ackerman, 1998), so we cannot determine if (and how) the transplanted kinematics should 293 
+
+be corrected. 294 
+
+For the most part, the rotation axes from the Arnold model need no adjustment for the motions to appear natural 295 
+
+and for the bone meshes not to overlap within the RoM. However, there is one exception where we must slightly 296 
+
+adjust the rotation axis: Regardless where we place the rotation center, the VHM patella does not slide along the 297 
+
+patellar surface of the VHM femur as the knee flexes. When moment arm calibration is based on this inappropriate 298 
+
+kinematics, the paths for quadriceps insert not onto the patella, but the adjacent void space. Interestingly, when we 299 
+
+adjusted the rotation axis so that the patella slides properly on the femur, the insertion points became anatomically 300 
+
+realistic (Fig. 4, bottom left). 301 
+
+When it comes to moment arm calibration, there is one kinematics-related problem that can be easily overlooked: 302 
+
+The motions (or poses) used to collect moment arm data might not match those used for kinematic modeling. For 303 
+
+instance, depending on how ankle ever-/inversion is defined, the motion under this name may have di ff erent rotation 304 
+
+axes. In the default OpenSim model Gait2392 (Delp et al., 1990) or the Arnold model, the ever-/inversion axis is 305 
+
+defined as some combination of all three cardinal axes according to Inman (1976). Nevertheless, when McCullough 306 
+
+et al. (2011) and Hintermann et al. (1994) measured ankle moment arms, they mounted ankle specimens on a device 307 
+
+to apply motion along each cardinal axis, which is no longer “natural.” So in these experiments, ever-/inversion is 308 
+
+defined as the rotation along the coronal axis and essentially a di ff erent motion from that modeled in Gait2392 or the 309 
+
+Arnold model. Simply put, the same joint configuration (e.g., 20 ◦ inversion) does not lead to the same joint position, 310 
+
+and the moment arm will also di ff er. 311 
+
+If we use the moment arm data from McCullough et al. (2011) and Hintermann et al. (1994) to calibrate a model 312 
+
+with a “natural” ever-/inversion, paths such as the extensor hallucis longus may route in an unrealistic fashion—e.g., 313 
+
+floating above the foot—to compensate the moment arm deficit caused by the kinematic mismatch. To accommodate 314 
+
+these data, we modeled an extra set of ankle rotations, which match those used in the experiments. Figure 5 shows the 315 
+
+paths for the long digital extensors and flexors, which run along the foot without much deviation. 316 
+
+4.5. Identification of Attachment Sites 317 
+
+For path modeling methods such as Modenese and Kohout (2020) and Wang et al. (2025), a prerequisite for 318 
+
+full automation is automatic identification of the points (or areas) of origin and insertion. This would require the 319 
+
+morphological information of the tendon, which is not always available since the tendon can be thin and hard to 320 
+
+distinguish from the surrounding tissues (Andreassen et al., 2023). More importantly, if the mesh of a long tendon 321 
+
+is missing, accurate path generation is no longer possible with Modenese and Kohout (2020) or Wang et al. (2025). 322 
+
+With our hybrid calibration method, the absence of tendon mesh is not a serious problem, because path alignment is 323 
+
+also guided by the moment arms. Take the example of the long digital extensors and flexors, although the meshes of 324 
+
+their long tendons are not reconstructed from 3D MRI, the paths still take the appropriate turns in order to yield the 325 
+
+correct moment arms (Fig. 5, bottom). 326 
+
+Nonetheless, the lack of tendon mesh is not without an impact on our method. When a path is designated to go 327 
+
+through the mesh of the muscle belly, its origin and insertions points are free to locate in a large space. Even with the 328 
+
+objective to match moment arm values and signs, the resultant path may still have abnormal attachments, sometimes 329 
+
+away from the bones. To make sure that the path attachments are anatomically reasonable, we made estimations based 330 
+
+on the meshes of the muscle belly and the relevant bones (see Appendix A) and used them to bound the optimization. 331 
+
+If a tendon is long, the absence of its surface mesh will make the estimation inaccurate, which then needs to be 332 
+
+13 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Table 1. Methods of automated muscle path modeling 
+
+Method Cause- / Eff ect-oriented Reference data Solution finding Surface mesh Moment arm (bone /muscle) (value /sign) Modenese and Kohout (2020) ✓ ✓ -1
+
+Lloyd et al. (2021) ✓ ✓ Newton’s method Livet et al. (2022) ✓ ✓2 Interior-point method 3
+
+Wang et al. (2025) ✓ ✓ Dijkstra’s algorithm Chen et al. (2026) ✓ ✓2 Trust-region method 4
+
+This work ✓ ✓ ✓ ✓ Trust-region method 41 Path-related parameters determined “by trial and error.”    
+
+> 2Artificial data instead of experimental measurements.
+> 3Not reported to be gradient-specified.
+> 4Gradient-specified.
+
+corrected with more accurate estimations for other attachment points. For instance, the co-insertion of the gracilis, 333 
+
+the sartorius, and the semitendinosus (i.e., the pes anserinus) can be computed from the origins of the tibial muscles. 334 
+
+However, we must admit this may not be applicable for all subjects, and machine learning could be a more reliable 335 
+
+approach for automated identification of muscle attachment sites. 336 
+
+Lastly, there is one scenario where a single pair of attachment sites is not su ffi cient. One may have noticed that 337 
+
+although Andreassen et al. (2023) reconstructed the mesh for 38 VHM muscles, the results of 42 paths are shown. 338 
+
+This is because we modeled more than one path for broad muscles such as the gluteus maximus (upper, middle, and 339 
+
+lower), the gluteus medius (anterior and posterior), and the adductor magnus (deep and superficial). As an e ff ect-340 
+
+oriented approach, the main reason why a muscle should be represented by multiple paths is that its strings may 341 
+
+have distinct functions. Yet if there are not enough moment arm measurements to guide the additional paths to 342 
+
+anatomically reasonable attachments, separate estimations must be made for these sites. For the gluteus medius, path 343 
+
+division is easily achieved by inputting moment arm data from the anterior and posterior strings, respectively. This 344 
+
+also applies for the glutues maximus, but the attachments of the upper, middle, and lower paths will not spread out as 345 
+
+in Fig. 3 (center) without slightly manipulating the estimations. For the adductor magnus, since no moment arm data 346 
+
+is available, the modeling of the superficial and deep paths must rely on di ff erent estimations of the insertion points. 347 
+
+4.6. Strengths and Limitations 348 
+
+Distinct from recently proposed muscle path modeling methods that are automated (Livet et al., 2022; Lloyd et al., 349 
+
+2021; Modenese and Kohout, 2020; Wang et al., 2025), our method is e ff ect-oriented based on the hybrid calibration 350 
+
+of both muscle surface mesh and moment arm. The comparison of these methods is shown in Table 1. 351 
+
+The method of Lloyd et al. (2021) is cause-oriented and is characterized by the direct computation of path wrap-352 
+
+ping on arbitrary surfaces, which eliminates the need to manually define wrapping obstacles that approximate anatomi-353 
+
+cal obstructions. However, because obstacle contact must be evaluated for a series of points along the path, the method 354 
+
+is computationally demanding and may be less practical for large-scale simulations. A simplified cause-oriented ap-355 
+
+proach is proposed by Wang et al. (2025): Instead of computing obstacle contact for a series of points along the path, 356 
+
+a set of vertices is identified as wrapping points such that the path length is minimized. In essence, dynamic via points 357 
+
+are used to approximate wrapping behavior and thereby reproduce muscle deformation. Nevertheless, the resulting 358 
+
+path length varies discretely as wrapping points switch between mesh vertices, which prevents the derivation of an 359 
+
+analytical expression for the moment arm. 360 
+
+The method of Modenese and Kohout (2020) may be regarded as e ff ect-oriented in the sense that the generated 361 
+
+path is expected to reproduce the muscle length, since the path is posed consistently with the musculotendon mesh. 362 
+
+However, the calibration explicitly target the moment arm–joint angle relation, and empirical tuning is required for 363 
+
+the path to deform reasonably across RoM. Moment arm–based calibration was presented in Livet et al. (2022). Their 364 
+
+optimization framework is not gradient-specified, which limits computational e ffi ciency, and the performance was 365 
+
+demonstrated with artificial datasets and relatively simple via point–based paths. It therefore remains unclear how 366 
+
+14 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+their framework would perform for more complex path structures involving wrapping obstacles, as demonstrated in 367 
+
+Chen et al. (2026), or when the calibration data are less comprehensive, as addressed in the present work. 368 
+
+A key advantage of our method is the use of gradient-specified optimization, which improves calibration speed 369 
+
+and accuracy compared with using the default numerical gradient (Chen et al., 2026). In a 6-DoF lower-limb model, 370 
+
+the calibration of 42 paths took only 20.1 min, and such convenience may encourage model recalibration (or individ-371 
+
+ualization) whenever the measurements are updated. As for calibration accuracy, the final cost for 30 paths are below 372 
+
+0.03 (and 37 are below 0.1), which suggests a good achievement of our threefold objective; see Appendix D for the 373 
+
+interpretation of the cost. With manual tuning, it is di ffi cult to match moment arm–joint angle relations as our auto-374 
+
+mated method did. Especially for muscles actuating multiple DoFs, the moment arm relations are high-dimensional, 375 
+
+meaning that they are di ffi cult to visualize, let alone manually calibrate. 376 
+
+In the spirit of automation, we made an e ff ort to remove as much manual work as possible, including the estimation 377 
+
+of the origin and insertion points. As we previously emphasized, due to the lack of tendon surface mesh, it could be 378 
+
+di ffi cult to make accurate estimations for certain attachment points using the method in Appendix A. Despite the 379 
+
+possibilities to correct the estimations automatically, the solutions are format-wise less neat and the applicability 380 
+
+is uncertain due to subject variability. In the future, we look to develop automatic identification of the origin and 381 
+
+insertion points (or areas) with machine learning. This would not only simplify the preparation step in our method, 382 
+
+but also make the methods of Modenese and Kohout (2020) and Wang et al. (2025) fully automatic. 383 
+
+Apart from the morphological data, there are also issues related to the moment arm data. First, our model is 384 
+
+based on the musculoskeletal geometry from the VHM, but the moment arm data for calibration come from other 385 
+
+studies—the di ff erence in the subject group might induce errors for our hybrid calibration. Second, the moment 386 
+
+arm data may also come from di ff erent experiments, each with its own subject group, method for measurement, and 387 
+
+nuance in the definition of joint rotations. At last, many muscles have limited or even no data for calibration. These 388 
+
+data-related issues are currently inevitable, and the paths in this study will need to be validated or recalibrated, if more 389 
+
+comprehensive datasets are available in the future. 390 
+
+On the topic of validation, this is unfortunately absent in our work. Ideally, validation of the paths would need 391 
+
+muscle surface meshes or moment arms in additional joint configurations, but it can be technically challenging to 392 
+
+collect either type of data across a large RoM. However, if we are to envision, the more practical goal would be to 393 
+
+focus on the morphological data. Our modeling results of musculoskeletal geometry (Figs. 3–5) are based on images 394 
+
+obtained in only one pose. If the meshes from a series of diverse poses are available, then the path may be configured 395 
+
+to go through multiple sets of cross-sectional ellipses. The geometric features of the muscle will naturally be better 396 
+
+reflected in a wider RoM. More importantly, the moment arms of such a path are somewhat reliable even without 397 
+
+calibration. The rationale is that, by going through the muscle mesh in each joint configuration, the length of the path 398 
+
+changes in a similar fashion as that of the muscle does. In other words, the derivative of muscle length with respective 399 
+
+to joint angle (namely moment arm) is similar, and this is essentially the mechanism of the tendon excursion method 400 
+
+for moment arm measurement (An et al., 1984; Maganaris et al., 2000). 401 
+
+5. Conclusion 402 
+
+A gradient-based optimization method is proposed for automated muscle path modeling and tested with experi-403 
+
+mental data from literature. As an e ff ect-oriented approach, this method is based on the hybrid calibration of muscle 404 
+
+surface mesh and moment arm, and the resultant paths are both anatomically realistic and biomechanically accurate. 405 
+
+With its speed and accuracy, our automated framework is suitable for large-scale subject-specific applications. 406 
+
+6. Acknowledgements 
+
+This work was supported by the Lighthouse Initiative Geriatronics by StMWi Bayern (Project X, Grant No. 5140951). 15 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Appendix A. Identification of Entry and Exit Points 
+
+Given su ffi cient knowledge in the human anatomy, it is not di ffi cult to manually identify the origin and insertion areas on the bone meshes or the areas on the muscle mesh adjacent to the origin and insertion. However, in preparation for subject-specific applications at large scale, our concept of automation is to remove as much as manual work as possible. Below we propose an algorithm for automatic identification of entry and exit points, and the results based on Andreassen et al. (2023) are generally satisfactory, despite the lack of tendon mesh. 
+
+Input: UM, UB1 , UB2 ▷ vertices in muscle, origin-bone, and insertion-bone meshes 
+
+Output: uuuM,en , uuuM,ex ▷ entry and exit points 
+
+▷ For each muscle vertex, find its closest vertices (“neighbors”) in origin- and insertion-bone meshes, respectively. ◁
+
+foreach uuu ∈ UM
+
+¯uuuB1 (uuu) ← arg min 
+
+> υυυ∈UB1
+
+∥uuu − υυυ∥
+
+dB1 (uuu) ← ∥ uuu − ¯uuuB1 (uuu)∥
+
+¯uuuB2 (uuu) ← arg min 
+
+> υυυ∈UB2
+
+∥uuu − υυυ∥
+
+dB2 (uuu) ← ∥ uuu − ¯uuuB2 (uuu)∥
+
+▷ Classify each muscle vertex by proximity to origin- and insertion-bone meshes, and assign the corresponding “neighbor” as a candidate for origin or insertion area. ◁
+
+foreach uuu ∈ UM
+
+d′
+
+> B1
+
+(uuu) ← dB1 (uuu) − min 
+
+> υυυ∈UM
+
+dB1 (υυυ)
+
+d′
+
+> B2
+
+(uuu) ← dB2 (uuu) − min 
+
+> υυυ∈UM
+
+dB2 (υυυ)
+
+d′ 
+
+> B1 ,30%
+
+← prctile  d′
+
+> B1
+
+(uuu) uuu ∈ UM , 30 
+
+d′ 
+
+> B2 ,30%
+
+← prctile  d′
+
+> B2
+
+(uuu) uuu ∈ UM , 30 
+
+UM,B1 ← nuuu ∈ UM d′
+
+> B1
+
+(uuu) < d′
+
+> B2
+
+(uuu), d′
+
+> B1
+
+(uuu) ≤ d′
+
+> B1 ,30%
+
+o
+
+UM,B2 ← nuuu ∈ UM d′
+
+> B2
+
+(uuu) < d′
+
+> B1
+
+(uuu), d′
+
+> B2
+
+(uuu) ≤ d′
+
+> B2 ,30%
+
+obUB1 ← n¯uuuB1 (uuu) uuu ∈ UM,B1 
+
+obUB2 ← n¯uuuB2 (uuu) uuu ∈ UM,B2 
+
+o ▷ Rough estimations of origin and insertion areas 
+
+▷ Find proximal and distal “tips” of muscle mesh. ◁
+
+cccM ← 1
+
+|UM|
+
+X
+
+> uuu∈UM
+
+uuuaaa1 ← arg max 
+
+> uuu∈UM
+
+∥uuu − cccM∥
+
+aaa2 ← arg max 
+
+> uuu∈UM
+
+∥uuu − cccM∥ s.t. ( uuu − cccM)·(aaa1 − cccM) < 0
+
+if ∥aaa1 − uuuB0 ∥ < ∥aaa2 − uuuB0 ∥ ▷ uuuB0 : a point on lumbar 
+
+aaaB1 ← aaa1; aaaB2 ← aaa2
+
+else ▷ Proximal if closer to lumbar, else distal 
+
+aaaB2 ← aaa1; aaaB1 ← aaa2
+
+▷ Refine estimations for origin and insertion areas by eliminating candidates too far from muscle “tips.” ◁δB1 ,50% ← prctile  ∥ˆuuu − aaaB1 ∥ ˆuuu ∈ bUB1 , 50 
+
+δB2 ,50% ← prctile  ∥ˆuuu − aaaB2 ∥ ˆuuu ∈ bUB2 , 50 fUB1 ← nˆuuu ∈ bUB1 ∥ˆuuu − aaaB1 ∥ ≤ δB1 ,50% 
+
+ofUB2 ← nˆuuu ∈ bUB2 ∥ˆuuu − aaaB2 ∥ ≤ δB2 ,50% 
+
+o ▷ Refined estimations of origin and insertion areas 
+
+16 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+▷ Find muscle vertices closest to estimated origin and insertion areas, respectively. ◁
+
+˜cccB1 ← 1
+
+|fUB1 |
+
+X
+
+> ˜uuu∈fUB1
+
+˜uuu
+
+˜cccB2 ← 1
+
+|fUB2 |
+
+X
+
+> ˜uuu∈fUB2
+
+˜uuuuuuM,en ← arg min 
+
+> uuu∈UM
+
+∥uuu − ˜cccB1 ∥
+
+uuuM,ex ← arg min 
+
+> uuu∈UM
+
+∥uuu − ˜cccB2 ∥
+
+Here, ˜ cccB1 and ˜ cccB2 may also serve as an initial guess of the origin and insertion points. The estimation is particularly accurate if the tendon is short or if its mesh is available. However, if the mesh of a long tendon is absent, ˜ cccB1 or ˜ cccB2 
+
+might deviate from the correspondent anatomical landmarks. In this case, there are various ways to correct them automatically, but we will not elaborate on the details here. Essentially, as a by-product for the entry and exit points, we estimate the origin and insertion points. Notice they are compatible with the path modeling method of Wang et al. (2025), whose inputs of “attachment points” are not obtained automatically. Similarly, in Modenese and Kohout (2020), the inputs of “attachment areas” are not reported to be obtained automatically, for which fUB1 and fUB2 serve as a good estimation. 
+
+Appendix B. Ellipses for Muscle Cross-Sections 
+
+With the entry and exit points ( uuuM,en and uuuM,ex in Appendix A) as boundary constraints, we apply the method of Dong et al. (2005) to construct a harmonic scalar field h(·) over the muscle mesh. Depending on the relative position between the entry and exit points, each of the NM vertices is assigned a scalar value h(uuuM,n) ∈ [0 , 1], forming a series of field isolines. Similar to Modenese and Kohout (2020), we treat these isolines as the contours of muscle cross-sections, but we do not thread the path through any certain location (e.g., the geometric center) on multiple cross-sections. Instead, we only expect them to be intersected by the path, so that the path has enough room to be tuned for moment arm calibration. For computational convenience, we simplify each cross-section as an ellipse, which is geometrically similar but computationally easier to implement. To obtain these cross-sectional ellipses, we first extract Nell vertex subsets, each from a narrow belt formed in-between a pair of isolines. 
+
+for i = 1, . . . , Nell 
+
+hl,i ← prctile  h(uuu) uuu ∈ UM , 100 iNell +1 − 1
+
+hu,i ← prctile  h(uuu) uuu ∈ UM , 100 iNell +1 + 1
+
+UM,Ci ← nuuu ∈ UM h(uuu) ∈ hl,i, hu,i
+
+o 
+
+Then, the 3-D points in each subset are projected onto a 2-D plane, whose coordinates are denoted by ϵ (·), using singular value decomposition, and the 2-D points are fitted with an ellipse with the method of Fitzgibbon et al. (1999). 
+
+▷ Since following operations are repeated for each subset, subscript (·)M,Ci is omitted for clarity. ◁
+
+ccc ← 1
+
+|U|
+
+X
+
+> uuu∈U
+
+uuu ▷ Coordinate origin for 2-D frame 
+
+U′ ← nuuu − ccc uuu ∈ Uo
+
+(UUU, ΣΣΣ, VVV) ← svd U′hvvvx vvvy
+
+i ← VVV:,1:2 ▷ Orthogonal basis vectors for 2-D frame 
+
+hϵ xxx ϵyyyi i.e. 
+
+ 
+
+> ϵ
+
+x1 ϵ y1
+
+... ... 
+
+> ϵ
+
+xn ϵ yn
+
+ ← UUU:,1:2 ΣΣΣ1:2 ,1:2 ▷ Equivalent to 
+
+
+
+uuu′
+
+> 1T
+
+...
+
+uuu′
+
+> nT
+
+hvvva vvvb
+
+i
+
+17 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+DDD 
+
+> N×6
+
+← hϵ xxx◦2 ϵ xxx ◦ ϵyyy ϵyyy◦2 ϵ xxx ϵyyy 111
+
+> N×1
+
+i ▷ Design matrix 
+
+SSS 
+
+> 6×6
+
+← DDDTDDD ▷ Scatter matrix 
+
+CCC 
+
+> 6×6
+
+←
+
+
+
+0 0 20 −1 02 0 0
+
+0
+
+> 3×3
+
+0 
+
+> 3×3
+
+0
+
+> 3×3
+
+
+
+▷ Constraint matrix 
+
+hvvv1 · · · vvv6
+
+i| {z }
+
+> 6×6
+
+,
+
+
+
+λ1
+
+. . .λ6
+
+!
+
+← eig (SSS ,CCC)
+
+▷ Eigenvectors and eigenvalues 
+
+j+ ← arg max 6 
+
+> j=1
+
+λ j ▷ Only one eigenvalue is positive 
+
+hpell ,A pell ,B pell ,C pell ,D pell ,E pell ,F
+
+iT
+
+← vvv j+ ▷ Only solution corresponding to an ellipse 
+
+Here, the solution is a 6-D vector, whose elements correspond to the six conic coe ffi cients defining an ellipse. To improve readability in the main text, we convert this general form into a canonical form. More specifically, the coordinate frame is translated so that its origin coincides with the ellipse center and rotated so that its x- and y-axes align with the ellipse’s major and minor axes, denoted by e(·). 
+
+▷ Conic coe ffi cients abbreviated as A, B, C, D, E, and F for clarity, but notice di ff erence from occupied notations. ◁
+
+∆ ← B2 − 4AC ▷ For an ellipse, ∆ < 0
+
+> ϵ
+
+cccell ← h 2CD −BE 
+
+> ∆
+> 2AE −BD
+> ∆
+
+iT
+
+▷ Ellipse center in 2-D frame 
+
+cccell ← ccc + hvvvx vvvy
+
+i ϵcccell ▷ Ellipse center in 3-D world frame 
+
+Ra ←
+
+r 2( AE 2+CD 2−BDE −∆F)
+
+> ∆(A+C−
+
+√(A−C)2+B2) ▷ Semi-major axis length 
+
+Rb ←
+
+r 2( AE 2+CD 2−BDE −∆F)
+
+> ∆(A+C+
+
+√(A−C)2+B2) ▷ Semi-minor axis length 
+
+θ ← 12 arctan BA−C
+
+vvva ← cos θvvvx + sin θvvvy ▷ Semi-major axis 
+
+vvvb ← − sin θvvvx + cos θvvvy ▷ Semi-major axis 
+
+General form :
+
+A ϵ x2 + B ϵ x ϵ y + C ϵ y2 + D ϵ x + E ϵ y + F = 0
+
+Canonical form :  e xRa
+
+2
+
++  eyRb
+
+2
+
+= 1
+
+Transformation into 3-D world frame : 
+
+xyz
+
+ = ccc + hvvvx vvvy
+
+i "ϵ x 
+
+> ϵ
+
+y
+
+#
+
+= cccell + hvvva vvvb
+
+i "e x
+
+> e
+
+y
+
+#
+
+Appendix C. Ellipse–Sub-Segment Intersection 
+
+For each ellipse representing a muscle cross-section, it is expected to be intersected by at least one sub-segment of the path. Depending on both the path structure and the joint configurations, a path can be divided into one, two, 18 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+three, or six sub-segments. A sub-segment is straight if no wrapping occurs between two anchor points, otherwise it is curved. However, when the intersection is computed, we treat all curved sub-segments as straight. This significantly simplifies the computation, and since none of the lower-limb muscles are heavily wrapped in the fixation position, the di ff erence will be small. Suppose uuuAP1 and uuuAP2 are the two anchor points constituting a straight sub-segment, the intersection with the ellipse must be along the sub-segment “ray” 
+
+uuuint = uuuAP1 + s1(uuuAP2 − uuuAP1 ),
+
+where s1 is a scalar indicating the location of uuuint relative to the sub-segment. As for the ellipse, it lies in a plane spanned by vvva and vvvb, and the intersection point must also be on this plane and satisfy (uuuint − cccell ) · (vvva × vvvb) = 0.
+
+First, we substitute one equation into the other to have 
+
+s1 = (ccccell − uuuAP1 ) · (vvva × vvvb)(uuuAP2 − uuuAP1 ) · (vvva × vvvb) .
+
+If 0 < s1 < 1, the intersection takes places between the two anchor points, otherwise the plane can only be intersected if the sub-segment is extended along either side. Then, we compute a second indicator, which describes the location of uuuint relative to the ellipse 
+
+s2 = 1 −  e xint 
+
+Ra
+
+2
+
+−  eyint 
+
+Rb
+
+2
+
+;
+
+ 
+
+> e
+
+xint = (uuuint − cccell ) · vvvaeyint = (uuuint − cccell ) · vvvb
+
+.
+
+If s2 > 0, the intersection takes places within the ellipse, otherwise the sub-segment ray can only be intersected if the ellipse is expanded across the plane. 
+
+Appendix D. Cost Normalization 
+
+The optimization problem we formulate for muscle path modeling is multi-term objective: Each of the three objectives targets at a di ff erent property, and the cost terms need to be normalized so that their contributions can be meaningfully combined. The first key of normalization is to ensure that the cost terms have the same units. In Eq. 2, the cost term for muscle surface mesh JSM is based on the quantity of intersected ellipses, which is dimensionless. When matching moment arm values, JvMA in Eq. 7 is based on moment arm length, with the unit of mm. For this, the di ff erence of model and measured moment arms is divided by a tolerance value, also with the unit of mm—this ratio is dimensionless. When matching moment arm signs, JsMA in Eq. 8 is based on the quantity of matched signs, which is already dimensionless and does not require normalization. Then, the magnitude of each cost term needs to be scaled as an approach to balance the importance of each objective. In Eq. 2, we assign a factor of 1/2Nell so that the maximum of JSM is 1 /2 when none of the Nell ellipses are intersected. This sets a baseline for the “worst-case scenario” in surface mesh calibration, and the other two cost terms may be weighted with respect to this baseline. In this study, we intend to treat surface mesh and moment arm as equally important. In other words, the sum of JvMA and JsMA should be scaled to 1 /2 when the value-based calibration and the sign-based calibration are both in their “worst-case scenarios.” In the sign-based moment arm calibration, the “worst-case scenario” is simply when none of the signs match, and the cost term will reach its maximum 
+
+JsMA ,max =
+
+> 6
+
+X
+
+> k=1
+> Nsk
+
+X
+
+> n=1
+
+ωsk,n.
+
+19 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+For the value-based moment arm calibration, the situation is more complicated. Since there is no limit to the dif-ference between rtarget and rmodel , the theoretical “worst-case scenario” will drive JvMA to infinity. Hence, a nominal “worst-case scenario” is needed, and we define it as when the moment arm error reaches the designated tolerance of (10% rtarget + 5) mm; accordingly, 
+
+JvMA ,max =
+
+> 6
+
+X
+
+> k=1
+> Nvk
+
+X
+
+> n=1
+
+ωvk,n.
+
+Suppose the datasets for moment arm calibration are from Nref di ff erent sources. For the j-th dataset, it contains 
+
+Nd j data, each of which is a target value or sign for one of the six potential moment arms at a certain joint configuration. From another perspective, for the k-th moment arm, it needs to match Nvk target values and Nsk target signs at the designated joint configurations. Thereby, there is a one-to-one correspondence between the associated weights of each datum in a dataset ( ωd j,m) and each target for a moment arm ( ωvk,nm or ωsk,nm ). Then, in the “worst-case scenarios,” 
+
+JvMA ,max + JsMA ,max =
+
+> 6
+
+X
+
+> k=1
+> Nvk
+
+X
+
+> n=1
+
+ωvk,n +
+
+> Nsk
+
+X
+
+> n=1
+
+ωsk,n
+
+!
+
+=
+
+> Nref
+
+X 
+
+> j=1
+> Ndj
+
+X
+
+> m=1
+
+ωd j,m.
+
+For this sum to match the baseline of 1 set in the surface mesh calibration, simply have 
+
+ωd j,m = 12Nref Nd j
+
+.
+
+This is equivalent to weighting all data within each dataset equally, while weighting all reference sources equally regardless of the dataset size. With this normalization, the cost attains a meaningful interpretation that is consistent for any muscle: If J = 1, it means that 1. when posed in the fixation position, the path fails to go through any of the ellipses, 2. at the designated joint configurations, the model moment arms deviates from the target values by the designated tolerances, and 3. at the designated joint configurations, the model moment arms are opposite from the target signs. The calibration results may now be quantitatively compared across di ff erent muscles, and we may also set a common cost threshold (e.g., 0.03) to indicate if a muscle path is well-modeled. 
+
+Appendix E. Initialization and Configuration for Optimization 
+
+In order for the optimization to proceed su ffi ciently fast without compromising accuracy, we follow the configu-ration in our recent work (Chen et al., 2026): 
+
+• trust-region-reflective with SpecifyObjectiveGradient ;
+
+• 10 −4 for StepTolerance , and 2 .5 × 10 −16 for FunctionTolerance and OptimalityTolerance ;
+
+• 10 2 for MaxIterations , and Inf for MaxFunctionEvaluations .When ppp was initialized for Eq. 1 and later optimized, the locations of the origin and insertion points were bounded within a uniformly distributed range of ±10 mm from ˜ cccB1 and ˜ cccB2 (see Appendix A), respectively. This is because ˜ cccB1 
+
+and ˜ cccB2 correspond well to the anatomical landmarks of the tendinous attachments, and we include this constraint to speed up the calibration. Importantly, without this constraint, the origin and insertion points might be tuned away from the bones. Although this does not necessarily interfere with moment arm calibration, the path will appear anatomically unrealistic. For other parameters, there are no constraints during the optimization. 20 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Also, when generating the initial points for the path structures of OCI and OC 1C2I, the cylinder centers were randomly initialized around the sections of the line between the initial origin and insertion points. The rationale is to ensure the cylinders are not too departed from the initial muscle paths: If a cylinder is not wrapped at the beginning of the optimization, the relevant gradient will remain a null matrix and the cylinder center might be left untuned till the end. For OVI and OV 1V2I, the via points are initialized in a similar fashion for consistency. 
+
+Appendix F. Data and Results for Moment Arm Calibration Muscle path Calibration data Calibration results 
+
+Target values 1 Target signs 2 Final structure Time (s) Cost Psoas major 1O– 1O Arnold et al. (2000) 1+ – 1f 2p 3p OVI 11.3 0.008 
+
+> 3
+
+O– 1O Delp et al. (1999) Iliacus 3O– 1O Delp et al. (1999) 1+ – 1f 2p 3p OVI 5.9 0.029 Gluteus maximus [upper] 1O– 1O Eng et al. (2015) 1− – 1f 2p 3p OVI 3.3 0.028 
+
+> 2
+
+O– 2O Eng et al. (2015) 2− – 2f 1p 3O– 1O Delp et al. (1999) Gluteus maximus [middle] 1O– 1O Eng et al. (2015) 1− – 1f 2p 3p OVI 3.2 0.021 
+
+> 3
+
+O– 1O Delp et al. (1999) 3− – 3f 1p 
+
+Gluteus maximus [lower] 1O– 1O Eng et al. (2015) 1− – 1f 2p 3p OV 1V2I 79.9 0.068 
+
+> 2
+
+O– 2O Eng et al. (2015) 2+ – 2f 1p 3O– 1O Delp et al. (1999) 3− – 3f 1p 
+
+Gluteus medius [anterior] 1O– 1O Beck et al. (2015) 1+ – 1p 2p OVI 25.3 0.092 
+
+> 3
+
+O– 1O Delp et al. (1999) 2− – 2p 1p 3+ – 3p 1p 
+
+Gluteus medius [posterior] 1O– 1O Beck et al. (2015) 1− – 1p 2p OVI 2.2 0.015 
+
+> 3
+
+O– 1O Delp et al. (1999) 2− – 2p 1p 3− – 3p 1p 
+
+Gluteus minimus 3O– 1O Delp et al. (1999) 2− – 2p 1p OV 1V2I 15.3 0.006 Tensor fasciae latae 1O– 1O Eng et al. (2015) 1+ – 1p 2p OVI 4.4 0.014 
+
+> 2
+
+O– 2O Eng et al. (2015) 2− – 2p 1p 4O– 4O Eng et al. (2015) 3+ – 3p 1p 
+
+Piriformis 1O– 1O Vaarbakken et al. (2014) 1− – 1p 2p OI 73.8 0.052 
+
+> 2
+
+O– 1O 2O Vaarbakken et al. (2014) 2− – 2f 1f 3f 3O– 1O 3O Vaarbakken et al. (2014) 3− – 3p 1p 
+
+Obturator internus 1O– 1O Vaarbakken et al. (2014) 1− – 1p 2p OVI 81.5 0.157 
+
+> 2
+
+O– 2O 1O Vaarbakken et al. (2014) 3− – 3f 1p 2p 3O– 3O 1O Vaarbakken et al. (2014) 
+
+> 3
+
+O– 1O Delp et al. (1999) Gemellus superior - 1− – 1p 2p OI 3.5 0.005  
+
+> 3−
+
+– 3f 1p 2p 
+
+Gemellus inferior - 1− – 1p 2p OI 3.2 0.008  
+
+> 3−
+
+– 3f 1p 2p 
+
+Quadratus femoris 1O– 1O Vaarbakken et al. (2015) 2+ – 2p 1p OI 0.7 0.029 
+
+> 3
+
+O– 1O Delp et al. (1999) 3− – 3f 1p 2p 
+
+Pectineus - 1+ – 1p 2p OI 3.3 >0.001  
+
+> 2+
+
+– 2f 1f 3f 
+
+Adductor longus - 1± – 1p 2p OI 2.2 0.007 21 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Muscle path Calibration data Calibration results 
+
+Target values 1 Target signs 2 Final structure Time (s) Cost  
+
+> 2+
+
+– 2f 1f 3f 3− – 3p 1p 
+
+Adductor brevis - 1± – 1p 2p OI 1.0 0.027  
+
+> 2+
+
+– 2f 1f 3f 3− – 3p 1p 
+
+Gracilis 4O– 4O Buford et al. (1997) 1+ – 1p 2p OV 1V2I 22.4 0.001  
+
+> 2+
+
+– 2f 1f 3f 4+ – 4f 1f 
+
+Obturator externus 1O– 1O Vaarbakken et al. (2015) 2+ – 2p 1p OV 1V2I 20.2 0.011 
+
+> 3
+
+O– 1O Delp et al. (1999) 3− – 3f 1p 2p 
+
+Adductor magnus [superficial] - 2+ – 2f 1f 3f OI 2.4 0.013  
+
+> 3−
+
+– 3f 1p 
+
+Adductor magnus [deep] - 2+ – 2f 1f 3f OI 0.3 0.023  
+
+> 3−
+
+– 3f 1p 
+
+Sartorius 4O– 4O Buford et al. (1997) 1+ – 1f 2f 3f OV 1V2I 23.5 0.004  
+
+> 3−
+
+– 3p 1p 4+ – 4f 1f 
+
+Rectus femoris 4O– 4O Buford et al. (1997) 1+ – 1f 2f 3f OVI 11.1 0.003  
+
+> 4−
+
+– 4f 1f 
+
+Vastus medialis 4O– 4O Buford et al. (1997) - OVI 1.3 0.023 Vastus lateralis 4O– 4O Buford et al. (1997) - OVI 1.3 0.003 Vastus intermedius 4O– 4O Buford et al. (1997) - OVI 1.6 0.004 Biceps femoris (long) 1O– 1O Visser et al. (1990) 1− – 1f 2f 3f OVI 8.3 0.013 
+
+> 4
+
+O– 4O Buford et al. (1997) 4+ – 4f 1f 
+
+Biceps femoris (short) 4O– 4O Buford et al. (1997) - OVI 1.4 0.004 Semimembranosus 1O– 1O Arnold et al. (2000) 1− – 1f 2f 3f OVI 8.9 0.026 
+
+> 4
+
+O– 4O Buford et al. (1997) 4+ – 4f 1f 
+
+Semitendinosus 1O– 1O Arnold et al. (2000) 1− – 1f 2f 3f OV 1V2I 23.7 0.003 
+
+> 4
+
+O– 4O Buford et al. (1997) 4+ – 4f 1f 
+
+Popliteus 4O– 4O Buford et al. (1997) - OV 1V2I 3.2 0.012 Peroneus longus 5O– 5O McCullough et al. (2011) 5− – 5f 6f OV 1V2I 17.6 0.021 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 6− – 6f 5f 6O– 6O McCullough et al. (2011) Tibialis anterior 5O– 5O Rugg et al. (1990) 5+ – 5f 6f OV 1V2I 80.7 0.049 
+
+> 5
+
+O– 5O McCullough et al. (2011) 6+ – 6f 5f 6O– 5O 6O Hintermann et al. (1994) 
+
+> 6
+
+O– 6O McCullough et al. (2011) Extensor hallucis longus 5O– 5O McCullough et al. (2011) 5+ – 5f 6f OV 1V2I 69.7 0.071 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 
+
+> 6
+
+O– 6O McCullough et al. (2011) Extensor digitorum longus 5O– 5O McCullough et al. (2011) 5+ – 5f 6f OV 1V2I 63.6 0.046 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 6− – 6f 5f 6O– 6O McCullough et al. (2011) Gastrocnemius medialis 4O– 4O Buford et al. (1997) 4+ – 4f 5f OVI 125.2 0.073 
+
+> 5
+
+O– 5O Maganaris et al. (2000) 5− – 5f 4f 5O– 5O McCullough et al. (2011) 
+
+> 5
+
+O– 6O Wolfram et al. (2018) 22 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint
+
+Muscle path Calibration data Calibration results 
+
+Target values 1 Target signs 2 Final structure Time (s) Cost 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 
+
+> 6
+
+O– 6O McCullough et al. (2011) Gastrocnemius lateralis 4O– 4O Buford et al. (1997) 4+ – 4f 5f OV 1V2I 110.4 0.064 
+
+> 5
+
+O– 5O Maganaris et al. (2000) 5− – 5f 4f 5O– 5O McCullough et al. (2011) 
+
+> 5
+
+O– 6O Wolfram et al. (2018) 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 
+
+> 6
+
+O– 6O McCullough et al. (2011) Soleus 5O– 5O Maganaris et al. (2000) - OI 64.1 0.137 
+
+> 5
+
+O– 6O Wolfram et al. (2018) 
+
+> 5
+
+O– 5O McCullough et al. (2011) 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 
+
+> 6
+
+O– 6O McCullough et al. (2011) Plantaris - 4+ – 4f 5f OVI 8.3 >0.001  
+
+> 5−
+
+– 5f 4f 
+
+Tibialis posterior 5O– 5O McCullough et al. (2011) 5+ – 5f 6f OVI 90.9 0.135 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 6+ – 6f 5f 6O– 6O McCullough et al. (2011) Flexor digitorum longus 5O– 5O McCullough et al. (2011) 5+ – 5f 6f OVI 60.1 0.280 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 6+ – 6f 5f 6O– 6O McCullough et al. (2011) Flexor hallucis longus 5O– 5O McCullough et al. (2011) 5+ – 5f 6f OVI 68.0 0.119 
+
+> 6
+
+O– 5O 6O Hintermann et al. (1994) 6+ – 6f 5f 6O– 6O McCullough et al. (2011)  
+
+> 1
+
+The circled numbers indicate the moment arm–joint angle relation depicted by the experimental data: with 1O for hip extension /flexion, 2O for hip ab-/adduction, 3O for hip ex-/internal rotation, 4O for knee extension /flexion, 5O for ankle dorsi-/plantarflexion, and 6O for ankle ever-/inversion.  
+
+> 2
+
+The sign in the first circle denotes the function that the path is expected to present: with “ −” for hip extension, hip abduc-tion, hip external rotation, knee extension, ankle dorsiflexion, and ankle eversion, and “ +” for hip flexion, hip adduction, hip internal rotation, knee flexion, ankle plantarlflexion, and ankle inversion. The following circles denote the RoM where the designated function is expected to present: with “f” for full RoM ([ −20 ◦, 90 ◦] for hip extension /flexion, [ −40 ◦, 10 ◦]for hip ab-/adduction, [ −40 ◦, 40 ◦] for hip ex-/internal rotation, [0 ◦, 120 ◦] for knee extension /flexion, [ −40 ◦, 20 ◦] for ankle dorsi-/plantarflexion, and [ −20 ◦, 20 ◦] for ankle ever-/inversion), and “p” for partial RoM (generally half the range for either direction; e.g., [ −10 ◦, 45 ◦] for hip extension /flexion). Details are reported in Supplementary Material. 
+
+References 
+
+Ackerman, M., 1998. The Visible Human Project. Proceedings of the IEEE 86, 504–511. doi: 10.1109/5.662875 .An, K.N., Takahashi, K., Harrigan, T.P., Chao, E.Y., 1984. Determination of muscle orientations and moment arms. Journal of Biomechanical Engineering 106, 280–282. doi: 10.1115/1.3138494 .Andreassen, T.E., Hume, D.R., Hamilton, L.D., Walker, K.E., Higinbotham, S.E., Shelburne, K.B., 2023. Three dimensional lower extremity musculoskeletal geometry of the visible human female and male. Scientific Data 10, 34. doi: 10.1038/s41597-022-01905-2 .Arnold, A.S., Salinas, S., Hakawa, D.J., Delp, S.L., 2000. Accuracy of muscle moment arms estimated from MRI-based musculoskeletal models of the lower extremity. Computer Aided Surgery 5, 108–119. doi: 10.3109/10929080009148877 .Arnold, E.M., Ward, S.R., Lieber, R.L., Delp, S.L., 2010. A model of the lower limb for analysis of human movement. Annals of Biomedical Engineering 38, 269–279. doi: 10.1007/s10439-009-9852-5 .Beaucage-Gauvreau, E., Robertson, W.S.P., Brandon, S.C.E., Fraser, R., Freeman, B.J.C., Graham, R.B., Thewlis, D., Jones, C.F., 2019. Validation of an OpenSim full-body model with detailed lumbar spine for estimating lower lumbar spine loads during symmetric and asymmetric lifting tasks. Computer Methods in Biomechanics and Biomedical Engineering 22, 451–464. doi: 10.1080/10255842.2018.1564819 .Beck, M., Kr¨ uger, A., Katthagen, C., Kohl, S., 2015. Osteotomy of the greater trochanter: E ff ect on gluteus medius function. Surgical and Radiologic Anatomy 37, 599–607. doi: 10.1007/s00276-015-1466-z .
+
+23 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Buford, W., Ivey, F., Malone, J., Patterson, R., Pearce, G., Nguyen, D., Stewart, A., 1997. Muscle balance at the knee-moment arms for the normal knee and the ACL-minus knee. IEEE Transactions on Rehabilitation Engineering 5, 367–379. doi: 10.1109/86.650292 .Chen, Z., Franklin, D.W., 2025. Muscle moment arm–joint angle relations in the hip, knee, and ankle: A visualization of datasets. Annals of Biomedical Engineering 53, 1757–1776. doi: 10.1007/s10439-025-03735-w .Chen, Z., Hu, T., Haddadin, S., Franklin, D.W., 2026. Automated muscle path calibration with gradient-specified optimization based on moment arm. IEEE Transactions on Biomedical Engineering 73, 1998–2009. doi: 10.1109/TBME.2025.3620626 .Delp, S., Loan, J., Hoy, M., Zajac, F., Topp, E., Rosen, J., 1990. An interactive graphics-based model of the lower extremity to study orthopaedic surgical procedures. IEEE Transactions on Biomedical Engineering 37, 757–767. doi: 10.1109/10.102791 .Delp, S.L., Anderson, F.C., Arnold, A.S., Loan, P., Habib, A., John, C.T., Guendelman, E., Thelen, D.G., 2007. OpenSim: Open-source software to create and analyze dynamic simulations of movement. IEEE Transactions on Biomedical Engineering 54, 1940–1950. doi: 10.1109/TBME. 2007.901024 .Delp, S.L., Hess, W.E., Hungerford, D.S., Jones, L.C., 1999. Variation of rotation moment arms with hip flexion. Journal of Biomechanics 32, 493–501. doi: 10.1016/S0021-9290(99)00032-9 .Derrick, T.R., van den Bogert, A.J., Cereatti, A., Dumas, R., Fantozzi, S., Leardini, A., 2020. ISB recommendations on the reporting of interseg-mental forces and moments during human motion analysis. Journal of Biomechanics 99, 109533. doi: 10.1016/j.jbiomech.2019.109533 .Dong, S., Kircher, S., Garland, M., 2005. Harmonic functions for quadrilateral remeshing of arbitrary manifolds. Computer Aided Geometric Design 22, 392–423. doi: 10.1016/j.cagd.2005.04.004 .Eng, C.M., Arnold, A.S., Lieberman, D.E., Biewener, A.A., 2015. The capacity of the human iliotibial band to store elastic energy during running. Journal of Biomechanics 48, 3341–3348. doi: 10.1016/j.jbiomech.2015.06.017 .Erdemir, A., McLean, S., Herzog, W., van den Bogert, A.J., 2007. Model-based estimation of muscle forces exerted during movements. Clinical Biomechanics 22, 131–154. doi: 10.1016/j.clinbiomech.2006.09.005 .Fitzgibbon, A., Pilu, M., Fisher, R., 1999. Direct least square fitting of ellipses. IEEE Transactions on Pattern Analysis and Machine Intelligence 21, 476–480. doi: 10.1109/34.765658 .Garner, B.A., Pandy, M.G., 2000. The obstacle-set method for representing muscle paths in musculoskeletal models. Computer Methods in Biomechanics and Biomedical Engineering 3, 1–30. doi: 10.1080/10255840008915251 .Garner, B.A., Pandy, M.G., 2001. Musculoskeletal model of the upper limb based on the Visible Human Male dataset. Computer Methods in Biomechanics and Biomedical Engineering 4, 93–126. doi: 10.1080/10255840008908000 .Gilroy, A.M., MacPherson, B.R., Wikenheiser, J.C., Sch¨ unke, M., Schulte, E., Schumacher, U., 2020. Atlas of Anatomy. 4th ed., Thieme Medical Publishers. Guo, J., Chen, J., Wang, J., Ren, G., Tian, Q., Guo, C., 2022. EMG-assisted forward dynamics simulation of subject-specific mandible muscu-loskeletal system. Journal of Biomechanics 139, 111143. doi: 10.1016/j.jbiomech.2022.111143 .Hamner, S.R., Delp, S.L., 2013. Muscle contributions to fore-aft and vertical body mass center accelerations over a range of running speeds. Journal of Biomechanics 46, 780–787. doi: 10.1016/j.jbiomech.2012.11.024 .Herzog, W., Read, L.J., 1993. Lines of action and moment arms of the major force-carrying structures crossing the human knee joint. Journal of Anatomy 182 (Pt 2), 213–230. Hicks, J.L., Uchida, T.K., Seth, A., Rajagopal, A., Delp, S.L., 2015. Is my model good enough? Best practices for verification and validation of musculoskeletal models and simulations of movement. Journal of Biomechanical Engineering 137, 020905. doi: 10.1115/1.4029304 .Hintermann, B., Nigg, B.M., Sommer, C., 1994. Foot movement and tendon excursion: An in vitro study. Foot & Ankle International 15, 386–395. doi: 10.1177/107110079401500708 .Inman, V.T., 1976. The Joints of the Ankle. Williams & Wilkins. Karabulut, D., Dogru, S.C., Lin, Y.C., Pandy, M.G., Herzog, W., Arslan, Y.Z., 2020. Direct validation of model-predicted muscle forces in the cat hindlimb during locomotion. Journal of Biomechanical Engineering 142, 051014. doi: 10.1115/1.4045660 .Livet, C., Rouvier, T., Dumont, G., Pontonnier, C., 2022. An automatic and simplified approach to muscle path modeling. Journal of Biomechanical Engineering 144, 014502. doi: 10.1115/1.4051870 .Lloyd, J.E., Roewer-Despr´ es, F., Stavness, I., 2021. Muscle path wrapping on arbitrary surfaces. IEEE Transactions on Biomedical Engineering 68, 628–638. doi: 10.1109/TBME.2020.3009922 .Maganaris, C.N., Baltzopoulos, V., Sargeant, A.J., 2000. In vivo measurement-based estimations of the human Achilles tendon moment arm. European Journal of Applied Physiology 83, 363–369. doi: 10.1007/s004210000247 .Ma’touq, J., Hu, T., Haddadin, S., 2019. A validated combined musculotendon path and muscle-joint kinematics model for the human hand. Computer Methods in Biomechanics and Biomedical Engineering 22, 727–739. doi: 10.1080/10255842.2019.1588256 .McCullough, M.B., Ringleb, S.I., Arai, K., Kitaoka, H.B., Kaufman, K.R., 2011. Moment arms of the ankle throughout the range of motion in three planes. Foot & Ankle International 32, 300–306. doi: 10.3113/FAI.2011.0300 .McFarland, D.C., Binder-Markey, B.I., Nichols, J.A., Wohlman, S.J., de Bruin, M., Murray, W.M., 2023. A musculoskeletal model of the hand and wrist capable of simulating functional tasks. IEEE Transactions on Biomedical Engineering 70, 1424–1435. doi: 10.1109/TBME.2022. 3217722 .Millard, M., Franklin, D.W., Herzog, W., 2024. A three filament mechanistic model of musculotendon force and impedance. eLife 12, RP88344. doi: 10.7554/eLife.88344.4 .Modenese, L., Kohout, J., 2020. Automated generation of three-dimensional complex muscle geometries for use in personalised musculoskeletal models. Annals of Biomedical Engineering 48, 1793–1804. doi: 10.1007/s10439-020-02490-4 .Ong, C.F., Hicks, J.L., Delp, S.L., 2016. Simulation-based design for wearable robotic systems: An optimization framework for enhancing a standing long jump. IEEE Transactions on Biomedical Engineering 63, 894–903. doi: 10.1109/TBME.2015.2463077 .Platzer, W., 2015. Color Atlas and Textbook of Human Anatomy: Locomotor System. 7th ed., Thieme. Prilutsky, B.l., Zatsiorsky, V.M., 2002. Optimization-based models of muscle coordination. Exercise and Sport Sciences Reviews 30, 32–38. doi: 10.1097/00003677-200201000-00007 .Rugg, S., Gregor, R., Mandelbaum, B., Chiu, L., 1990. In vivo moment arm calculations at the ankle using magnetic resonance imaging (MRI). 
+
+24 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint Journal of Biomechanics 23, 495–501. doi: 10.1016/0021-9290(90)90305-M .Sherman, M.A., Seth, A., Delp, S.L., 2013. What is a moment arm? Calculating muscle e ff ectiveness in biomechanical models using generalized coordinates, in: 9th International Conference on Multibody Systems, Nonlinear Dynamics, and Control, American Society of Mechanical Engineers. p. V07BT10A052. doi: 10.1115/DETC2013-13633 .Vaarbakken, K., Steen, H., Samuelsen, G., Dahl, H.A., Leergaard, T.B., Nordsletten, L., Stuge, B., 2014. Lengths of the external hip rotators in mobilized cadavers indicate the quadriceps coxa as a primary abductor and extensor of the flexed hip. Clinical Biomechanics 29, 794–802. doi: 10.1016/j.clinbiomech.2014.05.011 .Vaarbakken, K., Steen, H., Samuelsen, G., Dahl, H.A., Leergaard, T.B., Stuge, B., 2015. Primary functions of the quadratus femoris and obturator externus muscles indicated from lengths and moment arms measured in mobilized cadavers. Clinical Biomechanics 30, 231–237. doi: 10.1016/ j.clinbiomech.2015.02.004 .Visser, J.J., Hoogkamer, J.E., Bobbert, M.F., Huijing, P.A., 1990. Length and moment arm of human leg muscles as a function of knee and hip-joint angles. European Journal of Applied Physiology and Occupational Physiology 61, 453–460. doi: 10.1007/BF00236067 .Wang, Y., Guo, J., Tang, H., Tian, Q., 2025. Convex wrapping description of biarticular hip muscles for patient-specific musculoskeletal modeling. Journal of Biomechanics 189, 112802. doi: 10.1016/j.jbiomech.2025.112802 .Wolfram, S., Morse, C.I., Winwood, K.L., Hodson-Tole, E., McEwan, I.M., 2018. Achilles tendon moment arm in humans is not a ff ected by inversion /eversion of the foot: A short report. Royal Society Open Science 5, 171358. doi: 10.1098/rsos.171358 .Wretenberg, P., N´ emeth, G., Lamontagne, M., Lundin, B., 1996. Passive knee muscle moment arms measured in vivo with MRI. Clinical Biomechanics 11, 439–446. doi: 10.1016/S0268-0033(96)00030-7 .Wu, G., Siegler, S., Allard, P., Kirtley, C., Leardini, A., Rosenbaum, D., Whittle, M., D’Lima, D.D., Cristofolini, L., Witte, H., Schmid, O., Stokes, I., 2002. ISB recommendation on definitions of joint coordinate system of various joints for the reporting of human joint motion—Part I: Ankle, hip, and spine. Journal of Biomechanics 35, 543–548. doi: 10.1016/S0021-9290(01)00222-6 .Zajac, F.E., 1993. Muscle coordination of movement: A perspective. Journal of Biomechanics 26, 109–124. doi: 10.1016/0021-9290(93) 90083-Q .
+
+25 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.04.15.718668 doi: bioRxiv preprint

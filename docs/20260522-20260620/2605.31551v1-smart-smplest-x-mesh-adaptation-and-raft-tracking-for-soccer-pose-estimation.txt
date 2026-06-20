@@ -1,0 +1,156 @@
+Title: SMART: SMPLest-X Mesh Adaptation and RAFT Tracking for Soccer Pose Estimation
+
+URL Source: https://arxiv.org/pdf/2605.31551v1
+
+Published Time: Mon, 01 Jun 2026 01:43:24 GMT
+
+Number of Pages: 4
+
+Markdown Content:
+# SMART: SMPLest-X Mesh Adaptation and RAFT Tracking for Soccer Pose Estimation 
+
+## Parthsarthi Rawat GameChanger by Dick’s Sporting Goods 
+
+sarthi.rawat@gc.com 
+
+## Abstract 
+
+We present our approach to the FIFA Skeletal Tracking Chal-lenge 2026, which requires estimating 3D world-space poses of soccer players from broadcast video. Our method fine-tunes SMPLest-X (ViT-H, 687 M parameters) via a strati-fied clip split, multi-task depth supervision, and broadcast augmentation, paired with a RAFT dense optical flow cam-era tracker, foot-plane anchoring, and two-pass temporal smoothing. Against the FIFA baseline score of 1.053 on the validation set, SMART achieves 0.647 , a 38.6% improve-ment; on the held-out test set, SMART scores 0.593 (Global MPJPE: 0.324 m, Local MPJPE: 0.054 m). 
+
+## 1. Task Definition 
+
+Given a broadcast soccer video clip with T frames and N
+
+tracked players, the goal is to predict per-frame, per-player 3D joint positions in a shared world coordinate system. Each player is represented by a FIFA-15 skeleton : 15 joints com-prising Nose, right/left Shoulder, Elbow, Wrist, Hip, Knee, Ankle, and Big Toe (indices 0–14). The root joint is the mid-hip: rt = 12 (jt, 7 + jt, 8).Performance is measured by two metrics (in metres): 
+
+Global MPJPE measures mean per-joint error in absolute world coordinates, and Local MPJPE measures mean per-joint error after subtracting the root. The competition score is L = Global MPJPE + 5 × Local MPJPE , reflecting the 5× higher leverage of local pose quality. 
+
+## 2. Data 
+
+Competition data. The benchmark provides 20 sequences from FIFA World Cup 2022 broadcast video at 50 fps and 1920 ×1080 resolution (6 validation, 14 test). Per-frame player bounding boxes, camera intrinsics Kt, radial distor-tion coefficients kt, and an initial camera pose (R0, t 0) are all provided by the competition; Kt varies per frame to ac-count for continuous zoom changes in broadcast production. The baseline propagates subsequent per-frame poses (Rt, t t)
+
+via Lucas-Kanade sparse optical flow on 714 pre-annotated 3D pitch landmarks. 
+
+WorldPose fine-tuning data. We fine-tune on World-Pose [1], which pairs broadcast soccer clips with pseudo-ground-truth 3D body poses. We partition 89 clips at clip boundaries into a stratified split: 70 training and 19 vali-dation clips with zero frame overlap and matched camera-height and viewing-angle distributions. No competition frames are used during training. 
+
+## 3. Methodology 
+
+Our pipeline has four stages: (1) SMPLest-X recovers each player’s camera-space root-relative skeleton and absolute pelvis depth from their image crop; (2) RAFT-small propa-gates per-frame camera rotation Rt and translation tt from the provided (R0, t 0); (3) the skeleton and pelvis depth are combined with (Rt, t t) to place each player in the shared world coordinate system and anchor them to the pitch plane; and (4) world trajectories and root-relative joints are inde-pendently smoothed to remove detection jitter. 
+
+3.1. 3D Body Mesh Recovery 
+
+We use SMPLest-X [ 2], a regression-based expressive body mesh recovery model (ViT-H backbone, 687 M parame-ters) built on the SMPL-X body representation — a para-metric model that encodes human shape and pose as low-dimensional coefficients. Each player’s bounding box is first expanded by 1.2× to include contextual background, then resized to 512 × 384 pixels via affine transform. Given the player crop, SMPLest-X regresses SMPL-X parameters (shape β, pose θ, global orientation) and produces a full body mesh ( V =10 ,475 vertices). FIFA-15 joints are read off this mesh via a fixed per-joint vertex lookup: each of the 15 competition joints maps to a designated SMPL-X surface vertex, requiring no additional learned module. 
+
+Domain-adaptive fine-tuning. Pre-trained SMPLest-X suffers a domain gap on broadcast soccer: small player size, 
+
+> arXiv:2605.31551v1 [cs.CV] 29 May 2026
+
+wide viewing angles, and partial occlusions degrade accu-racy. We address this via a stratified clip-boundary split and a multi-task loss Ltrain = λ1L3D + λ2L2D + λ3Ldepth , where 
+
+L3D is weighted MPJPE (extremities at 3× weight), L2D is L2 on projected keypoints, and Ldepth is L1 on camera-space pelvis depth, the single most important factor for world-space grounding (see Table 2). Broadcast augmentation com-pletes the training recipe: random resized cropping (scale 
+
+∈ [0 .75 , 1.0] , 80% probability), horizontal flipping (50%, with symmetric joint permutation), and colour jitter ( ±0.4
+
+brightness/contrast/saturation, ±0.1 hue). 
+
+3.2. Camera Pose Estimation 
+
+With per-frame intrinsics Kt and distortion kt provided, we need only propagate camera rotation Rt ∈ SO (3) and trans-lation tt ∈ R3 from the initial (R0, t 0). We replace the competition baseline’s Lucas-Kanade sparse tracker with 
+
+RAFT-small [ 3 ], which provides substantially more reliable correspondences on broadcast grass textures, particularly during panning and zoom. Per frame, we compute dense flow from It−1 to It and sample it inside the convex hull of the 714 projected pitch landmarks at stride 4, yielding 
+
+∼50 × more correspondences than landmark tracking alone. Flow vectors contaminated by player motion are removed via MAD outlier rejection ( 3σ threshold) [ 4] before fitting an inter-frame homography via RANSAC and decompos-ing to (Rt, t t); updates with |∆R| > 60 ◦ are rejected to guard against tracking failures. When field line intersec-tions are detected via Hough transform, an EPnP (Efficient Perspective-n-Point) [ 5] solve further corrects absolute cam-era position on the first frame. 
+
+3.3. World-Space Skeleton Placement 
+
+With per-frame camera poses established, we lift each player’s camera-space skeleton into the shared world co-ordinate system in three steps. 
+
+(1) Rotation and initial placement. The root-relative skele-ton is rotated to world frame as ˆSt = Rt S(cam)  
+
+> t
+
+. The camera-space pelvis translation p(cam)  
+
+> t
+
+predicted by SMPLest-X is projected to world space as pt = Rt p(cam)  
+
+> t
+
++tt, establishing the player’s initial absolute position. 
+
+(2) Foot-plane anchoring. The lowest foot pixel in the bounding box is back-projected to a camera ray using Kt and intersected with the known pitch-plane equation, yielding ground contact point ft; all joints are then translated so the lower ankle aligns with ft:
+
+Jt,j = ˆSt,j − ˆSt, ankle + ft. (1) 
+
+(3) Reprojection refinement. A two-stage L-BFGS opti-misation (50 steps translating the skeleton centroid onto the bounding-box centre, then 50 steps aligning projected joints with 2D keypoints) refines the absolute placement. 
+
+3.4. Temporal Smoothing 
+
+Raw per-frame predictions exhibit jitter from detection noise and occasional misassociated crops under occlusion; we apply a two-pass smoothing strategy to produce clean trajec-tories. In the first pass, global root trajectories are cleaned: MAD outlier detection flags teleporting jumps, which are replaced by linear interpolation before a Gaussian filter re-moves residual high-frequency noise. In the second pass, root-relative joint offsets are smoothed independently with a narrower Gaussian to remove single-frame jitter while preserving rapid limb movements such as kicks; the world centroid is frozen during this step so the two passes do not interfere. 
+
+## 4. Implementation Details 
+
+Fine-tuning. Only the SMPLest-X decoder and prediction heads are trainable; the ViT-H backbone is frozen. Training: 15 epochs, batch size 16, Adam, LR 2×10 −6, AMP mixed precision, 1 × 24 GB A10G GPU. Loss weights: λ1=1 .0,
+
+λ2=0 .1, λ3=0 .5; per-joint weights 3.0 for wrists (5,6), an-kles (11,12), big toes (13,14), and 1.0 otherwise. 
+
+Camera tracking. RAFT-small (default pretrained weights); stride-4 dense flow inside the 714-landmark con-vex hull; MAD 3σ outlier rejection; RANSAC homography (2000 iter, 1 px threshold); |∆R|>60 ◦ rejection. 
+
+Smoothing. Global: MAD ( 5×) + linear interp + Gaus-sian ( σ=3 fr), clamp at 0.35 m/fr. Local joints: independent Gaussian ( σ=1 .5 fr). 
+
+## 5. Results 
+
+Main results. Table 1 compares our method against the FIFA competition baseline. Against the FIFA baseline on the validation set, our method reduces the competition score by 38.6% (1.053 →0.647). On the held-out test set, SMART achieves 0.593 , demonstrating strong generalisation beyond the validation distribution. 
+
+> Table 1. Results vs. the FIFA baseline.
+
+Method Global ↓ Local ↓ Score ↓
+
+FIFA Baseline (val) 0.602 0.090 1.053 Ours (val) 0.370 0.055 0.647 Ours (test) 0.324 0.054 0.593 
+
+5.1. Ablation: Fine-tuning Strategy 
+
+We ablate each fine-tuning design choice incrementally on the validation split. Results are shown in Table 2. Table 2. Incremental fine-tuning ablation on the validation split. From SMPLest-X pretrained onward, rows use the RAFT camera tracker and foot-ray placement. Configuration G (m) L (m) Score FIFA Baseline (SAM-3D) 0.602 0.090 1.053 SAM-3D + MLP 0.470 0.079 0.864 SMPLest-X pretrained 0.522 0.065 0.846             
+
+> +na¨ ıve fine-tune 0.425 0.079 0.820
+> +foot-plane anchoring 0.381 0.067 0.714
+> +improved training ( ours )0.370 0.055 0.647
+
+FIFA Baseline (SAM-3D). The competition baseline uses SAM-3D-Body [ 6] as the 3D lifter, scoring 1.053 on the validation split. 
+
+SAM-3D + MLP. We augmented the baseline with a learned Placement MLP predicting absolute hip position from cam-era geometry and foot-ray features (the ray cast from the camera through the player’s lowest visible foot pixel to the pitch plane), reducing the score to 0.864 (global: 0.470 m, lo-cal: 0.079 m). The MLP generalises poorly across the range of camera heights in the competition sequences, motivating a switch to SMPLest-X. 
+
+SMPLest-X pretrained. Off-the-shelf SMPLest-X ViT-H (no domain adaptation) achieves score 0.846 (global: 0.522 m, local: 0.065 m). The domain gap with broadcast soccer video limits out-of-the-box effectiveness, motivating domain-specific fine-tuning. 
+
++ Na ¨ıve fine-tuning. A chronological split with standard 3D MPJPE loss improves global MPJPE to 0.425 m (score: 0.820), but local MPJPE worsens from 0.065 to 0.079 m: adjacent clips share nearly identical camera angles, so the model overfits training-set viewpoints at the cost of held-out local accuracy. 
+
++ Foot-plane anchoring. Without explicit pitch-plane con-straints, skeletons float at arbitrary height, inflating both global and local error. Ray-casting the lowest foot pixel to the pitch plane reduces global MPJPE by 44 mm and lo-cal MPJPE by 12 mm (score: 0.820 →0.714), confirming that grounding improves both absolute placement and root-relative scale. 
+
++ Improved training (ours). Our full strategy adds (i) strati-fied clip-boundary split, (ii) depth supervision Ldepth , and (iii) broadcast augmentation, yielding local 0.055 m and global 0.370 m for a final score of 0.647. Depth supervision is the dominant factor: without it, local MPJPE stagnates at 0.067 m regardless of augmentation. 
+
+5.2. Ablation: Camera Tracker 
+
+We compared optical flow methods for camera pose propa-gation, measuring rotation error against ground-truth camera poses on our WorldPose validation split (19 clips; Table 3). ECC homography ( 0.107 ◦) performs worst: soccer frames             
+
+> Table 3. Camera tracker ablation. Rotation error ( ◦) vs. GT camera poses on our WorldPose validation split (19 clips). Tracker Rot. Err ( ◦)↓ms/frame ECC homography 0.107 —Lucas-Kanade (baseline) 0.043 —RAFT-small, no filter 0.043 55
+> RAFT-small + MAD (ours) 0.041 55
+> RAFT-large + MAD 0.041 110
+
+contain many moving players that occupy a large fraction of the image, and ECC has no mechanism to ignore them, so their motion corrupts the background homography esti-mate causing systematic drift. Lucas-Kanade sparse tracking (0.043 ◦) handles this via RANSAC inlier rejection of player-located feature points. RAFT-small without filtering ties Lucas-Kanade, as dense flow over player silhouettes intro-duces noise that cancels the correspondence benefit; adding MAD outlier filtering removes contaminated pixels and re-duces error to 0.041 ◦. RAFT-large provides no further gain at double the compute, so we adopt RAFT-small with MAD outlier filtering. 
+
+5.3. Ablation: Temporal Refiner 
+
+We trained a sliding-window temporal refinement network (27-frame window, hidden dim 128) on WorldPose to sup-press per-frame jitter. While it reduces local MPJPE by 22% on our WorldPose validation split, competition performance degrades (score 0.680 vs. 0.647) as the refiner over-smooths fast actions not well-represented in its training distribution. We therefore use only Gaussian smoothing in our final sub-mission. 
+
+## 6. Discussion 
+
+Global vs. local error. Global MPJPE contributes ∼55% of our total competition score, making camera tracking the primary bottleneck. Sequences with aggressive zoom cause apparent pitch-plane deformation that confounds the homog-raphy model, raising global error by up to 2× compared to stable wide-angle shots. In contrast, local MPJPE is largely camera-independent once the fine-tuned lifter is in place. 
+
+Limitations. (i) Diving poses are underrepresented in WorldPose; SMPLest-X struggles with extreme configura-tions, and foot-plane anchoring breaks when the player is airborne. (ii) SMPLest-X is per-frame only, making it frag-ile under occlusion; a temporally-aware lifter would han-dle occluded frames more robustly. (iii) The 687 M ViT-H backbone dominates inference cost; ViT-S could yield a 4×
+
+speedup with modest accuracy loss. References 
+
+[1] Tianjian Jiang, Johsan Billingham, Sebastian M ¨uksch, Juan Zarate, Nicolas Evans, Martin Oswald, Marc Pollefeys, Otmar Hilliges, Manuel Kaufmann, and Jie Song. WorldPose: A world cup dataset for global 3D human pose estimation. In 
+
+ECCV , 2024. 1 [2] Wanqi Yin, Zhongang Cai, Ruisi Wang, Ailing Zeng, Chen Wei, Qingping Sun, Haiyi Mei, Yanjun Wang, Hui En Pang, Mingyuan Zhang, Lei Zhang, Chen Change Loy, Atsushi Ya-mashita, Lei Yang, and Ziwei Liu. SMPLest-X: Ultimate scaling for expressive human pose and shape estimation. IEEE TPAMI , 48(2):1778–1794, 2026. 1 [3] Zachary Teed and Jia Deng. RAFT: Recurrent all-pairs field transforms for optical flow, 2020. 2 [4] Christophe Leys, Christophe Ley, Olivier Klein, Philippe Bernard, and Laurent Licata. Detecting outliers: Do not use standard deviation around the mean, use absolute deviation around the median. Journal of Experimental Social Psychol-ogy , 49(4):764–766, 2013. 2 [5] Vincent Lepetit, Francesc Moreno-Noguer, and Pascal Fua. EPnP: An accurate O(n) solution to the PnP problem. IJCV , 81 (2):155–166, 2009. 2 [6] Xitong Yang, Devansh Kukreja, Don Pinkus, Anushka Sagar, Taosha Fan, Jinhyung Park, Soyong Shin, Jinkun Cao, Jiawei Liu, Nicolas Ugrinovic, Matt Feiszli, Jitendra Malik, Piotr Dollar, and Kris Kitani. SAM 3D body: Robust full-body human mesh recovery. arXiv preprint arXiv:2602.15989 , 2026. 3

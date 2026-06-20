@@ -1,0 +1,624 @@
+Title: Uncertainty-Aware (Un)Supervised Few-Shot User Adaptation for On-Device Personalized Human Activity Recognition
+
+URL Source: https://arxiv.org/pdf/2606.04798v1
+
+Published Time: Thu, 04 Jun 2026 01:50:38 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+# Uncertainty-Aware (Un)Supervised Few-Shot User Adaptation for On-Device Personalized Human Activity Recognition 
+
+# Maximilian Burzer 
+
+maximilian.burzer@kit.edu Karlsruhe Institute of Technology Karlsruhe, Germany 
+
+# Till Riedel 
+
+till.riedel@kit.edu Karlsruhe Institute of Technology Karlsruhe, Germany 
+
+# Michael Beigl 
+
+michael.beigl@kit.edu Karlsruhe Institute of Technology Karlsruhe, Germany 
+
+# Tobias Röddiger 
+
+tobias.roeddiger@ipai-foundation.ai IPAI Foundation gGmbH Heilbronn, Germany 
+
+## Abstract 
+
+Sensor-based Human Activity Recognition (HAR) models often degrade on unseen users due to domain shifts caused by individual movement patterns and sensor placement. Practical wearable HAR systems therefore require personalization methods that are light-weight, applicable whether calibration data is labeled, unlabeled, or unavailable, and robust under limited calibration. We present a gradient-free framework that repurposes pretrained HAR classi-fiers as Prototypical Networks using using prior prototypes, which preserve zero-shot performance and regularize adaptation. For la-beled calibration, we introduce closed-form Bayesian prototype estimation and extend the same principle to unlabeled calibration. With only 3 seconds of calibration data per activity (one shot), supervised adaptation improves macro-F1 by +2.76 to +33.44 per-centage points across four datasets, while unsupervised adaptation improves by +0.56 to +32.13 points. Since adaptation requires only closed-form prototype updates, the framework enables efficient and robust on-device personalization of preexisting HAR classifiers. 
+
+## CCS Concepts 
+
+• Human-centered computing → Ubiquitous and mobile com-puting ; • Computing methodologies → Learning paradigms .
+
+## Keywords 
+
+Human Activity Recognition, HAR, Domain Adaptation, Prototypi-cal Networks, Bayesian Inference, Expectation Maximization 
+
+## 1 Introduction 
+
+Sensor-based Human Activity Recognition (HAR) models often de-grade when deployed on unseen users due to domain shifts caused by inter-subject variability, including physiological differences in movement patterns and variations in sensor placement [ 8, 11 ]. Practical HAR systems therefore require adaptation mechanisms that remain effective across different calibration scenarios: when user-specific data is labeled, unlabeled, or entirely unavailable. At the same time, personalization should be lightweight enough for resource-constrained wearable devices, where latency, memory, and battery consumption limit the use of gradients [19]. To address these requirements, we build on Prototypical Net-works [ 26 ], an efficient framework for few-shot classification. How-ever, conventional Prototypical Networks assume that a labeled support set is available during inference and therefore lack a natural zero-shot fallback when no calibration data is provided. Moreover, standard prototype estimation relies on empirical support means, which can become unstable in the ultra-low-shot regime due to sample noise and high variance [34]. These issues are particularly problematic for HAR, where calibration should be as short as possi-ble and unlabeled recordings are often more realistic. We therefore introduce a gradient-free framework that repur-poses pretrained HAR classifiers as Prototypical Networks with source-domain prior prototypes. These priors preserve the original zero-shot behavior when no user data is available and serve as regu-larizers when labeled or unlabeled support samples are introduced. For labeled calibration data, we update prototypes through closed-form Bayesian inference. For unlabeled calibration data, we extend the same uncertainty-aware principle to a MAP-EM (Maximum A Posteriori Expectation-Maximization) update over latent activity class assignments. In both cases, the prior enables robust adaptation in low-support regimes by balancing source-domain knowledge with target-user evidence, reducing the risk of early-stage degrada-tion while retaining negligible computational overhead. Our key contributions are summarized as follows: 
+
+(1) Repurposing via Prior Prototypes: We introduce prior proto-types, which allow existing pretrained neural HAR classifiers to be repurposed as Prototypical Networks while retaining their standard classifier behavior. This preserves zero-shot performance without additional computational overhead and provides a unified starting point for supervised and unsupervised few-shot adaptation. 
+
+(2) Uncertainty-aware Supervised Prototype Updating: We intro-duce closed-form Bayesian prototype estimation for labeled calibra-tion data, regularizing noisy support estimates through epistemic uncertainty. With one shot per activity (3 seconds), the method improves macro-F1 over the zero-shot prior on all datasets, with gains from +2.76 to +33 .44 percentage points (pp). With 16 shots (48 seconds), gains range from +6.8 to +33 .7 pp. 
+
+(3) Uncertainty-aware Unsupervised Prototype Updating: We ex-tend uncertainty-aware prototype estimation to unlabeled calibra-tion data using MAP-EM, requiring no labels and only a single EM iteration. With one shot per activity (3 seconds), MAP-EM improves macro-F1 over the zero-shot prior, with gains from +0.56 to +32 .13 
+
+pp, while avoiding degradation observed in unsupervised baselines. With 16 shots (48 seconds), gains range from +0.9 to +32 .5 pp. Our code is available at https://github.com/maxbrzr/hyper-har. 
+
+> arXiv:2606.04798v1 [cs.LG] 3 Jun 2026 Burzer et al.
+
+## 2 Related Work 
+
+In sensor-based HAR, deploying models on unseen users introduces significant domain shifts. These shifts primarily emerge from varia-tions in sensor placement, which induce covariate shifts, and phys-iological differences in how subjects perform movements, which induce class-conditional shifts. While domain adaptation has been extensively researched to address these overlapping challenges, practical deployment on wearable devices introduces strict con-straints that limit the applicability of many standard techniques. Our work targets on-device adaptation featuring a dedicated offline calibration phase. In this setting, the model adapts using a limited set of user-specific calibration data and is subsequently fixed to ensure stable, robust inference without the risk of drifting over time. Due to the strict memory, computational, and energy constraints of wearable devices, alongside data privacy concerns, this adaptation must be source-free : relying solely on pretrained model parameters without requiring access to the original training data. This requirement disqualifies conventional domain adaptation methods that rely on source data, such as Domain-Adversarial Neural Networks (DANN) [10], and Deep CORAL [29]. Furthermore, on-device adaptation necessitates gradient-free ap-proaches. Backpropagation is computationally expensive and pop-ular mobile machine learning frameworks like ExecuTorch [ 23 ]and TensorFlow Lite [ 30 ] are designed primarily for inference and lack native backpropagation support. This constraint elimi-nates parameter-efficient fine-tuning approaches like LoRA [ 12 ], optimization-based meta-learning like MAML [ 9] and prominent gradient-based test-time adaptation (TTA) methods such as SHOT [ 17 ] and Tent [ 32 ]. While recent gradient-free TTA methods like OFFTA [ 33 ] and NEO [ 21 ] bypass backpropagation, they are inher-ently designed for online, unsupervised adaptation over continuous data streams, rather than offline calibration targeted in our work. To enable source-free, offline, and gradient-free adaptation, meth-ods rooted in Prototypical Networks [ 26 ] offer a promising direc-tion. While originally supervised, unsupervised extensions such as PDA [ 5 ] have also been developed. Within HAR, prototype-based methods have predominantly been explored in Federated Learn-ing contexts [ 7 , 24 , 27 ] or applied to continual learning scenarios for adapting to novel activity classes [ 1, 13 , 14 ], which is beyond our scope. Recent works [ 16 , 18 ] have applied prototype-based adaptation to address domain shifts in HAR directly, however, they are neither source- nor gradient-free. Moreover, all the mentioned prototype-based methods fundamentally require a support set and thus cannot fallback to standard HAR classifiers when calibration data is unavailable. To the best of our knowledge, no existing domain adaptation approach fulfills the complete set of requirements for practical user adapation in HAR on wearable and edge devices: being source-free, gradient-free, computationally efficient, and capable of offline adaptation, while flexibly handling zero-shot, unsupervised, and supervised calibration scenarios. Building upon the foundational concepts of Prototypical Networks [ 26 ], our work bridges this gap. 
+
+## 3 Prototypical Networks 
+
+Prototypical Networks [ 26 ] are a metric-based meta-learning frame-work designed for few-shot learning. They map raw data into a Query 
+
+> Support
+> Prototype
+> Distance
+> Aggregation
+> Class A
+> Class B
+> Class C
+
+Figure 1: During inference, the query sample is compared to three prototypes computed as the means of their respective support examples in embedding space. 
+
+learned 𝑑 -dimensional continuous embedding space using an em-bedding network 𝑓 𝜃 . In this space, embeddings of samples belonging to the same class 𝑘 , cluster around a single prototype representa-tion 𝑐 𝑘 . Given a support set containing support examples 𝑆 𝑘 for every class 𝑘 , the prototypes are computed as the mean of their embeddings: 
+
+𝑐 𝑘 = 1
+
+|𝑆 𝑘 |∑︁ 𝑥 ∈𝑆 𝑘 
+
+𝑓 𝜃 (𝑥 ). (1) To classify an unseen query sample 𝑥 𝑞 , its embedding 𝑓 𝜃 (𝑥 𝑞 ) is compared to each prototype 𝑐 𝑘 , as illustrated in Fig. 1. For this pur-pose, the standard formulation uses the squared Euclidean distance: 
+
+𝑑 (𝑓 𝜃 (𝑥 𝑞 ), 𝑐 𝑘 ) = ∥𝑓 𝜃 (𝑥 𝑞 ) − 𝑐 𝑘 ∥2. (2) The probability 𝑝 (𝑦 = 𝑘 | 𝑥 ) of query sample 𝑥 belonging to class 
+
+𝑘 is then computed using a softmax over the negative distances to the prototypes. Consequently, the prototype with the smallest distance corresponds to the predicted class. The embedding network 𝑓 𝜃 is typically trained using episodic training [ 26 ], a common strategy in meta-learning. During each episode, support and query sets are sampled in pairs and passed through the model, mimicking the few-shot setting and encouraging the model to learn how to generalize from limited labeled examples rather than memorizing large datasets. 
+
+## 4 Methodology 
+
+In the following, we describe repurposing of Prototypical Networks with prior prototypes for when no calibration data is available (Sec. 4.1). We then show how these priors can be updated with labeled (Sec. 4.2) or unlabeled (Sec. 4.3) support examples. 
+
+## 4.1 Prior Prototypes 
+
+While Prototypical Networks [ 26 ] were originally designed for few-shot learning to accommodate entirely novel classes, our work leverages their architecture for a fundamentally different purpose: subject-specific domain adaptation. By restricting our scope to a fixed set of predefined activities, we eliminate the strict require-ment for a target-domain support set during inference, unlocking significantly greater flexibility for real-world deployments. Uncertainty-Aware (Un)Supervised Few-Shot User Adaptation for On-Device Personalized Human Activity Recognition 
+
+To enable classification when user-specific calibration data is completely unavailable, we propose defining a set of prior proto-types . Instead of relying on a support set 𝑆 𝑘 , we compute a global prototype for each class 𝑘 as the mean of all embedded training data points 𝐷 𝑘 , replacing the support examples in Eq. 1. These prior pro-totypes are stored on-device and act as a highly efficient zero-shot fallback. During inference, evaluating a query embedding against these stored prototypes incurs negligible computational overhead compared to the final linear classification layer in standard HAR models, as it closely mirrors the matrix multiplication. As demon-strated in our experiments, operating without a support set in this manner imposes essentially no performance penalty compared to the original HAR model, while naturally accommodating future adaptation if calibration data is introduced. Crucially, this formulation allows existing pretrained deep learn-ing models, such as TinierHAR [ 2], to be seamlessly repurposed as Prototypical Networks. By simply removing the final linear clas-sification layer, the pretrained backbone functions directly as the embedding network within the Prototypical Network framework. Although standard Prototypical Networks are typically optimized using specialized episodic meta-training, prior work [ 15 ] argues that standard training with cross-entropy loss is sufficient to yield a well-clustered embedding space. Our experiments specifically validate this finding for sensor-based HAR. This flexibility allows developers to select from a wide variety of performant, state-of-the-art HAR models and repurpose them without the need for complex retraining from scratch. Beyond acting as a zero-shot fallback, these prior prototypes encapsulate valuable source-domain information that standard Pro-totypical Networks typically discard during adaptation. When a provided support set contains only a few samples, empirical esti-mates exhibit high variance. This results in noisy prototypes that can severely degrade classification performance. Rather than dis-carding the source distribution, we propose utilizing these prior prototypes to regularize adaptation and improve robustness in low-data regimes. 
+
+## 4.2 Supervised Prototype Estimation 
+
+To incorporate information from the prior prototypes, we frame prototype estimation as a Bayesian inference [ 22 ] problem. Rather than relying solely on the support set, we treat the prior prototype as initial knowledge about the class representation, modeled by a prior distribution 𝑝 (𝑐 𝑘 ). The observation of the support examples 
+
+𝑆 𝑘 , given the prototype 𝑐 𝑘 , is captured by the likelihood 𝑝 (𝑆 𝑘 |𝑐 𝑘 ).By applying Bayes’ Theorem independently to each class 𝑘 , we obtain the posterior distribution of the prototype: 
+
+𝑝 (𝑐 𝑘 |𝑆 𝑘 ) = 𝑝 (𝑆 𝑘 |𝑐 𝑘 )𝑝 (𝑐 𝑘 )
+
+𝑝 (𝑆 𝑘 ) . (3) The marginal likelihood 𝑝 (𝑆 𝑘 ) acts as a normalization constant that ensures that the posterior forms a valid probability distribution. In practice, we model both the prior and the likelihood as Gaussians: 
+
+𝑝 (𝑐 𝑘 ) = N ( 𝜇 𝐷,𝑘 , 𝜎 2 
+
+> 𝐷,𝑘
+
+), (4) 
+
+𝑝 (𝑆 𝑘 |𝑐 𝑘 ) = N ( 𝜇 𝑆,𝑘 , 𝜎 2 
+
+> 𝑆,𝑘
+
+). (5) Here, 𝜇 𝐷,𝑘 and 𝜎 2 
+
+> 𝐷,𝑘
+
+denote the empirical mean and variance estimated from the embeddings of the training examples 𝐷 𝑘 , while 
+
+𝜇 𝑆,𝑘 and 𝜎 2 
+
+> 𝑆,𝑘
+
+are derived from the support examples 𝑆 𝑘 . To maintain computational efficiency, we apply a mean-field approximation, constraining a diagonal covariance. Consequently, all means and variances are represented as vectors. In the special case where only a single support example is available ( 𝑁 = |𝑆 𝑘 | = 1), the support variance 𝜎 2 
+
+> 𝑆,𝑘
+
+is undefined. In this scenario, we set 𝜎 2 
+
+> 𝑆,𝑘
+
+= 𝜎 2 
+
+> 𝐷,𝑘
+
+.Because both the prior and likelihood are Gaussian, their con-jugacy guarantees that the posterior distribution is also Gaussian [22 ]. This allows us to compute the posterior variances and means, which serve as our updated prototypes, using efficient to compute, closed-form expressions: 
+
+1
+
+𝜎 2
+
+> post ,𝑘
+
+= 1
+
+𝜎 2
+
+> 𝐷,𝑘
+
++ 𝑁 𝜎 2
+
+> 𝑆,𝑘
+
+, (6) 
+
+𝑐 𝑘 = 𝜇 post ,𝑘 = 𝜎 2
+
+> post ,𝑘
+
+𝜇 𝐷,𝑘 
+
+𝜎 2
+
+> 𝐷,𝑘
+
++ 𝑁 𝜇 𝑆,𝑘 
+
+𝜎 2
+
+> 𝑆,𝑘
+
+!
+
+. (7) This analytical update in Eq. 7 functions as an intuitive precision-weighted combination of the source (training) and target (support) statistics: when the support set is small or exhibits high variance, the prior prototypes dominate, regularizing the estimate and en-hancing robustness against statistical noise and outliers. While standard Prototypical Networks compute prototypes strictly as the empirical mean of the support set, which can be interpreted as a Maximum Likelihood Estimate (MLE) based solely on the likelihood 
+
+𝑝 (𝑆 𝑘 |𝑐 𝑘 ), our approach provides a Maximum A Posteriori (MAP) estimate based on the posterior 𝑝 (𝑐 𝑘 |𝑆 𝑘 ), which additionally incor-porates the prior 𝑝 (𝑐 𝑘 ). The complete step-by-step procedure for this adaptation is outlined in Algo. 1. This MAP-based Bayesian prototype updating strategy provides three key advantages over standard MLE-based prototype estima-tion (see Sec. 3). First, it naturally integrates prior source-domain knowledge, which is critical in zero- to few-shot HAR where calibra-tion sessions must be kept as short as possible. Second, it features principled uncertainty modeling by explicitly capturing the epis-temic uncertainty of the support set to dynamically balance between prior knowledge and new evidence. Finally, the approach maintains high computational efficiency. The analytical, closed-form posterior update requires negligible overhead, making it highly suitable for resource-constrained edge and wearable devices. 
+
+Algorithm 1 Supervised Prototype Updating  
+
+> 1:
+
+procedure SupProtoUpdate (𝜇 𝐷,𝑘 , 𝜎 2 
+
+> 𝐷,𝑘
+
+, 𝑆 𝑘 ) 
+
+> 2:
+
+Compute support mean 𝜇 𝑆,𝑘 and variance 𝜎 2 
+
+> 𝑆,𝑘
+> 3:
+
+Compute posterior variance 𝜎 2 
+
+> 𝑝𝑜𝑠𝑡,𝑘
+
+using Eq. 6  
+
+> 4:
+
+Compute posterior mean 𝜇 𝑝𝑜𝑠𝑡,𝑘 using Eq. 7  
+
+> 5:
+
+return 𝑐 𝑘 = 𝜇 𝑝𝑜𝑠𝑡,𝑘  
+
+> 6:
+
+end procedure 
+
+## 4.3 Unsupervised Prototype Estimation 
+
+Our MAP-based supervised prototype updating strategy enables robust and uncertainty-aware few-shot adaptation when a labeled support set is available. However, while recording calibration data Burzer et al. 
+
+is feasible in many HAR settings, labeling this data is often im-practical (see Sec. 2). We therefore extend MAP-based prototype updating to unlabeled support sets by framing the unknown labels 
+
+𝑍 = {𝑧 𝑖 } of support embeddings 𝑆 = {𝑠 𝑖 } as latent variables. This gives a Gaussian Mixture Model (GMM) in the embedding space, where each activity class corresponds to one Gaussian component, and 𝑧 𝑖 ∈ { 1, . . . , 𝐾 } indicates which component generated 𝑠 𝑖 . We use uniform mixture weights 𝜋 𝑘 = 1/𝐾 and an efficient isotropic covariance Σ𝑘 = 𝜎 2
+
+> EM
+
+𝐼 , with 𝜎 2 
+
+> EM
+
+fixed for robustness. Since these quantities are fixed, the only parameters optimized during adapta-tion are the component means 𝜇 𝑘 , which correspond to updated prototypes 𝐶 = {𝑐 𝑘 }. To fit the prototypes to the unlabeled data, we define the MAP objective: 
+
+𝐶 ∗ = arg max  
+
+> 𝐶
+
+𝑝 (𝐶 | 𝑆 )
+
+= arg max 
+
+> 𝐶
+
+
+
+log 𝑝 (𝑆 | 𝐶 )
+
+| {z }
+
+> 𝑁 𝑆
+
+∑︁ 
+
+> 𝑖 =1
+
+log 
+
+> 𝐾
+
+∑︁ 
+
+> 𝑘 =1
+
+𝜋 𝑘 N ( 𝑠 𝑖 | 𝑐 𝑘 , 𝜎 2
+
+> EM
+
+𝐼 )+ log 𝑝 (𝐶 )
+
+| {z }
+
+> 𝐾
+
+∑︁ 
+
+> 𝑘 =1
+
+log N ( 𝑐 𝑘 | 𝜇 𝐷,𝑘 , 𝜎 2 
+
+> 𝐷,𝑘
+
+)
+
+
+
+. (8) This objective incorporates source-domain information using the same Gaussian prototype priors 𝑝 (𝑐 𝑘 ) from supervised prototype updating (see Eq. 4). Direct optimization is difficult because the class assignments 𝑧 𝑖 are unobserved, so each support likelihood contains a sum over all possible assignments inside the logarithm. This couples the prototype updates and prevents a simple closed-form solution. We therefore utilize Expectation-Maximization (EM) [ 3], an it-erative optimization algorithm used to estimate model parameters in the presence of latent variables given observed data. The E-step computes the support posterior probabilities, or soft responsibilities, for each unlabeled support embedding: 
+
+𝑟 (𝑡 ) 
+
+> 𝑖𝑘
+
+= 𝑝 (𝑧 𝑖 = 𝑘 | 𝑠 𝑖 , 𝐶 (𝑡 ) ) = 𝜋 𝑘 N ( 𝑠 𝑖 | 𝑐 (𝑡 ) 
+
+> 𝑘
+
+, 𝜎 2
+
+> EM
+
+𝐼 )
+
+Í𝐾 𝑗 =1 𝜋 𝑗 N ( 𝑠 𝑖 | 𝑐 (𝑡 ) 
+
+> 𝑗
+
+, 𝜎 2
+
+> EM
+
+𝐼 ) . (9) Based on these responsibilities, the M-step updates the proto-types using the unlabeled support evidence together with the pro-totype prior. First, we compute the soft count and responsibility-weighted support mean for each class: 
+
+𝑁 (𝑡 ) 
+
+> 𝑘
+
+=
+
+> 𝑁 𝑆
+
+∑︁ 
+
+> 𝑖 =1
+
+𝑟 (𝑡 ) 
+
+> 𝑖𝑘
+
+, (10) 
+
+𝜇 (𝑡 ) 
+
+> 𝑆,𝑘
+
+= 1
+
+𝑁 (𝑡 )
+
+> 𝑘 𝑁 𝑆
+
+∑︁ 
+
+> 𝑖 =1
+
+𝑟 (𝑡 ) 
+
+> 𝑖𝑘
+
+𝑠 𝑖 . (11) The prototype update is then the MAP estimate of the component mean 𝑐 𝑘 under the prototype prior 𝑝 (𝑐 𝑘 ) and the responsibility-weighted support evidence. It follows the same closed-form as the supervised Bayesian update (see Eq. 6, Eq. 7), but replaces the labeled support statistics with their soft EM counterparts: 
+
+1
+
+𝜎 2(𝑡 +1)
+
+> post ,𝑘
+
+= 1
+
+𝜎 2
+
+> 𝐷,𝑘
+
++ 𝑁 (𝑡 )
+
+> 𝑘
+
+𝜎 2
+
+> EM
+
+, (12) 
+
+𝑐 (𝑡 +1) 
+
+> 𝑘
+
+= 𝜇 (𝑡 +1) 
+
+> post ,𝑘
+
+= 𝜎 2(𝑡 +1)
+
+> post ,𝑘
+
+©«
+
+𝜇 𝐷,𝑘 
+
+𝜎 2
+
+> 𝐷,𝑘
+
++ 𝑁 (𝑡 ) 
+
+> 𝑘
+
+𝜇 (𝑡 )
+
+> 𝑆,𝑘
+
+𝜎 2
+
+> EM
+
+ª®¬
+
+. (13) The soft count 𝑁 (𝑡 ) 
+
+> 𝑘
+
+acts as the effective number of support examples assigned to class 𝑘 . Confident responsibilities increase the influence of the support evidence and move the prototype toward the target-subject support distribution, while uncertain assignments or small soft counts leave the prior prototype mean 𝜇 𝐷,𝑘 with greater influence. After a fixed number of EM iterations, the final MAP prototypes estimates 𝐶 = {𝑐 (𝑇 ) 
+
+> 𝑘
+
+} are used as the adapted prototypes in the Prototypical Network classifier. Before applying MAP-EM and final query classification, we cen-ter the embedding space to reduce subject-specific distribution shifts. For the train set, this can be viewed as centering each pro-totype with the global train embedding mean ¯𝑑 , and support and query embeddings with the unlabeled support mean ¯𝑠 :
+
+˜𝜇 𝐷,𝑘 = 𝜇 𝐷,𝑘 − ¯𝑑, ˜𝑠 𝑖 = 𝑠 𝑖 − ¯𝑠, ˜𝑞 𝑖 = 𝑞 𝑖 − ¯𝑠. (14) This removes global subject-specific offsets that affect all activ-ities in a similar direction, allowing MAP-EM to focus on class-specific changes in the target subject rather than compensating for a global shift that can be easily corrected by centering. Overall, the complete step-by-step procedure is outlined in Algo. 2. 
+
+Algorithm 2 Unsupervised Prototype Updating  
+
+> 1:
+
+procedure UnsupProtoUpdate (𝜇 𝐷,𝑘 , 𝜎 2 
+
+> 𝐷,𝑘
+
+, 𝑆, ¯𝑑 ) 
+
+> 2:
+
+Center 𝜇 𝐷,𝑘 and 𝑆 using Eq. 14  
+
+> 3:
+
+Initialize prototypes 𝑐 (0) 
+
+> 𝑘
+
+= ˜𝜇 𝐷,𝑘  
+
+> 4:
+
+for 𝑡 = 0 . . . 𝑇 − 1 do  
+
+> 5:
+
+Compute responsibilities 𝑟 (𝑡 ) 
+
+> 𝑖𝑘
+
+using Eq. 9  
+
+> 6:
+
+Compute soft count 𝑁 (𝑡 ) 
+
+> 𝑘
+
+using Eq. 10  
+
+> 7:
+
+Compute soft support mean 𝜇 (𝑡 ) 
+
+> 𝑆,𝑘
+
+using Eq. 11  
+
+> 8:
+
+Compute posterior variance 𝜎 2(𝑡 +1) 
+
+> post ,𝑘
+
+using Eq. 12  
+
+> 9:
+
+Compute posterior mean 𝜇 (𝑡 +1) 
+
+> post ,𝑘
+
+= 𝑐 (𝑡 +1) 
+
+> 𝑘
+
+using Eq. 13  
+
+> 10:
+
+end for  
+
+> 11:
+
+return 𝐶 = {𝑐 (𝑇 ) 
+
+> 𝑘
+
+} 
+
+> 12:
+
+end procedure 
+
+## 5 Evaluation 
+
+We evaluate on four HAR benchmark datasets (see Table 1) using the WHAR Datasets library [ 6 ] with 3-second windows and leave-one-subject-out (LOSO) cross-validation. For each fold, the held-out subject is used exclusively for testing, while the remaining subjects are split into 80% training and 20% validation data. We use the efficient TinierHAR [ 2] as base classifier and train each model with cross-entropy loss for up to 100 epochs, batch size 64, learning rate 10 −4, 50% window overlap, and early stopping on validation macro-F1 with patience 10 for model selection. We report mean macro-F1 and standard deviation across held-out subjects. For few-shot evaluation, we disable window overlap and average results over 100 episodes with disjoint support and query sets for Uncertainty-Aware (Un)Supervised Few-Shot User Adaptation for On-Device Personalized Human Activity Recognition 
+
+Figure 2: Mean LOSO macro-F1 across four HAR datasets for the original classifier, its repurposing with prior prototypes, and our proposed supervised (MAP-EM) and unsupevised adaptation methods (Bayesian) on 16-shots per class. Table 1: HAR Datasets Information                     
+
+> Dataset Subjects Activities Channels Sensors HHAR [28] 966Acc, Gyr WEAR [4] 24 18 12 Acc HARTH [20] 22 12 6Acc HAPT [25] 30 66Acc, Gyr
+
+1–16 shots per class. The support and query sets are always strictly disjoint, while all remaining samples are used as queries. For MAP-EM, we set 𝜎 2 
+
+> 𝐸𝑀
+
+= 0.5 and use one iteration. As shown in Fig. 2, prior prototypes successfully repurpose the pretrained classifier as a Prototypical Network while preserving zero-shot performance. With 16 labeled shots per activity, corre-sponding to 48 seconds of calibration data, supervised Bayesian updating yields substantial macro-F1 gains across all datasets, rang-ing from +6.8 percentage points (pp) on HHAR to +33 .7 pp on HARTH. Unsupervised MAP-EM achieves comparable gains, rang-ing from +0.9 pp on HHAR to +32 .5 pp on HARTH. Fig. 3 illustrates this behavior via T-SNE [ 31 ]: the unlabeled support embeddings are initially shifted away from the prior prototypes due to domain shift, while a single MAP-EM iteration moves the prototypes toward the target-subject clusters and repairs the decision boundaries. Both prototype updating methods also visibly reduce LOSO variance compared to the zero-shot baseline. MAP-EM Prototype Trajectories      
+
+> (HARTH, 16-Shot, 1 Iter)
+> Unlabeled Support Prior Proto Updated Proto
+> Walking Running Lying
+> Cycling Sit Cycling Stand
+
+Figure 3: T-SNE [ 31 ] visualization of one MAP-EM update on HARTH with 16 unlabeled support examples per class 
+
+Fig. 4 illustrates how macro-F1 performance scales with the number of support examples per activity class. We compare against several baselines that are all based on the pretrained classifier back-bones. For the supervised setting, we compare against standard prototype estimation [ 26 ] and a Logistic Regression probe fitted to the calibration data. The latter is gradient-based and therefore unsuitable for on-device adaptation, but it serves as an approximate performance ceiling. For the unsupervised setting, we compare against PDA [ 5], which extends Prototypical Networks to unla-beled data using pseudo-labels, and OFTTA [ 33 ], a HAR-specific TTA method designed for online user adaptation that we adapted to the offline calibration setting by freezing updates after calibration. Looking closely at the curves in Fig. 4, adaptation performance largely converges around 16 support examples per class across all methods. At these higher support sizes, our proposed approaches match the peak performance of the established baselines. The Lo-gistic Regression probe establishes the overall performance ceiling on HHAR, WEAR, and HAPT by leveraging gradients. However, stark differences emerge in the extreme low-shot regime of just one shot per class, corresponding to only 3 seconds of cal-ibration data. Table 2 reports the corresponding macro-F1 gains over the prior-prototype zero-shot baseline. Both proposed meth-ods improve from the first support sample on all datasets: Bayesian prototype estimation gains between +2.76 pp on HHAR and +33 .44 
+
+pp on HARTH, while MAP-EM remains consistently positive with gains from +0.56 pp to +32 .13 pp. In contrast, the supervised base-lines are less reliable, with standard prototype estimation and the logistic probe falling below the zero-shot baseline on HHAR by 
+
+−2.65 pp and −3.27 pp, respectively. This vulnerability is even more pronounced in the unsupervised setting: OFTTA and PDA collapse below the baseline on both HHAR and WEAR, with PDA drop-ping by −12 .81 pp on HHAR and −6.48 pp on WEAR. Even where these unsupervised baselines still improve, MAP-EM achieves the strongest one-shot unsupervised performance, highlighting its abil-ity to avoid early-stage degradation in the ultra-low-shot regime. 
+
+## 6 Discussion 
+
+The one-shot results highlight the instability of purely empirical adaptation when calibration data is extremely limited. Standard pro-totype estimation, logistic probing, OFTTA, and PDA each fall below the prior-prototype zero-shot baseline on at least one dataset, indi-cating sensitivity to noisy support estimates or unreliable pseudo-label assignments. In contrast, Bayesian prototype updating and Burzer et al. 0.80                                   
+
+> 0.85
+> 0.90
+> 0.95
+> HHAR
+> 0.80
+> 0.85
+> 0.90
+> 0.95
+> WEAR
+> 0.68
+> 0.72
+> 0.76
+> 0.80
+> 0.84
+> HHAR
+> 0.76
+> 0.80
+> 0.84
+> 0.88
+> WEAR
+> 0123456816
+> 0.64
+> 0.72
+> 0.80
+> 0.88
+> 0.96
+> HARTH
+> 0123456816
+> 0.72
+> 0.80
+> 0.88
+> 0.96
+> HAPT
+> 0123456816
+> 0.64
+> 0.72
+> 0.80
+> 0.88
+> HARTH
+> 0123456816
+> 0.72
+> 0.78
+> 0.84
+> 0.90
+> 0.96
+> HAPT
+> Supervised Adaptation Unsupervised Adaptation
+> Mean LOSO Macro-F1
+> N Shots Per Activity Class N Shots Per Activity Class
+> Prior Proto
+> (ours)
+> Bayesian Proto
+> (ours)
+> Standard Proto
+> (baseline)
+> Logistic Probe
+> (baseline)
+> Prior Proto
+> (ours)
+> MAP-EM Proto
+> (ours)
+> OFTTA
+> (baseline)
+> PDA
+> (baseline)
+
+Figure 4: Macro-F1 across support set sizes for supervised and unsupervised adaptation baselines. Table 2: Macro-F1 gains over the prior-prototype zero-shot baseline at one shot (3 seconds of calibration) per activity. 
+
+Supervised Unsupervised Dataset Bayes Std. Proto Log. Probe MAP-EM OFTTA PDA HAPT +23.42 +22.63 +22.74 +22.67 +21.55 +20.49 HARTH +33.44 +30.73 +30.88 +32.13 +28.91 +26.84 HHAR +2.76 -2.65 -3.27 +0.56 -3.57 -12.81 WEAR +8.12 +5.37 +5.26 +3.29 -0.76 -6.48 
+
+MAP-EM consistently improve from a single support example per class by combining target-user evidence with source-domain proto-type priors. This suggests that uncertainty-aware prototype estima-tion is particularly beneficial in the ultra-low-shot regime, where it enables adaptation from only 3 seconds of calibration data while preserving the robustness of the zero-shot prior. As the support set increases toward 16 shots per class, prior reg-ularization becomes less influential because target-domain support statistics are more reliable, allowing empirical baselines to converge toward the proposed methods. This reflects the intended behavior of the prior: it stabilizes adaptation under uncertain support evi-dence, but progressively yields to target-user data as calibration increases. Although the logistic regression probe performs strongly with sufficient labeled data, its reliance on labels and gradient-based optimization limits its suitability for lightweight on-device person-alization. Our framework therefore offers a practical alternative across zero-shot, supervised, and unsupervised few-shot calibration scenarios while reducing the risk of low-data degradation. The observed robustness is achieved with minimal computa-tional overhead. Once embeddings have been computed, both pro-posed methods update only the class prototypes using closed-form operations. The supervised Bayesian update is fully analytical, while MAP-EM applies the same closed-form MAP estimate inside EM and requires only a single iteration in our experiments. Thus, the adaptation cost remains negligible compared to the embedding network forward pass, making the approach suitable for resource-constrained wearable devices. Two limitations remain. First, MAP-EM currently assumes prior knowledge of which activity classes are present in the unlabeled calibration set in order to select the GMM components to adapt. Future work should infer active classes directly from the calibration data, enabling truly zero-intervention adaptation. Second, prior prototypes are currently computed through a one-time offline pass over the original training data. Deriving equivalent priors directly from pretrained classifier weights would remove this dependency and make repurposing strictly source-free. 
+
+## 7 Conclusion 
+
+We presented a lightweight, gradient-free framework for user adap-tation in HAR on resource-constrained wearable devices. By repur-posing pretrained classifiers as Prototypical Networks and updat-ing their prototypes with uncertainty-aware Bayesian and MAP-EM estimates, the framework supports zero-shot, supervised few-shot, and unsupervised few-shot adaptation within a single model. Across four HAR datasets, prior prototypes preserve zero-shot performance, while both proposed methods already improve re-liably from one shot per activity, corresponding to 3 seconds of calibration data, avoiding the early-stage degradation observed in empirical supervised and unsupervised baselines. With 16 shots per activity, corresponding to 48 seconds of calibration data, supervised Bayesian updating achieves macro-F1 gains of up to +33 .7 pp, while unsupervised MAP-EM reaches up to +32 .5 pp. Since adaptation requires only closed-form prototype updates, with MAP-EM us-ing a single EM iteration, the method is well suited for practical on-device personalization of preexisting HAR classifiers. 
+
+## Acknowledgments 
+
+This work was supported by the IPAI Foundation gGmbH under the Science Residency Program, and the HammerHAI project, an EU co-funded AI Factory initiative operated by High-Performance Computing Center Stuttgart and funded by the European High Performance Computing Joint Undertaking (Grant No. 101234027). Uncertainty-Aware (Un)Supervised Few-Shot User Adaptation for On-Device Personalized Human Activity Recognition 
+
+## References 
+
+[1] Rebecca Adaimi and Edison Thomaz. 2022. Lifelong Adaptive Machine Learning for Sensor-Based Human Activity Recognition Using Prototypical Networks. 
+
+Sensors 22, 18 (Sept. 2022), 6881. doi:10.3390/s22186881 [2] Sizhen Bian, Mengxi Liu, Vitor Fortes Rey, Daniel Geißler, and Paul Lukowicz. 2025. TinierHAR: Towards Ultra-Lightweight Deep Learning Models for Efficient Human Activity Recognition on Edge Devices. In Proceedings of the 2025 ACM International Symposium on Wearable Computers (New York, NY, USA, 2025-10-07) (ISWC ’25) . Association for Computing Machinery, 163–169. doi:10.1145/ 3715071.3750410 [3] Christopher M Bishop and Nasser M Nasrabadi. 2006. Pattern recognition and machine learning . Vol. 4. Springer. [4] Marius Bock, Hilde Kuehne, Kristof Van Laerhoven, and Michael Moeller. 2024. WEAR: An Outdoor Sports Dataset for Wearable and Egocentric Activity Recog-nition. Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. 8, 4 (Nov. 2024), 175:1–175:21. doi:10.1145/3699776 [5] Ondrej Bohdal, Da Li, and Timothy Hospedales. 2023. Feed-Forward Source-Free Domain Adaptation via Class Prototypes. arXiv:2307.10787 [cs.CV] doi:10.48550/ arXiv.2307.10787 [6] Maximilian Burzer, Tobias King, Till Riedel, Michael Beigl, and Tobias Röddiger. 2025. WHAR Datasets: An Open Source Library for Wearable Human Activity Recognition. In Companion of the 2025 ACM International Joint Conference on Pervasive and Ubiquitous Computing . 1315–1322. [7] Dongzhou Cheng, Lei Zhang, Can Bu, Xing Wang, Hao Wu, and Aiguo Song. 2023. ProtoHAR: Prototype Guided Personalized Federated Learning for Human Activity Recognition. IEEE Journal of Biomedical and Health Informatics 27, 8 (Aug. 2023), 3900–3911. doi:10.1109/JBHI.2023.3275438 [8] Sourish Gunesh Dhekane and Thomas Ploetz. 2025. Transfer learning in sensor-based human activity recognition: A survey. Comput. Surveys 57, 8 (2025), 1–39. [9] Chelsea Finn, Pieter Abbeel, and Sergey Levine. 2017. Model-agnostic meta-learning for fast adaptation of deep networks. In International conference on machine learning . PMLR, 1126–1135. [10] Yaroslav Ganin, Evgeniya Ustinova, Hana Ajakan, Pascal Germain, Hugo Larochelle, François Laviolette, Mario March, and Victor Lempitsky. 2016. Domain-adversarial training of neural networks. Journal of machine learning research 17, 59 (2016), 1–35. [11] Md Amran Hossen and Pg Emeroylariffion Abas. 2025. Machine learning for human activity recognition: State-of-the-art techniques and emerging trends. 
+
+Journal of Imaging 11, 3 (2025), 91. [12] Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Liang Wang, Weizhu Chen, et al . 2022. Lora: Low-rank adaptation of large language models. Iclr 1, 2 (2022), 3. [13] Siyu Hu, Jiqiang Liu, Chenxin Zhang, Xiaoqiang Zhu, and Lingkun Li. 2024. Proto-CSNet: A Prototype Network Model Integrating CNN and Self-Attention for Enhanced Human Activity Recognition. In 2024 20th International Conference on Mobility, Sensing and Networking (MSN) . 48–56. doi:10.1109/MSN63567.2024. 00018 [14] Lei Jiang, Yongzhao Zhan, Zhen Jiang, and Na Tang. 2024. A Dual-Prototype Network Combining Query-Specific and Class-Specific Attentive Learning for Few-Shot Action Recognition. Neurocomputing 598 (Sept. 2024), 127819. doi:10. 1016/j.neucom.2024.127819 [15] Steinar Laenen and Luca Bertinetto. 2021. On episodes, prototypical networks, and few-shot learning. Advances in Neural Information Processing Systems 34 (2021), 24581–24592. [16] YiSong Li, LiWei Zou, MingXing Nie, Tao Zhu, YuanLong Wu, Yang Xiao, and KaiWen Luo. 2026. Bridging Domain and Instance Gaps: A Prototype Contrastive Framework for Robust Human Activity Recognition. Neurocomputing 673 (April 2026), 132868. doi:10.1016/j.neucom.2026.132868 [17] Jian Liang, Dapeng Hu, and Jiashi Feng. 2020. Do we really need to access the source data? source hypothesis transfer for unsupervised domain adaptation. In 
+
+International conference on machine learning . PMLR, 6028–6039. [18] Gyuyeon Lim and Myung-Kyu Yi. 2026. Prototype-Guided Physics-Modulated Perceiver for Human Activity Recognition. IEEE Internet of Things Journal 13, 8 (April 2026), 16117–16130. doi:10.1109/JIOT.2026.3658863 [19] Ji Lin, Ligeng Zhu, Wei-Ming Chen, Wei-Chen Wang, and Song Han. 2023. Tiny machine learning: Progress and futures [feature]. IEEE Circuits and Systems Magazine 23, 3 (2023), 8–34. [20] Aleksej Logacjov, Kerstin Bach, Atle Kongsvold, Hilde Bremseth Bårdstu, and Paul Jarle Mork. 2021. HARTH: A Human Activity Recognition Dataset for Machine Learning. Sensors 21, 23 (Nov. 2021), 7853. doi:10.3390/s21237853 [21] Alexander Murphy, Michal Danilowski, Soumyajit Chatterjee, and Abhirup Ghosh. 2026. NEO: No-Optimization Test-Time Adaptation through Latent Re-Centering. arXiv:2510.05635 [cs.LG] doi:10.48550/arXiv.2510.05635 [22] Kevin P Murphy. 2007. Conjugate Bayesian analysis of the Gaussian distribution. 
+
+def 1, 2 𝜎 2 (2007), 16. [23] PyTorch Team. 2026. ExecuTorch: On-Device AI Across Mobile, Embedded, and Edge for PyTorch. https://github.com/pytorch/executorch. GitHub repository, Accessed: 2026-05-20. [24] Harun Ur Rashid and Seong Ho Jeong. 2026. Federated Few-Shot Prototypical Learning for Personalized WiFi-Based Human Activity Recognition. IEEE Access 
+
+14 (2026), 53654–53666. doi:10.1109/ACCESS.2026.3678918 [25] Jorge-L. Reyes-Ortiz, Luca Oneto, Albert Samà, Xavier Parra, and Davide An-guita. 2016. Transition-Aware Human Activity Recognition Using Smartphones. 
+
+Neurocomputing 171 (Jan. 2016), 754–767. doi:10.1016/j.neucom.2015.07.085 [26] Jake Snell, Kevin Swersky, and Richard Zemel. 2017. Prototypical networks for few-shot learning. Advances in neural information processing systems 30 (2017). [27] Mengyuan Song, Siwei Feng, and Tao Deng. 2026. Prototype-Guided Pseudo-Labeling for Semi-Supervised Federated Human Activity Recognition. Pattern Recognition 179 (Nov. 2026), 113760. doi:10.1016/j.patcog.2026.113760 [28] Allan Stisen, Henrik Blunck, Sourav Bhattacharya, Thor Siiger Prentow, Mikkel Baun Kjærgaard, Anind Dey, Tobias Sonne, and Mads Møller Jensen. 2015. Smart Devices are Different: Assessing and MitigatingMobile Sensing Heterogeneities for Activity Recognition. In Proceedings of the 13th ACM Confer-ence on Embedded Networked Sensor Systems . ACM, Seoul South Korea, 127–140. doi:10.1145/2809695.2809718 [29] Baochen Sun and Kate Saenko. 2016. Deep coral: Correlation alignment for deep domain adaptation. In European conference on computer vision . Springer, 443–450. [30] TensorFlow Team. 2026. TensorFlow Lite. https://www.tensorflow.org/lite. Accessed: 2026-05-20. [31] Laurens Van der Maaten and Geoffrey Hinton. 2008. Visualizing data using t-SNE. Journal of machine learning research 9, 11 (2008). [32] Dequan Wang, Evan Shelhamer, Shaoteng Liu, Bruno Olshausen, and Trevor Darrell. 2020. Tent: Fully test-time adaptation by entropy minimization. arXiv preprint arXiv:2006.10726 (2020). [33] Shuoyuan Wang, Jindong Wang, HuaJun Xi, Bob Zhang, Lei Zhang, and Hongxin Wei. 2024. Optimization-Free Test-Time Adaptation for Cross-Person Activity Recognition. arXiv:2310.18562 [cs.CV] doi:10.48550/arXiv.2310.18562 [34] Minglei Yuan, Wenhai Wang, Tao Wang, Chunhao Cai, Qian Xu, and Tong Lu. 2021. Learning class-level prototypes for few-shot learning. arXiv preprint arXiv:2108.11072 (2021).

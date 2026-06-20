@@ -1,0 +1,1710 @@
+Title: From Pixels to Newtons: Predicting In Vivo Joint Contact Forces from Monocular Video
+
+URL Source: https://arxiv.org/pdf/2606.06631v1
+
+Published Time: Mon, 08 Jun 2026 00:08:33 GMT
+
+Number of Pages: 36
+
+Markdown Content:
+# From Pixels to Newtons: Predicting In Vivo Joint Contact Forces from Monocular Video 
+
+Jessy Lauer 
+
+jlauer@rowland.harvard.edu 
+
+Abstract 
+
+Joint contact forces govern implant longevity, cartilage health, and rehabilitation outcomes—shaping who develops osteoarthritis, who recovers well from joint replacement, and who benefits from biomechanical interventions. Yet they remain measurable only invasively, in a few dozen patients worldwide with instrumented implants. I present a physics-free pipeline to predict instantaneous 3D hip and knee contact forces from an uncalibrated monocular video—no markers, force plates, electromyography, subject-specific imaging, or musculoskeletal model. Parametric body meshes are recovered per frame, encoded as kinematic features, and de-coded into forces by a transformer whose pose stream is adaptively modulated at every layer by body shape, joint, side, activity text, and self-supervised video tokens ( V-JEPA 2 ), unifying hip and knee in a single model. Under leave-one-subject-out cross-validation across 26 patients and 25 activity categories from the 
+
+in vivo OrthoLoad database, the pipeline matches the accuracy of subject-specific musculoskeletal simulations ( 0.32 ± 0.08 BW RMSE for hip; 0.23 ± 0.03 BW for knee) and resolves peak force changes smaller than those reported for gait retraining and osteoarthritis progression. Applied zero-shot to an independent instrumented cohort, it rivals or outperforms prior published methods, evidence that the learned mapping transfers beyond its training distribution. Even without curated activity labels, video features alone preserve accuracy and enable end-to-end inference on raw footage. Driven by the predictor, a generative motion prior produces biomechanically plausible variants with reduced peak loading, indepen-dently rediscovering strategies identified in the predictive simulation literature. This pipeline establishes uncalibrated monocular video as a viable modality for estimating joint loading, opening a path toward retrospective analysis of archived clinical recordings, primary-care screening, and at-home rehabilitation tracking. 
+
+1 Introduction 
+
+Joint contact forces are the dominant mechanical stimulus to which bone, cartilage, and the surround-ing soft tissues continuously adapt [ 1]. The loading regime of everyday movement (e.g., walking, climbing stairs, rising from a chair) thus governs both healthy tissue maintenance and the progression of joint pathology. The assessment of joint forces is consequently central to orthopedic medicine, from the design and sizing of joint replacements [ 2] to the personalized management of osteoarthri-tis [ 3] and rehabilitation from injury, surgery, or disuse (e.g., [ 4, 5]). Despite this recognized clinical importance, joint contact forces cannot be measured noninvasively. The only direct measurements come from instrumented implants: prostheses fitted with strain gauges and telemetry that transmit force data in real time [ 6– 9]. Such implants exist in only a few dozen patients worldwide, exclusively post-arthroplasty, leaving the loading regime of the healthy or pre-surgical joint inaccessible to direct measurement (e.g., knee: [ 10 – 12 ]; hip: [ 13 – 15 ]; shoulder: [ 16 ]). As a result, the vast majority of clinical and research decisions about joint loading rely on indirect estimates rather than measurements. 
+
+Preprint. 
+
+> arXiv:2606.06631v1 [cs.CV] 4 Jun 2026
+
+Noninvasive estimation of joint loads remains an open challenge in biomechanics, unresolved despite sustained methodological effort [17]. The dominant indirect approach is in silico musculoskeletal modeling, which represents the individual as a physics-based assembly of bone segments, idealized joint constraints, and Hill-type muscle-tendon actuators typically parameterized from cadaver measurements (e.g., [ 18 ]). Given experimental kinematics from optical motion capture and external kinetics from force plates, muscle and joint contact forces are estimated by inverse dynamics combined with static optimization or another solution algorithm (e.g., [ 19 ]). Generic models are linearly scaled to a subject’s dimensions for basic personalization [ 20 ], but scaled models are often poor representations of an individual’s anatomy and yield erroneous contact forces (e.g., [ 21 ]); higher-fidelity personalization—such as MRI-derived bone and joint geometry [ 22 ] or EMG-informed neural control to capture individual motor strategies static optimization cannot recover (e.g., [ 23 – 25 ])—demands substantially more expertise and instrumentation. Yet modeling choices accumulate at every stage of the pipeline, and small changes at any one of them can propagate into large differences in predicted contact forces [ 26 , 27 ]. Combined with the laboratory requirements the pipeline inherits (e.g., calibrated multi-camera systems, skin markers, embedded force plates, and expert operators), these constraints leave continuous monitoring of joint loading during daily life, where clinically relevant loading actually accumulates, out of reach. Monocular human pose estimation has advanced rapidly in recent years. Parametric mesh recovery from a single RGB camera now approaches multi-view laboratory accuracy on in-the-wild video (e.g., [ 28 – 30 ]), yielding per-frame axis-angle joint rotations and body shape, from which virtual markers and joint locations can be derived. Yet a complete pipeline from a single uncalibrated camera to in vivo joint contact forces does not exist. Three gaps remain. First, no method is free of both musculoskeletal simulation and laboratory instrumentation: video-based approaches that recover kinematics and ground reaction forces from a smartphone alone (a notable advance removing the need for force plates) still feed a downstream biomechanical model [ 31 –33 ], inheriting its modeling assumptions and computational cost; learned methods that bypass simulation, by contrast, inherit laboratory inputs—marker-based motion capture, body-worn sensors, force plates, or EMG [ 34 –37 ]— and typically train at a single joint on a narrow set of activities. Second, most existing pipelines validate against in silico rather than in vivo forces; in the data-driven case the models are trained on those same simulated targets, so reported accuracies are bounded above by the simulation they imitate. Third, no prior work has used a learned force predictor to close the loop on motion design: searching for movement variants that achieve a desired loading profile. The OrthoLoad public database [ 38 ] makes it possible to eliminate all three gaps at once. It pairs synchronized video with time-resolved 3D bone-to-bone contact forces measured in vivo at the prosthesis across dozens of patients, multiple joints, and a wide activity repertoire: level walking, stair negotiation, and sit-to-stand transitions, but also cycling, aquagym, deep knee bends, and aerobics. I exploit this pairing to build the first such pipeline, trained and validated entirely on implant measurements rather than simulated targets. Specifically, I make five contributions: 1. A physics-free pipeline from uncalibrated monocular video to 3D joint contact forces—no markers, force plates, electromyography, or musculoskeletal simulation—validated under leave-one-subject-out cross-validation against in vivo implant recordings from 26 patients across 25 activity categories, with accuracy matching that of laboratory musculoskeletal pipelines. 2. A single transformer that predicts hip and knee contact forces and per-frame uncertainty from partial per-subject supervision, by adaptively modulating its pose stream at every layer with joint, side, activity, and video context. 3. Evidence that a frozen video world model (V-JEPA 2 [39]), pretrained without biomechan-ical or semantic supervision, substitutes for curated activity labels at no loss in accuracy, removing a manual labeling bottleneck for clinical deployment. 4. A closed-loop inverse design procedure that produces biomechanically plausible motion variants with reduced peak loading, steered by the predictor’s gradients through a flow matching generative motion prior, and independently rediscovers load reduction strategies identified in the predictive simulation literature. 25. The first cross-cohort, zero-shot evaluation of joint contact force estimation against out-of-distribution in vivo implant data, rivaling past winners of the Grand Challenge competi-tions [11]. Trained model weights and code 1 will be released publicly, along with scripts to reproduce the processed dataset (SMPL pose sequences, motion features, aligned force signals, and activity labels) from OrthoLoad, as a benchmark for video-based biomechanical analysis. A companion web interface will provide cloud-based inference on user-uploaded video, lowering the deployment barrier for non-technical users. 
+
+2 Methods 
+
+Figure 1: Overview of the proposed methodology for predicting 3D instantaneous joint contact forces from uncalibrated monocular video. Each clip is processed by SAM 3 for person detection and tracking, Depth Anything 3 for camera pose estimation, followed by NLF-based SMPL mesh recovery and an iterative smoothing procedure; the recovered pose is converted into a 430-dimensional motion feature vector and combined with static conditioning tokens encoding SMPL shape β, target joint, implant side, and a frozen MiniLM-L6-v2 sentence embedding of the activity label. A dual-stream transformer fuses this pose stream with auxiliary tokens from a frozen V-JEPA 2 video encoder via gated cross-attention, and heteroscedastic output heads produce per-frame mean and uncertainty estimates of the three force components (Fx, F y , F z ) in the bone-based coordinate system, normalized by body weight. Ground-truth forces, used only for supervision, are recorded by the instrumented implant via telemetry; the rightmost stage shows predicted means (rose), ±2σ uncertainty bands (shaded), and in vivo implant measurements (indigo) for a representative held-out sequence. T
+
+denotes sequence length (set to 256 during training; the full video length at inference). The complete pipeline (from raw monocular video to instantaneous force prediction) is summarized in Fig. 1; each stage is detailed in the subsections below. 
+
+2.1 Dataset 
+
+All data were obtained from the OrthoLoad database [ 38 ], a public repository of synchronized video and in vivo joint contact force recordings from patients with instrumented hip and knee implants. Each recording pairs a short video of a functional activity (mean duration 11.3 s; range 0.7–66.1 s) with time-resolved 3D force vectors sampled at the implant at approximately 200 Hz. Force components are expressed in a bone-based coordinate system and normalized by body weight (BW); for knee implants, forces originally reported in an implant-based coordinate system were rotated into this frame using the implant alignment angles stored in each recording’s header. Activity labels follow a hierarchical string format (e.g., “Walking > with Crutches > on Contralateral Side”); where multiple labels existed for the same recording, only the most specific was retained. The retained labels resolve into 25 top-level activity categories, each comprising multiple sub-activities; their distribution is shown in Fig. 2. 
+
+> 1https://github.com/jeylau/jcf
+
+3Each patient is instrumented at a single joint type (hip or knee); two carry bilateral hip implants, one per side. A subset of 146 trials were recorded with two synchronized camera views (left and right) displayed side by side; these were split into separate video files prior to pose estimation, yielding 2,843 distinct videos (recorded at 25 or 50 fps). After excluding shoulder recordings (too few samples; n = 140 ) and removing 103 sequences with poor pose reconstruction quality, the final dataset comprised 2,600 video–force pairs (2,003 hip; 597 knee) from 28 instrumented implants across 26 patients. Patient metadata (body mass, joint type and implant side) were extracted alongside each recording: body mass normalizes the ground-truth forces to body weight, while implant side and joint type serve as model conditioning variables. Cohort characteristics are provided in Table 1. Gym Machines (146) 
+
+> Aqua Gym (107)
+> Gymnastic (102)
+> Swimming (65)
+> Aerobic (58)
+> Nordic Walking (51)
+> Cycling (46)
+> Gymnastics (19)
+> Jogging (14)
+> Kicking a Ball (5)
+> Rowing (4)
+> Bowling (3)
+> Table Tennis (2)
+> on Treadmill (214)
+> free (82)
+> Level Walking (55)
+> supported by Crutches (51)
+> Level walking (22)
+> with Crutches (20)
+> on (16)
+> on Gym Floor (6)
+> Supine Position (352)
+> Face-Down Position (26)
+> Lateral Position (12)
+> Prone Position (6)
+> Sports (76)
+> Stairs (69)
+> Standing (43)
+> Walking (34)
+> Sitting (28)
+> Level Walking (28)
+> One legged Stance (17)
+> Sit down (16)
+> Stand up (16)
+> Deep Knee Bend (16) Calibration (6)
+> Muscle Contraction (3)
+> Jumping (2)
+> One Leg Stance (75)
+> Two Legged Stance (46)
+> One Legged Stance (14)
+> Body Weight Distribution (10)
+> Two Leg Stance (9)
+> on Posturomed (5)
+> on Tiptoe (4)
+> Upside Down (2)
+> Deep Knee Bend (2)
+> Galileo (70)
+> PowerPlate (60)
+> up and down (49)
+> up (34)
+> down (29)
+> Up (2)
+> Down (1)
+> on Chair (53)
+> on Bench (28)
+> on Floor (17)
+> on Gym Ball (4)
+> MOS Genu (42)
+> Genu Arthro (36)
+> Hip Flexors (15)
+> Hip Adductors (14)
+> Hip Abductors (12)
+> Lunge (11)
+> Sitting down and Standing up (38)
+> Sitting down (4)
+> Standing up (4)
+> Barefoot (6)
+> Chucks (6)
+> MBT (6)
+> Sports Shoe (6)
+> Barefoot Shoe (5)
+> Lateral Wedges Shoe Soles (5)
+> Mens Shoe (5)
+> Womens Shoe (2)
+> Speed (32)
+> Cut Asparagus (9)
+> Walking over the Field (3)
+> Assembly Line Work (3)
+> Depositing Weight (2)
+> Two Legged Stance (1)
+> Carrying Weight (1)
+> Digging (1)
+> Getting in (6)
+> Getting out (6)
+> Jumping (4)
+> Jumping Jack (4)
+> Standing (2)
+> Laying down and Standing up (6)
+> Laying down (2)
+> on Treadmill (1)
+> Up and Down (3)
+> up and down (3)
+> Slow Waltz (2)
+> Standing Position (2)
+> Ipsilateral (2)
+> Getting in (2)
+
+Sports (622) 
+
+Walking (469) 
+
+Lying (396) 
+
+Gait Analysis (354) 
+
+Standing (170) 
+
+Vibration (130) 
+
+Stairs (115) 
+
+Sitting (102) 
+
+Knee Brace (78) 
+
+Muscle Stretching (52) 
+
+Chair (46) 
+
+Footwear (41) 
+
+Bicycle (32) 
+
+Agriculture (20) 
+
+Deep Knee Bend (20) 
+
+Car (12) 
+
+Trampoline (10) 
+
+Bed (8) 
+
+Cross-Country Skiing (6) 
+
+Stumbling (6) 
+
+Stair (6) 
+
+Dance (2) 
+
+Muscle Contraction (2) 
+
+Putting on Shoes (2) 
+
+Bath Tub (2) 
+
+Figure 2: Distribution of activity labels in the OrthoLoad dataset. Radial bars represent individual sub-activities, with height proportional to sample count (square-root scaled) and color denoting the parent category. Top-level categories are labeled at the outer periphery with their total counts. The central word cloud displays all activity terms sized by frequency across the dataset, colored consistently with their parent category. The taxonomy comprises 25 top-level categories and their constituent sub-activities, ranging from gait analysis and sports to flexibility exercises, daily-living tasks, and resting postures, reflecting the diversity of in vivo loading scenarios captured by instrumented implants. 
+
+2.2 Pose estimation and temporal smoothing 
+
+Full-body 3D pose was recovered from each monocular video using Neural Localizer Fields (NLF [ 28 ]), a fast state-of-the-art method that estimates SMPL [ 40 ] body mesh parameters (pose, shape, and global translation) for every frame. Because roughly half of the OrthoLoad videos contain multiple people (therapists, experimenters) and occasionally subjects in lying positions missed by standard person detectors, SAM 3 [ 41 ] with text prompts was used for detection and tracking prior to mesh recovery; bounding boxes were scaled by a factor of 1.2 to provide sufficient context for the mesh estimator. 4Table 1: Cohort characteristics. Each row is an instrumented implant (28 implants, 26 patients). Patients EB and KW carry bilateral hip implants and therefore appear as two rows each. Sex, age, mass, height, and indication are properties of the host patient. Side: L = left, R = right. Sex: m = male, f = female. Age at time of implantation. n: number of recorded trials. Dashes indicate unavailable data.                                                                                                                                                                                                                                         
+
+> Implant Joint Side Sex Age (yr) Mass (kg) Height (m) nIndication EBL Hip Lm83 62 1.68 279 Osteoarthritis EBR Hip Rm83 62 1.68 31 Osteoarthritis IBL Hip Lf76 84 1.70 65 Osteoarthritis JBR Hip Rf69 47 1.60 45 Femoral head necrosis HSR Hip Rm55 82 1.74 106 Osteoarthritis KWR Hip Rm61 72 1.65 128 Osteoarthritis KWL Hip Lm61 72 1.65 22 Osteoarthritis PFL Hip Lm49 98 1.75 103 Osteoarthritis RHR Hip Rf63 60 —26 Osteoarthritis H1L Hip Lm55 73 1.78 18 Coxarthrosis H2R Hip Rm61 75 1.72 226 Coxarthrosis H3L Hip Lm59 92 1.68 107 Coxarthrosis H4L Hip Lm50 85 1.78 108 Coxarthrosis H5L Hip Lf62 87 1.68 114 Coxarthrosis H6R Hip Rm68 84 1.76 171 Coxarthrosis H7R Hip Rm52 95 1.79 186 Coxarthrosis H8L Hip Lm55 80 1.78 106 Coxarthrosis H9L Hip Lm54 118 1.81 103 Coxarthrosis H10R Hip Rf53 98 1.62 59 Coxarthrosis K1L Knee Lm63 100 1.77 94 Osteoarthritis K2L Knee Lm71 93 1.71 64 Osteoarthritis K3R Knee Rm70 95 1.75 88 Osteoarthritis K4R Knee Rf63 92 1.70 24 Osteoarthritis K5R Knee Rm60 94 1.75 136 Osteoarthritis K6L Knee Lf65 76 1.74 18 Osteoarthritis K7L Knee Lf74 70 1.66 47 Osteoarthritis K8L Knee Lm70 77 1.74 86 Osteoarthritis K9L Knee Lm75 100 1.66 40 Osteoarthritis
+
+Camera parameter estimation. The OrthoLoad videos are recorded with uncalibrated cameras, and some recordings involve camera motion. To provide the SMPL fitting stage with accurate perspective geometry, per-frame camera extrinsics and intrinsics were estimated from the video using Depth Anything 3 [ 42 ] (DA3-Giant). Uniformly spaced keyframes were passed to DA3, which jointly predicts metric monocular depth, camera extrinsic matrices [R | t] ∈ R3×4, and intrinsic matrices 
+
+K ∈ R3×3. Extrinsics were interpolated to all video frames using spherical linear interpolation for rotations and piecewise cubic Hermite interpolation for translations, followed by robust temporal smoothing via iteratively reweighted least squares with a trapezoidal kernel ( σ = 0 .4 s). Intrinsics were interpolated similarly, with focal lengths in log space to preserve scale consistency. The resulting per-frame camera parameters were passed to NLF, enabling perspective-correct SMPL pose estimation. Despite NLF’s strong performance on in-the-wild benchmarks, the raw per-frame SMPL fits exhibited temporal jitter and occasional large outliers, common artifacts of monocular estimation in the absence of temporal cues. A multi-stage robust temporal smoothing pipeline was therefore applied. 2 First, the SMPL body model was refit to the detected mesh vertices with a shared shape vector β across all frames of a sequence, enforcing anthropometric consistency; a median-based scale correction was applied simultaneously. Next, the root joint trajectory was smoothed with a large-kernel iteratively reweighted least squares (IRLS) filter using Gaussian weights, which also served to detect shot-cut discontinuities in videos with camera transitions. A second, smaller-kernel IRLS pass then smoothed all joint trajectories. Last, the SMPL model was refit a final time with a shared β to the smoothed vertices, and root translation was smoothed once more to remove any residual high-frequency drift.  
+
+> 2This procedure follows the post-processing code released by the NLF authors at https://github.com/ isarandi/nlf-pipeline .
+
+52.3 Motion feature representation 
+
+To ensure a consistent coordinate frame, the first-frame yaw rotation was removed so that all sequences begin with the subject facing a canonical direction; for sequences in which the subject was lying down, the head-to-toe axis was used instead. The horizontal origin was set to the first-frame root position. Crucially, yaw was only removed from the first frame: subsequent frames retain the original heading changes, preserving rotational dynamics (e.g., turning during gait) that may affect joint loading. Following the motion representation adopted in STMC [ 43 ], each frame is represented by a 430-dimensional vector x ∈ R430 , extended here with joint linear and angular velocity terms that proved critical for force prediction: 
+
+x = [ ˙ αy , ˙rxz , r y , θ, j, ˙j, ˙θ],
+
+where ˙αy ∈ R1 is the root angular velocity about the vertical axis, ˙rxz ∈ R2 the root linear velocity in the body-local horizontal plane, and ry ∈ R1 the root height. θ ∈ R144 denotes the SMPL pose parameters for 24 joints encoded using the continuous 6D rotation representation [ 44 ], and j ∈ R69 
+
+the 3D positions of the 23 non-root joints expressed relative to the root in a body-local frame, yielding a rotation-invariant spatial description. ˙j ∈ R69 and ˙θ ∈ R144 are the first-order finite differences of joint positions and 6D rotations, divided by the inter-frame interval so that velocities are expressed per unit time and remain comparable across the 25 and 50 fps recordings; feature ablation experiments confirmed that these velocity terms are among the most informative inputs for force prediction. All features were z-score normalized using statistics computed from valid frames of the training set. To prevent near-constant features from dominating after normalization (a risk when individual standard deviations are very small), features within each semantic group (e.g., all 6D rotation dimensions, all relative-position dimensions) were assigned the group-mean standard deviation rather than their individual values. This preserved relative magnitudes within a group while stabilizing the scale across groups. Second-order temporal features (linear and angular accelerations ¨j, ¨θ) were evaluated but excluded. While Newton’s second law motivates their inclusion, the second-order differentiation needed to estimate them amplified pose estimation noise, and ablation experiments showed no improvement in validation nRMSE. 
+
+2.4 Force preprocessing 
+
+Ground-truth force signals, sampled at approximately 200 Hz, were resampled to the video frame rate via linear interpolation and normalized by each patient’s body weight to yield dimensionless forces in units of body weight (BW). For knee recordings, forces were rotated from the implant-based coordinate system to the bone-based system using the implant alignment angles provided in each file’s header. Hip I/II and Hip III implants report forces in left-femur and right-femur coordinate systems, respectively. While the x-axis convention differs (medial versus lateral), the documented sign convention for Hip I/II ( −Fx, −Fy , −Fz ) compensates for this, so that Fx requires no correction. 
+
+Fy and Fz were negated for Hip I/II recordings to align them with the Hip III convention, ensuring that all force components—medial–lateral ( Fx), anterior–posterior ( Fy ), and proximal–distal ( Fz )—share a consistent anatomical interpretation across implant generations. 
+
+2.5 Force prediction model 
+
+The force prediction model is a transformer that maps motion features to per-frame 3D force predictions. Its pose stream is conditioned at every layer by joint, side, morphology, and activity labels, and, when video is available, cross-attends to self-supervised V-JEPA 2 tokens. A single model handles both hip and knee, enabling cross-joint transfer from the full dataset rather than training separate, data-starved models per joint type. Per-frame mean and log-variance heads yield heteroscedastic predictions of the three force components. 
+
+Input projection. Each training sample is a random T = 256 -frame crop of a motion sequence, a temporal augmentation that exposes the model to diverse segments across epochs. At each frame, the 430-dimensional motion feature vector is concatenated with a 10-dimensional SMPL shape vector β,a 384-dimensional text embedding of the activity label obtained from a frozen all-MiniLM-L6-v2 6sentence encoder and z-scored per dimension, a 16-dimensional learned joint-type embedding, and an 8-dimensional learned implant-side embedding (left or right). The concatenated vector is projected to the model dimension d = 256 by a single linear layer. Using a pretrained sentence encoder provides semantic similarity between related activities (e.g., “Walking” and “Walking with Crutches”) without requiring enough samples per category for learned embeddings to converge. 
+
+Local temporal convolutions. Before entering the transformer, tokens pass through two 1D convolutional layers (kernel size 5) with a residual connection. These local filters capture short-range temporal dynamics (e.g., onset slopes, jerk) that are central to force generation and that full self-attention would need multiple layers to model. 
+
+Rotary positional encoding. Rotary Position Embeddings (RoPE [ 45 ]) are used to encode temporal position. Rather than adding a fixed positional signal to the input, RoPE applies position-dependent rotations to the query and key vectors within each attention head, encoding relative temporal distance directly into the attention logits. For self-attention over pose tokens, positions correspond to frame indices; for cross-attention to V-JEPA 2 video tokens, the keys are rotated according to their source frame positions, ensuring temporal alignment between modalities. 
+
+Adaptive layer normalization for static conditioning. Subject morphology, activity type, target joint, and implant side are static within each sample but critically influence how kinematics map to joint reaction forces. To provide a multiplicative conditioning pathway at every transformer layer, Adaptive Layer Normalization (AdaLN) [ 46 ] is used. A small MLP encodes the concatenated static features (SMPL shape parameters, sentence embedding of the activity label, and learned joint and side embeddings) into a conditioning vector, which produces per-layer scale and shift parameters that modulate the layer-normalized activations before each sublayer. The static features are also concatenated with the per-frame pose features at the input, so that the convolutional stem retains direct access to the full context. The modulation parameters are zero-initialized so that the network starts as a standard transformer and gradually learns to incorporate conditioning. 
+
+Temporal backbone. The token sequence is processed by a transformer encoder. In the base configuration, this is a standard multi-head self-attention encoder. An extended variant replaces the encoder with a stack of gated decoder layers that perform self-attention over the pose stream and cross-attention to temporally aligned video tokens from V-JEPA 2 [39 ], a self-supervised video encoder pretrained on over a million hours of internet video, with strong motion understanding and state-of-the-art action anticipation performance. Each video was divided into non-overlapping 64-frame clips, yielding up to ⌈T / 64 ⌉ + 1 = 5 clips per training sample (4 when the crop aligns to a clip boundary); the encoder produced 32 temporal tokens per clip (tubelet size 2, dimension 1024), spatially pooled via global average over 16 × 16 = 256 patches. At training time, tokens were aligned to pose frames using their source frame positions via RoPE. Each cross-attention module includes a learnable scalar gate initialized to zero, so that the model begins training as a pose-only network and gradually incorporates video context; this prevents random cross-attention projections from corrupting the learned pose representations early in training. The force predictor uses 6 transformer layers with 8 attention heads and model dimension d = 256 (6.2M parameters). Dropout of 0.1 was applied throughout. 
+
+Output heads. Two parallel output heads produce, for each frame, a mean force vector μ ∈ R3 and a log-variance vector log σ2 ∈ R3. The mean head is a single linear projection; the log-variance head is a two-layer MLP with GELU activation, giving it additional capacity to model input-dependent uncertainty. Together these define a heteroscedastic Gaussian over the three force components, allowing the model to express per-frame, per-axis uncertainty. The log-variance head’s output bias is initialized to −2.0, corresponding to a prior standard deviation of approximately 0.37 BW. 
+
+2.6 Training procedure Loss functions and staged training. Training proceeds in three stages. In Stage 1, the full model— including, when used, the gated cross-attention layers over V-JEPA 2 features (gates initialized to zero)—is trained end-to-end with a masked mean squared error loss on valid frames. In Stage 2, all parameters except the log-variance head are frozen, and the model is fine-tuned with the β-NLL loss [ 47 ], which weights each sample by the detached σ2β (β = 0 .5) to prevent the variance from 7collapsing or exploding. In Stage 3, all parameters are unfrozen and training continues with β-NLL loss at a reduced learning rate. 
+
+Data split and cross-validation. All reported generalization metrics use leave-one-subject-out cross-validation (LOSO CV) over the 26 patients. Each fold holds out one patient (all of their trials, and both implants for the bilaterally instrumented patients EB and KW) and selects the best epoch on a validation split drawn from the remaining 25. This protocol ensures that reported metrics reflect truly out-of-sample performance, with no information leakage from the test patient into training or model selection. Ablation studies, for which a full LOSO sweep is prohibitive, instead use a single 85/15 patient-level split stratified by joint type to preserve the hip/knee ratio, with no patient appearing in both sets. For inverse design, a single model is trained on all available patients using the same architecture and hyperparameters. Because the optimization targets motion trajectories of patients already present in the dataset, training on the full cohort yields the strongest differentiable surrogate without compromising the generalization analysis established by LOSO CV. 
+
+Optimizer. The force predictor was trained with AdamW [ 48 ] (learning rate 10 −4, weight decay 
+
+10 −2, batch size 256) with cosine annealing and gradient clipping (max norm 1.0). Stage 1 ran for 100 epochs, Stage 2 (variance head only) for 20 epochs, and Stage 3 (full model, reduced learning rate 10 −6) for 50 epochs. 
+
+2.7 Post-hoc uncertainty calibration 
+
+Although Stage 2 training shapes ˆσ to track input-dependent heteroscedasticity, the β-NLL objective does not guarantee that the absolute scale of ˆσ is calibrated to residual magnitudes. Per-axis multiplicative temperature scaling [49] is therefore applied as a post-hoc step: 
+
+ˆσcal  
+
+> t,a
+
+= τa · ˆσt,a , a ∈ { x, y, z }.
+
+The scalars τa are fitted by maximum likelihood under a Gaussian likelihood, which admits the closed form 
+
+τ 2 
+
+> a
+
+= 1
+
+N
+
+X
+
+> t
+
+
+
+(yt,a − ˆμt,a )/ˆσt,a 
+
+2
+
+.
+
+To prevent leakage, τa is fitted in a leave-one-fold-out manner: for each held-out patient, the calibration constant is computed from residuals of the remaining LOSO folds only. Because τa is multiplicative and shared across all frames of a given axis, this step preserves the relative within-trial structure of ˆσ and modifies only the absolute scale of the predictive bands. All reported coverage statistics and uncertainty-aware quantities (Sec. 2.8) use the calibrated ˆσcal .
+
+2.8 Inverse design 
+
+Beyond prediction, the goal was to identify motion variants that reduce peak joint loading while re-maining biomechanically plausible: an inverse design objective. The approach combines a generative motion prior with gradient-based guidance from the trained force predictor. 
+
+Motion prior: conditional flow matching. A generative model was trained on the space of SMPL 6D joint rotation sequences using rectified flow [ 50 , 51 ], a conditional flow matching framework in which a learned velocity field vθ (xt, t ) transports samples from a standard Gaussian prior to the data distribution along straight-line paths. Specifically, training pairs were constructed as xt = (1 −
+
+t) x0 + t ϵ, ϵ ∼ N (0, I), and the network was trained to predict the velocity v = ϵ − x0. The velocity field was parameterized by a Diffusion Transformer (DiT) [ 46 ] with adaptive layer normalization (adaLN-Zero): each transformer block receives per-layer scale, shift, and gate parameters conditioned on the diffusion timestep, allowing fine-grained temporal modulation of the denoising dynamics. The flow model comprises 4 adaLN-Zero transformer blocks with 8 attention heads and dimension 
+
+d = 256 (5.1M parameters), operating on windows of 64 frames of 144-dimensional 6D rotations. It was trained for 1,000 epochs with AdamW (learning rate 3 × 10 −4, no dropout) and gradient clipping (max norm 1.0) on the same training split as the force predictor, using the standard rectified flow MSE objective. An exponential moving average (EMA) of model weights was maintained with a target decay of 0.999, ramped up during early training via ˜γ = min( γ, (1 + e)/(10 + e)) where e is the epoch index; the EMA copy was used for all generation. 8Guided generation via SDEdit. To produce motion variants close to a reference sequence, an SDEdit strategy [ 52 ] was adopted: the original motion was partially noised to a chosen start time 
+
+tstart < 1 and then denoised via ODE integration of the learned velocity field back to t = 0 . At each integration step, the current state xt was projected onto the clean data manifold via ˆx0 =
+
+xt − t vθ , and the force predictor’s gradient with respect to this denoised estimate was computed for a chosen force objective and added to the velocity field, steering the trajectory toward lower-loading solutions. Gradients were normalized before application to prevent instability. A cosine ODE schedule concentrated integration steps near t = 0 , where small perturbations have the largest effect on output fidelity. The multiplication by the integration step size dt, which decreases near 
+
+t = 0 under the cosine schedule, implicitly scales guidance strength by noise level, analogous to the noise-dependent weighting in Diffusion Posterior Sampling [53]. 
+
+Force objectives. Several differentiable objectives were implemented, selectable per design query: peak absolute force along any single axis ( Fx, Fy , or Fz ), computed via a log-sum-exp soft maximum for smoothness; mean compressive load (time-averaged Fz ); impulse (time integral of |Fz |); and peak resultant force magnitude. Each objective can target either the hip or knee joint via the model’s joint-conditioning mechanism, regardless of which joint provided the original training signal. To exploit the calibrated uncertainty estimates (Sec. 2.7), an uncertainty-aware variant of the force objective replaces |Fz | with the upper confidence bound |Fz | + kσ z , where σz is the predicted per-frame standard deviation and k controls the confidence level. This steers the optimization toward motions that are predicted to have low loading with high confidence, avoiding regions of the force predictor’s input space where nominal reductions may reflect model uncertainty rather than genuine biomechanical improvement. The use of first-order features only was further motivated by the inverse design setting: when acceleration features were included, gradient guidance exploited small perturbations in second-derivative space to achieve nominal force reductions without meaningful kinematic change: artifacts invisible to the generative prior, which operates on joint rotations rather than positional derivatives. 
+
+Optimization setup. For each design query, the rectified flow is integrated with N = 50 ODE steps on the cosine schedule from tstart down to t = 0 . At every step the predictor’s gradient with respect to the denoised estimate ˆx0 is rescaled to unit Frobenius norm and added to the velocity field with a fixed weight λ = 10 ; the implicit cosine-schedule dt scaling described above then up-weights guidance at low noise levels. Trials longer than the model window ( T > W = 64 frames at 25 Hz) are cropped to a W -frame window centered on the predictor’s argmax-|Fz | frame, so that the optimization always operates on the segment containing peak loading; trials with T < W are excluded ( 77 /2,600 = 3 .0% 
+
+of trials in the full split). Larger tstart corresponds to a noisier initialization and therefore a larger admissible edit; tstart is swept over {0.10 , 0.15 , 0.20 , 0.25 , 0.30 } to trace out the trade-off between motion change and force reduction. Each (tstart , trial ) pair is solved under three independent random initializations ϵ of the noised state; within a seed, ϵ is shared across tstart values to give smooth single-seed trajectories, while across seeds it varies independently to expose optimizer variance. Reductions are reported as max(0 , (F orig  
+
+> z
+
+− F opt  
+
+> z
+
+)/F orig  
+
+> z
+
+): trials in which the optimizer increased predicted peak force (i.e. failed to find a lower solution under the chosen tstart and seed) are reported as zero reduction rather than negative. 
+
+Plausibility check. A common failure mode of gradient-guided generation is to push the model into adversarial regions of input space where the predictor reports spuriously low loads with collapsed uncertainty. As an orthogonal sanity check independent of the flow prior, the ratio of post- to pre-optimization predictive standard deviation, ¯σopt /¯σorig , is reported per axis as the mean over frames. Values close to one indicate that the optimized motion lies in a region where the predictor’s reported uncertainty is comparable to that on the original motion; values ≫ 1 would flag adversarial regions where nominal force reductions coincide with predictor confidence collapse. This metric is invariant to per-axis temperature scaling and therefore independent of the calibration choice in Sec. 2.7. Optimized motions that do not inflate the predictor’s uncertainty are taken as evidence that the predicted reductions reflect genuine biomechanical strategies rather than gradient exploits. 92.9 Evaluation metrics 
+
+Prediction quality was assessed using root mean square error (RMSE) per force component and overall, normalized RMSE (nRMSE, RMSE divided by the peak ground-truth force magnitude of each trial), and the squared Pearson correlation ( r2) per component. All metrics were computed on valid frames only, excluding padded regions, and reported per joint type (hip, knee), per implant, and per activity category. Because the per-trial error distributions are right-skewed, results are summarized by the median and interquartile range (IQR)—taken over trials or over implants, as indicated—rather than the mean; the per-implant mean and standard deviation are reported only in Table 3, to match the convention of the prior work compared there. Predictive uncertainty is evaluated by empirical coverage at ±2ˆ σcal , computed as the per-axis fraction of valid frames where |yt,a − ˆμt,a | ≤ 2ˆ σcal  
+
+> t,a
+
+,averaged across LOSO held-out trials. 
+
+V-JEPA 2 versus text modality comparison. Three model variants were compared—a baseline (kinematics + shape), a text-augmented variant (baseline + activity-label text embeddings), and a video-augmented variant (baseline + V-JEPA 2 features)—all sharing identical architecture, train-ing data, and hyperparameters, on the held-out validation split. For each trial, the per-sample improvement in nRMSE conferred by each auxiliary modality relative to baseline was computed, 
+
+∆text = nRMSE base −nRMSE +text and ∆video analogously, and their linear association across all trials was quantified by the Pearson correlation coefficient. Trials were stratified into 14 activity categories; for each category with n ≥ 6 trials ( n = 11 ), the paired difference ∆ = nRMSE +text − nRMSE +video 
+
+was characterized by a 95% percentile bootstrap confidence interval (2,000 resamples with replace-ment). Categories whose interval excluded zero are reported as favoring the corresponding modality; these intervals are uncorrected for multiple comparisons and are interpreted descriptively, with the direction of the effects across categories as the result of interest. 
+
+MDC 95 computation. The computation was restricted to gait analysis (walking and stair negotiation trials specifically), the two activities for which clinical thresholds for changes in peak hip and knee contact force are well-established in the gait retraining and arthroplasty literature (e.g., [ 35 , 54 ]). For each LOSO held-out trial, per-cycle peak axial force was extracted from the ground-truth trace using 
+
+scipy.signal.find_peaks . For each detected ground-truth cycle peak, the matched predicted peak was taken within a ±0.2 s window, accommodating small phase shifts between predicted and measured force traces. Per-trial peak prediction error was defined as the signed cycle mean difference between predicted and measured peaks (in BW). A linear mixed-effects model was then fit on per-trial errors with a random subject intercept ( statsmodels.mixedlm ), separately for walking and for stair negotiation. The random subject intercept partials out per-subject prediction biases that cancel when comparing two measurements of the same subject. The residual scale ˆσ was taken as the standard deviation of the LME residuals. The (two-sided) minimum detectable change at 95% confidence was then computed as MDC 95 = √2 z0.975 ˆσ ≈ 2.77 ˆ σ, where the √2 factor accounts for the variance of the difference between two independent same-subject measurements [55]. MDC 95 is reported in absolute units (BW) and relative to the trial-mean ground-truth peak (%). 
+
+2.10 External validation on the Grand Challenge dataset 
+
+The model was evaluated on the Grand Challenge Competitions to Predict In Vivo Knee Loads [ 11 ], comprising four subjects across six competitions, each with force-measuring tibial prostheses and synchronized Vicon marker trajectories. All 195 trials were included. Predictions were fully blinded: no data from the competitions appeared in training, and the OrthoLoad-trained model was applied as-is, without fine-tuning or per-subject recalibration. SMPL body meshes were recovered from the marker trajectories using MoSh++ [ 56 ], which solves for per-frame SMPL pose and shape parameters from the marker trajectories. Each trial was assigned a label from the OrthoLoad activity vocabulary used during training (e.g., “Gait Analysis; > Level Walking;” or “Walking; > on Treadmill; > constant Speed; > 3 km/h;”), with treadmill velocities taken from the competition protocol. Implant forces were converted from pounds to body weights; no basis change was applied between the tibial-tray frame in which the implant reports forces and the tibia-based frame used by the OrthoLoad knee training data, since no robust alignment between the two could be determined. In the absence of synchronized video, inference used the full model with the V-JEPA 2 cross-attention pathway zeroed out. 10 3 Results 
+
+3.1 Accurate per-frame force prediction across loading regimes 
+
+The model produces per-frame force predictions that closely track in vivo implant recordings across joint types and activities. Fig. 3 shows representative held-out predictions for two patients evaluated under leave-one-subject-out cross-validation: a hip case (H3L, top, performing walking with crutches, aerobics, leg press, and stand-up/sit-down) and a knee case (K1L, bottom, performing stair ascent, one-leg stance, deep knee bend, and cycling). Predicted mean forces follow the magnitude, timing, and shape of the measured forces along all three components, with the ±2ˆ σcal bands contracting in near-stationary phases and widening at peaks and transitions. Fig. 4 plots per-trial RMSE against peak resultant force across all LOSO folds. The bulk of trials cluster at low error, with median per-trial RMSE of 0.26 BW (IQR [0 .19 , 0.36] ) across peak forces of ∼0.66–4.49 BW (central 95% of trials). A linear mixed-effects model with random subject and activity effects ( n = 2 ,600 trials, 26 subjects, 25 activities) quantifies this scaling: per-trial RMSE grows by 0.090 BW per BW of peak resultant force (95% CI [0 .076 , 0.104] , p < 0.001 ), well below the diagonal slope of 1 that would correspond to constant relative error: nRMSE in fact decreases from ∼15% at 1 BW peak force to ∼11% at 5 BW. Relative accuracy thus improves with loading magnitude. The model achieves a median per-implant nRMSE of 12.4% (IQR [9 .1, 15 .1] ) across the 28 implants. Per-component median Pearson r2 across LOSO held-out trials is 0.68 for the dominant axial component ( Fz ) and 0.38/0.29 for the smaller medial–lateral ( Fx) and anterior– posterior ( Fy ) components (per-activity breakdown in Supplementary Fig. A1). Per-cycle peak force 
+
+MDC 95 was 0.20/0.19 BW (8.1%/7.4% of trial-mean ground-truth peak) for hip/knee during walking, 0.45/0.50 BW (17.1%/14.6%) during stair ascent, and 0.59/0.45 BW (17.8%/11.9%) during stair descent (Table 2). Table 2: Clinical sensitivity: pipeline minimum detectable change ( MDC 95 ) versus published effect sizes and MDCs. All values are derived from peak resultant forces, in body weights (BW). Effect size denotes between-cohort differences (e.g., OA vs. healthy) or pre/post intervention changes. Stair values are reported as ascent / descent. † Reports MDC 90 rather than MDC 95 .Clinical comparison Joint Effect size Literature This work 
+
+Walking 
+
+OA vs. healthy Hip 
+
+∼0.3–0.4 [57, 58] 
+
+0.34 † [35] 0.20 Step length biofeedback ∼0.39 [3] Hip abductor strengthening ∼0.72 [59] OA progressors vs. non-progressors Knee 
+
+∼0.4–0.6 [60] 
+
+0.66 † / 0.97 [54, 61] 0.19 Coordination retraining ∼0.38 [62] Hip abductor strengthening ∼0.42 [59] 
+
+Stair negotiation 
+
+OA vs. healthy Hip 0.5–1.7 [58] — 0.45 / 0.59 
+
+OA vs. healthy Knee 0.5–1.7 [58] 1.93 [54] 0.50 / 0.45 
+
+3.2 Generalization across patients and naturalistic activities 
+
+To verify that aggregate accuracy is not carried by a small number of easy cases, performance is disaggregated by implant; predictions for each come from the model that held out its patient (26 folds; both sides of bilateral patients EB and KW held out together). Fig. 5 reports the per-trial nRMSE distribution for each of the 28 implants. Median nRMSE ranges from 7.4% to 22.0% across the cohort, with 27 of 28 implants (18 of 19 hip, 9 of 9 knee) within ±5 percentage points of the 
+
+> 4For clarity, activities were grouped into seven broad categories: Stairs (stair ascent/descent, knee brace trials), Walking & Gait (level walking, gait analysis, footwear conditions, stumbling), Lying & Rest (bed, lying), Cycling (bicycle), Sitting & Rising (chair, sitting, deep knee bends, standing), Sports (dance, trampoline, cross-country skiing), and Daily Activities (car, bathing, putting on shoes); remaining activities (muscle contraction and stretching, vibration, agriculture) were pooled as Other.
+
+11 0.0 
+
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> Fx (BW)
+> RMSE 0.148
+> r² 0.764
+> Walking with Crutches
+> 0.4
+> 0.2
+> 0.0
+> Fy (BW)
+> RMSE 0.046
+> r² 0.818
+> 0 2 4 6 8 10  12
+> Time (s)
+> 2.0
+> 1.5
+> 1.0
+> 0.5
+> 0.0
+> Fz (BW)
+> RMSE 0.146
+> r² 0.954
+> 0.00
+> 0.25
+> 0.50
+> 0.75
+> 1.00
+> 1.25  RMSE 0.120
+> r² 0.807
+> Aerobics
+> 0.8
+> 0.6
+> 0.4
+> 0.2
+> 0.0  RMSE 0.094
+> r² 0.299
+> 0 2 4 6 8 10
+> Time (s)
+> 3
+> 2
+> 1
+> 0 RMSE 0.240
+> r² 0.937
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> RMSE 0.112
+> r² 0.335
+> Leg Press
+> 0.4
+> 0.2
+> 0.0
+> 0.2
+> RMSE 0.078
+> r² 0.211
+> 0.0  2.5  5.0  7.5  10.0  12.5
+> Time (s)
+> 1.5
+> 1.0
+> 0.5
+> 0.0
+> RMSE 0.185
+> r² 0.654
+> 0.0
+> 0.2
+> 0.4
+> 0.6  RMSE 0.110
+> r² 0.489
+> Stand-Up/Sit-Down
+> 0.4
+> 0.2
+> 0.0
+> RMSE 0.088
+> r² 0.334
+> 0 2 4 6 8
+> Time (s)
+> 1.5
+> 1.0
+> 0.5
+> 0.0  RMSE 0.149
+> r² 0.731
+> 0.2
+> 0.0
+> 0.2
+> 0.4
+> Fx (BW)
+> RMSE 0.086
+> r² 0.639
+> Stair Ascent
+> 0.2
+> 0.0
+> 0.2
+> 0.4
+> Fy (BW)
+> RMSE 0.113
+> r² 0.039
+> 0 1 2 3 4 5 6
+> Time (s)
+> 4
+> 3
+> 2
+> 1
+> 0
+> Fz (BW)
+> RMSE 0.365
+> r² 0.900
+> 0.1
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> RMSE 0.035
+> r² 0.833
+> One-Leg Stance
+> 0.2
+> 0.0
+> 0.2
+> 0.4  RMSE 0.212
+> r² 0.765
+> 0 1 2 3 4 5 6
+> Time (s)
+> 3
+> 2
+> 1
+> 0 RMSE 0.272
+> r² 0.915
+> 0.1
+> 0.0
+> 0.1
+> 0.2
+> 0.3  RMSE 0.061
+> r² 0.083
+> Deep Knee Bend
+> 0.0
+> 0.2
+> 0.4
+> RMSE 0.067
+> r² 0.422
+> 0 1 2 3 4 5
+> Time (s)
+> 2.5
+> 2.0
+> 1.5
+> 1.0
+> 0.5
+> 0.0  RMSE 0.293
+> r² 0.884
+> 0.2
+> 0.1
+> 0.0
+> 0.1
+> 0.2  RMSE 0.041
+> r² 0.002
+> Cycling
+> 0.1
+> 0.0
+> 0.1
+> 0.2
+> 0.3  RMSE 0.056
+> r² 0.300
+> 0 1 2 3 4 5
+> Time (s)
+> 1.5
+> 1.0
+> 0.5
+> 0.0  RMSE 0.169
+> r² 0.830
+> Patient H3L Patient K1L
+> Ground truth  Predicted  ±2 Figure 3: Predicted versus ground-truth joint contact forces for two cases held out during leave-one-subject-out cross-validation (H3L, top; K1L, bottom). Each column shows one trial, with rows corresponding to the three force components ( Fx, Fy , Fz ) expressed in body weights (BW). Shaded regions denote the  ±2σ
+> predictive uncertainty. Per-component RMSE and  r2 are annotated in each panel.
+
+12 0 1 2 3 4 5 6 7
+
+Peak resultant force (BW) 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> RMSE (BW)
+> Prone position
+> Standing
+> Cut asparagus
+> One leg stance
+> Gymnastic
+> Muscle contraction
+> Stairs
+> Walking & Gait
+> Lying & Rest
+> Cycling
+> Sitting & Rising
+> Sports
+> Daily Activities
+> Other
+> Hip
+> Knee
+
+Figure 4: Per-trial prediction error (RMSE) versus peak joint resultant force, both expressed in body weights (BW), evaluated on held-out folds from leave-one-subject-out cross-validation. A stratified subsample of 400 trials is shown for readability. Each point represents one trial, colored by activity category 4 and shaped by joint (circle = hip, triangle = knee). Contour lines show the kernel density estimate of the full dataset. Italic labels mark the six outlier trials with the highest RMSE. median (12.4%); no single implant dominates the aggregate. Even the hardest cases (KWL median 22.0% for hip, K4R median 14.3% for knee) show bounded per-trial IQRs ( [15 .9, 30 .6] and [7 .9, 20 .1] 
+
+respectively). By joint type, per-implant median nRMSE was 13.8% (IQR [12 .1, 16 .1] ) at the hip and 8.5% (IQR [8 .1, 9.3] ) at the knee, with corresponding median RMSEs of 0.27 BW (IQR [0 .24 , 0.32] )and 0.20 BW (IQR [0 .18 , 0.24] ). For comparison with prior work, the mean ± SD across implants was 0.32 ± 0.08 BW ( 15 .9 ± 3.7% ) at the hip and 0.23 ± 0.03 BW ( 10 .2 ± 2.1% ) at the knee (Table 3). Performance is broadly stable across the 25 activity categories (Fig. 6). The 14 with at least 20 trials show median RMSE spanning 0.18–0.36 BW. Five form a separate high-error cluster with median RMSE between 0.44 and 0.95 BW: Dance ( n=2 ), Trampoline ( n=10 ), Agriculture ( n=18 ), Stumbling ( n=6 ), and Muscle Contraction ( n=2 ); together 38 trials, 1.5% of the cohort, all among the least-represented in training. The full activity × implant cross-tabulation of RMSE and nRMSE (median, IQR) is provided in Supplementary Tables A1–A2 (hip) and Table A3 (knee). 
+
+3.3 Generalization to an independent instrumented cohort 
+
+On the six Grand Challenge competitions (Sec. 2.10; 195 trials from 4 instrumented patients), per-trial RMSE was 0.45 BW (IQR [0 .39 , 0.53] ) with median r2 of 0.81 (IQR [0 .74 , 0.85] ) (Fig. A2, Table A4). This is more than double the in-distribution LOSO knee RMSE of 0.20 BW. Per-competition median RMSE spanned 0.41–0.56 BW (highest for GC 2), while the largest individual errors were crouch and bouncy-gait trials from GC 3, all exceeding 0.9 BW. Fig. A3 shows representative traces sampled across the RMSE distribution. Table 4 summarizes the per-competition comparison with published winning entries. 13 Table 3: Comparison with published joint contact force estimation methods. All errors are RMSE in body weights (BW) or normalized RMSE (%). Values for this work are mean ± SD across implants; figures for prior methods are reproduced as reported in the cited sources. This work covers 25 activity categories, whereas all listed comparison methods are restricted to gait or a small set of prescribed tasks. Methods in the bottom section use fully out-of-laboratory inputs (i.e., no optical markers, force plates, or multi-channel EMG). GRF, ground reaction force; EMG, electromyography; CT, computed tomography; IMU, inertial measurement unit; fluoro, fluoroscopy. † Validated against in silico musculoskeletal estimates rather than in vivo instrumented implants. ‡ Evaluated on 6 of 9 knee patients from this study. § Medial compartment force only; total contact force RMSE would be higher. ∥ Amiri: walking, stairs, sit/stand; Derungs: walking, squatting, stairs, sit/stand; Peng: walking, running. All unmarked methods evaluate walking only. 
+
+Method Joint Input RMSE (BW) nRMSE (%) This work (LOSO) Hip Monocular video 0.32 ± 0.08 15 .9 ± 3.7
+
+This work (LOSO) Knee Monocular video 0.23 ± 0.03 10 .2 ± 2.1
+
+Amiri and Bull [63] ∥ Hip Markers + GRF 0.17 –0.60 —Cornish et al. [35] † Hip Markers + EMG 0.47 ± 0.24 13 .4 ± 7.1
+
+Princelle et al. [64] Knee Markers + GRF + EMG + CT < 0.56 —Rabbi et al. [65] † Knee Markers + GRF + EMG 0.19 ± 0.05 —Zou et al. [36] § Knee Markers + GRF + EMG 0.21 –0.38 —Derungs et al. [66] ‡∥ Knee Markers + fluoro + GRF + EMG — 11 .9–23 .4
+
+Di Raimondo et al. [67] † Knee IMU 0.40 ± 0.17 —Peng et al. [68] †∥ Hip / Knee Stereo video 0.23 –0.77 —H1L 
+
+> EBR
+> H8L
+> H9L
+> H7R
+> H2R
+> H3L
+> H10R
+> H4L
+> H6R
+> H5L
+> JBR
+> EBL
+> RHR
+> PFL
+> IBL
+> HSR
+> KWR
+> KWL
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> nRMSE
+> Hip
+> K2L
+> K6L
+> K7L
+> K8L
+> K1L
+> K3R
+> K9L
+> K5R
+> K4R
+> Knee
+
+Figure 5: Per-implant prediction error on held-out folds from leave-one-subject-out cross-validation, reported as normalized RMSE (nRMSE). Each column represents one implant, ordered by median nRMSE within joint type. Individual trial errors are shown as jittered points; the vertical bar and dot indicate the interquartile range and median, respectively. 
+
+3.4 Input-dependent and calibrated predictive uncertainty 
+
+The heteroscedastic head produces uncertainty estimates whose temporal modulation tracks task dynamics. Across the LOSO held-out cohort ( n = 2 ,600 trials), the within-trial coefficient of variation σstd /σ mean on the dominant axial component is highest for cyclic, weight-bearing tasks (median Fz σ-CV = 0 .20 , IQR [0 .14 , 0.24] ; e.g. Stairs 0.25, Walking 0.20, Footwear 0.21) and lowest for quasi-static activities (median 0.07, IQR [0 .03 , 0.12] ; e.g. Vibration 0.02, Lying 0.06, Bicycle 0.08), a ∼3× contrast (Fig. A4). For tasks with little temporal structure in the target signal, ˆσ remains near-uniform; for cyclic tasks, ˆσ widens at peaks and transitions and tightens during stable phases, indicating that predicted uncertainty responds to input dynamics rather than to a global noise floor. After per-axis temperature scaling (Methods, Sec. 2.7), the predictive bands are well-calibrated in absolute terms: empirical coverage at ±2ˆ σcal is 92.5%, 94.7%, and 95.4% for Fx, Fy , and Fz
+
+respectively, within 3 percentage points of the nominal 95.45% expected under a Gaussian likelihood. The fitted temperatures ( τx = 1 .87 , τy = 1 .67 , τz = 1 .97 ) are highly stable across LOSO folds (per-fold standard deviation ≤ 0.04 ). Because temperature scaling is multiplicative, it preserves the heteroscedastic structure characterized in Fig. A4; the calibrated ±2ˆ σcal bands are therefore well-14 Vibration (130) 
+
+> Bicycle (32)
+> Chair (46)
+> Gait Analysis (354)
+> Sitting (100)
+> Footwear (41)
+> Stair (6)
+> Lying (342)
+> Sports (584)
+> Deep Knee Bend (20)
+> Walking (466)
+> Muscle Stretching (52)
+> Knee Brace (78)
+> Bed (8)
+> Putting on Shoes (2)
+> Car (12)
+> Standing (168)
+> Cross-Country Skiing (6)
+> Stairs (113)
+> Bath Tub (2)
+> Trampoline (10)
+> Dance (2)
+> Agriculture (18)
+> Stumbling (6)
+> Muscle Contraction (2)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> 1.4
+> RMSE (BW)
+
+Figure 6: Distribution of per-trial RMSE (in body weights) across activity categories, evaluated on held-out folds from leave-one-subject-out cross-validation. Each column shows a half-violin density estimate, individual trial errors as jittered points, and a summary marker indicating the median (dot) and interquartile range (vertical bar). Activities are sorted by median RMSE; sample counts are shown in parentheses. Table 4: Per-competition comparison with Grand Challenge winners [ 11 ]. RMSE in body weights (BW), averaged over the competition’s evaluated trials. Winner results are taken from the original publications. ♮ Evaluated on overground walking trials only, as reported by Thelen et al. [69]. GC Winner Winner (BW) This work (BW) 1 Kim et al. [70] 0.61 / 0.72 0.51 / 0.49 
+
+2 Hast and Piazza [71] 0.51 / 0.81 0.53 / 0.66 
+
+3 Manal and Buchanan [72] 0.35 / 0.79 0.51 / 0.69 
+
+3 Knowlton et al. [73] 0.34 / 0.63 0.51 / 0.69 4♮ Thelen et al. [69] 0.51 0.38 
+
+5 Marra et al. [74] <0.30 / <0.40 0.43 / 0.32 
+
+6 Jung et al. [75] 0.51 / 0.42 0.44 / 0.32 
+
+Overall (195 trials) 0.45 [IQR 0.39 –0.53 ]approximated as 95%-credible intervals on the per-frame force prediction. Stratified by peak-|Fz |
+
+tercile, empirical coverage is 97.7% in the lowest tercile, 98.4% in the middle, and 87.5% in the highest, indicating mild over-conservatism across non-peak loading and mild over-confidence at peaks. 
+
+3.5 Self-supervised video features substitute for activity labels 
+
+The contribution of each input modality is quantified next. Table 5 reports nRMSE for progressively richer input configurations on the held-out 85/15 patient-stratified validation split. Kinematics alone yield 16.8% overall nRMSE. Adding the SMPL shape vector β produces a marginal improvement (−0.5 percentage points). Adding the activity text embedding reduces nRMSE to 13.5% ( −2.8 pp), the largest single auxiliary contribution. V-JEPA 2 features yield a further improvement to 12.8% (−0.7 pp), with the largest gains on knee predictions ( 9.8% → 8.9% ). The V-JEPA 2 -without-text variant matches the full text-and-video model (12.9% versus 12.8%) despite never seeing the curated activity label. Both auxiliary modalities substantially reduced nRMSE relative to the kinematics + shape baseline (text: 13.5% versus 16.3%; V-JEPA 2 : 12.9%), with V-JEPA 2 features yielding a small additional gain of 0.6 percentage points over text embeddings. Per-trial improvements from the two modalities were highly correlated across the validation set ( r = 0 .86 , p < 0.001 ; Fig. A5C), indicating that text and V-JEPA 2 features capture a largely-shared activity-related signal at the per-trial level. At the 15 category level, three activities of the 14 categories tested had CIs favoring V-JEPA 2 (aerobics, deep knee bend, and stair negotiation) and none favored text (Fig. A5B). Together, these results suggest that self-supervised video representations can substitute for curated activity annotations without loss of accuracy, eliminating a manual labeling bottleneck for clinical deployment. Table 5: Ablation study on input modalities. Normalized RMSE (nRMSE) is reported on the validation set. K: kinematics, S: shape parameters, T: text embeddings, V: V-JEPA 2 video features. Inputs Val nRMSE(%) Configuration K S T V Overall Hip Knee Kinematics only ✓ 16.8 19.3 11.9 + Shape ✓ ✓ 16.3 18.8 11.5 + Text ✓ ✓ ✓ 13.5 15.5 9.8 + V-JEPA 2 ✓ ✓ ✓ ✓ 12.8 14.8 8.9 
+
+V-JEPA 2, no text ✓ ✓ ✓ 12.9 14.6 9.5 
+
+3.6 Closed-loop motion redesign reduces joint loading 
+
+With prediction quality established across patients, activities, and loading regimes, the trained predictor exposes a differentiable surrogate from kinematics to joint forces, the natural target for gradient-based motion design. This surrogate is combined with the rectified-flow motion prior described in Sec. 2.8, and SDEdit-style guided generation is steered toward reduced peak axial loading. 
+
+Force reductions across activities. Fig. 7 plots, for each held-out trial, the reduction in peak Fz
+
+against the mean per-joint position error (MPJPE) between the original and optimized motion, swept over the SDEdit start time tstart ∈ { 0.10 , 0.15 , 0.20 , 0.25 , 0.30 }. Across all trials, guided generation at tstart = 0 .30 reduced the predicted peak Fz by a median of 0.12 BW (IQR [0 .05 , 0.24] ) at a median MPJPE of 26 mm. Activities involving dynamic weight transfer (sit-to-stand and stair negotiation) produce the steepest curves (mean reductions of 0.24 and 0.22 BW respectively), indicating that small kinematic adjustments suffice for substantial unloading. Static or constrained activities (gym machines, vibration plates) yield the lowest, flattest curves (median reductions all below 0.05 BW): the original motion already operates near a local minimum of the predicted load, leaving little room for guided modification. 
+
+Optimized strategies are consistent across seeds and biomechanically interpretable. Three independent optimization seeds were run for each activity (Fig. 8), with joints colored and arrowed by their per-joint displacement at the peak force frame; the rightmost column overlays cross-seed displacements as concentric rings whose opacity encodes directional agreement. For example, when walking, the contralateral foot is displaced such that the knee is in greater flexion during early swing; during a sit-to-stand, feet are displaced under the knees and trunk flexion is reduced. 
+
+Plausible kinematic changes yield meaningful force reductions. The kinematic strategies in Fig. 8 translate into the force trajectories of Fig. 9, which compares pre- and post-optimization 3D force time series for six representative activities. Peak Fz decreases by 0.04–0.60 BW (median 9%). Across all trials, the predictor’s per-axis standard deviation on the optimized motion was within 
+
+±4% of its value on the original motion (median ¯σopt /¯σorig : 0.98, 0.98 and 0.99 for Fx, Fy and Fz ,respectively; IQR [0 .96 , 1.00] ); no trial exhibited ¯σopt /¯σorig > 1.5 on any axis. 
+
+4 Discussion 
+
+I trained a single-camera, physics-free pipeline for predicting hip and knee contact forces with calibrated uncertainty, validated against in vivo implant recordings across 26 patients and 25 activities. Prediction accuracy matches that of laboratory musculoskeletal pipelines that require far richer instrumentation, and the trained model’s gradients are biomechanically meaningful: they guide a generative motion prior toward load-reducing strategies that align with the biomechanics literature. 16 10 15 20 25 30     
+
+> Motion change (MPJPE, mm)
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> Peak Fz reduction (BW)
+> Hip
+> 10 15 20 25 30
+> Motion change (MPJPE, mm)
+> Knee
+> Activity
+> Cycling
+> Gait
+> Gym Machines
+> Sit Down
+> Stairs
+> Stand Up
+> Vibration
+
+Figure 7: Activity modifiability: force reduction versus motion change at the hip (left) and knee (right). The horizontal axis shows the mean per-joint position error (MPJPE) between the original and optimized motion, quantifying the magnitude of kinematic modification, while the vertical axis shows the resulting reduction in peak axial joint contact force ( Fz , in body-weight units). Each colored curve represents an activity category, aggregated across all trials in that category, with markers corresponding to increasing noise levels ( tstart ∈ { 0.10 , 0.15 , 0.20 , 0.25 , 0.30 }) and horizontal whiskers showing the standard error of the per-category mean MPJPE. The darker inner band denotes ±1 standard error of the category mean (uncertainty about the average behavior, which shrinks with sample size), while the wider outer band denotes ±1 standard deviation across trials within the category (the inherent spread of trial outcomes, independent of sample size). Steeper curves indicate activities where small motion adjustments yield large force reductions; these represent the highest-value targets for clinical motion retraining. Modifiability varies markedly across activities, from large reductions in sit-to-stand and stair negotiation to little or no change in motion imposed by external apparatus. 
+
+4.1 Laboratory-grade joint contact force accuracy without musculoskeletal modeling 
+
+Unlike physics-based pipelines—which depend on assumptions about muscle recruitment, joint center definitions, soft tissue artifact corrections, Hill-type contractile dynamics, and contact mechanics— this pipeline learns a single end-to-end mapping from direct measurements at the prosthesis. Per-frame uncertainty bands emerge from the same network and are well-calibrated in aggregate (with mild conditional departures detailed in Sec. 4.4), a property biomechanical simulation does not natively produce. They let downstream users weight individual predictions by their reliability and support uncertainty-aware optimization in the inverse design pipeline. Musculoskeletal pipelines are mature but not robust to their own assumptions: muscle–tendon parameter uncertainty alone can swing predicted knee forces by up to 2.1 BW during a bodyweight squat [ 26 ], and systematic reviews have reached no consensus on how model choices affect hip and knee force predictions [ 27 ]. Against this baseline, the present approach matches these laboratory methods in absolute terms despite requiring only monocular video (Table 3), with tighter dispersion across a far broader activity repertoire than any single comparison method. On 6 of the 9 knee patients evaluated here, Derungs et al. [66] report nRMSE between 11 .9% and 23 .4% across walking, squatting, stairs, and sit/stand using markers, fluoroscopy, ground reaction forces, and surface EMG; the current video-only model achieves 6.8% –9.4% on the same patients and analogous activities (mean across per-subject means, their convention). Notably, much of the broader literature validates against in silico forces produced by a musculoskeletal simulation rather than in vivo implant recordings: a fundamental ceiling on attainable accuracy that the present pipeline avoids by training end-to-end on direct measurements at the prosthesis. No published in vivo evaluation of joint contact force estimation has tested across cohorts: existing studies train and test within the same instrumented patients, conflating model capacity with cohort-specific calibration. Applied without retraining to the Grand Challenge datasets [ 11 ]—a separate cohort with cruciate-retaining rather than cruciate-sacrificing prostheses—the method improves 17 0 25 50 75 100 125 150 175           
+
+> Joint displacement (mm)
+> Seed 1 Seed 2 Seed 3 Mean ± consistency
+> Walking
+> left hip
+> Stair Descent
+> right knee
+> Sit-to-Stand
+> right hip
+> Jumping Lunge
+> left knee
+> Aerobics
+> right hip
+> Cycling
+> left hip
+> sagittal frontal sagittal frontal sagittal frontal sagittal frontal
+
+Figure 8: Motion strategy characterization at peak force frame. Each row shows a representative activity; columns display three independent optimization runs (Seeds 1–3) and the seed-averaged displacement (rightmost). For each run, the original pose is shown in light gray and the optimized pose in dark gray, with joints colored by displacement magnitude (lavender–berry colormap). Arrows indicate the direction and relative magnitude of joint displacement ( 3× amplified for visibility). Sagittal and frontal views are shown side by side for each condition. In the mean column, concentric rings encode cross-seed directional consistency: large, opaque rings indicate that all seeds displaced that joint in the same direction, suggesting a robust biomechanical strategy rather than an optimization artifact. Per-activity strategies: walking —increased contralateral knee flexion during early swing; 
+
+stair descent —trailing leg kept closer underneath the pelvis, with slight lateral lean toward the lead-foot side; sit-to-stand —feet positioned beneath the knees with a more upright trunk; jumping lunge —trailing limb closer to the lead leg (reduced hip extension and adduction) with a more upright trunk; aerobics —reduced contralateral knee flexion and hip abduction; cycling —anterior shift of the lower limb relative to the pelvis (analogous to increased saddle setback) combined with elevated handlebar height. 18 0.0 
+
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> Fx (BW)
+> 0.70  0.58
+> ( 16.2%)
+> Walking
+> 0.2
+> 0.1
+> 0.0
+> 0.1
+> 0.2
+> 0.3  0.17  0.09
+> ( 49.4%)
+> Stair Descent
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0  0.72  0.56
+> ( 21.9%)
+> Sit-to-Stand
+> 0.3
+> 0.2
+> 0.1
+> 0.0
+> 0.1  0.13  0.05
+> ( 57.5%)
+> Jumping Lunge
+> 0.00
+> 0.25
+> 0.50
+> 0.75
+> 1.00
+> 1.25  1.07  0.90
+> ( 16.1%)
+> Aerobics
+> 0.00
+> 0.25
+> 0.50
+> 0.75
+> 1.00  0.90  0.76
+> ( 16.0%)
+> Cycling
+> 0.8
+> 0.6
+> 0.4
+> 0.2
+> 0.0
+> 0.2
+> Fy (BW)
+> 0.57  0.47
+> ( 17.3%)
+> 0.0
+> 0.2
+> 0.4
+> 0.6  0.40  0.24
+> ( 39.0%)
+> 0.4
+> 0.2
+> 0.0
+> 0.2
+> 0.4  0.29  0.26
+> ( 8.6%)
+> 0.0
+> 0.2
+> 0.4
+> 0.6  0.40  0.26
+> ( 33.5%)
+> 1.00
+> 0.75
+> 0.50
+> 0.25
+> 0.00  0.82  0.63
+> ( 23.0%)
+> 0.8
+> 0.6
+> 0.4
+> 0.2
+> 0.0  0.49  0.49
+> (+0.4%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 3
+> 2
+> 1
+> 0
+> Fz (BW)
+> 2.41  2.11
+> ( 12.4%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 4
+> 3
+> 2
+> 1
+> 0 3.65  2.87
+> ( 21.2%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 2.0
+> 1.5
+> 1.0
+> 0.5
+> 0.0  1.91  1.27
+> ( 33.8%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 4
+> 3
+> 2
+> 1
+> 0 3.46  1.96
+> ( 43.4%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 3
+> 2
+> 1
+> 0 3.37  2.71
+> ( 19.4%)
+> 0.0  0.5  1.0  1.5  2.0  2.5
+> Time (s)
+> 3
+> 2
+> 1
+> 0 2.42  2.11
+> ( 12.7%)
+> Original  Optimized  ±2 Figure 9: Force time series before and after motion optimization across six representative activities. Each column corresponds to a different activity; rows show the three force components ( Fx, Fy , Fz ) in units of body weight (BW). Original forces are shown in mauve and optimized forces in blue, with shaded bands indicating  ±2σ prediction uncertainty. Per-component peak force changes are annotated in each panel. The optimization targets peak axial force ( Fz ) reduction; the rectified-flow prior constrains the motion to remain on-manifold (kinematic visualizations in Fig. 8).
+
+19 on published winners in 3 of 6 competitions and rivals them on the remainder (Table 4). Against the recent CT-personalized and EMG-informed neuromusculoskeletal pipeline of Princelle et al. [64] , predictions are comparable on two of four subjects and behind on two. The ∼0.25 BW gap to LOSO plausibly reflects three concurrent shifts: implant and transducer architecture, an older cohort performing prescribed gait modifications absent from training, and deliberately conservative inference (bone-frame predictions against implant-frame ground truth, V-JEPA 2 pathway zeroed). Errors concentrate on the perturbed gaits (crouch, bouncy) rather than baseline walking, pointing to cohort and protocol as the dominant factor. This substitution, however, is not assumption-free. The musculoskeletal pipeline assumes a model and degrades gracefully outside its calibrated range because its mechanical structure remains valid; the data-driven pipeline instead trades model fidelity for generalization, with out-of-distribution failures that are correspondingly less interpretable. The empirical question is which set of assumptions is cheaper to satisfy at scale. For functional activities within OrthoLoad’s coverage, the results above show the learned mapping is equally accurate at a fraction of the cost: inference takes under a minute per trial on a consumer GPU, with no subject-specific calibration. The approach is also permissive about acquisition: the camera may be uncalibrated and moving, with no pose refinement, foot–floor contact handling, or ground plane estimation of the kind physics-based alternatives require, bringing head-mounted wearables such as smart glasses within reach as capture devices. Clinically, the model’s MDC 95 during walking is substantially tighter than published values for calibrated musculoskeletal simulations and resolves the principal effect sizes in the gait retraining, strengthening, and osteoarthritis literature; sensitivity degrades during stair negotiation but remains within clinically relevant cohort separations (Table 2). This precision appears sufficient to track per-patient response to intervention and stratify cohorts by baseline loading, applications previously confined to instrumented laboratories. 
+
+4.2 Self-supervised video features as activity context priors 
+
+Curated activity strings—expensive to collect, brittle in deployment, and dependent on a controlled vocabulary that may not transfer outside research settings—are unexpectedly dispensable. A frozen V-JEPA 2 [39 ] feature stream alone cuts overall validation nRMSE from 16.3% (kinematics + shape baseline) to 12.9%, a 3.4-percentage-point absolute reduction that matches the 12.8% obtained when text and V-JEPA 2 are supplied together: the curated label adds nothing once video features are available. In aggregate the two signals contribute almost equally, but V-JEPA 2 holds a per-category edge precisely where text labels most underdetermine execution, making the curated label the more easily eliminated of the two. That V-JEPA 2 features can substitute for explicit text labels is grounded in the model’s architectural priors and pretraining objective. Unlike generative video models that optimize for pixel-level reconstruction (expending capacity on unpredictable high-frequency details), V-JEPA 2 employs a joint-embedding predictive architecture that operates entirely in a learned representation space [ 39 ]; predicting the latent representations of masked spatiotemporal patches forces the encoder to capture predictable underlying dynamics rather than appearance cues, yielding strong performance on benchmarks deliberately constructed so that single-frame appearance is insufficient. The resulting video representation acts as a dense, continuous activity label: while a discrete text string like “stair ascent with handrail” provides a coarse categorical prior, V-JEPA 2 captures both the semantic identity of the activity and the fine-grained spatiotemporal nuances of its execution. Its state-of-the-art performance on action anticipation [ 39 ] further suggests that the learned representation supports linear prediction of the short-horizon kinematic continuations that activities imply, precisely the signal a force regressor needs. Two further observations sharpen the picture. First, adding the SMPL shape vector β on top of kinematics yields only a marginal −0.5 percentage-point improvement, suggesting that subject morphology contributes little beyond what segment-relative joint positions already encode implicitly. Second, pose alone is informative, but coarse activity context (whether supplied as a text label or extracted from raw video by a self-supervised encoder) substantially disambiguates kinematically similar motions whose force profiles diverge, such as walking versus walking with crutches, or stair ascent with versus without handrail support. 20 More broadly, the result suggests that pretrained video world models may serve as general-purpose context priors for biomechanical inference. Estimating ground reaction forces, joint moments, and muscle forces all share the same need for activity disambiguation that V-JEPA 2 appears to satisfy here without task-specific supervision; whether self-supervised video pretraining at scale can absorb the role traditionally played by curated metadata in clinical biomechanics warrants further investigation. 
+
+4.3 Generative inverse design as a hypothesis generator for clinical biomechanics 
+
+Closing the loop from prediction to design unlocks a class of applications that physics-based pipelines have historically supported only at high cost. Optimizing a motion through traditional predictive sim-ulation requires solving a large nonlinear program that simultaneously enforces multibody equations of motion, muscle dynamics, and contact mechanics; here, the same objective reduces to backpropa-gation through a single learned and calibrated network. The combination of a differentiable surrogate from kinematics to forces with a generative motion prior trained on the same kinematic distribution defines a fully end-to-end inverse design pipeline that can be steered toward any differentiable force objective. A central concern in any gradient-guided generation procedure is whether observed force reductions reflect genuine biomechanical strategies or adversarial exploits of the predictor’s gradient field. Cross-seed consistency rules out the simplest such artifact: across three independent optimization seeds, joint displacements at the peak force frame agree in direction for the dominant degrees of freedom, so the recovered strategies are stable attractors of the optimization rather than artifacts of any single initialization. Consistency alone, however, would not separate a genuine strategy from a systematic exploit; what does is that the emergent kinematics are interpretable in light of biomechanical reasoning about moment arms, load redistribution, and muscle demand, and converge on strategies independently established in the biomechanics literature, which a gradient-field exploit would have no reason to reproduce. For sit-to-stand specifically, the more upright trunk found here matches the strategy that a predictive simulation framework independently identified as a posture that reduces hip load [ 76 ]. Likewise during stair descent, retaining the trailing leg closer underneath the pelvis prolongs trailing limb weight-bearing, an adjustment known to attenuate impact loads on the leading knee [ 77 ]. For cycling, the resulting reduction in hip loading corresponds kinematically to greater saddle setback, which reduces rectus femoris activation [ 78 ] and the hip flexor demand it generates. That post-optimization predictive uncertainty remains within ±4% of the original on each axis further indicates that the optimized motions stay inside the model’s confident region rather than drifting into out-of-distribution territory where its gradients would be unreliable. Sit-to-stand and stair negotiation produce the steepest force-versus-MPJPE curves, with mean peak-
+
+Fz reductions of 0.24 and 0.22 BW at modest kinematic perturbation. Apparatus-imposed motion (e.g., gym machines, vibration plates) yields low, flat curves: the original motion already operates near a local minimum of the predicted load, so guided generation finds little to modify. Clinically, this is the more useful pattern: the activities where small kinematic adjustments yield large force reductions are precisely the ones for which retraining interventions exist—transfer training, gait modification, stair negotiation strategies—making the inverse design output a natural input to motion retraining workflows. What remains untested is biomechanical translation. The strategies the model surfaces are predictions about kinematic changes that would reduce loading according to the learned mapping; whether subjects can adopt those strategies, whether they remain effective under the subject’s actual physiology rather than the predictor’s distillation of it, and whether the loading reductions persist after the kinematic perturbation propagates through real muscle actuation are open questions. The contribution here is a hypothesis-generating procedure—near-instantaneous, differentiable, and validated against 
+
+in vivo measurements—that can prioritize candidate motion modifications for clinical investigation rather than prescribe them. 
+
+4.4 Limitations 
+
+Three limitations bound the claims above. First, the cohort that supplies ground truth is biased by construction. Instrumented prostheses are implanted only in arthroplasty patients: typically elderly, with end-stage joint degeneration and prominent peri-articular muscle atrophy [ 79 ] that often persists for years post-operatively [ 80 ], and ethically restricted from vigorous athletic movement. 21 Their contact loads are thus unlikely to be fully representative of the native joints of younger, more active populations. The pipeline does transfer zero-shot to the only independent instrumented cohort available (Sec. 3.3), but that cohort shares the same profile. Because in vivo ground truth exists only in instrumented patients, accuracy beyond this profile cannot be established with current data. Second, stratified calibration analysis reveals an asymmetry by loading magnitude: the calibrated ±2ˆ σcal 
+
+bands are slightly over-conservative across non-peak loading and slightly over-confident at peaks. They therefore convey reliable confidence statements at moderate-magnitude loads but should be read with mild caution at the peaks, the frames typically of greatest clinical interest. Third, the model’s accuracy is conditioned on the quality of the upstream monocular 3D mesh recovery: pose estimation failures propagate to force prediction failures, and the reported numbers reflect this specific pose stack rather than an architecture-invariant performance ceiling. The framework is modular in this regard: the pose estimator can be upgraded as the field advances, without redesigning the force predictor. 
+
+4.5 Outlook 
+
+The most immediate applications lie where instrumented measurement has never been feasible and recording conditions cannot be controlled: retrospective analysis of archived clinical videos from uncalibrated cameras, rapid screening in primary care before referral, and longitudinal at-home monitoring during rehabilitation. A companion web interface, offering cloud-based inference, is under development; streaming inference on portable hardware for real-time biofeedback is the next engineering direction. 
+
+Acknowledgments 
+
+I am grateful to Shaokai Ye for discussions on multimodal training, and to Rajat Thomas for a careful reading and thoughtful pushback on generalizability. 
+
+References 
+
+[1] Claudio Pizzolato, David G Lloyd, Rod S Barrett, Jill L Cook, Ming H Zheng, Thor F Besier, and David J Saxby. Bioinspired technologies to connect musculoskeletal mechanobiology to the person for training and rehabilitation. Frontiers in computational neuroscience , 11:96, 2017. [2] Markus O Heller, Georg Bergmann, J-P Kassi, Lutz Claes, NP Haas, and GN Duda. Determination of muscle loading at the hip joint for use in pre-clinical testing. Journal of biomechanics , 38(5):1155–1163, 2005. [3] Laura E Diamond, Daniel Devaprakash, Bradley Cornish, Melanie L Plinsinga, Andrea Hams, Michelle Hall, Rana S Hinman, Claudio Pizzolato, and David J Saxby. Feasibility of personalised hip load modification using real-time biofeedback in hip osteoarthritis: A pilot study. Osteoarthritis and Cartilage Open , 4(1):100230, 2022. [4] Emily S Gardinier, Kurt Manal, Thomas S Buchanan, and Lynn Snyder-Mackler. Altered loading in the injured knee after acl rupture. Journal of Orthopaedic Research , 31(3):458–464, 2013. [5] Laura E Diamond, Tamara Grant, and Scott D Uhlrich. Osteoarthritis year in review 2023: biomechanics. 
+
+Osteoarthritis and cartilage , 32(2):138–147, 2024. [6] Darryl D D’Lima, Christopher P Townsend, Steven W Arms, Beverly A Morris, and Clifford W Colwell Jr. An implantable telemetry device to measure intra-articular tibial forces. Journal of biomechanics , 38(2): 299–304, 2005. [7] G Bergmann, F Graichen, J Siraky, H Jendrzynski, and A Rohlmann. Multichannel strain gauge telemetry for orthopaedic implants. Journal of biomechanics , 21(2):169–176, 1988. [8] Philipp Damm, Friedmar Graichen, Antonius Rohlmann, Alwina Bender, and Georg Bergmann. Total hip joint prosthesis for in vivo measurement of forces and moments. Medical engineering & physics , 32(1): 95–100, 2010. [9] Bernd Heinlein, Friedmar Graichen, Alwina Bender, Antonius Rohlmann, and Georg Bergmann. Design, calibration and pre-clinical testing of an instrumented tibial tray. Journal of biomechanics , 40:S4–S10, 2007. 
+
+22 [10] Darryl D D’lima, Shantanu Patil, Nikolai Steklov, John E Slamin, and Clifford W Colwell Jr. Tibial forces measured in vivo after total knee arthroplasty. The Journal of arthroplasty , 21(2):255–262, 2006. [11] Benjamin J Fregly, Thor F Besier, David G Lloyd, Scott L Delp, Scott A Banks, Marcus G Pandy, and Darryl D D’lima. Grand challenge competition to predict in vivo knee loads. Journal of orthopaedic research , 30(4):503–513, 2012. [12] Bernd Heinlein, Ines Kutzner, Friedmar Graichen, Alwina Bender, Antonius Rohlmann, Andreas M Halder, Alexander Beier, and Georg Bergmann. Complete data of total knee replacement loading for level walking and stair climbing measured in vivo with a follow-up of 6–10 months. Clin Biomech , 24(4):315–326, 2009. [13] Georg Bergmann, Alwina Bender, Jörn Dymke, Georg Duda, and Philipp Damm. Standardized loads acting in hip implants. PloS one , 11(5):e0155612, 2016. [14] Nils W Rydell. Forces acting on the femoral head-prosthesis: a study on strain gauge supplied prostheses in living persons. Acta Orthopaedica Scandinavica , 37(sup88):1–132, 1966. [15] TA English and M Kilvington. In vivo records of hip loads using a femoral implant with telemetric output (a prelimary report). Journal of biomedical engineering , 1(2):111–115, 1979. [16] G Bergmann, F Graichen, A Bender, M Kääb, A Rohlmann, and P Westerhoff. In vivo glenohumeral contact forces—measurements in the first patient 7 months postoperatively. Journal of biomechanics , 40 (10):2139–2149, 2007. [17] Matilde Tomasi, Alessio Artoni, Lorenza Mattei, and Francesca Di Puccio. On the estimation of hip joint loads through musculoskeletal modeling. Biomechanics and Modeling in Mechanobiology , 22(2):379–400, 2023. [18] Apoorva Rajagopal, Christopher L Dembia, Matthew S DeMers, Denny D Delp, Jennifer L Hicks, and Scott L Delp. Full-body musculoskeletal model for muscle-driven simulation of human gait. IEEE transactions on biomedical engineering , 63(10):2068–2079, 2016. [19] Frank C Anderson and Marcus G Pandy. Static and dynamic optimization solutions for gait are practically equivalent. Journal of biomechanics , 34(2):153–161, 2001. [20] Scott L Delp, J Peter Loan, Melissa G Hoy, Felix E Zajac, Eric L Topp, and Joseph M Rosen. An interactive graphics-based model of the lower extremity to study orthopaedic surgical procedures. IEEE Transactions on Biomedical engineering , 37(8):757–767, 1990. [21] Mariska Wesseling, Friedl De Groote, Christophe Meyer, Kristoff Corten, Jean-Pierre Simon, Kaat Desloovere, and Ilse Jonkers. Subject-specific musculoskeletal modelling in patients before and after total hip arthroplasty. Computer methods in biomechanics and biomedical engineering , 19(15):1683–1691, 2016. [22] Ekaterina Stansfield, Willi Koller, Basílio Gonçalves, and Hans Kainz. Do we need medical imaging-informed musculoskeletal models for simulations in healthy adults? a new workflow based on magnetic resonance imaging highlights the importance of personalized geometry. PLOS Computational Biology , 22 (3):e1014073, 2026. [23] Claudio Pizzolato, David G Lloyd, Massimo Sartori, Elena Ceseracciu, Thor F Besier, Benjamin J Fregly, and Monica Reggiani. Ceinms: A toolbox to investigate the influence of different neural control solutions on the prediction of muscle excitation and joint moments during dynamic motor tasks. Journal of biomechanics , 48(14):3929–3936, 2015. [24] Massimo Sartori, Dario Farina, and David G Lloyd. Hybrid neuromusculoskeletal modeling to best track joint moments using a balance between muscle excitations derived from electromyograms and optimization. 
+
+Journal of biomechanics , 47(15):3613–3621, 2014. [25] David G Lloyd and Thor F Besier. An emg-driven musculoskeletal model to estimate muscle forces and knee joint moments in vivo. Journal of biomechanics , 36(6):765–776, 2003. [26] Seyyed Hamed Hosseini Nasab, Colin R Smith, Allan Maas, Alexandra Vollenweider, Jörn Dymke, Pascal Schütz, Philipp Damm, Adam Trepczynski, and William R Taylor. Uncertainty in muscle–tendon parameters can greatly influence the accuracy of knee contact force estimates of musculoskeletal models. 
+
+Frontiers in Bioengineering and Biotechnology , 10:808027, 2022. [27] Florent Moissenet, Luca Modenese, and Raphaël Dumas. Alterations of musculoskeletal models for a more accurate estimation of lower limb joint contact forces during normal gait: a systematic review. Journal of biomechanics , 63:8–20, 2017. 
+
+23 [28] István Sárándi and Gerard Pons-Moll. Neural localizer fields for continuous 3d human pose and shape estimation. Advances in Neural Information Processing Systems , 37:140032–140065, 2024. [29] Yufu Wang, Yu Sun, Priyanka Patel, Kostas Daniilidis, Michael J Black, and Muhammed Kocabas. Prompthmr: Promptable human mesh recovery. In Proceedings of the computer vision and pattern recognition conference , pages 1148–1159, 2025. [30] Xitong Yang, Devansh Kukreja, Don Pinkus, Anushka Sagar, Taosha Fan, Jinhyung Park, Soyong Shin, Jinkun Cao, Jiawei Liu, Nicolas Ugrinovic, et al. Sam 3d body: Robust full-body human mesh recovery. 
+
+arXiv preprint arXiv:2602.15989 , 2026. [31] Emily Y Miller, Tian Tan, Antoine Falisse, and Scott D Uhlrich. Integrating machine learning with musculoskeletal simulation improves opencap video-based dynamics estimation. bioRxiv , pages 2025–12, 2025. [32] Selim Gilon, Emily Y Miller, and Scott D Uhlrich. Opencap monocular: 3d human kinematics and musculoskeletal dynamics from a single smartphone video. arXiv preprint arXiv:2603.24733 , 2026. [33] Scott D Uhlrich, Antoine Falisse, Łukasz Kidzi´ nski, Julie Muccini, Michael Ko, Akshay S Chaudhari, Jennifer L Hicks, and Scott L Delp. Opencap: Human movement dynamics from smartphone videos. PLoS computational biology , 19(10):e1011462, 2023. [34] Bernd J Stetter, Steffen Ringhof, Frieder C Krafft, Stefan Sell, and Thorsten Stein. Estimation of knee joint forces in sport movements using wearable sensors and machine learning. Sensors , 19(17):3690, 2019. [35] Bradley M Cornish, Claudio Pizzolato, David J Saxby, Zhengliang Xia, Daniel Devaprakash, and Laura E Diamond. Hip contact forces can be predicted with a neural network using only synthesised key points and electromyography in people with hip osteoarthritis. Osteoarthritis and Cartilage , 32(6):730–739, 2024. [36] Jianjun Zou, Xiaogang Zhang, Yali Zhang, and Zhongmin Jin. Prediction of medial knee contact force using multisource fusion recurrent neural network and transfer learning. Medical & Biological Engineering & Computing , 62(5):1333–1346, 2024. [37] Tianxiao Chen, Zhifeng Zhou, Datao Xu, Yi Yuan, Huiyu Zhou, Qincheng Ge, Tianle Jie, Meizi Wang, Liangliang Xiang, Gusztáv Fekete, et al. Ai-powered biomechanical modeling for acl-reconstructed knees: predicting knee joint contact forces via computer vision and deep learning. Journal of NeuroEngineering and Rehabilitation , 2026. [38] Georg Bergmann and Philipp Damm. OrthoLoad. https://orthoload.com , 2008. Editors. Retrieved January 3, 2026. [39] Mido Assran, Adrien Bardes, David Fan, Quentin Garrido, Russell Howes, Matthew Muckley, Ammar Rizvi, Claire Roberts, Koustuv Sinha, Artem Zholus, et al. V-jepa 2: Self-supervised video models enable understanding, prediction and planning. arXiv preprint arXiv:2506.09985 , 2025. [40] Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll, and Michael J Black. Smpl: A skinned multi-person linear model. In Seminal Graphics Papers: Pushing the Boundaries, Volume 2 , pages 851–866. ACM, 2023. [41] Nicolas Carion, Laura Gustafson, Yuan-Ting Hu, Shoubhik Debnath, Ronghang Hu, Didac Suris, Chaitanya Ryali, Kalyan Vasudev Alwala, Haitham Khedr, Andrew Huang, et al. Sam 3: Segment anything with concepts. arXiv preprint arXiv:2511.16719 , 2025. [42] Haotong Lin, Sili Chen, Junhao Liew, Donny Y Chen, Zhenyu Li, Guang Shi, Jiashi Feng, and Bingyi Kang. Depth anything 3: Recovering the visual space from any views. arXiv preprint arXiv:2511.10647 ,2025. [43] Mathis Petrovich, Or Litany, Umar Iqbal, Michael J Black, Gul Varol, Xue Bin Peng, and Davis Rempe. Multi-track timeline control for text-driven 3d human motion generation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , pages 1911–1921, 2024. [44] Yi Zhou, Connelly Barnes, Jingwan Lu, Jimei Yang, and Hao Li. On the continuity of rotation represen-tations in neural networks. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , pages 5745–5753, 2019. [45] Byeongho Heo, Song Park, Dongyoon Han, and Sangdoo Yun. Rotary position embedding for vision transformer. In European Conference on Computer Vision , pages 289–305. Springer, 2024. 
+
+24 [46] William Peebles and Saining Xie. Scalable diffusion models with transformers. In Proceedings of the IEEE/CVF international conference on computer vision , pages 4195–4205, 2023. [47] Maximilian Seitzer, Arash Tavakoli, Dimitrije Antic, and Georg Martius. On the pitfalls of heteroscedastic uncertainty estimation with probabilistic neural networks. arXiv preprint arXiv:2203.09168 , 2022. [48] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 , 2017. [49] Dan Levi, Liran Gispan, Niv Giladi, and Ethan Fetaya. Evaluating and calibrating uncertainty prediction in regression tasks. Sensors , 22(15):5540, 2022. [50] Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximilian Nickel, and Matt Le. Flow matching for generative modeling. arXiv preprint arXiv:2210.02747 , 2022. [51] Xingchao Liu, Chengyue Gong, and Qiang Liu. Flow straight and fast: Learning to generate and transfer data with rectified flow. arXiv preprint arXiv:2209.03003 , 2022. [52] Chenlin Meng, Yutong He, Yang Song, Jiaming Song, Jiajun Wu, Jun-Yan Zhu, and Stefano Ermon. Sdedit: Guided image synthesis and editing with stochastic differential equations. arXiv preprint arXiv:2108.01073 ,2021. [53] Hyungjin Chung, Jeongsol Kim, Michael T Mccann, Marc L Klasky, and Jong Chul Ye. Diffusion posterior sampling for general noisy inverse problems. arXiv preprint arXiv:2209.14687 , 2022. [54] Phil DB Price, Conor Gissane, and Daniel J Cleather. Reliability and minimal detectable change values for predictions of knee forces during gait and stair ascent derived from the freebody musculoskeletal model of the lower limb. Frontiers in bioengineering and biotechnology , 5:74, 2017. [55] Joseph P Weir. Quantifying test-retest reliability using the intraclass correlation coefficient and the sem. 
+
+The Journal of Strength & Conditioning Research , 19(1):231–240, 2005. [56] Naureen Mahmood, Nima Ghorbani, Nikolaus F Troje, Gerard Pons-Moll, and Michael J Black. Amass: Archive of motion capture as surface shapes. In Proceedings of the IEEE/CVF international conference on computer vision , pages 5442–5451, 2019. [57] LE Diamond, HX Hoang, RS Barrett, A Loureiro, M Constantinou, DG Lloyd, and C Pizzolato. Individuals with mild-to-moderate hip osteoarthritis walk with lower hip joint contact forces despite higher levels of muscle co-contraction compared to healthy individuals. Osteoarthritis and Cartilage , 28(7):924–931, 2020. [58] Sam Van Rossom, Jill Emmerzaal, Rob van der Straaten, Mariska Wesseling, Kristoff Corten, Johan Belle-mans, Jan Truijen, Jan Malcorps, Annick Timmermans, Benedicte Vanwanseele, et al. The biomechanical fingerprint of hip and knee osteoarthritis patients during activities of daily living. Clinical Biomechanics ,101:105858, 2023. [59] Casey A Myers, Peter J Laz, Kevin B Shelburne, Dana L Judd, Joshua D Winters, Jennifer E Stevens-Lapsley, and Bradley S Davidson. Simulated hip abductor strengthening reduces peak joint contact forces in patients with total hip arthroplasty. Journal of biomechanics , 93:18–27, 2019. [60] Pouya Amiri, Elysia M Davis, Jereme Outerleys, Ross H Miller, Scott Brandon, and Janie L Astephen Wilson. High tibiofemoral contact and muscle forces during gait are associated with radiographic knee oa progression over 3 years. The knee , 41:245–256, 2023. [61] Emily S Gardinier, Kurt Manal, Thomas S Buchanan, and Lynn Snyder-Mackler. Minimum detectable change for knee joint contact force estimates using an emg-driven model. Gait & posture , 38(4):1051–1053, 2013. [62] Scott D Uhlrich, Rachel W Jackson, Ajay Seth, Julie A Kolesar, and Scott L Delp. Muscle coordination retraining inspired by musculoskeletal simulations reduces knee contact force. Scientific reports , 12(1): 9842, 2022. [63] Pouya Amiri and Anthony MJ Bull. Prediction of in vivo hip contact forces during common activities of daily living using a segment-based musculoskeletal model. Frontiers in Bioengineering and Biotechnology ,10:995279, 2022. [64] Domitille Princelle, Marco Viceconti, and Giorgio Davico. Emg-informed neuromusculoskeletal simula-tions increase the accuracy of the estimation of knee joint contact forces during sub-optimal level walking. 
+
+Annals of Biomedical Engineering , 53(6):1399–1408, 2025. 
+
+25 [65] Mohammad Fazle Rabbi, Giorgio Davico, David G Lloyd, Christopher P Carty, Laura E Diamond, and Claudio Pizzolato. Muscle synergy-informed neuromusculoskeletal modelling to estimate knee contact forces in children with cerebral palsy. Biomechanics and Modeling in Mechanobiology , 23(3):1077–1090, 2024. [66] Yara N Derungs, Martin Bertsch, Kushal Malla, Allan Maas, Thomas M Grupp, Adam Trepczynski, Philipp Damm, and Seyyed Hamed Hosseini Nasab. Machine learning-based estimation of knee joint mechanics from kinematic and neuromuscular inputs: A proof-of-concept using the cams-knee datasets. 
+
+Bioengineering , 13(2):173, 2026. [67] Giacomo Di Raimondo, Miel Willems, Bryce Adrian Killen, Sara Havashinezhadian, Katia Turcot, Benedicte Vanwanseele, and Ilse Jonkers. Peak tibiofemoral contact forces estimated using imu-based approaches are not significantly different from motion capture-based estimations in patients with knee osteoarthritis. Sensors , 23(9):4484, 2023. [68] Yinghu Peng, Wei Wang, Lin Wang, Hao Zhou, Zhenxian Chen, Qida Zhang, and Guanglin Li. Smartphone videos-driven musculoskeletal multibody dynamics modelling workflow to estimate the lower limb joint contact forces and ground reaction forces. Medical & Biological Engineering & Computing , 62(12): 3841–3853, 2024. [69] Darryl G Thelen, Kwang Won Choi, and Anne M Schmitz. Co-simulation of neuromuscular dynamics and knee mechanics during human walking. Journal of biomechanical engineering , 136(2):021033, 2014. [70] Yoon-Hyuk Kim, Won-Man Park, and Bui Thi Thanh Phuong. Effect of joint center location on in-vivo joint contact forces during walking. In Summer Bioengineering Conference , volume 44038, pages 267–268. American Society of Mechanical Engineers, 2010. [71] Michael W Hast and Stephen J Piazza. Dual-joint modeling for estimation of total knee replacement contact forces during locomotion. Journal of biomechanical engineering , 135(2):021013, 2013. [72] Kurt Manal and Thomas S Buchanan. Predictions of condylar contact during normal and medial thrust gait. In Summer Bioengineering Conference , volume 44809, pages 197–198. American Society of Mechanical Engineers, 2012. [73] Christopher B Knowlton, Markus A Wimmer, and Hannah J Lundberg. Grand challenge competition: A parametric numerical model to predict in vivo medial and lateral knee forces in walking gaits. In Summer Bioengineering Conference , volume 44809, pages 199–200. American Society of Mechanical Engineers, 2012. [74] Marco A Marra, Valentine Vanheule, René Fluit, Bart HFJM Koopman, John Rasmussen, Nico Verdonschot, and Michael S Andersen. A subject-specific musculoskeletal modeling framework to predict in vivo mechanics of total knee arthroplasty. Journal of biomechanical engineering , 137(2):020904, 2015. [75] Yihwan Jung, Cong-Bo Phan, and Seungbum Koo. Intra-articular knee contact force estimation dur-ing walking using force-reaction elements and subject-specific joint model. Journal of biomechanical engineering , 138(2):021016, 2016. [76] Eline van der Kruk and Thomas Geijtenbeek. A planar neuromuscular controller to simulate compensation strategies in the sit-to-walk movement. PLoS one , 19(6):e0305328, 2024. [77] Kiros Karamanidis and Adamantios Arampatzis. Altered control strategy between leading and trailing leg increases knee adduction moment in the elderly while descending stairs. Journal of biomechanics , 44(4): 706–711, 2011. [78] Rodrigo Rico Bini, Patria A Hume, Fabio J Lanferdini, and Marco A Vaz. Effects of body positions on the saddle on pedalling technique for cyclists and triathletes. European journal of sport science , 14(sup1): S413–S420, 2014. [79] Ryan L Mizner, Stephanie C Petterson, Jennifer E Stevens, Krista Vandenborne, and Lynn Snyder-Mackler. Early quadriceps strength loss after total knee arthroplasty: the contributions of muscle atrophy and failure of voluntary muscle activation. JBJS , 87(5):1047–1053, 2005. [80] Achim König, Markus Walther, Stephan Kirschner, and Frank Gohlke. Balance sheets of knee and functional scores 5 years after total knee arthroplasty for osteoarthritis: a source for patient information. 
+
+The Journal of arthroplasty , 15(3):289–294, 2000. 
+
+26 A Supplementary Material 
+
+This supplementary material provides per-activity, per-implant breakdowns of prediction error, along with per-category analyses of temporal shape agreement, predictive uncertainty, and the added value of self-supervised video features over curated activity labels. 27 Table A1: Hip cohort (part 1/2): per-activity, per-implant prediction error. Each cell shows RMSE median (Q1–Q3) in BW (top) with nRMSE median (Q1–Q3) in % on the gray line below. The “All” row and column report marginal medians over the pooled trial-level distribution across all 19 implants.  †Based on fewer than 3 trials. 
+
+> EBL  EBR  H1L  H2R  H3L  H4L  H5L  H6R  H7R  H8L  All
+> Vibration  – – – 0.15  (0.10–0.18)
+> 10.3  (9.4–12.0)
+> 0.19  (0.16–0.27)
+> 13.7  (12.5–16.0)
+> 0.19  (0.18–0.24)
+> 20.2  (17.5–22.0)
+> 0.20  (0.17–0.25)
+> 15.3  (12.4–17.2)  – – – 0.18  (0.16–0.23)
+> 14.6  (11.8–18.1)
+> Bicycle  0.22  (0.19–0.24)
+> 32.0  (27.6–35.3)  – – – – – – – – – 0.19  (0.17–0.22)
+> 24.1  (19.3–29.2)
+> Gait Analysis  – – 0.19  (0.16–0.22)
+> 7.3  (6.4–11.4)
+> 0.18  (0.12–0.29)
+> 10.0  (8.8–10.9)
+> 0.27  (0.18–0.30)
+> 10.5  (9.0–11.6)
+> 0.15  (0.13–0.18)
+> 6.0  (4.9–6.6)
+> 0.30  (0.27–0.38)
+> 11.8  (8.6–16.5)
+> 0.18  (0.14–0.26)
+> 10.8  (9.1–13.9)
+> 0.26  (0.15–0.35)
+> 10.9  (9.7–13.2)
+> 0.15  (0.11–0.20)
+> 9.4  (7.6–12.5)
+> 0.20  (0.14–0.28)
+> 10.4  (8.5–13.2)
+> Chair  0.19  (0.18–0.19) †
+> 8.7  (8.3–9.1)  – – – – – – – – – 0.21  (0.17–0.25)
+> 12.8  (10.5–15.1)
+> Sitting  0.26  (0.22–0.36)
+> 24.7  (13.6–33.2)  – 0.16 †
+> 14.9 0.23  (0.18–0.27)
+> 20.2  (10.6–26.5)
+> 0.12  (0.12–0.12)
+> 9.4  (9.0–9.9)
+> 0.18  (0.17–0.22)
+> 9.9  (9.1–10.7)
+> 0.55  (0.44–0.55)
+> 18.4  (17.5–18.6)
+> 0.18  (0.17–0.18)
+> 9.4  (9.3–10.4)
+> 0.26  (0.20–0.29)
+> 10.8  (8.6–13.7)
+> 0.15  (0.15–0.16)
+> 9.3  (9.2–9.4)
+> 0.23  (0.18–0.32)
+> 14.9  (10.3–27.1)
+> Footwear  – – – 0.15  (0.14–0.17)
+> 5.3  (5.2–5.8)  – – 0.23  (0.22–0.28)
+> 6.4  (6.2–8.2)
+> 0.25  (0.25–0.27)
+> 9.4  (8.9–9.4)
+> 0.34  (0.30–0.35)
+> 10.2  (9.4–10.4)
+> 0.35  (0.32–0.37)
+> 11.6  (10.8–12.0)
+> 0.26  (0.20–0.30)
+> 8.8  (6.6–10.2)
+> Lying  0.33  (0.24–0.41)
+> 22.1  (17.1–26.1)  – – 0.21  (0.17–0.27)
+> 16.5  (13.8–20.8)
+> 0.22  (0.15–0.30)
+> 14.7  (11.5–20.2)
+> 0.23  (0.20–0.35)
+> 16.6  (12.2–23.4)
+> 0.30  (0.26–0.36)
+> 20.3  (17.1–23.1)
+> 0.21  (0.17–0.28)
+> 19.5  (15.2–22.5)
+> 0.23  (0.15–0.33)
+> 19.2  (14.8–23.3)
+> 0.92  (0.79–1.04) †
+> 25.3  (23.8–26.7)
+> 0.27  (0.19–0.37)
+> 20.6  (16.1–25.9)
+> Stair  – – – 0.24 †
+> 8.4  – – – 0.32 †
+> 11.9 0.27 †
+> 7.6  – 0.27  (0.26–0.29)
+> 8.4  (8.0–10.1)
+> Muscle Stretching  – – – 0.35  (0.30–0.41)
+> 11.7  (10.1–17.5)
+> 0.35  (0.23–0.36)
+> 14.2  (12.6–19.6)
+> 0.75 †
+> 17.2  – 0.31  (0.29–0.37)
+> 14.3  (12.8–21.3)
+> 0.23  (0.19–0.37)
+> 11.9  (8.5–14.7)  – 0.29  (0.21–0.36)
+> 13.5  (10.3–17.3)
+> Sports  – – – 0.25  (0.20–0.38)
+> 13.2  (9.3–16.0)
+> 0.30  (0.23–0.37)
+> 15.4  (11.5–18.4)
+> 0.33  (0.24–0.43)
+> 17.7  (10.1–35.6)
+> 0.34  (0.28–0.42)
+> 12.6  (10.2–16.3)
+> 0.29  (0.23–0.38)
+> 15.2  (11.4–20.1)
+> 0.31  (0.23–0.38)
+> 11.8  (9.9–15.2)
+> 0.26  (0.19–0.36)
+> 13.3  (9.3–21.4)
+> 0.30  (0.23–0.38)
+> 13.5  (9.9–17.7)
+> Bed  – – – – – – – – – – 0.30  (0.24–0.35)
+> 15.2  (14.6–18.6)
+> Putting on Shoes  – – – – – 0.31  (0.29–0.32) †
+> 9.8  (9.5–10.1)  – – – – 0.31  (0.29–0.32) †
+> 9.8  (9.5–10.1)
+> Car  – – – – – – – – – – 0.32  (0.30–0.33)
+> 14.2  (13.6–15.4)
+> Cross-Country Skiing  0.33  (0.32–0.36)
+> 15.0  (13.8–15.6)  – – – – – – – – – 0.33  (0.32–0.36)
+> 15.0  (13.8–15.6)
+> Walking  0.38  (0.31–0.44)
+> 13.3  (11.9–14.9)
+> 0.42  (0.34–0.48)
+> 10.7  (9.2–12.4)
+> 0.13  (0.11–0.16)
+> 5.2  (4.7–7.2)
+> 0.22  (0.18–0.28)
+> 8.8  (7.0–11.8)
+> 0.18  (0.15–0.21)
+> 8.1  (8.0–8.5)
+> 0.16  (0.13–0.18)
+> 6.2  (5.6–7.3)
+> 0.27  (0.24–0.28)
+> 8.6  (7.4–10.4)
+> 0.23  (0.19–0.25)
+> 9.1  (8.6–10.5)
+> 0.31  (0.28–0.35)
+> 9.1  (9.0–9.5)
+> 0.18  (0.16–0.26)
+> 6.9  (6.4–9.3)
+> 0.34  (0.25–0.41)
+> 12.5  (9.9–14.9)
+> Standing  0.45  (0.36–0.62)
+> 18.4  (13.3–35.3)  – 0.15  (0.12–0.18) †
+> 10.1  (9.4–10.7)
+> 0.34  (0.29–0.44)
+> 15.3  (13.0–16.4)
+> 0.21  (0.18–0.30)
+> 8.2  (7.3–12.7)
+> 0.30  (0.16–0.45)
+> 9.3  (8.0–13.7)
+> 0.55  (0.34–0.56)
+> 19.2  (13.9–19.8)
+> 0.29  (0.22–0.36)
+> 15.5  (13.7–18.3)
+> 0.39  (0.18–0.52)
+> 14.4  (14.0–17.5)
+> 0.24  (0.24–0.26)
+> 11.3  (8.9–12.3)
+> 0.36  (0.25–0.50)
+> 14.6  (11.4–20.3)
+> Bath Tub  – – – – – – – – – – 0.38  (0.34–0.42) †
+> 14.9  (13.1–16.7)
+> Stairs  0.49  (0.47–0.54)
+> 15.7  (14.7–17.2)
+> 0.48  (0.35–0.61)
+> 13.0  (9.6–16.6)  – – – 0.36  (0.30–0.43) †
+> 14.5  (12.7–16.4)  – – 0.30 †
+> 10.5  – 0.41  (0.35–0.50)
+> 15.7  (13.4–17.4)
+> Trampoline  0.44  (0.39–0.54)
+> 15.1  (12.4–16.9)  – – – – – – – – – 0.44  (0.39–0.54)
+> 15.1  (12.4–16.9)
+> Dance  – – – 0.55  (0.55–0.55) †
+> 14.0  (13.9–14.1)  – – – – – – 0.55  (0.55–0.55) †
+> 14.0  (13.9–14.1)
+> Agriculture  – – – 0.64  (0.52–0.73)
+> 15.7  (14.0–17.0)  – – – – – – 0.64  (0.52–0.73)
+> 15.7  (14.0–17.0)
+> Stumbling  0.92  (0.89–0.95) †
+> 13.7  (13.3–14.1)  – – – – – – – – – 0.66  (0.40–0.95)
+> 14.3  (13.2–14.7)
+> Muscle Contraction  – – – – – 1.16 †
+> 31.8  – 0.81 †
+> 19.5  – – 0.98  (0.90–1.07) †
+> 25.6  (22.6–28.7)
+> All  0.37  (0.28–0.47)
+> 15.7  (12.9–23.6)
+> 0.42  (0.35–0.51)
+> 10.7  (9.4–12.5)
+> 0.18  (0.14–0.21)
+> 8.2  (6.1–11.2)
+> 0.25  (0.17–0.38)
+> 12.3  (9.3–16.1)
+> 0.24  (0.17–0.32)
+> 12.5  (9.3–16.7)
+> 0.23  (0.18–0.36)
+> 13.0  (8.5–19.5)
+> 0.30  (0.23–0.38)
+> 13.9  (9.4–17.9)
+> 0.26  (0.20–0.34)
+> 13.8  (10.6–19.5)
+> 0.29  (0.22–0.36)
+> 11.9  (9.8–15.3)
+> 0.23  (0.16–0.33)
+> 11.0  (8.9–15.6)
+> 0.28  (0.20–0.39)
+> 14.1  (10.4–18.7)
+
+28 Table A2: Hip cohort (part 2/2): continuation of Table A1. Conventions as in part 1.  †Based on fewer than 3 trials. 
+
+> H9L  H10R  HSR  IBL  JBR  KWL  KWR  PFL  RHR  All
+> Vibration  – – – – – – – – – 0.18  (0.16–0.23)
+> 14.6  (11.8–18.1)
+> Bicycle  – – 0.17  (0.16–0.18)
+> 21.2  (18.0–25.0)
+> 0.20  (0.19–0.20)
+> 23.6  (19.3–28.7)  – 0.25 †
+> 32.7 0.20  (0.16–0.29)
+> 21.6  (20.5–24.6)  – – 0.19  (0.17–0.22)
+> 24.1  (19.3–29.2)
+> Gait Analysis  0.20  (0.13–0.31)
+> 13.6  (10.2–15.6)
+> 0.19  (0.15–0.23)
+> 11.4  (9.6–12.5)  – – – – – – – 0.20  (0.14–0.28)
+> 10.4  (8.5–13.2)
+> Chair  – – 0.16  (0.13–0.18)
+> 10.3  (9.6–13.0)
+> 0.25  (0.23–0.31)
+> 13.1  (11.6–15.4)
+> 0.29  (0.20–0.39)
+> 10.7  (9.4–12.4)
+> 0.27  (0.25–0.28) †
+> 13.4  (13.0–13.7)
+> 0.23  (0.20–0.26)
+> 14.8  (14.1–16.7)
+> 0.18  (0.16–0.23)
+> 13.0  (11.7–13.8)  – 0.21  (0.17–0.25)
+> 12.8  (10.5–15.1)
+> Sitting  0.17  (0.16–0.17)
+> 12.7  (10.9–13.1)
+> 0.23  (0.21–0.24) †
+> 13.3  (12.1–14.6)  – – – – – – – 0.23  (0.18–0.32)
+> 14.9  (10.3–27.1)
+> Footwear  0.21  (0.21–0.24)
+> 7.8  (7.2–8.7)  – – – – – – – – 0.26  (0.20–0.30)
+> 8.8  (6.6–10.2)
+> Lying  – – 0.30  (0.22–0.38)
+> 22.7  (20.3–33.5)
+> 0.29  (0.21–0.34)
+> 21.5  (19.2–24.5)
+> 0.23  (0.20–0.26)
+> 17.7  (14.4–22.4)
+> 0.33  (0.31–0.58)
+> 27.4  (25.5–32.9)
+> 0.37  (0.30–0.47)
+> 22.9  (20.2–25.6)
+> 0.20  (0.15–0.26)
+> 19.2  (16.1–25.5)  – 0.27  (0.19–0.37)
+> 20.6  (16.1–25.9)
+> Stair  – – – – – – – – – 0.27  (0.26–0.29)
+> 8.4  (8.0–10.1)
+> Muscle Stretching  0.24  (0.22–0.28)
+> 12.9  (8.0–16.1)
+> 0.24  (0.18–0.29)
+> 13.3  (10.3–14.2)  – – – – – – – 0.29  (0.21–0.36)
+> 13.5  (10.3–17.3)
+> Sports  0.28  (0.24–0.34)
+> 10.9  (7.9–14.8)
+> 0.27  (0.24–0.40)
+> 15.5  (13.8–17.5)  – – – – – – – 0.30  (0.23–0.38)
+> 13.5  (9.9–17.7)
+> Bed  – – 0.29  (0.25–0.33) †
+> 19.8  (17.2–22.3)
+> 0.33  (0.31–0.34) †
+> 14.8  (14.6–15.0)  – – 0.27  (0.26–0.28) †
+> 16.3  (15.7–16.8)
+> 0.27  (0.22–0.31) †
+> 18.5  (16.4–20.6)  – 0.30  (0.24–0.35)
+> 15.2  (14.6–18.6)
+> Putting on Shoes  – – – – – – – – – 0.31  (0.29–0.32) †
+> 9.8  (9.5–10.1)
+> Car  – – 0.31  (0.28–0.33)
+> 14.7  (13.6–15.8)  – – – 0.33  (0.32–0.33)
+> 14.9  (13.9–15.6)
+> 0.31  (0.30–0.32)
+> 13.8  (13.5–14.2)  – 0.32  (0.30–0.33)
+> 14.2  (13.6–15.4)
+> Cross-Country Skiing  – – – – – – – – – 0.33  (0.32–0.36)
+> 15.0  (13.8–15.6)
+> Walking  0.17  (0.16–0.19)
+> 5.8  (5.5–6.4)
+> 0.19  (0.16–0.25)
+> 8.4  (6.9–10.7)
+> 0.29  (0.23–0.34)
+> 11.3  (10.4–15.5)
+> 0.36  (0.27–0.40)
+> 13.9  (12.1–16.2)
+> 0.40  (0.37–0.49)
+> 13.9  (11.3–16.6)
+> 0.34  (0.23–0.36)
+> 14.3  (11.1–15.8)
+> 0.29  (0.24–0.36)
+> 12.5  (10.3–16.9)
+> 0.37  (0.29–0.41)
+> 15.3  (13.6–17.0)
+> 0.43  (0.36–0.56)
+> 15.2  (13.8–19.1)
+> 0.34  (0.25–0.41)
+> 12.5  (9.9–14.9)
+> Standing  0.26  (0.21–0.57)
+> 12.0  (10.4–15.9)
+> 0.10  (0.09–0.13)
+> 6.3  (6.1–6.7)
+> 0.31  (0.30–0.34)
+> 14.8  (13.5–15.6)
+> 0.23 †
+> 9.1 0.69  (0.42–1.14)
+> 18.2  (16.4–22.5)
+> 0.50 †
+> 17.7 0.30  (0.29–0.42)
+> 12.9  (11.7–14.6)
+> 0.42  (0.30–0.48)
+> 20.1  (14.4–25.9)  – 0.36  (0.25–0.50)
+> 14.6  (11.4–20.3)
+> Bath Tub  – – 0.47 †
+> 18.4  – – – – 0.30 †
+> 11.3  – 0.38  (0.34–0.42) †
+> 14.9  (13.1–16.7)
+> Stairs  – – 0.34  (0.27–0.36)
+> 14.4  (12.2–15.9)
+> 0.54  (0.50–0.55)
+> 15.7  (15.3–16.1)
+> 0.80  (0.37–0.89)
+> 15.7  (12.8–17.2)
+> 0.43  (0.42–0.45) †
+> 17.1  (16.8–17.5)
+> 0.32  (0.29–0.35)
+> 13.7  (12.2–17.2)
+> 0.39  (0.36–0.42)
+> 18.5  (14.8–19.3)
+> 0.44  (0.40–0.47)
+> 16.0  (15.5–16.6)
+> 0.41  (0.35–0.50)
+> 15.7  (13.4–17.4)
+> Trampoline  – – – – – – – – – 0.44  (0.39–0.54)
+> 15.1  (12.4–16.9)
+> Dance  – – – – – – – – – 0.55  (0.55–0.55) †
+> 14.0  (13.9–14.1)
+> Agriculture  – – – – – – – – – 0.64  (0.52–0.73)
+> 15.7  (14.0–17.0)
+> Stumbling  – – 0.38  (0.34–0.42)
+> 14.0  (11.8–14.4)  – 1.38 †
+> 17.2  – – – – 0.66  (0.40–0.95)
+> 14.3  (13.2–14.7)
+> Muscle Contraction  – – – – – – – – – 0.98  (0.90–1.07) †
+> 25.6  (22.6–28.7)
+> All  0.25  (0.17–0.32)
+> 11.3  (8.3–15.3)
+> 0.24  (0.17–0.28)
+> 12.7  (9.9–15.5)
+> 0.27  (0.19–0.35)
+> 16.7  (13.2–22.6)
+> 0.30  (0.23–0.37)
+> 16.6  (13.9–21.0)
+> 0.40  (0.32–0.62)
+> 14.9  (12.5–17.4)
+> 0.34  (0.26–0.49)
+> 22.0  (15.9–30.6)
+> 0.30  (0.24–0.38)
+> 16.8  (12.4–22.6)
+> 0.27  (0.19–0.38)
+> 16.4  (13.8–20.6)
+> 0.44  (0.36–0.54)
+> 15.9  (14.0–17.8)
+> 0.28  (0.20–0.39)
+> 14.1  (10.4–18.7)
+
+29 Table A3: Knee cohort: per-activity, per-implant prediction error. Each cell shows RMSE median (Q1–Q3) in BW (top) with nRMSE median (Q1–Q3) in % on the gray line below. The “All” row and column report marginal medians over the pooled trial-level distribution across all 9 implants. 
+
+> K1L  K2L  K3R  K4R  K5R  K6L  K7L  K8L  K9L  All
+> Walking  0.20  (0.17–0.22)
+> 7.3  (6.3–8.0)
+> 0.18  (0.17–0.23)
+> 7.5  (6.5–8.7)
+> 0.18  (0.16–0.18)
+> 6.7  (6.0–7.1)
+> 0.22  (0.21–0.22) †
+> 7.2  (7.1–7.3)
+> 0.18  (0.17–0.20)
+> 7.5  (7.0–8.2)  – 0.15  (0.12–0.16)
+> 5.3  (4.4–5.6)
+> 0.14  (0.12–0.15)
+> 5.7  (4.9–6.2)
+> 0.15  (0.15–0.16)
+> 7.2  (6.9–7.6)
+> 0.17  (0.15–0.20)
+> 6.9  (6.1–7.9)
+> Vibration  0.18  (0.14–0.25)
+> 8.7  (7.6–9.0)  – 0.17  (0.15–0.18)
+> 9.1  (7.5–10.0)  – 0.17  (0.15–0.22)
+> 8.4  (7.7–9.2)  – 0.18  (0.11–0.24)
+> 8.8  (7.3–11.7)
+> 0.19  (0.16–0.20)
+> 9.8  (8.3–10.6)
+> 0.16  (0.14–0.19)
+> 7.8  (7.7–10.3)
+> 0.17  (0.14–0.22)
+> 8.7  (7.6–10.4)
+> Standing  0.26  (0.19–0.29)
+> 9.7  (9.0–10.0)
+> 0.17  (0.16–0.18)
+> 7.7  (7.4–8.8)
+> 0.19  (0.17–0.19)
+> 7.4  (7.2–8.4)
+> 0.17 †
+> 13.3 0.16  (0.16–0.19)
+> 6.6  (6.0–8.3)  – 0.14  (0.10–0.19) †
+> 6.6  (6.1–7.0)
+> 0.20  (0.16–0.24) †
+> 10.8  (9.8–11.7)
+> 0.08 †
+> 8.3 0.18  (0.14–0.21)
+> 7.8  (7.1–10.2)
+> Sports  0.10  (0.10–0.12)
+> 6.9  (6.8–7.3)
+> 0.12  (0.11–0.16)
+> 11.3  (9.1–15.2)
+> 0.18  (0.16–0.20)
+> 12.0  (10.4–12.8)
+> 0.13  (0.12–0.22)
+> 19.0  (15.3–21.9)
+> 0.21  (0.16–0.26)
+> 13.5  (11.8–23.2)
+> 0.14  (0.13–0.17)
+> 9.0  (8.9–10.2)
+> 0.19  (0.14–0.26)
+> 13.8  (9.1–16.3)
+> 0.18  (0.14–0.26)
+> 11.1  (9.5–15.6)
+> 0.10  (0.08–0.10)
+> 7.3  (6.7–8.6)
+> 0.18  (0.13–0.24)
+> 12.5  (10.0–16.5)
+> Sitting  0.24  (0.23–0.28)
+> 9.7  (9.3–10.5)
+> 0.16  (0.16–0.17)
+> 6.4  (6.2–6.9)
+> 0.17  (0.16–0.18)
+> 6.5  (6.5–7.2)
+> 0.30  (0.30–0.32)
+> 15.8  (15.5–16.0)
+> 0.26  (0.25–0.28)
+> 10.4  (9.9–10.9)  – – – – 0.24  (0.17–0.30)
+> 9.5  (7.0–11.3)
+> Stair  – – 0.19 †
+> 6.0  – 0.25 †
+> 7.6  – – 0.36 †
+> 11.7  – 0.25  (0.22–0.31)
+> 7.6  (6.8–9.7)
+> Gait Analysis  0.32  (0.26–0.38)
+> 9.3  (8.7–10.8)
+> 0.19  (0.13–0.22)
+> 6.5  (4.9–7.4)
+> 0.27  (0.18–0.33)
+> 10.0  (6.9–14.3)
+> 0.25  (0.23–0.26)
+> 7.5  (7.2–7.7)
+> 0.28  (0.23–0.34)
+> 8.6  (7.8–9.9)
+> 0.28  (0.25–0.31)
+> 7.6  (7.0–8.0)
+> 0.25  (0.21–0.27)
+> 7.4  (6.3–9.0)
+> 0.20  (0.15–0.22)
+> 6.9  (5.6–7.3)
+> 0.27  (0.24–0.33)
+> 13.3  (12.8–15.7)
+> 0.25  (0.20–0.30)
+> 7.9  (6.8–10.5)
+> Deep Knee Bend  0.37  (0.31–0.41)
+> 12.6  (10.8–13.6)
+> 0.17  (0.16–0.17)
+> 6.6  (6.3–7.2)
+> 0.21  (0.21–0.22)
+> 8.4  (8.3–8.8)
+> 0.40  (0.38–0.41)
+> 23.0  (21.5–23.6)
+> 0.32  (0.30–0.34)
+> 12.3  (12.0–12.5)  – 0.17 †
+> 6.6 0.24 †
+> 9.9  – 0.27  (0.21–0.35)
+> 10.6  (8.2–12.9)
+> Stairs  0.31  (0.24–0.34)
+> 7.9  (7.0–9.7)
+> 0.24  (0.21–0.36)
+> 8.6  (6.7–11.1)
+> 0.26  (0.25–0.32)
+> 8.5  (7.7–9.8)
+> 0.33  (0.30–0.35)
+> 11.0  (9.4–11.1)
+> 0.30  (0.27–0.35)
+> 8.7  (8.0–9.5)  – – – – 0.30  (0.24–0.34)
+> 8.6  (7.4–10.0)
+> Knee Brace  0.36  (0.20–0.41)
+> 8.9  (7.7–10.8)  – 0.28  (0.20–0.30)
+> 10.0  (9.0–11.3)  – 0.30  (0.20–0.34)
+> 9.5  (9.0–9.9)  – – – – 0.30  (0.20–0.34)
+> 9.5  (8.7–10.9)
+> All  0.24  (0.19–0.34)
+> 8.5  (7.4–9.9)
+> 0.18  (0.15–0.23)
+> 7.4  (6.4–8.9)
+> 0.19  (0.17–0.26)
+> 8.6  (7.1–10.6)
+> 0.25  (0.18–0.31)
+> 14.3  (7.9–20.1)
+> 0.22  (0.17–0.30)
+> 9.7  (8.1–12.1)
+> 0.28  (0.22–0.31)
+> 7.8  (7.3–8.6)
+> 0.20  (0.15–0.26)
+> 8.1  (6.5–10.8)
+> 0.18  (0.14–0.22)
+> 8.3  (6.1–11.0)
+> 0.18  (0.15–0.27)
+> 9.3  (7.6–13.1)
+> 0.21  (0.16–0.28)
+> 8.7  (7.2–11.4)
+
+30 Table A4: Per-trial resultant force metrics on the Grand Challenge dataset. RMSE in units of body weight (BW); r2 is the squared Pearson correlation. Competitions 1 and 4 measure only axial force, so the resultant reduces to |Fz |.
+
+Trial RMSE r2 Trial RMSE r2 Trial RMSE r2
+
+1_jw_mtgait_2 0.43 0.74 3_sc_ngait_og9 0.55 0.80 4_jw_wpgait_lw1 0.41 0.84 1_jw_mtgait_10 0.36 0.80 3_sc_smooth_og1 0.44 0.87 4_jw_wpgait_lw4 0.49 0.75 1_jw_mtgait_12 0.50 0.66 3_sc_smooth_og2 0.43 0.90 4_jw_wpgait_lw5 0.50 0.74 1_jw_mtgait_13 0.37 0.81 3_sc_smooth_og3 0.43 0.86 4_jw_wpgait_lw6 0.51 0.72 1_jw_mtgait_17 0.40 0.76 3_sc_smooth_og4 0.43 0.86 4_jw_wpgait_lw7 0.50 0.69 1_jw_ngait_2 0.35 0.84 3_sc_smooth_og5 0.32 0.93 4_jw_wpgait_lw8 0.52 0.72 1_jw_ngait_3 0.33 0.87 3_sc_trunksway1 0.34 0.92 4_jw_wpgait_sn1 0.40 0.85 1_jw_ngait_4 0.35 0.84 3_sc_trunksway4 0.40 0.89 4_jw_wpgait_sn3 0.43 0.80 1_jw_ngait_5 0.40 0.79 3_sc_trunksway5 0.48 0.86 4_jw_wpgait_sn4 0.39 0.81 1_jw_ngait_6 0.31 0.89 3_sc_trunksway6 0.54 0.88 4_jw_wpgait_sn6 0.42 0.80 1_jw_tsgait_2 0.46 0.71 3_sc_trunksway7 0.56 0.85 4_jw_wpgait_sn7 0.45 0.76 1_jw_tsgait_3 0.42 0.76 3_sc_wpgait_l5 0.45 0.85 4_jw_wpgait_sn8 0.41 0.82 1_jw_tsgait_5 0.39 0.74 3_sc_wpgait_l8 0.53 0.75 4_jw_wpgait_sn10 0.42 0.83 1_jw_tsgait_10 0.51 0.63 3_sc_wpgait_l11 0.48 0.86 4_jw_wpgait_sw1 0.45 0.76 1_jw_tsgait_11 0.49 0.68 3_sc_wpgait_s1 0.51 0.73 4_jw_wpgait_sw2 0.45 0.86 1_jw_wpgait_6 0.52 0.67 3_sc_wpgait_s5 0.43 0.87 4_jw_wpgait_sw7 0.48 0.76 1_jw_wpgait_8 0.58 0.62 3_sc_wpgait_s6 0.49 0.76 4_jw_wpgait_sw8 0.44 0.77 1_jw_wpgait_10 0.55 0.48 4_jw_bouncy1 0.58 0.54 4_jw_wpgait_sw9 0.35 0.88 1_jw_wpgait_11 0.53 0.56 4_jw_bouncy4 0.34 0.86 4_jw_wpgait_sw10 0.45 0.78 1_jw_wpgait_12 0.72 0.34 4_jw_bouncy5 0.41 0.76 4_jw_wpgait_sw12 0.41 0.79 2_dm_mtgait_3 0.67 0.69 4_jw_bouncy7 0.37 0.81 5_ps_ngait_og_ss1 0.46 0.86 2_dm_mtgait_4 0.60 0.75 4_jw_bouncy8 0.37 0.83 5_ps_ngait_og_ss3 0.56 0.78 2_dm_mtgait_5 0.69 0.65 4_jw_bouncy9 0.36 0.86 5_ps_ngait_og_ss7 0.47 0.85 2_dm_mtgait_6 0.66 0.70 4_jw_medthrust2 0.37 0.82 5_ps_ngait_og_ss8 0.45 0.87 2_dm_mtgait_10 0.65 0.73 4_jw_medthrust3 0.35 0.83 5_ps_ngait_og_ss9 0.40 0.88 2_dm_ngait_4 0.73 0.39 4_jw_medthrust4 0.39 0.77 5_ps_ngait_og_ss11 0.44 0.87 2_dm_ngait_10 0.51 0.68 4_jw_medthrust6 0.41 0.80 5_ps_ngait_tmf_ss1hs 0.79 0.73 2_dm_ngait_11 0.46 0.74 4_jw_medthrust11 0.38 0.80 5_ps_rightturn4 0.33 0.86 2_dm_ngait_12 0.45 0.73 4_jw_medthrust12 0.40 0.81 5_ps_rightturn5 0.29 0.91 2_dm_ngait_13 0.47 0.71 4_jw_medthrust13 0.46 0.74 5_ps_rightturn6 0.28 0.90 2_dm_tsgait_1 0.58 0.60 4_jw_medthrust14 0.40 0.78 6_dm_bouncy1 0.50 0.75 2_dm_tsgait_2 0.60 0.62 4_jw_mildcrouch1 0.41 0.80 6_dm_bouncy2 0.40 0.81 2_dm_tsgait_6 0.65 0.62 4_jw_mildcrouch2 0.42 0.81 6_dm_bouncy3 0.80 0.45 2_dm_tsgait_7 0.54 0.71 4_jw_mildcrouch3 0.39 0.84 6_dm_bouncy4 0.36 0.83 2_dm_tsgait_8 0.65 0.70 4_jw_mildcrouch4 0.39 0.80 6_dm_bouncy5 0.40 0.80 2_dm_wpgait_9 0.50 0.68 4_jw_mildcrouch5 0.33 0.87 6_dm_bouncy6 0.45 0.83 2_dm_wpgait_11 0.46 0.78 4_jw_mildcrouch6 0.42 0.80 6_dm_crouch_og1 0.40 0.88 2_dm_wpgait_12 0.40 0.80 4_jw_moderatecrouch2 0.33 0.83 6_dm_crouch_og2 0.46 0.81 2_dm_wpgait_13 0.50 0.72 4_jw_moderatecrouch3 0.33 0.84 6_dm_crouch_og3 0.48 0.85 2_dm_wpgait_17 0.45 0.73 4_jw_moderatecrouch4 0.37 0.81 6_dm_crouch_og4 0.52 0.81 3_sc_bouncy_og3 0.81 0.69 4_jw_moderatecrouch5 0.42 0.79 6_dm_crouch_og5 0.44 0.85 3_sc_bouncy_og5 1.06 0.66 4_jw_moderatecrouch6 0.34 0.85 6_dm_crouch_tm1 0.38 0.87 3_sc_bouncy_og6 0.90 0.65 4_jw_mtpgait2 0.35 0.84 6_dm_mtpgait2 0.54 0.87 3_sc_bouncy_og7 0.92 0.63 4_jw_mtpgait3 0.37 0.83 6_dm_mtpgait3 0.35 0.91 3_sc_bouncy_og8 0.88 0.61 4_jw_mtpgait4 0.38 0.79 6_dm_mtpgait4 0.38 0.86 3_sc_crouch_og1 1.07 0.81 4_jw_mtpgait6 0.43 0.76 6_dm_mtpgait5 0.38 0.92 3_sc_crouch_og3 1.10 0.66 4_jw_mtpgait8 0.42 0.77 6_dm_mtpgait6 0.45 0.83 3_sc_crouch_og4 0.98 0.75 4_jw_mtpgait9 0.36 0.84 6_dm_ngait_og1 0.38 0.86 3_sc_crouch_og5 0.86 0.83 4_jw_ngait_og1 0.34 0.85 6_dm_ngait_og2 0.33 0.87 3_sc_crouch_og6 0.84 0.71 4_jw_ngait_og2 0.39 0.78 6_dm_ngait_og3 0.28 0.89 3_sc_medialthrust3 0.55 0.83 4_jw_ngait_og3 0.33 0.85 6_dm_ngait_og4 0.34 0.89 3_sc_medialthrust4 0.66 0.82 4_jw_ngait_og4 0.36 0.82 6_dm_ngait_og5 0.32 0.87 3_sc_medialthrust5 0.59 0.80 4_jw_ngait_og5 0.50 0.64 6_dm_ngait_og6 0.38 0.84 3_sc_medialthrust6 0.69 0.75 4_jw_ngait_og7 0.38 0.81 6_dm_ngait_og7 0.39 0.86 3_sc_medialthrust8 0.65 0.77 4_jw_ngait_tm_fast1 0.72 0.58 6_dm_ngait_og9 0.42 0.81 3_sc_mtpgait1 0.33 0.87 4_jw_ngait_tm_set1 0.79 0.61 6_dm_ngait_tm_med1 0.64 0.75 3_sc_mtpgait2 0.44 0.89 4_jw_ngait_tm_slow1 0.78 0.69 6_dm_ngait_tm_set1 0.50 0.83 3_sc_mtpgait3 0.44 0.86 4_jw_ngait_tm_ss1 0.76 0.66 6_dm_ngait_tm_slow1 0.60 0.83 3_sc_mtpgait4 0.35 0.88 4_jw_ngait_tm_transition1 0.61 0.63 6_dm_ngait_tm_ss1 0.47 0.85 3_sc_mtpgait5 0.60 0.67 4_jw_wpgait_ln2 0.39 0.85 6_dm_ngait_tmf_slow1 0.53 0.84 3_sc_mtpgait6 0.41 0.83 4_jw_wpgait_ln4 0.42 0.82 6_dm_ngait_tmf_slow2 0.54 0.82 3_sc_ngait_og5 0.56 0.83 4_jw_wpgait_ln5 0.49 0.77 6_dm_ngait_transition1 0.47 0.76 3_sc_ngait_og6 0.47 0.86 4_jw_wpgait_ln6 0.51 0.77 6_dm_smooth1 0.47 0.72 3_sc_ngait_og7 0.48 0.87 4_jw_wpgait_ln7 0.41 0.83 6_dm_smooth3 0.40 0.82 3_sc_ngait_og8 0.60 0.70 4_jw_wpgait_ln8 0.39 0.81 6_dm_smooth4 0.41 0.78 
+
+31 Footwear (41) 
+
+> Walking (466)
+> Stair (6)
+> Gait Analysis (354)
+> Knee Brace (78)
+> Deep Knee Bend (20)
+> Chair (46)
+> Stairs (113)
+> Standing (168)
+> Putting on Shoes (2)
+> Muscle Stretching (52)
+> Sitting (100)
+> Sports (584)
+> Agriculture (18)
+> Bath Tub (2)
+> Stumbling (6)
+> Lying (342)
+> Muscle Contraction (2)
+> Trampoline (10)
+> Dance (2)
+> Car (12)
+> Bed (8)
+> Cross-Country Skiing (6)
+> Bicycle (32)
+> Vibration (130)
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Pearson  r2
+> Axis
+> Fx
+> Fy
+> Fz
+
+Figure A1: Per-activity temporal shape agreement of force predictions. Squared Pearson correlation 
+
+r2 between predicted and measured force traces across all LOSO held-out trials, separately for each force component ( Fx, Fy , Fz ; color-coded). Bounded in [0 , 1] and invariant to additive offset and multiplicative scale, r2 measures how well the predicted trace’s temporal shape tracks the measured trace, complementing the magnitude error reported by per-trial RMSE (Fig. 6). Activities are sorted by median Fz r2 (descending). Cyclic, weight-bearing tasks (Walking, Stairs, Footwear) achieve the highest shape agreement; near-stationary activities (Vibration, Lying, Bicycle) yield lower r2 because their target signals carry little coherent temporal structure to correlate against, not because absolute prediction error is large (compare RMSE in Fig. 6). Boxes show median and IQR; whiskers span the 10th–90th percentile, outliers shown as small dots. Categories with fewer than five trials are rendered as individual points. 32 0 1 2 3 4 5 6 7
+
+Peak resultant force (BW) 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> RMSE (BW)
+> GC 1 (JW)
+> GC 2 (DM)
+> GC 3 (SC)
+> GC 4 (JW)
+> GC 5 (PS)
+> GC 6 (DM)
+
+Figure A2: Per-trial prediction error (RMSE) versus peak joint resultant force, both expressed in body weights (BW), evaluated on all 195 trials of the six Grand Challenge knee implant datasets (four unique patients; JW and DM each contributed to two competitions). Each point represents one trial, colored by Grand Challenge competition. Contour lines show the kernel density estimate of the full dataset. For competitions 1 and 4 the implant measures only the axial component, so the resultant reduces to |Fz |.33 0.0 0.5 1.0 1.5 2.0 2.5 
+
+> 0
+> 2
+> Resultant (BW)
+> RMSE 0.329 · r² 0.855
+
+p10 4_JW / jw_ngait_og3        
+
+> 0246810 12 14
+> 0
+> 2
+> 4
+> Resultant (BW)
+> RMSE 0.382 · r² 0.871
+
+p25 6_DM / dm_crouch_tm1     
+
+> 0.0 0.5 1.0 1.5 2.0
+> 0
+> 2
+> Resultant (BW)
+> RMSE 0.458 · r² 0.861
+
+p50 5_PS / ps_ngait_og_ss1        
+
+> 0.0 0.5 1.0 1.5 2.0 2.5 3.0 3.5
+> 0
+> 2
+> Resultant (BW)
+> RMSE 0.531 · r² 0.565
+
+p75 1_JW / jw_wpgait_11     
+
+> 01234
+
+Time (s) 
+
+> 0
+> 2
+> Resultant (BW)
+> RMSE 0.691 · r² 0.649
+
+p90 2_DM / dm_mtgait_5   
+
+> Ground truth Predicted ±2
+
+Figure A3: Representative predicted (rose) versus ground-truth (indigo) knee implant resultant force traces on the Grand Challenge dataset, both expressed in body weights (BW). The five trials are sampled at the 10th, 25th, 50th, 75th, and 90th percentiles of the per-trial RMSE distribution (n = 195 ), spanning typical-easy (p10) to near-worst (p90) cases. Shaded bands give the predicted 
+
+±2σ uncertainty, propagated from the per-component variance to the resultant via the delta method (σ2 
+
+> R
+
+≈ P
+
+> i
+
+(Fi/R )2σ2 
+
+> i
+
+). Each panel is annotated with the source competition, trial identifier, and per-trial RMSE and r2.34 Bath Tub (2) 
+
+> Stairs (113)
+> Knee Brace (78)
+> Chair (46)
+> Footwear (41)
+> Walking (466)
+> Gait Analysis (354)
+> Stair (6)
+> Car (12)
+> Putting on Shoes (2)
+> Dance (2)
+> Stumbling (6)
+> Bed (8)
+> Sitting (100)
+> Deep Knee Bend (20)
+> Standing (168)
+> Sports (584)
+> Trampoline (10)
+> Agriculture (18)
+> Muscle Stretching (52)
+> Bicycle (32)
+> Cross-Country Skiing (6)
+> Muscle Contraction (2)
+> Lying (342)
+> Vibration (130)
+
+0.0 
+
+0.1 
+
+0.2 
+
+0.3 
+
+0.4 
+
+0.5 
+
+> std / mean
+
+Axis 
+
+Fx 
+
+Fy 
+
+Fz Figure A4: Per-activity heteroscedasticity of predicted uncertainty. Within-trial coefficient of variation 
+
+σstd /σ mean of the predicted standard deviation across all LOSO held-out trials. Activities are sorted by median Fz σ-CV (descending); high values indicate strong within-trial modulation of predicted uncertainty (heteroscedasticity), low values indicate near-flat σ. Cyclic, weight-bearing tasks (Stairs, Walking, Footwear) cluster at the high-modulation end; quasi-static tasks (Lying, Vibration, Bicycle) at the low end. Plotting conventions as in Fig. A1. 35 0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 
+
+> nRMSE
+> Cycling
+> Gym Machines
+> Jumping
+> Lying
+> Aquagym
+> Other
+> Gait
+> Vibration
+> Stairs
+> Stand-Up/Sit-Down
+> Deep Knee Bend
+> Sitting
+> Standing
+> Aerobics
+> n=9
+> n=11
+> n=1
+> n=20
+> n=3
+> n=4
+> n=41
+> n=14
+> n=23
+> n=15
+> n=7
+> n=9
+> n=22
+> n=10
+
+A   
+
+> kinematics + shape
+> + text
+> + V-JEPA 2
+> 0.1 0.0 0.1
+> nRMSE
+> text wins V-JEPA 2 wins
+
+B     
+
+> 1.0 0.5 0.0 0.5 1.0
+> nRMSE from text
+> 1.0
+> 0.5
+> 0.0
+> 0.5
+> 1.0
+> nRMSE from V-JEPA 2
+> r= 0.86
+
+CFigure A5: Per-category accuracy of three model variants and the incremental benefit of V-JEPA 2 visual features over text embeddings. All panels are computed on the held-out validation split of the 85/15 patient-stratified partition used for the ablations. (A) Mean normalized root mean square error (nRMSE) across the 14 activity categories present in that split, for the kinematics + shape baseline, the text-augmented model, and the V-JEPA 2 -augmented model. Categories are sorted by the mean nRMSE (+text ) − nRMSE (+V-JEPA 2 ) difference (ascending), so rows where V-JEPA 2 confers the largest additional benefit appear at the top. Activity labels are shown at full contrast for the three categories where V-JEPA 2 improves over text (bootstrap 95% CI excludes zero) and grayed otherwise; n denotes the number of trials per category. (B) Forest plot of the mean paired difference in nRMSE between the text and V-JEPA 2 models (positive values indicate V-JEPA 2 superiority). Horizontal bars are 95% percentile bootstrap confidence intervals (2,000 resamples). (C) Per-sample scatter of the improvement in nRMSE conferred by text ( x-axis) versus V-JEPA 2 (y-axis) relative to the baseline; the dashed line is the identity. Points are colored by activity category, matching the colors used in panel B; per-trial improvements are strongly correlated (Pearson r = 0 .86 , p < 0.001 ,
+
+n = 189 trials). 36

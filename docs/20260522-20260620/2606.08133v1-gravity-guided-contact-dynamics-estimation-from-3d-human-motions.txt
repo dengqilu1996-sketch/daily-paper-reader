@@ -1,0 +1,335 @@
+Title: Gravity-guided Contact Dynamics Estimation from 3D Human Motions
+
+URL Source: https://arxiv.org/pdf/2606.08133v1
+
+Published Time: Tue, 09 Jun 2026 00:46:52 GMT
+
+Number of Pages: 19
+
+Markdown Content:
+# GraCE: Gravity-Guided Contact Dynamics Estimation from 3D Human Motions 
+
+Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 
+
+Linköping University 
+
+Abstract. Ground contact forces acting on the human body, are crucial for biomechanics studies or sport performance analysis. Prior methods rely on force plates or pressure mats to collect ground contact dynam-ics, limiting their applicability to carefully controlled settings. A more scalable solution is to estimate the dynamics directly from motion cap-ture data. Recent approaches only roughly estimate the ground contact dynamics from the vertical distance between the body and the ground plane, which cannot capture the complex pressure distribution of all con-tact points. To this end, we propose GraCE – Gravity-guided Contact Dynamics Estimation, a novel full-body contact dynamics model for hu-man motions using a realistic influence of body mass distribution and gravity. We use the human’s center of gravity to estimate the ground con-tacts based on its relative distance to the human body. The applied force on each contact is estimated via the product of predicted contact prob-abilities and the total exterior force computed from the center of mass trajectory. We outperform related work on the GroundLink dataset for ground reaction force estimation, and on the MOYO dataset for detailed contact pressure prediction. The code is published upon acceptance. 
+
+Keywords: 3D human · dynamics · contact · ground reaction 
+
+# 1 Introduction 
+
+Plausible recovery of ground contact dynamics is an essential ingredient for many biomechanics applications such as clinical gait analysis [25, 31], sport perfor-mance analysis [1, 26, 39], and human movement studies [23, 28]. Traditionally, contact dynamics are collected from sensor devices in laboratory environments, i.e. force plates for ground reaction force and center of pressure measurements. This laboratory setting restricts biomechanics research to simple motions per-formed by actors in a small volume. Motion capture systems, on the other hand, offer a higher volume of data collection and a wider area of application, enabling the actors to freely perform complex movements. Therefore, recent approaches often estimate ground contact dynamics directly from the captured motions, using the Newton mechanics as the foundation. The total exterior force that causes the human motion trajectory is often simplified as a residual force acting on the root or the center of mass of the human body [2, 23]. The total exterior   
+
+> arXiv:2606.08133v1 [cs.CV] 6 Jun 2026 2Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck
+> Fig. 1: Gravity-guided vs. distance-based contacts. An example of an ambiguous case during a stretching exercise, where each foot contact is at the same vertical level to the ground, but the reaction force is mainly distributed toward the left foot, as the ground reaction force (GRF) in left contact (blue arrow) is larger than right contact (orange arrow). The gravity-guided model imposes the influence of the center of gravity (CoG) (cyan) to the contacts, leading to correct pressure estimation with the CoP (red) closer to the left foot, unlike the distance-based model that distributes the reactions evenly between the two feet with the CoP in the middle.
+
+force accounts for all of the reaction forces from the body’s contacts with the surroundings, commonly the ground, and produces the human trajectory via an ordinary differential equation (ODE) with the acceleration computed from Newton’s second law of motion. Given a motion, GraCE learns to predict the total contact reaction force that could reconstruct the center of mass (CoM) trajectory of the input motion, using a learnable PD controller with the concept of residual force [2] and Newton mechanics. To provide meaningful data for further biomechanics research, the total force must be redistributed to either joint-level or vertex-level contact force [28]. Pre-vious methods mainly model contact probability via the vertical distance of the joint/vertex to the ground, with the reaction force scaled accordingly. These distance-based methods often struggle with subtle movements, where the verti-cal distance of multiple contacts is the same but the magnitude of reaction force applied to them is different. Fig. 1 illustrates an example of a stretching motion, where the feet have the same vertical distance to the ground, but the distribu-tion of the reaction force differs significantly, causing distance-based methods to fail. To this end, we propose a novel approach that predicts contact probability based on the center of gravity (CoG) for more accurate dynamics estimation in subtle movements. The human body is modeled via the SMPL+H model, a vertex-based volumetric model that can be controlled via a set of pose and shape vectors [20]. Inspired from biomechanics literature [9, 29, 32], we design a new contact dynamics model for every body vertex based on the distance between the CoG and the projection of the vertex to the ground. The contact model parameters are learned via a CNN in a fully differentiable pipeline. Furthermore, since the contact model includes all body vertices, the dynamics can be easily adapted to specific tasks. Ground reaction forces, similar to force GraCE 3
+
+plate data, is obtained by summing all the force from the respective foot vertices; or a ground pressure map, similar to data from pressure mats, can be computed via the summation of forces from all body vertices projected to the area of interest. GraCE is evaluated with related ground contact models on: 1) the GroundLink dataset [7] for ground reaction force estimation in comparison to force plate measurements; and 2) the MOYO dataset [27] for full-body pressure estimation with pressure mat data. In both setups, GraCE outperforms the related methods by a significant 36% increase in contact estimation accuracy. 
+
+# 2 Related work 
+
+2.1 Physics-based motion capture 
+
+Prior work in vision-based human motion capture uses physics constraints, the contact dynamics from the ground plane, to reduce jittery and unnatural poses through either: 1) physics engines for imitation learning [8, 34–36]; 2) motion optimization objectives [5, 6, 19, 33]; or 3) acceleration modeling for motion re-construction [11, 12, 18, 24]. The exterior reaction in these approaches is often simplified via detections of contact events based on thresholding, which leads to the discontinuities of reaction dynamics and can only be applied to a fixed set of body joints such as feet or hands. These simplifications result in implausible and discontinuous dynamics capture, which is undesirable for further biomechanics analysis. We address these limitations by proposing a continuous contact model for all body vertices represented via the SMPL+H model [20]. 
+
+2.2 Contact dynamics from motions 
+
+Recent work leverages the power of neural networks by learning to predict con-tact dynamics using motion captures as input data. GroundLink [7] learns to reproduce the force plate measurement of ground reaction forces and center of pressure using a temporal convolutional network, with SMPL motions as inputs. UnderPressure [16], and the line of research from [10, 21, 22] learn to predict foot pressures using neural networks and foot sole sensor data as ground truth. ImDy [13] addresses the limitations of sensory measurements to laboratory se-tups by simulating human dynamics via motion imitation with reinforcement learning on the AMASS database [15], and learns to reproduce the simulated dynamics with a transformer network. These approaches rely on large-scale databases and complex learning architectures for good estimations, and often struggle with unseen complex human movements. A more robust method for estimating contacts is by explicitly modeling the contact probabilities via the kinematics interactions between the human body and the ground. Some prior work from [2] and [37] estimates motion exterior dy-namics using a continuous contact model based on the vertical distance between human 3D keypoints and the ground. The contact probability is bounded by a sigmoid function, and the motion dynamics is computed via optimization to 4 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 
+
+minimize the exterior force applied to the body root joint, while satisfying New-ton’s second law of motion. To impose more sophisticated contact estimations, recent work utilizes the human volumetric model SMPL as the body represen-tation. PhysPT [38] uses a model based on the vertical distance and velocity, also inspired by [2], to estimate the contact probability for a subset of vertices of the SMPL model that frequently make contact with the ground in the AMASS dataset. IPMAN [27] instead models the full body ground contacts via a combi-nation of exponential and linear functions as the vertex penetrating the ground plane, thus implemented as an objective loss for the 3D human pose estima-tion. Also, as pointed out in IPMAN [27], and other biomechanics literature, the stability of the human body has strong correlation with the distance between the CoG and the center of pressure (CoP). The closer the CoG to the CoP, the more stable the human poses are [9, 32]. We find that the captured dynamics, including e.g. reaction forces or contact pressures, also contain the corresponding influences from the CoG to every body contact position. All prior work mainly models the contact probability via the vertical distance of the vertex to the ground and by-pass the stability condition imposed by the CoG. This leads to incorrect contact dynamics estimations, especially when encountering complex poses with multiple contacts at the same vertical level while the reaction forces are distributed differently between contacts. We design a new contact model that explicitly considers the CoG influence to every body vertex, quantified by an exponential function with parameters adaptively learned via neural networks. 
+
+# 3 Method 
+
+3.1 Overview 
+
+Fig. 2 shows the overview of our method. We first compute a sequence of SMPL meshes {Vt ∈ R6890 ×3}Tt=1 parameterized by the sequence of root translations 
+
+{yt ∈ R3}Tt=1 , body poses {θt ∈ R24 ×3}Tt=1 in axis–angle representation, and the shape β ∈ R10 . Then, we estimate the sequence of CoM {xt ∈ R3}Tt=1 based on the common mass distribution of the human body from [3]. The CoM is the key component of GraCE and its projection to the ground is the CoG. In Sec. 3.2, we show how we estimate the total exterior force F from the CoM sequence 
+
+{xt}Tt=1 . Sec. 3.3 presents our novel gravity-guided contact model based on the CoG. Sec. 3.4 illustrates how the GRF on specific body parts or the detailed ground pressures can be regressed directly from the full-body vertex pressures. 
+
+3.2 Exterior force estimation 
+
+We aim to simulate a new CoM trajectory {rt}Tt=1 to match the original trajec-tory {xt}Tt=1 via Newtonian mechanics. At each time step t, the total exterior force F must satisfy the equation of motion: F + G = m¨rt, where G ∈ R3 is the constant gravitational force applied to the CoM, m ∈ R is the total mass GraCE 5
+
+Fig. 2: GraCE consists of two separate tasks: 1) contact probability estimation for every body vertex, and 2) total exterior force estimation from input kinematics motion. The gravity-guided contact probability of each body vertex is computed based on its vertical distance and velocity, scaled by the exponential output from the distance between the vertex to the CoG. The magnitude influence from the CoG is determined by the predicted parameters μ, γ from the ConvNet. Concurrently, the total exterior force F is estimated via a PD controller using learned control parameters κP , κ D , b 
+
+(also predicted by the ConvNet) to minimize the CoM trajectory reconstruction loss. With the assumption of a conservative system, the respective reaction force of each body vertex is the total F scaled by the softmax outputs. 
+
+of the person, and ¨rt ∈ R3 is the acceleration of the simulated CoM. Inspired from [11,12,24], the exterior force F is estimated via the learnable PD controller: 
+
+F = κP (xt+1 − rt) − κD ˙rt + bt, (1) where κP , κD , and b is control parameters predicted from the ConvNet. To simulate the new CoM trajectory {rt}Tt=1 , we apply the semi-implicit Euler in-tegration scheme: 
+
+˙rt+1 = ˙ rt + ¨ rt∆t, 
+
+rt+1 = rt + ˙ rt+1 ∆t,  (2) where ˙r is the simulated velocity and ∆t is the time step between two consecutive frames. We train the convolutional neural network, ConvNet [7], to minimize the mean squared errors between the simulated {rt}Tt=1 and the original CoM trajectory {xt}Tt=1 :
+
+LCoM = 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+(rt − xt)2 . (3) The estimated F is used to explain the residual forces applied to the person’s body, not accounted by the internal body joint torques and gravity [2]. The source of external force mostly comes from the ground plane, via multiple contact points and accumulates at the CoM. 6 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 
+
+3.3 Gravity-guided contact 
+
+To compute the specific ground dynamics, we first need to find the contact probability of each vertex. For an SMPL mesh Vt ∈ R6890 ×3, our contact model for each vertex v ∈ R3 is demonstrated as ( t is omitted for better readability): 
+
+cv = 4 σ(−ψdvz )
+
+| {z }
+
+> distance term
+
+σ(−ψv ∥ ˙v∥)
+
+| {z }
+
+> velocity term
+
+exp −∥ vxy − xxy + μ∥
+
+γ
+
+| {z }
+
+> gravity guidance
+
+, (4) where cv ∈ R is the contact probability of the vertex v, vz is the vertical distance of v to the ground, ˙v is the linear velocity of v, vxy is the projection of v on the ground, xxy is the CoG, σ is the sigmoidal function, and ψd , ψ v are parameters to control the sigmoid slope. The distance and velocity terms are designed similarly to prior work [2, 37, 38], which returns higher probability for vertices that are close to the ground and have small velocity. The scaling of 4 is to ensure the maximum contact probability has the value of 1, when the vertical distance and velocity are zeros. To maintain stability, the human body always tries to keep the CoG as close as possible to the CoP [9, 32], which is the average position of all body vertices weighted by their contact probabilities (Eq. 8). To account for this phenomenon, we propose a novel gravity guidance term that scales the contact probability pre-dictions accordingly to the Euclidean distance between the ground projection of every vertex vxy and the CoG xxy . We additionally estimate two parameters μ
+
+and γ for the exponential function using the ConvNet. Since each person has their own mass distribution and cannot be effectively measured, the μ compensates for the CoM approximation error from the common mass distribution from [3]. The “width” γ plays an important role in scaling the distance calculation correspond-ingly to the base of support (BoS), which is the convex hull of all contact points on the ground. An example is shown in Fig. 3, during the double-support phase of a walking motion, by manipulating the γ, the exponential function widens to consider the contacts of two far-away foot contacts. 
+
+3.4 Contact dynamics 
+
+Under the assumption that Newtonian mechanics is strictly enforced, all exterior forces, except gravity, applied to the body must sum up to F, thus the sum of contact probabilities of all vertices is 1. However, the reaction forces in the horizontal axes x and y contain negative directions, which often cancel out the positive forces to maintain stability for the human body. These cancellations cause ambiguity in the exterior force F computed from the CoM trajectory. Additionally, we learn a compensation Fv as additional output of the ConvNet to address this problem. The pressure applied to each vertex ρv is computed as: 
+
+ρv = exp ( cv)
+
+P6890  
+
+> i=1
+
+exp ( ci) (F + Fv), (5) GraCE 7
+
+Fig. 3: The parameters μ, γ (Sec. 3.3) of the gravity guidance term predicted from the ConvNet. The offset μ compensates for the approximation error in CoM estimation. The γ scales the width of the exponential function according to the base of support (BoS), the convex hull encapsulates all contact points. 
+
+where the softmax function maps all estimated contacts to a probability distri-bution that sum up to 1. The estimated full-body contact P ∈ R6890 is flexible towards different tasks. We demonstrate two common types of contact dynamics that are preferred for further biomechanics research. 
+
+Ground reaction force (GRF) is commonly measured for two feet using force plates [7]. We leverage the force plate data as supervisions denoted as ˜λLeft 
+
+and ˜λRight . We obtain our GRF predictions by summing all pressure values of the respective foot vertices, demonstrated as: 
+
+λLeft =
+
+> VLeft
+
+X
+
+> j
+
+ρj , λRight =
+
+> VRight
+
+X
+
+> k
+
+ρk , (6) where λLeft and λRight are our predictions, VLeft and VRight are the number of vertices belonging to the left and right foot, respectively. The vertices are collected based on the segmentations from [20]. The objective function LGRF is the mean absolute distance between λ and ˜λ, presented as: 
+
+LGRF = 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+
+
+|λLeft − ˜λLeft | + |λRight − ˜λRight |
+
+
+
+. (7) 
+
+A pressure map is an another common type of contact dynamics measured via pressure mats [27]. Unlike force plates, pressure mats only provide the force magnitude applied to the surface without direction. We use the data from the pressure mats, which is represented as a gray-scale image ˜I ∈ Rn×m, as supervi-sion. We obtain the pressure map prediction by projecting all the body contacts to the fixed area of size n × m on the ground as: I = A × P , where the projection matrix A ∈ Rnm ×6890 is constructed by activating the vertex entries with the same 2D ground-projection locations. For each pixel in I, the ground pressure is the sum of all vertex pressures that have the same pixel coordinates. Further-more, pressure maps also provide the CoP measurement ˜CoP, and we obtain our 8 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 
+
+CoP prediction via the weighted average vertex positions: 
+
+CoP =
+
+P6890  
+
+> i
+
+vi ∥ρi∥
+
+P6890  
+
+> i
+
+∥ρi∥ . (8) The objective for training with pressure mat data Lmat , consisting of both ground pressure map and CoP prediction, is computed as: 
+
+LMat = 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+
+
+(It − ˜It)2 + ( CoP − ˜CoP )2
+
+. (9) 
+
+3.5 Training objectives 
+
+Overall, the full objective function for training the ConvNet is shown as: 
+
+L = LCoM + LGRF + LMat + ΛLreg , (10) where the regularization Lreg = log( γ)2 is to penalize γ collapsing to zero, pre-venting the model to project all pressures into one vertex; and Λ is the weighting factor of Lreg towards the total objective. Besides the compulsory CoM recon-struction loss LCoM , LGRF and LMat are activated based on the availability of the respective sensory measurements. 
+
+# 4 Experiments 
+
+4.1 Datasets 
+
+We conduct the experiments on two datasets. The first one is GroundLink [7], which contains motion-capture recordings of a wide variety of daily and ath-letic motions performed by 7 actors. Unlike most datasets included in the Ad-dBiomechanics collection [30], which predominantly consist of walking trials, GroundLink provides substantial motion diversity, making it a more challeng-ing and representative benchmark for GRF and CoP estimation. All motions are accompanied by the corresponding force-plate measurements of GRF and CoP. Based on the reported results in [7], we split the data subject-wise, with 
+
+s1, s 2, s 3, s 4, s 6 for training and s5, s 7 for testing. The second dataset is MOYO [27], which contains 200 complex yoga motions performed by one actor, with corre-sponding pressure mat and CoP measurements. We follow the data split provided in the dataset [27] for evaluation. We additionally evaluate GraCE on the Fit3D dataset [4] which contains motion capture data of sport movements. Since Fit3D provides no force plate measurements, only qualitative results are presented. All three datasets provided SMPL-X [17] pose parameters fitted to the motion cap-ture markers via MoSh [14]. Since facial expressions are not regarded for contact dynamics estimation, we only use the body and hand poses to obtain the input SMPL+H motions. GraCE 9
+
+4.2 Implementation details 
+
+For a fair comparison, related work [2, 7, 13, 27, 38] is re-implemented and evalu-ated with the same experiment configuration. The learning component of GraCE is the ConvNet, which has the same architecture as the GLinkNet [7], consisting of four 1D convolutional layers of kernel size 7 and a hidden dimension of 128, followed by three fully connected layers of dimension 256. Instead of outputting the GRF and CoP directly as [7], we predict the control parameters κP , κD , and 
+
+b for the CoM reconstruction; and μ, γ for the scaling factors of the proposed gravity-guided contact model. The sigmoid slopes ψd = 60 , ψ v = 10 are selected similarly to previous work [2, 38] for a fair comparison. The input to all models is the SMPL parameters ( x, y, θ, β ) concatenated to one vector. All motions from the GroundLink and MOYO datasets are down-sampled to 
+
+50 Hz. The models are equally trained for 25 epochs with a batch size of 8 and a learning rate of 10 −4. Each neural linear layer is followed by an Exponential Linear Unit (ELU) activation function. During the training of GraCE, the reg-ularization loss Lreg is scaled by Λ = 0 .01 . The time step ∆t = 0 .02 corresponds to the down-sampled capture rate of 50 Hz. All experiments are conducted on five different random seeds 0 − 4 with the standard deviations consistently be-low 1% and only the means are reported. Following the standard protocol in prior literature [2, 7, 13, 37], all reported GRF predictions are normalized by the person’s weight (in kg ·m/s 2). 
+
+4.3 Metrics 
+
+We first evaluate the GRF and CoP predictions on the force-plate measurements in the GroundLink dataset. We compute the ground force error for left and right foot contacts (GFE L and GFE R) as the average squared error between the GRF predictions and force-plate data (in N/kg ) in the respective foot. Since the dataset contains mostly motions with standing-up pose, the GRF in z-axis is the most interesting and reported separately as GFE z. The error in CoP prediction is measured by the center of pressure error (CPE), which is the average L2 distance (in mm) between the predicted CoP and the ˜CoP measured from force plates. The CPE in left and right feet are reported as CPE L, CPE R, and the average is CPE. For evaluation on MOYO, we compute the average CPE between the CoP of full-body estimation from GraCE and the pressure mat measurements [27]. 
+
+4.4 Results On GroundLink . We present the quantitative results of GraCE on the GroundLink dataset in Tab. 1. The related work consists of two categories: 1) data-driven methods with GLinkNet [7] with a CNN, and ImDyS [13] with a transformer; and 2) explicit contacts from SMPL with distance-based models EstimCD [2], IPMAN [27], and a distance-velocity-based model PhysPT [38]. Our GraCE achieves state-of-the-art results and significantly outperforms the closest com-petitor IPMAN by 35 .6% in GFE z, 44 .5% in GFE L, and 29 .4% GFE R. Com-pared to a model that also considers vertex velocity in the modeling of contact, 10 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck Method GFE z GFE L GFE R CPE L CPE R CPE GLinkNet [7] 5.5 1.8 2.2 146.7 137.2 141.9 ImDyS [13] 5.6 2.2 1.7 67.2 136.9 102.0 PhysPT [38] 5.8 2.2 2.1 55.1 76.0 65.6 EstimCD [2] 5.3 1.9 2.1 53.7 73.2 63.5 IPMAN [27] 4.5 1.8 1.7 65.0 65.2 65.1 GraCE (Ours) 2.9     
+
+> (-35.6%)
+> 1.0
+> (-44.5%)
+> 1.2
+> (-29.4%)
+> 54.5
+> (+1.5%)
+> 57.7
+> (-11.8%)
+> 56.1
+> (-11.6%)
+> Table 1: Quantitative results on the GroundLink dataset [7]. All methods are trained and evaluated on the same training configuration. Lower error means better perfor-mance. Best evaluation results on respective metrics are in bold . The performance differences in %are computed w.r.t the closest method.
+
+PhysPT, GraCE reduces the GFE z by 51 .2% due to the additional gravity-guided estimation in Eq. 4. Regarding the quality of CoP estimation, the data-driven methods, GLinkNet and ImDyS, are clearly inferior to explicit methods with over 50% higher CPE. The better estimation of the explicit contact models is due to the SMPL body constraint, where the prediction of CoP from the feet cannot go beyond the body limitation. Compared to other contact models, we achieve the lowest average CPE of 56 .1mm , 11 .6% lower than the closest method EstimCD with CPE of 63 .5mm .Qualitative results of GraCE in comparison with related methods are shown in Fig. 4. The benefit of using gravity-guided estimation in GraCE is shown in the example of an idling motion on the top left. In this motion, the human body is swinging left and right while the position (and velocity) of the two feet in contact do not change much, causing distance-based methods, such as EstimCD (green) or IPMAN (pink), fail to capture the correct dynamics and predict constant GRF. In contrast, our GraCE is guided by the CoG, which takes into account the swinging movement of the body, correctly predicts the GRF (blue) w.r.t the force plate signals (red). In the second example of a walking motion in the top right of Fig. 4, GraCE also outperforms other methods in accuracy of contact dynamics. Moreover, due to sensor limitation, force plate data is only available in a fixed working area, i.e. the red graph only has values from time step 60 to 160 in the walking example. GraCE effectively addresses this problem by providing high quality contact dynamics estimations directly from the motion capture data, which has a wider range of applications. On more complex motions such as tennis stroke (Fig. 4, bottom left) and ballet small jump (bottom right), with the guidance from the CoG, GraCE can correctly capture the peak force signals when the person applies high pressure to the ground. 
+
+On MOYO . We present the quantitative CoP estimation results on the MOYO dataset in Tab. 2. On average, GraCE achieves lower CoP estimation error than other related contact models, with a decrease of 9.1% compared to the closest method IPMAN. In Fig. 5, we show four examples where the gravity-guided GraCE excels in the estimation of CoP compared to distance-based ap-GraCE 11           
+
+> Fig. 4: Qualitative results of GraCE, along with related work on GroundLink dataset [7]. We plot the vertical GRF estimations of the left and right feet below each example motion. In each example, we visualize the human pose and the GRF vector arrows with colors corresponding to the graph legend. Unlike previous work [7, 13], we show the raw estimations from the models without any temporal filtering. All contact dynamics predictions are normalized by the person’s weight.
+
+proaches. In all four cases, the estimations of the CoP from GraCE closely match the CoP measured by the pressure mat sensor. In the headstand pose (top left), the majority of the pressures are propagated to the knees even though the ver-tices in the head and arm areas are detected to be at a lower vertical height, and this is reflected via the CoG of the human body. By leveraging the infor-mation from the CoG, GraCE produces a more accurate estimation than the distance-based approaches. Similar with other examples, i.e., leg lift (bottom left) or seated bend (bottom right), where distance-based estimations are biased towards the vertically lower body parts, not where the pressure is being applied. 12 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck Yoga pose EstimCD PhysPT IPMAN GraCE Leg lift 146.7 160.1 134.3 123.8 Bound angle 76.9 78.9 77.4 75.1 Seated bend 161.8 139.0 135.7 88.2 Plank 86.4 87.1 65.3 71.2 Headstand 89.8 85.5 83.9 64.7 Bow pose 110.9 109.6 120.7 103.4 Warrior II 64.7 63.5 55.3 62.1 Warrior III 50.9 47.2 50.9 46.2 Reverse warrior 64.3 60.5 66.5 59.6 Diamond pose 117.3 119.8 112.8 110.0 Tree pose 29.8 29.4 28.2 29.4 Average 87.8 86.4 84.0 76.3 (-9.1 %)
+
+Table 2: Quantitative results of CPE w.r.t to pressure mat measurements on the MOYO [27]. The best average result is shown in bold . The CoP errors are in mm. 
+
+Fig. 5: Qualitative results on the MOYO dataset [27]. One frame of the motion is shown on the left of each sample with the contact pressure highlighted in violet. The pressure maps of all contact models in comparison, produced by projecting all vertex pressures to the ground plane, are demonstrated from left to right: GT from pressure mat sensors, GraCE, IPMAN [27], PhysPT [38] and EstimCD [2]. The estimated CoP of each map is denoted in red, the origin of the pressure mat is denoted in green. The CoG (cyan) is shown in the pressure maps produced by GraCE to demonstrate the high correlation between CoP and CoG in maintaining good estimations. 
+
+On Fit3D . The qualitative results on the Fit3D sport motions in Fig. 6 demonstrates the plausibility of contact dynamics of GraCE. The magnitude of vertex contact pressure, together with the estimated ground reactions are correctly computed based on the position of the CoM. For instance, in the hip swing motion (the second from left), even though the two feet are at the same GraCE 13  
+
+> Fig. 6: Qualitative results on the Fit3D [4]. The footage is shown on the top with their corresponding motion captures below. The contacts are denoted with purple, the ground reaction forces are represented with arrows and the CoM is the blue sphere.
+
+vertical level, the estimated force in the left foot is higher due to the hip position slightly leaning left, which is captured by the CoM. 
+
+4.5 Ablation studies 
+
+In Tab. 3, we verify the configuration of GraCE by isolating out the proposed components individually and report their final performance on the GroundLink dataset. All the performance gains (in %) below is for the Full GraCE model compared to the respective isolated components. 
+
+Motion-based exterior force . The usage of a PD controller for estimating the exterior force F from the CoM trajectory is vital for the capture of con-tacts dynamics. Without the F and using only Fv, the GraCE model w/o PD algorithm cannot produce meaningful reaction forces, leading to a large value of 
+
+37 .3 N/kg in GFE z. The usage of Softmax is to strictly ensure that the Newton mechanics in Sec. 3.2 holds. In the model configuration w/o Softmax , all contact forces are not guaranteed to sum up to the total exterior force that controls the CoM movements, leading to a poor performance with also 37 .3 N/kg in GFE z.The learnable Fv, demonstrated via the GraCE configuration w/o learned Fv,is important to recover the ambiguous negative ground reaction applied on the horizontal axes, with 16% and 7% decreases in GFE L and GFE R, respectively. 
+
+Gravity-guided estimation . Our proposed gravity-guided term contributes greatly to the accuracy of contact dynamics estimation compared to the baseline distance-velocity-based model ( w/o CoG guidance ), with a significant 46 .3% de-crease in GFE z, 44 .5% in GFE L, and 40 .0% in GFE R. The parameters μ and γ
+
+for controlling the influence of the CoG are important to adaptively: 1) correct 14 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck GraCE configuration GFE z GFE L GFE R CPE L CPE R CPE w/o PD algorithm 37.3 17.0 8.1 53.3 72.0 62.6 w/o Softmax 37.3 17.1 8.2 67.3 61.7 64.5 w/o learned Fv 3.3 1.2 1.3 55.5 59.2 57.4 w/o CoG guidance 5.4 1.8 2.0 53.5 73.7 63.6 w/o learned μ, γ 4.9 1.6 1.9 53.0 72.2 62.6 Full 2.9 1.0 1.2 54.7 57.7 56.2 Table 3: Ablation studies on different model configurations. All proposed components of GraCE are isolated individually to study their contribution towards the full model. Best results are highlighted with bold , and second best are underlined. 
+
+the CoM approximation error due to ambiguous person-specific mass distribu-tion; and 2) modify the steepness of the exponential function when encountering different widths of the BoS. The configuration w/o learned μ, γ is verified by setting μ = 0 and γ = 1 and receives a lower performance in GFE compared to the full model by 40 .8% in GFE z, 37 .5% in GFE L, and 36 .8% in GFE R.
+
+CoP estimation quality in the left foot (CPE L) differs slightly between configurations due to the high number of simple motions in the testing set with the “tree pose” standing on a single left foot. GraCE’s ability to capture more complex CoP distributions is demonstrated via the right foot in CPE R, where the full model outperforms the closest GraCE configuration by 2.5% , and a significant 11 .5% compared to the closest related work IPMAN in Tab. 1. 
+
+# 5 Conclusion 
+
+In this paper, we present a novel gravity-guided model, GraCE, for contact dynamics estimation directly from motion captures. By integrating our novel gravity guidance, we are able to significantly improve the estimation accuracy of ground reaction dynamics, which was not possible in previous work that only concern the vertical distance and velocity to compute contact probability. GraCE demonstrates a state-of-the-art performance in accuracy of ground reaction force and pressure estimations on the two datasets, GroundLink and MOYO. 
+
+Limitation and future work . The current SMPL model used in GraCE does not deform under pressure, leading to a high reliance of the dynamics model on the precision of the motion capture data. Body deformation that di-rectly results from the interactions between body vertices with the ground will be investigated in the future. Additionally, while the current design of GraCE can effectively recover the reaction forces from quasi-static human motions, it cannot fully capture the forces if no motion is presented, i.e., the person (in-tentionally) applies high forces to the contact surface but creates no motion. Addressing this highly ambiguous problem from visual cues alone is challenging, and more sophisticated modelings of the environmental contexts, such as the contact surface density, the precise mass of the person, and muscle activities, could greatly benefit the estimations of GraCE. GraCE 15 
+
+# References 
+
+1. Bates, N.A., Hewett, T.E.: Motion analysis and the anterior cruciate ligament: Classification of injury risk. The Journal of Knee Surgery 29 (2), 117—-125. (2015) 12. Brubaker, M.A., Sigal, L., Fleet, D.J.: Estimating contact dynamics. In: ICCV. pp. 2389–2396 (2009) 1, 2, 3, 4, 5, 6, 9, 10, 12 3. de Leva, P.: Adjustments to zatsiorsky-seluyanov’s segment inertia parameters. Journal of Biomechanics 29 (9), 1223–1230 (1996) 4, 6, 18 4. Fieraru, M., Zanfir, M., Pirlea, S.C., Olaru, V., Sminchisescu, C.: Aifit: Automatic 3d human-interpretable feedback models for fitness training. In: CVPR (June 2021) 8, 13 5. Gärtner, E., Andriluka, M., Coumans, E., Sminchisescu, C.: Differentiable dynam-ics for articulated 3d human motion reconstruction. In: CVPR. pp. 13190–13200 (2022) 3 6. Gärtner, E., Andriluka, M., Xu, H., Sminchisescu, C.: Trajectory optimization for physics-based reconstruction of 3d human pose from monocular video. In: CVPR. pp. 13106–13115 (2022) 3 7. Han, X., Senderling, B., To, S., Kumar, D., Whiting, E., Saito, J.: Groundlink: A dataset unifying human body movement and ground reaction dynamics. In: ACM SIGGRAPH Asia. pp. 1–10 (2023) 3, 5, 7, 8, 9, 10, 11, 19 8. Huang, B., Pan, L., Yang, Y., Ju, J., Wang, Y.: Neural mocon: Neural motion control for physically plausible human motion capture. In: CVPR. pp. 6417–6426 (2022) 3 9. Huec, J.C.L., Saddiki, R., Franke, J., Rigal, J., Aunoble, S.: Equilibrium of the human body and the gravity line: the basics. European Spine Journal 20 (558) (2011) 2, 4, 6 10. Kraiger, K.Y., Li, J., Bharadwaj, S., Scott, J., Collins, R.T., Liu, Y.: Footformer: Estimating stability from visual input. In: BMVC (2025) 3 11. Le, C., Johannson, V., Kok, M., Wandt, B.: Optimal-state dynamics estimation for physics-based human motion capture from videos. In: NeurIPS (2024) 3, 5 12. Li, J., Bian, S., Xu, C., Liu, G., Yu, G., Lu, C.: D&d: Learning human dynamics from dynamic camera. In: ECCV (2022) 3, 5 13. Liu, X., Liang, J., Lin, Z., Hou, H., Li, Y.L., Lu, C.: Imdy: Human inverse dynamics from imitated observations. In: ICLR (2025) 3, 9, 10, 11 14. Loper, M.M., Mahmood, N., Black, M.J.: MoSh: Motion and shape capture from sparse markers. ACM Transactions on Graphics, (Proc. SIGGRAPH Asia) 33 (6), 220:1–220:13 (Nov 2014) 8 15. Mahmood, N., Ghorbani, N., F. Troje, N., Pons-Moll, G., Black, M.J.: Amass: Archive of motion capture as surface shapes. In: The IEEE International Confer-ence on Computer Vision (ICCV) (Oct 2019) 3 16. Mourot, L., Hoyet, L., Le Clerc, F., Hellier, P.: Underpressure: Deep learning for foot contact detection, ground reaction force estimation and footskate cleanup. Computer Graphics Forum 41 (8), 195–206 (Dec 2022) 3 17. Pavlakos, G., Choutas, V., Ghorbani, N., Bolkart, T., Osman, A.A.A., Tzionas, D., Black, M.J.: Expressive body capture: 3d hands, face, and body from a single image. In: CVPR (2019) 8 18. Rempe, D., Birdal, T., Hertzmann, A., Yang, J., Sridhar, S., Guibas, L.J.: Humor: 3d human motion model for robust pose estimation. In: CVPR. pp. 11488–11499 (2021) 3 16 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 19. Rempe, D., Guibas, L.J., Hertzmann, A., Russell, B., Villegas, R., Yang, J.: Con-tact and human dynamics from monocular video. In: ECCV (2020) 3 20. Romero, J., Tzionas, D., Black, M.J.: Embodied hands: Modeling and capturing hands and bodies together. ACM Transactions on Graphics, (Proc. SIGGRAPH Asia) 36 (6) (Nov 2017) 2, 3, 7, 19 21. Scott, J., Challis, J., Collins, R.T., Liu, Y.: Image-based stability quantifica-tion. Transactions on Neural Systems and Rehabilitation Engineering 31 , 564–573 (2022) 3 22. Scott, J., Ravichandran, B., Funk, C., Collins, R.T., Liu, Y.: From image to sta-bility: Learning dynamics from human pose. In: ECCV (2020) 3 23. Seth, A., Hicks, J.L., Uchida, T.K., Habib, A., Dembia, C.L., Dunne, J.J., Ong, C.F., DeMers, M.S., Rajagopal, A., Millard, M., Hamner, S.R., Arnold, E.M., Yong, J.R., Lakshmikanth, S.K., Sherman, M.A., Ku, J.P., Delp, S.L.: Opensim: Simulating musculoskeletal dynamics and neuromuscular control to study human and animal movement. PLOS Computational Biology 14 (7), 1–20 (07 2018) 1 24. Shimada, S., Golyanik, V., Xu, W., Pérez, P., Theobalt, C.: Neural monocular 3D human motion capture with physical awareness. ACM TOG 40 (4) (2021) 3, 5 25. Silder, A., Besier, T., Delp, S.L.: Running with a load increases leg stiffness. Journal of Biomechanics 48 (6), 1003–1008 (2015) 1 26. Steele, K.M., DeMers, M.S., Schwartz, M.H., Delp, S.L.: Compressive tibiofemoral force during crouch gait. Gait & Posture 35 (4), 556–560 (2012) 1 27. Tripathi, S., Müller, L., Huang, C.H.P., Omid, T., Black, M.J., Tzionas, D.: 3D human pose estimation via intuitive physics. In: CVPR (June 2023) 3, 4, 7, 8, 9, 10, 12 28. Uchida, T.K., Delp, S.L.: Biomechanics of Movement: The Science of Sports, Robotics, and Rehabilitation. The MIT Press (2020) 1, 2 29. Vielemeyer, J., Müller, R., Staufenberg, N.S., Renjewski, D., Abel, R.: Ground reaction forces intersect above the center of mass in single support, but not in double support of human walking. Journal of Biomechanics 120 , 110387 (2021) 2 30. Werling, K., Kaneda, J., Tan, T., Agarwal, R., Skov, S., Van Wouwe, T., Uhlrich, S., Bianco, N., Ong, C., Falisse, A., et al.: Addbiomechanics dataset: Capturing the physics of human motion at scale. In: ECCV (2024) 8 31. Weyand, P.G., Sternlight, D.B., Bellizzi, M.J., Wright, S.: Faster top running speeds are achieved with greater ground forces not more rapid leg movements. Journal of Applied Physiology 89 (5), 1991–1999 (2000) 1 32. Winter, D.: Human balance and posture control during standing and walking. Gait & Posture 3(4), 193–214 (1995) 2, 4, 6 33. Xie, K., Wang, T., Iqbal, U., Guo, Y., Fidler, S., Shkurti, F.: Physics-based human motion estimation and synthesis from videos. In: ICCV. pp. 11532–11541 (2021) 3 34. Yao, H., Song, Z., Chen, B., Liu, L.: Controlvae: Model-based learning of generative controllers for physics-based characters. ACM TOG 41 (6) (2022) 3 35. Yuan, Y., Song, J., Iqbal, U., Vahdat, A., Kautz, J.: Physdiff: Physics-guided hu-man motion diffusion model. In: ICCV. pp. 16010–16021 (October 2023) 3 36. Yuan, Y., Wei, S.E., Simon, T., Kitani, K., Saragih, J.: Simpoe: Simulated char-acter control for 3d human pose estimation. In: CVPR. pp. 7159–7169 (2021) 3 37. Zell, P., Wandt, B., Rosenhahn, B.: Joint 3d human motion capture and physical analysis from monocular videos. In: ICCVW (July 2017) 3, 6, 9 38. Zhang, Y., Kephart, J.O., Cui, Z., Ji, Q.: Physpt: Physics-aware pretrained trans-former for estimating human dynamics from monocular videos. In: CVPR. pp. 2305–2317 (June 2024) 4, 6, 9, 10, 12 GraCE 17 39. Zhao, Y., Raza, W., Arnold, G., Li, P., Wang, W.: A preliminary study on kinetic analysis of groundreaction force and impulse during gait in patients withtotal hip replacement and implication for rehabilitation. Orthopaedic Surgery 16 (12), 3162– 3178 (2024) 1 18 Cuong Le, Urs Waldmann, Bastian Wandt, Mårten Wadenbäck 
+
+# Supplementary Materials 
+
+This supplementary document provides additional information about the pro-posed method GraCE. In Sec. 6, we provide the descriptions about the additional qualitative results provided in the index.html file. Sec. 7 contains the calculation of the center of mass (CoM) from a SMPL+H mesh. Sec. 8 provides more details about the ConvNet and the parameter selection. 
+
+# 6 Additional qualitative results 
+
+We present the comprehensive videos in the supplementary index.html , demon-strating the ground contact dynamics estimations for all three datasets presented in the main paper. Each example from the GroundLink dataset is accompanied by a ground pressure map and the reaction forces estimation from GraCE at contact points w.r.t the force plate measurements. The full-body predictions of GraCE on the MOYO dataset, projected to the area of the pressure mat sensor, are visually compared to the sensor measurements. We additionally provide the ground reaction force estimations on the Fit3D dataset in the last two columns, with the arrows corresponding to the magnitude and direction of the forces. 
+
+# 7 CoM estimation 
+
+Giving a SMPL mesh V ∈ R6890 ×3, we compute the body center of mass (CoM), 
+
+r ∈ R3, using the common mass distribution from [3], where specific mass per-centages of body parts can be seen in Fig. 7.  
+
+> Fig. 7: Common body mass distribution from [3] for female and male. The numbers in the middle show the percentage of mass of specific body parts compared to the per-son’s total mass normalized to one. The female and male bodies have slight differences between the parts, but both of them sum up to 100%.
+
+GraCE 19 
+
+We first find the mass percentage of each vertex, ωv, out of the total 6890 
+
+vertices by dividing the mass percentage of each body part by the number of vertices that belong to that specific part defined by [20]. The computation of the CoM is the average of all 6890 vertices, weighted by the their mass percentages: 
+
+r =
+
+> 6890
+
+X
+
+> j
+
+ωvj vj , (11) where vj is the 3D position of one vertex and ωvj is the corresponding mass percentage of that vertex. The projection of the CoM to the ground, the center of gravity (CoG), is found by setting the z-axis coordinate of CoM to zero. 
+
+# 8 Details about the ConvNet 
+
+For fair comparisons, we use the same backbone architecture as GLinkNet [7], which is demonstrated in Sec. 4.2 in the main paper. There are three output heads for our ConvNet: PD controller’s parameters, learned vertex pressure, and the parameters for the gravity influence term. The PD controller’s param-eters κP , κ D , b are respectively bounded by the ranges [0 , 80] , [0 , 40] and [0 , 10] .This helps with stabilizing the simulation results at the beginning of training when the parameters are not fully optimized. Similarly, the CoM compensation 
+
+μ is bounded in the range of [−0.2, 0.2] , restricting the prediction to be within a radius of 20cm from the estimation CoM from Eq. (11). The width of the exponential function γ is activated with a sigmoid function times two, mean-ing that the initial value before training is γ = 1 when initiating the model weights with zeros. To verify the predictions of the two proposed parameters 
+
+μ and γ, we conduct an additional experiment in Tab. 4. The data is collected from GraCE’s predictions on the testset of the GroundLink dataset; each type of motion is the average of at least three valid trials, e.g., Ballet is the average re-sult of balletsmalljump1, balletsmalljump3, balletsmalljump4 . Dynamic motions tend to have higher CoM offset due to their fast movement speed, e.g., walking needs 12 .64 cm average CoM offset along the moving direction of y-axis.                                                                             
+
+> Ballet Hop Idle Jump Dance Stretch Soccer Squat Taichi Tree Walk Worrier avg μx −6.93 −5.29 −5.75 −5.57 −6.36 −4.71 −2.77 −5.51 −6.82 −4.67 −0.07 −7.88
+> std μx 0.92 1.19 0.34 1.00 0.58 2.04 1.10 0.43 1.62 0.66 2.72 1.03
+> avg μy 9.77 0.58 6.82 9.79 10 .22 4.18 10 .78 5.27 4.26 7.95 12 .64 −1.66
+> std μy 0.58 0.97 1.59 0.79 1.51 5.41 1.04 4.11 4.14 0.82 4.59 4.45
+> avg γ0.16 0.41 0.24 0.21 0.18 0.37 0.29 0.30 0.21 0.31 0.34 0.19
+> std γ0.02 0.05 0.02 0.03 0.03 0.08 0.05 0.09 0.06 0.04 0.15 0.04
+
+Table 4: The averages and standard deviations of GraCE’s gravity-guided parameters 
+
+μ and γ. The offset μ (in cm) is presented in μx and μy in respective directions. Bold 
+
+and underline denote the values with largest and second largest magnitudes.

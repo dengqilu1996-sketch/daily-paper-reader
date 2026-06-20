@@ -1,0 +1,1597 @@
+Title: Globin digest and its constituent peptides promote skeletal muscle hypertrophy and enhance physical performance
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.05.27.728339v1.full.pdf
+
+Number of Pages: 23
+
+Markdown Content:
+1
+
+TITLE 1
+
+Globin digest and its constituent peptides promote skeletal muscle 2
+
+hypertrophy and enhance physical performance 3
+
+4
+
+AUTHORS 5
+
+Misa Nakai 1, Liqing Zang 1,2 , Kazutake Fukada 2,3 , Keiichi Ishido 4, Norihiro Nishimura 1,2 ,6
+
+Yasuhito Shimada 2,5* 
+
+7
+
+8
+
+AFFILIATIONS 9
+
+1 Graduate School of Regional Innovation Studies, Mie University, 1377 Kurimamachiya-10 
+
+cho, Tsu, Mie 514-8507, Japan 11 
+
+2 Mie University Zebrafish Research Center, 2-174 Edobashi, Tsu, Mie 514-8507, Japan 12 
+
+3 Rohto Pharmaceutical Co., Ltd., 1-8-1 Tatsumi-Nishi, Ikuno-ku, Osaka 544-8666, Japan 13 
+
+4 MG Pharma Inc., 7-7-25 Saito-Asagi, Ibaraki, Osaka 567-0085, Japan 14 
+
+5 Department of Integrative Pharmacology, Mie University Graduate School of Medicine, 2-15 
+
+174 Edobashi, Tsu, Mie 514-8507, Japan 16 
+
+17 
+
+CORRESPONDENCE 18 
+
+Yasuhito Shimada (shimada.yasuhito@mie-u.ac.jp) 19 
+
+20 
+
+Target Journal: Molecular Nutrition & Food Research 21 
+
+(https://onlinelibrary.wiley.com/journal/16134133) 22 
+
+23 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+2
+
+Abstract 24 
+
+25 
+
+Globin digest (GD), an acidic protease hydrolysate of hemoglobin, has been recognized for its 26 
+
+anti-obesity and glucose-modulating effects; however, its direct anabolic potential in skeletal 27 
+
+muscle remains uncharacterized. We evaluated the effects of GD and its constituent peptides 28 
+
+on muscle hypertrophy and motor function using zebrafish, mice, and C2C12 myoblasts. Adult 29 
+
+zebrafish administered GD (400 mg/kg BW/d) for 1 week showed significantly increased 30 
+
+swimming distance ( p < 0.05). Similarly, oral administration of GD (1 g/kg BW/d) to C57BL/6J 31 
+
+mice for 4 weeks enhanced grip strength and rotarod performance, accompanied by a 1.5-fold 32 
+
+increase in myofiber diameter and upregulation of fast-twitch Myh1 (1.9-fold) and Myh2 (1.8-33 
+
+fold) mRNA levels. In vitro , GD dose-dependently (1–100 μg/mL) stimulated C2C12 34 
+
+differentiation and MyHC accumulation. Notably, GD did not merely serve as a nutritional 35 
+
+nitrogen source; instead, it functioned as a signaling modulator via a specific "relay-like" 36 
+
+peptide orchestration. Among six identified sequences, Peptides 3 (WTQR) and 5 (WGK) 37 
+
+primarily initiated early-stage commitment by upregulating MyoD and Myf5 , whereas Peptides 38 
+
+2 (VVYP) and 6 (FES) accelerated mid-stage maturation. This stage-specific synergy achieved 39 
+
+robust myotube hypertrophy that exceeded the efficacy of individual components. These 40 
+
+findings demonstrate that GD promotes skeletal muscle hypertrophy and motor function 41 
+
+through direct myogenic signaling, establishing a novel foundation for precision sports nutrition 42 
+
+to optimize muscle maintenance and physical performance. 43 
+
+44 
+
+Abbreviations 45 
+
+Akt: Protein Kinase B (PKB) 46 
+
+AMPK: AMP-activated Protein Kinase 47 
+
+BDNF: Brain derived neurotrophic factor 48 
+
+C2C12: C2C12 myoblasts 49 
+
+EIMD: Exercise-induced muscle damage 50 
+
+FIHC: Fluorescent immunohistochemistry 51 
+
+Foxo3a: Forkhead box O3 52 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+3
+
+GD: Globin digest 53 
+
+GLP-1: Glucagon-Like Peptide-1 54 
+
+HE: Hematoxylin and Eosin 55 
+
+MyHC: Myosin heavy chain 56 
+
+Mtor: Mammalian target of rapamycin 57 
+
+Myf5: Myogenic factor 5 58 
+
+Myh1 / Myh2 / Myh3 / Myh7 : Myosin heavy chain 1/2/3/7 59 
+
+MyoD : Myogenic differentiation 1 60 
+
+Myog : Myogenin 61 
+
+MRFs: Myogenic regulatory factors 62 
+
+mTORC1: mTOR Complex 1 63 
+
+mpf: months post fertilization 64 
+
+Pro-Hyp: Prolyl-hydroxyproline 65 
+
+Hyp-Gly: Hydroxyprolyl-glycine 66 
+
+PRKAA2: Protein kinase AMP-activated catalytic subunit alpha 2 67 
+
+SLC15A4: Solute Carrier Family 15 Member 4 68 
+
+UCP1: Uncoupling protein-1 69 
+
+UCP2/3: Uncoupling protein 2 / 3 70 
+
+PepT1: Peptide transporter 1 71 
+
+PHT1: Peptide/histidine transporter 1 72 
+
+73 
+
+Keywords: Globin digest, bioactive peptides, myogenesis, zebrafish 74 
+
+75 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+4
+
+1. INTRODUCTION 76 
+
+Optimizing skeletal muscle mass and function is a critical priority for both elite athletes 77 
+
+aiming for peak performance and the general population seeking to maintain metabolic health [1– 
+
+78 
+
+> 3]
+
+. To maximize muscle protein synthesis, current nutritional guidelines recommend a high daily 79 
+
+protein intake of 1.6 to 2.2 g/kg body weight for athletes [4] . However, achieving these targets 80 
+
+through conventional dietary sources while maintaining high bioavailability remains a81 
+
+significant practical challenge. Athletes frequently encounter a "quantity versus quality" trade-82 
+
+off; increasing total protein intake to meet physiological demands can lead to gastrointestinal 83 
+
+distress and suboptimal absorption efficiency, ultimately hindering consistent nutritional 84 
+
+management [5–7] .85 
+
+To overcome these physiological bottlenecks, nutritional strategies must shift from merely 86 
+
+supplying bulk building blocks to efficiently stimulating the skeletal muscle regenerative 87 
+
+program. Myogenesis is a highly orchestrated process regulated by myogenic regulatory factors 88 
+
+(MRFs). During early differentiation, Myf5 and MyoD proteins drive the commitment and 89 
+
+proliferation of myogenic progenitor cells, followed by the upregulation of muscle-specific 90 
+
+myosin heavy chain ( MyHC ) genes ( Myh1 , Myh2 ), which leads to the functional maturation 91 
+
+and hypertrophy of fast-twitch (Type II) fibers [8–10] . Because Type II fibers are critically 92 
+
+responsible for explosive power and athletic performance [11,12] , compounds that directly trigger 93 
+
+this Myf5- or MyoD-mediated pathway are highly sought after. In this context, bioactive short-94 
+
+chain peptides have emerged as a potent alternative to intact proteins [13–16] . They are rapidly 95 
+
+internalized into cells via independent, high-capacity peptide transporters such as PepT1 [17] and 96 
+
+PHT1 [18] and function as powerful signaling ligands capable of inducing MRF expression at 97 
+
+significantly lower doses [19,20] .98 
+
+Food-derived bioactive oligopeptides have gained considerable attention for their diverse 99 
+
+biological activities, including anti-inflammatory, anti-fatigue, and metabolic regulatory 100 
+
+effects [21–23] . Among these, globin digest (GD), obtained through the acidic protease treatment 101 
+
+of porcine hemoglobin, is approved as a functional food in Japan and China [24] . GD provides 102 
+
+potent metabolic benefits, including improvements in postprandial hyperlipidemia and 103 
+
+hyperglycemia [25,26] . Our recent studies demonstrated that GD exerts anti-obesity effects by 104 
+
+upregulating uncoupling protein 1 (UCP1)-related pathways and enhancing systemic energy 105 
+
+expenditure. Furthermore, we previously demonstrated that GD upregulates the expression of 106 
+
+Ucp2 and Ucp3 genes specifically within skeletal muscle, where they are thought to enhance 107 
+
+fatty acid oxidation and energy expenditure. Crucially, we observed that GD-treated in vivo 108 
+
+models exhibited a marked reduction in visceral fat without a corresponding decrease in total 109 
+
+body weight, a phenomenon accompanied by preliminary evidence of upregulated myogenic 110 
+
+biomarkers [27] . These findings led to the hypothesis that the anti-obesity effects of GD are 111 
+
+complemented by a concomitant increase in muscle mass, pointing to a beneficial modulation 112 
+
+of body composition through the adipo-muscular axis. Despite these promising systemic 113 
+
+observations, the direct cellular mechanisms by which GD modulates the myogenic program 114 
+
+and determines muscle fiber-type composition remain uncharacterized. Furthermore, the 115 
+
+specific peptide sequences within the GD mixture responsible for these direct anabolic effects 116 
+
+have not been identified. Therefore, determining whether GD optimizes the intramuscular 117 
+
+microenvironment to support Type II fiber hypertrophy represents a novel paradigm in sports 118 
+
+nutrition. 119 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+5
+
+In the present study, we employed an integrated in vivo and in vitro approach to evaluate the 120 
+
+effects of GD on skeletal muscle differentiation and motor function. First, we assessed motor 121 
+
+function improvements in zebrafish, followed by an evaluation of exercise performance and the 122 
+
+expression of key myogenic genes ( Myf5, MyoD, Myh1, Myh2, Myh3, and Myh7 ) in a mouse 123 
+
+model. Furthermore, to elucidate the underlying molecular mechanisms, we investigated the 124 
+
+direct effects of GD on myogenesis and MyHC assembly using C2C12 myoblasts. Additionally, 125 
+
+we identified six specific peptide sequences within GD and characterized their individual roles 126 
+
+in promoting myogenic differentiation. These findings establish the multifaceted nutritional 127 
+
+value of GD and provide a foundation for novel nutritional strategies to support efficient muscle 128 
+
+maintenance and performance enhancement in athletes. 129 
+
+130 
+
+2. MATERIALS AND METHODS 131 
+
+2.1. Ethics statement 132 
+
+All animal procedures were approved by the Ethics Committee of Mie University, Tsu, Japan 133 
+
+(Approval No. 2024-19). Animal experiments were performed in accordance with the Japanese 134 
+
+Animal Welfare Regulatory Practice Act on Welfare and Management of Animals (Ministry of 135 
+
+the Environment, Japan) and complied with international guidelines. 136 
+
+137 
+
+2.2. GD and its constituent peptides 138 
+
+This study utilized globin digest (GD; MG Pharma, Osaka, Japan), an enzymatic hydrolysate 139 
+
+of porcine hemoglobin, was used in this study [28] . The six constituent peptides of GD evaluated 140 
+
+in this study—LSEL (Leucine-Serine-Glutamic acid-Leucine), VVYP (Valine-Valine-141 
+
+Tyrosine-Proline), WTQR (Tryptophan-Threonine-Glutamine-Arginine), VTL (Valine-142 
+
+Threonine-Leucine), WGK (Tryptophan-Glycine-Lysine), and FES (Phenylalanine-143 
+
+Glutamic acid-Serine) —were synthesized by GenScript (Tokyo, Japan). The origins of these 144 
+
+peptide sequences within porcine hemoglobin and their respective quantitative contents in GD 145 
+
+are summarized in Table 1 .146 
+
+147 
+
+Table 1. The sequences, origins, and contents of the six constituent peptides within GD. 148 
+
+Peptide Peptide sequence Origin in porcine hemoglobin Reference 
+
+Pep 1 LSEL β-chain (89–92) [25] 
+
+Pep 2 VVYP β-chain (33–36) [24] 
+
+Pep 3 WTQR β-chain (37–40) [28] 
+
+Pep 4 VTL α-chain (107–109) [24] 
+
+Pep 5 WGK α-chain (14–16) and β-chain (15–17) [29] 
+
+Pep 6 FES β-chain (42–44) [29] 
+
+149 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 6
+
+2.3. Cell culture 150 
+
+The C2C12 mouse myoblast cell line (RCB0987) was purchased from the RIKEN BRC 151 
+
+through the National Bio-Resource Project of the MEXT, Japan. The cells were cultured in a 152 
+
+37 °C, 5% CO 2 incubator using a growth medium composed of Dulbecco’s Modified Eagle’s 153 
+
+Medium (DMEM; Sigma-Aldrich, St. Louis, MO, USA) supplemented with 10% Fetal Bovine 154 
+
+Serum (FBS; Sigma-Aldrich) and 1% Antibiotic-Antimycotic (Nacalai Tesque, Kyoto, Japan). 155 
+
+When the cells reached 70% confluency, the culture medium was replaced with differentiation 156 
+
+medium (DMEM supplemented with 2% horse serum [HS; Gibco, Grand Island, NY, USA]). 157 
+
+The differentiation medium was refreshed every other day. GD (1, 10 or 100 μg/mL) and 158 
+
+individual peptides (1 μg/mL) were added at the onset of differentiation. 159 
+
+> 160
+
+2.4. Animals and husbandry 161 
+
+Zebrafish ( Danio rerio , AB line) were purchased from the Zebrafish International Research 162 
+
+Center (ZIRC, Eugene, OR, USA) and maintained at our facility under standard laboratory 163 
+
+conditions. The zebrafish were fed Gemma Micro 75, 150, and 300 (Skretting, Fontaine-les-164 
+
+Vervins, France) according to their developmental stages or body length. Wild-type C57BL/6J 165 
+
+mice were purchased from Japan SLC (Hamamatsu, Japan) and housed at the Institute of 166 
+
+Laboratory Animals at Mie University. 167 
+
+> 168
+
+2.5. Zebrafish experiment 169 
+
+For the oral administration of GD to adult zebrafish, zebrafish food containing 10% (w/w) 170 
+
+GD was prepared using gluten as a carrier material, as previously described [30] . Briefly, 3-171 
+
+month-old female zebrafish were randomly assigned to either the control or GD group (five fish 172 
+
+per 2-L tank). The control group was fed a normal diet (gluten granules; 2 mg/fish/day) 173 
+
+throughout the 1-week experimental period. The GD group was fed GD-containing gluten 174 
+
+granules (2 mg/fish/day), corresponding to a dose of 400 mg/kg body weight/day. At the end 175 
+
+of the feeding experiment, body weights were measured, followed by the electrically stimulated 176 
+
+swimming test. For this test, individual zebrafish were placed in a rectangular tank (17.5 cm × 177 
+
+14.5cm) and allowed to acclimate for at least 5 min. Once the fish ceased spontaneous 178 
+
+movement and became completely motionless, a 5-V electrical pulse was applied for 0.1 s from 179 
+
+electrodes positioned at both ends of the tank to induce swimming. The experimental arena was 180 
+
+filmed from directly above at 30 frames per second using a digital high-definition (HD) video 181 
+
+camera (HC-V495M; Panasonic, Osaka, Japan). The stimulus-evoked swimming speed, 182 
+
+acceleration, and distance traveled were subsequently analyzed using ToxTrac software 183 
+
+(version 1.1) [31] .184 
+
+> 185
+
+2.6. Mouse experiment 186 
+
+Six-week-old male C57BL/6JmsSlc mice were fed a diet containing 0.5% GD for 4 weeks 187 
+
+under ad libitum conditions. Based on the average daily food intake (approximately 4 g/day) 188 
+
+and average body weight (approximately 20–23 g), the estimated daily dose of GD was 1 g/kg 189 
+
+body weight/day. Six to seven mice were housed per cage. Body weight, all-limb grip strength, 190 
+
+rotarod performance, and residual feed weight were recorded weekly. Grip strength was 191 
+
+measured using a horizontal-type small animal grip strength meter (GPM-101B; Melquest, 192 
+
+Toyama, Japan), allowing for the simultaneous measurement of all four limbs. Motor 193 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 7
+
+coordination and endurance were evaluated using a mouse rotarod apparatus (RTR-M1; 194 
+
+Melquest). The test was performed using an accelerating protocol from 4 to 40 rpm over 300 s 195 
+
+(The Jackson Laboratory Mouse Neurobehavioral Phenotyping Facility protocol) [32] . From the 196 
+
+second week onward, mice that fell in the same direction as the rotation (abnormal adaptive 197 
+
+movement) were excluded from the analysis. At the end of the experiment, mice were 198 
+
+euthanized by over-anesthesia with isoflurane (Pfizer, Pearl River, NY, USA). Gastrocnemius 199 
+
+muscle tissues were dissected for subsequent histology and RT-qPCR analysis. 200 
+
+> 201
+
+2.7. Histological analysis 202 
+
+Dissected tissues were fixed overnight in 4% paraformaldehyde in phosphate-buffered saline 203 
+
+(4% PFA; Falma, Tokyo, Japan) at 4 °C. The fixed samples were sent to the Division of Medical 204 
+
+Research Support, Advanced Research Support Center (ADRES), Ehime University, where 205 
+
+they were processed for paraffin embedding, sectioning (5-μm thickness), and routine 206 
+
+hematoxylin and eosin (H&E) staining. Stained sections were imaged in brightfield mode using 207 
+
+a BZ-X710 fluorescence microscope (Keyence, Osaka, Japan). To quantify muscle fiber 208 
+
+hypertrophy, morphometric analyses were performed using ImageJ software (Fiji distribution, 209 
+
+version 1.52p; National Institutes of Health, Bethesda, MD, USA). For the zebrafish trunk 210 
+
+muscle, sections displaying the optimal transverse orientation of the muscle were selected, and 211 
+
+the transverse diameter of the myofibers was measured at five distinct locations per animal, 212 
+
+with the average representing the individual value. For the mouse gastrocnemius muscle, the 213 
+
+cross-sectional area of at least 20 individual myofibers per animal was directly measured from 214 
+
+the H&E-stained transverse sections to evaluate muscle hypertrophy. 215 
+
+> 216
+
+2.8. Quantitative reverse transcription PCR (qRT-PCR) 217 
+
+Mouse tissues and C2C12 cells were homogenized in TRIzol reagent (Invitrogen, Carlsbad, 218 
+
+CA, USA) using a mechanical homogenizer. The homogenized samples were subjected to phase 219 
+
+separation with chloroform, and the aqueous phase was transferred to RNeasy columns for 220 
+
+further purification using the RNeasy Mini Kit (74104; QIAGEN, Hilden, Germany) according 221 
+
+to the manufacturer’s instructions. The purity and the concentration of the extracted RNA were 222 
+
+determined by measuring the absorbance ratio at 260 nm and 280 nm. cDNA was synthesized 223 
+
+from 400 ng of total RNA using the ReverTra Ace qPCR RT Master Mix with gDNA Remover 224 
+
+(TOYOBO, Osaka, Japan). Quantitative RT-PCR was performed using Power SYBR Green 225 
+
+Master Mix (Applied Biosystems, Foster City, CA, USA) and the ABI StepOnePlus Real-Time 226 
+
+PCR System (Applied Biosystems) in accordance with the manufacturer’s instructions. Relative 227 
+
+mRNA expression levels were quantified and normalized to Hprt as an endogenous control 228 
+
+gene. The detailed primer sequences used for amplification are listed in Supplementary Table 229 
+
+S1 .230 
+
+> 231
+
+2.9. Immunofluorescence analysis 232 
+
+C2C12 myotubes were washed three times and fixed with 4% paraformaldehyde for 10 min 233 
+
+at 4°C. After fixation, the cells were washed three times with ice-cold PBS and permeabilized 234 
+
+using 0.1% Triton X-100 (Sigma-Aldrich) for 10 min. To minimize non-specific binding, the 235 
+
+cells were blocked with PBST (PBS containing 0.1% Tween 20) supplemented with 1% BSA 236 
+
+(Sigma-Aldrich) and 22.52 mg/mL glycine for 2 h. The cells were then incubated with a primary 237 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 8
+
+antibody against myosin heavy chain (MAB4470, 1:200 dilution; R&D Systems, Minneapolis, 238 
+
+MN, USA) overnight at 4°C. The solution was decanted, and the cells were washed three times 239 
+
+in PBS for 5 min each. Myotubes were then treated with a secondary antibody (Anti-mouse IgG 240 
+
+(H+L), F(ab')2 Fragment, Alexa Fluor® 594 Conjugate; #8890S; Cell Signaling Technology, 241 
+
+Danvers, MA, USA; 1:1000 dilution) in 1% BSA in PBST for 1 h at room temperature in the 242 
+
+dark. Nuclei were stained using Hoechst 33342 (1:1000 dilution; Molecular Probes, Eugene, 243 
+
+OR, USA) for 10 min. After washing with PBS, images of the stained C2C12 myotubes were 244 
+
+captured using a fluorescence microscope (BZ-X710; Keyence, Osaka, Japan). Image analysis 245 
+
+and quantification were performed using ImageJ software. 246 
+
+> 247
+
+2.10. Statistical Analysis 248 
+
+All data were analyzed using Student’s t-test, Welch’s t-test, or one-way analysis of variance 249 
+
+(ANOVA) followed by the Bonferroni–Dunn multiple comparison procedure, depending on the 250 
+
+number of comparisons. Analyses were performed using GraphPad Prism version 11 251 
+
+(GraphPad Software, San Diego, CA, USA). Results with p < 0.05 were considered statistically 252 
+
+significant. 253 
+
+> 254
+
+3. RESULTS 255 
+
+3.1. GD promotes muscle hypertrophy and locomotor ability in zebrafish 256 
+
+To evaluate the in vivo effects of GD on skeletal muscle performance, we first utilized a 257 
+
+zebrafish model. Young zebrafish (3 mpf) were orally administered GD (400 mg/kg body 258 
+
+weight) for one week. Prior to administration, the standard length (SL) and body weight (BW) 259 
+
+of the control group were 2.0 ± 0.1 cm and 0.11 ± 0.02 g, respectively, while those of the GD 260 
+
+group were 1.9 ± 0.1 cm and 0.09 ± 0.01 g. After the 1-week feeding trial, the SL increased to 261 
+
+2.1 ± 0.1 cm in the control group and 2.0 ± 0.2 cm in the GD group, representing a 5% increase 262 
+
+in both groups. Concurrently, the BW increased to 0.13 ± 0.02 g in the control group (a 13% 263 
+
+increase) and 0.12 ± 0.01 g in the GD group (a 19% increase). Although the GD-treated group 264 
+
+exhibited a greater percentage of weight gain, no statistically significant differences were 265 
+
+observed in either SL or BW between the groups ( Figure S1 ). Following the treatment, an 266 
+
+electrically stimulated forced swimming test was conducted to assess functional output. As 267 
+
+shown in Figure 1 , the GD-treated group demonstrated robust improvements across multiple 268 
+
+kinematic parameters. Specifically, the average acceleration during the escape response was 269 
+
+significantly ( p < 0.05) increased by 2.9-fold compared with the control group ( Figure 1A ). 270 
+
+Similarly, the maximum burst acceleration was markedly elevated by 3.8-fold ( Figure 1B , p <271 
+
+0.05). This pronounced enhancement indicates that GD administration specifically amplifies 272 
+
+the explosive motor power of zebrafish. Consistent with the elevated acceleration, the average 273 
+
+swimming speed was also significantly higher, showing a 90% increase in the GD-treated group 274 
+
+(Figure 1C , p < 0.05). To investigate whether this functional enhancement was associated with 275 
+
+structural changes in the musculature, we performed a histological analysis using hematoxylin 276 
+
+and eosin (HE) staining of the trunk skeletal muscle (Figure 1D) . Representative images 277 
+
+revealed that zebrafish treated with GD exhibited visibly larger skeletal muscle fibers than those 278 
+
+in the control group. Morphometric analysis showed that the muscle fiber diameter in the GD-279 
+
+treated group was 1.39-fold thicker than that of the control group ( Figure 1E , p < 0.01). 280 
+
+> 281
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+9
+
+Figure 1 282 
+
+283 
+
+Figure 1. Effects of GD administration on burst locomotor performance and muscle 284 
+
+fiber morphology in young adult zebrafish. Kinematic analysis of the electrically 285 
+
+stimulated forced swimming test showing ( A) average acceleration, ( B) maximum 286 
+
+acceleration, and ( C) average speed. All parameters were significantly enhanced in the GD-287 
+
+treated group. Data are presented as mean ± standard deviation (SD). * p < 0.05, n = 5. ( D)288 
+
+Representative histological images of H&E stained sections of the trunk skeletal muscle. 289 
+
+Black arrows indicate the transverse diameter of individual muscle fibers. ( E) Quantitative 290 
+
+morphometric analysis of the skeletal muscle fiber diameter. For each animal, the transverse 291 
+
+diameter was measured at five distinct locations from the optimal cross-section, and the 292 
+
+average was used as the individual value. Data are presented as mean ± SD. ** p < 0.01, 293 
+
+(control: n = 4, GD: n = 5). 294 
+
+295 
+
+3.2. GD enhances skeletal muscle strength and promotes myofiber hypertrophy in mice 296 
+
+To examine whether the skeletal muscle enhancing effects of GD observed in zebrafish are 297 
+
+conserved in mammals, we orally administered GD to mice for four weeks and conducted a 298 
+
+series of physical function tests. During the administration period, both the control and GD-299 
+
+treated groups exhibited normal growth. Prior to administration, the body weights of the control 300 
+
+and GD groups were 20.7 ± 0.6 g and 20.7 ± 0.5 g, respectively. After four weeks, the weights 301 
+
+increased to 23.1 ± 0.8 g in the control group and 21.8 ± 1.9 g in the GD group, with no 302 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+10 
+
+significant differences observed between the groups ( Figure S2 ). Similarly, the average daily 303 
+
+food intake per mouse was comparable (4.13 g for control vs. 4.06 g for GD; Figure S3 ). 304 
+
+Despite this comparable body mass and energy intake, and consistent with the findings in 305 
+
+zebrafish, GD administration significantly improved muscle strength and coordination. 306 
+
+Specifically, the GD group demonstrated a clear and statistically significant superiority in both 307 
+
+grip strength (an 14.4% increase) and rotarod latency (an 1.79-fold increase) by week 4 ( Figure 308 
+
+2A and 2B , p < 0.05). Notably, at the 4-week mark, several mice in the GD-treated group 309 
+
+demonstrated exceptional grip and balance, remaining attached to the rotating rod and 310 
+
+maintaining their position even during full 360° rotations, a level of performance not observed 311 
+
+in the control group. To determine the structural basis for these functional improvements, we 312 
+
+performed a histological analysis of the gastrocnemius muscle using H&E staining (Figure 2C) .313 
+
+Morphological examination revealed prominent enlargement of the skeletal muscle fibers in the 314 
+
+GD-treated group. Quantitative analysis confirmed these observations, showing that GD 315 
+
+administration led to an 1.38-fold increase in myofiber diameter compared with the control 316 
+
+group (Figure 2D) . Furthermore, to elucidate the molecular changes underlying this 317 
+
+hypertrophy, we examined the mRNA expression of myosin heavy chain isoforms Myh1 and 318 
+
+Myh2 in the gastrocnemius muscle (Figure 3A and 3B) . GD administration significantly 319 
+
+upregulated the expression of both isoforms compared with the control group ( p < 0.05). 320 
+
+Specifically, the mRNA levels of Myh1 and Myh2 increased by 1.90-fold and 1.77-fold, 321 
+
+respectively. Furthermore, other myosin isoforms, including Myh3 and Myh7 , also showed a 322 
+
+strong upward trend in their expression levels ( p = 0.054 and p = 0.053, respectively; Figure 323 
+
+3C and 3D ). While these changes did not reach conventional statistical significance, the overall 324 
+
+elevation across multiple myosin heavy chain genes further supports the robust myogenic effect 325 
+
+of GD administration. These molecular data, highlighting a broad increase in contractile protein 326 
+
+isoforms (particularly the fast-twitch-associated Myh1 and Myh2 ), are consistent with the 327 
+
+enhanced strength and fiber enlargement observed in GD-treated mice. Collectively, these 328 
+
+results demonstrate that GD effectively promotes muscle hypertrophy and enhances physical 329 
+
+performance in a mammalian model. 330 
+
+331 
+
+332 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+11 
+
+Figure 2 333 
+
+334 
+
+Figure 2. Effects of GD administration on physical performance, muscle morphology, and 335 
+
+myogenic gene expression in mice. (A) Grip strength of mice during the 4-week administration 336 
+
+period (control vs. GD, 4 weeks: p < 0.05). (B) Latency to fall in the accelerating rotarod test 337 
+
+(p < 0.05). (C) Representative histological images of H&E stained sections of the 338 
+
+gastrocnemius muscle. (D) Quantitative morphometric analysis of the muscle fiber cross-339 
+
+sectional area (CSA). The CSA of at least 20 individual myofibers per animal was measured. 340 
+
+Data are presented as mean ± SD. * p < 0.05, **** p < 0.0001 vs. control. Control: n = 6; GD: n 341 
+
+= 7. 342 
+
+343 
+
+344 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+12 
+
+Figure 3 345 
+
+346 
+
+Figure 3. Effects of GD administration on myogenic gene expression in vivo. Relative 347 
+
+mRNA expression levels of myosin heavy chain isoforms: ( A) Myh1 (p < 0.05), ( B) Myh2 (p <348 
+
+0.05), ( C) Myh3 (p = 0.054), and ( D) Myh7 (p = 0.053). Data are presented as mean ± SD. * p349 
+
+< 0.05 vs. control. Control: n = 6; GD: n = 7. 350 
+
+351 
+
+3.3. GD and its constituent peptides promote myogenic differentiation in C2C12 cell 352 
+
+Skeletal muscle regeneration and hypertrophy rely on the sequential proliferation and 353 
+
+differentiation of myoblasts. We first examined the effect of GD on myoblast proliferation. 354 
+
+Treatment of undifferentiated C2C12 cells with GD resulted in a significant, dose-dependent 355 
+
+increase in cell proliferation at concentrations of 10 μg/mL and above ( Figure S4A ). To identify 356 
+
+the specific bioactive components responsible for the myogenic effects of GD, we focused on 357 
+
+six short-chain peptides (Peptide 1–6: LSEL, VVYP, WTQR, VTL, WGK, and FES; Table 1 )358 
+
+previously identified as key constituents of GD [24,25,28,29] . Among these peptides tested 359 
+
+individually at 1 μg/mL, Peptides 2 and 3 significantly stimulated cell proliferation compared 360 
+
+with the control ( Figure S4B ). 361 
+
+Following this initial expansion phase, we investigated the direct cellular effects of GD on 362 
+
+myogenic differentiation in vitro . C2C12 myoblasts were cultured in differentiation medium 363 
+
+with or without GD for day 5. Immunofluorescence analysis revealed a robust increase in the 364 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+13 
+
+expression of myosin heavy chain (MyHC), a late-stage marker of myogenic maturation, in 365 
+
+GD-treated cells compared with control cells (Figure 4A ). The treatment with GD markedly 366 
+
+enhanced the morphological maturation of the cells, as evidenced by the increased formation 367 
+
+of MyHC-positive multinucleated myotubes. Quantitative analysis of the immunofluorescence 368 
+
+images demonstrated a highly significant increase in the MyHC-positive area in the GD-treated 369 
+
+group compared with the control group ( p < 0.0001). Furthermore, we examined the dose-370 
+
+response relationship of this effect. GD treatment increased MyHC fluorescence intensity in a 371 
+
+concentration-dependent manner at 1, 10, and 100 μg/mL (Figure 4B) . C2C12 myoblasts were 372 
+
+then treated with either GD or each of the six key peptides to compare their individual effects 373 
+
+on myotube maturation. To evaluate the temporal effects of these six peptides on myogenic 374 
+
+differentiation, MyHC immunofluorescence was performed at two different time points: day 3 375 
+
+and day 5 (Figure 4C -F). Quantitative analysis of the MyHC-positive area (Figure 4D) revealed 376 
+
+that at day 3, Peptides 2 and 6 significantly promoted myotube formation compared with the 377 
+
+control. By day 5, the myogenic effect became more pronounced; all peptides except Peptide 4 378 
+
+showed higher MyHC expression levels than the control, with Peptides 3 and 5 exhibiting 379 
+
+particularly robust and significant increases (Figure 4F). To further elucidate the molecular 380 
+
+mechanisms underlying these observations, we analyzed the expression of genes involved in 381 
+
+skeletal muscle differentiation (Figure 5 ). Consistent with the morphological data, the mRNA 382 
+
+levels of early myogenic regulatory factors, Myf5 (Figure 5A ) and MyoD (Figure 5B ) , were 383 
+
+upregulated by most peptides (except Peptide 4) compared with the control. Notably, Peptides 384 
+
+3 and 5 induced the most substantial increase in MyoD expression. Interestingly, while MyHC 385 
+
+protein accumulation was significantly elevated at day 5, the mRNA levels of late-stage markers 386 
+
+such as Myog (Figure 5C ) , Myh1 (Figure 5D ) and Myh2 (Figure 5E ) showed no significant 387 
+
+differences at this same time point. This discrepancy likely reflects the temporal gap between 388 
+
+transcription and translation, the peak of mRNA expression for these markers presumably 389 
+
+occurred earlier, leading to the robust protein levels observed during the terminal stage of 390 
+
+differentiation.These results suggest that these bioactive peptides, particularly Peptides 3 and 5, 391 
+
+may primarily accelerate the early stages of the myogenic program by modulating MyoD and 392 
+
+Myf5 expression, leading to the enhanced MyHC protein accumulation observed in later stages. 393 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+14 
+
+Figure 4 394 
+
+395 
+
+Figure 4. Effects of GD and its constituent bioactive peptides on myogenic differentiation 396 
+
+in C2C12 myoblasts. (A) Representative immunofluorescence images of myosin heavy chain 397 
+
+(MyHC) expression in C2C12 myotubes after 5 days of differentiation with or without GD. (B) 398 
+
+Dose-response analysis of MyHC fluorescence intensity in C2C12 cells treated with GD (1, 10, 399 
+
+and 100 μg/mL). (C) Representative MyHC immunofluorescence images and (D) quantitative 400 
+
+analysis of MyHC-positive area at day 3 of differentiation following treatment with Peptides 401 
+
+1–6 (Control vs. Pep 2 or 6: p < 0.05). (E) Representative MyHC immunofluorescence images 402 
+
+and (F) quantitative analysis of MyHC-positive area at day 5 (Control vs. Pep 3 or 5: p < 0.05). 403 
+
+Data are presented as mean ± SD. * p < 0.05, **** p < 0.0001 vs. control, n = 5. Scale bar = 100 404 
+
+μm. 405 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+15 
+
+Figure 5 406 
+
+407 
+
+Figure 5. GD-derived peptides modulate the expression of myogenic regulatory factors 408 
+
+and maturation markers. Relative mRNA expression levels of myogenic regulatory factors, 409 
+
+(A) Myf5, (B) MyoD , (C) Myog at day 3 and maturation markers (D) Myh1 , (E) Myh2 at day 5 410 
+
+in C2C12 cells. Data are presented as mean ± SD. * p < 0.05, ** p < 0.01, **** p < 0.0001 vs. 411 
+
+control, n = 5. 412 
+
+413 
+
+414 
+
+4. DISCUSSION 415 
+
+In the present study, we demonstrated that globin digest (GD) and its specific constituent 416 
+
+peptides directly promote skeletal muscle hypertrophy and enhance physical performance. Our 417 
+
+results revealed that GD administration significantly increases muscle fiber diameter and 418 
+
+enhances explosive motor function across different species. Furthermore, the identification of 419 
+
+a stage-specific peptide relay provides a novel mechanistic explanation for the potent anabolic 420 
+
+effects of the natural GD mixture. 421 
+
+422 
+
+4.1. Functional expansion of GD: The adipo-muscular axis 423 
+
+Our previous research established that GD exerts anti-obesity effects by upregulating UCP1-424 
+
+mediated thermogenic pathways and suppressing adipocyte hypertrophy in zebrafish and mouse 425 
+
+models [27] . Our previous findings highlighted that the metabolic impact of GD is mediated not 426 
+
+only by UCP1 in adipose tissue but also by the systemic activation of other UCP family 427 
+
+members, including Ucp2 and Ucp3 in skeletal muscle. Since UCP3 is primarily expressed in 428 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+16 
+
+skeletal muscle and is known to protect mitochondria from oxidative stress during fatty acid 429 
+
+oxidation while increasing energy expenditure within myocytes [39–41] , the potentiation of 430 
+
+myogenic differentiation observed in this study may synergistically enhance these UCP-431 
+
+mediated metabolic benefits. 432 
+
+Given the fundamental role of the adipose-muscle crosstalk in systemic metabolic 433 
+
+homeostasis [42–44] , these findings provide a molecular basis for the hypothesis that GD acts as a 434 
+
+multi-target nutrient. Notably, GD-treated obese models in our previous study exhibited a 435 
+
+significant reduction in visceral adipose tissue without a corresponding loss in total body 436 
+
+weight [27] . At that time, we hypothesized that this maintenance of body mass was due to a 437 
+
+concomitant increase in muscle volume. Crucially, the present study confirmed that GD 438 
+
+administration induces hypertrophy of skeletal muscle fibers (Figure 2D) and upregulates the 439 
+
+expression of myogenic markers, including Myh1 (Figure 3A) and Myh2 (Figure 3B) in vivo. 440 
+
+By demonstrating that GD directly acts on muscle progenitors to facilitate their maturation, the 441 
+
+current C2C12 results provide the crucial mechanistic link (Figure 5), confirming that the 442 
+
+observed muscle preservation is driven by the direct enhancement of myogenesis. 443 
+
+The metabolic benefits of GD are not confined to adipose tissue but extend to the functional 444 
+
+improvement of skeletal muscle, potentially reflecting the integrated metabolic crosstalk 445 
+
+between these tissues. Furthermore, GD administration was previously shown to upregulate 446 
+
+Prkaa2 (AMPK) and Bdnf [27] , both of which are critical regulators of lipid catabolism and the 447 
+
+maintenance of muscle fiber integrity [45,46] . This dual functionality aligns with recent trends in 448 
+
+molecular nutrition, where bioactive molecules such as GLP-1 receptor agonists [47] and 449 
+
+Angiotensin-(1-7) [48] are identified as significant modulators of both lipid metabolism and 450 
+
+muscle regenerative capacity. The ability of GD to facilitate myogenesis while simultaneously 451 
+
+ameliorating visceral adiposity suggests a promising nutritional strategy targeting the adipo-452 
+
+muscular axis, providing a comprehensive intervention for both the clinical management of 453 
+
+sarcopenic obesity [49] and the enhancement of athletic power-to-weight ratios to maintain 454 
+
+physical independence across the lifespan. 455 
+
+456 
+
+4.2. Proposal of a stage specific peptide cocktail strategy for myogenesis 457 
+
+To explain the direct cellular effects observed in vitro (Figure 4-5), our findings reveal that 458 
+
+the pro-myogenic efficacy of GD is not driven by a single predominant peptide, but rather by a 459 
+
+sophisticated, stage-specific coordination of multiple sequences. Based on the distinct temporal 460 
+
+peaks of activity observed in our study, we propose a Multistage Synergistic Model that 461 
+
+explains the robust efficacy of the natural GD mixture through a relay-like synergistic 462 
+
+mechanism (Figure 6) .463 
+
+464 
+
+465 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+17 
+
+FIGURE 6 466 
+
+467 
+
+Figure 6. Proposed multistage synergistic model for the myogenic effects of GD peptide 468 
+
+cocktail. The schematic illustrates the temporal, "relay-like" mechanism by which the natural 469 
+
+GD mixture promotes skeletal muscle differentiation from myoblasts to hypertrophic myotubes. 470 
+
+During the Induction phase (Early / day 2), Peptides 3 (WTQR) and 5 (WGK) act as early 471 
+
+commitment triggers to potently induce MyoD expression. As differentiation progresses to the 472 
+
+Acceleration phase (Mid / day 3), Peptides 2 (VVYP) and 6 (FES) function as myotube 473 
+
+assembly boosters, accelerating MyHC protein expression. Finally, in the Maturation phase 474 
+
+(Late / day 5), Pep 3 and 5 provide sustained drive to ensure the functional completion and 475 
+
+maintenance of myotube hypertrophy. Natural GD Mixture achieves robust efficacy through 476 
+
+temporal coordination, optimizing the entire physiological timeline of muscle adaptation as a 477 
+
+targeted strategy for precision sports nutrition. 478 
+
+479 
+
+4.2.1. Induction Phase (Early phase / day 2) 480 
+
+Interestingly, the pro-myogenic potential of GD is initiated even prior to the onset of 481 
+
+differentiation. Our results demonstrated that GD, particularly Peptides 2 and 3, significantly 482 
+
+stimulated myoblast proliferation (Figure S4), effectively expanding the pool of available 483 
+
+progenitor cells. This pre-differentiation expansion, combined with the subsequent stage-484 
+
+specific relay mechanism, likely contributes to the robust muscle hypertrophy observed in our 485 
+
+in vivo models. 486 
+
+Following this initial expansion, Peptides 3 and 5 function as primary triggers. Our gene 487 
+
+expression analysis showed that these two peptides potently induce the expression of MyoD 488 
+
+(Figure 5B), the master regulator of myogenic commitment. This early kick-off efficiently 489 
+
+drives myoblasts into the differentiation program, setting a strong foundation for the subsequent 490 
+
+stages. 491 
+
+4.2.2. Acceleration phase (Mid phase / day 3) 492 
+
+Interestingly, as the process shifts toward myotube formation, Peptides 2 and 6 exhibit their 493 
+
+peak activity at the protein level (Figure 4D). By day 3, these peptides showed significant 494 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 18
+
+increases in MyHC expression, suggesting they act as boosters that accelerate the translation or 495 
+
+early assembly of the contractile apparatus, preventing any kinetic lag in the myogenic drive. 496 
+
+Maturation phase (late phase / day 5): In the final maturation stage, the sustained myogenic 497 
+
+drive. 498 
+
+4.2.3. Maturation phase (Late phase / day 5) 499 
+
+In the final maturation stage, the sustained myogenic drive is once again anchored by 500 
+
+Peptides 3 and 5 (Figure 4F). Their ability to maintain significantly high MyHC-positive rates 501 
+
+through day 5 ensures the functional completion of myotube hypertrophy. 502 
+
+In our in vitro experiments, we observed an interesting dynamic regarding this late-stage 503 
+
+maturation; while MyHC protein accumulation was significantly elevated at day 5, the mRNA 504 
+
+levels of late-stage markers such as Myh1 and Myog showed no significant differences at this 505 
+
+same time point. This discrepancy likely reflects the temporal lag between transcription and 506 
+
+translation; the peak of mRNA expression for these markers presumably occurred earlier, 507 
+
+leading to the robust protein levels observed during the terminal stage of differentiation. 508 
+
+Overall, these results suggest that the bioactive peptides, particularly Peptides 3 and 5, may 509 
+
+primarily accelerate the early stages of the myogenic program by modulating MyoD and Myf5 510 
+
+expression, leading to the enhanced MyHC protein accumulation observed in later stages. 511 
+
+By strategically covering these temporal gaps, where early-responders (Pep3, Pep5) initiate 512 
+
+the program, accelerators (Pep2, Pep6) maintain momentum, and sustained-drivers (Pep3, 513 
+
+Pep5) finalize maturation, the natural GD mixture achieves a level of efficiency that any single 514 
+
+peptide may fail to sustain. Although the direct superiority of a defined peptide cocktail over 515 
+
+individual components remains to be empirically validated in future studies, the temporal 516 
+
+diversity of the activity profiles observed in this study provides a highly rational model for 517 
+
+explaining the robust efficacy of the natural GD mixture. This multistage synergistic approach 518 
+
+represents a significant advancement toward "Precision Sports Nutrition," where the goal is to 519 
+
+optimize the entire physiological timeline of muscle adaptation. 520 
+
+> 521
+
+4.3. Molecular basis for the myogenic initiation by WTQR and WGK 522 
+
+Within this multistage model, the early initiation of the myogenic program by Peptide 3 523 
+
+(WTQR) and Peptide 5 (WGK) serves as the critical first step. To understand the molecular 524 
+
+basis of this robust induction, we focused on their structural characteristics. To date, only a few 525 
+
+specific short-chain peptides have been recognized as direct signaling ligands. For instance, the 526 
+
+collagen-derived dipeptides prolyl-hydroxyproline (Pro-Hyp) [50] and hydroxyprolyl-glycine 527 
+
+(Hyp-Gly) [51] have been reported to promote myotube hypertrophy by modulating the 528 
+
+Akt/mTOR/Foxo3a signaling pathway. While these collagen dipeptides primarily act to 529 
+
+stimulate protein synthesis and suppress degradation in existing myotubes, our findings reveal 530 
+
+that the GD-derived peptides, WTQR and WGK, exert a more profound upstream effect. By 531 
+
+directly upregulating myogenic regulatory factors such as MyoD and Myf5 , these specific GD 532 
+
+constituents actively drive the initial commitment and differentiation of myocytes. 533 
+
+The unique ability of WTQR and WGK to trigger this upstream signaling is likely 534 
+
+attributable to their specific structural characteristics, specifically the arrangement of aromatic 535 
+
+(Trp) and basic (Arg, Lys) amino acids. This structure-activity relationship suggests that the 536 
+
+specific amino acid sequence, rather than total nitrogen content, is the primary driver of the 537 
+
+observed effects. The potency of these sequences may be attributed to the inclusion of 538 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 19
+
+tryptophan (Trp), a key regulator of muscle protein proteostasis. Recent studies indicate that 539 
+
+serum Trp levels are positively correlated with skeletal muscle mass and that Trp is essential 540 
+
+for maintaining muscle fiber diameter and metabolic homeostasis; its deficiency significantly 541 
+
+impairs myoblast differentiation and muscle-specific glycolysis [52,53] . Furthermore, the 542 
+
+presence of basic residues (Arg or Lys) in these sequences is critical from a nutritional 543 
+
+physiology perspective. Recent evidence has confirmed the expression of the peptide 544 
+
+transporter PHT1 (SLC15A4) in skeletal muscle [51,54,55] , which recognizes and transports short-545 
+
+chain peptides containing basic residues [56–58] . Notably, PHT1 (SLC15A4) is not merely a 546 
+
+passive transporter but has been identified as a key scaffold protein that interacts with the 547 
+
+Ragulator-Rag complex on the lysosomal membrane to recruit and activate mTORC1 [59,60] .548 
+
+Given that the mTORC1 pathway is indispensable for the initiation of the myogenic program, 549 
+
+the robust induction of MyoD and Myf5 by WTQR and WGK observed in this study suggests 550 
+
+that these GD-derived peptides may trigger the lysosomal signaling axis via PHT1. By 551 
+
+potentially enhancing the translation of these early myogenic factors and triggering an 552 
+
+autoregulatory transcriptional loop, this pathway could directly drive myocyte commitment. 553 
+
+> 554
+
+4.4. Next-generation multifunctional peptides for unlocking the full physiological potential 555 
+
+of athletes 556 
+
+The functional properties of GD and its constituent peptides elucidated in this study establish 557 
+
+their role as hybrid bioactive molecules that transcend the scope of conventional protein 558 
+
+supplements. Notably, the robust upstream induction of the myogenic program observed in vitro 559 
+
+successfully translated into significant morphological and functional adaptations in vivo . Our 560 
+
+results demonstrated that GD administration led to evident myofiber hypertrophy in mice, 561 
+
+which directly correlated with enhanced whole-body motor performance, including increased 562 
+
+grip strength and rotarod endurance. Furthermore, the significant improvement in stimulus-563 
+
+evoked burst swimming speed and acceleration in zebrafish underscores the practical impact of 564 
+
+GD on explosive power. In our in vivo analysis, GD significantly upregulated the expression of 565 
+
+fast-twitch markers ( Myh1 and Myh2 ), providing a molecular basis for these functional 566 
+
+improvements. Given that MyoD and Myf5 are critical determinants for the development of type 567 
+
+II (fast-twitch) muscle fibers [8–10] , these cross-species functional improvements from the initial 568 
+
+trigger of MyoD in progenitors (Figure 5B) to the functional maturation of Myh1/2 in tissue 569 
+
+(Figure 3A and 3B), strongly suggest that the GD peptide relay preferentially stimulates the 570 
+
+type II fiber-driven performance essential for high-intensity athletic activities. 571 
+
+Crucially, the synergistic effects are not confined to any single category of athlete. For 572 
+
+power-based athletes pursuing hypertrophy, these peptides serve as a potent trigger for efficient 573 
+
+muscle mass accumulation. For endurance athletes requiring rapid repair of damaged 574 
+
+tissues [61,62] , GD would function as an essential recovery tool. Severe exercise-induced muscle 575 
+
+damage (EIMD) can compromise athletic performance for several days, underscoring the urgent 576 
+
+need for nutritional strategies—specifically bioactive peptide supplementation—to mitigate 577 
+
+these effects. The efficacy of protein hydrolysates (WPH) in accelerating recovery is supported 578 
+
+by robust clinical evidence, ranging from the rapid regeneration of force-generating capacity 579 
+
+following eccentric exercise [63] to the reduction of circulating creatine kinase (CK) levels and 580 
+
+maintenance of muscle function in female populations [64] . By proactively driving the myogenic 581 
+
+program—from the initial trigger of MyoD to the upward trend in Myh7 expression (which is 582 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+20 
+
+critically involved in tissue repair and oxidative function) (Figure 3D)—GD provides a 583 
+
+universal mechanism to shorten the window required for structural tissue repair in athletes of 584 
+
+all genders. Furthermore, for competitors in weight-class sports who must balance strict weight 585 
+
+management with peak performance maintenance [65] , the simultaneous fat-reducing and 586 
+
+muscle-sparing properties of GD provide a highly advantageous nutritional framework. 587 
+
+Ultimately, the strategic application of this naturally derived, multistage peptide formulation 588 
+
+represents a next-generation nutritional strategy designed to fundamentally support the 589 
+
+physiological potential of all athletes, regardless of discipline or gender. 590 
+
+591 
+
+4.5. Limitations and future perspectives 592 
+
+While the multi-model approach employed in this study provides robust evidence for the 593 
+
+pro-myogenic effects of GD, several limitations must be considered. First, although the 594 
+
+identification of specific peptides that induce MyoD-mediated MyHC expression serves as a 595 
+
+powerful strategy for muscle enhancement, human clinical trials are indispensable to confirm 596 
+
+the clinical efficacy of the proposed peptide orchestration strategy, particularly regarding 597 
+
+optimal dosage and timing for athletes. Furthermore, it should be noted that this study did not 598 
+
+include a direct comparative analysis between GD and conventional intact proteins regarding 599 
+
+gastrointestinal tolerance or net muscle protein synthesis efficiency at equivalent doses. While 600 
+
+the low-dose efficacy of GD observed in our models is encouraging, future research is required 601 
+
+to confirm whether GD intake effectively mitigates digestive distress while maintaining peak 602 
+
+performance compared to standard high-protein diets. 603 
+
+604 
+
+5. Conclusion 605 
+
+In conclusion, this study establishes GD and its constituent peptides as potent signaling 606 
+
+modulators that transcend the traditional role of protein as a mere building block. By 607 
+
+demonstrating that a specific “peptide relay” directly activates the myogenic program and 608 
+
+modulates the adipo-muscular axis, GD offers a targeted strategy for “Precision Sports 609 
+
+Nutrition” to optimize performance and a novel approach to combat sarcopenic obesity. These 610 
+
+findings provide a robust foundation for unlocking the full physiological potential of the human 611 
+
+body to support lifelong functional vitality. 612 
+
+613 
+
+614 
+
+Funding 615 
+
+This work was supported by collaborative research funding from Rohto Pharmaceutical Co., 616 
+
+Ltd. 617 
+
+618 
+
+Conflicts of interest 619 
+
+K.F. is affiliated with Rohto Pharmaceutical Co., Ltd., and K.I. is an employee of MG Pharma 620 
+
+Inc. All other authors declare that they have no conflict of interest. 621 
+
+622 
+
+Author Contributions 623 
+
+K.F., N.N., and Y.S. designed the study. M.N., L.Z., and Y.S. performed the experiments. K.F. 624 
+
+and K.I. provided essential resources. M.N. and Y.S. wrote the manuscript. L.Z., K.F., and Y.S. 625 
+
+reviewed and edited the manuscript. 626 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+21 
+
+627 
+
+References 628 
+
+[1] T. J. Suchomel, S. Nimphius, M. H. Stone, Sports Med. 2016 , 46 , 1419–1449. 629 
+
+[2] G. Kim, J. H. Kim, Endocrinol. Metab. (Seoul) 2020 , 35 , 1–6. 630 
+
+[3] J. M. Argilés, N. Campos, J. M. Lopez-Pedrosa, R. Rueda, L. Rodriguez-Mañas, J. Am. 631 
+
+Med. Dir. Assoc. 2016 , 17 , 789–796. 632 
+
+[4] R. Jäger, C. M. Kerksick, B. I. Campbell, P. J. Cribb, S. D. Wells, T. M. Skwiat, M. 633 
+
+Purpura, T. N. Ziegenfuss, A. A. Ferrando, S. M. Arent, A. E. Smith-Ryan, J. R. Stout, 634 
+
+P. J. Arciero, M. J. Ormsbee, L. W. Taylor, C. D. Wilborn, D. S. Kalman, R. B. Kreider, 635 
+
+D. S. Willoughby, J. R. Hoffman, J. L. Krzykowski, J. Antonio, J. Int. Soc. Sports Nutr. 636 
+
+2017 , 14 , 20. 637 
+
+[5] S. Bilsborough, N. Mann, Int. J. Sport Nutr. Exerc. Metab. 2006 , 16 , 129–152. 638 
+
+[6] E. P. de Oliveira, R. C. Burini, A. Jeukendrup, Sports Med. 2014 , 44 Suppl 1 , S79–85. 639 
+
+[7] D. R. Moore, T. A. Churchward-Venne, O. Witard, L. Breen, N. A. Burd, K. D. Tipton, 640 
+
+S. M. Phillips, J. Gerontol. A Biol. Sci. Med. Sci. 2015 , 70 , 57–62. 641 
+
+[8] P. S. Zammit, Semin. Cell Dev. Biol. 2017 , 72 , 19–32. 642 
+
+[9] R. Tsuji, T. Hayashi, S. Takahashi, A. Asakura, R. Fujita, Am. J. Physiol. Cell Physiol. 643 
+
+2025 , 329 , C200–C212. 644 
+
+[10] D. Yu, Z. Cai, D. Li, Y. Zhang, M. He, Y. Yang, D. Liu, W. Xie, Y. Li, W. Xiao, Stem 645 
+
+Cells Int. 2021 , 2021 , 8884283. 646 
+
+[11] J. R. Zierath, J. A. Hawley, PLoS Biol. 2004 , 2, e348. 647 
+
+[12] S. Methenitis, Sports (Basel) 2018 , 6, 127. 648 
+
+[13] Z. Karami, B. Akbari-Adergani, J. Food Sci. Technol. 2019 , 56 , 535–547. 649 
+
+[14] A. H. Manninen, Nutr. Metab. (Lond.) 2009 , 6, 38. 650 
+
+[15] J. Yuan, B. Jiang, K. Li, W. Shen, J. L. Tang, J. Biol. Regul. Homeost. Agents 2017 , 31 ,651 
+
+183–188. 652 
+
+[16] R. Koopman, N. Crombach, A. P. Gijsen, S. Walrand, J. Fauquant, A. K. Kies, S. 653 
+
+Lemosquet, W. H. M. Saris, Y. Boirie, L. J. C. van Loon, Am. J. Clin. Nutr. 2009 , 90 ,654 
+
+106–115. 655 
+
+[17] G. Xu, W. Zhao, Z. Yu, Food Chem. 2025 , 496 , 146851. 656 
+
+[18] D. E. Smith, B. Clémençon, M. A. Hediger, Mol. Aspects Med. 2013 , 34 , 323–336. 657 
+
+[19] K. Muthuramalingam, S.-Y. Kim, Y. Kim, H.-S. Kim, Y.-J. Jeon, M. Cho, J. Funct. 658 
+
+Foods 2019 , 52 , 147–155. 659 
+
+[20] K. Nakayama, R. Tagawa, Y. Saito, C. Sanbongi, Nutr. Metab. (Lond.) 2019 , 16 , 90. 660 
+
+[21] S. B. Mada, C. P. Ugwu, M. M. Abarshi, Int. J. Pept. Res. Ther. 2020 , 26 , 831–848. 661 
+
+[22] M. Besharati, M. Lackner, Eurobiotech J. 2023 , 7, 176–188. 662 
+
+[23] T. Zhao, G. Su, L. Zhang, J. Chen, Y. Zhang, W. Liu, M. Zhao, J. Zhang, Q. Huang, 663 
+
+Food Front. 2024 , 5, 1145–1165. 664 
+
+[24] K. Kagawa, H. Matsutaka, C. Fukuhama, Y. Watanabe, H. Fujino, Life Sci. 1996 , 58 ,665 
+
+1745–1755. 666 
+
+[25] F. Nakaoka, Y. Sasakawa, K. Yamamoto, M. Nakao, M. Nakamura, C. Tong, C. 667 
+
+Fukuhama, K. Kagawa, Life Sci. 2010 , 86 , 424–434. 668 
+
+[26] K. Kagawa, H. Matsutaka, C. Fukuhama, H. Fujino, H. Okuda, J. Nutr. 1998 , 128 , 56– 669 
+
+60. 670 
+
+[27] L. Zang, Y. Shimada, H. Nakayama, I. Matsuoka, Y. Kim, D.-C. Chu, L. R. Juneja, R. 671 
+
+Tsuruta, Y. Sasakawa, J. Kuroyanagi, N. Nishimura, Front. Nutr. 2021 , 8, 650975. 672 
+
+[28] Y. Sasakawa, A. Kominami, K. Yamamoto, F. Nakaoka, M. Nakamura, M. Nakao, M. 673 
+
+Abe, C. Fukuhama, K. Kagawa, Life Sci. 2012 , 90 , 190–199. 674 
+
+[29] K. Kagawa, C. Fukuhama, H. Fujino, Antihypertensive Agent , 2016 , Japanese Patent 675 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint 22
+
+JP5985028B2. 676 
+
+[30] L. Zang, D. Morikane, Y. Shimada, T. Tanaka, N. Nishimura, Zebrafish 2011 , 8, 203– 677 
+
+210. 678 
+
+[31] A. Rodriquez, H. Zhang, J. Klaminder, T. Brodin, P. L. Andersson, M. Andersson, arXiv 679 
+
+[cs.CV] 2017 .680 
+
+[32] Standard Operating Procedure The Jackson Laboratory Mouse Neurobehavioral 681 
+
+Phenotyping Facility , n.d. 682 
+
+[33] T. J. Masilamani, J. J. Loiselle, L. C. Sutherland, Mol. Biotechnol. 2014 , 56 , 329–339. 683 
+
+[34] D. M. Brown, T. Parr, J. M. Brameld, J. Muscle Res. Cell Motil. 2012 , 32 , 383–390. 684 
+
+[35] P. J. Hsu, H. Shi, A. C. Zhu, Z. Lu, N. Miller, B. M. Edens, Y. C. Ma, C. He, J. Biol. 685 
+
+Chem. 2019 , 294 , 19889–19895. 686 
+
+[36] H. Ran, Y. Lu, Q. Zhang, Q. Hu, J. Zhao, K. Wang, X. Tong, Q. Su, Diabetes Metab. J. 687 
+
+2025 , 49 , 331. 688 
+
+[37] C. Nicoletti, J. Massenet, A. P. Pintado-Urbanc, L. J. Connor, M. Nicolau, S. Sundar, M. 689 
+
+Xu, A. Schmitt, W. Zhang, Z. Fang, T. C. I. Chan, S. J. Tapscott, T. H. Cheung, M. D. 690 
+
+Simon, L. Caputo, P. L. Puri, bioRxivorg 2024 , DOI 10.1101/2024.12.05.627024. 691 
+
+[38] M. Qahar, Y. Takuma, W. Mizunoya, R. Tatsumi, Y. Ikeuchi, M. Nakamura, FEBS Open 692 
+
+Bio 2016 , 6, 529–539. 693 
+
+[39] P. Schrauwen, M. Hesselink, J. Exp. Biol. 2002 , 205 , 2275–2285. 694 
+
+[40] E. E. Pohl, A. Rupprecht, G. Macher, K. E. Hilse, Front. Physiol. 2019 , 10 , 470. 695 
+
+[41] M. Nabben, J. Hoeks, Physiol. Behav. 2008 , 94 , 259–269. 696 
+
+[42] M. T. Paris, K. E. Bell, M. Mourtzakis, Curr. Opin. Pharmacol. 2020 , 52 , 61–66. 697 
+
+[43] F. Li, Y. Li, Y. Duan, C.-A. A. Hu, Y. Tang, Y. Yin, Cytokine Growth Factor Rev. 2017 ,698 
+
+33 , 73–82. 699 
+
+[44] P. Fang, Y. She, M. Yu, W. Min, W. Shang, Z. Zhang, Ageing Res. Rev. 2023 , 84 ,700 
+
+101829. 701 
+
+[45] D. Garcia, K. Hellberg, A. Chaix, M. Wallace, S. Herzig, M. G. Badur, T. Lin, M. N. 702 
+
+Shokhirev, A. F. M. Pinto, D. S. Ross, A. Saghatelian, S. Panda, L. E. Dow, C. M. 703 
+
+Metallo, R. J. Shaw, Cell Rep. 2019 , 26 , 192–208.e6. 704 
+
+[46] A. Tsuchida, T. Nonomura, M. Ono-Kishino, T. Nakagawa, M. Taiji, H. Noguchi, Int. J. 705 
+
+Obes. Relat. Metab. Disord. 2001 , 25 , 1286–1293. 706 
+
+[47] A. Maihemuti, C. Cui, Q. Wang, R. Amuti, W. W. Chau, S. Chai, N. Zhang, R. M. Y. 707 
+
+Wong, H. Ko, T. C.-Y. Kwok, W.-H. Cheung, Aging Dis. 2025 , DOI 708 
+
+10.14336/AD.2025.1165. 709 
+
+[48] J. Ábrigo, F. Simon, D. Cabrera, C. Cabello-Verrugio, Cell. Physiol. Biochem. 2016 , 40 ,710 
+
+27–38. 711 
+
+[49] V. Z. C. Borba, T. M. da R. L. Costa, Arch. Endocrinol. Metab. 2025 , 68 , e240084. 712 
+
+[50] Y. Kimira, K. Osawa, Y. Osawa, H. Mano, Biomolecules 2023 , 13 , 1617. 713 
+
+[51] C. Kalbe, K. Metzger, C. Gariépy, M.-F. Palin, Histochem. Cell Biol. 2023 , 160 , 63–77. 714 
+
+[52] A. Dukes, C. Davis, M. El Refaey, S. Upadhyay, S. Mork, P. Arounleut, M. H. Johnson, 715 
+
+W. D. Hill, C. M. Isales, M. W. Hamrick, Nutrition 2015 , 31 , 1018–1024. 716 
+
+[53] S. Ninomiya, N. Nakamura, H. Nakamura, T. Mizutani, Y. Kaneda, K. Yamaguchi, T. 717 
+
+Matsumoto, J. Kitagawa, N. Kanemura, M. Shiraki, T. Hara, M. Shimizu, H. Tsurumi, 718 
+
+Nutrients 2020 , 12 , 978. 719 
+
+[54] I. Everaert, H. De Naeyer, Y. Taes, W. Derave, Eur. J. Appl. Physiol. 2013 , 113 , 1169– 720 
+
+1179. 721 
+
+[55] D. Hoetker, W. Chung, D. Zhang, J. Zhao, V. K. Schmidtke, D. W. Riggs, W. Derave, A. 722 
+
+Bhatnagar, D. Bishop, S. P. Baba, J. Appl. Physiol. 2018 , 125 , 1767–1778. 723 
+
+[56] J. Pujol-Giménez, S. P. Baumann, T. M. Ho, B. Augustynek, M. A. Hediger, 724 
+
+Biomolecules 2024 , 14 , 771. 725 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 1, 2026. ;https://doi.org/10.64898/2026.05.27.728339 doi: bioRxiv preprint
+
+23 
+
+[57] T. Roy, M. Nath, N. Halder, R. Saxena, T. Velpandian, J. Membr. Biol. 2025 , 258 , 375– 726 
+
+390. 727 
+
+[58] X. Gu, W. Wang, Y. Yang, Y. Lei, D. Liu, X. Wang, T. Wu, Clin. Interv. Aging 2022 ,728 
+
+17 , 1275–1295. 729 
+
+[59] T. Kobayashi, S. Shimabukuro-Demoto, R. Yoshida-Sugitani, K. Furuyama-Tanaka, H. 730 
+
+Karyu, Y. Sugiura, Y. Shimizu, T. Hosaka, M. Goto, N. Kato, T. Okamura, M. 731 
+
+Suematsu, S. Yokoyama, N. Toyama-Sorimachi, Immunity 2014 , 41 , 375–388. 732 
+
+[60] T. Kobayashi, N. Toyama-Sorimachi, Front. Immunol. 2023 , 14 , 1243104. 733 
+
+[61] M. J. Warhol, A. J. Siegel, W. J. Evans, L. M. Silverman, Am. J. Pathol. 1985 , 118 , 331– 734 
+
+339. 735 
+
+[62] S. Li, M. Kempe, M. Brink, K. Lemmink, Sports Med. Open 2024 , 10 , 55. 736 
+
+[63] D. König, J. Kohl, S. Jerger, C. Centner, Nutrients 2021 , 13 , 3997. 737 
+
+[64] M. A. Brown, E. J. Stevenson, G. Howatson, Appl. Physiol. Nutr. Metab. 2018 , 43 , 324– 738 
+
+330. 739 
+
+[65] E. R. Helms, C. Zinn, D. S. Rowlands, S. R. Brown, Int. J. Sport Nutr. Exerc. Metab. 740 
+
+2014 , 24 , 127–138. 741 
+
+[66] C. M. Prado, J. A. Batsis, L. M. Donini, M. C. Gonzalez, M. Siervo, Nat. Rev. 742 
+
+Endocrinol. 2024 , 20 , 261–277. 743 
+
+[67] B. Habboub, R. Speer, M. Gosch, K. Singler, Dtsch. Arztebl. Int. 2025 , 122 , 121–126. 744 
+
+745 
+
+746 
+
+747

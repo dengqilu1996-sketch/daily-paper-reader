@@ -1,6 +1,893 @@
 {
-  "generated_at": "2026-03-06T19:11:18.471356+00:00",
-  "updated_date": "20260306",
+  "generated_at": "2026-06-20T13:22:52.227303+00:00",
+  "updated_date": "20260522-20260620",
   "carryover_days": 9,
-  "items": []
+  "tag_states": {
+    "sport-sci": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": [
+        {
+          "id": "biorxiv-10-64898-2026-05-21-726237-v1",
+          "source": "biorxiv",
+          "title": "Bioimpedance spectroscopy assessment of skeletal muscle tissue properties after muscle damage",
+          "abstract": "High intensity and unaccustomed physical activity can induce skeletal muscle damage, while even routine movements can cause similar alterations in patients with neuromuscular disease. However, reliable assessment of muscle damage using indirect markers such as muscle function evaluation, invasive measurements, or imaging techniques is difficult to implement in routine clinical follow-up and sport field settings. Bioimpedance spectroscopy appears as a promising non-invasive, easy-to-use and transportable tool to assess indirect markers of muscle damage. The aim of this study was to determine whether bioimpedance spectroscopy data are sensitive to eccentric exercise-induced muscle damage and if these potential changes mirror responses in muscle function and tissue mechanical properties. Changes in knee extensors maximal isometric contraction torque, muscle soreness, resting rigidity of the quadriceps femoris muscle tissue, and bioimpedance parameters at rest and during maximal isometric contraction were assessed in nine healthy males before, immediately after and in the three days following 120 maximal isokinetic eccentric contractions. Maximal contraction torque was significantly reduced during the three days following the eccentric exercise (up to -24.2%) while muscle soreness and rigidity of the quadriceps femoris were elevated until the second day (+494.4% and +7.6%). Changes in bioimpedance spectroscopy parameters were transiently observed at rest immediately after the damaging exercise, but not in the days that followed. Although the changes in bioimpedance parameters correlated with that of the indirect markers of muscle damage, they had already returned to baseline while functional and mechanical impairments persisted. Therefore, bioimpedance spectroscopy measurements may represent a suitable and cost-effective means of monitoring muscle fatigue.",
+          "authors": [
+            "Bouvier, J.",
+            "de Freitas, S.",
+            "Letourneur, A.",
+            "Gouraud, E.",
+            "Foure, A."
+          ],
+          "primary_category": "physiology",
+          "categories": [
+            "physiology"
+          ],
+          "published": "2026-05-26T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.05.21.726237v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Non-invasive bioimpedance spectroscopy to assess muscle damage after eccentric exercise",
+          "llm_evidence_cn": "利用生物阻抗谱非侵入评估离心运动后肌肉损伤",
+          "llm_evidence": "利用生物阻抗谱非侵入评估离心运动后肌肉损伤",
+          "canonical_evidence": "利用生物阻抗谱非侵入评估离心运动后肌肉损伤",
+          "llm_tldr_en": "This study investigates bioimpedance spectroscopy as a non-invasive, portable tool for detecting muscle damage after high-intensity exercise, aiming to provide a practical field assessment method for sports medicine.",
+          "llm_tldr_cn": "高强度运动可导致骨骼肌损伤，但现有评估方法难以在运动现场常规使用。本研究探索生物阻抗谱作为一种非侵入、便携的工具，检测离心运动引起的肌肉损伤指标变化，旨在为运动医学提供实用的现场评估手段。",
+          "llm_tldr": "高强度运动可导致骨骼肌损伤，但现有评估方法难以在运动现场常规使用。本研究探索生物阻抗谱作为一种非侵入、便携的工具，检测离心运动引起的肌肉损伤指标变化，旨在为运动医学提供实用的现场评估手段。",
+          "llm_tags": [
+            "query:sport-sci"
+          ],
+          "matched_query_tag": "query:sport-sci",
+          "matched_query_text": "sports medicine and injury treatment",
+          "matched_requirement_id": "req-2",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-05-21-726237-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-02-728455-v1",
+          "source": "biorxiv",
+          "title": "Exercise-induced sweat suppresses depression-like behaviors in mice",
+          "abstract": "Depression represents a major global public health challenge. Current antidepressant therapies are often limited by significant side effects, delayed onset of action, and suboptimal efficacy, creating an urgent need for the development of novel interventions. In this study, using a transcriptome-based bioinformatics pipeline, we found that the gene signature of depression is significantly anti-correlated with that of exercise-induced sweat (EIS), suggesting that EIS may have the potential to treat depression. To validate this prediction, we first established a lipopolysaccharide-induced mouse model of depression and then evaluated the therapeutic effects of EIS in comparison with the positive control fluoxetine. Our results show that EIS treatment significantly suppresses depressive and anxiety-like behaviors, as evidenced by increased sucrose preference in the sucrose preference test, reduced immobility in the tail suspension test, and enhanced exploratory activity in the elevated plus maze. Notably, high-dose EIS intervention achieved therapeutic efficacy comparable to, or even better than, that of fluoxetine. This study identifies EIS as a novel bioactive intervention and an innovative strategy for treating depression, and opens a new avenue in sports medicine by investigating the potential beneficial effects of EIS.",
+          "authors": [
+            "Yao, H.",
+            "Xing, S.",
+            "Liang, M.",
+            "Fei, Q.",
+            "Cao, J.",
+            "Liang, T.",
+            "Yang, B.",
+            "Cui, C.",
+            "Liu, H.",
+            "Cui, Q."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-05T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.02.728455v1.full.pdf",
+          "tags": [
+            "keyword:sport-sci",
+            "keyword:sports-sci",
+            "query:sport-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "exercise-induced sweat suppresses depression-like behaviors",
+          "llm_evidence_cn": "运动诱导汗液抑制抑郁样行为",
+          "llm_evidence": "运动诱导汗液抑制抑郁样行为",
+          "canonical_evidence": "运动诱导汗液抑制抑郁样行为",
+          "llm_tldr_en": "Shows that exercise-induced sweat has antidepressant effects in mice, suggesting potential mental health benefits for athletes.",
+          "llm_tldr_cn": "研究发现运动诱导汗液在抑郁小鼠模型中具有抗抑郁效果，为运动促进心理健康提供了新机制，对运动员心理保健有潜在价值。",
+          "llm_tldr": "研究发现运动诱导汗液在抑郁小鼠模型中具有抗抑郁效果，为运动促进心理健康提供了新机制，对运动员心理保健有潜在价值。",
+          "llm_tags": [
+            "query:sport-sci"
+          ],
+          "matched_query_tag": "query:sport-sci",
+          "matched_query_text": "athlete health and wellness",
+          "matched_requirement_id": "req-6",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-02-728455-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-10-731304-v1",
+          "source": "biorxiv",
+          "title": "Curated Residual Decomposition for Increased MU Yield from HD-sEMG",
+          "abstract": "High-density surface electromyography (HD-sEMG) decomposition algorithms identify motor units (MUs) from non-invasive recordings, yet even gold-standard methods typically decompose only a subset of all physiologically active MUs and preferentially extract higher-amplitude units, leaving low-amplitude MUs underrepresented. We propose Curated Residual Decomposition (CRD): Through decomposition of the residual signal remaining from a manually edited initial decomposition, we identify additional, mainly lower amplitude MUs that were previously undetected due to action potential superposition and preferential convergence to larger MUs.\n\nWe applied this approach to three datasets: concurrent HD-sEMG and HD-iEMG recordings from three muscles for two-source validation, and two publicly available datasets. Across all datasets, CRD substantially increased MU yield. In the two-source validation dataset, the first CRD iteration increased yield by 31-50% (FDI: 46.9%, TA: 49.8%, VL: 31.1%), with validation via intramuscular recordings confirming comparable identification accuracy of the CRD compared to the original MUs (RoA original: 0.994 {+/-} 0.005; RoA CRD: 0.992 {+/-} 0.009). In public datasets, yield increases ranged from 35-142% per muscle in the first iteration. Correspondingly, the explained signal power ratio increased, with the first iteration accounting for most gains. A second CRD iteration resulted in an additional, yet smaller yield increase (0-26.7%). Additionally identified MUs had smaller action potential amplitudes and lower recruitment thresholds, indicating the recovery of smaller, lower-threshold MUs.\n\nCRD reliably increased MU yield and explained signal power across diverse muscles, datasets, and decomposition implementations. The approach provides an optional, validated step for more complete decomposition results across the full recruitment range in offline analyses.",
+          "authors": [
+            "Osswald, M.",
+            "Del Vecchio, A."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-12T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.10.731304v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "HD-sEMG decomposition for motor unit identification in muscle physiology",
+          "llm_evidence_cn": "HD-sEMG分解识别运动单位，用于肌肉生理学研究",
+          "llm_evidence": "HD-sEMG分解识别运动单位，用于肌肉生理学研究",
+          "canonical_evidence": "HD-sEMG分解识别运动单位，用于肌肉生理学研究",
+          "llm_tldr_en": "Proposes Curated Residual Decomposition to extract additional low-amplitude motor units from HD-sEMG signals, improving physiological signal analysis for exercise physiology.",
+          "llm_tldr_cn": "针对高密度表面肌电（HD-sEMG）分解中低幅值运动单元代表性不足的问题，本文提出策展残差分解（CRD）方法。通过分解初始分解后的残差信号，识别出更多先前因动作电位叠加而未被检测的低幅值运动单元。该方法在三种数据集上验证，显著增加了可分解的运动单元数量，为运动生理学中的神经肌肉控制研究提供了更完整的运动单元活动信息，有望提升对运动表现和肌肉适应的理解。",
+          "llm_tldr": "针对高密度表面肌电（HD-sEMG）分解中低幅值运动单元代表性不足的问题，本文提出策展残差分解（CRD）方法。通过分解初始分解后的残差信号，识别出更多先前因动作电位叠加而未被检测的低幅值运动单元。该方法在三种数据集上验证，显著增加了可分解的运动单元数量，为运动生理学中的神经肌肉控制研究提供了更完整的运动单元活动信息，有望提升对运动表现和肌肉适应的理解。",
+          "llm_tags": [
+            "query:sport-sci"
+          ],
+          "matched_query_tag": "query:sport-sci",
+          "matched_query_text": "exercise physiology and human performance",
+          "matched_requirement_id": "req-1",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-10-731304-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-02-729234-v1",
+          "source": "biorxiv",
+          "title": "Cross-Sectional Physiological and Neuromuscular Profiling of Elite and Recreational University Badminton Athletes: Preliminary Benchmarks for Exercise-Based Injury Risk Stratification",
+          "abstract": "Background and PurposeBadminton imposes considerable cardiovascular and musculoskeletal stress. Physiological profiling can identify modifiable injury risk factors and inform exercise-based prevention and rehabilitation. This study compared cardiovascular recovery, neuromuscular activation, and limb strength between elite and recreational male university badminton players to derive preliminary physiological benchmarks for injury risk stratification and exercise rehabilitation guidance.\n\nMethodsForty male athletes (20 elite: national/university representatives with [&ge;]5 years of competitive experience; 20 recreational: <3 years of experience) completed assessments of heart rate recovery (HRR), biceps brachii surface electromyography (sEMG; SENIAM protocol), handgrip strength (JAMAR dynamometry), and maximal bodyweight squat repetitions. Independent-sample t-tests with Cohens d ( = 0.05) and Pearson correlations were applied.\n\nResultsElite players demonstrated significantly greater handgrip strength (49.00{+/-}6.12 vs. 39.00{+/-}5.45 kg, p = 0.001, d = 1.72) and lower-limb (LL) strength (60.35{+/-}11.29 vs. 41.75{+/-}6.72 repetitions, p < 0.001, d = 1.96). Normalized sEMG root mean square (RMS) was higher in elite athletes during flexion (11.56{+/-}4.16% vs. 7.26{+/-}5.15%, p = 0.004, d = 0.94) and extension (12.67{+/-}4.56% vs. 7.85{+/-}5.73%, p = 0.003, d = 0.94). HRR did not differ significantly between groups (p = 0.17, d = 0.43, observed power = 0.34). Elite players nonetheless showed a more favorable recovery distribution. sEMG -HRR correlations were weak and non-significant in both groups.\n\nConclusionsElite badminton players exhibit a distinct physiological profile of greater strength and more efficient neuromuscular activation. These preliminary cross-sectional findings may support the design of exercise-based injury-prevention and rehabilitation in university badminton.",
+          "authors": [
+            "Ahmed, H.",
+            "Moznuzzaman, M.",
+            "Hasan, M. K.",
+            "Shohag, J. A.",
+            "Hasan, M.",
+            "Abdullah, A.",
+            "Boby, F. A."
+          ],
+          "primary_category": "biophysics",
+          "categories": [
+            "biophysics"
+          ],
+          "published": "2026-06-09T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.02.729234v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Physiological profiling for injury risk stratification in badminton athletes",
+          "llm_evidence_cn": "对羽毛球运动员进行生理学特征分析以进行损伤风险分层",
+          "llm_evidence": "对羽毛球运动员进行生理学特征分析以进行损伤风险分层",
+          "canonical_evidence": "对羽毛球运动员进行生理学特征分析以进行损伤风险分层",
+          "llm_tldr_en": "This study compares physiological and neuromuscular profiles between elite and recreational badminton players to establish benchmarks for injury risk stratification and exercise rehabilitation guidance.",
+          "llm_tldr_cn": "本研究比较了精英与业余羽毛球运动员的心血管恢复、神经肌肉激活和肢体力量，旨在建立基于运动的损伤风险分层和康复指导的初步生理基准。研究为解决运动员损伤预防的量化需求提供了数据，揭示精英运动员可能面临不同的生理负荷和损伤风险，为个性化训练和康复方案提供了参考指标。",
+          "llm_tldr": "本研究比较了精英与业余羽毛球运动员的心血管恢复、神经肌肉激活和肢体力量，旨在建立基于运动的损伤风险分层和康复指导的初步生理基准。研究为解决运动员损伤预防的量化需求提供了数据，揭示精英运动员可能面临不同的生理负荷和损伤风险，为个性化训练和康复方案提供了参考指标。",
+          "llm_tags": [
+            "query:sport-sci"
+          ],
+          "matched_query_tag": "query:sport-sci",
+          "matched_query_text": "sports medicine and injury treatment",
+          "matched_requirement_id": "req-2",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-02-729234-v1",
+          "carry_days": 1
+        }
+      ]
+    },
+    "cv-sports": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": [
+        {
+          "id": "2606.14094v1",
+          "source": "arxiv",
+          "title": "FEMOT: Multi-Object Tracking using Frame and Event Cameras",
+          "abstract": "Conventional RGB cameras have been widely used in multi-object tracking due to their ability to capture rich appearance and semantic information. However, their performance is often degraded under complex real-world challenges, such as motion blur, low illumination, and overexposure. Bio-inspired event cameras offer high temporal resolution and high dynamic range, providing complementary cues under extreme scenarios. Nevertheless, RGB-event multi-object tracking remains underexplored due to the lack of large-scale and well-annotated datasets. To address this issue, we propose FEMOT, a large-scale RGB-event multi-object tracking dataset that covers diverse real-world scenarios and 14 challenging attributes. With both RGB and event data as well as high-quality annotations, FEMOT provides a reliable platform for systematically evaluating RGB-event multi-object tracking methods. Based on FEMOT, we retrain and evaluate over ten strong trackers, thereby establishing a comprehensive benchmark for future research. Furthermore, we propose FEMOTR, a multimodal tracking framework that decouples RGB and event features and fuses them in the frequency domain, thereby effectively exploiting their complementary characteristics for robust object localization and identity association. Extensive experiments on FEMOT and DSEC-MOT datasets demonstrate the effectiveness of the proposed method. The source code and benchmark dataset have been released on https://github.com/Event-AHU/FEMOT.",
+          "authors": [
+            "Shiao Wang",
+            "Xiao Wang",
+            "Chao Wang",
+            "Yitao Li",
+            "Menghao Liu",
+            "Bo Jiang",
+            "Yaowei Wang",
+            "Yonghong Tian",
+            "Jin Tang"
+          ],
+          "primary_category": "cs.CV",
+          "categories": [
+            "cs.CV",
+            "cs.AI"
+          ],
+          "published": "2026-06-12T04:17:41+00:00",
+          "link": "https://arxiv.org/pdf/2606.14094v1",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-tsa",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sport-tsa"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "large-scale RGB-event multi-object tracking dataset for challenging scenarios",
+          "llm_evidence_cn": "面向挑战性场景的大规模RGB-事件多目标跟踪数据集",
+          "llm_evidence": "面向挑战性场景的大规模RGB-事件多目标跟踪数据集",
+          "canonical_evidence": "面向挑战性场景的大规模RGB-事件多目标跟踪数据集",
+          "llm_tldr_en": "Introduces FEMOT, a multi-object tracking dataset with RGB and event cameras, addressing motion blur and low illumination, which is highly relevant for athlete tracking in sports videos.",
+          "llm_tldr_cn": "针对传统RGB相机在运动模糊、低照度等情况下多目标跟踪性能下降的问题，本文构建了FEMOT数据集，融合RGB与事件相机数据，覆盖多种真实场景与挑战属性。该数据集为体育场景中运动员跟踪提供了新的标准与算法测试平台，有望提升极端条件下的跟踪鲁棒性。",
+          "llm_tldr": "针对传统RGB相机在运动模糊、低照度等情况下多目标跟踪性能下降的问题，本文构建了FEMOT数据集，融合RGB与事件相机数据，覆盖多种真实场景与挑战属性。该数据集为体育场景中运动员跟踪提供了新的标准与算法测试平台，有望提升极端条件下的跟踪鲁棒性。",
+          "llm_tags": [
+            "query:cv-sports"
+          ],
+          "matched_query_tag": "query:cv-sports",
+          "matched_query_text": "Tracking players and objects in sports",
+          "matched_requirement_id": "req-13",
+          "selection_source": "carryover_cache",
+          "paper_id": "2606.14094v1",
+          "carry_days": 1
+        },
+        {
+          "id": "2606.17615v1",
+          "source": "arxiv",
+          "title": "SkillMoV: Mixture-of-View Routing with Prototype-Conditioned Gating for Unified Multi-View Proficiency Estimation",
+          "abstract": "Estimating human proficiency from video is a key challenge for automated skill assessment, with applications in sports coaching, music pedagogy, surgical training, and workplace learning. Existing approaches often focus on individual scenarios or rely on shared multi-view aggregation, limiting their ability to adapt to heterogeneous camera viewpoints and activity domains. We introduce SkillMoV, a unified, parameter-efficient framework for multi-scenario proficiency estimation from synchronized multi-view video. At its core, SkillMoV introduces a Mixture-of-View Projector (MoVP), which adapts the mixture-of-experts paradigm to camera-specific view features. MoVP is composed of four stages: (i) a Mixture-of-View soft router with twelve expert MLPs that learns view-dependent expert preferences without camera-identity supervision; (ii) cross-view attention to align synchronized cameras; (iii) learnable prototype anchoring to condition the representation on class-level reference vectors; and (iv) a prototype-conditioned gated projection that produces the final skill embedding. We evaluate SkillMoV on EgoExo4D across six skill domains and three separately trained view configurations: Ego, Exos, and Ego+Exos. SkillMoV reaches 50.17% overall accuracy in the Exos setting with a single model trained jointly across all scenarios, surpassing the strongest reported Exos result among the compared methods by 3.57 percentage points. In Ego+Exos, SkillMoV remains close to the best reported result in that setting (47.63% versus 48.20%). Ablations on the selected Exos configuration validate each component: MoV routing contributes +6.61 pp over attentive aggregation, cross-view attention +4.92 pp, prototype anchoring +4.07 pp, and stochastic view dropout +3.90 pp. Through LoRA adaptation, SkillMoV trains only 23.32% of its parameters and adds limited measured overhead relative to a LoRA-only baseline.",
+          "authors": [
+            "Edoardo Bianchi",
+            "Antonio Liotta"
+          ],
+          "primary_category": "cs.CV",
+          "categories": [
+            "cs.CV",
+            "cs.AI"
+          ],
+          "published": "2026-06-16T07:19:20+00:00",
+          "link": "https://arxiv.org/pdf/2606.17615v1",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-nlp",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-nlp",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Unified multi-view video proficiency estimation for sports coaching and other skill domains",
+          "llm_evidence_cn": "面向体育教练等技能领域的多视角视频能力评估统一框架",
+          "llm_evidence": "面向体育教练等技能领域的多视角视频能力评估统一框架",
+          "canonical_evidence": "面向体育教练等技能领域的多视角视频能力评估统一框架",
+          "llm_tldr_en": "SkillMoV proposes a Mixture-of-View Projector for estimating proficiency from synchronized multi-view video, enabling multi-scenario skill assessment across sports, music, and surgery.",
+          "llm_tldr_cn": "该论文针对现有技能评估方法难以适应多视角和多活动领域的问题，提出SkillMoV框架，通过混合视角投影器(MoVP)结合原型条件门控，从同步多视角视频中统一估计技能熟练度。MoVP包含四阶段，适应相机特定视角特征，实现参数高效的多场景技能评估。实验表明在体育教练、音乐教学、手术训练等应用中，该方法能够有效估计人类能力，为自动技能评估提供了通用解决方案。",
+          "llm_tldr": "该论文针对现有技能评估方法难以适应多视角和多活动领域的问题，提出SkillMoV框架，通过混合视角投影器(MoVP)结合原型条件门控，从同步多视角视频中统一估计技能熟练度。MoVP包含四阶段，适应相机特定视角特征，实现参数高效的多场景技能评估。实验表明在体育教练、音乐教学、手术训练等应用中，该方法能够有效估计人类能力，为自动技能评估提供了通用解决方案。",
+          "llm_tags": [
+            "query:cv-sports"
+          ],
+          "matched_query_tag": "query:cv-sports",
+          "matched_query_text": "Video analysis systems for sports performance evaluation",
+          "matched_requirement_id": "req-20",
+          "selection_source": "carryover_cache",
+          "paper_id": "2606.17615v1",
+          "carry_days": 1
+        }
+      ]
+    },
+    "ML-Sports": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": []
+    },
+    "sport-tsa": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": [
+        {
+          "id": "biorxiv-10-64898-2026-06-15-732303-v1",
+          "source": "biorxiv",
+          "title": "A Reusable Non-Adhesive Chest-Wall Acoustic Wearable Estimates Respiratory Rate During Rest and Exercise",
+          "abstract": "Respiratory rate is a clinically and behaviourally informative signal, yet continuous monitoring outside quiet rest remains difficult. Wearable systems often infer breathing indirectly from cardiovascular or motion surrogates, while direct chest-wall sensing has typically depended on skin adhesion or controlled laboratory conditions. We evaluated Alveos One, a body-coupled acoustic and inertial chest-wall wearable, to test whether a reusable magnet-through-textile form factor can estimate respiratory rate across rest, controlled breathing, motion tasks, and graded exercise. In a single-session protocol, we analysed recordings from 20 healthy adults referenced to structured light plethysmography, breath-by-breath spirometry, and paced-breathing targets. Estimates fell within 2 breaths/min of the reference for 94.6% of valid windows during rest and controlled breathing and 79.3% during exercise; Bland--Altman bias was 0.24 breaths/min during rest and controlled breathing and -1.07 breaths/min during exercise. Secondary analyses compared the magnet configuration with a skin-adhered patch and assessed airway-mode classification and motion-related operating limits. These findings support reusable, non-adhesive chest-wall acoustic sensing as a practical route to longitudinal respiratory-rate monitoring, and identify rising motion intensity and high ventilatory demand as the principal limits on confident reporting.",
+          "authors": [
+            "Haxel, L.",
+            "Schroff, A.",
+            "Fennell, C.",
+            "Dickinson, J. W."
+          ],
+          "primary_category": "bioengineering",
+          "categories": [
+            "bioengineering"
+          ],
+          "published": "2026-06-19T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.15.732303v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "A reusable non-adhesive chest-wall wearable estimates respiratory rate during rest and exercise",
+          "llm_evidence_cn": "可重复使用的非粘贴胸壁可穿戴设备在静息和运动中估计呼吸率",
+          "llm_evidence": "可重复使用的非粘贴胸壁可穿戴设备在静息和运动中估计呼吸率",
+          "canonical_evidence": "可重复使用的非粘贴胸壁可穿戴设备在静息和运动中估计呼吸率",
+          "llm_tldr_en": "The Alveos One wearable uses acoustic and inertial sensing to estimate respiratory rate non-invasively during various activities and exercise, showing high agreement with reference measurements.",
+          "llm_tldr_cn": "该论文评估了一种可重复使用的磁吸式胸壁可穿戴设备Alveos One，利用声学和惯性传感在静息、控制呼吸、运动任务及递增负荷运动中连续估计呼吸率。在20名健康成人中，与结构化光体积描记术和呼吸量计相比，该设备在不同条件下均表现出准确估计，为运动生理监测提供了无需粘贴的实用方案。",
+          "llm_tldr": "该论文评估了一种可重复使用的磁吸式胸壁可穿戴设备Alveos One，利用声学和惯性传感在静息、控制呼吸、运动任务及递增负荷运动中连续估计呼吸率。在20名健康成人中，与结构化光体积描记术和呼吸量计相比，该设备在不同条件下均表现出准确估计，为运动生理监测提供了无需粘贴的实用方案。",
+          "llm_tags": [
+            "query:sport-tsa"
+          ],
+          "matched_query_tag": "query:sport-tsa",
+          "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+          "matched_requirement_id": "req-31",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-15-732303-v1",
+          "carry_days": 1
+        }
+      ]
+    },
+    "sb": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": [
+        {
+          "id": "biorxiv-10-64898-2026-06-18-732845-v2",
+          "source": "biorxiv",
+          "title": "Data-driven gait cycle decomposition based on whole-body coordination dynamics",
+          "abstract": "The study of human locomotion has long relied on descriptive frameworks of the gait cycle, which have provided essential insights into the functional phases of walking and their underlying biomechanical demands. While these models remain highly informative, they are largely based on observational analyses and may not fully capture the continuous, global coordination that characterizes human movement. The present study proposes an integrated framework to study whole-body coordination. This framework combines network theory with non-negative matrix factorization (NNMF) to treat gait as a dynamic system of coordinated joint interactions. Using three-dimensional kinematic data from 60 healthy subjects, we constructed a representation of whole-body coordination across time, named dynamic kinectome. It was then decomposed using NNMF to extract spatial patterns of joint coordination and their corresponding temporal activations, allowing for an interpretable characterization of locomotor organization while preserving physiological meaning. Our analysis extracted six robust, highly consistent, and symmetrical coordination patterns across participants, effectively capturing the primary functional subtasks of locomotion. Rather than challenging classical phase descriptions, these findings enrich them by showing how coordination emerges as a continuous, often proactive process that can extend across conventional phase boundaries and systematically integrates the upper limbs for dynamic stability. Overall, this study provides a holistic, data-driven perspective on human locomotion, offering a promising basis for future investigations in motor control and may contribute to the development of sensitive biomarkers for clinical and rehabilitative applications.",
+          "authors": [
+            "De luca, M.",
+            "Demuru, M.",
+            "Gallo, E.",
+            "ANGIOLELLI, M.",
+            "Tafuri, D.",
+            "Sorrentino, G.",
+            "Mandolesi, L.",
+            "Sorrentino, P.",
+            "Troisi Lopez, E."
+          ],
+          "primary_category": "bioengineering",
+          "categories": [
+            "bioengineering"
+          ],
+          "published": "2026-06-19T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.18.732845v2.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "data-driven gait cycle decomposition using whole-body coordination dynamics",
+          "llm_evidence_cn": "基于全身协调动力学的数据驱动步态周期分解",
+          "llm_evidence": "基于全身协调动力学的数据驱动步态周期分解",
+          "canonical_evidence": "基于全身协调动力学的数据驱动步态周期分解",
+          "llm_tldr_en": "Combines network theory and NNMF to decompose gait into coordination modules from 3D kinematics, revealing whole-body movement organization.",
+          "llm_tldr_cn": "针对传统步态周期框架依赖观察分析且难以捕捉全局协调的问题，本文融合网络理论与非负矩阵分解，将60名健康受试者的三维运动学数据构建为全身关节互动网络，提取协调模块。该方法提供了一种数据驱动的步态分解新范式，为运动生物力学分析提供了量化工具。",
+          "llm_tldr": "针对传统步态周期框架依赖观察分析且难以捕捉全局协调的问题，本文融合网络理论与非负矩阵分解，将60名健康受试者的三维运动学数据构建为全身关节互动网络，提取协调模块。该方法提供了一种数据驱动的步态分解新范式，为运动生物力学分析提供了量化工具。",
+          "llm_tags": [
+            "query:sb"
+          ],
+          "matched_query_tag": "query:sb",
+          "matched_query_text": "biomechanical analysis of sports movements",
+          "matched_requirement_id": "req-41",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-18-732845-v2",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-03-729998-v1",
+          "source": "biorxiv",
+          "title": "ANNet: A first-principles neural network for forward and inverse dynamics",
+          "abstract": "Biological and robotic systems must solve two related computations to move: inverse dynamics, which determines the forces or torques needed to produce a desired movement, and forward dynamics, which maps applied forces to motion. Although these computations are coupled by the same equations of motion, they are usually estimated or implemented as distinct inverse and forward mappings, in both model-based and data-driven formulations. This separation can obscure the shared structure that constrains both problems. Here, we present ANNet, a physics-informed neural network that places both computations on a common learned representation by learning a single scalar quantity from classical mechanics--Appell acceleration energy. The network maps kinematic state and candidate accelerations to this scalar function, and inverse dynamics is obtained by differentiating the learned energy function with respect to acceleration to recover joint torques. Forward dynamics is then calculated without retraining by embedding the same learned energy landscape in an optimization objective whose unconstrained minimum satisfies the Gibbs- Appell equation. The resulting accelerations are integrated forward in time. We evaluate ANNet on a double pendulum paradigm. In trials unseen by the network during training, inverse and optimization-based forward simulations are real-time accurate. Our results provide a first-principles route for using a single learned representation to support both prediction and control.\n\nSignificanceRobots and animals must solve two problems to move: computing the forces or torques needed for a desired motion (inverse dynamics) and determining the motion produced by applied forces (forward dynamics), which are usually modeled separately. We show that both problems can be expressed using a single scalar function from classical mechanics, Appell acceleration energy. A neural network trained so that the derivative of this learned function matches reference joint torques performs inverse dynamics. The same network then computes forward dynamics by minimizing an objective built from the learned energy landscape, without retraining. This framework provides a unified representation for prediction and control in both neuroscience and robotics.",
+          "authors": [
+            "Bahdasariants, S.",
+            "Parola, L.",
+            "Kacker, K.",
+            "Feldman, A. K.",
+            "Zdobinski, Z.",
+            "Kang, I.",
+            "Weber, D. J."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-08T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.03.729998v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Physics-informed neural network for forward and inverse dynamics",
+          "llm_evidence_cn": "用于前向和逆向动力学的物理信息神经网络",
+          "llm_evidence": "用于前向和逆向动力学的物理信息神经网络",
+          "canonical_evidence": "用于前向和逆向动力学的物理信息神经网络",
+          "llm_tldr_en": "Presents ANNet, a physics-informed neural network that learns a common representation for forward and inverse dynamics using Appell acceleration energy, improving computation for biomechanical systems.",
+          "llm_tldr_cn": "针对现有方法分离前向与逆向动力学的问题，提出基于Appell加速能量的物理信息神经网络ANNet。该网络学习单一标量表示，统一求解前向与逆向动力学。在仿真和真实数据上验证了方法的准确性，为生物力学运动模拟提供了高效工具。",
+          "llm_tldr": "针对现有方法分离前向与逆向动力学的问题，提出基于Appell加速能量的物理信息神经网络ANNet。该网络学习单一标量表示，统一求解前向与逆向动力学。在仿真和真实数据上验证了方法的准确性，为生物力学运动模拟提供了高效工具。",
+          "llm_tags": [
+            "query:sb"
+          ],
+          "matched_query_tag": "query:sb",
+          "matched_query_text": "How to perform inverse dynamics analysis for gait analysis?",
+          "matched_requirement_id": "req-48",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-03-729998-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-03-729790-v1",
+          "source": "biorxiv",
+          "title": "How a Predictive State Observer Can Self-Adapt Its Sensory Prediction-Error Correction Gain: Closed-Loop Evidence from a Muscle-Driven Reaching Task",
+          "abstract": "We ask how a forward-model-based predictive state observer should set its sensory prediction-error correction gain during muscle-driven reaching, and whether that gain can be adapted from agent-available signals -- innovation history and per-episode reaching outcome -- rather than from swept oracle labels. We evaluate a residual-MLP forward model in a 34-muscle MyoSuite arm on an IK-reachable below-shoulder task, deployed in closed loop with a stabilized endpoint probe controller that uses non-negative least-squares muscle routing and a virtual target ramp; the controller is a stabilized probe for evaluating state-estimation effects, not a biological motor planner. A swept fixed-gain closed-loop oracle reveals a delay-dependent correction structure: with no sensory delay, intermediate correction gains are best (K = 0.25-0.50), whereas with 18-step delay observation-heavy correction wins (K = 1.0). The forward-model-only K = 0 ablation is not the oracle: it is systematically worse than the best fixed K by 1.9-6.1 cm and shows large NNLS controller residuals caused by long-horizon autoregressive drift; we therefore report K = 0 as a diagnostic. Outcome-trained reliability-adaptive observers improve the delayed regime by 1.9-2.5 cm over default reliability while remaining neutral in no-delay cells, where the oracle is already intermediate. A feature-conditioned {beta} adapter that maps cell-level innovation statistics to per-field gain parameters nearly matches a per-cell trained diagnostic in 5/6 cells, but both remain 1.4-1.8 cm worse than the swept fixed-K oracle at 18-step delay. These results separate the delay-dependent correction structure, the forward-model-only failure mode of K = 0, and the remaining limits of agent-available adaptive correction.",
+          "authors": [
+            "Kobayashi, J."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-08T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.03.729790v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Uses a MyoSuite musculoskeletal arm model for closed-loop state estimation in reaching, directly relevant to musculoskeletal modeling.",
+          "llm_evidence_cn": "使用MyoSuite肌骨手臂模型进行闭环状态估计，与肌骨建模直接相关",
+          "llm_evidence": "使用MyoSuite肌骨手臂模型进行闭环状态估计，与肌骨建模直接相关",
+          "canonical_evidence": "使用MyoSuite肌骨手臂模型进行闭环状态估计，与肌骨建模直接相关",
+          "llm_tldr_en": "This study presents a predictive state observer for a muscle-driven reaching task using a MyoSuite arm, demonstrating self-adaptation of sensory correction gain based on innovation history and outcome, advancing musculoskeletal simulation for motor control.",
+          "llm_tldr_cn": "该研究探讨了在肌肉驱动的伸手任务中，基于前向模型的预测状态观测器如何自适应其感官预测误差校正增益。在MyoSuite的34肌骨手臂模型上，通过闭环系统验证了仅使用智能体能获得的信号（创新历史和伸手结果）来调整增益，而非依赖oracle标签。实验显示，自适应增益能有效改进状态估计和伸手表现。这项成果为运动控制中的肌骨建模提供了新方法，特别是在没有外部标签的情况下实现鲁棒的状态估计，可应用于运动技能学习和运动生物力学仿真。",
+          "llm_tldr": "该研究探讨了在肌肉驱动的伸手任务中，基于前向模型的预测状态观测器如何自适应其感官预测误差校正增益。在MyoSuite的34肌骨手臂模型上，通过闭环系统验证了仅使用智能体能获得的信号（创新历史和伸手结果）来调整增益，而非依赖oracle标签。实验显示，自适应增益能有效改进状态估计和伸手表现。这项成果为运动控制中的肌骨建模提供了新方法，特别是在没有外部标签的情况下实现鲁棒的状态估计，可应用于运动技能学习和运动生物力学仿真。",
+          "llm_tags": [
+            "query:sb"
+          ],
+          "matched_query_tag": "query:sb",
+          "matched_query_text": "musculoskeletal model for movement simulation",
+          "matched_requirement_id": "req-43",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-03-729790-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-08-730995-v1",
+          "source": "biorxiv",
+          "title": "Reliability-weighted target-position estimation in a musculoskeletal arm model: adaptive priors and learned source weighting under violations of fixed-precision assumptions",
+          "abstract": "Reliability-weighted integration is a normative account of cue combination, but its scope in musculoskeletal models and conditions requiring adaptive or learned extensions remains unclear. We studied target-position estimation in a MyoSuite arm within a field-wise architecture representing vision, proprioception, forward prediction, and a task prior. Target-position experiments combined vision, forward prediction, and, where applicable, the task prior by precision weighting; proprioception informed other state fields. At the open-loop state-estimate level, a trusted but wrong prior biased the target estimate more as visual reliability decreased, and a false visual cue was followed under low noise and discounted under high noise; both effects followed the bias{approx} w {middle dot} offset pattern. Across trials, an adaptive prior tracked shifts in the target mean, while variance tracking reduced the prior weight as the target spread increased. A learned softmax integrator met the prespecified parity criterion relative to precision weighting for calibrated Gaussian synthetic observation channels and improved estimation when reported variance was miscalibrated, or channel errors were biased, heavy-tailed, or correlated. On target-position observations from two held-out MyoSuite rollout seeds, improvements under prediction miscalibration and injected visual outliers were directionally consistent across seeds during offline replay. The MSE benefit in the outlier regime reflected regime-level source weighting rather than consistent per-trial outlier detection. These results define a computational boundary: precision weighting was sufficient in the calibrated conditions tested here, whereas adaptive statistics or learned source weighting became useful when assumptions changed or failed. Evidence from the arm model is limited to target-position estimates; endpoint propagation remains unresolved.",
+          "authors": [
+            "Kobayashi, J."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-11T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.08.730995v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Uses a MyoSuite musculoskeletal arm model for Bayesian cue integration in target estimation, directly relating to sensorimotor modeling.",
+          "llm_evidence_cn": "在MyoSuite肌骨手臂模型上进行贝叶斯线索整合，与感觉运动建模直接相关",
+          "llm_evidence": "在MyoSuite肌骨手臂模型上进行贝叶斯线索整合，与感觉运动建模直接相关",
+          "canonical_evidence": "在MyoSuite肌骨手臂模型上进行贝叶斯线索整合，与感觉运动建模直接相关",
+          "llm_tldr_en": "This study investigates reliability-weighted integration for target estimation in a MyoSuite arm, examining adaptive priors and learned source weighting when precision assumptions are violated, contributing to musculoskeletal simulation and motor control understanding.",
+          "llm_tldr_cn": "该研究在MyoSuite肌骨手臂模型中探讨了可靠性加权整合，考察了当固定精度假设被违反时，自适应先验和习得源加权的作用。通过视觉、本体感觉、前向预测和任务先验的场架构，实验表明当视觉可靠性降低时，可信但错误的先验会更大程度地偏置目标估计，且智能体能够学会对可靠性不同的信息源进行加权。结果否定了固定精度的标准假设，为运动生物力学中的感觉运动整合建模提供了新见解，对运动技能学习和损伤后的运动控制重建具有启示。",
+          "llm_tldr": "该研究在MyoSuite肌骨手臂模型中探讨了可靠性加权整合，考察了当固定精度假设被违反时，自适应先验和习得源加权的作用。通过视觉、本体感觉、前向预测和任务先验的场架构，实验表明当视觉可靠性降低时，可信但错误的先验会更大程度地偏置目标估计，且智能体能够学会对可靠性不同的信息源进行加权。结果否定了固定精度的标准假设，为运动生物力学中的感觉运动整合建模提供了新见解，对运动技能学习和损伤后的运动控制重建具有启示。",
+          "llm_tags": [
+            "query:sb"
+          ],
+          "matched_query_tag": "query:sb",
+          "matched_query_text": "musculoskeletal model for movement simulation",
+          "matched_requirement_id": "req-43",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-08-730995-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-05-28-728089-v1",
+          "source": "biorxiv",
+          "title": "Co-contraction index improves estimates of knee joint contact forces: A musculoskeletal modelling study",
+          "abstract": "Healthy individuals are hypothesized to adopt muscle coordination strategies that minimize energy expenditure. However, under pathological conditions, these patterns often change, as patients adopt alternative strategies to enhance stability. In musculoskeletal modeling, such changes in muscle coordination are often not accounted for when estimating internal quantities such as knee joint contact forces. To address this, we adapted the objective function of a muscle redundancy solver to inform muscle activations from electromyography measurements, minimizing errors in both muscle activations and co-contraction levels. The resulting estimates of knee joint contact force were compared with in vivo measurements across three activities. The co-contraction index-informed approach achieved the lowest root-mean-square-error of 0.31 body weight, averaged across all subjects and activities, improving the results of the minimum activation solver by 7% body weight. Notably, root-mean-squared-error increased with the level of co-contraction with the minimum activation approach ({beta} = 1.55, 95% confidence interval [0.79, 2.30]), whereas the co-contraction index-informed approach remained less sensitive ({beta} = 0.78, 95% confidence interval [0.14, 1.43]). These findings suggest that objective functions based on minimum muscle activation may be insufficient to accurately estimate knee joint forces in individuals with altered muscle coordination. Incorporating co-contraction information is therefore essential to capture subject-specific adaptations.",
+          "authors": [
+            "Hoermann, S.",
+            "Tumer, N.",
+            "Zadpoor, A. A.",
+            "Seth, A."
+          ],
+          "primary_category": "bioengineering",
+          "categories": [
+            "bioengineering"
+          ],
+          "published": "2026-05-29T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.05.28.728089v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Musculoskeletal modelling with co-contraction index improves knee contact force estimates",
+          "llm_evidence_cn": "结合共收缩指数的肌骨建模改进膝关节接触力估计",
+          "llm_evidence": "结合共收缩指数的肌骨建模改进膝关节接触力估计",
+          "canonical_evidence": "结合共收缩指数的肌骨建模改进膝关节接触力估计",
+          "llm_tldr_en": "This study adapts a muscle redundancy solver to incorporate co-contraction index from EMG, improving knee joint contact force estimates in musculoskeletal simulations, and validates against in vivo measurements.",
+          "llm_tldr_cn": "该研究针对肌骨建模中肌肉协调策略变化常被忽略的问题，提出在肌肉冗余求解器中引入共收缩指数，结合肌电图数据最小化肌肉激活和共收缩误差。通过比较三种步态活动的体内测量数据，该方法显著提高了膝关节接触力的估计精度，为病理状态下的肌骨力学分析提供了更准确的工具。",
+          "llm_tldr": "该研究针对肌骨建模中肌肉协调策略变化常被忽略的问题，提出在肌肉冗余求解器中引入共收缩指数，结合肌电图数据最小化肌肉激活和共收缩误差。通过比较三种步态活动的体内测量数据，该方法显著提高了膝关节接触力的估计精度，为病理状态下的肌骨力学分析提供了更准确的工具。",
+          "llm_tags": [
+            "query:sb"
+          ],
+          "matched_query_tag": "query:sb",
+          "matched_query_text": "musculoskeletal model for movement simulation",
+          "matched_requirement_id": "req-43",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-05-28-728089-v1",
+          "carry_days": 1
+        }
+      ]
+    },
+    "sports-rl": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": []
+    },
+    "sports-nlp": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": []
+    },
+    "cdm-sports": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": []
+    },
+    "sports-sci": {
+      "updated_date": "20260522-20260620",
+      "carryover_days": 9,
+      "items": [
+        {
+          "id": "biorxiv-10-64898-2026-06-11-731593-v2",
+          "source": "biorxiv",
+          "title": "Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects",
+          "abstract": "Robots that operate with uncertain body, tool, or contact parameters must often refine their body models without abandoning the task at hand. This paper shows that active calibration is not solved by identifiability alone: an exploratory trajectory can yield accurate parameters while placing the robot in a state from which the downstream task is hard to complete. We study this failure mode in a minimal redundant planar manipulator with unknown link lengths and a two-phase calibration-to-task protocol. We formulate finite-step task-compatible probing as a higher-order generalization of first-order null-space information-gradient control, allowing the robot to escape first-order task-compatible degeneracy while limiting task drift. Across 50 seeds, finite-step probing eliminates calibration failures but still leaves substantial downstream task failure without terminal controllability management. These failures are not explained by parameter error (AUC = 0.511) or static singularity measures (AUC = 0.490), but short-horizon terminal rollout risk achieves perfect separation (AUC = 1.000), including with oracle parameters. Phase-2 experiments show that longer execution and null-space posture regularization together eliminate the remaining task failures; follow-up checks show that the failure appears in degenerate and near-degenerate starts, while non-degenerate starts succeed with the plain controller. The results support a three-layer view of active calibration: identifiability creation, task-compatible exploration, and post-calibration finite-horizon controllability.",
+          "authors": [
+            "Kobayashi, J."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-16T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.731593v2.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "computational model reproducing force-field adaptation and after-effects",
+          "llm_evidence_cn": "计算模型复现力场适应与后效",
+          "llm_evidence": "计算模型复现力场适应与后效",
+          "canonical_evidence": "计算模型复现力场适应与后效",
+          "llm_tldr_en": "Proposes a neural network model with online readout adaptation that reproduces force-field adaptation and after-effects, relevant for computational motor learning models in sports.",
+          "llm_tldr_cn": "针对运动适应建模，提出了一种冻结连续时间网络中的在线读出适应机制，能够复现力场适应与后效现象，为体育技能学习的计算模型提供了生物学启示。",
+          "llm_tldr": "针对运动适应建模，提出了一种冻结连续时间网络中的在线读出适应机制，能够复现力场适应与后效现象，为体育技能学习的计算模型提供了生物学启示。",
+          "llm_tags": [
+            "query:sports-sci"
+          ],
+          "matched_query_tag": "query:sports-sci",
+          "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+          "matched_requirement_id": "req-85",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-11-731593-v2",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-1101-2025-11-13-686780-v3",
+          "source": "biorxiv",
+          "title": "Skill Memory Expansion Shapes Micro-Scale Dynamics of Skill Learning",
+          "abstract": "Motor skill learning depends on refining action sequences through practice, yet how learning unfolds moment-to-moment within trials remains unclear. Here, healthy participants learned generative sequential keypress skills at different speeds. Within trials, we identified reproducible high initial skill (HIS) segments, brief epochs of elevated performance followed by decline, that emerged only during learning of repeating sequences and were absent during practice of pseudo-randomized, non-repeating sequences. HIS keypress content scaled with execution speed and increased with practice. This expansion of HIS segment content continued after overall performance plateaued. Neural analyses showed increased theta-gamma phase-amplitude coupling ({theta}/{gamma} PAC) and beta-band bursts during HIS segments. Hippocampal {theta}/{gamma} PAC predicted HIS content, suggesting a mechanism for binding successive actions into progressively larger skill-memory representations during early learning. Together, these findings identify expansion of skill memory, rather than fatigue, as a key driver of early skill learning.",
+          "authors": [
+            "Iwane, F.",
+            "Hayward, W.",
+            "Karunathilake, D.",
+            "Buch, E. R.",
+            "Cohen, L. G."
+          ],
+          "primary_category": "neuroscience",
+          "categories": [
+            "neuroscience"
+          ],
+          "published": "2026-06-03T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.1101/2025.11.13.686780v3.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Investigates motor skill learning at micro-scale, identifying high initial skill segments that expand with practice, linked to neural theta-gamma coupling.",
+          "llm_evidence_cn": "研究运动技能学习的微观动力学，发现高初始技能片段随练习扩展，与θ-γ神经耦合相关。",
+          "llm_evidence": "研究运动技能学习的微观动力学，发现高初始技能片段随练习扩展，与θ-γ神经耦合相关。",
+          "canonical_evidence": "研究运动技能学习的微观动力学，发现高初始技能片段随练习扩展，与θ-γ神经耦合相关。",
+          "llm_tldr_en": "Reveals that motor skill learning involves expanding high initial skill segments during sequences, with neural correlates of theta-gamma coupling, advancing understanding of skill acquisition dynamics relevant to sports training.",
+          "llm_tldr_cn": "该研究针对运动技能学习如何在试次内逐时刻展开这一未解难题，让健康参与者以不同速度学习顺序按键技能。通过分析行为数据，研究者识别出可复现的高初始技能（HIS）片段，这些短暂的最佳表现仅出现在重复序列学习中，且其按键内容随执行速度增加并随练习扩展，甚至在整体表现平台期后仍持续增长。神经分析显示θ-γ相位-幅度耦合增强。该发现揭示了技能学习的微观扩展机制，为理解和优化体育训练中的技能习得提供了新的视角。",
+          "llm_tldr": "该研究针对运动技能学习如何在试次内逐时刻展开这一未解难题，让健康参与者以不同速度学习顺序按键技能。通过分析行为数据，研究者识别出可复现的高初始技能（HIS）片段，这些短暂的最佳表现仅出现在重复序列学习中，且其按键内容随执行速度增加并随练习扩展，甚至在整体表现平台期后仍持续增长。神经分析显示θ-γ相位-幅度耦合增强。该发现揭示了技能学习的微观扩展机制，为理解和优化体育训练中的技能习得提供了新的视角。",
+          "llm_tags": [
+            "query:sports-sci"
+          ],
+          "matched_query_tag": "query:sports-sci",
+          "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+          "matched_requirement_id": "req-85",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-1101-2025-11-13-686780-v3",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-06-04-728174-v1",
+          "source": "biorxiv",
+          "title": "Vitality capacity preservation through lifelong aerobic exercise: a pathway to healthy ageing",
+          "abstract": "BackgroundThe distinction between healthy and pathological ageing has led to the concept of vitality capacity (VC), which can be understood as the bodys physiological reserve. An individuals VC can be estimated using 12 biomarkers spread across 3 domains: immune and stress response, energy and metabolism and neuromuscular function. Vitality capacity may be preserved by lifelong physical activity. This cross-sectional study aimed to examine the relationship between lifelong aerobic physical activity and VC.\n\nMethodsVC of 20 lifelong active and 19 inactive healthy adults aged >55 years was assessed using 12 biomarkers across the three VC domains. Domain-specific z-scores were calculated and averaged to derive a global VC score. Principal component analysis was performed and loadings extracted to estimate domains weight, and multiple correlations were conducted to identify associations among biomarkers, domains and VC scores.\n\nResultsVC was higher in lifelong active participants (+0.2 z-score units, p = 0.006) and correlated with age (r = -0.53, p < 0.001). Neuromuscular domain contributed most to VC variability, and the immune and stress response domain was higher in the active group (+0.4 z-score units, p = 0.001) as energy/metabolism among female participants (+0.5 z-score units, p.adj = 0.006).\n\nConclusionLifelong aerobic physical activity is associated with higher VC in older adults, particularly within the immune and stress response domain. These findings highlight the role of physical activity in preserving the physiological reserve and reinforce the relevance of lifelong aerobic physical activity as a driver of healthy ageing.",
+          "authors": [
+            "Mercier, J.",
+            "Guerin, O.",
+            "Michel, E.",
+            "Chorin, F.",
+            "Loubat, A.",
+            "Gautier, N.",
+            "Rousseau, A.-S.",
+            "Colson, S."
+          ],
+          "primary_category": "physiology",
+          "categories": [
+            "physiology"
+          ],
+          "published": "2026-06-04T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.06.04.728174v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "Lifelong aerobic exercise preserves vitality capacity measured by 12 biomarkers in older adults",
+          "llm_evidence_cn": "终身有氧运动通过12项生物标志物评估维持老年人生理储备能力",
+          "llm_evidence": "终身有氧运动通过12项生物标志物评估维持老年人生理储备能力",
+          "canonical_evidence": "终身有氧运动通过12项生物标志物评估维持老年人生理储备能力",
+          "llm_tldr_en": "This cross-sectional study shows that older adults with lifelong aerobic exercise have higher vitality capacity, as measured by biomarkers across immune, metabolic, and neuromuscular domains, suggesting physiological reserve preservation.",
+          "llm_tldr_cn": "该研究通过横断面对比终身活跃与不活跃的55岁以上健康成人，利用12项生物标志物评估生命力容量(VC)。结果显示，终身有氧运动者在免疫应激、能量代谢和神经肌肉功能三个领域的综合VC得分显著更高，表明长期运动可维持生理储备，支持健康老龄化。这为运动生理学中慢性运动适应提供了人群层面的证据。",
+          "llm_tldr": "该研究通过横断面对比终身活跃与不活跃的55岁以上健康成人，利用12项生物标志物评估生命力容量(VC)。结果显示，终身有氧运动者在免疫应激、能量代谢和神经肌肉功能三个领域的综合VC得分显著更高，表明长期运动可维持生理储备，支持健康老龄化。这为运动生理学中慢性运动适应提供了人群层面的证据。",
+          "llm_tags": [
+            "query:sports-sci"
+          ],
+          "matched_query_tag": "query:sports-sci",
+          "matched_query_text": "Physiological responses and adaptations to acute and chronic exercise",
+          "matched_requirement_id": "req-79",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-06-04-728174-v1",
+          "carry_days": 1
+        },
+        {
+          "id": "biorxiv-10-64898-2026-05-26-727900-v1",
+          "source": "biorxiv",
+          "title": "Implicit vs. explicit choice promotes the combination vs. selection of sensorimotor memories under contextual uncertainty",
+          "abstract": "Skilled action requires expressing motor memories as appropriate for the current context, but context is often uncertain. Theoretical models make conflicting proposals about memory expression under contextual uncertainty, predicting belief-weighted combination of memories versus the selection of the most probable memory. We tested these predictions by training human participants to reach in two opposing force fields cued by the direction of a random dot motion stimulus whose coherence varied. When participants moved before reporting dot direction, adaptation scaled with coherence: low-reliability cues produced partial expression of both memories. Fitting Bayesian observer models to behavior favored belief-weighted memory combination. In contrast, when participants reported their choice before moving, adaptation was independent of coherence and model fits favored categorical memory selection. Thus, sensorimotor memories are expressed as either a probabilistic combination or categorical selection, depending on whether participants contextual inference remains implicit or is made explicit at the time of memory expression.",
+          "authors": [
+            "Naik, A. S.",
+            "Shivkumar, S.",
+            "Velazquez-Vargas, C.",
+            "Ingram, J. N.",
+            "Lengyel, M.",
+            "Wolpert, D. M."
+          ],
+          "primary_category": "animal behavior and cognition",
+          "categories": [
+            "animal behavior and cognition"
+          ],
+          "published": "2026-05-29T00:00:00+00:00",
+          "link": "https://www.biorxiv.org/content/10.64898/2026.05.26.727900v1.full.pdf",
+          "tags": [
+            "keyword:ML-Sports",
+            "keyword:cdm-sports",
+            "keyword:cv-sports",
+            "keyword:sb",
+            "keyword:sport-sci",
+            "keyword:sport-tsa",
+            "keyword:sports-rl",
+            "keyword:sports-sci",
+            "query:ML-Sports",
+            "query:cdm-sports",
+            "query:cv-sports",
+            "query:sb",
+            "query:sport-sci",
+            "query:sport-tsa",
+            "query:sports-rl",
+            "query:sports-sci"
+          ],
+          "llm_score": 8.0,
+          "llm_evidence_en": "sensorimotor memory combination under contextual uncertainty in reaching, relevant to motor learning models",
+          "llm_evidence_cn": "情境不确定性下伸手任务中感觉运动记忆的组合，与运动学习模型相关",
+          "llm_evidence": "情境不确定性下伸手任务中感觉运动记忆的组合，与运动学习模型相关",
+          "canonical_evidence": "情境不确定性下伸手任务中感觉运动记忆的组合，与运动学习模型相关",
+          "llm_tldr_en": "Investigates how implicit and explicit strategies combine or select sensorimotor memories under uncertainty; Bayesian modeling reveals belief-weighted combination, informing motor learning theories for sports.",
+          "llm_tldr_cn": "针对情境不确定性下运动记忆表达机制的不同理论预测，通过让受试者在不同可靠性线索下执行伸手任务，发现适应程度随线索强度变化，低可靠性线索促使两种记忆部分表达。贝叶斯模型比较支持信念加权组合假说而非记忆选择假说，表明在不确定环境中感觉运动系统采用隐式加权融合策略。研究进一步区分了隐性适应与外显选择的作用，隐性系统倾向于组合两种记忆，而外显策略可能选择其中一种，揭示了元认知不确定性下的双机制框架。该发现为运动技能学习中的适应过程提供计算理解，可指导运动训练中不确定条件下的动作校正策略。",
+          "llm_tldr": "针对情境不确定性下运动记忆表达机制的不同理论预测，通过让受试者在不同可靠性线索下执行伸手任务，发现适应程度随线索强度变化，低可靠性线索促使两种记忆部分表达。贝叶斯模型比较支持信念加权组合假说而非记忆选择假说，表明在不确定环境中感觉运动系统采用隐式加权融合策略。研究进一步区分了隐性适应与外显选择的作用，隐性系统倾向于组合两种记忆，而外显策略可能选择其中一种，揭示了元认知不确定性下的双机制框架。该发现为运动技能学习中的适应过程提供计算理解，可指导运动训练中不确定条件下的动作校正策略。",
+          "llm_tags": [
+            "query:sports-sci"
+          ],
+          "matched_query_tag": "query:sports-sci",
+          "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+          "matched_requirement_id": "req-85",
+          "selection_source": "carryover_cache",
+          "paper_id": "biorxiv-10-64898-2026-05-26-727900-v1",
+          "carry_days": 1
+        }
+      ]
+    }
+  }
 }

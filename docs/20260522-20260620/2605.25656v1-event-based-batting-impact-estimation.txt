@@ -1,0 +1,354 @@
+Title: Event-based Batting Impact Estimation
+
+URL Source: https://arxiv.org/pdf/2605.25656v1
+
+Published Time: Tue, 26 May 2026 02:04:40 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# EVENT-BASED BATTING IMPACT ESTIMATION 
+
+# Ryotaro Ishida †, Wataru Ikeda †, Ryosei Hara †
+
+# Akemi Kobayashi ‡, Toshitaka Kimura ‡, Mariko Isogawa ††Keio University, ‡NTT Communication Science Laboratories 
+
+ABSTRACT 
+
+Estimating the precise timing of batting impact is crucial for understanding the rapid sensorimotor control. However, this task is challenging for RGB cameras due to insufficient tempo-ral resolution and motion blur. Similarly, Inertial Measurement Units (IMUs) are impractical for actual matches due to sen-sor intrusiveness and their limited temporal precision. To overcome these limitations, we propose a novel framework leveraging event-based cameras, which offer microsecond res-olution and high dynamic range, to estimate impact timing based on the weighted centroid distance between the detected ball and bat. To address the domain gap between event frames and RGB images that degrades segmentation accuracy, we generate high-density event frames. We then introduce a mask refinement network that leverages these frames and bidirec-tional mask information, optimized using a novel loss func-tion. Experiments on real-world datasets demonstrate that our method achieves superior accuracy under challenging condi-tions, including low-light environments and severe occlusions, outperforming baselines by reducing the Mean Absolute Error by approximately 63%. 
+
+Index Terms — event-based camera, sports analytics, im-pact estimation, mask optimization 
+
+1. INTRODUCTION 
+
+In recent years, computer vision has rapidly advanced sports analytics, providing quantitative insights that were previously inaccessible [ 1]. In sports motion analysis, precise estima-tion of impact timing is critical not only for decision mak-ing [ 2] but also for evaluating player performance in fast-paced sports [ 3, 4, 5]. Particularly in baseball, accurate temporal lo-calization enables a detailed breakdown of the kinematic chain during the swing phase. However, the high-speed nature of the game makes this challenging: a ball traveling at 100 km/h covers ∼2.8 cm per frame even at 1,000 fps. This spatial de-viation is too large to pinpoint the exact moment of contact. Consequently, analysis at even higher temporal resolutions is required to capture sub-millisecond contact durations accu-rately. Despite its importance, existing sensing modalities have limitations. Standard RGB cameras (typically on the order of 
+
+10 1–10 2 fps) suffer from insufficient temporal resolution [ 3, 4]. RGB (ref.)  
+
+> (120 fps)
+> Event Data
+> (10,000 fps)
+> Motion Blur!
+> Impact!
+> Motion Blur! Motion Blur!
+
+Fig. 1 . Comparison of sensing modalities. Fast-moving impacts often occur between frames, and the re-sulting motion blur obscures the precise boundaries of the ball and bat, making precise timing estimation infeasible from intensity image frames alone. While high-speed cameras can mitigate this, they incur prohibitive hardware costs and gener-ate massive data volumes. Furthermore, unconstrained envi-ronments, such as variable lighting in night games, introduce severe challenges for these intensity-based approaches, com-plicating robust tracking. Alternative modalities also face fundamental limitations. Acoustic-based methods [ 6, 5 ] are susceptible to environmen-tal noise and synchronization latency. Wearable sensors, such as IMUs, have been employed to detect impact timing via acceleration spikes [ 7]. However, these sensors measure the vibrational response triggered by the collision, rather than di-rectly observing the precise moment of contact initiation. Fur-thermore, the operational burden of attaching devices to the body or equipment of the athlete makes them intrusive. Conse-quently, there is a strong demand for a robust, non-intrusive vision system capable of sub-millisecond impact estimation under challenging illumination and occlusion. To overcome these limitations, we leverage event-based cameras [ 8]. As bio-inspired sensors that asynchronously output pixel-level brightness changes, they offer microsecond-level temporal resolution, high dynamic range, and inherent resistance to motion blur. As shown in Figure 1, this enables capturing sharp bat and ball motion even in high-speed and low-light scenarios. However, utilizing event data is challeng-ing due to its spatial sparsity and unique noise. Although recent foundation models trained on massive RGB datasets excel in video domains, they are inherently designed for dense 
+
+> arXiv:2605.25656v1 [cs.CV] 25 May 2026
+
+RGB textures. This mismatch results in performance degra-dation when applying them directly to event frames. Existing event-based detection and segmentation methods [ 9, 10 ] face critical constraints. They typically rely on events accumu-lated over long time windows (e.g., 10–60 ms). Consequently, these methods fail to produce reliable masks during the sparse, sub-millisecond impact interval. Furthermore, approaches like EventSAM [ 10 ] lack explicit temporal modeling, leading to unstable mask predictions that deviate significantly from previous frames. To address this, we propose the first event-based impact es-timation framework capable of operating at 10,000 fps. Our ap-proach follows a coarse-to-fine strategy that effectively adapts robust RGB segmentation models to the high-speed event do-main. First, to bridge the domain gap, we specially construct dense event frames even at this high temporal resolution. Since independent frame-wise predictions lack temporal consistency, we employ a bidirectional tracking mechanism to propagate stable masks across time. Subsequently, we introduce a mask refinement network. This network uses the coarse mask as a prior and leverages high-frequency event edges to sharpen object boundaries at the pixel level, maintaining precision even under occlusions. Finally, to estimate the impact timing, we identify the frame where the distance between the weighted centroids of the ball and bat is minimized. We validate our method on a real-world dataset including challenging low-light and occluded scenarios. The main contributions of this paper are summarized as follows: 1) We are the first to propose the task of estimating the impact timing between a fast-moving ball and a returning bat at high temporal resolution using event-based sensing. 2) 
+
+To this end, we propose a framework that estimates impact timing based on the weighted centroids of the ball and bat. We also introduce a coarse segmentation module that tem-porally estimates the mask regions of the ball and bat in a bidirectional manner, as well as a mask refinement network that further refines these mask regions for more accurate esti-mation. 3) As this is a novel task, we also construct the first event-based dataset dedicated to high-speed baseball analysis and demonstrate the robustness of our method in challenging real-world environments, including low-light conditions and severe occlusions. 
+
+2. RELATED WORK 2.1. Impact Timing Estimation for Sports 
+
+Precise impact timing estimation is crucial for tasks rang-ing from video-to-audio generation [6] to sports performance analysis [ 3, 4 , 5]. While RGB-based “Action Spotting” meth-ods [ 3, 4] have advanced, they remain fundamentally con-strained by standard frame rates. Specifically, the exact mo-ment of impact is either entirely missed between frames or obscured by severe motion blur. Consequently, existing ap-proaches must often rely on auxiliary modalities like IMUs to estimate impact timing [7]. In contrast, event-based cameras offer microsecond-level temporal resolution, showing great success in high-speed mo-tion analysis such as video interpolation [ 11 , 12 ] and robust object detection [ 9]. Most recently, Kase et al . [ 13 ] pioneered the use of event cameras to locate impact positions in tennis. However, their timing estimation relies on simple heuristics based on event counts and polarity changes. Such raw signal metrics are highly susceptible to environmental noise and oc-clusion. To overcome these limitations, this paper leverages a segmentation-based approach coupled with bidirectional track-ing. By enforcing temporal consistency from both directions, our method ensures robust detection even under such challeng-ing conditions. 
+
+2.2. Object Boundary Extraction for Contact Detection 
+
+Accurate impact timing estimation requires precise boundary localization, as slight mask deviations cause significant errors during trajectory intersection. Thus, robust boundary extrac-tion is a prerequisite for this task. Foundation models for segmentation, such as SAM 3 [ 14 ], have demonstrated remark-able zero-shot generalization capabilities for unseen objects and complex scenes. Various refinement approaches [ 15 , 16 ]further aim to enhance mask boundary precision. However, these methods predominantly rely on standard camera inten-sity frames. In high-speed impacts, motion blur obscures the object edges, making contact detection difficult with RGB data alone. Event-driven adaptations like EventSAM [ 10 ] incorpo-rate high temporal resolution into the segmentation pipeline. However, since these methods rely on accumulating events to form structural features, they face a critical trade-off in high-speed impact scenarios. Specifically, extending the in-tegration window induces motion blur, whereas narrowing it results in spatially sparse inputs that cause segmentation break-down. Furthermore, these methods typically lack mechanisms for temporal consistency, making them unstable for tracking fast-moving objects. To resolve these limitations, we propose a framework that leverages the semantic robustness of large-scale RGB segmentation models. To bridge the domain gap, we convert raw event streams into dense event frames that maintain sufficient structural density even at high temporal resolutions (10,000 fps). This approach allows us to utilize the RGB model’s generalization capability for robust tracking, ef-fectively decoupling feature density from the integration time constraints. 
+
+2.3. Vision Datasets for Sports 
+
+While event-based vision shows promise in sports, such as the table tennis dataset by Alberico et al . [ 17 ], existing bench-marks focus on trajectory tracking rather than microsecond-level impact mechanics. Conversely, traditional baseball datasets like MLB-YouTube [ 18 ] rely on RGB video, which suffers from temporal aliasing unsuitable for precise contact analysis. Therefore, we introduce the first public dataset com-bining event-based vision with high-speed baseball impacts, Distance Measurement      
+
+> Impact Estimation (Sec 3.4 )
+> Weighted Centroid Localization
+> Coarse Segmentation (Sec 3.2 )
+> Event Representation (Sec 3.1 )Mask Refinement Network (Sec 3.3 )
+> Refined Probability Maps
+> Input Tensor
+> Dense Event Frames
+> Forward Pass
+> Backward Pass
+> =
+> =
+> +
+> +
+> +
+> Segmentation
+> Module
+> Event Cloud
+> min
+> y
+> t
+> x
+> =,
+
+Fig. 2 . The overview of proposed method capturing critical dynamics across diverse environments. 
+
+3. PROPOSED METHOD 
+
+We propose a coarse-to-fine impact timing estimation frame-work that integrates the high temporal resolution and high dynamic range of an event-based camera with SAM 3. The proposed method consists of four main stages: Event Repre-sentation, Coarse Segmentation, Mask Refinement, and Impact Estimation. The Event Representation stage converts the raw event stream into a dense event frame sequence E. The Coarse Segmentation stage then employs SAM 3 to obtain initial coarse masks Mfwd and Mbwd . The Mask Refinement stage utilizes a U-Net-based network, taking the event frames Ek
+
+and coarse masks Mfwd , Mbwd as inputs to generate refined probability maps Pball , Pbat , and Pbackground . The Impact Es-timation stage determines the contact moment between the ball and the bat based on the spatiotemporal analysis of these refined probability maps. 
+
+3.1. Event Representation 
+
+Let S = {ei}Ni=1 be the asynchronous event stream (of-ten referred to as an event cloud), where each event ei =(xi, y i, t i, p i) encodes the pixel location, timestamp, and po-larity [ 8]. To capture the impact timing with high precision, we convert S into a dense frame sequence E = {Ek}Kk=1 ,where each frame Ek ∈ R1×H×W . We set the frame interval to ∆t = 0 .1 ms, corresponding to a temporal resolution of 10,000 fps. To ensure sufficient pixel density, we apply a sliding window accumulation. Specifically, the k-th frame Ek
+
+aggregates positive polarity events ( pi = 1 ) within the time window [tk − Twin , t k) to prevent trailing streaks from degrad-ing contour precision, where tk = k∆t and Twin = 1 .0 ms is the accumulation duration. This approach yields dense event frames with enhanced ball and bat contours, provid-ing sufficient structural information for segmentation while maintaining fine-grained temporal resolution. 
+
+3.2. Coarse Segmentation 
+
+To obtain initial segmentation masks, we prompt SAM 3 with ball/bat point coordinates. Since the model expects standard video rates, we input the 10,000 Hz event frames E as a time-stretched 30 fps sequence, aligning apparent motion with the pre-trained priors of SAM 3. To mitigate occlusions and mask merging at impact, we employ a bi-directional inference strat-egy. Processing E in both temporal directions yields forward and backward probability maps Mfwd , Mbwd ∈ R2×H×W for the ball and bat. 
+
+3.3. Mask Refinement Network Network Architecture. While the initial masks generated by SAM 3 are robust, they remain general-purpose and are not specifically optimized for the challenges arising from object collisions, such as the merging of masks or identity switching during the contact between the ball and the bat. To address this, we introduce a Refinement Network designed to sharpen object boundaries by leveraging the initial masks as spatial priors. We employ a U-Net [ 19 ] architecture with a ResNet-18 [ 20 ]backbone as the encoder. The input to the network is defined as a tensor X ∈
+
+R5×H×W , constructed by concatenating the event frame Ek
+
+with the forward and backward probability maps Mfwd and 
+
+Mbwd . This configuration enables the network to simultane-ously exploit high-frequency edge cues from the event stream and bidirectional spatiotemporal priors provided by the initial tracking. Finally, the network outputs refined probability maps 
+
+P ∈ R3×H×W , representing the pixel-wise likelihoods for the ball, bat, and background. 
+
+Loss Function. To ensure pixel-level classification accuracy while guaranteeing the geometric consistency of the object masks, we employ a composite loss function L, defined as: 
+
+L = λce Lce + λdice Ldice + λsmooth Lsmooth + λcirc Lcirc , (1) where λ terms denote the balancing weights. Lce represents the Weighted Cross-Entropy Loss and Ldice is the Dice Loss [ 21 ]. These standard terms maximize fundamental segmentation per-formance. To address the significant class imbalance between the background and the small ball object, we assign higher weights to the ball class in Lce .To mitigate mask fragmentation caused by event noise, we introduce a Smoothness Loss ( Lsmooth ). This term acts as a regularizer to suppress isolated noise pixels by minimizing the anisotropic total variation of predicted probability maps P. It is computed as the mean absolute difference between adjacent pixels: 
+
+Lsmooth = 1
+
+N
+
+X
+
+> x,y
+
+(|Px+1 ,y − Px,y | + |Px,y +1 − Px,y |) ,
+
+(2) where N is the total number of pixels. Furthermore, we impose a shape constraint specifically on the ball class using a Circularity Loss ( Lcirc ). Given that the projection of the ball is circular, we utilize the isoperimetric ratio to enforce compactness. We approximate the perimeter 
+
+C using the gradients of the probability map Pball and the area 
+
+A as the sum of probabilities. The loss is defined as: 
+
+Lcirc = 1
+
+NC2
+
+4πA + ϵ , where C = X |∇ Pball |, A = X Pball .
+
+(3) Here, ϵ is a small constant introduced for numerical stabil-ity. Minimizing this ratio encourages the predicted mask to approach a perfect circle, for which the ratio is 1, thereby preventing physically implausible deformations. 
+
+3.4. Impact Estimation Centroid Localization and Distance Measurement. Based on the refined probability maps, we estimate object positions using weighted centroids. This approach avoids quantization errors inherent in binary mask centers. The centroid c =(cx, c y ) for each object is computed as: 
+
+cx =
+
+P 
+
+> i,j
+
+x · P(i, j )
+
+P 
+
+> i,j
+
+P(i, j ) , cy =
+
+P 
+
+> i,j
+
+y · P(i, j )
+
+P 
+
+> i,j
+
+P(i, j ) (4) The relative distance d(t) is defined as the Euclidean distance between centroids cball (t) and cbat (t). This strategy combines temporal consistency with sub-pixel precision, yielding a co-herent trajectory sequence. 
+
+Timing Determination. The impact corresponds to the instant of maximum proximity between the two objects. Since the rotational mechanics of a bat swing induce non-linear distance changes, linear fitting approaches like RANSAC are often in-sufficient. Therefore, leveraging the 10,000 Hz resolution, we determine the impact timing timpact by directly minimizing the relative distance: 
+
+timpact = arg min 
+
+> t
+
+d(t) (5) This model-free approach effectively utilizes the high-frequency sampling to capture the precise collision frame without relying on geometric assumptions that may not hold during complex swing dynamics. 
+
+4. EXPERIMENT 4.1. Experimental Setup and Dataset Data Collection. Since no public event-based dataset exists for high-speed baseball analysis, we constructed a novel dataset utilizing a DAVIS346 [ 22 ] event-based camera ( 346 × 260 ). A pitching machine was positioned at a standard distance of about 18 .44 m from the home plate, pitching to three batters: a right-handed former professional player and two left-handed participants. The impact sequence of the batter was recorded from the side view. The camera position was slightly adjusted per session to optimize the field of view. 
+
+Dataset. Table 1 details the seven scenarios collected to eval-uate robustness. The dataset covers varying conditions: illu-mination (low: ≈ 18 lux, mod: ≈ 435 lux, high: ≈ 1491 lux), occlusion (safety net), ball material (soft/hard), pitch type (fast/slider), and speed ( 100 –145 km/h). In total, the dataset comprises 40 clips and 23,779 event frames. 
+
+Ground Truth Annotation. Initially, we attached an IMU to the bat knob, sampling at 1000 Hz, synchronized via an LED trigger. However, preliminary analysis revealed a variable latency of 0.4–7.1 ms in the IMU signal, rendering it insuffi-cient for validating our sub-millisecond estimation. Therefore, we established the Ground Truth through manual inspection of the event stream. To minimize subjective bias and ensure reliability, three human annotators independently pinpointed the exact timing of contact. The final ground truth was defined as the average of these three annotations. 
+
+Evaluation Protocol. We adopted a two-stage strategy to evaluate the generalization capability of our method. First, for the low-light datasets (Scenarios 1–3), we employed a Leave-One-Scenario-Out (LOSO) cross-validation. In each fold, one scenario was used for testing, while the remaining two were combined for training. Second, to assess robustness against unseen pitch speeds and types, Scenarios 4–7 were used ex-clusively for testing. For these scenarios, the inference was performed using the model trained on the union of Scenarios 1–3. In all phases, the dataset set was split into training and validation subsets with an 8:2 ratio to monitor convergence. 
+
+4.2. Baseline 
+
+To rigorously evaluate the contributions of each component in our framework, we compare our method against a baseline. For a fair comparison, all baseline methods utilize the same stack of event frames E as input to estimate the impact timing. Table 1 . Detailed configuration and statistics of our dataset.                                                           
+
+> Scen. Lux Net Ball Type Speed # Clips # Frames
+> 1Low No Soft Fast 100 52,080 2Low Yes Soft Fast 100 41,440 3Low Yes Hard Fast 100 62,270 4Mod Yes Soft Fast 145 97,290 5Mod Yes Soft Slider 130 64,510 6High Yes Soft Fast 145 53,235 7High Yes Soft Slider 130 52,954
+> Total 40 23,779
+
+Table 2 . Quantitative evaluation results.                        
+
+> Method MAE (ms) ↓SR ( <1σ)(%) ↑SR ( <2σ)(%) ↑
+> E2E-Spot 17.2 10.0 15.0 SAM 3* 3.09 30.0 52.5 YOLO 11* 2.06 32.5 55.0 Ours 0.767 52.5 77.5
+> * Methods adapted using geometric centers of masks/boxes.
+
+E2E-Spot [ 3 ]: A representative RGB-based action spotting method originally designed for standard video frames. Since this model is not optimized for event data, we fine-tune it on the generated event frames E using the same training protocol as our proposed method to adapt it to the event domain. 
+
+SAM 3 [ 14 ]: As there is no standard event-based method for this specific task, we utilize SAM 3, a state-of-the-art foundation model for image segmentation. We apply SAM 3 directly to the event frames E to generate segmentation masks. To ensure a fair comparison in spatial localization, we compute the weighted centroids from the output probability maps of SAM 3, following the same mechanism as our approach. 
+
+YOLO 11 [ 23 ]: We also employ YOLO 11, a state-of-the-art object detection framework. Similar to E2E-Spot, we fine-tune the model on the event frames E. Since YOLO outputs bound-ing boxes, we select the detection with the highest confidence score and utilize the geometric center of this bounding box as the predicted spotting location. 
+
+4.3. Evaluation Metrics 
+
+We evaluate the temporal precision using Mean Absolute Error (MAE) and Success Rate (SR). For SR, we define the success thresholds based on human annotation variability to account for the inherent ambiguity of the impact timing. Specifically, we calculate the standard deviation of the three annotators for each clip and average it across the dataset, resulting in a human baseline noise level of σ = 0 .513 ms. We report SR using tolerance thresholds of 1σ and 2σ (1.026 ms). 
+
+5. RESULTS 5.1. Quantitative Evaluation 
+
+As shown in Table 2, our method outperforms all baselines, achieving the best MAE of 0.767 and SR of 52.5% ( < 1σ). These results correspond to an approximately 63% reduction in MAE and a 20.0% increase in SR compared to the second-best method, YOLO 11. The ablation study in Table 3 validates 
+
+Table 3 . Ablation study on the proposed components.                                      
+
+> Refine SR (%) ↑
+> (fwd) (bwd) +Lcirc +Lsmooth MAE (ms) ↓<1σ<2σ
+> 3.09 30.0 52.5
+> ✓2.665 37.5 62.5
+> ✓✓1.787 42.5 72.5
+> ✓✓✓1.696 47.5 72.5
+> ✓✓✓✓0.767 52.5 77.5 E2E-Spot SAM 3 YOLO 11 Ours GT
+
+Fig. 3 . Qualitative comparison of estimated impact frames. Frames with yellow borders indicate failure cases where the error exceeds the 2σ threshold. our design choices. The bidirectional refinement drastically drops the MAE from 2.665 to 1.787. Additionally, the geomet-ric constraints ( Lcirc and Lsmooth ) further refine the estimation, yielding the best performance across all metrics. (see supple-mentary material for per-scene MAE). 
+
+5.2. Qualitative Evaluation 
+
+Figure 3 visualizes the estimated impact frames to demonstrate the temporal precision. Consistent with the success rate thresh-old defined in Sec. 4.3, we mark predictions that deviate from the ground truth by more than 2σ with yellow borders. The visualization highlights that while baseline methods frequently produce outliers indicated by yellow borders, our proposed method consistently estimates the impact timing within the tolerance range, aligning closely with the ground truth. 
+
+6. CONCLUSION 
+
+In this paper, we proposed the first high-temporal-resolution framework for estimating baseball impact timing using event-based cameras. We constructed a novel dataset and introduced a pipeline that refines segmentation masks to calculate the weighted centroids of the ball and bat, enabling precise timing estimation. Experimental results demonstrated that our method significantly outperforms baseline approaches. Although our current approach assumes full visibility of the ball and bat and relies on a modestly sized dataset, we plan to address these limitations in future work by expanding the dataset and diversifying recording conditions. 
+
+Acknowledgement. This work was partially supported by JST Presto JPMJPR22C1, JSPS Grant-in-Aid for Challenging Re-search (Exploratory) 24K22296. Wataru Ikeda was supported by JST BOOST, Japan Grant Number JPMJBS2409. 7. REFERENCES 
+
+[1] Paresh R. Kamble, Avinash G. Keskar, and Kishor M. Bhurchandi, “Ball tracking in sports: a survey,” Artificial Intelligence Review , vol. 52, no. 3, pp. 1655–1705, 2019. [2] A. Kobayashi, D. Nasu, Y. Morimoto, M. Kashino, and T. Kimura, “Detecting and sonifying temporal patterns of body segments when batting,” MDPI , vol. 2, no. 6, 2018. [3] James Hong, Haotian Zhang, Micha ¨el Gharbi, Matthew Fisher, and Kayvon Fatahalian, “Spotting temporally precise, fine-grained events in video,” in ECCV , 2022. [4] Artur Xarles, Sergio Escalera, Thomas B. Moeslund, and Albert Clap ´es, “T-deed: Temporal-discriminability enhancer encoder-decoder for precise event spotting in sports videos,” in CVPRW , 2024. [5] Lucio Caprioli, Francesca Campoli, Saeid Edriss, Cris-tiana Frontuto, Amani Najlaoui, Elvira Padua, Cristian Romagnoli, Giuseppe Annino, and Vincenzo Bonaiuto, “Assessment of tennis timing using an acoustic detection system,” in STAR , 2024. [6] Andrew Owens, Phillip Isola, Josh McDermott, Antonio Torralba, Edward H. Adelson, and William T. Freeman, “Visually indicated sounds,” in CVPR , 2016. [7] Niroshan G. Punchihewa, Hideki Arakawa, Etsuo Chosa, and Go Yamako, “A hand-worn inertial measurement unit for detection of bat–ball impact during baseball hitting,” 
+
+Sensors , vol. 21, no. 9, pp. 3002, 2021. [8] Guillermo Gallego, Tobi Delbruck, Garrick Orchard, Chiara Bartolozzi, Brian Taba, Andrea Censi, Stefan Leutenegger, Andrew J. Davison, Jorg Conradt, Kostas Daniilidis, and Davide Scaramuzza, “Event-based vision: A survey,” IEEE TPAMI , vol. 44, no. 1, pp. 154–180, 2022. [9] Mathias Gehrig and Davide Scaramuzza, “Recurrent vision transformers for object detection with event cam-eras,” in CVPR , 2023. [10] Zhiwen Chen, Zhiyu Zhu, Yifan Zhang, Junhui Hou, Guangming Shi, and Jinjian Wu, “Segment any event streams via weighted adaptation of pivotal tokens,” in 
+
+CVPR , 2024. [11] Stepan Tulyakov, Daniel Gehrig, Stamatios Georgoulis, Julius Erbach, Mathias Gehrig, Yuanyou Li, and Davide Scaramuzza, “Time lens: Event-based video frame inter-polation,” in CVPR , 2021. [12] Taewoo Kim, Yujeong Chae, Hyun-Kurl Jang, and Kuk-Jin Yoon, “Event-based video frame interpolation with cross-modal asymmetric bidirectional motion fields,” in 
+
+CVPR , 2023. [13] Yuto Kase, Kai Ishibe, Ryoma Yasuda, Yudai Washida, and Sakiko Hashimoto, “Locating tennis ball impact on the racket in real time using an event camera,” in 
+
+Sports Analytics , 2025. [14] Nicolas Carion, Laura Gustafson, Yuan-Ting Hu, Shoub-hik Debnath, Ronghang Hu, Didac Suris, Chaitanya Ryali, Kalyan Vasudev Alwala, Haitham Khedr, An-drew Huang, Jie Lei, Tengyu Ma, Baishan Guo, Arpit Kalla, Markus Marks, Joseph Greer, Meng Wang, Peize Sun, Roman R ¨adle, Triantafyllos Afouras, Effrosyni Mavroudi, Katherine Xu, Tsung-Han Wu, Yu Zhou, Lil-iane Momeni, Rishi Hazra, Shuangrui Ding, Sagar Vaze, Francois Porcher, Feng Li, Siyuan Li, Aishwarya Ka-math, Ho Kei Cheng, Piotr Doll ´ar, Nikhila Ravi, Kate Saenko, Pengchuan Zhang, and Christoph Feichtenhofer, “Sam 3: Segment anything with concepts,” in arXiv ,2025. [15] Ho Kei Cheng, Jihoon Chung, Yu-Wing Tai, and Chi-Keung Tang, “Cascadepsp: Toward class-agnostic and very high-resolution segmentation via global and local refinement,” in CVPR , 2020. [16] Lei Ke, Mingqiao Ye, Martin Danelljan, Yifan liu, Yu-Wing Tai, Chi-Keung Tang, and Fisher Yu, “Segment anything in high quality,” in NeurIPS , 2023. [17] Ivan Alberico, Marco Cannici, Giovanni Cioffi, and Da-vide Scaramuzza, “Egocentric event-based vision for ping pong ball trajectory prediction,” in CVPRW , 2025. [18] AJ Piergiovanni and Michael S. Ryoo, “Fine-grained ac-tivity recognition in baseball videos,” in CVPRW , 2018. [19] Olaf Ronneberger, Philipp Fischer, and Thomas Brox, “U-net: Convolutional networks for biomedical image segmentation,” in MICCAI , 2015. [20] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun, “Deep residual learning for image recognition,” in 
+
+CVPR , 2016. [21] Carole H. Sudre, Wenqi Li, Tom Vercauteren, Sebastien Ourselin, and M. Jorge Cardoso, “Generalised dice over-lap as a deep learning loss function for highly unbalanced segmentations,” in MICCAIW , 2017. [22] iniVation, “Davis346,” https://inivation.com/ wp-content/uploads/2019/08/DAVIS346. pdf , 2019. [23] Glenn Jocher and Jing Qiu, “Ultralytics yolo11,” 
+
+https://github.com/ultralytics/ ultralytics , 2024. EVENT-BASED BATTING IMPACT ESTIMATION 
+
+# Supplementary Material 
+
+# Contents 
+
+1 Overview of the Supplementary Material 12 Experimental Setup and GT Validation 1
+
+2.1 Physical Configuration . . . . . . . . . . . . 12.2 Validation of Ground Truth Strategy . . . . . 1
+
+3 Additional Quantitative Results 2
+
+3.1 Per-Scene Evaluation . . . . . . . . . . . . . 23.2 Ablation Studies . . . . . . . . . . . . . . . 2
+
+4 Implementation Details 25 Extended Related Work and Discussion 2
+
+5.1 Comparison with Existing Event-based Meth-ods . . . . . . . . . . . . . . . . . . . . . . . 25.2 Domain-Specific Applications and Hardware Considerations . . . . . . . . . . . . . . . . 35.3 Visual Validation of Baseline Limitations . . 35.4 Failure Analysis of the Proposed Method . . 3
+
+6 References 41. OVERVIEW OF THE SUPPLEMENTARY MATERIAL 
+
+This supplementary material provides additional details that could not be included in the main paper due to space con-straints. In Section 2, we visualize the experimental setup used for data collection and validate our ground truth strategy. Section 3 presents a detailed quantitative evaluation, includ-ing per-scene performance breakdowns and ablation studies. Section 4 describes the implementation details, including hy-perparameters and hardware specifications. Finally, Section 5 provides an extended discussion on related work, a visual val-idation of baseline limitations, and a failure analysis of our method. 
+
+2. EXPERIMENTAL SETUP AND GT VALIDATION 2.1. Physical Configuration 
+
+The physical configuration of our data collection environ-ment is illustrated in Fig. S1. We utilized a standard pitching machine to deliver balls to a batter within an indoor facility. Batter 
+
+# Pitching Machine 
+
+# Event-Based Camera 
+
+Fig. S1 : Experimental setup used for data collection. A pitch-ing machine delivers balls to a batter, while an event camera records the side view to capture high-speed motion. An event camera was positioned to capture the side view of the trajectory to record high-temporal-resolution data. 
+
+2.2. Validation of Ground Truth Strategy 
+
+To justify the necessity of manual annotation over sensor-based automation, we conducted a preliminary validation using an IMU attached to the bat knob. The IMU signal was sampled at 1000 Hz, while the event camera recorded at 10,000 fps. The sensors were hardware-synchronized via an LED trigger. 
+
+IMU Impact Detection. We defined the impact timing from the IMU signal based on the magnitude of the acceleration vector. Specifically, the impact frame tIMU was identified as the moment where the squared norm of the acceleration 
+
+(x2 + y2 + z2) exceeded twice the value of the preceding frame. This thresholding method was chosen to detect the sharp initial shock of the impact. 
+
+Latency Analysis. We compared tIMU against the manual ground truth tGT obtained from the high-speed event stream. Across 28 valid trials, the time lag ( tIMU − tGT ) exhibited a significant, variable latency ranging from 0.40 ms to 7.07 ms (Mean: 3.32 ± 2.12 ms). This stochastic delay is likely due to mechanical propagation within the bat and internal sensor buffering. Since our method requires sub-millisecond accu-racy, this jitter renders the IMU signal insufficient as a ground truth (Fig. S2). Consequently, we adopted manual annotation on 10,000 fps frames to ensure the highest temporal precision. 
+
+Fig. S2 : Visual comparison at the maximum IMU latency (+7.07 ms). Left: The true impact moment annotated man-ually ( tGT ). Right: The frame when the IMU triggered (tIMU ). The ball has already moved significantly away from the bat, demonstrating that the IMU signal is too slow for sub-millisecond evaluation. 
+
+3. ADDITIONAL QUANTITATIVE RESULTS 3.1. Per-Scene Evaluation 
+
+While the main paper reports the average performance across all datasets, Table S1 presents the detailed Mean Ab-solute Error (MAE) for each of the seven scenes individually. The results indicate that our method achieves consistent per-formance across varying ball speeds and trajectories. In par-ticular, while baseline methods such as E2E-Spot and SAM 3 struggle significantly in complex scenarios (e.g., Scene 4 and Scene 5), our approach maintains a low error rate, demon-strating its robustness. 
+
+3.2. Ablation Studies Component Analysis. Table S2 analyzes the contribution of each component in our proposed pipeline. The baseline with only forward refinement shows limited accuracy. Incorpo-rating bidirectional refinement (Refine bwd) significantly re-duces the MAE, proving the effectiveness of leveraging tem-poral context from both directions. Furthermore, the addi-tion of the geometric circle loss ( Lcirc ) and smoothness loss (Lsmooth ) further refines the trajectory, leading to the best per-formance. 
+
+Impact of Class Balancing Weights. Given the small size of the ball target, appropriate weighting for the Cross-Entropy loss is crucial. Table S3 investigates the impact of varying the ball class weight λball . Standard weighting ( λball = 1 .0)results in high MAE due to the dominance of the background class. Increasing λball improves the Success Rate (SR). We empirically found that λball = 13 .0 yields the optimal trade-off, minimizing MAE while maintaining a consistently high SR. Excessive weighting (e.g., 20.0) degrades performance, likely due to an increase in false positives. 
+
+Parameter Sensitivity. We also evaluated the network’s sen-sitivity to the event accumulation parameter. When testing different accumulation values of 5, 10, and 20, the resulting MAEs were 2.93, 0.77, and 1.65, respectively. This confirms that our chosen value of 10 is optimal for capturing the nec-essary temporal information while maintaining precision. 
+
+4. IMPLEMENTATION DETAILS 
+
+Our method was implemented using PyTorch. The input frames were resized to a resolution of 256 × 320 pixels. The network was trained using the Adam [1] optimizer with an initial learning rate of 5 × 10 −4, a batch size of 8, and a total of 50 epochs. The balancing weights for the total loss function were set to λdice = 1 .0, λce = 0 .5, λsmooth = 0 .1, and λcircle =0.05 .To address the severe class imbalance inherent in the dataset where the ball occupies a very small portion of the frame compared to the background, we applied weighted Cross-Entropy loss. The class weights were assigned as 0.5, 1.0, and 13.0 for the background, bat, and ball classes, respec-tively. The selection process for these weights is discussed in Section 3. All experiments were conducted on a workstation equipped with an NVIDIA GeForce RTX 4070 GPU. Under this environment, the inference time for our proposed module is exceptionally fast at just 3 ms per frame. However, the overall speed depends on the preprocessing step required to generate the raw mask via the segmentation module. For in-stance, using SAM3 takes approximately 150 ms per frame. Regarding the data preparation, the manual annotation burden is relatively light. It takes approximately 30 sec to create a ground truth label for a single frame. 
+
+5. EXTENDED RELATED WORK AND DISCUSSION 
+
+This section provides a detailed comparison with exist-ing literature, focusing on technical distinctions and domain-specific applications. 
+
+5.1. Comparison with Existing Event-based Methods 
+
+Regarding the novelty of our event representation and bidirectional reasoning, we provide further clarification against recently suggested works: • Event Representation: Unlike motion-compensated tensors [3] or static 6-channel statistics [4], our dense event frames use sliding window accumulation. This overlapping approach maintains the high temporal res-olution critical for capturing high-speed dynamics. Table S1 : Detailed quantitative evaluation per scene (MAE in ms). Our method outperforms baselines in most scenarios and maintains stability in challenging scenes (e.g., scene 5). 
+
+# scene1 scene2 scene3 scene4 scene5 scene6 scene7 Avg. 
+
+# E2E-Spot 6.907 10.708 2.811 21.856 25.511 30.419 18.413 17.204 SAM 3 0.594 5.568 1.915 2.03 7.95 1.706 2.448 3.087 YOLO 11 0.574 0.333 2.915 0.946 6.1 1.866 1.206 2.056 Ours 0.366 0.433 0.338 0.841 1.117 0.666 1.5 0.767 
+
+Table S2 : Ablation study on method components. “Refine (fwd/bwd)” denotes the refinement modules, and Lcirc/smooth repre-sents the auxiliary loss terms. 
+
++ Refine (fwd) + Refine (bwd) + Lcirc + Lsmooth scene1 scene2 scene3 scene4 scene5 scene6 scene7 Avg. 
+
+0.594 5.568 1.915 2.03 7.95 1.706 2.448 3.087 
+
+✓ 0.414 4.768 2.962 4.212 1.15 1.834 2.74 2.665 
+
+✓ ✓ 0.354 1.608 0.522 0.919 1.16 0.57 8.412 1.787 
+
+✓ ✓ ✓ 0.474 1.617 0.198 0.801 1.06 0.966 7.88 1.696 
+
+✓ ✓ ✓ ✓ 0.366 0.433 0.338 0.841 1.117 0.666 1.5 0.767 
+
+Table S3 : Ablation study on the loss weights for background, bat, and ball classes. We investigate the impact of varying 
+
+λball while fixing the others. The most balanced performance is archived when λball = 13 .                                       
+
+> Weights Metrics
+> λbg λbat λball MAE (ms) ↓SR ( <1σ)(%) ↑SR ( <2σ)(%) ↑
+> 1.0 1.0 1.0 2.523 40.0 75.0 0.5 1.0 1.0 2.139 42.5 72.5 0.5 1.0 10.0 1.54 57.5 77.5
+> 0.5 1.0 13.0 0.767 52.5 77.5
+> 0.5 1.0 20.0 2.192 47.5 72.5
+
+• Bidirectional Reasoning: While some automotive segmentation models [3, 5] leverage temporal context, they primarily focus on feature propagation for mask consistency. Our novelty lies in using bidirectional tracking specifically for precise high-speed object time estimation. • Asynchronous Learning and Tracking: Other ap-proaches like EvDistill [6] use cross-modal distilla-tion, and TETO [7] focuses on motion estimation. While relevant, our framework prioritizes a lightweight refinement-based approach for impact detection. 
+
+5.2. Domain-Specific Applications and Hardware Con-siderations 
+
+Several studies have explored event cameras in sports, particularly for ball spin estimation [8, 9]. While these works share the domain, our focus remains on the precise timing of impact events rather than rotational dynamics. Furthermore, while global shutter cameras offer advantages in certain scenarios, the inherent limitations compared to event cameras—such as motion blur and lower temporal res-olution—justify our event-based approach for high-speed analysis, as discussed in the experimental comparisons by Holeˇ sovsk´ y et al. [10]. 
+
+5.3. Visual Validation of Baseline Limitations 
+
+As a qualitative supplement to the quantitative analysis, we further examine the limitations of existing adaptations like EventSAM [2]. Fig. S3 provides a visual breakdown of its failure modes in high-speed scenarios. As evident in the figure, since EventSAM processes each frame independently, the predicted masks exhibit significant temporal jitter. The bat mask fluctuates violently in shape or disappears entirely between consecutive frames, failing to track the object reliably. This lack of temporal context ex-acerbates susceptibility to environmental noise, confirming that frame-wise segmentation without domain-specific tem-poral adaptation is insufficient for robust microsecond-level analysis. 
+
+5.4. Failure Analysis of the Proposed Method 
+
+While our bidirectional refinement framework is gener-ally robust against environmental noise, it can still fail when the initial segmentation masks are heavily degraded. Fig. S4 illustrates a typical failure case. If the raw masks generated by the baseline contain severe artifacts in both the forward and backward tracking directions, our refinement module may not Fig. S3 : Visual verification of the limitations of EventSAM [2]. Top Row: Input densified event frames. Bottom Row: Corre-sponding segmentation masks from EventSAM. The baseline exhibits temporal instability and susceptibility to environmental noise, confirming the necessity of our proposed bidirectional framework. 
+
+Fig. S4 : A typical failure case of our refinement module. Left / Center: Raw bat masks from forward and backward track-ing (using SAM 3) exhibiting severe noise. Right: The result-ing refined mask. When significant artifacts exist simultane-ously in both directional priors, the residual noise propagates to the final mask, decreasing the accuracy of the impact tim-ing estimation. fully eliminate this simultaneous noise. Consequently, the residual noise in the finalized mask can distort the object’s spatial representation, leading to a shifted estimation of the impact timing. 
+
+6. REFERENCES 
+
+[1] Diederik P. Kingma and Jimmy Ba, “Adam: A method for stochastic optimization.,” in ICLR , 2015. [2] Zhiwen Chen, Zhiyu Zhu, Yifan Zhang, Junhui Hou, Guangming Shi, and Jinjian Wu, “Segment any event streams via weighted adaptation of pivotal tokens,” in 
+
+CVPR , 2024. [3] Zhen Yao, Xiaowen Ying, and Mooi Choo Chuah, “Rethinking rgb-event semantic segmentation with a novel bidirectional motion-enhanced event representa-tion,” 2025. [4] Inigo Alonso and Ana C. Murillo, “Ev-segnet: Seman-tic segmentation for event-based cameras,” in CVPRW ,June 2019. [5] Lakshmi Annamalai, Vignesh Ramanathan, and Chetan Singh Thakur, “Eventmask: A frame-free rapid human instance segmentation with event camera through constrained mask propagation,” IEEE Robotics and Automation Letters , vol. 9, no. 4, pp. 3948–3955, 2024. [6] Lin Wang, Yujeong Chae, Sung-Hoon Yoon, Tae-Kyun Kim, and Kuk-Jin Yoon, “Evdistill: Asyn-chronous events to end-task learning via bidirectional reconstruction-guided cross-modal knowledge distilla-tion,” in CVPR , 2021, pp. 608–619. [7] Jini Yang, Eunbeen Hong, Soowon Son, Hyunkoo Lee, Sunghwan Hong, Sunok Kim, and Seungryong Kim, “Teto: Tracking events with teacher observation for mo-tion estimation and frame interpolation,” 2026. [8] Takuya Nakabayashi, Kyota Higa, Masahiro Yam-aguchi, Ryo Fujiwara, and Hideo Saito, “Event-based ball spin estimation in sports,” in CVPRW , 2024, pp. 3367–3375. [9] Thomas Gossard, Julian Krismer, Andreas Ziegler, Jonas Tebbe, and Andreas Zell, “Table tennis ball spin estimation with an event camera,” in CVPRW , 2024, pp. 3347–3356. [10] Ondˇ rej Holeˇ sovsk´ y, Radoslav ˇ Skoviera, V´ aclav Hlav´ aˇ c, and Roman V´ ıtek, “Experimental comparison between event and global shutter cameras,” Sensors , vol. 21, no. 4, 2021.

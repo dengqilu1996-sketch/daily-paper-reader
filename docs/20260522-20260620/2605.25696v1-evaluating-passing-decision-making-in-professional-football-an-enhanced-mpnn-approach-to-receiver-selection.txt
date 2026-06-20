@@ -1,0 +1,366 @@
+Title: Evaluating passing decision-making in professional football: An enhanced MPNN approach to Receiver Selection
+
+URL Source: https://arxiv.org/pdf/2605.25696v1
+
+Published Time: Tue, 26 May 2026 02:36:48 GMT
+
+Number of Pages: 22
+
+Markdown Content:
+# Evaluating passing decision-making in professional football: An enhanced MPNN approach to Receiver Selection 
+
+## Gabriel Masella 1* , Giuseppe Alessio D’Inverno 2, Max Goldsmith 3,Gianluigi Rozza 2
+
+> 1*
+
+Department of Mathematics, Informatics and Geoscience, University of Trieste, via Weiss 2, Trieste, 34128, Italy. 
+
+> 2
+
+MathLab, International School for Advanced Studies (SISSA), Via Bonomea 265, Trieste, 34136, Italy. 
+
+> 3
+
+Royal Belgium Football Association, Rue de Bruxelles 480, Tubize, 1480, Belgium. *Corresponding author(s). E-mail(s): masellagabriel@gmail.com; Contributing authors: gdinvern@sissa.it; max.goldsmith@rbfa.be; grozza@sissa.it; 
+
+Abstract 
+
+The process of decision-making in football is characterized by a complex inter-play between spatial positioning, opponent pressure, and player intent. This work introduces a Graph Neural Network (GNN) framework designed to predict Receiver Selection, the optimal passing target, by modeling on-field interac-tions as dynamic graphs. Each player is represented as a node with positional and contextual features, while potential passing lines form weighted edges char-acterized by distance, angle, and pressure metrics. A Message-Passing Neural Network (MPNN) has been developed and trained using a combination of track-ing data and event data from professional matches, synchronized through a robust pipeline based on an optimized version of the Needleman-Wunsch Algorithm. The model achieves competitive accuracy in identifying the actual chosen receiver and state-of-the-art accuracy within its top three suggestions. Our model further offers quantification of each option’s likelihood, threat, and creativity, enabling performance analysts to evaluate over 1,000 passes in seconds. 
+
+Keywords: Soccer analytics, Graph Neural Network, Message-Passing Neural Network, Receiver Selection 
+
+1
+
+> arXiv:2605.25696v1 [cs.LG] 25 May 2026
+
+# 1 Introduction 
+
+The application of data science techniques within the sports industry marks aparadigm shift from an intuitive to an evidence-based approach. This transformation was originally pioneered in baseball through the concept of sabermetrics , a term pop-ularized by the Moneyball philosophy [1, 2]. In essence, this movement emphasized the potential of employing objective statistical analysis to enhance performance, leading to insights that traditional scouting methods had failed to capture. Football, in its traditional form, initially resisted this shift due to its fluid, low-scoring, and continuous nature, but the modern era has been defined by a ”big data” revolution. Quantitative analysis offers a comprehensive understanding of the sport of football; however, passing strategy is a crucial aspect that requires further attention [3, 4]. This fundamental skill is the foundation for maintaining possession of the ball, progressing towards the goal, and creating scoring opportunities. The act of passing is not limited to pure technical execution; it involves a dynamic and contested environment with multiple potential recipients in which players must rapidly evaluate spatial opportu-nities against immediate defensive pressure. Despite its importance, the identification of an ”optimal” passing decision remains a challenging problem in football analytics. Traditional metrics, including completion rate and expected pass completion proba-bility ( xP ass ), offer a limited perspective on the quality of the decision itself [4]. For instance, a successful lateral pass under minimal pressure is often prioritized based on basic statistics over an ambitious, unsuccessful forward pass into a defensive block, even if the second option represented a higher-value tactical choice. Conventional approaches typically evaluate only the executed action, overlooking the alternative options available at the moment of release. In order to accurately measure the process of decision-making, a model must consider not only the outcome of a decision but also the potential opportunity that was foregone by choosing an alternative option. To address this research gap, existing literature has moved towards more sophisti-cated spatial modeling. Physics-based models [5] have been employed to estimate pass probability based on interception times, while Expected Possession Value (EPV) frameworks have begun to assign value to specific field locations [4, 6]. In contempo-rary research, Graph Neural Networks (GNNs) have emerged as a potent instrument for modeling the relational interactions between players [7]. Many existing architec-tures, however, rely on fully connected graphs, which require a quadratic cost of computations, or ball-centric approaches, which frequently lead to ”over-squashing” during the message-aggregation process, resulting in the loss of critical contextual information[8, 9]. In this paper, we propose the Football Pass MPNN framework, a model that rep-resents the football pitch as a dynamic graph to explicitly capture the geometric and tactical constraints of passing. By leveraging the inductive biases inherent in geometric deep learning, our approach transcends the limitations of static snapshots, enabling real-time analysis of the potential of every passing lane. The following contributions are made: 2• Graph-Based Representation : A ”star graph” topology is introduced in which the passer assumes the role of the central node. This formulation explicitly encodes relational properties, such as obstruction cones and opponent pressure, directly into the edges and nodes of the graph. 
+
+• Edge-Conditioned Message Passing : The development of a Message Passing Neural Network (MPNN) that employs edge-conditioned reasoning to predict the optimal receiver has been implemented, achieving a Top-3 Accuracy of 97 .80% and improving over traditional baseline models. 
+
+• Advances in Decision Metrics : Interpretable metrics, such as ”Best Pass Score” , ”Good Pass Score” and ”Creativity Ratio” , are defined in order to translate probabilistic outputs into actionable insights for scouting and performance analysis. The remainder of this paper is organized as follows: Section 2 reviews related work; Section 3 details the dataset and graph formulation; Section 4 describes the model; Section 5 presents experimental results; Section 6 discusses applications; and Section 7 concludes the paper. 
+
+# 2 Related Works 
+
+The existing literature on pass models, decision-making, and geometric deep learning in football is extensive and heterogeneous. The development of these models follows a clear progression, beginning with the physics of pass completion, advancing to the evaluation of executed actions, and culminating in the prediction of, and reasoning behind, the passer’s decision among multiple alternatives. Early research focused on the fundamental question of pass probability. Spearman et al. [5] were among the first to develop physics-inspired models of time-to-intercept and time-to-control, allowing the estimation of pitch control surfaces and pass com-pletion probabilities. While these models were capable of determining which player could reach a pass first with a reasonable degree of accuracy (approximately 68%), they primarily evaluated physical availability rather than tactical intent. This theo-retical foundation was later expanded by Dick et al. [10], who combined movement models with ball dynamics to quantify a player’s probabilistic availability to receive a pass. However, the model still stopped short of simulating the passer’s deliberate choice from the set of all available teammates. Building on this, a subsequent line of research emerged to evaluate the consequences of these choices by developing frameworks for the valuation of specific on-ball actions. The Expected Possession Value (EPV) model, proposed by Fernandez et al. [6, 11], employed convolutional networks to generate spatial maps of pass success probability and expected value. In a similar study, the VAEP framework by Decroos et al. [12] provided an objective method for evaluating actions based on their impact on scoring and conceding probabilities. However, these value-based approaches generally eval-uate the executed pass in isolation, often ignoring the alternative options that were rejected. This is a critical omission when assessing the quality of decision-making. 3To address this gap, recent research has attempted to develop a model of the decision-making process itself. Li and Zhang [13] proposed a framework for receiver prediction that they categorized as a learning-to-rank problem. They developed a LambdaMART model to rank available teammates, but their tabular approach lacked the capacity to explicitly model the spatial relationships between players. Recent advances in geometric deep learning have demonstrated that Graph Neural Networks (GNNs) are the most natural architecture for representing the relational interactions of the pitch [7]. St¨ ockl et al. [14] employed graph convolutional networks (GCNs) to analyze defensive performance through models such as xThreat and xReceiver. This study demon-strated that graph-based approaches can effectively estimate the likelihood of each player receiving the ball. Rahimian et al. [15, 16] further expanded this research by utilizing Temporal Graph Networks (TGNs) to quantify pass reception probabilities against defensive structures, effectively capturing dynamic interactions over time. Despite these advancements, a research gap remains in fully capturing the multi-dimensional, context-dependent constraints of a single decision snapshot. While existing GCN and TGN approaches are powerful, they often prioritize temporal sequences or fully connected topologies, which is problematic in terms of specific spatial reasoning. In order to address this limitations, the present study adapts the MPNN framework, originally introduced by Gilmer et al. [17], to explicitly model ”edge-conditioned” reasoning, where the quality of each passing option is determined not just by the receiver, but also by the geometric features of the passing lane itself. 
+
+# 3 Data and Graph Formulation 
+
+The development of a robust receiver prediction model requires a dataset that is not only large in volume but is also semantically rich and spatio-temporally complete. The following section provides a comprehensive overview of the construction of the dataset, the mathematical conversion of raw coordinates into a geometric graph, and the theoretical justification for the selected graph topology. 
+
+## 3.1 Dataset Overview 
+
+This research is based on a comprehensive dataset comprising 369 international matches from the UEFA Nations League (2024) and FIFA World Cup Qualifiers (2026) .To ensure a comprehensive perspective of the game’s state, two distinct data streams were combined: event data, which provides semantic labels such as passes and shots, and tracking data, which provides the continuous ( x, y ) coordinates of all 22 players and the ball at a rate of 25 Hz. The synchronization of these heterogeneous sources was achieved through the implementation of a dedicated pipeline, employing an opti-mized version of the Needleman-Wunsch algorithm[18], proposed by Oonk et al. [19]. 4Fig. 1 Analysis of the different categories of passes available in our dataset. 
+
+The synchronization process ensures that every discrete on-ball action is contextual-ized within the full spatio-temporal environment of the match. This approach allowed for the accurate mapping of discrete events to their corresponding tracking frames without the necessity for labeled training data, achieving a synchronization success rate of 91.3% across the available match inventory. The resulting dataset contains approximately 216,000 successful open-play passes that were utilized for training purposes. This synchronized collection of data, as shown in Figure 1, demonstrates a remarkable level of semantic richness, encompassing a wide-ranging categorization of pass types that reflects the complex tactical landscape of modern football. 
+
+• Tactical Distribution : The dataset is dominated by build-up passes (75.6%) originating in the defensive and middle thirds, contrasted by high-leverage chance creation passes (24.4%) in the final 40 meters. 
+
+• Distance Dynamics : Middle-distance passes (10–34m) constitute the core of pos-session (67.8%) with a high success rate of 89.7%, while long passes ( ≥ 34 m)represent tactical risks with a significantly lower completion rate of 53.8%. 5• Progressive Intent : Direct passes, designed to reduce the distance to the oppo-nent’s goal, account for 59.1% of the data, illustrating a persistent drive for verticality despite a moderate success rate of 77.5%. 
+
+• Defensive Penetration : High-value actions such as deep completions and passes around the box represent just 3.0% of the total volume, reflecting the difficulty of operating in congested final-third spaces where success rates drop to nearly 50%. 
+
+• Elite Outcomes : The dataset captures the rarest and most decisive moments in the game. These include key passes (1.4%), which are defined as passes that result in a shot, and assists (0.1%), passes that result in a goal, providing the necessary depth to model high-reward decision-making. By integrating these diverse semantic layers ranging from routine lateral recycling to high-risk line-breaking balls, the dataset provides a detailed representation of the decision-making variables that players face. This granularity allows the Football Pass MPNN to learn not only the physics of a pass, but also the underlying tactical logic governing why certain options are preferred over others in specific match contexts. 
+
+## 3.2 Mathematical Formulation 
+
+The problem of receiver selection can be defined as the learning of a mapping function, denoted by Φ, which approximates the conditional probability distribution of a passer selecting a specific teammate given the state of the game. Let S represent the state of the game at the precise moment t a pass is initiated. This state consists of the coordinates of the attacking team A, the defending team 
+
+D, and the ball b. The attacking team is composed of a passer, denoted by vp, and a set of potential receivers, denoted by Vrec = A \ { vp}. The objective is to learn a parameterized function Fθ : S → ∆|Vrec |− 1, where ∆ is the probability simplex, such that: 
+
+P (y = vi|S ) ≈ Fθ (G(S)) i (1) Where: 
+
+• y is the random variable representing the target receiver. 
+
+• G(S) is the graph transformation of the state. 
+
+• θ are the learnable parameters of the MPNN. The ground truth dataset is defined as consisting exclusively of successful open-play passes. It is hypothesised that in elite professional football, a completed pass should be considered as a valid proxy for a ”correct” or ”optimal” decision. While this approach eliminates theoretically optimal passes that failed due to execution error, it provides a consistent, high-quality supervisory signal for learning tactical patterns, treating the player as an expert agent whose successful choices maximize an implicit reward function, such as retaining possession or gaining territory. In order to process the state S using Geometric Deep Learning, it is necessary to transform it into a directed graph G = ( V, E ), where the topology is explicitly designed to model the passer’s decision-making process. The set of nodes V corresponds to the 11 players of the attacking team. Each node 6Fig. 2 Illustration of the conversion from pass data to graph, with the mathematical background 
+
+vi ∈ V is associated with a feature vector fi ∈ R7 encoding its kinematic and tactical state: 
+
+fi = [ xi, y i, v xi , v yi , a xi , a yi , c i] (2) where: 
+
+• xi, y i ∈ [−1, 1] are normalized Cartesian coordinates. 
+
+•⃗v i = ( vxi , v yi ) and ⃗a i = ( axi , a yi ) represent the velocity and acceleration vectors, capturing the player’s momentum and movement intent. 
+
+• ci quantifies the Pressure on that player, defined as the count of opponents within a local neighborhood of player vi. Let d(·, ·) be the Euclidean distance and R be a fixed distance threshold. Then ci = |{ ok ∈ D : d(vi, o k) ≤ R}| .The set of edges E represents the potential passing lanes. In our star graph topology, edges exist strictly from passer vp to each of their teammates vj , denoted as ep→j .The defensive structure, which other models represent as separate nodes, is encoded directly into the edge attributes of the attacking graph. This reduces computational complexity while explicitly defining the difficulty of the pass. Each edge is defined by a vector gp→j ∈ R3:
+
+gp→j = [ dpj , θ pj , c pj ] (3) Where: 
+
+• dpj = ∥⃗p j −⃗p p∥2 is the Euclidean distance. 
+
+• θpj is the signed angle between the passer’s facing direction and the vector to the teammate, capturing the difficulty of body re-orientation. Let ⃗u be the normalized vector of the passer’s facing direction (from ball to passer), and ⃗w =⃗p vj −⃗p vp be the vector from passer to teammate. The angle is computed as: 
+
+θpj = atan2( ⃗u x⃗w y −⃗u y⃗w x,⃗ u ·⃗w) (4) 7• cpj mathematically quantifies the ”traffic” along a passing lane. The passing lane is modeled as a geometric cone with apex at ⃗p vp , direction vector ⃗w, and angular width α. An opponent ok ∈ D at position ⃗p ok is considered an obstruction if their physical presence intersects this cone. Let rp denote the effective player occlusion radius. Formally, let ⃗ t =⃗p ok −⃗p vp be the vector from the passer to the opponent. The opponent is counted if and only if: arccos 
+
+⃗ w ·⃗ t
+
+∥⃗w∥∥ ⃗ t∥
+
+
+
+− arcsin 
+
+ rp
+
+∥⃗t ∥
+
+
+
+≤ α
+
+2 ∧ ∥⃗ t∥ ≤ ∥ ⃗w∥ + r p
+
+The first condition ensures angular intersection, while the second ensures the opponent is located between the passer and the receiver (finite length). This rigorous formulation ensures that the MPNN does not merely learn from the positions of teammates, but conditions its message passing on the explicit geometric viability of the passing lane itself. 
+
+## 3.3 Topological Choices and Comparisons 
+
+Further consideration should be focused on the construction of the graph, which encodes distinct inductive biases and practical tradeoffs for modeling passing decisions. A prevailing approach, adopted by St¨ ockl et al. [14] and Rahimian et al. [15, 16] in this field, involves the construction of 22-node (23-node graphs, including the ball) fully connected graphs with team flags. In terms of its advantages, the method is highly expressive, with the ability to explicitly capture every pairwise relation. However, this approach comes with a quadratic O(N 2) computational cost and an increased risk of overfitting. Another pattern that was observed in the study conducted by Bekker et al. [7] was the use of a ball-centered two-layer design, in which the players are connected to the ball’s nodal point and to their teammates, facilitating the consolidation of information through a centralized hub. The consequence of this choice is that the system could lead to a phenomenon known as over-squashing of messages [8, 9]. This term refers to the compression of contextual signals from distant nodes as they pass through the central node, leading to a reduction in the effective flow of information. The design implemented in this study led to the formulation of a star graph, as illus-trated in Figure 2 and elucidated in Section 3, in which the passer is positioned at the center and the ten teammates are connected as satellite nodes. Opponents and contextual elements are represented as hard-coded node and edge features, including relative position, velocity, pressure flags, and opponent-in-line. This approach results in a compact adjacency matrix, which is advantageous due to its linear number of edges, enhanced computational efficiency, and a clear passer-centric inductive bias that directly models the decision hub. However, this approach is subject to certain limitations. In its practical implemen-tation, the star graph adopts a balanced position by emphasizing passer-centric reasoning and demonstrating scalability; this can lead to an inaccurate representation of interactions between teammates. To address this, a strategy of employing multiple 8message-passing rounds or utilizing edge-conditioned message functions was employed in this research. This approach preserves rich spatial and opponent cues, ensuring the accuracy of the system despite the sparse topology. 
+
+# 4 Football Pass MPNN 
+
+The Football Pass MPNN framework is implemented as a deep Message Passing Neural Network [17] designed to model the passer-centric decision hub of a football player. The architecture transforms the passing graph through three primary stages: feature embedding, iterative message passing, and readout.  
+
+> Fig. 3 The complete architecture of the Football Pass MPNN.
+
+## 4.1 Architecture Overview 
+
+To enable the network to learn complex non-linear representations from these physical quantities, the raw features matrix V ∈ RN ×7 and E ∈ RM ×3 are first projected into a shared latent dimension h (embedding size) using distinct Multi-Layer Perceptrons (MLPs), denoted as ϕnode and ϕedge .
+
+h(0)  
+
+> i
+
+= ϕnode (fi), ∀vi ∈ V
+
+e′ 
+
+> ij
+
+= ϕedge (gij ), ∀(vi, v j ) ∈ E
+
+The core reasoning occurs during L synchronous message-passing steps. In each layer 
+
+l, an edge-conditioned message function Ml computes a vector m(l) 
+
+> j→i
+
+by considering the interaction between the passer, the receiver, and the passing lane difficulty: 
+
+m(l) 
+
+> j→i
+
+= Ml
+
+
+
+h(l−1)  
+
+> j
+
+∥ h(l−1)  
+
+> i
+
+∥ e′
+
+> ij
+
+
+
+(5) 9These messages are aggregated via a permutation-invariant operator to update the node states: 
+
+h(l) 
+
+> i
+
+= Ul
+
+h(l−1)  
+
+> i
+
+∥ M 
+
+> j∈N (i)
+
+m(l)
+
+> j→i
+
+ (6) This iterative refinement allows the model to contextually evaluate each player’s suitability relative to the defensive topology and the passer’s momentum. 
+
+## 4.2 Readout and Probability Estimation 
+
+After L message passing steps, the final node embeddings h(L) 
+
+> i
+
+contain a rich, context-aware representation of each player’s suitability as a pass target. The final phase is the readout, which maps these high-dimensional embeddings to a scalar score si representing the unnormalized likelihood of receiving the pass. 
+
+si = R(h(L) 
+
+> i
+
+)To accommodate the variable cardinality of team sports, a per-graph softmax is applied over the set of nodes within the specific graph to yield the final selection probability for each teammate vi ∈ V :
+
+P (y = vi|G) = exp( si)
+
+P  
+
+> vk∈V
+
+exp( sk) (7) This formulation inherently handles the physical constraints of the sport, normal-izing the scores across the available teammates regardless of numerical disparities, such as those caused by expulsions. The model is trained end-to-end to minimize the Cross-Entropy loss between the predicted distribution and the ground-truth receiver provided by the event data. 
+
+## 4.3 Training and Hyperparameter Optimization 
+
+The implementation and training of the model were executed using the PyTorch Geometric library [20], scaling efficiently to dynamic batching of variable-sized graphs. Optimization was performed via the AdamW algorithm, combined with a 
+
+ReduceLROnPlateau learning rate scheduler to stabilize convergence. To ensure architectural robustness, a Bayesian hyperparameter search was conducted utilizing the Optuna framework [21]. The configuration was systematically calibrated across the search space defined in Table 1. In terms of representational capacity, the hidden dimension exhibited the strongest positive correlation with validation accuracy (+0 .62). The 512-dimensional configura-tion consistently outperformed smaller architectures, suggesting that tactical passing decisions require substantial representational capacity to capture complex spatial interactions adequately. The correlation between the number of message-passing lay-ers and overall performance was found to be relatively modest (+0 .15). The optimal configuration utilized five synchronous layers. This indicates that within the compact 10 Table 1 Hyperparameter search space and best values found via Optuna.                             
+
+> Parameter Search Range Best Value
+> Hidden Dimension {128 ,256 ,512 }512
+> Number of Layers {3,5,7}5
+> Dropout [0 .1,0.5] 0.15
+> Learning Rate [10 −5,10 −3]7.6e-4
+> Weight Decay [10 −5,10 −3]5.7e-4
+> Batch Size {64 ,128 ,256 ,512 }64
+> Aggregation {mean ,max ,add }max
+
+star-graph topology, information propagates efficiently; additional layers increase the risk of over-smoothing node representations without yielding commensurate perfor-mance gains. Regarding training dynamics, the learning rate was highly correlated with convergence (+0 .75), with 7 .6 × 10 −4 emerging as the optimal value. Furthermore, a strong inverse relationship with batch size was observed ( −0.59). Smaller mini-batches of 64 graphs facilitated more frequent parameter updates, enabling a more robust adaptation to the heterogeneous spatial configurations characteristic of the dataset. Regularization proved highly impactful on generalization capabilities: dropout showed a strong nega-tive correlation ( −0.67), indicating that excessive rates ( ≥ 0.3) substantially degraded performance by disrupting information flow across the narrow message-passing chan-nels. Conversely, L2 regularization via weight decay exhibited a moderate positive correlation (+0 .42), demonstrating its efficacy in preventing the network from memo-rizing irrelevant positional correlations. Finally, the “max” message aggregator strictly outperformed both mean and summation operations. This outcome suggests that the model’s efficacy is maximized when it isolates the most salient tactical features from its neighborhood, analogous to the cognitive filtering applied by elite players in time-constrained scenarios. 
+
+# 5 Experimental Results 
+
+## 5.1 Performance Benchmarking 
+
+To rigorously quantify the efficiency of the proposed approach, the available dataset was explicitly partitioned into training ( N = 151 , 460), validation ( N = 32 , 456), and unobserved test ( N = 32 , 456) sets, using a random split with a 70/15/15 ratio from the total size of the available passes. The Football Pass MPNN was evaluated on the test set against a suite of internal baseline models trained on the same dataset. The baselines include: 
+
+• Nearest Player Heuristic : A foundational heuristic predicting the teammate closest to the passer in terms of Euclidean distance. 11 • Logistic Regression : A linear model trained on the full suite of node and edge features utilized by the MPNN. 
+
+• LambdaMART [13] : A tree-based learning-to-rank baseline replicating the specific feature subset described in the original LambdaMART paper (e.g., rel-ative distances, angles, and goal coordinates), omitting the advanced relational components introduced in our architecture.                            
+
+> Table 2 Performance benchmarking on the unobserved test set ( N= 32 ,456)
+> Model Top-1 Acc. ↑Top-3 Acc. ↑AUROC ↑Brier ↓
+> Nearest Player Heuristic 27.58% 63.85% 0.763 0.086 Logistic Regression 43.63% 79.67% 0.853 0.084 LambdaMART [13] 44.62% 80.61% 0.863 0.069 Football Pass MPNN (ours) 75.83% 97.80% 0.963 0.036
+
+The comparative analysis, detailed in Table 2, demonstrates a substantial performance improvement. The linear regression model and the restricted tree-based approach (LambdaMART) achieved comparable Top-1 accuracies of approximately 44%, under-scoring the limitations of modeling individual receiver suitability without accounting for complex geometric occlusion. In contrast, the MPNN achieves a robust Top-1 accuracy of 75 .83% and an overwhelming Top-3 accuracy of 97 .80%, showcasing the inherent filtering capacity of the message-passing framework. Furthermore, the MPNN achieves a dominant global AUROC of 0 .963 and a Brier score of 0 .036, indicating a very strong capacity to distinguish the chosen receiver from non-targets.                                  
+
+> Table 3 Performance comparison of different models from the literature
+> xReceiver Models Top-1 Acc. ↑Top-3 Acc. ↑AUROC ↑Brier ↓
+> Physics-Based [5] 0.68 –0.85 –LambdaMART [13] 0.50 0.84 ––MLP Baseline [14] 0.73 –––GCN [14] 0.83 –––TGN [15] 0.81 –0.85 0.010
+> Football Pass MPNN (ours) 0.76 0.98 0.96 0.036
+
+In order to contextualize these capabilities, it is essential to take into considera-tion well-known architectures that have been evaluated in the literature on different datasets, as shown in Table 3. Traditional physics-based heuristics [5] report Top-1 accuracies approaching 0 .68 and an AUROC of 0 .85. The foundational standalone MLP baseline outlined by St¨ ockl et al. [14] achieved a Top-1 of 0 .73. The proposed MPNN surpasses both, empirically validating the inclusion of explicit pitch relational structures. 12 Rahimian et al. [15] evaluated a Temporal Graph Network (TGN) that achieved a Top-1 accuracy of 0 .81, a ROC-AUC of 0 .85, and a Brier score of 0 .010. While the TGN outperformed our model in Top-1 accuracy and Brier score, our proposed MPNN achieves a significantly higher AUROC. Additionally, it is important to notice that the TGN framework [16] was evaluated on a narrow selection of specific scenarios, focus-ing exclusively on forward passes originating in the middle third of the pitch against structured defensive shapes, rather than a generalized open-play setting encompass-ing all directional pass variants. In addition, although the Graph Convolutional Network (GCN) evaluated by St¨ ockl et al. [14] achieved a nominal accuracy of 0 .83, the highest in the known literature, this was achieved by implementing a weighted loss function (assigning a weight of 0.1 for non-targets and 1.0 for the true receiver), distorting the optimization landscape relative to standardized cross-entropy benchmarks. 
+
+## 5.2 Inference Speed Analysis 
+
+In addition to the evaluation of accuracy metrics, a foundational claim of the Football Pass MPNN is that both the graph formulation and the model architecture were inten-tionally designed to be lightweight and highly optimized for real-time applications. In addition to the evaluation of accuracy metrics, a fundamental claim of the Football Pass MPNN is that both the graph formulation and the model architecture were inten-tionally designed to be lightweight and highly optimized for real-time applications. From the previously cited literature regarding spatial passing models, little attention has been given to the direct evaluation of inference speed, with the notable exception of the graph convolutional approach presented by St¨ ockl et al.[14].This study, there-fore, offers a useful reference point for the evaluation of real-time viability. In order to conduct a fair comparison, a similar benchmarking experiment was designed. The evaluation simulated a sequential, real-time context by processing 1,000 randomly sampled, fully synchronized passes on a standard local notebook.                         
+
+> Table 4 Inference speed comparison expressed in seconds ( s) as mean ±standard deviation.
+> Model Pipeline Feature Crafting (s) Inference (s) Total Time (s)
+> St¨ ockl et al. [14] 0.0440 ±0.0040 0.0010 ±0.0002 0.0450 ±0.0060 Football Pass MPNN (ours) 0.0008 ±0.0001 0.0107 ±0.0017 0.0115 ±0.0018
+
+In their analysis, the authors reported an average feature crafting time of 0 .044 ±0.004 s
+
+and an inference time of 0 .001 ± 0.0002 s, resulting in a total processing time of 0.045 ± 0.006 s per frame. While their pipeline is nearly capable of operating on a stan-dard 25 Hz tracking data stream (which inherently requires processing within 0 .040 s
+
+per frame), this narrow mathematical margin provides insufficient allowance for the inevitable latency introduced by operational integration, such as API requests, net-work transmission, and data serialization. 13 On the other hand, the comparative results, presented in Table 4, demonstrate a highly significant acceleration in data processing for our approach. By leveraging the analytically optimized star graph topology, the custom feature engineering process averaged merely 0 .0008 ± 0.0001 s. Thus, while the proposed 5-layer MPNN with a 512-dimensional hidden space requires a marginally longer inference time due to its expanded representational depth, the total pipeline execution is condensed to just 0.0115 ± 0.0018 s per frame on average. Although absolute timings are subject to slight variations based on the specific hard-ware configurations utilized across different studies, the magnitude of this difference conclusively demonstrates the framework’s efficiency. These results empirically confirm that the proposed methodology is substantially faster overall, possessing the compu-tational elasticity to seamlessly process 25 Hz tracking streams in a live operational environment without vulnerability to serialization overheads. 
+
+## 5.3 Tactical Key Performance Indicators 
+
+While high-ranking metrics confirm the model’s statistical validity, the core objective is to translate abstract probability distributions into actionable coaching insights. To this end, the raw likelihood scores generated by the MPNN were projected into three interpretative Key Performance Indicators (KPIs): 
+
+• Best Pass Score (Reliability) : The frequency with which a player success-fully selects the model’s Top-1 predicted target. This defines adherence to the mathematically optimal, lowest-risk option. 
+
+• Good Pass Score (Safety) : The rate at which the chosen receiver falls within the Top-3 predictions, acknowledging tactical soundness in restricted environments. 
+
+• Creativity Ratio (Vision) : The percentage of successful passes directed to tar-gets outside the model’s top three predictions, isolating high-risk play-making that purposefully breaks mathematical expectation. As illustrated in Figure 4, the KPI distributions reveal distinct patterns across playing roles. Defenders display the highest average Best Pass Score ( μ ≈ 0.667), consistent with their primary task of safe possession circulation. Forwards show the lowest adher-ence ( μ ≈ 0.536), as high-pressure zones frequently demand improvised selections that deviate from the model’s optimal prediction. Wingers exhibit the most distinctive pro-file: despite recording high Creativity Ratios, they maintain elevated pass completion rates, suggesting a capacity for effective risk-taking that is qualitatively different from the lower-success creativity observed in forwards. To validate these metrics against ground-truth outcomes, Figure 5 correlates each KPI with the player’s overall pass success rate. A strong positive correlation is confirmed between Best Pass Score and pass completion, while high Creativity Ratios are associ-ated with completion rates in the 70–80% range, quantitatively capturing the inherent risk-reward trade-off of unpredictable play-making. Finally, to assess whether the model has internalized the spatial geometry of the game, Figure 6 visualizes the aggregate locations where each positional role is most fre-quently predicted as the optimal receiver. Without any explicit positional constraints, 14 Fig. 4 Metric distributions across operational roles based on players with at least 50 passes registered in the dataset. 
+
+Fig. 5 Kernel density estimations illustrating the risk-reward tradeoff relative to pass completion rates. 
+
+the model reconstructs canonical receiving zones: defenders in the defensive half and 15 Fig. 6 Density map of optimal receiver locations predicted by the model, categorized by positional role. 
+
+wide channels, midfielders across the central box-to-box corridor, wingers along the attacking touchlines, and forwards centrally in front of the penalty area. This emer-gent spatial coherence confirms that the MPNN has genuinely learned the tactical geometry of the game from relational data alone. 
+
+# 6 Applications 
+
+Beyond its theoretical contributions, the Football Pass MPNN was designed to serve as an operational tool within the Data Department of the Royal Belgian Football Association (RBFA). The model’s outputs are operationalized through a two-stage reporting pipeline: a Post-Game Review that flags suboptimal passing decisions for 16 individual player feedback, and a Pre-Match Scouting module that profiles oppos-ing players using the KPIs defined in Section 5. The computational efficiency of the architecture ensures both stages can be executed rapidly on incoming match data. 
+
+## 6.1 Evaluating Decision-Making 
+
+A primary application of the model resides in the objective evaluation of passing decisions. By comparing the actual choice made by a player against the predicted probability distribution, analysts are equipped to identify instances of suboptimal decision-making.  
+
+> Fig. 7 Visual output of the Football Pass MPNN analyzing an unsuccessful pass.
+
+As illustrated in Figure 7, a concrete example of this application is presented. In the scenario under consideration, the passer (Node 21, colored in yellow) attempts a pass to a teammate (Node 20), which is subsequently intercepted by an opponent (Node 22, colored in cyan), resulting in a loss of possession. The MPNN offers a critical perspective on this sequence. As indicated in the accompanying prediction table, the model assigned a near-certain probability ( > 0.99) to a different teammate (Node 3, indicated by the yellow arrow) as the optimal target. This player was positioned advantageously to advance the play with minimal defensive pressure. Conversely, the executed choice was identified as a significantly suboptimal alternative. Furthermore, the model’s restricted probability distribution demonstrates its capacity for contextual understanding. Kinematic factors implicitly filter out tactically illogical or technically unfeasible targets, allowing performance analysts to focus exclusively on the disparity between the optimal computational solution and the human execution. 17 6.2 Operational Integration 
+
+To ensure the practical utility of these metrics, a dedicated pipeline was implemented to process incoming match data and generate structured reports for the coaching staff. 
+
+6.2.1 Post-Game Review: Error Analysis 
+
+Following the conclusion of a match, the system automatically identifies passes that could have been optimized. These are formally defined as unsuccessful passes where the MPNN identified an alternative option with a significantly higher probability of success. These instances are compiled into a Post-Game Review Report, where each entry is accompanied by its unique event identifier, video frame reference, and a 2D spatial visualization (analogous to Figure 7). This automated workflow substantially reduces the manual effort required by video analysts to locate coaching moments, providing a curated list of decision-making errors suitable for individualized player feedback. 
+
+6.2.2 Pre-Match Opponent Analysis 
+
+In preparation for upcoming fixtures, the model is employed to evaluate the historical performance profiles of opposing players. By adopting the intuitive Key Performance Indicators established in Section 5 (Best Pass Score, Good Pass Score, and Creativity Ratio), complex probabilistic outputs are made accessible to tactical staff. By iden-tifying statistical outliers, analysts can detect opposition playmakers who pose an unpredictable creative threat, requiring targeted defensive strategies. Alternatively, they can identify players who demonstrate a high tendency for decision-making errors, designating them as optimal targets for coordinated pressing structures. 
+
+# 7 Conclusions 
+
+This paper presented a novel framework for evaluating decision-making in profes-sional football, marking a critical shift from traditional outcome-based statistics to intent-driven spatial analysis. Historically, football analytics has struggled to quantify the quality of a passing decision, often prioritizing safe, lateral completions over tacti-cally ambitious, high-value opportunities. By framing receiver selection as a complex, edge-conditioned graph problem, the proposed Football Pass MPNN successfully bridges the gap between basic pass probability heuristics and advanced geometric deep learning. By introducing a star graph topology centered on the passer, this research demon-strated that opponent pressure and geometrical occlusion can be explicitly and efficiently encoded into node and edge features. Rather than relying on computation-ally heavy, fully connected networks, the proposed architecture leverages iterative message-passing to contextually evaluate the tactical viability of all teammates in real-time. The empirical results obtained from this approach are consistent with the model’s performance, which has been shown to achieve a Top-1 Accuracy of 75.83% and a Top-3 Accuracy of 97.80%. Beyond its theoretical and statistical achievements, this framework offers immediate, 18 operational value to the sports industry. The formalisation of intuitive tactical met-rics, such as the Best Pass Score, Good Pass Score, and Creativity Ratio, facilitates the translation of abstract predictive probabilities into actionable insights. As demon-strated through its integration within the Data Department of the Royal Belgian Football Association, the MPNN has been shown to allow analysts to rapidly identify suboptimal decision-making, evaluate player risk-reward profiles, and optimise pre-match opposition scouting. Future development in this field might be focused on coach-adaptive fine-tuning, where the model is updated based on a team’s recent match history to align with a particular coaching philosophy. This framework could evolve from a general-purpose analytical tool into a personalized decision-support system, more deeply aligned with the intended game model of an individual coaching staff, through conditional proba-bility modelling of recurring tactical patterns and preferred build-up sequences. 
+
+# Declarations 
+
+Acknowledgements and Funding 
+
+G.A.D. and G.R. acknowledge the support provided by the European Union –NextGenerationEU, in the framework of the iNEST – Interconnected Nord-Est Inno-vation Ecosystem (iNEST ECS00000043 – CUP G93C22000610007) project and its CC5 Young Researchers initiative. The views and opinions expressed are solely those of the authors and do not necessarily reflect those of the European Union, nor can the European Union be held responsible for them. G.A.D. and G.R. would like to acknowl-edge INdAM–GNCS. All expenses related to the acquisition of the data, deployment of the model on the cloud, and all related computational resources were covered by the Royal Belgian Football Association. 
+
+Conflict of interest/Competing interests 
+
+Not Applicable 
+
+Ethics approval and consent to participate 
+
+Not Applicable 
+
+Consent for publication 
+
+Not Applicable 
+
+Materials availability 
+
+Not Applicable 
+
+Data availability 
+
+Private data possessed by the Royal Belgian Football Association. 19 Code availability 
+
+Not available for public use. 
+
+Author contribution 
+
+Gabriel Masella was the primary author, responsible for conducting the principal research, developing the codebase, and writing the manuscript. 
+
+Giuseppe Alessio D’Inverno contributed significantly to the project by offering exten-sive academic support, incorporating specialized graph theory knowledge, validating the final outcomes, and refining the submitted manuscript. 
+
+Max Goldsmith supervised the early stages of the project at the Royal Belgian Football Association, validating initial results and providing foundational guidance on model design. 
+
+Gianluigi Rozza provided supervision and the approval of the overall project, offer-ing also critical resources and mathematical expertise through the MathLAB research group. 
+
+# References 
+
+[1] Silva, R.M.: Sports analytics. Ph.d. dissertation, Simon Fraser University, Burn-aby, Canada (2016). https://summit.sfu.ca/item/16939 [2] Lewis, M.: Moneyball: The Art of Winning an Unfair Game. W. W. Norton & Company, New York (2003) [3] Power, P., Ruiz, H., Wei, X., Lucey, P.: Not all passes are created equal: Objec-tively measuring the risk and reward of passes in soccer from tracking data. In: Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. KDD ’17, pp. 1605–1613. Association for Comput-ing Machinery, New York, NY, USA (2017). https://doi.org/10.1145/3097983. 3098051 . https://doi.org/10.1145/3097983.3098051 
+
+[4] Anzer, G., Bauer, P.: Expected passes. Data Mining and Knowledge Discovery 
+
+36 (1), 295–317 (2022) https://doi.org/10.1007/s10618-021-00810-3 [5] Spearman, W., Basye, A., Dick, G., Hotovy, R., Pop, P.: Physics-based modeling of pass probabilities in soccer. In: Proceeding of the 11th MIT Sloan Sports Analytics Conference, vol. 1 (2017). Boston, MA [6] Fern´ andez, J., Bornn, L., Cervone, D.: Decomposing the immeasurable sport: A deep learning expected possession value framework for soccer. In: 13th MIT Sloan Sports Analytics Conference, vol. 2 (2019) [7] Bekkers, J., Sahasrabudhe, A.: A graph neural network deep-dive into successful counterattacks. arXiv preprint arXiv:2411.17450 (2024) 20 [8] Alon, U., Yahav, E.: On the bottleneck of graph neural networks and its practical implications. In: International Conference on Learning Representations (2021). 
+
+https://openreview.net/forum?id=i80OPhOCVH2 
+
+[9] Di Giovanni, F., Rusch, T.K., Bronstein, M., Deac, A., Lackenby, M., Mishra, S., Veliˇ ckovi´ c, P.: How does over-squashing affect the power of gnns? Transactions on Machine Learning Research [10] Dick, U., Link, D., Brefeld, U.: Who can receive the pass? a computational model for quantifying availability in soccer. Data Mining and Knowledge Discovery 
+
+36 (3), 987–1014 (2022) https://doi.org/10.1007/s10618-022-00827-2 [11] Fern´ andez, J., Bornn, L.: Soccermap: A deep learning architecture for visually-interpretable analysis in soccer. In: Joint European Conference on Machine Learning and Knowledge Discovery in Databases, pp. 491–506 (2020). Springer [12] Decroos, T., Bransen, L., Van Haaren, J., Davis, J., Bessiere, C.: Vaep: An objec-tive approach to valuing on-the-ball actions in soccer. In: Proceedings of the Twenty-ninth International Joint Conference on Artificial Intelligence, IJCAI-20, pp. 4696–4700 (2020). International Joint Conferences on Artificial Intelligence Organization [13] Li, H., Zhang, Z.: Predicting the receivers of football passes. In: Brefeld, U., Davis, J., Van Haaren, J., Zimmermann, A. (eds.) Machine Learning and Data Mining for Sports Analytics, pp. 167–177. Springer, Cham (2019) [14] St¨ ockl, M., Seidl, T., Marley, D., Power, P.: Making offensive play predictable-using a graph convolutional network to understand defensive performance in soccer. In: Proceedings of the 15th MIT Sloan Sports Analytics Conference, vol. 2022 (2021) [15] Rahimian, P., Kim, H., Schmid, M., Toka, L.: Pass receiver and outcome pre-diction in soccer using temporal graph networks. In: International Workshop on Machine Learning and Data Mining for Sports Analytics, pp. 52–63 (2023). Springer [16] Rahimian, P., Davis, J., Toka, L.: Temporal graph network framework for quanti-fying pass reception probabilities against defensive structures. Machine Learning 
+
+115 (2025) https://doi.org/10.1007/s10994-025-06935-6 [17] Gilmer, J., Schoenholz, S.S., Riley, P.F., Vinyals, O., Dahl, G.E.: Neural mes-sage passing for quantum chemistry. In: International Conference on Machine Learning, pp. 1263–1272 (2017). Pmlr [18] Needleman, S.B., Wunsch, C.D.: A general method applicable to the search for similarities in the amino acid sequence of two proteins. Journal of molecular biology 48 (3), 443–453 (1970) 21 [19] Oonk, A., Kempe, M., Grob, D.: The right way to synchronize tracking and event data: Using domain knowledge to optimize algorithms. In: MathSports Conference 2025, p. 136 (2025) [20] Fey, M., Sunil, J., Nitta, A., Puri, R., Shah, M., Stojanoviˇ c, B., Bendias, R., Barghi, A., Kocijan, V., Zhang, Z., He, X., Lenssen, J.E., Leskovec, J.: PyG 2.0: Scalable learning on real world graphs. In: Temporal Graph Learning Workshop @ KDD (2025) [21] Akiba, T., Sano, S., Yanase, T., Ohta, T., Koyama, M.: Optuna: A next-generation hyperparameter optimization framework. In: Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (2019) 22

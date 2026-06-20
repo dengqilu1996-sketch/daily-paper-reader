@@ -1,0 +1,999 @@
+Title: CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation
+
+URL Source: https://arxiv.org/pdf/2606.20542v1
+
+Published Time: Fri, 19 Jun 2026 01:19:44 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+# CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation 
+
+Ilona Demler Xinran Xie Blake Werner Anna Szczuka Pietro Perona 
+
+California Institute of Technology 
+
+{idemler, perona}@caltech.edu 
+
+## Abstract 
+
+The Caltech Tennis Dataset (CalTennis) is a large-scale video benchmark for eval-uating monocular-to-3D pose estimation in the wild. CalTennis comprises over 11 million frames (51 hours) of tennis practice and match play from 40 players, captured with 2–6 synchronized cameras at 60Hz. It is 10× larger than existing in-the-wild human motion video datasets and 3× larger than existing MOCAP-ground-truthed datasets, and it is the first large-scale benchmark to provide syn-chronized multi-view recordings of expert athletic motion. The multi-view setup enables inexpensive, label-free evaluation of monocular-to-3D pose estimation algorithms. We describe a simple, standardized protocol that enables data collec-tion without specialized equipment or expertise, along with fully automated video calibration and synchronization. Benchmarking state-of-the-art monocular-to-3D pose methods on CalTennis, we find that while 3D joint angle recovery is now quite accurate, all models struggle to estimate depth and foot contact consistently. We further propose two novel performance metrics – footwork and stability – as well as qualitatively study body shape inconsistency. These metrics expose previously underexplored failure modes and point to concrete opportunities for improvement in pose estimation and action analysis. 
+
+ Project Page: https://ilonadem.github.io/caltennis-website/ 
+
+Dataset: https://huggingface.co/datasets/demalenk/caltennis 
+
+## 1 Introduction 
+
+Estimating three-dimensional human motion from video is a critical task in a number of domains. Accurate pose measurement underpins applications from gait analysis and injury rehabilitation in healthcare [ 5, 43 ], coaching and analytics in sports [ 40 , 41 ], character animation for movies and gaming [ 30 , 27 ], and even pedestrian safety [ 33 ] and gait identification in forensic analysis [ 35 ]. More recently, human motion data has become central to robotics and embodied AI, where it is used for imitation learning, teleoperation, and training humanoid policies from human demonstrations [ 10 ]. Across all of these, the utility of pose estimation is bounded by its accuracy: small errors in joint position, depth, or ground contact propagate directly into the biomechanical, behavioral, and narrative conclusions that downstream systems draw. Modern MOCAP remains the gold standard for accuracy, and it is the source of ground truth for the majority of current pose estimation benchmarks. But MOCAP is expensive, costing upwards of $150,000 per installation [ 41 ], requiring a dedicated laboratory space, and constraining natural movement through body-worn markers and suits, making it impractical to deploy in the wild. Re-placing MOCAP with monocular video analysis from a single ordinary camera, such as the phone in a coach’s pocket or a spectator’s hand, would therefore have a transformative effect in appli-cations from medicine to sports and entertainment. While monocular video-based methods still fall short of MOCAP-grade accuracy, the last decade has seen considerable progress toward this goal [ 2, 4, 23 , 20 , 9, 38 ]. Large and challenging benchmark datasets are now needed to highlight the remaining failure modes and guide researchers towards reaching application-grade accuracy.  
+
+> Preprint.
+> arXiv:2606.20542v1 [cs.CV] 18 Jun 2026 z
+> Court capture setup Multi -view consistency
+> + 3.3M in other configs
+> Configurations
+> 2.9M
+> frames
+> 1M
+> frames
+> 2.8M
+> frames
+> 0.4M
+> frames
+
+Figure 1: Overview of CalTennis Setup . (Left) : 4-tripod setup, with two overlapping camera views (blue & orange) on each half-court (sections A.2 and 3.1) (Center) : Overlapping views enable multi-view consistency evaluation. We measure the difference in 3D position, the difference in pose once the difference in 3D position is removed, as well as body shape and foot contact (section 5). 
+
+(Right) : We collect up to 6 concurrent views of gameplay across varying configurations, testing reconstruction consistency against diverse view and depth distributions (section 3). We identify six criteria for the benchmark needed to guide this progress: 1. In-the-wild : Record people in real-life, unconstrained, unscripted, everyday activities. 2. Pose coverage : Cover body poses beyond the limited space of walking or other routine activity. 3. Meaningful, repeated actions : Record meaningful actions, repeated by different actors, to support research on higher-level behavior and activity analysis. 4. Expert relevance : Capture activities relevant to users (e.g coaches and clinicians), whose expertise can guide the field to the fine-grained accuracy that applications demand. 5. Large-scale : Large enough to support training and evaluation at modern scale, and to contain the rare corner cases on which models most often fail. 6. Easy and inexpensive to collect : Researchers should be able to contribute equivalent datasets to broaden diversity, and existing ones should be expandable as needed. It should be possible for anyone to collect the data with minimal instruction, so that the collection can scale easily. Methodologically, the last criterion suggests evaluation from the data itself , without prohibitive ground truth such as MOCAP, body sensors, or human annotations used by all current benchmarks. Sports are a compelling source of data: motion is fast and diverse, actions are meaningful and repeated, and data is available across skill levels — ideal for studying technique, style, proficiency, and model consistency. Despite this natural fit, sports remain underrepresented in motion analysis benchmarks for computer vision algorithms. Furthermore, current models generalize poorly to athletic motion [ 50 ], distorting downstream biomechanical conclusions [ 3 ]. Amongst sports, tennis is particularly attractive: standardized court markings let camera geometry be recovered automatically from any view, it spans a rich action vocabulary (serves, volleys, sprints), players are rarely occluded, it may be analyzed at a fine spatio-temporal scale (individual shots, footwork), at an intermediate one (court position, ball placement) and at a long time-scale (tactics, strategy, coaching advice). Because tennis is played worldwide, equivalent data can be collected by independent teams at low cost, satisfying the practical requirements above. We introduce the Caltech Tennis Dataset (CalTennis), the first large-scale, multi-view video dataset of real-world tennis practice and match play. CalTennis contains over 11 million frames (51 hours) from 40 players, captured with 2–6 synchronized consumer cameras at 60Hz. It is 10× larger than prior in-the-wild benchmarks, with substantially more variety in depth from camera, people per video, and pose coverage. To our knowledge, it is the only large-scale multi-view video dataset of unscripted human motion in natural environments. Overlapping views let us evaluate monocular pose estimators without privileged ground truth: a correct reconstruction must agree across views, and inter-view disagreement lower-bounds each model’s error. This lets us probe errors in pose estimates, specifically foot contact, body shape, depth, and stability, that are invisible to existing benchmarks. 2We benchmark five state-of-the-art monocular 3D pose estimators and find that on CalTennis they are overall significantly less accurate than on previous benchmarks. More in detail: we find that joint-angle pose recovery is often accurate, while metric-scale depth estimates are highly unstable, producing rapid, unrealistic jumps in estimated body position. Furthermore foot-contact detection is inconsistent across frames and views. Body shape estimation is also inconsistent: limb lengths, height, and body proportions of the same person vary across views, and differ systematically across models. These are quantities that balance, force, and speed estimation in biomechanical analysis depend on. This work makes the following contributions: 1. Dataset. CalTennis, the largest multi-view, real-world video dataset of skilled athletic motion with 11+ million frames of tennis practice and match play of 40 players captured with up to 6 synchronized consumer cameras. 2. Evaluation methodology. A label-free framework for evaluating monocular 3D pose estimators using multi-view consistency as a lower bound on error, together with new inconsistency metrics: stability, foot skating, and body shape, that expose failure modes invisible to standard benchmarks. 3. Benchmark of state-of-the-art monocular 3D pose algorithms. An extensive evaluation of five state-of-the-art monocular 3D pose methods on CalTennis, showing that while joint-angle pose is often accurate, depth, foot contact, and body shape estimates are unstable — quantities on which downstream applications depend. 4. Data-collection recipe. A simple, inexpensive protocol for capturing multi-view tennis video using consumer phones and lightweight collapsible tripods; calibrated via court geometry; and designed so that equivalent datasets can be easily collected by other teams. 
+
+## 2 Related work 
+
+Human pose estimation methods. Reconstructing human poses from images and videos is typically formulated as estimating SMPL [ 28 ] or SMPL-X [ 32 ] parameters, and has evolved through several increasingly challenging paradigms. Early methods targeted cropped single-person images [ 47 , 4 , 17 ,21 , 23 , 1], then arbitrary images [ 54 , 15 , 39 , 48 ], leveraging pretrained object detectors [ 47 , 34 , 46 ]before predicting 3D poses in camera coordinates. The problem was next extended to videos with a temporal processing step for trajectory continuity [ 15 , 18 , 21 , 6 ]. Current video-based methods reconstruct human motion in global world coordinates [ 22 , 25 , 38 , 45 , 49 , 52 , 44 , 24 , 37 ]. Because estimating depth is ill-posed, most approaches run SLAM or camera calibration steps and learn body priors. Our work evaluates state-of-the-art 3D human pose reconstruction methods on videos to assess their utility for downstream applications. While we use SMPL/SMPL-X in this evaluation, our method is agnostic to the representation. 
+
+Benchmarks. Collecting ground-truth 3D human motion at scale is challenging and expensive. Laboratory benchmarks such as Human3.6M [ 13 ] record one person at a time in a 4 m × 3 m area with synchronized cameras and time-of-flight sensors. In-the-wild benchmarks relax the environment but retain body-worn instrumentation: 3DPW [ 42 ] attaches IMUs and EMDB [ 19 ] uses wireless electromagnetic sensors on people moving through everyday outdoor spaces. Contact-focused benchmarks such as RICH [ 11 ] rely on laser-scanned scene geometry, while HI4D [ 51 ] uses 4D scans of close human–human interaction to optimize meshes. None record unscripted, skilled motion in natural environments at scale, and additional views, when present, are used to generate ground truth rather than evaluate it. We discuss the resulting coverage gaps quantitatively in Section 3. 
+
+Multi-view capture and label-free evaluation. A parallel line of work uses multi-camera rigs to capture human motion without body-worn markers. CMU Panoptic Studio [ 16 ] uses a geodesic dome of 500+ synchronized cameras, and AIST++ [ 26 ] provides multi-view dance recordings in a controlled studio. At the lightweight end, OpenCap [ 41 ] shows that two smartphones with a markerless pipeline recover clinically useful biomechanics. Our capture recipe sits in the same lightweight regime but targets unscripted, high-speed athletic motion in public facilities rather than controlled clinical settings. Our use of multi-view information is different: we treat view disagreement not as a training signal or a ground-truth generator, but as a direct, label-free measurement of reconstruction error. 
+
+Sports video and pose datasets. Sports video has a long history in computer vision, though most large-scale sports datasets such as Penn Action [ 53 ], FineGym [ 36 ], SoccerNet [ 8], and SportsMOT [ 7] support action recognition, temporal localization, and multi-object tracking, but do 3Table 1: CalTennis vs. Other Benchmarks. Our videos span significantly longer frame durations from up to 6 concurrent views at a time. We capture more people per video, at greater depth ranges and with more pose coverage. We report numbers on the test splits of all datasets.                                                                        
+
+> Multi-View? Real-world? Num Frames (M) Avg. seq len (sec) Depth range (m) Per-Joint Articulation Pose Space Coverage Collector Friendly? Hardware Cost k$ Accuracy
+> 3DPW [42] ✗✓0.05 45 3.1 – 7.4 69.9% 58% ✗21 mm
+> EMDB [19] ✗✓0.11 42 1.9 – 2.7 69.9% 60% ✗31 cm
+> RICH [11] ✓✓0.54 127 4.2 – 4.7 75.5% 62% ✗100 cm
+> HI4D [51] ✗✗0.01 72.7 – 3.0 71.7% 70% ✗21 mm
+> Human3.6M [13] ✓✗1.47 340 4.5 – 5.8 -89% ✗150 mm
+> SportsPose [12] ✓✗1.50 90.7 – 3.4 -47% ✗25 cm
+> CalTennis ✓✓11.03 3365 13.4 - 16.7 70.2% 85% ✓2cm 1000
+> 10000
+> 100000
+> 1000000
+> 10000000
+> 3DPW
+> EMDB
+> RICH
+> HI4D
+> CalTennis-Full
+
+Number of frames         
+
+> 50,000 110,000 50,000
+> 10,000
+> 11,030,047
+> Currently used benchmarks Ours
+> 0
+> 5
+> 10
+> 15
+> 20
+> Depth from camera (m)
+> 0
+> 2
+> 4
+> 6
+> 8
+> # People per video
+> 3DPW EMDB HI4D CalTennis
+> 4.8 2.3 2.9
+> 15.1
+> 1.5 12
+> 4.1
+
+0
+
+20 
+
+40 
+
+60 
+
+80 
+
+Pose space coverage (%)    
+
+> 3DPW EMDB HI4D CalTennis
+
+Figure 2: CalTennis complexity compared to other real-world benchmarks. (Left) : CalTennis contains 10× frames than currently used benchmarks. (Middle) : CalTennis contains more variation in the distance of people from the camera (top), as well as many more people per video (bottom). 
+
+(Right) : CalTennis has the highest pose space coverage (defined in §3). not provide 3D pose annotations. A smaller set of recent datasets does target 3D pose in sports, and these are CalTennis’s closest relatives. Recent 3D pose datasets, such as AthletePose3D [ 50 ] and SportsPose [ 12 ] are restricted to lab-based, imitated motions. AthletePose3D additionally provides a small subset of multi-view ice rink jumping videos. These videos are similar to our closest relative, WorldPose [ 14 ], which proves unscripted athletic motion can be captured at scale from multi-view video. CalTennis shares this premise but differs from the two datasets in three key ways: (1) we use accessible consumer phones on tripods rather than elite broadcast infrastructure; (2) we leverage multi-view disagreement as a label-free error metric instead of triangulating pseudo-ground-truth; and (3) we focus on highly articulated strokes and footwork rather than large-scale locomotion. Thus, CalTennis, WorldPose, and AthletePose3D serve as complementary benchmarks. 
+
+## 3 The CalTennis Dataset 
+
+3.1 Data collection and curation 
+
+Our CalTennis benchmark contains real-world multi-view videos of tennis practices and games. We opted for a multi-view setup to enable inexpensive, label-free evaluation of monocular-to-3D pose estimation algorithms. We designed a collection protocol to minimize equipment cost and make it easy for anyone to collect good-quality video. In our case it is the players themselves collecting video of the practices and games of the Caltech men’s and women’s tennis teams with minimal instruction. Video is recorded at 60 Hz in HD ( 1920 × 1080 pixels) using the main camera (1x, 24mm f/1.78) of standard iPhones (model 14 or newer, owned by players and coaches at no marginal cost to the project) on fully extended 1.65 m MagSafe tripods (costing ≈$40 each) placed around the court at standard locations and orientations specified by us (fig. 1). We deploy 2-6 cameras concurrently per session on standard courts (each half-court measuring 10.98 m ×11.88 m), spanning both half-court and full-court; cameras are typically ≈ 12m apart at 1.65 m height (fig. 1). Across sessions by the Caltech tennis teams and recreational players, we collected over 11 million frames (51 hours) from 40 players spanning collegiate to recreational levels, with 400K–2.9M frames per camera configuration, allowing us to evaluate multi-view reconstruction consistency across diverse view geometries. All sessions were conducted under IRB approval with voluntary, informed consent, and we blur all faces using the deface algorithm [31] to protect player privacy. 4Camera 1 tcam1   
+
+> Camera 2 tcam2
+> Spatial calibration Temporal synchronization
+
+Figure 3: Spatiotemporal calibration and synchronization. (Left) : Calibrating cameras (intrinsic and extrinsic calibration, outlined in section A.2) allows us to lift model estimates into a shared court coordinate system (§A.2). Discrepancy in depth estimates results in differing 3D translation estimates. 
+
+(Right) : Videos lack identical timestamps, so we align sequences by optimizing a continuous global offset variable ∆t (§A.2) to minimize pose misalignment. 
+
+3.2 Dataset statistics 
+
+CalTennis is the first benchmark to use multi-view, real-world recordings of skilled human motion, capturing data underrepresented in existing pose datasets and more representative of downstream motion-reconstruction applications. CalTennis contains 10 × more frames than other real-world benchmarks and 3× more than the largest MoCap benchmark (Human3.6M), with substantially greater depth variability: 90% of poses lie 13.4–16.7m from the camera, versus 4.5–5.8m in Hu-man3.6M. We measure pose diversity along two axes. Pose space coverage is the Shannon entropy of frame-to-cluster assignments (over k = 500 PCA clusters of the shared pose-joint space), normalized so 100% indicates uniform coverage. Per-joint articulation is the entropy of each joint’s angular distribution divided by its anatomical range of motion, averaged across joints. CalTennis scores 85% on coverage, versus 62% for the next-best real-world benchmark and 89% for lab-captured Hu-man3.6M. Its per-joint articulation (0.70) is comparable to other real-world benchmarks (0.67–0.76), since tennis is an upright sport that constrains spine and pelvis motion; on the joints the sport actively recruits — knees, shoulders, and elbows — CalTennis has the highest articulation of any benchmark (per-joint histograms in Appendix A.5). High coverage with sport-specific articulation indicates a dense, domain-specific motion manifold. 
+
+## 4 Calibration and Synchronization 
+
+To run multi-view label-free evaluations of SOTA human pose estimation models, we lift pose predictions from each camera into a shared global space-time reference frame by calibrating cameras and synchronizing the videos. We review our method below, and more fully in Appendix A.2. 
+
+Problem definition. Given N cameras facing a scene, each camera ci records a video V i =
+
+{Iit }tik 
+
+> t=0
+
+∈ RH×W ×3 with timestamps t ∈ { ti
+
+> 0
+
+, . . . , t ik} ∈ R+ and intrinsics Ki ∈ R3×4 and extrinsics (Ri, T i) ∈ SO (3) × R3. We parameterize the poses of p people via SMPL-X [ 32 ]: 
+
+Hi = {(τ it , ϕ it, β it , θ it)}tik
+
+> t=ti
+> 0
+
+, with translation τ it ∈ Rp×3, body pose θit ∈ Rp×21 ×3, orientation 
+
+ϕit ∈ Rp×3, and shape βit ∈ Rp×10 . Given per-view pose estimates Hi = M (V i) from a pre-trained model M , we lift {H0, . . . , H N } into a shared spatio-temporal world frame to evaluate multi-view consistency (fig. 3). Because timestamps are unsynchronized and extrinsics are unknown a priori, the following sections describe our camera calibration, spatial fusion, and temporal calibration steps. 
+
+Video recording setup and camera calibration. We position up to N = 6 cameras around the court to cover all sides of the player (Fig.1). To calibrate each ci, we exploit the standardized court geometry: in a frame Iit , we identify n court line intersections { ˆP ik}nk=1 ∈ R3 and their pixel correspondences {ˆpik}nk=1 ∈ R2. With intrinsics Ki from iPhone metadata and projection 
+
+π(·; Ki) : R3 → R2, we minimize reprojection error to get extrinsics: 
+
+min   
+
+> Ri,T i
+> n
+
+X
+
+> k=1
+
+π(Ri ˆPk + T i; Ki) − ˆpk
+
+> 2
+
+(1) 5Spatial fusion. With camera extrinsics (Ri, T i) recovered, we lift estimates into the world frame using the model-to-world transform TW model   
+
+> i→W
+
+, which maps each translation as ˜τ it =
+
+TW model   
+
+> i→W
+
+[τ it ; 1] . We provide further details in Appendix A.2. 
+
+Temporal synchronization. Athletic motion requires millisecond precision. iPhone cameras receive global timestamps up to the nearest second, resulting in up to 1000-millisecond offsets between videos; ignoring this lack of alignment and comparing nearest-frame predictions from two videos would conflate model error with temporal misalignment. We resolve this in two stages. First, we linearly interpolate reconstructed poses to query any camera cj at an arbitrary time t. Second, to fix up to 1000 ms of inter-camera offset caused by coarse device logging, we optimize a global offset 
+
+∆t ∈ [−1000 , 1000] ms via grid search to minimize cross-view pose disagreement (fig. 3). 
+
+## 5 Evaluation Metrics 
+
+CalTennis uses multi-view video recordings for label-free evaluation of monocular pose estimates: a correct prediction must agree across views, and inter-view disagreement lower-bounds each model’s error. In addition to the standard metrics of MPJPE, PA-MPJPE, and PVE [ 17 ], we introduce further metrics that capture additional notions of correctness that are relevant for downstream applications. 
+
+Translation error. The L2 distance between per-view ( i, j ) translation estimates for person p:
+
+Etrans = 1
+
+T P 
+
+X
+
+> t,p
+
+∥τ ti,p − τ tj,p ∥2. (2) 
+
+Pose error. Mean per-joint position error relative to the pelvis coordinate. This measures orientation and pose consistency independently of translation error. Ji, J j are joint estimates recovered from the per-view SMPL-X poses: 
+
+Epose = 1
+
+T P K 
+
+X
+
+> t,p K
+
+X
+
+> k=1
+
+∥Jti,p,k − Jtj,p,k ∥2. (3) 
+
+Footwork. We measure cross-view agreement of foot joint velocities v(i) 
+
+> p,k,t
+
+∈ R3 as well as foot heights h(i) 
+
+> p,k,t
+
+∈ R for each view i (e.g. foot floating), exposing footwork failures: 
+
+Eskate = 1
+
+Z
+
+X
+
+> t,p,k
+
+v(i) 
+
+> p,k,t
+
+− v(j)  
+
+> p,k,t 2
+
+, Eheight = 1
+
+Z
+
+X
+
+> t,p,k
+
+h(i) 
+
+> p,k,t
+
+− h(j) 
+
+> p,k,t
+
+, (4) where Z = T P K foot normalizes across frames, persons, and foot joints k.
+
+Stability. Pose stability determines whether motions are balanced, and models that disagree on stability across views are likely unreliable for sport-analysis. Following robotics literature [ 29 ], we define per-view stability as the L2 distance from the projected center of mass to the convex hull Q of grounded foot joints, set to zero when the projection lies inside Q:
+
+E(i) 
+
+> stab
+
+=
+
+min q∈Q ∥CoM xy − q∥2 if CoM xy /∈ Q
+
+0 otherwise. (5) Cross-view stability error is the mean absolute disagreement between matched persons across views; large values indicate models disagree on whether a pose is balanced: 
+
+Estab = 1
+
+T P 
+
+X
+
+> t,p
+
+E(i) 
+
+> stab ,p,t
+
+− E(j) 
+
+> stab ,p,t
+
+. (6) 
+
+## 6 Experimental Evaluation 
+
+We assess state-of-the-art human pose reconstruction models on CalTennis and identify overlooked challenges in pose reconstruction that make it a difficult problem. 6Table 2: Overall Model Performance. We report multi-view consistency of poses estimated by SOTA models run on CalTennis (§6.1). Results are in millimeters ( mm ), except for foot-velocity (m/s ). We define these metrics in §5. Different models excel at different aspects of motion reconstruction: PromptHMR produces the most consistent translation and pose estimates, whereas WHAM produces the most consistent foot velocity estimates. All metrics computed on the first 5M frames of CalTennis; full results forthcoming.                                                    
+
+> Translation Pose MPJPE PA-MPJPE Foot-Vel Foot-Height Stability PromptHMR [44] 942 105 1,785 84 3.23 70 25
+> WHAM [38] 2,664 106 2,675 119 0.72 150 44
+> GVHMR [37] 3,587 109 1,066 88 2.49 60 21
+> TRAM [45] 2,340 115 958 91 6.65 80 33
+> GENMO [24] 2,560 110 1,020 91 4.40 60 16 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5
+> Translation Error (m)
+> 50
+> 75
+> 100
+> 125
+> 150
+> 175
+> 200
+> 225
+> Pose Error  (mm)
+> PromptHMR GVHMR
+> TRAM
+> WHAM
+> GENMO
+
+Translation vs. Pose Error         
+
+> 50 100 150 200 250 300 350 400 450
+> Model Parameters (Millions)
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> 3.5
+> 4.0
+> 4.5
+> Translation Error  (m)
+> PromptHMR
+> WHAM
+> GVHMR
+> TRAM
+> GENMO
+
+Translation Error vs. Model Size 
+
+Figure 4: Multi-View Consistency Analysis. (Left) : Median pose error versus translation error (Etrans ) ( Epose ) across SOTA models on CalTennis. Metrics represent cross-view disagreement (§5); error bars denote 25th/75th percentiles. (Right) : Translation error versus model size (num. parameters). PromptHMR has the lowest translation inconsistency but also the heaviest, while TRAM, which is second lowest, is also second lightest. 
+
+Baselines. We evaluate five state-of-the-art architectures that report top performance on EMDB [ 19 ], RICH [ 11 ], and 3DPW [ 42 ] (Appendix A.4), spanning a range of strategies: TRAM [ 45 ] predicts per-person SMPL-X poses and lifts to world coordinates; GVHMR [ 37 ] uses intermediate gravity-view coordinates; GENMO [ 24 ] is a video-conditioned diffusion model; WHAM [ 38 ] refines ground-foot contacts; and PromptHMR [ 44 ] conditions a transformer on prompts such as 2D keypoints and contacts. We report multi-view consistency on the standard metrics (Translation Error, Pose Error, MPJPE, PA-MPJPE) alongside Foot-Skating and Stability. We do not supply camera coordinates a priori, so each model runs its own camera-estimation preprocessing. We lift outputs into a shared coordinate system following Section A.2. Experiments are run on an NVIDIA H100, on the first 5M frames of the dataset. 
+
+6.1 Model Performance on CalTennis 
+
+We evaluate the consistency of multi-view estimates made by state-of-the-art monocular 3D human pose reconstruction models, and report model performance in Table 2. We find that different models excel at different aspects of performance. PromptHMR performs best on the standard pose metrics – translation error, pose error, and PA-MPJPE – with an average of 0.942m, .105m, and .084m respectively. WHAM performs significantly worse on the standard metrics (2.664m translation error and 11.9cm PA-MPJPE), but performs exceptionally well on foot velocity consistency (.72m/s), compared to 3.23m/s for PromptHMR. We hypothesize that this is due to its iterative pose refinement step that optimizes foot-ground contacts. GENMO poses are the most consistent along the foot height (.06m) and stability metrics. Overall, the highest reported performance on CalTennis is significantly worse than other benchmarks for all models across all metrics (Appendix A.4). In Figure 4 we compare translation and pose error more closely, plotting median values of each metric, with error bars indicating the 25th and 75th percentiles. We find that all models struggle with making consistent translation estimates, with average error ranging from 0.9m - 3.6m, with 75% of 7Figure 5: Consistency Across Motion Metrics. Multi-view agreement for foot height ( Eheight ), stability ( Estab ), and shape estimates (§5). No single model dominates across all dimensions; e.g., while WHAM excels in foot height consistency, it shows high inconsistency in stability and shape metrics. Results highlight the trade-offs between static pose accuracy and temporal/physical consis-tency (§6.1). PA -MPJPE ↓ (m) 
+
+> Frame count
+
+Figure 6: Cross-view pose projections. Histogram of multi-view PA-MPJPE inconsistency for PromptHMR (the best-performing model) on a single video, colored by 10% intervals. We project pose estimates from one camera onto the other view to highlight inconsistencies. Low-disagreement poses are typically stationary and equally visible by both cameras, while high disagreement occurs on distant or dynamic poses with some occlusion. translation errors within a 1m window. As the poses contained in CalTennis span greater distances, pixel-level errors in pose estimates can result in more severe mistakes in translation estimates, an effect that is not obvious from current benchmarks. Qualitatively, we find that this results in a "pose drifting" effect, or oscillations in translation estimates along each camera’s depth axis. Models are much more consistent when it comes to pose estimates, with about 11cm error between multi-view poses across all models. This suggests that these models are more ready for downstream applications involving pose estimates alone, rather than those dependent on accurate 3D identification of people in the scene. In Figure 5 we compare the consistency of different models along foot skating, stability, and shape estimates. In addition to there being no best model across the board, the relative ordering of model performance for each metric changes as well. We provide a qualitative example of a two-view video in Figure 6. We find that multi-view error tends to be normally distributed. High-disagreement frames often correspond to poses in motion, or in which the depth scale from one view is unclear. Low-disagreement frames typically correspond to stationary, "neutral" poses that are clearly resolved from both views. Across all examples, poses disagree most in the positions of feet and hands, especially when there are partial occlusions. 
+
+6.2 Pose bias 
+
+A metric that is overlooked and yet affects all downstream motion analysis is shape consistency, or a person’s height, weight, and musculature represented by the SMPL-X shape parameter. We show a qualitative example of model shape consistency in Figure 7. Notably, all models produce inconsistent predictions across different views, suggesting models are sensitive to camera angle. 8GVHMR PromptHMR TRAM WHAM       
+
+> 1.50
+> 1.25
+> 1.00
+> 0.75
+> 0.50
+> 0.25
+> 1.2 0.6 0.0
+> 0.00 1.2 0.6 0.0 1.2 0.6 0.0 1.2 0.6 0.0
+> x(m) x(m) x(m) x(m)
+> y(m)
+> GENMO
+> Up to 20cm
+> height
+> disagreement
+> 1.2 0.6 0.0
+> x(m)
+
+Figure 7: Shape consistency. Models exhibit significant inconsistency in SMPL-X shape parameters (β) across different views. Qualitatively, PromptHMR (§6.1) achieves the highest multi-view consis-tency, likely due to its conditioning on 2D bounding boxes and keypoints. PromptHMR produces the most consistent multi-view shape reconstruction, likely because it takes in additional bounding box and joint information. There are even greater discrepancies across different models, suggesting that each has its own learnt pose bias. Furthermore, in order to produce consistent trajectories, models often predict shape parameters once per video, based on the first frame. Our findings suggest the need for a more nuanced video-level approach to shape prediction. 
+
+## 7 Discussion and Conclusions 
+
+We introduce CalTennis, a large-scale, multi-view video dataset of real-world tennis practices and match play, alongside a label-free evaluation framework that uses multi-view consistency to lower-bound monocular reconstruction error. Across eleven million frames of unscripted athletic motion, the dataset exposes monocular 3D pose estimators to depth ranges, pose variability, and action repetition that existing in-the-wild benchmarks do not cover, without requiring MOCAP, body-worn sensors, or manual annotation — only consumer phones, inexpensive tripods, and the geometry of a tennis court. Our benchmark findings answer two questions. First, is any one model best? No. PromptHMR leads on conventional translation and joint-position metrics but shows the largest per-video variance; WHAM collapses foot skating and pose drift to near zero at the cost of much worse translation accuracy; GENMO is the most internally consistent across views; PromptHMR produces the most stable body shape across views. No model dominates across the axes that matter. Second, is the best available model good enough for downstream applications? Also no — but the answer depends on the application. Joint-angle pose recovery is now accurate enough that tasks depending primarily on relative body configuration and temporal kinematics — activity recognition, coarse technique analysis, and gait-based identification — can proceed with care. But three quantities remain unreliable across every model we tested: absolute distance and depth, ground-contact detection, and body shape (limb lengths, height, proportions). These are exactly the quantities that clinical biomechanical analysis, force and balance estimation, fine-grained sports analytics, pedestrian intent prediction, and forensic stride-length measurement most directly depend on. A coach reading stroke technique from a phone video can trust current models more than a clinician reading weight transfer, and far more than a biomechanist measuring ground reaction forces from video alone. Beyond these findings, our multi-view consistency framing is portable. Any benchmark that can be captured from multiple views inherits a label-free error signal, which we hope lowers the cost of building the next generation of in-the-wild benchmarks in other sports, clinical motion analysis, and everyday activity. We release dataset, capture recipe, and evaluation code to make this path concrete. 
+
+Limitations & Broader Impacts. CalTennis is currently limited to a single sport, climate, and surface type, captured by one research group. Our "easy and inexpensive to collect" claim has not yet been verified through replication by other teams. Crucially, multi-view disagreement provides a 
+
+lower bound on error, making our dataset a complement to, rather than a replacement for, absolute MOCAP validation. While CalTennis aims to advance accessible motion analysis, large-scale human datasets carry inherent privacy and surveillance risks; we mitigate these via IRB approval, informed consent, and mandatory face blurring. Finally, our benchmark reveals that current monocular models are unreliable when estimating depth, foot contact, and body shape, making them unsuitable for most clinical and forensic settings. 98 Acknowledgments and Disclosure of Funding 
+
+We would like to thank Damiano Marsili, Aadarsh Sahoo, and Dylan Zhou for valuable feedback and discussion, as well as the Caltech tennis coaches, Adam Clark and Rachel Viollet. This work is supported by the Technology Innovation Institute (TII) and the National Science Foundation Graduate Research Fellowship Program under Grant No. 2139433. Data of the Caltech Tennis Team was obtained through explicit IRB approved consent. 10 References 
+
+[1] Fabien Baradel, Matthieu Armando, Salma Galaaoui, Romain Brégier, Philippe Weinzaepfel, Grégory Rogez, and Thomas Lucas. Multi-hmr: Multi-person whole-body human mesh recovery in a single shot, 2024. [2] Federica Bogo, Angjoo Kanazawa, Christoph Lassner, Peter Gehler, Javier Romero, and Michael J. Black. Keep it SMPL: Automatic estimation of 3D human pose and shape from a single image. In European Conference on Computer Vision (ECCV) , pages 561–578, 2016. [3] Valentina Camomilla, Andrea Cereatti, Andrea Giovanni Cutti, Silvia Fantozzi, Rita Stagni, and Giuseppe Vannozzi. Methodological factors affecting joint moments estimation in clinical gait analysis: a systematic review. BioMedical Engineering OnLine , 16(1):106, aug 2017. [4] Hongsuk Choi, Gyeongsik Moon, Ju Yong Chang, and Kyoung Mu Lee. Beyond static features for temporally consistent 3d human pose and shape from a video, 2021. [5] Steffi L Colyer, Murray Evans, Darren P Cosker, and Aki I T Salo. A review of the evolution of vision-based motion analysis and the integration of advanced computer vision methods towards developing a markerless system. Sports Medicine - Open , 2018. [6] Kellie Corona, Katie Osterdahl, Roderic Collins, and Anthony Hoogs. Meva: A large-scale multiview, multimodal video dataset for activity detection, 2020. [7] Yutao Cui, Chenkai Zeng, Xiaoyu Zhao, Yichun Yang, Gangshan Wu, and Limin Wang. SportsMOT: A large multi-object tracking dataset in multiple sports scenes. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) , pages 9921–9931, 2023. [8] Silvio Giancola, Mohieddine Amine, Tarek Dghaily, and Bernard Ghanem. SoccerNet: A scalable dataset for action spotting in soccer videos. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW) , 2018. [9] Shubham Goel, Georgios Pavlakos, Jathushan Rajasegaran, Angjoo Kanazawa, and Jitendra Malik. Humans in 4d: Reconstructing and tracking humans with transformers, 2023. [10] Tairan He, Zhengyi Luo, Xialin He, Wenli Xiao, Chong Zhang, Weinan Zhang, Kris Kitani, Changliu Liu, and Guanya Shi. OmniH2O: Universal and dexterous human-to-humanoid whole-body teleoperation and learning. In Conference on Robot Learning (CoRL) , 2024. [11] Chun-Hao P. Huang, Hongwei Yi, Markus Höschle, Matvey Safroshkin, Tsvetelina Alexiadis, Senya Polikovsky, Daniel Scharstein, and Michael J. Black. Capturing and inferring dense full-body human-scene contact. In Proceedings IEEE/CVF Conf. on Computer Vision and Pattern Recognition (CVPR) , pages 13274–13285, June 2022. [12] Christian Keilstrup Ingwersen, Christian Møller Mikkelstrup, Janus Nørtoft Jensen, Morten Rieger Han-nemose, and Anders Bjorholm Dahl. SportsPose — a dynamic 3D sports pose dataset. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW) , pages 5219–5228, 2023. [13] Catalin Ionescu, Dragos Papava, Vlad Olaru, and Cristian Sminchisescu. Human3.6m: Large scale datasets and predictive methods for 3d human sensing in natural environments. IEEE Transactions on Pattern Analysis and Machine Intelligence , 36(7):1325–1339, jul 2014. [14] Tianjian Jiang, Johsan Billingham, Sebastian Müksch, Juan Zarate, Nicolas Evans, Martin R. Oswald, Marc Pollefeys, Otmar Hilliges, Manuel Kaufmann, and Jie Song. WorldPose: A world cup dataset for global 3D human pose estimation. In Proceedings of the European Conference on Computer Vision (ECCV) , 2024. [15] Wen Jiang, Nikos Kolotouros, Georgios Pavlakos, Xiaowei Zhou, and Kostas Daniilidis. Coherent reconstruction of multiple humans from a single image, 2020. [16] Hanbyul Joo, Hao Liu, Lei Tan, Lin Gui, Bart Nabbe, Iain Matthews, Takeo Kanade, Shohei Nobuhara, and Yaser Sheikh. Panoptic studio: A massively multiview system for social motion capture. In Proceedings of the IEEE International Conference on Computer Vision (ICCV) , pages 3334–3342, 2015. [17] Angjoo Kanazawa, Michael J. Black, David W. Jacobs, and Jitendra Malik. End-to-end recovery of human shape and pose, 2018. [18] Angjoo Kanazawa, Jason Y. Zhang, Panna Felsen, and Jitendra Malik. Learning 3d human dynamics from video, 2019. 
+
+11 [19] Manuel Kaufmann, Jie Song, Chen Guo, Kaiyue Shen, Tianjian Jiang, Chengcheng Tang, Juan José Zárate, and Otmar Hilliges. EMDB: The Electromagnetic Database of Global 3D Human Pose and Shape in the Wild. In International Conference on Computer Vision (ICCV) , 2023. [20] Muhammed Kocabas, Nikos Athanasiou, and Michael J. Black. VIBE: Video inference for human body pose and shape estimation. In IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) ,pages 5253–5263, 2020. [21] Muhammed Kocabas, Chun-Hao P. Huang, Otmar Hilliges, and Michael J. Black. Pare: Part attention regressor for 3d human body estimation, 2021. [22] Muhammed Kocabas, Ye Yuan, Pavlo Molchanov, Yunrong Guo, Michael J. Black, Otmar Hilliges, Jan Kautz, and Umar Iqbal. Pace: Human and camera motion estimation from in-the-wild videos, 2023. [23] Nikos Kolotouros, Georgios Pavlakos, Michael J. Black, and Kostas Daniilidis. Learning to reconstruct 3d human pose and shape via model-fitting in the loop, 2019. [24] Jiefeng Li, Jinkun Cao, Haotian Zhang, Davis Rempe, Jan Kautz, Umar Iqbal, and Ye Yuan. Genmo: A generalist model for human motion, 2025. [25] Jiefeng Li, Ye Yuan, Davis Rempe, Haotian Zhang, Pavlo Molchanov, Cewu Lu, Jan Kautz, and Umar Iqbal. Coin: Control-inpainting diffusion prior for human and camera motion estimation, 2024. [26] Ruilong Li, Shan Yang, David A. Ross, and Angjoo Kanazawa. AI choreographer: Music conditioned 3D dance generation with AIST++. In Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) , pages 13401–13412, 2021. [27] Stephen Lombardi, Jason Saragih, Tomas Simon, and Yaser Sheikh. Deep appearance models for face rendering. ACM Transactions on Graphics , 37(4):68:1–68:13, 2018. [28] Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll, and Michael J. Black. Smpl: a skinned multi-person linear model. ACM Trans. Graph. , 34(6), November 2015. [29] R.B. McGhee and A.A. Frank. On the stability properties of quadruped creeping gaits. Mathematical Biosciences , 3:331–351, 1968. [30] Alberto Menache. Understanding Motion Capture for Computer Animation . Morgan Kaufmann, 2 edition, 2011. [31] ORB-HD. deface: Video anonymization by face detection, 2026. [32] Georgios Pavlakos, Vasileios Choutas, Nima Ghorbani, Timo Bolkart, Ahmed A. A. Osman, Dimitrios Tzionas, and Michael J. Black. Expressive body capture: 3d hands, face, and body from a single image, 2019. [33] Amir Rasouli and John K. Tsotsos. Autonomous vehicles that interact with pedestrians: A survey of theory and practice. IEEE Transactions on Intelligent Transportation Systems , 21(3):900–918, 2020. [34] Joseph Redmon, Santosh Divvala, Ross Girshick, and Ali Farhadi. You only look once: Unified, real-time object detection, 2016. [35] Alireza Sepas-Moghaddam and Ali Etemad. Deep gait recognition: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence , 45(1):264–284, 2023. [36] Dian Shao, Yue Zhao, Bo Dai, and Dahua Lin. FineGym: A hierarchical video dataset for fine-grained action understanding. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pages 2616–2625, 2020. [37] Zehong Shen, Huaijin Pi, Yan Xia, Zhi Cen, Sida Peng, Zechen Hu, Hujun Bao, Ruizhen Hu, and Xiaowei Zhou. World-grounded human motion recovery via gravity-view coordinates. In SIGGRAPH Asia 2024 Conference Papers , SA ’24, pages 1–11. ACM, December 2024. [38] Soyong Shin, Juyong Kim, Eni Halilaj, and Michael J. Black. Wham: Reconstructing world-grounded humans with accurate 3d motion, 2024. [39] Qingping Sun, Yanjun Wang, Ailing Zeng, Wanqi Yin, Chen Wei, Wenjia Wang, Haiyi Mei, Chi Sing Leung, Ziwei Liu, Lei Yang, and Zhongang Cai. Aios: All-in-one-stage expressive human pose and shape estimation, 2024. 
+
+12 [40] Graham Thomas, Rikke Gade, Thomas B. Moeslund, Peter Carr, and Adrian Hilton. Computer vision for sports: Current applications and research topics. Computer Vision and Image Understanding , 159:3–18, 2017. [41] Scott D. Uhlrich, Antoine Falisse, Łukasz Kidzi´ nski, Julie Muccini, Michael Ko, Akshay S. Chaudhari, Jennifer L. Hicks, and Scott L. Delp. OpenCap: Human movement dynamics from smartphone videos. 
+
+PLOS Computational Biology , 19(10):e1011462, 2023. [42] Timo von Marcard, Roberto Henschel, Michael Black, Bodo Rosenhahn, and Gerard Pons-Moll. Recover-ing accurate 3d human pose in the wild using imus and a moving camera. In European Conference on Computer Vision (ECCV) , sep 2018. [43] Logan Wade, Laurie Needham, Polly McGuigan, and James Bilzon. Applications and limitations of current markerless motion capture methods for clinical gait biomechanics. PeerJ , 10:e12995, 2022. [44] Yufu Wang, Yu Sun, Priyanka Patel, Kostas Daniilidis, Michael J. Black, and Muhammed Kocabas. Prompthmr: Promptable human mesh recovery, 2025. [45] Yufu Wang, Ziyun Wang, Lingjie Liu, and Kostas Daniilidis. Tram: Global trajectory and motion of 3d humans from in-the-wild videos, 2024. [46] Yuxin Wu, Alexander Kirillov, Francisco Massa, Wan-Yen Lo, and Ross Girshick. Detectron2. https: //github.com/facebookresearch/detectron2 , 2019. [47] Yufei Xu, Jing Zhang, Qiming Zhang, and Dacheng Tao. Vitpose: Simple vision transformer baselines for human pose estimation, 2022. [48] Xitong Yang, Devansh Kukreja, Don Pinkus, Anushka Sagar, Taosha Fan, Jinhyung Park, Soyong Shin, Jinkun Cao, Jiawei Liu, Nicolas Ugrinovic, Matt Feiszli, Jitendra Malik, Piotr Dollar, and Kris Kitani. Sam 3d body: Robust full-body human mesh recovery, 2026. [49] Vickie Ye, Georgios Pavlakos, Jitendra Malik, and Angjoo Kanazawa. Decoupling human and camera motion from videos in the wild, 2023. [50] Calvin Yeung, Tomohiro Suzuki, Ryota Tanaka, Zhuoer Yin, and Keisuke Fujii. Athletepose3d: A benchmark dataset for 3d human pose estimation and kinematic validation in athletic movements, 2025. [51] Yifei Yin, Chen Guo, Manuel Kaufmann, Juan Zarate, Jie Song, and Otmar Hilliges. Hi4d: 4d instance segmentation of close human interaction. In Computer Vision and Pattern Recognition (CVPR) , 2023. [52] Ye Yuan, Umar Iqbal, Pavlo Molchanov, Kris Kitani, and Jan Kautz. Glamr: Global occlusion-aware human mesh recovery with dynamic cameras, 2022. [53] Weiyu Zhang, Menglong Zhu, and Konstantinos G. Derpanis. From actemes to action: A strongly-supervised representation for detailed action understanding. In Proceedings of the IEEE International Conference on Computer Vision (ICCV) , 2013. [54] Yufei Zhu, Andrey Rudenko, Tomasz P. Kucner, Luigi Palmieri, Kai O. Arras, Achim J. Lilienthal, and Martin Magnusson. Cliff-lhmp: Using spatial dynamics patterns for long-term human motion prediction, 2023. 
+
+13 A Technical appendices and supplementary material 
+
+A.1 Maximum-likelihood consensus pose 
+
+To establish a single robust 3D joint estimate per timestep from N overlapping views, we form an MLE-weighted consensus pose. Let J(i) 
+
+> c
+
+∈ R3 represent a joint position estimated by the monocular model from camera i in its local coordinate frame. We model the per-camera measurement noise as a Gaussian distribution centered at the true camera-frame joint position. To account for the fact that depth is the dominant error mode in monocular reconstruction, the covariance matrix Σ(i) 
+
+> c
+
+∈ R3×3 is elongated along that camera’s depth axis. Before fusing the estimates, we must lift each camera’s prediction into the shared world coordinate system (the tennis court frame). Given the camera-to-world calibration parameters R(i) 
+
+> calib_c2w
+
+∈ R3×3
+
+and T (i) 
+
+> calib_c2w
+
+∈ R3, the lifted world-frame joint observation is: 
+
+J(i) 
+
+> w
+
+= R(i)
+
+> calib_c2w
+
+J(i) 
+
+> c
+
++ T (i) 
+
+> calib_c2w
+
+(7) To ensure correct coordinate transformation, the noise covariance matrix must also be transformed into the world frame. The world-frame covariance Σ(i) 
+
+> w
+
+is computed as: 
+
+Σ(i) 
+
+> w
+
+= R(i)
+
+> calib_c2w
+
+Σ(i)
+
+> c
+
+
+
+R(i)
+
+> calib_c2w
+
+T
+
+(8) Let the true consensus world-frame joint position be P . Assuming the measurement errors across the N cameras are independent, the joint likelihood of observing the set of lifted estimates D =
+
+{J(1)  
+
+> w
+
+, . . . , J (N ) 
+
+> w
+
+} is the product of the individual Gaussian likelihoods: 
+
+L(P |D ) = 
+
+> N
+
+Y
+
+> i=1
+
+1
+
+q
+
+(2 π)3|Σ(i) 
+
+> w
+
+|
+
+exp 
+
+
+
+− 12 (J(i) 
+
+> w
+
+− P )T (Σ (i) 
+
+> w
+
+)−1(J(i) 
+
+> w
+
+− P )
+
+
+
+(9) The Maximum Likelihood Estimate (MLE) for the true pose, PMLE , is found by minimizing the negative log-likelihood: 
+
+− ln L(P |D ) = 12
+
+> N
+
+X
+
+> i=1
+
+(J(i) 
+
+> w
+
+− P )T (Σ (i) 
+
+> w
+
+)−1(J(i) 
+
+> w
+
+− P ) + C (10) Taking the derivative with respect to P and setting it to zero yields: 
+
+∂(− ln L)
+
+∂P = −
+
+> N
+
+X
+
+> i=1
+
+(Σ (i) 
+
+> w
+
+)−1(J(i) 
+
+> w
+
+− P ) = 0 (11) Solving for P yields the closed-form solution, which is a precision-weighted average of the lifted per-view estimates: 
+
+> N
+
+X
+
+> i=1
+
+(Σ (i) 
+
+> w
+
+)−1
+
+!
+
+P =
+
+> N
+
+X
+
+> i=1
+
+(Σ (i) 
+
+> w
+
+)−1J(i) 
+
+> w
+
+(12) 
+
+PMLE =
+
+> N
+
+X
+
+> i=1
+
+(Σ (i) 
+
+> w
+
+)−1
+
+!−1 NX
+
+> i=1
+
+(Σ (i) 
+
+> w
+
+)−1J(i) 
+
+> w
+
+(13) This formulation ensures that the highly uncertain depth axes from individual monocular cameras are appropriately down-weighted during spatial fusion. 
+
+A.2 Camera calibration 
+
+In order to run multi-view label-free evaluations of state-of-the-art human pose estimation models, we lift pose predictions from each camera into a shared global space-time reference frame, by calibrating cameras and synchronizing the videos. We describe our method in this section, and in further detail in A.2. 14 Table 3: Notation and Definitions for Problem Setup 
+
+Variable Definition 
+
+N Number of cameras capturing the scene 
+
+ci The i-th camera 
+
+V i Video collected by camera ci, containing RGB frames Iit
+
+tik Length (total frames or duration) of video V i
+
+Ki Intrinsic matrix of camera ci (R3×4)
+
+Ri, T i Extrinsic rotation ( SO (3) ) and translation ( R3) of camera ci
+
+p Number of people in the scene 
+
+Hi SMPL-X pose estimates for p people from video V i
+
+τ it Translation of all p people at time t (Rp×3)
+
+ϕit Global orientation of all p people at time t (Rp×3)
+
+θit Body pose (joint angles) of all p people at time t (Rp×21 ×3)
+
+βit Body shape parameters of all p people at time t (Rp×10 )
+
+M Pre-trained monocular 3D human pose estimation model 
+
+Problem definition. Given a set of N cameras facing the same scene, each camera ci collects a video V i = Iit 
+
+> tik
+> t=0
+
+∈ RH×W ×3 of tik RGB frames. We represent the geometry of each camera 
+
+ci as an intrinsic matrix Ki ∈ R3×4, extrinsic rotation Ri ∈ SO (3) , and extrinsic translation 
+
+T i ∈ R3. We define the poses of p people in each video V i at time t via SMPL-X[ 32 ] parameters 
+
+Hi = {(τ it , ϕ it, β it , θ it)}tik
+
+> t=ti
+> 0
+
+, with representing τ it , ∈ Rp×3 translation, θti ∈ Rp×21 ×3 body pose, 
+
+ϕti ∈ Rp×3 orientation, and βti ∈ Rp×10 body shape of all p people in the scene. As shown in Fig.3, given 3D human pose estimates Hi = M (Vi) generated by a pre-trained model M run on each video Vi, we seek to lift all 3D pose estimates {H0, ..., H N } into a shared spatio-temporal world coordinate system in order to evaluate the multi-view consistency of model predictions. An additional challenge comes from varying wall clock times. For example, two cameras c1 and c2 will have distinct timestamps {t10, ...t 1
+
+> k
+
+} and {t20, ...t 2
+
+> k
+
+}, even if they have the same frame rate. Furthermore, camera extrinsics (Ri, T i) are not known a priori, so we cannot directly compare model outputs even if they are in a metric-scale coordinate system. Thus, we perform temporal calibration, calibrate cameras, and lift human pose estimates into shared global world coordinates. We discuss these three steps in further detail in the following sections. 
+
+Video recording setup and camera calibration. We aim to capture human tennis motions from views that cover all sides of the player while encompassing the full range of the tennis court. To achieve this, we position N (up to 6) cameras around the court (Figure 1). Since a player’s motions are typically constrained to one half of the court and monocular model predictions degrade significantly over distances exceeding half the court length, we orient cameras toward each half-court independently. We calibrate each camera ci by leveraging the standardized dimensions of the tennis court. Specifically, for a given frame Iit from video Vi captured by camera ci, we identify a set of n court line intersections {P i
+
+> 0
+
+, ..., P in} ∈ R3 and their corresponding detected pixel coordinates 
+
+{pi
+
+> 0
+
+, ...p in} ∈ R2. We obtain the camera intrinsics Ki from the iPhone metadata and define the camera projection function π(X; Ki) : R3 → R2 which projects X ∈ R3, a point in world coordinates down to x ∈ R2, a point in pixel coordinates. The extrinsic rotation Ri and translation T i are recovered by minimizing the reprojection error: 
+
+min   
+
+> Ri,T i
+> n
+
+X
+
+> k=1
+
+π(RiPk + T i; Ki) − pk 
+
+> 2
+
+(14) We implement this using the PnP algorithm. 
+
+Spatial fusion Now, equipped with per-camera pose estimates Hi = {(τ it , ϕ it, β it , θ it)} for camera 
+
+ci with intrinsics Ki and extrinsics (Ri, T i), we lift these poses into a shared world coordinate system. We define the transformation from model-space to world-space as TW model   
+
+> i→W
+
+, and we can 15 Camera 1 tcam1   
+
+> Camera 2 tcam2
+> Spatial calibration Temporal synchronization
+
+Figure 8: Spatiotemporal calibration. Left: We lift model estimates into a shared court coordinate system (§A.2). Discrepancy in depth estimates results in differing 3D translation estimates ˜τ it .Right: Videos lack identical timestamps, so we align sequences using a global offset ∆t and linearly interpolate poses for missing timestamps (§A.2) to ensure a precise millisecond-level comparison. express it as: 
+
+TW model   
+
+> i→W
+
+=
+
+
+
+Ri⊤ −Ri⊤T i
+
+0 1
+
+
+
+(15) Eq. (15) now lets us lift translation estimates τ it for each person p from camera coordinates into the global world coordinate system via: 
+
+˜τ it = TW model   
+
+> i→W
+
+[τ it ; 1] . (16) We additionally formulate a consensus pose by obtaining an Maximum Likelihood Estimate between all poses captures by cameras Ci. Depth estimation is the biggest source of error in monocular 3D human pose reconstruction (Section 6.1), so we model the measurement noise for camera c as a multivariate Gaussian N (0, Σc), where the covariance Σc is elongated along the camera’s depth axis. The fused global pose ˆpt that maximizes the log-likelihood across all C cameras is: 
+
+ˆpi =
+
+
+
+> C
+
+X
+
+> j=1
+
+˜Σ−1
+
+> j
+
+ 
+
+> −1
+
+
+
+> C
+
+X
+
+> j=1
+
+˜Σ−1 
+
+> j
+
+˜pji
+
+ . (17) In which we have transformed the noise covariance estimate Σj for camera Cj using TW model   
+
+> i→W
+
+.We provide a full derivation of the MLE estimate in the Appendix. 
+
+Temporal calibration. Athletes move at high speeds; modeling athletic motion requires fine-grained time estimates. After running a monocular pose reconstruction model on each view, we obtain 3D human pose estimates from a pre-trained model M on each video V i, where M ({V i}) = 
+
+{τ it , θ it, ϕ it, β it } for all frames taken by camera Ci. However, we do not have identical time estimates across videos, so we do not have temporally synchronized poses. For example, in the case of two cameras as shown in Fig.3, we do not have pose estimates for the video taken by camera 2 (purple) at the timestamps of camera 1 (green) and vice versa. We could compare poses between closest nearby timestamps, but this entangles temporal shift from model-based errors, and in sports motions exhibit changes on the millisecond-level. Thus, we must estimate a pose at time ti for the pose reconstructed from camera Cj by linearly interpolating between the pose at nearest two time estimates around timestamp ti. Additionally, iPhones record wall clock time up to the nearest second rather than millisecond in their video recording, so there may be up to a 1000-millisecond discrepancy between global timestamps of different videos. We address this issue by estimating an optimal offset factor ∆ttc from a grid search over a range between -1000 ms and 1000 ms that minimizes the pose disagreement between reconstructed pose estimates. We provide an example calibration in Figure 3. 
+
+A.3 Are difficult frames difficult for everyone? 
+
+Do models find the same set of motions difficult? We investigate this in several ways. We report the average per-frame Pearson correlation between different models in Figure 9. We find that there is little correlation across model pose errors than translation errors, suggesting that models fail for different reasons. One exception to this is TRAM, which has a Pearson correlation of .27 PromptHMR for Pose L2 error and .31 for translation error, whereas it only has a .1 correlation when it comes to 16 Figure 9: Model Error Correlations . We calculate frame-level Pearson correlation between error measurements of different models for pose error, translation error, and stability. Each square shows the correlation between the error (in time) signal of two models. We find little correlation in model error across different models. Upper Torso Lowe r            
+
+> Upper Lowe r
+> PromptHMR GVHMR
+> Upper Torso Lower
+> WHAM TRAM GENMO
+> Upper Torso Lowe rUpper Torso Lowe rUpper Torso Lowe r
+
+Figure 10: Joint Error Correlations . We notice that upper body (blue box) and lower body (green box) errors do not correlate with each other; erroneous upper-body estimates can correspond to consistent lower-body estimates and vice-versa. WHAM produces SMPL coordinates, which contain fewer upper and lower body joints. Interestingly, the torso joints (left/right hip and pelvis) correlate more with lower body errors for PromptHMR, and correlate much more strongly with upper body errors for GVHMR. stability. This is consistent with the deep uncertainty and variation in depth estimates that we find across all models. We find an additional commonality in model performance when we inspect joint error correlations, shown in Fig 10. We find that error is correlated for upper body joints with themselves, pelvic joints with themselves, and lower body joints with themselves, but there is little correlation in errors between upper and lower body joints. This suggests that unreliable estimates in upper body position tell us little about how much to trust lower body estimates, however if we know that estimates in the wrist are inconsistent then this suggests similar errors in head and shoulder estimates. This finding also has repercussions for how we collect sensor-aided data: using just foot contact points alone or just IMU sensors on the upper body together with a joint pose optimization pipeline is likely to be a poor estimate of the true ground-truth poses. 
+
+A.4 SOTA model performance 
+
+In Table 4 we report the performance of state-of-the-art human pose estimation models on the 3DPW [ 42 ], RICH [ 11 ], and EMDB [ 19 ] evaluation datasets. PromptHMR [ 44 ] performs best on RICH and EMDB on standard pose and translation metrics, but worst on acceleration metrics, consistent with our findings in Section 6.1 that it performs most consistently on pose and transla-tion estimates but much worse on foot sliding and stability, dynamic metrics that directly affect acceleration. GENMO performs best on 3DPW, but none of the other benchmarks. 
+
+A.5 Additional dataset complexity analyses 
+
+In Figure 11, we report additional pose space complexity metrics of current real-world evaluation datasets. We plot the first two dimensions of the PCA decomposition of joint pose space (flattened joint vectors of 3D joint positions) with k = 500 clusters. CalTennis points, shown in purple, are the most evenly spread out throughout the space. Visually, this shows us that there is much more 17 Table 4: SOTA Model Performance on Current Benchmarks. We report the performance reported by each paper, on the standard human motion evaluation metrics.                                                                           
+
+> 3DPW [42] RICH [11] EMDB [19] Models PA-MPJPE MPJPE PVE Accel PA-MPJPE MPJPE PVE Accel PA-MPJPE MPJPE PVE Accel per-frame  WHAM [38] 37.2 59.4 71.0 6.9 44.7 82.6 93.2 5.6 48.8 80.7 93.7 5.9 GVHMR [37] 36.2 55.6 67.2 5.0 39.5 66.0 74.4 4.1 42.7 72.6 84.2 3.6
+> TRAM [45] 35.6 59.3 69.6 4.9 ----45.7 74.4 86.6 4.9 PromptHMR [44] 35.5 56.9 67.3 –37.0 57.4 65.8 –40.1 68.1 79.2 –GENMO [24] 34.6 53.9 65.8 5.2 39.1 66.8 75.4 4.1 42.5 73.0 84.8 3.8
+
+Figure 11: Pose Space Uniformity and Coverage of Real-World Datasets .coverage of pose space by CalTennis compared to others. On the right we provide a comparison of pose space coverage and uniformity metrics. Coverage is defined as the number of clusters that points in a dataset visit, divided by the total number of clusters (in this case 500). Joint poses in CalTennis visit 10% more clusters than other benchmarks. Uniformity is defined as the ratio of the shannon entropy of the proportion of the poses in a cluster, divided by the maximum possible entropy. Interestingly, uniformity is roughly equal among all the datasets, with HI4D and CalTennis within 4 percentage points of each other. In Figure 12 we provide histograms of per-joint angular distributions. We report the per-joint angular ranges in each dataset, ranging from the 10th to 90th percentiles, and normalize this with the documented angular range (from medical literature). This gives us a per-joint score of 0-1, which we average over. A flatter distribution indicates a more even spread over angular mobility. CalTennis is the most evenly spread out for hip abductions, external knee rotations, and spinal flexion. EMDB [ 19 ]seems to contain more shoulder ranges and RICH [ 11 ] more elbow ranges. This could be because people, when prompted to move around a space, swing their arms about arbitrarily. 
+
+A.6 Additional model performance metrics 
+
+In Figure 13 we report additional model performance comparisons. On the left we plot the model runtime versus MPJPE (mean per-joint position error) consistency. On the right we plot model parameters versus MPJPE. We find that GVHMR [ 37 ], which does not perform best overall 6.1, has the best runtime performance. In other words, it has an optimal tradeoff when it comes to running quickly and accurately. On the right we plot the mean translation error versus the model runtime. 
+
+A.7 Runtime analysis 
+
+In Figure 14 we investigate model inference time speeds. Unsurprisingly, PromptHMR, the model that we found most consistent in its pose predictions (6.1), has the slowest runtime, and furthermore scales more steeply with the number of frames in the input video. We expect this is due to the fact that it has a heavy temporal processing step on top of its per-frame processing module. Unsurprisingly, we find that PromptHMR, which is the most performant, is also the slowest. For applications where accuracy matters over speed, PromptHMR is a likelier candidate. 18 Figure 12: Joint Angle Histograms . We report the per-joint angular ranges in each dataset, ranging from the 10th to 90th percentiles, and normalize this with the documented angular range from medical literature. A flatter distribution indicates a more even spread over angular mobility. 
+
+Figure 13: Model Performance Trade-Offs . Left: we plot model runtime versus input frame counts of the same video. PromptHMR seems to scale quadratically, due to having a temporal transformer module, and GENMO scales linearly, thanks to its diffusion-based architecture. Right: we plot mean translation error versus inference runtime. 19 Figure 14: Model Runtime Analysis .11” 68”
+
+Figure 15: Tripod setup .
+
+A.8 Camera setup 
+
+In Figure 15 we provide an example tripod iPhone setup. The tripods we use are cheap (costing about $40), small (11 inches when folded) and lightweight (less than 1lb). We attach them to iPhones, which are commonly used. This setup could also be extended to other commonly used phones. In our CalTennis dataset, we collect up to 6 concurrent recordings of a scene. 
+
+A.9 Model error correlations 
+
+To understand potential setting properties that cause monocular pose reconstruction models to fail, we define, compute and analyze the relationship between scene-descriptive variables and multi-view consistency errors for each model, and we discover the correlation between each model’s failure patterns. We define a per-model failure indicator based on multi-view consistency error. For each model m, a frame f is labeled as a failure if its error εmf lies in the top 30% of that model’s error distribution, where the threshold τm is chosen independently per model such that 30% of frames are labeled as failures for each model. 20 The analysis set F consists of all frames for which every model produces a valid prediction; no additional filtering based on difficulty or error magnitude is applied. We define a consensus failure count for each frame kf = P 
+
+> m∈M
+
+Dmf ∈ { 0, . . . , 5}, which counts how many models classify a frame as a failure. Specifically, kf is defined for all frames in F ,including frames where no model fails ( kf = 0 ). For each frame f ∈ F , we extract ten features that describe scene properties xf (Table 6) from the video and from the corresponding world-coordinate pose estimates. These features are computed for all frames in F , independently of their failure labels, and are used as predictors in the subsequent correlation and classification analyses. We refer to these ten variables collectively as scene features, as they describe camera configuration, motion, and appearance properties of each frame. We report two complementary diagnostics: (i) Spearman rank correlation rs between each scalar feature and Dmf , which measures the monotonic association between a single scene property and model failure; and (ii) the AUC of a ℓ1-regularised logistic regression classifier trained to predict Dmf
+
+from the full feature vector xf , which measures how well all scene features jointly predict failures. We evaluate four error types as the target: translation error (Translation), joint position error (Pose), Procrustes-aligned joint error (PA-MPJPE), and mean per-joint position error (MPJPE). Table 7 reports Spearman correlations and logistic-regression AUC for each model and error metric. Our key findings include: 
+
+Depth-dependence drives joint-position failures. The strongest predictor of failure across all models is depth-dependence: depth and camera distance consistently show the highest correlations with MPJPE ( rs up to +0 .54 for GENMO and +0 .46 for GVHMR). Scale proxy is strongly negatively correlated with MPJPE for GVHMR ( rs = −0.44 ) and GENMO ( rs = −0.44 ), indicating that persons appearing smaller in the image (i.e., farther from the camera) are harder to reconstruct accurately. This confirms that depth ambiguity is a central failure mode for monocular methods. This is expected in our setting: tennis courts span ∼23 m × 11 m, and cameras placed at baseline or sideline positions produce subject-to-camera distances ranging from ∼5m to ∼30 m within a single session, making depth variation a great challenge for monocular reconstruction. 
+
+Translation and joint errors share scene-feature dependence patterns; Procrustes-aligned error does not. Translation L2 and MPJPE rows share similar signs and magnitudes for most models (e.g., GENMO depth: +0 .33 vs. +0 .42 ; WHAM depth: +0 .25 vs. +0 .26 ), suggesting that absolute position errors are dominated by translation. By contrast, PA-MPJPE rows are substantially weaker across all models (max |rs| ≤ 0.21 , AUC ≤ 0.72 ), indicating that once global translation is removed, failure frames are far less distinguishable by scene geometry alone (residual pose errors arise from factors not captured by our scene descriptors). 
+
+Models differ in failure predictability. The AUC scores reveal meaningful variation: GENMO is the most predictable (MPJPE AUC = 0 .89 ), while GVHMR and PromptHMR are intermediate ( 0.84 
+
+and 0.82 ), and TRAM and WHAM are least predictable ( 0.77 and 0.76 ). High AUC for GENMO is consistent with its global trajectory-reasoning design, which creates a tight coupling between subject distance and reconstruction quality. Conversely, TRAM’s lower AUC does not imply fewer absolute errors; rather, its errors arise from identity-level failure modes (re-identification failures, trajectory breaks) that appear stochastically and are not predictable from scene geometry. This is consistent with the low stability performance observed in the main evaluation. 
+
+Motion features are weak predictors. Motion magnitude and acceleration show consistently low correlations ( |rs| < 0.17 for all models and metrics), indicating that fast motion alone does not explain where models fail under our benchmark conditions, likely because the players move rapidly throughout the session, leaving little between-frame variation to correlate with. This stands in contrast to standard video benchmark assumptions: in sports contexts, constant high-speed activity compresses the motion distribution, and scene geometry rather than motion intensity distinguishes hard frames. 
+
+Inter-model failure patterns. Fig.16 summarizes inter-model failure structure. We show MPJPE as a representative metric for the heatmap. Panel (a) shows the feature-correlation heatmap for MPJPE, which reveals that models carry distinct failure properties. GVHMR and GENMO failures are strongly tied to scene geometry (depth, camera distance, scale), while TRAM and WHAM show near-zero correlations, indicating their errors are not driven by the scene conditions. These properties are consistent with architectural differences. Specifically, GENMO and GVHMR encode stronger 21 GENMO GVHMR PromptHMR TRAM WHAM                                                   
+
+> Motion magnitude
+> Acceleration
+> Mean depth
+> Camera distance
+> Scale proxy
+> Mean height
+> Pose spread
+> Foreshortening
+> Frame blur
+> Motion blur
+> 0.17 0.09 -0.03 0.07 -0.01
+> 0.13 0.13 0.00 0.06 0.03
+> 0.42 0.46 0.34 0.16 0.26
+> 0.54 0.38 0.25 0.09 0.22
+> -0.44 -0.44 -0.31 -0.18 -0.13
+> -0.31 0.01 0.05 0.10 0.08
+> -0.04 -0.24 -0.04 -0.20 0.11
+> -0.26 -0.21 -0.14 0.12 0.03
+> 0.09 0.15 -0.06 0.10 0.12
+> -0.07 -0.11 0.07 -0.10 -0.08
+> (a) Scene feature correlations with failure
+> (MPJPE, worst 30%)
+> GENMO
+> GVHMR
+> PromptHMR
+> TRAM
+> WHAM
+> GENMO
+> GVHMR
+> PromptHMR
+> TRAM
+> WHAM
+> 1.00
+> 0.22 1.00
+> 0.12 0.26 1.00
+> 0.21 0.29 0.10 1.00
+> 0.24 0.17 0.09 0.22 1.00
+> (b) Pairwise failure frame overlap
+> (Jaccard, worst 30%)
+> 0.4
+> 0.2
+> 0.0
+> 0.2
+> 0.4
+> Spearman  r
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Jaccard similarity
+
+Figure 16: Inter-model failure analysis (failure = worst 30% per model, MPJPE). (a) Spearman correlations between scene features and per-model failure labels. Geometry features dominate for GVHMR and GENMO; TRAM and WHAM show near-zero signatures. (b) Pairwise Jaccard similarity of failure frame sets ( J ≤ 0.30 for all pairs): models fail on largely disjoint subsets of frames. depth-to-error coupling, while TRAM distributes errors more uniformly. Panel (b) shows pairwise Jaccard similarity ( J = |A ∩ B|/|A ∪ B|) of failure frame sets. All pairs have J ≤ 0.30 , confirming failures are largely model-specific rather than driven by shared hard scenes. Fig.17 shows the consensus failure distribution (averaged over all four metrics). Since τ = 0 .30 
+
+is per-model, kf = 0 means a frame is in the best 70% for every model simultaneously; kf = 5 
+
+would mean all five simultaneously rank it among their worst 30%. 18 .8% of frames are uniformly easy ( kf = 0 ), the dominant category is frames flagged by exactly one model ( kf = 1 , 35 .7% ), and no frame reaches kf = 5 . The absence of universally hard frames confirms that failures are model-intrinsic. This confirms our finding in the main analysis that no single model is the best, and model performance varies depending on different scene properties. 0 models     
+
+> (easy for all)
+> 1 model 2 models 3 models 4 models 5 models
+> 0
+> 5
+> 10
+> 15
+> 20
+> 25
+> 30
+> 35
+> 40
+> % of frames (avg across metrics)
+> 18.8%
+> 35.7%
+> 25.9%
+> 15.8%
+> 3.7%
+
+(a) Failure consensus distribution 
+
+(worst 30%, avg over 4 metrics)           
+
+> GENMO
+> GVHMR
+> PromptHMR
+> TRAM
+> WHAM
+> GENMO
+> GVHMR
+> PromptHMR
+> TRAM
+> WHAM
+> 1.00
+> 0.22 1.00
+> 0.18 0.21 1.00
+> 0.14 0.18 0.30 1.00
+> 0.19 0.16 0.15 0.23 1.00
+
+(b) Pairwise failure overlap 
+
+(Jaccard, avg over 4 metrics) 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> Avg. Jaccard
+
+Figure 17: Consensus failure distribution (worst 30% per model, averaged over four metrics). (a) 
+
+kf = 0 : frame is in best 70% for all five models; kf = 5 : all five flag it as hard. The dominant category ( kf = 1 , 35 .7% ) and absence of kf = 5 frames confirm that failures are model-intrinsic rather than scene-determined. (b) Pairwise Jaccard averaged over four metrics confirms consistently low inter-model failure correlation. 22 Table 5: Notation and Definitions for Failure Signature Analysis 
+
+Variable Definition 
+
+F Set of NF analysis frames shared across all models 
+
+M Set of evaluated models {PromptHMR, WHAM, GVHMR, TRAM, GENMO }
+
+εmf Multi-view consistency error of model m at frame fDmf Binary failure label: 1 if εmf is in the top 30% for model m
+
+xf Scene descriptor vector for frame f (see Table 6) 
+
+rs(x, D m) Spearman rank correlation between feature x and failure label Dm
+
+AUC m Area under the ROC curve of a logistic classifier using xf to predict Dmf
+
+Table 6: Scene Descriptor Features Extracted per Frame 
+
+Feature Description 
+
+Motion Mean optical-flow magnitude across tracked persons Acceleration Frame-to-frame change in motion magnitude Depth Mean depth of tracked persons from the camera Cam. dist. Euclidean distance between the camera center and the mean person position in world coordinates Scale Apparent image-plane size proxy (bounding-box height / focal length) Height Mean body height of tracked persons in world coordinates P. spread Spatial spread of predicted body joints in the image plane Foreshortening Variance in per-limb foreshortening ratio across the body Blur Frame-level sharpness score (Laplacian variance) Mot. blur Motion-blur magnitude estimated from temporal frame difference Table 7: Spearman rank correlations Model Metric 
+
+> Motion
+> Accel.
+> Depth
+> Cam. dist.
+> Scale
+> Height
+> P. spread
+> Foreshortn.
+> Blur
+> Mot. blur
+
+AUC PromptHMR Trans. 0.099 0.042 -0.077 -0.076 -0.036 0.100 -0.154 -0.021 0.034 -0.080 0.777 Pose -0.001 -0.003 -0.062 -0.083 0.159 0.005 0.153 -0.051 0.032 -0.168 0.737 PA-M. 0.022 -0.024 -0.122 -0.159 0.199 0.013 0.006 -0.011 0.019 -0.142 0.690 MPJPE -0.035 0.004 0.340 0.249 -0.313 0.053 -0.039 -0.136 -0.060 0.072 0.818 
+
+WHAM Trans. -0.005 0.011 0.252 0.218 -0.115 0.077 0.125 0.013 0.123 -0.089 0.761 Pose -0.002 0.019 -0.109 -0.096 0.119 0.116 0.119 0.002 -0.078 0.077 0.629 PA-M. -0.009 0.011 0.021 0.017 -0.024 0.038 -0.037 0.076 -0.030 0.023 0.657 MPJPE -0.008 0.027 0.264 0.221 -0.132 0.084 0.109 0.029 0.119 -0.080 0.764 
+
+GVHMR Trans. 0.052 0.065 0.097 0.108 -0.166 -0.098 -0.068 -0.152 -0.030 0.027 0.660 Pose -0.022 -0.056 -0.155 -0.164 0.218 0.049 0.003 -0.005 0.073 -0.068 0.700 PA-M. 0.018 -0.035 -0.033 -0.037 0.110 0.039 -0.015 0.005 0.027 -0.051 0.666 MPJPE 0.085 0.128 0.463 0.381 -0.439 0.013 -0.238 -0.212 0.154 -0.114 0.837 
+
+TRAM Trans. 0.034 0.043 0.015 -0.061 -0.018 0.182 -0.052 0.078 0.051 -0.075 0.665 Pose 0.044 0.019 -0.066 -0.056 -0.017 -0.106 -0.026 -0.070 -0.050 -0.037 0.673 PA-M. 0.061 0.056 0.053 0.093 -0.076 -0.138 -0.041 -0.146 -0.024 -0.061 0.679 MPJPE 0.067 0.056 0.159 0.092 -0.176 0.099 -0.202 0.115 0.097 -0.097 0.770 
+
+GENMO Trans. 0.148 0.128 0.332 0.468 -0.325 -0.233 0.118 -0.182 0.052 0.009 0.884 Pose 0.090 0.059 -0.050 0.059 0.187 -0.174 0.114 0.060 -0.054 0.034 0.773 PA-M. 0.135 0.006 -0.016 0.021 0.131 0.002 0.210 0.069 0.001 0.036 0.723 MPJPE 0.166 0.133 0.423 0.543 -0.436 -0.307 -0.036 -0.260 0.091 -0.071 0.890 
+
+23

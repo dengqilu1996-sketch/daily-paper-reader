@@ -1,0 +1,283 @@
+Title: Joint Angle Estimation with Customized Wristband Based on Online Incremental Learning
+
+URL Source: https://arxiv.org/pdf/2605.29771v1
+
+Published Time: Fri, 29 May 2026 01:08:19 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# Joint Angle Estimation with Customized Wristband Based on Online Incremental Learning 
+
+Shuo Wang 1, Xiaobin Chen 1 and Xiaoming Tao 1
+
+Abstract — Intelligent wearable technology plays an increas-ingly important role in human-computer interaction, motion, and health monitoring. To ensure comfort and practicality of use, one common form for motion monitoring is to utilize soft wearable sensors. However, many research applications regarding wearable sensors are simplistic and difficult to adapt to different situations. This study proposes a system for estimating the angle of the wrist joint using a customized wristband based on an online incremental learning approach. It is a two-stage estimation method: the first stage updates the model based on the wearer’s wrist movement characteristics using online learning, integrating real-time data from an IMU as ground truth. The second stage utilizes the updated model for estimation of wrist joint angle solely with the wristband. In other words, model training is completed during data acquisi-tion, allowing the trained model to be used for subsequent angle estimation. This method offers advantages in adapting to data drift caused by variations in different testing configurations, such as the left and right wrists of the same subject, deviations in the wearing position on the same wrist, and even differences among various subjects. The results indicate that the sensors exhibit good performance under strain variations, and the wrist joint trajectory estimation of the proposed system has an approximate error of 15 ◦ in different scenarios. 
+
+I. INTRODUCTION Wearable electronic systems have shown great potential in human-computer interaction [1–3], human motion detection [4–6] and healthcare scenarios [7–9]. For human motion detection, rigid wearable devices, due to their rigidity and lack of skin conformity, often cause inconvenience and dis-comfort for the wearer [10]. Wearable systems composed of flexible sensors, especially those based on fabric, are gaining increasing attention due to their softness, breathability, and ease of integration into clothing [11–16], which can achieve diverse functions through the collaboration of appropriate data collection and analysis systems. Different kinds of fabric-based wearable systems have been developed such as the intelligent glove [17] used for hand gesture recognition and the wristband [18, 19] used for hand motion monitoring and healthcare. However, most of the research [20–23] involves simply developing a sensor and using machine learning or deep learning methods for offline signal classification, which often does not address the data drift encountered during actual use, rendering the recogni-tion algorithms ineffective. Here, we present a customized wristband and an online incremental learning method for real-time estimation of wrist joint angle. The customized wristband together with the online incremental learning is 
+
+> 1Shuo Wang, Xiaobin Chen and Xiaoming Tao are with Research Institute for Intelligent Wearable Systems, The Hong Kong Polytechnic University, Kowloon, Hong Kong.
+
+a novel exploration of wrist joint angle estimation using fabric wearable systems, which first ensures the comfort of wearing, and secondly, it provides a certain adaptability to data drift without the need for repeated offline data collection and training, making the entire estimation process easier to operate. This work is based on the fabric sensors we previously developed, and then we design and fabricate a wristband for wrist joint angle estimation. We detail the fabrication process of the fabric sensing wristband and demonstrate the wristband’s ability to estimate changes in wrist joint angles during wrist movements. The online incremental learning is introduced for real-time data processing. This work seeks to demonstrate the possibility of using the online learning method for the real-time application of wearable systems. II. DESIGN AND FABRICATION OF THE SMART WRISTBAND Resistive strain sensors are capable of converting mechani-cal deformation into resistance signals, enabling the detection of objects’ strain state. Their core structure typically consists of flexible substrate materials (such as textile or polyimide) and conductive sensitive materials (such as metal nanowires or carbon composite). When subjected to external strain and deformation, the microstructure (the length of the conductive path or number of contact points) of the conductive material undergoes changes, leading to a corresponding change in resistance. Based on our previous work [24, 25], the fabric strain sensor was used to fabricate a smart wristband. The fabrication progress is shown in Fig. 1. Firstly, carbon black (CB) was selected as the conductive filler, room temperature vulcanized silicone elastomer (SE) was used as the elastomer matrix and nontoxic dimethyl silicone oil (SO) was used as a solvent. These three materials were mixed in a weight ratio of 1:10:15 and stirred thoroughly to obtain a carbon composite conductive material. Subsequently, the composite material was coated onto the plain knitted fabric substrate through manual screen printing and the strain sensors were obtained after drying. Finally, four sensors were cut and fixed with metal button at both ends serving as external electrical connections. These sensors were individually sewn into the wristband in the front, rear, left, and right directions to obtain the smart wristband. To acquire the resistance value of the sensors, a simple voltage divider circuit was built. One end of each sensor was connected to electrical ground (GND), and the other end was connected in series with a resistor with 50 kΩ and then connected to V CC to form a voltage divider circuit. 
+
+> arXiv:2605.29771v1 [cs.RO] 28 May 2026
+
+Fig. 1. Fabrication of the fabric strain sensor and smart wristband. The resistor of the sensor can be calculated by measuring the voltage between the sensor and the variable resistor according to (1): 
+
+Vadc = V CC × Rs
+
+Rs + Rf
+
+(1) Where V CC is the input voltage of 3.3 V, Rs is the resistance value of the sensor, Rf is the reference resistance value, and Vadc is the divided voltage value of the sensor, read by the ADC (Analog-to-Digital Converter) of micro-controller Arduino Uno. The performance of the sensor was evaluated by moni-toring changes in resistance during tensile displacement. As shown in Fig. 1, the gauge factor (GF) values were computed as 10.3 for strains in 0% - 6% and 3.3 for strains ranging in 6% - 60%, indicating that the sensor not only operates effectively in high-strain regions far exceeding the limits of conventional metal strain gauges but also exhibits high sensitivity for detecting minor deformations. Furthermore, the resistance of the sensor returned to its initial state after the tensile force was removed, showing its excellent recovery properties and applicability in wearable applications. III. ONLINE INCREMENTAL LEARNING-BASED METHOD 
+
+A. Task Definition 
+
+As mentioned in section II, when sensors are closed to human skin and deformed due to changes in wrist joint angle, there is a mapping from the strain space to the angle space of the wrist joint, which can be denoted as (2). 
+
+θ = g(ϵ) (2) Where θ ∈ R3 represents wrist joint angle obtained from the attached IMU, which will be detailed introduced in section IV-A, ϵ is the strain values of the strain sensors and 
+
+g is the mapping function. Because it is difficult for just one sensor to represent the wrist joint’s angular changes accurately, as it would for a single degree-of-freedom joint, four sensors are used in this task. On the other hand, determining the appropriate calibration for each sensor’s proportional coefficient and bias is a time-consuming process. An easier way is to direct map the resistance to the wrist joint angle directly. Meanwhile, resistance can be inferred from the voltage divider relation-ship with a reference resistor in the sensing circuit. Then, the direct mapping from voltage readings from circuit to wrist joint angle can be denoted as gdirect , which is shown as (3). 
+
+θ = gdirect (V1, V 2, . . . V m) (3) Where m is the number of strain sensors and Vi represents the voltage reading of the ith strain sensor. In previous research, diverse neural networks based on backward propagation will be utilized for the previous mentioned mapping. However, this approach requires large amount of data and time for offline training for each specific individual and will not perform well when data drift occurs. Therefore, we propose to utilize the online incremental learning method [26, 27] in this scenario, which mainly contains a Online Sequential Extreme Learning Machine (OSELM) method for wrist joint angle estimation and a 
+
+Particle Swarm Optimization (PSO) method for the ini-tialization of parameters of the OSELM. 
+
+B. Initialization with PSO 
+
+PSO is a widely utilized algorithm in various applications due to its ease of implementation and strong global search capabilities. [28, 29]. Here, PSO is utilized for the number decision of the hidden nodes for ELM. 
+
+C. Online Sequential Extreme Learning Machine for Data Processing of IMU and Strain Sensors 
+
+For the ith readings of n strain sensors on the wristband from the readout circuit, they can be regarded as inputs Ri =[ri1 ri2 ... r in ]T of an ELM. The outputs can be obtained with an IMU worn on the hand denoted as θi. The mapping 
+
+θi = f (Ri) (4) is to be learned. With the collected Ns groups of samples, the output matrix of the hidden layer can be represented as follows: 
+
+H =
+
+
+
+Φ( a1, b 1, R 1) . . . Φ( aN , b N , R 1)
+
+...
+
+Φ( a1, b 1, R Ns ) . . . Φ( aN , b N , R Ns )
+
+
+
+> Ns×N
+
+(5) Where a and b are weights and biases of hidden nodes, and Φ
+
+is the activation function. N is the number of hidden nodes. Then the output of a SLFN with N hidden nodes can be shown as [30]: 
+
+Hβ = θ (6) Where β = [ βT 
+
+> 1
+
+βT 
+
+> 2
+
+. . . βT 
+
+> N
+
+] is the weighting vectors of hidden nodes to the output nodes. The objective is represented as below: 
+
+β = arg min 
+
+> β
+
+∥Hβ − θ∥ (7) This objective function can be solved with matrix operations and the result can be solved as: 
+
+βsolve = H†θ (8) Where H† is pseudo-inverse of H. Then, the first H(0) can be calculated according to the first N0 groups of samples, and the corresponding β0 can be obtained as: 
+
+β(0) =
+
+
+
+K(0) −1 
+
+H(0) T
+
+θ(0) (9) Where K(0) =  H(0) T H(0) , and when there are new N1
+
+samples come with the data stream, the corresponding β(1) 
+
+can be obtained as: 
+
+β(1) =
+
+
+
+K(1) −1 H(0) 
+
+H(1) 
+
+T θ(0) 
+
+θ(1) 
+
+
+
+(10) where K(1) =
+
+H(0) 
+
+H(1) 
+
+T H(0) 
+
+H(1) 
+
+
+
+.According to (9) and (10), The recursive relation for 
+
+K and β can be obtained as: 
+
+K(k+1) = K(k) +
+
+
+
+H(k+1) T
+
+H(k+1) (11) 
+
+β(k+1) = β(k) +
+
+
+
+K(k+1) −1 
+
+H(k+1) T
+
+
+
+θ(k+1) − H(k+1) β(k)
+
+(12) and with (11), (12) and W oodbury formula, when 
+
+M (k) =  K(k)−1, the recursive relation can be further obtained as: 
+
+M (k+1) = M (k) − M (k) 
+
+H(k+1) T
+
+
+
+I + H(k+1) M (k) 
+
+H(k+1) T−1
+
+H(k+1) M (k) (13) and 
+
+β(k+1) = β(k) + M (k+1) 
+
+H(k+1) T
+
+
+
+θ(k+1) − H(k+1) β(k)
+
+(14) After a certain number of samples are processed, the model can characterize the wearer’s wrist movement patterns, and then online joint angle estimation can be carried out. The whole framework and workflow of the proposed method are visualized in Fig. 2. …
+
+…
+
+…
+
+…        
+
+> PSO
+> Parameters decision
+> OSELM
+> Dataflow of
+> wristband
+> Dataflow of
+> IMU
+> Dataflow of
+> wristband
+> Dataflow of
+> IMU
+> Input Space Online training
+> Trained model
+> Joint angle estimation
+> θ
+> Step 1
+> Step 2
+
+Fig. 2. Framework and workflow of the proposed method. IV. EXPERIMENTS 
+
+A. Experiment Setup and Process 
+
+Two serial ports are utilized to read the dataflow of the wristband and IMU. At the same time, dataflow will be recorded, and the proposed model will be updated online. For wristband and IMU, the baud rates are 9600 and 115200. There are four strain sensors on the wristband, and the time interval between readings from adjacent sensors is 50 milliseconds. Compared to wristband, the angles information from IMU is much faster, for each complete readings of four strain sensors, about six to seven group of angles information will be captured. The data alignment method will be demonstrated in section IV-B. The IMU is attached to the back of the hand, with its placement referenced to the middle finger, and its orientation θx , θy and θz vary with wrist motion. In order to better replicate the experiments and evaluate the results, this work primarily focuses on the orientation θy for experiments and analyses based on the placement of IMU. Two different kinds of tests were performed on a subject. Fig. 3 below shows the wrist motion in this work. Extension Neutral Flexion 
+
+Fig. 3. Wrist motion. 
+
+1) The First Experiment : In the first experiment, subject wears wristbands on his left or right wrist, and performs flex-ion and extension movements with the upper arm stationary on the support for about 3 minutes, which can be seen in Fig. 5(a), (b) and (c). At the beginning of the experiment, 10 seconds of the wearer’s random hand rotational movements are recorded to calculate the parameters of ELM with PSO. After calculation, the wearer will perform cycles of wrist flexion and extension movements. A cycle is defined as the sequential movement from flexion to a neutral position, followed by extension, and concluding with a return to the flexion position. The speed of the wearer’s wrist movement is almost uniform, which is about 5 to 10 seconds for a complete cycle. Then, while the subject is performing the defined actions, the model will update at the same time. The first 25% data is used for online model updating, and part of the rest data will be tested to visualize the results of the proposed model. In this experiment, the program auto-matically differentiates between the PSO computation step and the online model training step, thus achieving process automation. To evaluate the effectiveness of the proposed method across diverse objects, participant will be instructed to complete the aforementioned procedure using their non-dominant hand, followed by performance assessment. The wristband will be positioned as consistently as possible on both hands. Given the differences in movement patterns and force exertion between an individual’s dominant and non-dominant hands [31, 32], including variations in motor habits, testing on both wrists allows for demonstrating the method’s sensitivity to these differences. 
+
+2) The Second Experiment : In the second experiment, to mimic the unavoidable placement variations encountered across distinct wearings, a distinct sensor offset is artificially applied to the wristband and wrist, and it should be noted that this work posits that the wristband remains largely stable throughout a given usage period, with deviations primarily arising between independent applications. Then, the aforementioned online training and calculation process will be done to evaluate the performance of the method. It is noteworthy that during the training phase, data from both the IMU and the strain sensors are utilized. However, following the training phase, angle estimation relies solely on the strain sensors’ data, and the IMU is exclusively employed to acquire ground truth values and is not included in the operational implementation. 
+
+B. Online Data Alignment 
+
+As has mentioned in section IV-A, for each set of strain readings, six to seven corresponding sets of angular mea-surements are acquired. A data queue is implemented for the storage and analysis of these two distinct data types. Because the IMU’s reading rate is several times faster than that of the strain sensor, this paper uses the strain sensor readings as a time base. It assumes that subsequent sets of angle measurements acquired are temporally aligned with the moment of that particular strain sensor reading, until the next strain sensor reading is obtained. Furthermore, due to the slow movement speeds of the subject during the experiment, the several sets of angle measurements acquired between each strain reading are averaged, and this average value is regarded as the angle corresponding to the strain sensors readings at that moment. 
+
+C. Performance Evaluation 
+
+Because the subject primarily performed wrist flexion and extension movements, and given the IMU’s placement on the hand, the IMU primarily measured the cahnging values of θy . Therefore, the evaluation of results will primarily be based on the estimation of θy .The coefficient of determination ( R2) is utilized to mea-sure the goodness of alignment between the fitting data and the ground truth provided by the IMU, which is defined as 
+
+R2 = 1 −
+
+> n
+
+P
+
+> i=1
+
+(Vi − Viest )2
+
+> n
+
+P
+
+> i=1
+
+(Vi − Vave )2
+
+(15) Where n is the number of samples, Vi is the ground truth of the ith test point, Viest is the corresponding estimation and 
+
+Vave means the mean of Vi.The mean error Error ave is used to measure the overall performance of the proposed method and sensor array. V. RESULTS 
+
+A. Results of Experiment One 
+
+In this experiment, four strain sensors are distributed symmetrically on the wrist, with two sensors each on the dorsal and palmar sides, which will be shown in Fig. 5(a). To visualize the estimation results of the proposed method, Fig. 4 below shows the test condition of right wrist and the trajectory changes of θy (ground truth) provided by IMU and the corresponding calculation results obtained from the online trained model for both wrists. The R2 value for right and left hand are 0.75 and 0.53, respectively. For right wrist and left wrist joint angular estimation, the algorithm demonstrates good fitting performance, and the online-updated model effectively learns the motion patterns of both wrists at varying speeds. It can be noticed that when the speed of one wrist’s movement is faster, it becomes more challenging for the fitting results to align with the IMU data at extreme maximum and minimum limits. This will be discussed in section V-C. IMU  
+
+> Wristband
+> Support
+> (d)
+> (b) (a) (c)
+> (e)
+
+Fig. 4. Test results of right and left wrist motion. (a) Right wrist in a flexed position. (b) Right wrist in a neutral posi-tion. (c) Right wrist in an extended position. (d) Estimated trajectory of right wrist. (e) Estimated trajectory of left wrist. B. Results of Experiment Two 
+
+Fig. 5 below illustrates the effectiveness of the proposed method when there is a noticeable offset in the wearing position. Fig. 5(a) is the same result as Fig. 4(d), which is the result of right wrist with four sensors uniform distributed on the dorsal and palmar side. As observed, even with significant sensor drift, this online learning method is effective for wrist joint angle estimation. Due to the unique features of each strain sensor, the proposed method can learn the wrist’s motion patterns to some extent. However, the final results are still influenced by the inherent performance of the sensors, which can be noticed from the differences in calculation of maximum and minimum values. The general trajectory trend is consistent with the ground truth, and the R2 value is 0.58 under this condition, which is mainly influenced by the calculation error of the maximum and minimum values. (a)  (b) 
+
+Fig. 5. Test results with wristband misalignment. (a) Test results for wristband in position one. (b) Test results for wristband in position two. 
+
+C. Discussion 
+
+As can be observed from Table I below, the result in each column correspond to Fig. 4(d), (e) and Fig. 5(b), respectively. Overall, the proposed system, through models trained with brief online learning, can track the flexion and extension movements of the wearer’s wrist in various experimental scenarios. However, errors persist in the cal-culation of upper and lower bounds, which may be related to the sensor’s inherent performance characteristics, such as measurement limits, or to sensor consistency differences leading to some sensors being more sensitive to strain in a particular direction. Furthermore, the online data alignment method used may still require further refinement to accom-modate faster wrist movements, although it is sufficient for testing requirements under most of usage conditions. In addition, observing the average results in Table I, we can indicate that the calculated error remains within a close range across different scenarios, demonstrating stability in tracking motion trajectories. Nevertheless, deviations in the calculation of maximum and minimum values may still occur due to sensor variability or time-lag effects caused by the inability of the fabric to quickly return to a stable state after stretching, which is an issue that needs to be addressed in future work. Finally, observation of the resulting curves reveals that the calculation results do not always achieve good performance in estimating the initial and final actions. This is due to sensor characteristics, which means after being in a stretched state for a period of time, the sensor values slowly decrease. Therefore, it can be considered that it has better performance in tracking dynamic processes. TABLE I. Average error of the experiments    
+
+> Right wrist Left wrist Right wrist with sensor misalignment
+> Error ave
+> (deg) 14.8 16.0 16.1
+
+VI. CONCLUSION This work first proposes to combine the advantages of PSO and OSELM to realize the online training framework for wrist joint angle estimation with customized fabric wristband, and it is the first evaluation of this framework under different test configurations. The results show that this framework has acceptable performance in wrist motion trajectory calculation with a R2 value more than 0.7 under certain configuration. However, further improvements are needed in the consistency and stability of the proposed sensor array for fitting of angle extremes, and the multi-degree-of-freedom experiments on different users should be carried out. Overall, this framework is more practical and closer to real-world scenarios compared with other methods, and the experimental results demonstrate its feasibility. REFERENCES                 
+
+> [1] Jiaqing Xiong, Jian Chen, and Pooi See Lee. Functional fibers and fabrics for soft robotics, wearables, and human– robot interface. Advanced Materials , 33(19):2002640, 2021. [2] Chunxu Chen, Mingjiao Jiang, Xiaolan Luo, Huiling Tai, Yadong Jiang, Min Yang, Guangzhong Xie, and Yuanjie Su. Ni-co-p hollow nanobricks enabled humidity sensor for respiratory analysis and human-machine interfacing. Sensors and Actuators B: Chemical , 370:132441, 2022. [3] Yuanjie Su, Yulin Liu, Weixiong Li, Xiao Xiao, Chunxu Chen, Haijun Lu, Zhen Yuan, Huiling Tai, Yadong Jiang, Jie Zou, et al. Sensing–transducing coupled piezoelectric textiles for self-powered humidity detection and wearable biomonitoring.
+> Materials horizons , 10(3):842–851, 2023. [4] Junlong Huang, Guangzhong Xie, Qikun Wei, Yuanjie Su, Xiangdong Xu, and Yadong Jiang. Degradable mxene-doped polylactic acid textiles for wearable biomonitoring. ACS Applied Materials & Interfaces , 15(4):5600–5607, 2022. [5] Hong Pan, Guorui Chen, Yanmeng Chen, Aiden Di Carlo, Mylan Anh Mayer, Sophia Shen, Chunxu Chen, Weixiong Li, Suriyen Subramaniam, Haichao Huang, et al. Biodegradable cotton fiber-based piezoresistive textiles for wearable biomon-itoring. Biosensors and Bioelectronics , 222:114999, 2023. [6] Ryo Eguchi, Brendan Michael, Matthew Howard, and Masaki Takahashi. Shift-adaptive estimation of joint angle using instrumented brace with two stretch sensors based on gaussian mixture models. IEEE Robotics and Automation Letters ,5(4):5881–5888, 2020.
+
+[7] Hyo-Ryoung Lim, Hee Seok Kim, Raza Qazi, Young-Tae Kwon, Jae-Woong Jeong, and Woon-Hong Yeo. Advanced soft materials, sensor integrations, and applications of wear-able flexible hybrid electronics in healthcare, energy, and environment. Advanced Materials , 32(15):1901924, 2020. [8] Bao Yang, Ying Li, Fei Wang, Stephanie Auyeung, Manyui Leung, Margaret Mak, and Xiaoming Tao. Intelligent wearable system with accurate detection of abnormal gait and timely cueing for mobility enhancement of people with parkinson’s disease. Wearable technologies , 3:e12, 2022. [9] Yuanjie Su, Weixiong Li, Xiaoxing Cheng, Yihao Zhou, Shuai Yang, Xu Zhang, Chunxu Chen, Tiannan Yang, Hong Pan, Guangzhong Xie, et al. High-performance piezoelectric com-posites via β phase programming. Nature communications ,13(1):4867, 2022. [10] Lily Behnke, Lina Sanchez-Botero, William R Johnson, Anjali Agrawala, and Rebecca Kramer-Bottiglio. Dynamic hand pro-prioception via a wearable glove with fabric sensors. In 2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , pages 149–154. IEEE, 2023. [11] Zhenghao Kou, Chao Zhang, Buyun Yu, Hao Chen, Zhenguo Liu, and Weibing Lu. Wearable all-fabric hybrid energy harvester to simultaneously harvest radiofrequency and tribo-electric energy. Advanced Science , 11(17):2309050, 2024. [12] Yifan Cui, Xinyang He, Wendi Liu, Suiyuan Zhu, Man Zhou, and Qiang Wang. Highly stretchable, sensitive, and multifunc-tional thermoelectric fabric for synergistic-sensing systems of human signal monitoring. Advanced Fiber Materials ,6(1):170–180, 2024. [13] Yiming Lu, Zewen Li, Xinwang Wang, Jiashun Jiang, Mingzhu Zhu, and Mengying Xie. Wearable human-machine gesture interaction based on fabric piezoelectric sensor. IEEE Sensors Journal , 2024. [14] Jia Liu, Huanke Zheng, Dongkun Huo, Yixue Hao, Dusit Niyato, Salman A Alqahtani, and Min Chen. Big fiber slicing for dynamic multi-modal multi-preference applications of smart fabrics. IEEE Internet of Things Journal , 2024. [15] Katalin Sch¨ affer, Yasemin Ozkan-Aydin, and Margaret M Coad. Soft wrist exosuit actuated by fabric pneumatic artificial muscles. IEEE Transactions on Medical Robotics and Bionics ,2024. [16] Enhao Zheng, Jiacheng Wan, Nanxing Hu, and Qining Wang. Extracting muscle geometrical features with a fabric-based wearable sensor for human motion intent recognition. 
+
+IEEE/ASME Transactions on Mechatronics , 2024. [17] Bahman Taherkhani, Roohallah Nasri, Asli Tuncay Atalay, Motaleb Malmir Chegini, and Ozgur Atalay. Design of the monolithic planar isotropic auxetic piezo-resistive sensor glove to detect human hand motion. Journal of Materials Science , 59(2):686–697, 2024. [18] Aobo Cheng, Xin Li, Ding Li, Zhikang Chen, Tianrui Cui, Lu-Qi Tao, Jinming Jian, HuiJun Xiao, Wancheng Shao, Zeyi Tang, et al. An intelligent hybrid-fabric wristband system en-abled by thermal encapsulation for ergonomic human-machine interaction. Nature Communications , 16(1):591, 2025. [19] Quentin Mascret, Dharmendra Gurve, Abdelrahman Abdou, Sharmistha Bhadra, Nathaniel Lasry, Kristiina Mai, and Srid-har Krishnan Benoit Gosselin. A vital-signs monitoring wristband with real-time in-sensor data analysis using very low-hardware resources. IEEE Sensors Journal , 2024. [20] Abdullah Mujahid, Mazhar Javed Awan, Awais Yasin, Mazin Abed Mohammed, Robertas Damaˇ seviˇ cius, Rytis Maskeli¯ unas, and Karrar Hameed Abdulkareem. Real-time hand gesture recognition based on deep learning yolov3 model. Applied Sciences , 11(9):4164, 2021. [21] Shuo Jiang, Peiqi Kang, Xinyu Song, Benny PL Lo, and Peter B Shull. Emerging wearable interfaces and algorithms for hand gesture recognition: A survey. IEEE Reviews in Biomedical Engineering , 15:85–102, 2021. [22] Guan Yuan, Xiao Liu, Qiuyan Yan, Shaojie Qiao, Zhixiao Wang, and Li Yuan. Hand gesture recognition using deep feature fusion network based on wearable sensors. IEEE Sensors Journal , 21(1):539–547, 2020. [23] Philipp Achenbach, Sebastian Laux, Dennis Purdack, Philipp Niklas M¨ uller, and Stefan G¨ obel. Give me a sign: Using data gloves for static hand-shape recognition. Sensors ,23(24):9847, 2023. [24] Xiaobin Chen, Fei Wang, Lin Shu, Xiaoming Tao, Lei Wei, Xiangmin Xu, Qing Zeng, and Guozhi Huang. A single-material-printed, low-cost design for a carbon-based fabric strain sensor. Materials & Design , 221:110926, 2022. [25] Xiaobin Chen, Zhongliang Zhang, Lin Shu, Xiaoming Tao, and Xiangmin Xu. A novel double-sided fabric strain sen-sor array fabricated with a facile and cost-effective process. 
+
+Sensors and Actuators A: Physical , 370:115208, 2024. [26] Xiaomei Wang, Jing Dai, Hon-Sing Tong, Kui Wang, Ge Fang, Xiaochen Xie, Yun-Hui Liu, Kwok Wai Samuel Au, and Ka-Wai Kwok. Learning-based visual-strain fusion for eye-in-hand continuum robot pose estimation and control. IEEE Transactions on Robotics , 39(3):2448–2467, 2023. [27] Ge Fang, Xiaomei Wang, Kui Wang, Kit-Hang Lee, Justin DL Ho, Hing-Choi Fu, Denny Kin Chung Fu, and Ka-Wai Kwok. Vision-based online learning kinematic control for soft robots using local gaussian process regression. IEEE Robotics and Automation Letters , 4(2):1194–1201, 2019. [28] Mehrdad Daviran, Abbas Maghsoudi, and Reza Ghezelbash. Optimized ai-mpm: Application of pso for tuning the hyperpa-rameters of svm and rf algorithms. Computers & Geosciences ,195:105785, 2025. [29] Rana Muhammad Adnan, Reham R Mostafa, Ozgur Kisi, Zaher Mundher Yaseen, Shamsuddin Shahid, and Mohammad Zounemat-Kermani. Improving streamflow prediction using a new hybrid elm model combined with hybrid particle swarm optimization and grey wolf optimization. Knowledge-Based Systems , 230:107379, 2021. [30] Guang-Bin Huang, Hongming Zhou, Xiaojian Ding, and Rui Zhang. Extreme learning machine for regression and multi-class classification. IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) , 42(2):513–529, 2011. [31] Samyoung Kim, Kyuengbo Min, Yeongdae Kim, Shigeyuki Igarashi, Daeyoung Kim, Hyeonseok Kim, and Jongho Lee. Analysis of differences in single-joint movement of dominant and non-dominant hands for human-like robotic control. Sen-sors , 23(23):9443, 2023. [32] Takanori Noguchi, Shinichi Demura, and Hiroki Aoki. Su-periority of the dominant and nondominant hands in static strength and controlled force exertion. Perceptual and motor skills , 109(2):339–346, 2009.

@@ -1,0 +1,2331 @@
+Title: MyoSem: Aligning Electromyography to Natural-Language Action Semantics for Hand Action Understanding
+
+URL Source: https://arxiv.org/pdf/2606.00174v1
+
+Published Time: Tue, 02 Jun 2026 00:07:15 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+## MyoSem: Aligning Electromyography to Natural-Language Action Semantics for Hand Action Understanding 
+
+Chiyue Wang Dong She Yang Gao Zhanpeng Jin 
+
+South China University of Technology 
+
+{202420163875,ftdshe}@mail.scut.edu.cn {gaoyang2025,zjin}@scut.edu.cn 
+
+Abstract 
+
+Electromyography (EMG) directly reflects muscle activation and is a key sensing modality for gesture recognition, prosthetic control, and wearable interaction. Existing EMG methods, however, commonly formulate hand action un-derstanding as classification over fixed labels, making it difficult to support querying, retrieval, and generalization based on action descriptions. We present MyoSem, an EMG–action seman-tic alignment framework that maps low-level EMG signals into a shared semantic space con-structed from multi-view action descriptions. MyoSem combines multi-view action-semantic construction, activation-aware EMG encoding, and semantic query alignment, enabling bidi-rectional retrieval between EMG signals and text descriptions. We systematically evaluate MyoSem on EMG2Pose and NinaPro-series datasets. Results show that MyoSem performs well on EMG–text bidirectional retrieval, gen-erally outperforms most baselines, and shows favorable generalization to unseen users, held-out action classes, and amputee-user transfer scenarios. Ablations and visualizations fur-ther validate the effectiveness of each module. Overall, MyoSem advances EMG-based hand action understanding from fixed-label recogni-tion toward queryable bidirectional semantic retrieval, providing a new modeling paradigm for language-mediated EMG action understand-ing. 
+
+1 Introduction 
+
+Electromyography (EMG) directly reflects human muscle activation and is an important input modal-ity for prosthetic control, rehabilitation, wearable computing, and human-computer interaction (At-zori et al., 2014; Kaifosh et al., 2025). Most ex-isting EMG gesture recognition methods remain closed-set classifiers that predict fixed labels from predefined gesture sets (Dai et al., 2021; Yang et al., 2024). In real interaction, however, action intent is often described with language-like attributes, 
+
+Figure 1: Illustration of MyoSem as a bidirectional EMG–language retrieval interface. An EMG hand-action signal can be matched to ranked action descrip-tions, while a class-level action description can retrieve corresponding EMG samples. 
+
+such as which fingers are involved, how the hand moves, or what final hand shape is formed. As lan-guage becomes a useful interface for multimodal perception and interaction, connecting EMG to ac-tion descriptions becomes increasingly important (Radford et al., 2021; Girdhar et al., 2023). EMG hand action understanding should therefore move beyond fixed label prediction toward description-conditioned grounding in a shared action-semantic space. EMG research has progressed from conven-tional recognition to representation learning and language-model interfaces. Earlier machine learn-ing and deep learning methods can recognize known gestures, but their objective remains clas-sification over predefined labels, making them un-suitable for description-based querying (Dai et al., 2021; Yang et al., 2024). Recent EMG representa-tion learning improves generalization through self-supervised pretraining, cross-user modeling, and kinematic or pose-based supervision (Cui et al., 2025); however, these methods usually learn EMG latent spaces or kinematic spaces rather than text-derived action-semantic representations. EMG has also been connected with language models (Mohap-atra et al., 2025; Long et al., 2025; He et al., 2026), 1
+
+> arXiv:2606.00174v1 [cs.CV] 29 May 2026
+
+but existing studies mostly target speech, medi-cal, or closed-set recognition tasks, leaving bidi-rectional retrieval-style alignment between hand-gesture EMG and action-semantic representations underexplored. We study this shift as an EMG–action semantics grounding problem: given EMG hand-action sig-nals and class-level action descriptions, the goal is to learn a shared space that supports action-description retrieval, bidirectional retrieval, and evaluation on new users and held-out classes whose descriptions are available only at inference. This goal raises three challenges: 
+
+Text challenge. EMG datasets usually provide only short labels, which cannot express richer ac-tion information. More importantly, if EMG is to support description-based querying, the text side cannot provide only a category word; different de-scriptions of the same action must be organized consistently in semantic space. Otherwise, the same action may be far apart under different ex-pressions, while different actions may become hard to separate due to lexical similarity (Reimers and Gurevych, 2019). 
+
+EMG challenge. Action semantics are hidden in noisy, subject-dependent, and channel-sensitive muscle activation patterns. Classification-oriented representations may not preserve transferable cues such as local activation intensity, energy changes, and contraction dynamics (Yang et al., 2024; Hud-gins et al., 1993). 
+
+Alignment challenge. EMG is a low-level con-tinuous physiological signal, whereas text is high-level discrete semantics, creating a clear modality gap. Simple global-vector alignment can learn cate-gory shortcuts and ignore local EMG evidence that supports action semantics (Liang et al., 2022). We formulate three research questions: 
+
+RQ1. How can we construct an action semantic space that groups different natural-language de-scriptions of the same action while preserving fine-grained differences between actions? 
+
+RQ2. How can we learn stable and generalizable EMG representations that preserve activation, en-ergy, and contraction dynamics relevant to action semantics? 
+
+RQ3. How can we align EMG representations to the action semantic space and extract action-relevant local evidence from EMG sequences? To answer these questions, we propose MyoSem, a framework for description-conditioned EMG– action semantic grounding. Our contributions are: First, we formulate EMG hand action under-standing as bidirectional retrieval between muscle activation signals and class-level action descrip-tions, shifting the objective from closed-set label prediction to action-semantic grounding. Second, we construct a multi-view action seman-tic space by expanding short gesture labels into process descriptions, canonical descriptions, and natural-language paraphrases, so that alternative descriptions of the same action are organized as retrievable semantic targets. Third, we introduce an activation-aware EMG encoder and semantic query alignment mechanism. The encoder preserves local activation intensity, en-ergy changes, and contraction dynamics, while se-mantic queries read action-relevant evidence from EMG token sequences and align it with class-level action-semantic representations. 
+
+2 Related Work 
+
+2.1 Language-Aligned Multimodal Learning 
+
+Mainstream multimodal learning has followed a common route from representation learning, to lan-guage alignment, and then to language-model in-terfaces. Strong representations are first learned through pretraining, reconstruction, or latent-variable modeling (Devlin et al., 2019; Kingma and Welling, 2014; van den Oord et al., 2017). Non-text modalities are then aligned with natural-language semantic spaces through vision-language pretraining, contrastive learning, or unified embed-ding spaces (Radford et al., 2021; Li et al., 2022, 2023; Girdhar et al., 2023). Finally, aligned rep-resentations can be connected to large language models for interaction, reasoning, and generation (Alayrac et al., 2022; Liu et al., 2023). These stud-ies show that language alignment is a key inter-mediate layer between representation learning and broader semantic capabilities. 
+
+2.2 Extending the Route to Motion, Sensors, and Biosignals 
+
+This route has begun to extend to motion, IMU, wearable sensors, time series, and biosignals. First, related modalities have adopted pretraining, con-trastive learning, or foundation-style modeling to improve representation quality and generalization, including work on IMU, human motion, activity recognition, EEG/BCI, and ECG (Xu et al., 2021; Zhu et al., 2023; Qiu et al., 2025; Yang et al., 2023; Yue et al., 2024; Jiang et al., 2024; Jin 2et al., 2025). Second, motion, pose, IMU, time-series, and biosignal representations have been aligned with text or shared semantic spaces for description, retrieval, or prediction (Tevet et al., 2022; Yuan et al., 2022; Camaret Ndir et al., 2025; Moon et al., 2023; Dong et al., 2025). Third, lan-guage interfaces and LLMs further support natural-language interaction, question answering, reason-ing, and feedback over sensor or motion signals (Jiang et al., 2023; Wang et al., 2024; Chen et al., 2024; Zhang et al., 2025; Li et al., 2024; Shan et al., 2025). These works indicate a broader trend toward language-grounded understanding of non-text perceptual signals. However, motion, pose, and IMU are closer to visible movement or activity-level semantics, while EEG and ECG often target neural, cardiac, or medical-state semantics. Hand-gesture EMG observes low-level muscle activation rather than explicit trajectories, and therefore re-quires a dedicated EMG-language action-semantic alignment framework. 
+
+2.3 EMG: Missing the Action-Semantic Alignment Layer 
+
+EMG research has also developed representation learning methods that improve signal modeling through self-supervision, contrastive learning, re-construction, personalization, masked modeling, or pose/kinematic supervision (Wang et al., 2025; Cui et al., 2025). Another line estimates hand pose or kinematic trajectories from EMG, showing that EMG contains rich motor information, but these methods usually target pose or kinematic spaces rather than language-described action semantics (Lin et al., 2022; Liu et al., 2021; Salter et al., 2024). EMG has also been connected with text or LLMs for unvoiced speech transcription, medical report generation, and LLM-assisted gesture recognition (Mohapatra et al., 2025; Long et al., 2025; He et al., 2026). These studies do not systematically ad-dress bidirectional alignment between hand-gesture EMG and text-derived action-semantic representa-tions. MyoSem studies this intermediate alignment layer by constructing a multi-view action seman-tic space, learning activation-aware EMG repre-sentations, and aligning EMG token sequences to class-level action-semantic representations through semantic query alignment. 
+
+3 Method 
+
+MyoSem is a three-stage framework for aligning EMG signals with description-based action seman-tics. Stage 1 organizes short action labels into multi-view natural-language descriptions and con-structs class-level action-semantic representations. Stage 2 trains an activation-aware EMG encoder to preserve local activation intensity, energy changes, and contraction dynamics. Stage 3 performs seman-tic query alignment, aligning EMG representations with these action-semantic representations. 
+
+3.1 Task Formulation 
+
+Following language-supervised retrieval and sensor-language grounding paradigms (Radford et al., 2021; Moon et al., 2023), we formulate EMG-based hand action understanding as bidirectional retrieval between EMG signals and action-semantic representations, rather than as closed-set classifi-cation. Here, Pc is not a single class name, but a class-level action-semantic representation aggre-gated from multi-view action descriptions. Given an EMG segment x ∈ RT ×C , where T is the se-quence length and C is the number of channels, the model maps it to a normalized representation 
+
+zemg ∈ Rd. Each action class c is associated with an action-semantic representation Pc ∈ Rd, and all class-level representations form P ∈ R|C|× d. In our implementation, d = 256 , and both zemg and 
+
+Pc are ℓ2-normalized. At inference time, EMG-to-text retrieval uses 
+
+zemg as the query and retrieves from the action-semantic representation set {Pc}, while text-to-EMG retrieval uses Pc as the query and retrieves candidate EMG representations. Both directions use cosine similarity: 
+
+s(x, c ) = zemg (x)⊤Pc (1) Thus, MyoSem learns a shared action-semantic space for bidirectional EMG-text retrieval over can-didate action descriptions rather than a classifier over a fixed label set. 
+
+3.2 Multi-View Action-Semantic Text Space 
+
+As discussed above, if EMG is to support description-based querying, the text side cannot merely teach the model a category word. Instead, different expressions should point to the same ac-tion semantics. Inspired by LanHAR, which con-nects sensor readings with activity labels through semantic interpretation (Yan et al., 2025), we build 3Figure 2: Overview of MyoSem. The framework first constructs class-level action-semantic representations from multi-view descriptions, then encodes EMG segments with activation-aware token learning, and finally uses semantic queries to read local EMG evidence and align the resulting EMG representation with the shared action-semantic space. At inference, the same space supports EMG-to-text and text-to-EMG retrieval. 
+
+multi-view semantic descriptions for each EMG hand action instead of using the class name alone. For each action class, we define four text views: • T0: the original short label, used as the cate-gory anchor; • T1: a pose-sequence-derived process descrip-tion, used to characterize changes in pose over time; • T2: a canonical action description, used to stabilize class semantics; • T3: natural-language paraphrases, used to im-prove expression robustness. The design of T1 is inspired by pose-guided EMG representation learning: pose and kinematic signals provide finer-grained supervision than class labels and are therefore suitable intermediate ev-idence for constructing an action-semantic text space (Cui et al., 2025; Lin et al., 2022; Liu et al., 2021). All text views used for training are written in Chinese and encoded by a shared MacBERT text encoder (Cui et al., 2020). English descriptions in the paper are translations for readability and are not used as the training input. For the v-th text view 
+
+t(v) 
+
+> c
+
+of class c, its representation is 
+
+e(v) 
+
+> c
+
+= norm  gθ(t(v) 
+
+> c
+
+) (2) where norm( ·) denotes ℓ2 normalization. We train the text encoder with a multi-positive contrastive objective, treating different text views of the same action as positives and views from different actions as negatives (van den Oord et al., 2018; Khosla et al., 2020). For a pair of views (u, v ), the loss is 
+
+Lu→v = − 1
+
+B
+
+> B
+
+X
+
+> i=1
+
+log exp( τ −1⟨e(u) 
+
+> i
+
+, e (v) 
+
+> i
+
+⟩)
+
+PBj=1 exp( τ −1⟨e(u) 
+
+> i
+
+, e (v) 
+
+> j
+
+⟩)
+
+(3) The full objective primarily aligns process descrip-tions with canonical descriptions, while adding short-label anchoring and paraphrase consistency: 
+
+Ltext = LT1↔T2 + λ02 LT0↔T2
+
++ λ23 LT2↔T3 + λ13 LT1↔T3
+
+(4) After training, we average and normalize the multi-view text representations of each class to obtain a 4class-level action-semantic representation: 
+
+Pc = norm 1
+
+|Vc|
+
+X
+
+> v∈Vc
+
+e(v)
+
+> c
+
+!
+
+(5) These representations serve as fixed semantic tar-gets for subsequent EMG alignment. Compared with directly using class names, the multi-view text space preserves category anchors, action processes, and linguistic diversity, aligning EMG to describ-able action semantics rather than to a closed label word. 
+
+3.3 Activation-Aware EMG Encoder 
+
+Action semantics in EMG are not observed as ex-plicit trajectories, but are embedded in muscle ac-tivation patterns. Standard temporal patch embed-dings can capture local waveforms, yet may not preserve stable cues related to activation intensity and contraction dynamics. Motivated by classic time-domain EMG features used in myoelectric control (Hudgins et al., 1993), MyoSem explic-itly injects activation-aware descriptors into EMG patch tokens. Given an EMG window, we divide it into tempo-ral patches of length p and obtain a raw patch token 
+
+rt for each patch. For every patch, we compute three local descriptors: 
+
+rms t =
+
+q
+
+Ep[( x − ¯x)2],
+
+energy t = log  1 + Ep[x2],
+
+var t = Ep[|∆x|]
+
+(6) Here, rms t describes local activation intensity, 
+
+energy t captures the energy envelope, and var t
+
+reflects changes in contraction state. These descrip-tors are injected into the patch token through gated residual connections: 
+
+ht = rt+σ(ge)ϕe([rms t; energy t])+ σ(gv)ϕv(var t)
+
+(7) where ϕe and ϕv are lightweight MLPs, and ge and 
+
+gv are learnable scalar gates. The gates are initial-ized with small values, allowing the model to start close to a standard patch encoder and gradually learn how much physiological descriptor informa-tion to use. The token sequence H = {ht} is then fed into a Transformer encoder for temporal contextualiza-tion (Vaswani et al., 2017). We further introduce a vector-quantized codebook constraint (van den Oord et al., 2017). This encourages the model to learn structured EMG tokens. Given a projected to-ken qt, its quantized code is selected by maximum cosine similarity to a normalized codebook entry: 
+
+k∗ = arg max  
+
+> k
+
+⟨norm( qt), E k⟩ (8) Stage 2 is trained with action discrimination, signal reconstruction, and VQ regularization: 
+
+Lemg = Lcls + λrec Lrec + λvq Lvq (9) The classification objective encourages action sep-arability, reconstruction preserves signal structure, and the VQ constraint encourages structured token representations. Stage 3 uses the pre-VQ segment-level representation and token sequence for seman-tic alignment. 
+
+3.4 Semantic Query Alignment 
+
+After obtaining class-level action-semantic repre-sentations and the EMG encoder, MyoSem aligns EMG representations to the action-semantic space. Directly using a globally pooled EMG vector is simple, but it can compress the whole segment into coarse category features and ignore local chan-nel activations or temporal fragments that support action semantics. Inspired by query-based modal-ity bridges (Li et al., 2023), we propose semantic query alignment, which uses a small set of learn-able queries to read action-relevant evidence from EMG tokens. Given the EMG token sequence Hemg ∈ RL×d,we first obtain a global representation through pool-ing and projection: 
+
+zglobal = norm  fproj (Pool( Hemg ))  (10) We also introduce M learnable semantic queries 
+
+Q ∈ RM ×d, which attend to the EMG token se-quence: 
+
+˜Q = Attn( Q, H emg , H emg ),zquery = norm 1
+
+M
+
+> M
+
+X
+
+> m=1
+
+fq( ˜Qm)
+
+! (11) The final EMG representation combines global and query-based evidence: 
+
+zemg = norm  (1 − α)zglobal + αz query 
+
+ (12) Here, zglobal provides holistic action information, while zquery supplements local action-relevant cues at the token level. 5We use frozen class-level action-semantic rep-resentations as alignment targets. For a training sample (xi, y i), the semantic alignment loss is 
+
+Lalign = − 1
+
+B
+
+> B
+
+X
+
+> i=1
+
+log exp( τ −1 
+
+> a
+
+z⊤ 
+
+> i
+
+Pyi )
+
+P 
+
+> c∈C
+
+exp( τ −1 
+
+> a
+
+z⊤ 
+
+> i
+
+Pc)
+
+(13) We further add a lightweight auxiliary classification loss for stable optimization: 
+
+Lstage3 = Lalign + λaux Laux (14) Semantic query alignment explicitly reads local cues related to text action semantics from EMG tokens, helping bridge low-level physiological sig-nals and high-level language semantics. MyoSem is trained in three stages. Stage 1 trains the action-semantic text encoder with multi-view descriptions and exports one class-level represen-tation Pc for each action class. Stage 2 trains the activation-aware EMG encoder to learn sta-ble token-level and segment-level EMG represen-tations. Stage 3 freezes these text-derived repre-sentations and connects the EMG encoder to the semantic space: we first train the projection head and semantic query pool, and then lightly unfreeze the last layers of the EMG encoder to further reduce the modality gap. At inference time, MyoSem does not use closed-set classification. For EMG-to-text retrieval, the model encodes an input EMG segment as zemg 
+
+and ranks all action-semantic representations by 
+
+z⊤
+
+> emg
+
+Pc. For text-to-EMG retrieval, it uses Pc
+
+as the class-level description query and ranks candidate EMG embeddings by cosine similarity. Since both directions share the same normalized action-semantic space, MyoSem supports action-description retrieval and evaluation across users and action categories. 
+
+4 Experiments 
+
+We evaluate whether MyoSem learns a shared space between EMG signals and action-semantic representations. The experiments focus on three questions: whether MyoSem supports bidirectional EMG-text retrieval, whether it generalizes to new users, held-out action classes, and cross-dataset transfer, and whether its core modules support the text semantic space, EMG activation evidence, and cross-modal alignment. 
+
+4.1 Experimental Setup 
+
+We evaluate MyoSem on NinaPro-DB2 and EMG2Pose under random, cross-user, and cross-class protocols, where cross-class evaluation re-trieves held-out classes from descriptions encoded only at inference (Atzori et al., 2014; Salter et al., 2024). We further evaluate NinaPro DB2 →DB3 transfer from able-bodied subjects to transradial amputees (Atzori et al., 2014), resulting in seven protocols in total. Evaluation is formulated as bidirectional retrieval over class-level action de-scriptions rather than unconstrained free-form lan-guage. Given an EMG representation zx and a class-level action-semantic representation Pc, the retrieval score is s(x, c ) = z⊤ 
+
+> x
+
+Pc. We report Recall and MRR. For EMG-to-text, we compare with adapted EMG deep and representation baselines (Bai et al., 2018; Hu et al., 2018; LeCun et al., 1998; Hochre-iter and Schmidhuber, 1997; Schuster and Paliwal, 1997; Xu et al., 2023; Atzori et al., 2016; Cui et al., 2025). For text-to-EMG, we compare with generic text encoder baselines under the same splits, can-didate sets, and metrics (Devlin et al., 2019; Cui et al., 2020; Radford et al., 2021; Yang et al., 2022). 
+
+4.2 Main Results 
+
+Table 1 shows EMG-to-text retrieval results. MyoSem achieves the best or near-best perfor-mance in most protocols, indicating that it pre-serves semantic retrieval ability not only under ran-dom splits, but also for new users, held-out action classes or compositions, and amputee-user transfer. Table 2 shows text-to-EMG retrieval results. MyoSem outperforms all generic text encoder base-lines under all seven protocols, showing that text-derived action-semantic representations can also serve as action-description query entries for retriev-ing EMG samples. 
+
+4.3 Ablation Study 
+
+Tables 3 and 4 show that removing action-semantic pretraining, the activation-aware encoder, or se-mantic queries weakens bidirectional retrieval, in-dicating that all three modules contribute to the text semantic space, EMG activation evidence, and local alignment mechanism. 
+
+4.4 Analysis of Learned Semantic Alignment 
+
+Figure 3 explains the learned alignment from four complementary views on EMG2Pose. For the text space, we compute the similarity between 6Type Model NP-rand NP-user NP-class E2P-rand E2P-user E2P-class DB2 →DB3 EMG-DL TCN Recall 80 .38 ±1.24 
+
+MRR 67 .56 ±1.09 
+
+Recall 58 .13 ±1.02 
+
+MRR 49 .50 ±0.77 
+
+Recall 44 .87 ±0.98 
+
+MRR 37 .66 ±0.58 
+
+Recall 71 .34 ±1.42 
+
+MRR 62 .09 ±1.20 
+
+Recall 78 .65 ±1.11 
+
+MRR 67 .49 ±0.95 
+
+Recall 63 .68 ±1.11 
+
+MRR 52 .97 ±0.75 
+
+Recall 45 .54 ±2.17 
+
+MRR 40 .62 ±1.43 
+
+EMG-DL Attn-CNN-RNN Recall 75 .98 ±1.35 
+
+MRR 63 .76 ±1.16 
+
+Recall 58 .96 ±1.04 
+
+MRR 49 .04 ±0.77 
+
+Recall 46 .96 ±1.04 
+
+MRR 37 .80 ±0.59 
+
+Recall 60 .22 ±1.56 
+
+MRR 51 .44 ±1.17 
+
+Recall 56 .28 ±1.41 
+
+MRR 48 .16 ±1.09 
+
+Recall 58 .42 ±1.15 
+
+MRR 53 .65 ±0.82 
+
+Recall 45 .35 ±2.26 
+
+MRR 40 .87 ±1.44 
+
+EMG-DL CNN-BiLSTM Recall 72 .97 ±1.43 
+
+MRR 59 .31 ±1.18 
+
+Recall 56 .92 ±0.98 
+
+MRR 49 .64 ±0.79 
+
+Recall 30 .63 ±0.91 
+
+MRR 29 .43 ±0.52 
+
+Recall 61 .82 ±1.52 
+
+MRR 52 .80 ±1.18 
+
+Recall 65 .15 ±1.38 
+
+MRR 55 .07 ±1.07 
+
+Recall 63 .35 ±1.11 
+
+MRR 54 .86 ±0.82 
+
+Recall 47 .87 ±2.17 
+
+MRR 39 .17 ±1.30 
+
+EMG-DL SE-CNN Recall 61 .06 ±1.53 
+
+MRR 51 .27 ±1.15 
+
+Recall 42 .58 ±0.98 
+
+MRR 37 .76 ±0.71 
+
+Recall 30 .00 ±0.92 
+
+MRR 29 .43 ±0.53 
+
+Recall 60 .72 ±1.53 
+
+MRR 53 .04 ±1.17 
+
+Recall 67 .82 ±1.31 
+
+MRR 58 .59 ±1.08 
+
+Recall 63 .57 ±1.12 
+
+MRR 54 .08 ±0.81 
+
+Recall 46 .12 ±2.14 
+
+MRR 40 .48 ±1.36 
+
+EMG-DL Atzori CNN Recall 58 .36 ±1.55 
+
+MRR 49 .83 ±1.09 
+
+Recall 46 .04 ±0.97 
+
+MRR 40 .38 ±0.70 
+
+Recall 49 .63 ±1.02 
+
+MRR 39 .10 ±0.63 
+
+Recall 43 .89 ±1.62 
+
+MRR 39 .70 ±1.15 
+
+Recall 53 .22 ±1.38 
+
+MRR 46 .15 ±1.02 
+
+Recall 71 .12 ±1.05 
+
+MRR 51 .16 ±0.69 
+
+Recall 46 .12 ±2.21 
+
+MRR 38 .68 ±1.27 
+
+EMG-FM CPEP Recall 86 .19 ±1.10 
+
+MRR 72 .72 ±1.01 
+
+Recall 63 .00 ±1.00 
+
+MRR 53 .94 ±0.77 
+
+Recall 67 .92 ±0.97 
+
+MRR 54 .12 ±0.71 
+
+Recall 58 .62 ±1.53 
+
+MRR 49 .73 ±1.12 
+
+Recall 61 .70 ±1.42 
+
+MRR 53 .35 ±1.10 
+
+Recall 62 .95 ±1.11 
+
+MRR 50 .80 ±0.76 
+
+Recall 45 .74 ±2.19 
+
+MRR 39 .54 ±1.37 
+
+EMG-FM EMBridge Recall 86 .69 ±1.06 
+
+MRR 73 .67 ±1.02 
+
+Recall 64 .13 ±1.01 
+
+MRR 54 .40 ±0.79 
+
+Recall 66 .25 ±0.95 
+
+MRR 53 .57 ±0.71 
+
+Recall 58 .02 ±1.60 
+
+MRR 50 .71 ±1.20 
+
+Recall 59 .73 ±1.39 
+
+MRR 51 .19 ±1.06 
+
+Recall 65 .36 ±1.07 
+
+MRR 54 .51 ±0.80 
+
+Recall 46 .51 ±2.22 
+
+MRR 41 .35 ±1.44 
+
+EMG-FM AEMG Recall 50 .85 ±1.58 
+
+MRR 43 .00 ±1.11 
+
+Recall 36 .33 ±0.96 
+
+MRR 32 .60 ±0.65 
+
+Recall 49 .88 ±1.03 
+
+MRR 41 .19 ±0.64 
+
+Recall 27 .96 ±1.40 
+
+MRR 27 .27 ±0.90 
+
+Recall 36 .42 ±1.35 
+
+MRR 32 .11 ±0.89 
+
+Recall 64 .69 ±1.15 
+
+MRR 51 .41 ±0.73 
+
+Recall 44 .38 ±2.18 
+
+MRR 38 .40 ±1.36 
+
+Ours MyoSem Recall 92 .99 ±0.79 
+
+MRR 81 .76 ±0.88 
+
+Recall 67 .08 ±0.97 
+
+MRR 57 .87 ±0.78 
+
+Recall 68 .04 ±0.96 
+
+MRR 52 .27 ±0.68 
+
+Recall 90 .88 ±0.91 
+
+MRR 84 .23 ±0.91 
+
+Recall 91 .76 ±0.77 
+
+MRR 83 .87 ±0.80 
+
+Recall 77 .39 ±0.99 
+
+MRR 59 .38 ±0.78 
+
+Recall 48 .26 ±2.25 
+
+MRR 41 .92 ±1.44 
+
+Table 1: EMG-to-text retrieval results with uncertainty. Each cell reports Recall/MRR (%). The best Recall and MRR in each protocol are bolded separately. 
+
+Type Model NP-rand NP-user NP-class E2P-rand E2P-user E2P-class DB2 →DB3 Text-Enc. BERT Recall 25 .55 ±0.36 
+
+MRR 23 .47 ±0.33 
+
+Recall 23 .65 ±0.37 
+
+MRR 22 .59 ±0.25 
+
+Recall 32 .50 ±0.91 
+
+MRR 31 .04 ±0.27 
+
+Recall 63 .45 ±0.69 
+
+MRR 53 .52 ±0.69 
+
+Recall 59 .75 ±0.77 
+
+MRR 49 .38 ±0.68 
+
+Recall 64 .40 ±1.43 
+
+MRR 48 .42 ±0.45 
+
+Recall 40 .00 ±1.08 
+
+MRR 35 .88 ±0.87 
+
+Text-Enc. MacBERT Recall 18 .60 ±0.22 
+
+MRR 19 .50 ±0.26 
+
+Recall 18 .68 ±0.29 
+
+MRR 19 .30 ±0.24 
+
+Recall 30 .10 ±0.45 
+
+MRR 29 .84 ±0.16 
+
+Recall 36 .10 ±0.45 
+
+MRR 30 .63 ±0.40 
+
+Recall 35 .40 ±0.41 
+
+MRR 30 .27 ±0.47 
+
+Recall 60 .60 ±0.67 
+
+MRR 46 .18 ±0.25 
+
+Recall 37 .88 ±0.21 
+
+MRR 34 .20 ±0.25 
+
+Text-Enc. CLIP Recall 31 .87 ±0.42 
+
+MRR 29 .03 ±0.32 
+
+Recall 27 .75 ±0.32 
+
+MRR 25 .46 ±0.32 
+
+Recall 34 .30 ±0.89 
+
+MRR 31 .16 ±0.55 
+
+Recall 56 .90 ±0.78 
+
+MRR 50 .97 ±0.66 
+
+Recall 56 .10 ±0.75 
+
+MRR 49 .13 ±0.54 
+
+Recall 67 .60 ±1.48 
+
+MRR 47 .53 ±0.70 
+
+Recall 43 .62 ±1.77 
+
+MRR 38 .69 ±1.09 
+
+Text-Enc. Chinese-CLIP Recall 24 .00 ±0.57 
+
+MRR 23 .08 ±0.26 
+
+Recall 20 .53 ±0.55 
+
+MRR 21 .18 ±0.25 
+
+Recall 52 .60 ±1.20 
+
+MRR 42 .71 ±0.51 
+
+Recall 80 .20 ±0.72 
+
+MRR 69 .14 ±0.59 
+
+Recall 79 .60 ±0.84 
+
+MRR 69 .29 ±0.67 
+
+Recall 68 .00 ±1.52 
+
+MRR 50 .88 ±0.92 
+
+Recall 40 .62 ±1.78 
+
+MRR 38 .60 ±0.95 
+
+Ours MyoSem Recall 85 .75 ±0.52 
+
+MRR 72 .73 ±0.46 
+
+Recall 64 .80 ±0.71 
+
+MRR 56 .25 ±0.60 
+
+Recall 71 .50 ±1.14 
+
+MRR 56 .72 ±0.73 
+
+Recall 86 .20 ±0.64 
+
+MRR 78 .05 ±0.66 
+
+Recall 86 .20 ±0.68 
+
+MRR 77 .62 ±0.70 
+
+Recall 85 .20 ±1.49 
+
+MRR 66 .64 ±1.25 
+
+Recall 47 .75 ±1.64 
+
+MRR 43 .46 ±1.17 
+
+Table 2: Text-to-EMG retrieval results with uncertainty. Each cell reports Recall/MRR (%). Results are averaged over 100 balanced retrieval episodes. 2    
+
+> 3
+> 4
+> 7
+> 9
+> 10
+> 11
+> 14
+> 15
+> 18
+> 19
+> 20
+> Stage blocks (T0/T1/T2/T3)
+> 2
+> 3
+> 4
+> 7
+> 9
+> 10
+> 11
+> 14
+> 15
+> 18
+> 19
+> 20
+> Stage blocks (T0/T1/T2/T3)
+> Before: raw/frozen text space
+> 2
+> 3
+> 4
+> 7
+> 9
+> 10
+> 11
+> 14
+> 15
+> 18
+> 19
+> 20
+> Stage blocks (T0/T1/T2/T3)
+> 2
+> 3
+> 4
+> 7
+> 9
+> 10
+> 11
+> 14
+> 15
+> 18
+> 19
+> 20
+> Stage blocks (T0/T1/T2/T3)
+> After: MyoSem text space
+> 0.2
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> cosine similarity
+> EMG2Pose text-only multi-view semantic space before and after MyoSem 1510 15 20
+> class centroid
+> 1
+> 5
+> 10
+> 15
+> 20
+> class centroid
+
+No activation-aware 
+
+Top-1 23.9% | margin -0.02     
+
+> 1510 15 20
+> class centroid
+> 1
+> 5
+> 10
+> 15
+> 20
+> class centroid
+
+Full MyoSem 
+
+Top-1 73.9% | margin +0.07 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> centroid cosine similarity
+
+EMG2Pose: activation-aware encoder separates EMG class centroids 1
+
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> Text prototype class
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> EMG centroid class
+> w/o action-semantic pretrain
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> Text prototype class
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> EMG centroid class
+> Full MyoSem
+> 0.1
+> 0.0
+> 0.1
+> 0.2
+> 0.3
+> cosine similarity
+> E2P cross-modal class similarity before and after MyoSem semantic alignment
+
+Before alignment After MyoSem 
+
+Figure 3: Analysis of learned action-semantic alignment on EMG2Pose. (a) Multi-view text alignment before and after training. (b) Activation-aware class-center similarity. (c) Cross-modal alignment between EMG class centers and class-level action-semantic representations. (d) EMG samples projected into the text-semantic space. 
+
+Model NP-rand NP-user NP-class E2P-rand E2P-user E2P-class DB2 →DB3 w/o activation-aware Recall 48 .15 ±1.58 
+
+MRR 41 .87 ±1.11 
+
+Recall 47 .92 ±1.00 
+
+MRR 40 .95 ±0.71 
+
+Recall 54 .50 ±1.03 
+
+MRR 43 .43 ±0.65 
+
+Recall 49 .20 ±1.55 
+
+MRR 42 .24 ±1.09 
+
+Recall 47 .41 ±1.40 
+
+MRR 42 .39 ±1.01 
+
+Recall 55 .01 ±1.16 
+
+MRR 50 .48 ±0.81 
+
+Recall 43 .80 ±2.20 
+
+MRR 37 .92 ±1.32 
+
+w/o semantic queries Recall 82 .58 ±1.17 
+
+MRR 68 .92 ±1.09 
+
+Recall 63 .29 ±0.98 
+
+MRR 53 .69 ±0.77 
+
+Recall 65 .71 ±0.98 
+
+MRR 52 .12 ±0.68 
+
+Recall 87 .47 ±1.04 
+
+MRR 79 .89 ±0.99 
+
+Recall 88 .93 ±0.85 
+
+MRR 80 .45 ±0.85 
+
+Recall 62 .79 ±1.13 
+
+MRR 54 .85 ±0.80 
+
+Recall 42 .64 ±2.19 
+
+MRR 39 .39 ±1.45 
+
+w/o action-semantic pretrain Recall 87 .09 ±1.28 
+
+MRR 73 .82 ±1.06 
+
+Recall 64 .17 ±1.01 
+
+MRR 55 .06 ±0.78 
+
+Recall 50 .33 ±0.95 
+
+MRR 41 .33 ±0.65 
+
+Recall 89 .28 ±1.05 
+
+MRR 81 .46 ±0.93 
+
+Recall 89 .56 ±1.00 
+
+MRR 81 .21 ±0.87 
+
+Recall 63 .91 ±1.17 
+
+MRR 48 .68 ±0.68 
+
+Recall 42 .83 ±2.07 
+
+MRR 39 .35 ±1.33 
+
+Full MyoSem Recall 92 .99 ±0.79 
+
+MRR 81 .76 ±0.88 
+
+Recall 67 .08 ±0.97 
+
+MRR 57 .87 ±0.78 
+
+Recall 68 .04 ±0.96 
+
+MRR 52 .27 ±0.68 
+
+Recall 90 .88 ±0.91 
+
+MRR 84 .23 ±0.91 
+
+Recall 91 .76 ±0.77 
+
+MRR 83 .87 ±0.80 
+
+Recall 77 .39 ±0.99 
+
+MRR 59 .38 ±0.78 
+
+Recall 48 .26 ±2.25 
+
+MRR 41 .92 ±1.44 
+
+Table 3: EMG-to-text ablation results with uncertainty. Each cell reports Recall/MRR (%). 
+
+7Model NP-rand NP-user NP-class E2P-rand E2P-user E2P-class DB2 →DB3 w/o activation-aware Recall 44 .00 ±0.58 
+
+MRR 37 .27 ±0.42 
+
+Recall 42 .32 ±0.68 
+
+MRR 36 .58 ±0.41 
+
+Recall 54 .50 ±1.35 
+
+MRR 43 .70 ±0.71 
+
+Recall 32 .50 ±0.71 
+
+MRR 30 .62 ±0.44 
+
+Recall 34 .40 ±0.79 
+
+MRR 31 .37 ±0.46 
+
+Recall 66 .40 ±1.85 
+
+MRR 50 .39 ±1.05 
+
+Recall 42 .62 ±1.63 
+
+MRR 38 .54 ±0.96 
+
+w/o semantic queries Recall 74 .38 ±0.61 
+
+MRR 60 .33 ±0.38 
+
+Recall 57 .42 ±0.62 
+
+MRR 49 .36 ±0.46 
+
+Recall 62 .10 ±1.19 
+
+MRR 50 .92 ±0.87 
+
+Recall 82 .00 ±0.75 
+
+MRR 72 .41 ±0.67 
+
+Recall 81 .90 ±0.70 
+
+MRR 72 .08 ±0.71 
+
+Recall 82 .20 ±1.44 
+
+MRR 64 .37 ±1.23 
+
+Recall 44 .00 ±1.42 
+
+MRR 37 .14 ±0.89 
+
+w/o action-semantic pretrain Recall 75 .00 ±0.64 
+
+MRR 62 .07 ±0.49 
+
+Recall 50 .47 ±0.61 
+
+MRR 43 .37 ±0.54 
+
+Recall 49 .70 ±1.22 
+
+MRR 40 .71 ±0.72 
+
+Recall 66 .75 ±0.89 
+
+MRR 56 .36 ±0.75 
+
+Recall 64 .45 ±0.93 
+
+MRR 56 .07 ±0.78 
+
+Recall 68 .60 ±1.39 
+
+MRR 49 .20 ±0.47 
+
+Recall 39 .62 ±1.13 
+
+MRR 35 .27 ±0.58 
+
+Full MyoSem Recall 85 .75 ±0.52 
+
+MRR 72 .73 ±0.46 
+
+Recall 64 .80 ±0.71 
+
+MRR 56 .25 ±0.60 
+
+Recall 71 .50 ±1.14 
+
+MRR 56 .72 ±0.73 
+
+Recall 86 .20 ±0.64 
+
+MRR 78 .05 ±0.66 
+
+Recall 86 .20 ±0.68 
+
+MRR 77 .62 ±0.70 
+
+Recall 85 .20 ±1.49 
+
+MRR 66 .64 ±1.25 
+
+Recall 47 .75 ±1.64 
+
+MRR 43 .46 ±1.17 
+
+Table 4: Text-to-EMG ablation results with uncertainty. Each cell reports Recall/MRR (%). small power grasp r=0.94                        
+
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> radial deviation r=0.92
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> ring+little flex r=0.90
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> fixed hook grasp r=0.90
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> index+middle extend r=0.88
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> writing tripod r=0.88
+> 050 100 150 200 250
+> EMG token
+> 0.0
+> 0.5
+> 1.0
+> norm.
+> Coffee Panic Pete r=0.72
+> 0.0
+> 0.5
+> 1.0
+> Hand Desk Separate Clasped Chest r=0.67
+> 0.0
+> 0.5
+> 1.0
+> Play Blocks Chess r=0.44
+> 0.0
+> 0.5
+> 1.0
+> Thumbs Up Down Thumb Rotations CWCCWP r=0.39
+> 0.0
+> 0.5
+> 1.0
+> Hand Claw Grasp Flicks r=0.36
+> 0.0
+> 0.5
+> 1.0
+> Grasp Punch Close Far r=0.32
+> 050 100 150 200 250
+> EMG token
+> 0.0
+> 0.5
+> 1.0
+> NinaPro EMG2Pose
+> EMG RMS Semantic attention
+
+Figure 4: Semantic query attention examples on Ni-naPro and EMG2Pose. The highlighted regions show that learnable semantic queries attend to localized EMG segments rather than uniformly pooling the whole se-quence. 
+
+two views of the same action as sim( c, u, v ) = (e(u)
+
+c )⊤e(v)
+
+c . After training, the multi-view text heatmap shows more consistent descriptions for the same action, indicating that Stage 1 builds a coherent action semantic space rather than simply adding prompts. For EMG representations, the activation-aware class-center heatmap shows clearer structure after injecting RMS, energy, and variation, suggesting that these descriptors preserve transferable muscle activation evidence. For cross-modal alignment, the similarity heatmap between EMG class cen-ters and class-level action-semantic representations forms a clearer diagonal structure after training, showing that the model establishes correspondence between EMG and text semantics. UMAP further shows that EMG samples form clearer semantic clusters in the action-semantics-guided space, in-dicating that MyoSem learns a shared action se-mantic space rather than only closed-set decision boundaries. Figure 4 further illustrates how semantic queries operate at the token level. Across examples from both datasets, high-attention regions concentrate on salient local segments, supporting the role of se-mantic query alignment in reading action-relevant EMG evidence. Additional RMS-overlaid attention visualizations are provided in the appendix. 
+
+5 Conclusion 
+
+We presented MyoSem, a framework that moves EMG-based hand action understanding from closed-set category recognition toward bidirec-tional retrieval with action-semantic representa-tions. Unlike conventional EMG recognition meth-ods, MyoSem formulates hand action understand-ing as bidirectional retrieval between EMG signals and text-derived action-semantic representations. It addresses three central challenges through a multi-view action-semantic text space, an activation-aware EMG encoder, and semantic query align-ment: enriching short labels with action seman-tics, preserving local muscle-activation evidence in EMG representations, and reducing the gap be-tween low-level physiological signals and high-level linguistic semantics. Experiments on NinaPro-DB2, EMG2Pose, and the DB2 →DB3 transfer setting show that MyoSem performs consistently in both EMG-to-text and text-to-EMG retrieval, while maintaining favorable per-formance for new users, held-out action classes, and amputee-user transfer scenarios. Ablations and visualizations further indicate that multi-view text-semantic pretraining, activation-aware repre-sentation learning, and semantic queries all con-tribute to the final alignment performance. Over-all, MyoSem provides a practical framework for description-based EMG hand action understanding and lays groundwork for future language-mediated interaction systems built on physiological signals such as EMG. 8Limitations 
+
+This study has several boundaries. First, al-though MyoSem moves EMG-based hand action understanding from closed-set classification toward action-semantic alignment, our experiments are still mainly organized around dataset-defined hand action categories. Text-derived action-semantic representations support bidirectional retrieval with class-level action descriptions, but they do not yet cover unconstrained natural-language queries, continuous actions, functional intents, or context-dependent descriptions beyond the constructed action-description set. Future work can con-struct larger and more fine-grained EMG-language datasets to support broader action-semantic under-standing. Second, the multi-view text descriptions are con-structed from dataset labels, pose or stage infor-mation, and human-designed normalization rules. This process can introduce annotation bias, omit user-specific functional intent, or overemphasize distinctions that are convenient for benchmark eval-uation. Future datasets should include clearer anno-tation protocols and, where appropriate, multiple annotators or user-centered descriptions. Third, although we evaluate cross-user, cross-class, and DB2 →DB3 transfer to amputee users, real EMG applications are also affected by device type, electrode placement, skin condition, mus-cle fatigue, cross-session drift, and noise in on-line interaction. Therefore, the current results should not be taken as evidence of long-term ro-bustness in all wearable or clinical settings. In assistive or prosthetic-control scenarios, retrieval errors may lead to unsafe or unintended actions, so MyoSem should be treated as a representation and retrieval component rather than a directly deploy-able control policy. Future work should further val-idate MyoSem under cross-device, cross-session, and long-term adaptation settings, while explor-ing lightweight calibration, continual learning, and human-in-the-loop safeguards. Finally, MyoSem studies the alignment between EMG and language-described action semantics rather than serving as a complete general-purpose EMG foundation model. The multi-view text space, activation-aware EMG token learning, and seman-tic query alignment introduced in this work provide an initial basis for connecting language with EMG. Future work can combine larger-scale pretraining, multi-task supervision, multi-sensor fusion, and language-model interfaces to build EMG founda-tion models that support description-based under-standing, explanation, and interactive control. 
+
+References          
+
+> Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, An-toine Miech, Iain Barr, Yana Hasson, Karel Lenc, Arthur Mensch, Katie Millican, Malcolm Reynolds, Roman Ring, Eliza Rutherford, Serkan Cabi, Tengda Han, Zhitao Gong, Sina Samangooei, Marianne Mon-teiro, Jacob Menick, Sebastian Borgeaud, and 8 oth-ers. 2022. Flamingo: A visual language model for few-shot learning. In Advances in Neural Informa-tion Processing Systems .Manfredo Atzori, Matteo Cognolato, and Henning Müller. 2016. Deep learning with convolutional neu-ral networks applied to electromyography data: A resource for the classification of movements for pros-thetic hands. Frontiers in Neurorobotics , 10:9. Manfredo Atzori, Arjan Gijsberts, Claudio Castellini, Barbara Caputo, Anne-Gabrielle Mittaz Hager, Si-mone Elsig, Giorgio Giatsidis, Franco Bassetto, and Henning Müller. 2014. Electromyography data for non-invasive naturally-controlled robotic hand pros-theses. Scientific Data , 1:140053. Shaojie Bai, J. Zico Kolter, and Vladlen Koltun. 2018. An empirical evaluation of generic convolutional and recurrent networks for sequence modeling. Preprint ,arXiv:1803.01271. Tidiane Camaret Ndir, Robin T. Schirrmeister, and To-nio Ball. 2025. EEG-CLIP: Learning EEG represen-tations from natural language descriptions. Frontiers in Robotics and AI , 12. Wenqiang Chen, Jiaxuan Cheng, Leyao Wang, Wei Zhao, and Wojciech Matusik. 2024. Sensor2Text: Enabling natural language interactions for daily ac-tivity tracking using wearable sensors. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies , 8(4):1–26. Wenhui Cui, Christopher Sandino, Hadi Pouransari, Ran Liu, Juri Minxha, Ellen Zippi, Aman Verma, Anna Sedlackova, Erdrin Azemi, and Behrooz Ma-hasseni. 2025. CPEP: Contrastive pose-EMG pre-training enhances gesture generalization on EMG signals. Preprint , arXiv:2509.04699. Yiming Cui, Wanxiang Che, Ting Liu, Bing Qin, Shijin Wang, and Guoping Hu. 2020. Revisiting pre-trained models for Chinese natural language processing. In
+> Findings of the Association for Computational Lin-guistics: EMNLP 2020 , pages 657–668. Qingfeng Dai, Xiangdong Li, Weidong Geng, Wen-guang Jin, and Xiubo Liang. 2021. CAPG-MYO: A muscle-computer interface supporting user-defined gesture recognition. In Proceedings of the 9th Inter-national Conference on Computer and Communica-tions Management , pages 52–58.
+
+9Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. BERT: Pre-training of deep bidirectional transformers for language under-standing. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Tech-nologies , pages 4171–4186. Association for Compu-tational Linguistics. Sixun Dong, Wei Fan, Teresa Wu, and Yanjie Fu. 2025. Teaching time series to see and speak: Forecasting with aligned visual and textual perspectives. Preprint ,arXiv:2506.24124. Rohit Girdhar, Alaaeldin El-Nouby, Zhuang Liu, Man-nat Singh, Kalyan Vasudev Alwala, Armand Joulin, and Ishan Misra. 2023. ImageBind: One embed-ding space to bind them all. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pat-tern Recognition , pages 15180–15190. Ruijia He, Lizhen Wang, Duo Peng, Junfu Deng, Ying Fu, and Shuxiang Ye. 2026. Large language mod-els are great sEMG-based hand gesture recognizers. In Communications in Computer and Information Science , pages 361–373. Springer Nature. Sepp Hochreiter and Jürgen Schmidhuber. 1997. Long short-term memory. Neural Computation , 9(8):1735– 1780. Yu Hu, Yiu Wong, Wei Wei, Yongtian Du, Mohan Kankanhalli, and Weidong Geng. 2018. A novel attention-based hybrid CNN-RNN architecture for sEMG-based gesture recognition. PLOS ONE ,13(10):e0206049. Bernard Hudgins, Philip Parker, and Robert N. Scott. 1993. A new strategy for multifunction myoelectric control. IEEE Transactions on Biomedical Engineer-ing , 40(1):82–94. Biao Jiang, Xin Chen, Wen Liu, Jingyi Yu, Gang Yu, and Tao Chen. 2023. MotionGPT: Human motion as a foreign language. In Advances in Neural Information Processing Systems .Wei-Bang Jiang, Li-Ming Zhao, and Bao-Liang Lu. 2024. LaBraM: Large brain model for learning generic representations with tremendous EEG data in BCI. Preprint , arXiv:2405.18765. Jiarui Jin, Haoyu Wang, Hongyan Li, Jun Li, Jiahui Pan, and Shenda Hong. 2025. Reading your heart: Learn-ing ECG words and sentences via pre-training ECG language model. In The Thirteenth International Conference on Learning Representations .Patrick Kaifosh, Thomas R. Reardon, and CTRL-labs at Reality Labs. 2025. A generic non-invasive neu-romotor interface for human-computer interaction. 
+
+Nature , 645(8081):702–711. Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, and Dilip Krishnan. 2020. Su-pervised contrastive learning. In Advances in Neural Information Processing Systems , volume 33, pages 18661–18673. Diederik P. Kingma and Max Welling. 2014. Auto-encoding variational bayes. In International Confer-ence on Learning Representations .Yann LeCun, Léon Bottou, Yoshua Bengio, and Patrick Haffner. 1998. Gradient-based learning applied to document recognition. Proceedings of the IEEE ,86(11):2278–2324. Junnan Li, Dongxu Li, Silvio Savarese, and Steven C. H. Hoi. 2023. BLIP-2: Bootstrapping language-image pre-training with frozen image encoders and large language models. In Proceedings of the 40th Inter-national Conference on Machine Learning , pages 19730–19742. Junnan Li, Dongxu Li, Caiming Xiong, and Steven C. H. Hoi. 2022. BLIP: Bootstrapping language-image pre-training for unified vision-language understanding and generation. In Proceedings of the 39th Inter-national Conference on Machine Learning , pages 12888–12900. Zechen Li, Shohreh Deldari, Linyao Chen, Hao Xue, and Flora D. Salim. 2024. SensorLLM: Aligning large language models with motion sen-sors for human activity recognition. Preprint ,arXiv:2410.10624. Accepted to EMNLP 2025 Main Conference. Weixin Liang, Yuhui Zhang, Yongchan Kwon, Serena Yeung, and James Zou. 2022. Mind the gap: Under-standing the modality gap in multi-modal contrastive representation learning. In Advances in Neural Infor-mation Processing Systems .Chuang Lin, Xingjian Chen, Weiyu Guo, Ning Jiang, Dario Farina, and Jingyong Su. 2022. A BERT based method for continuous estimation of cross-subject hand kinematics from surface electromyographic sig-nals. IEEE Transactions on Neural Systems and Re-habilitation Engineering , 31:87–96. Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong Jae Lee. 2023. Visual instruction tuning. In Advances in Neural Information Processing Systems .Yilin Liu, Shijia Zhang, and Mahanth Gowda. 2021. NeuroPose: 3d hand pose tracking using EMG wear-ables. In Proceedings of The Web Conference 2021 ,pages 1471–1482. Zefei Long, Zhenbiao Cao, Wei Chen, and Zhongyu Wei. 2025. EMGLLM: Data-to-text alignment for electromyogram diagnosis generation with medical numerical data encoding. In Findings of the Asso-ciation for Computational Linguistics: ACL 2025 ,pages 20470–20480, Vienna, Austria. Association for Computational Linguistics. 
+
+10 Payal Mohapatra, Akash Pandey, Xiaoyuan Zhang, and Qi Zhu. 2025. Can LLMs understand unvoiced speech? exploring EMG-to-text conversion with LLMs. In Proceedings of the 63rd Annual Meet-ing of the Association for Computational Linguistics (Volume 2: Short Papers) , pages 703–712, Vienna, Austria. Association for Computational Linguistics. Seungwhan Moon, Andrea Madotto, Zhaojiang Lin, Aparajita Saraf, Amy Bearman, and Babak Dama-vandi. 2023. IMU2CLIP: Language-grounded mo-tion sensor translation with multimodal contrastive learning. In Findings of the Association for Com-putational Linguistics: EMNLP 2023 , pages 13246– 13253, Singapore. Association for Computational Linguistics. Minghui Qiu, Cekai Weng, Mingming Fan, and Kaishun Wu. 2025. Towards customizable foundation models for human activity recognition with wearable devices. 
+
+Proceedings of the ACM on Interactive, Mobile, Wear-able and Ubiquitous Technologies , 9(3):1–29. Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sas-try, Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen Krueger, and Ilya Sutskever. 2021. Learn-ing transferable visual models from natural language supervision. In Proceedings of the 38th International Conference on Machine Learning , pages 8748–8763. Nils Reimers and Iryna Gurevych. 2019. Sentence-BERT: Sentence embeddings using Siamese BERT-networks. In Proceedings of the 2019 Conference on Empirical Methods in Natural Language Process-ing and the 9th International Joint Conference on Natural Language Processing , pages 3982–3992. As-sociation for Computational Linguistics. Sasha Salter, Richard Warren, Collin Schlager, Adrian Spurr, Shangchen Han, Rohin Bhasin, Yujun Cai, Peter Walkington, Anuoluwapo Bolarinwa, Robert Wang, Nathan Danielson, Josh Merel, Efty-chios A. Pnevmatikakis, and Jesse D. Marshall. 2024. emg2pose: A large and diverse benchmark for surface electromyographic hand pose estimation. 
+
+Preprint , arXiv:2412.02725. NeurIPS 2024 Datasets and Benchmarks Track. Mike Schuster and Kuldip K. Paliwal. 1997. Bidirec-tional recurrent neural networks. IEEE Transactions on Signal Processing , 45(11):2673–2681. Ziwei Shan, Yaoyu He, Chengfeng Zhao, Jiashen Du, Jingyan Zhang, Qixuan Zhang, Jingyi Yu, and Lan Xu. 2025. Mojito: LLM-aided motion instruc-tor with jitter-reduced inertial tokens. Preprint ,arXiv:2502.16175. Guy Tevet, Brian Gordon, Amir Hertz, Amit H. Bermano, and Daniel Cohen-Or. 2022. MotionCLIP: Exposing human motion generation to CLIP space. In Computer Vision – ECCV 2022 , pages 358–374. Aaron van den Oord, Yazhe Li, and Oriol Vinyals. 2018. Representation learning with contrastive predictive coding. Preprint , arXiv:1807.03748. Aaron van den Oord, Oriol Vinyals, and Koray Kavukcuoglu. 2017. Neural discrete representation learning. In Advances in Neural Information Pro-cessing Systems .Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. Attention is all you need. In Advances in Neural Information Pro-cessing Systems , volume 30. Runsheng Wang, Xinyue Zhu, Ava Chen, Jingxi Xu, Lauren Winterbottom, Dawn M. Nilsen, Joel Stein, and Matei Ciocarlie. 2025. ReactEMG: Stable, low-latency intent detection from sEMG via masked mod-eling. Preprint , arXiv:2506.19815. Yuan Wang, Di Huang, Yaqi Zhang, Wanli Ouyang, Jile Jiao, Xuetao Feng, Yan Zhou, Pengfei Wan, Shixiang Tang, and Dan Xu. 2024. MotionGPT-2: A general-purpose motion-language model for motion genera-tion and understanding. Preprint , arXiv:2410.21747. Huatao Xu, Pengfei Zhou, Rui Tan, Mo Li, and Guobin Shen. 2021. LIMU-BERT: Unleashing the potential of unlabeled data for IMU sensing applications. In 
+
+Proceedings of the 19th ACM Conference on Embed-ded Networked Sensor Systems , pages 220–233. Zhengyuan Xu, Junxiao Yu, Wentao Xiang, Songsheng Zhu, Mubashir Hussain, Bin Liu, and Jianqing Li. 2023. A novel SE-CNN attention architecture for sEMG-based hand gesture recognition. Computer Modeling in Engineering & Sciences , 134(1):157– 177. Hua Yan, Heng Tan, Yi Ding, Pengfei Zhou, Vinod Namboodiri, and Yu Yang. 2025. Large language model-guided semantic alignment for human activity recognition. Proceedings of the ACM on Interac-tive, Mobile, Wearable and Ubiquitous Technologies ,9(4):1–25. An Yang, Junshu Pan, Junyang Lin, Rui Men, Yichang Zhang, Jingren Zhou, and Chang Zhou. 2022. Chi-nese CLIP: Contrastive vision-language pretraining in Chinese. Preprint , arXiv:2211.01335. Chaoqi Yang, M. Brandon Westover, and Jimeng Sun. 2023. BIOT: Biosignal transformer for cross-data learning in the wild. In Advances in Neural Informa-tion Processing Systems .Jehan Yang, Maxwell Soh, Vivianna Lieu, Dou-glas J. Weber, and Zackory Erickson. 2024. EMG-Bench: Benchmarking out-of-distribution generaliza-tion and adaptation for electromyography. Preprint ,arXiv:2410.23625. Lin Yuan, Zhen He, Qiang Wang, Leiyang Xu, and Xi-ang Ma. 2022. SkeletonCLIP: Recognizing skeleton-based human actions with text prompts. In Proceed-ings of the 2022 8th International Conference on Systems and Informatics , pages 1–6. 
+
+11 Tongtian Yue, Xuange Gao, Shuning Xue, Yepeng Tang, Longteng Guo, Jie Jiang, and Jing Liu. 2024. BrainGPT: Unleashing the potential of EEG general-ist foundation model by autoregressive pre-training.    
+
+> Preprint , arXiv:2410.19779. Yuwei Zhang, Kumar Ayush, Siyuan Qiao, A. Ali Heydari, Girish Narayanswamy, Maxwell A. Xu, Ahmed A. Metwally, Shawn Xu, Jake Garrison, Xuhai Xu, Tim Althoff, Yun Liu, Pushmeet Kohli, Jiening Zhan, Mark Malhotra, Shwetak Patel, Cecilia Mascolo, Xin Liu, Daniel McDuff, and Yuzhe Yang. 2025. SensorLM: Learning the language of wearable sensors. Preprint , arXiv:2506.09108. Wentao Zhu, Xiaoxuan Ma, Zhaoyang Liu, Libin Liu, Wayne Wu, and Yizhou Wang. 2023. MotionBERT: A unified perspective on learning human motion rep-resentations. In Proceedings of the IEEE/CVF In-ternational Conference on Computer Vision , pages 15085–15099.
+
+A Experimental Details 
+
+A.1 Datasets and Preprocessing 
+
+We use NinaPro-DB2 and EMG2Pose as comple-mentary hand-action EMG datasets, and use Ni-naPro DB2 →DB3 as a cross-dataset transfer set-ting. NinaPro-DB2 contains fine-grained hand ges-tures together with CyberGlove and pose informa-tion, which is suitable for evaluating semantic dis-crimination among similar hand actions (Atzori et al., 2014). EMG2Pose contains more composi-tional hand actions and pose trajectories, which is useful for evaluating stage-level and compound ac-tion semantics (Salter et al., 2024). In DB2 →DB3, the model is trained on able-bodied subjects from DB2 and evaluated on transradial amputees from DB3, providing a practically meaningful transfer setting (Atzori et al., 2014). Each sample is organized as 
+
+(xi, y i, Tyi ) (15) where xi is an EMG segment, yi is an action class or stage label, and Tyi is the multi-view text set associated with that class. For NinaPro, Cyber-Glove and pose statistics are used to derive process descriptions. For EMG2Pose, official stage defi-nitions and pose-trajectory summaries are used to describe compound action flows. 
+
+A.2 Evaluation Protocols 
+
+All experiments are formulated as bidirectional re-trieval between EMG representations and class-level action-semantic representations rather than closed-set classification. Given an EMG represen-tation zx and a class-level action-semantic repre-sentation Pc, the retrieval score is 
+
+s(x, c ) = z⊤ 
+
+> x
+
+Pc (16) For EMG-to-text, a test EMG segment is used as the query and all class-level action-semantic rep-resentations are ranked. For text-to-EMG, a class-level action-semantic representation is used as the query and candidate EMG samples are ranked. The query space is therefore more flexible than a closed classifier label set, because descriptions can en-code process, pose, and paraphrase information, but it remains bounded by the constructed class-level action-description set rather than arbitrary natural-language instructions. Recall@K is defined as 
+
+R@K = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+I [yi ∈ TopK( xi)] (17) and MRR is defined as 
+
+MRR = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+1rank i
+
+(18) In the main result tables, Recall denotes Re-call@3. We report seven protocols: NinaPro-random, NinaPro-cross-user, NinaPro-cross-class, E2P-random, E2P-cross-user, E2P-cross-class, and DB2 →DB3. Random split evaluates in-distribution retrieval. Cross-user split ensures that training and test users are disjoint. Cross-class split ensures that training and test action classes are disjoint. DB2 →DB3 evaluates transfer from able-bodied users to amputee users. In cross-class protocols, held-out classes have no EMG samples during EMG encoder or alignment training, while their textual descriptions are available at inference to construct class-level retrieval prototypes. These held-out descriptions are used only as inference-time retrieval candidates, so the setting evaluates description-conditioned retrieval for unseen EMG classes rather than training on held-out class EMG. This is held-out EMG-class retrieval with descrip-tions; it is not transductive zero-shot learning, strict zero-shot classification, or unrestricted text genera-tion. 
+
+A.3 Baseline Adaptation 
+
+Many EMG baselines were originally designed for classification, so we adapt all methods to the 12 same retrieval protocol. For TCN, Attn-CNN-RNN, CNN-BiLSTM, SE-CNN, and Atzori CNN, we use the segment-level hidden representation before the classifier as the EMG embedding and rank candi-dates by cosine similarity under the same action-semantic representation set (Bai et al., 2018; Hu et al., 2018; LeCun et al., 1998; Hochreiter and Schmidhuber, 1997; Schuster and Paliwal, 1997; Xu et al., 2023; Atzori et al., 2016). For CPEP and related EMG representation baselines, we also ex-tract their segment-level representations and eval-uate them under the same retrieval setting (Cui et al., 2025). Thus, EMG-to-text comparisons mea-sure how different EMG encoders perform when mapped to and retrieved against the same class-level action-semantic candidates. For text-to-EMG baselines, BERT, MacBERT, CLIP, and Chinese-CLIP are used to construct text-side class prototypes, which replace MyoSem’s action-semantic prototypes and are ranked against candidate EMG embeddings by cosine similarity (Devlin et al., 2019; Cui et al., 2020; Radford et al., 2021; Yang et al., 2022). These baselines are there-fore protocol adaptations rather than claims that the original text encoders natively solve EMG retrieval. All baselines use the same data splits, candidate sets, and evaluation metrics as MyoSem. 
+
+A.4 Variance Estimation 
+
+For EMG-to-text retrieval, we use test-sample boot-strap to estimate standard deviations. For text-to-EMG retrieval, we use 100 balanced episodes. In each episode, one test EMG segment is sam-pled per class to form the candidate set, all class-level action-semantic representations are used as text queries, and the final score is averaged across episodes. We report the standard error over episodes to reduce the effect of class imbalance in the text-to-EMG direction. 
+
+B Multi-view Text Construction 
+
+B.1 Text Views 
+
+MyoSem does not construct its language side from short class labels alone. For each action class c,we construct four complementary text views before EMG alignment: 
+
+Tc = {T 0 
+
+> c
+
+, T 1 
+
+> c
+
+, T 2 
+
+> c
+
+, T 3 
+
+> c
+
+} (19) Here, T 0 is the raw short label and serves as the class anchor; T 1 is a pose- or stage-derived process description that describes how the action unfolds; 
+
+T 2 is a canonical semantic description that stabi-lizes action meaning; and T 3 is a natural-language paraphrase that improves robustness to different ex-pressions. For cross-class evaluation, descriptions of held-out classes are excluded from Stage 1 text-encoder training and are encoded only after training to form inference-time retrieval candidates. The goal of multi-view text construction is not simply to increase the number of prompts. If EMG representations are to be used for description-based querying or future language-mediated interaction systems, the text side should not make the model understand only a single label word. Instead, dif-ferent descriptions should point to the same ac-tion semantics while preserving fine-grained differ-ences between actions. After text-space training, the action-semantic representation is computed as 
+
+Pc = norm 1
+
+|T c|
+
+X
+
+> v
+
+e(v)
+
+> c
+
+!
+
+(20) All multi-view annotations used for text-space training are Chinese. We use MacBERT as the text encoder for this reason. The English descriptions shown in the paper and appendix tables are faithful translations of the Chinese annotations for presen-tation only; they are not used as training inputs. 
+
+B.2 Annotation Examples 
+
+For NinaPro, T 1 is mainly derived from Cyber-Glove and pose statistics, such as active fingers, joint bending directions, and final hand config-urations. For EMG2Pose, T 1 is mainly derived from official stage definitions and pose-trajectory summaries. T 2 and T 3 describe action structure, functional intent, and distinguishing attributes in a normalized and paraphrased form. 
+
+B.3 Use in Cross-class Evaluation 
+
+Our cross-class setting evaluates whether held-out EMG classes can be retrieved against given class-level action-semantic representations. Test-class EMG samples are not used for EMG encoder or alignment training, and the Stage 1 text encoder is trained only on the seen-class text split. At in-ference time, the trained text encoder encodes the held-out class descriptions to construct retrieval candidates. This setting should therefore be under-stood as held-out EMG-class retrieval with class descriptions available at inference, not transductive zero-shot learning, strict zero-shot classification, or unrestricted text generation. 13 Dataset T 0 label T 1 process description T 2/T 3 semantic descriptions NinaPro Thumb up The thumb gradually extends while the other fingers move toward the palm, forming a stable thumb-up hand shape. The thumb is extended upward while the other four fingers are flexed or closed. A paraphrase is: raise the thumb while keeping the other fingers curled. EMG2Pose Coffee-cup grasp and toy squeeze The action first resembles grasping a cup handle and then changes into a whole-hand squeezing motion. The hand grasps a cup-like handle and then squeezes a soft object with the whole hand. A paraphrase is: hold a cup handle, then squeeze a soft toy. 
+
+Table 5: Representative examples of the multi-view text annotations. 
+
+C Additional Visualizations 
+
+C.1 Bidirectional Retrieval Cases 
+
+Figure 5 shows qualitative bidirectional retrieval cases. EMG-to-text uses a test EMG segment to retrieve action descriptions, while text-to-EMG uses a text query to retrieve EMG samples. Green entries indicate correct-class retrieval results, and gray or orange entries indicate competing candi-dates. These cases show that MyoSem acts as a bidirectional semantic retrieval interface rather than a one-way classifier. 
+
+C.2 NinaPro Alignment Analysis 
+
+The main paper uses EMG2Pose for the representa-tive four-panel analysis. Figure 6 provides the cor-responding NinaPro visualizations, showing that the same qualitative patterns also appear on fine-grained hand gestures. 
+
+C.3 Channel Activation Evidence 
+
+Figures 7 and 8 visualize channel activation topol-ogy. For action class c and channel k, we compute normalized RMS activation: 
+
+ac,k = Ex∈D c [RMS( x:,k )] (21) These patterns show that local channel activation, energy changes, and contraction dynamics provide useful action evidence, supporting the activation-aware EMG encoder. 
+
+C.4 Semantic Query Evidence 
+
+Semantic queries read local evidence from the EMG token sequence through cross-attention: 
+
+˜Q = Attn( Q, H emg , H emg ) (22) The query-based representation is 
+
+zquery = norm 1
+
+M
+
+> M
+
+X
+
+> m=1
+
+fq( ˜Qm)
+
+!
+
+(23) Figure 4 in the main text reports semantic query attention cases from both datasets. Here, Figure 9 further overlays query attention with RMS activa-tion. The visualization shows that high attention often appears near RMS peaks or salient transition regions, suggesting that semantic query alignment selectively reads token-level evidence instead of simply averaging the whole EMG segment. 14 EMG -> Text 
+
+GT: wrist flex. 
+
+1. wrist flex. 0.32 
+
+2. wrist ext. 0.14 
+
+3. finger adduction 0.12 
+
+EMG -> Text 
+
+GT: screwdriver gr... 
+
+1. screwdriver gr... 0.36 
+
+2. index ext. grasp 0.18 
+
+3. open bottle... 0.18 
+
+EMG -> Text 
+
+GT: index pointing 
+
+1. index pointing 0.20 
+
+2. index+middle e... 0.05 
+
+3. thumb up 0.04 
+
+EMG -> Text 
+
+GT: thumb up 
+
+1. thumb up 0.24 
+
+2. radial dev. 0.09 
+
+3. index pointing 0.07 
+
+Text -> EMG 
+
+Query: index pointing 
+
+1. index pointing 
+
+2. index pointing 
+
+3. index pointing 
+
+Text -> EMG 
+
+Query: wrist flex. 
+
+1. wrist flex. 
+
+2. wrist flex. 
+
+3. wrist flex. 
+
+Text -> EMG 
+
+Query: sphere power 
+
+1. sphere power 
+
+2. sphere power 
+
+3. medium wrap 
+
+Text -> EMG 
+
+Query: lateral grasp 
+
+1. lateral grasp 
+
+2. extension grasp 
+
+3. lateral grasp 
+
+> EMG query Text query
+
+Figure 5: Bidirectional retrieval cases. The top row shows EMG-to-text retrieval, and the bottom row shows text-to-EMG retrieval. 1
+
+> 2
+> 4
+> 5
+> 6
+> 7
+> 13
+> 14
+> 16
+> 17
+> 32
+> 34
+
+Action class blocks (T0/T1/T2/T3) 
+
+1
+
+2
+
+4
+
+5
+
+6
+
+7
+
+13 
+
+14 
+
+16 
+
+17 
+
+32 
+
+34 
+
+> Action class blocks (T0/T1/T2/T3)
+
+Before: raw/frozen text space 
+
+> 1
+> 2
+> 4
+> 5
+> 6
+> 7
+> 13
+> 14
+> 16
+> 17
+> 32
+> 34
+
+Action class blocks (T0/T1/T2/T3) 
+
+1
+
+2
+
+4
+
+5
+
+6
+
+7
+
+13 
+
+14 
+
+16 
+
+17 
+
+32 
+
+34 
+
+> Action class blocks (T0/T1/T2/T3)
+
+After: MyoSem text space 
+
+0.2 
+
+0.0 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+1.0 
+
+> cosine similarity
+
+Text-only multi-view semantic space before and after MyoSem 1 10 20 30 40 
+
+class centroid 
+
+1
+
+10 
+
+20 
+
+30 
+
+40 
+
+> class centroid
+
+No activation-aware 
+
+Top-1 25.1% | margin -0.05 
+
+1 10 20 30 40 
+
+class centroid 
+
+1
+
+10 
+
+20 
+
+30 
+
+40 
+
+> class centroid
+
+Full MyoSem 
+
+Top-1 70.8% | margin +0.07 
+
+0.0 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+1.0 
+
+> centroid cosine similarity
+
+NinaPro: activation-aware encoder separates EMG class centroids 1
+
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> 21
+> 22
+> 23
+> 24
+> 25
+> 26
+> 27
+> 28
+> 29
+> 30
+> 31
+> 32
+> 33
+> 34
+> 35
+> 36
+> 37
+> 38
+> 39
+> 40
+
+Text prototype class 
+
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> 21
+> 22
+> 23
+> 24
+> 25
+> 26
+> 27
+> 28
+> 29
+> 30
+> 31
+> 32
+> 33
+> 34
+> 35
+> 36
+> 37
+> 38
+> 39
+> 40
+> EMG centroid class
+
+w/o action-semantic pretrain 
+
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> 21
+> 22
+> 23
+> 24
+> 25
+> 26
+> 27
+> 28
+> 29
+> 30
+> 31
+> 32
+> 33
+> 34
+> 35
+> 36
+> 37
+> 38
+> 39
+> 40
+
+Text prototype class 
+
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+> 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> 20
+> 21
+> 22
+> 23
+> 24
+> 25
+> 26
+> 27
+> 28
+> 29
+> 30
+> 31
+> 32
+> 33
+> 34
+> 35
+> 36
+> 37
+> 38
+> 39
+> 40
+> EMG centroid class
+
+Full MyoSem 
+
+0.2 
+
+0.1 
+
+0.0 
+
+0.1 
+
+0.2 
+
+0.3 
+
+> cosine similarity
+
+NinaPro cross-modal class similarity before and after MyoSem semantic alignment Before alignment After MyoSem 
+
+Figure 6: Additional NinaPro alignment analysis. Top-left: multi-view text alignment. Top-right: activation-aware class-center structure. Bottom-left: cross-modal EMG-text alignment. Bottom-right: EMG samples projected into the text-semantic space. small power grasp 
+
+Ch11, Ch6, Ch1 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 
+
+12 
+
+fixed hook grasp 
+
+Ch6, Ch11, Ch2 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 
+
+12 
+
+ring+little flex 
+
+Ch3, Ch9, Ch4 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9 10 11 
+
+12 
+
+finger abduction 
+
+Ch3, Ch9, Ch4 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9 10 11 
+
+12 
+
+stick grasp 
+
+Ch11, Ch2, Ch10 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 
+
+12 
+
+writing tripod 
+
+Ch8, Ch10, Ch11 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 
+
+12 
+
+index+middle 
+
+extend 
+
+Ch12, Ch9, Ch3 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9 10 11 
+
+12 
+
+wrist supination 
+
+Ch11, Ch8, Ch4 
+
+1
+
+2
+
+34
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 
+
+12 
+
+0.15 
+
+0.10 
+
+0.05 
+
+0.00 
+
+0.05 
+
+0.10 
+
+0.15 
+
+> relative RMS (log2)
+
+Figure 7: Channel activation topology on NinaPro. 
+
+15 Coffee Panic Pete 
+
+Ch2, Ch3, Ch15 
+
+1
+
+2
+
+3
+
+45
+
+6
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Hand Desk Separate 
+
+Clasped Chest 
+
+Ch14, Ch13, Ch12 
+
+1
+
+2
+
+3
+
+45
+
+6
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Play Blocks Chess 
+
+Ch6, Ch3, Ch1 
+
+1
+
+2
+
+3
+
+45
+
+6
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Thumbs Up Down Thumb 
+
+Rotations CWCCWP 
+
+Ch1, Ch2, Ch5 
+
+1
+
+2
+
+3
+
+456
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Hand Over Hand All 
+
+Finger Pinches Thumb 
+
+Swipe Thumb Rotate 
+
+Ch7, Ch12, Ch5 
+
+1
+
+2
+
+3
+
+456
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Hand Claw Grasp Flicks 
+
+Ch8, Ch4, Ch7 
+
+1
+
+2
+
+3
+
+45
+
+6
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Individual Finger 
+
+Pointing Snap 
+
+Ch5, Ch7, Ch16 
+
+1
+
+2
+
+3
+
+456
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+Poke Pinch Close Far 
+
+Ch1, Ch5, Ch7 
+
+1
+
+2
+
+3
+
+456
+
+7
+
+8
+
+9
+
+10 
+
+11 
+
+12 13 14 15 
+
+16 
+
+0.15 
+
+0.10 
+
+0.05 
+
+0.00 
+
+0.05 
+
+0.10 
+
+0.15 
+
+> relative RMS (log2)
+
+Figure 8: Channel activation topology on EMG2Pose. small power grasp r=0.94 
+
+Q1 
+
+Q8 
+
+> Query
+
+radial deviation r=0.92 
+
+Q1 
+
+Q8 
+
+> Query
+
+ring+little flex r=0.90 
+
+Q1 
+
+Q8 
+
+> Query
+
+fixed hook grasp r=0.90 
+
+Q1 
+
+Q8 
+
+> Query
+
+index+middle extend r=0.88 
+
+Q1 
+
+Q8 
+
+> Query
+
+writing tripod r=0.88 
+
+0 50 100 150 200 250 
+
+EMG token 
+
+Q1 
+
+Q8 
+
+> Query
+
+Coffee Panic Pete r=0.72 
+
+Q1 
+
+Q8 
+
+Hand Desk Separate Clasped Chest r=0.67 
+
+Q1 
+
+Q8 
+
+Play Blocks Chess r=0.44 
+
+Q1 
+
+Q8 
+
+Thumbs Up Down Thumb Rotations CWCCWP r=0.39 
+
+Q1 
+
+Q8 
+
+Hand Claw Grasp Flicks r=0.36 
+
+Q1 
+
+Q8 
+
+Grasp Punch Close Far r=0.32 
+
+0 50 100 150 200 250 
+
+EMG token 
+
+Q1 
+
+Q8 
+
+0.0025 
+
+0.0050 
+
+0.0075 
+
+0.0100 
+
+0.0125 
+
+0.0150 
+
+0.0175 
+
+0.0200 
+
+> attention
+
+NinaPro EMG2Pose 
+
+EMG RMS 
+
+Figure 9: Semantic query attention overlaid with RMS activation. 
+
+16
