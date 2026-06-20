@@ -1,0 +1,443 @@
+Title: Covariate-Adjusted Functional Principal Components Analysis for Modeling Hazard Rates of Physical Activity in the US Population
+
+URL Source: https://arxiv.org/pdf/2606.19760v1
+
+Published Time: Fri, 19 Jun 2026 00:29:15 GMT
+
+Number of Pages: 32
+
+Markdown Content:
+# Covariate-Adjusted Functional Principal Components Analysis for Modeling Hazard Rates of Physical Activity in the US Population 
+
+Md Rokibul Hasan 1 and Pratim Guha Niyogi 1, ∗
+
+1Department of Data Science, University of Mississippi Medical Center 
+
+∗Corresponding author: pguhaniyogi@umc.edu June 19, 2026 
+
+Abstract 
+
+Physical activity plays a vital role in human health. Its entire distribution differs among people. Commonly used summary measures cannot describe this distributional pattern. We present a distribution-based analytical approach to describe physical activity by modeling individual-level activity–intensity pat-terns through hazard functions derived from wrist-worn accelerometer data. We analyzed minute-level Monitor-Independent Movement Summary (MIMS) data of 4,297 adults with seven continuous days of device wear from the 2011– 2012 National Health and Nutrition Examination Survey (NHANES). We de-rived a nonparametric activity–intensity hazard using a survival-based approach for each individual on a common intensity grid, treating both the hazard curves from MIMS and their log-transformed MIMS as functional objects. We used functional principal component analysis (FPCA) on both scales of MIMS to characterize dominant modes of variation in activity–intensity distributions. Group-wise mean hazard functions showed little difference at lower inten-sity levels, while we observed a substantial difference at higher intensity levels. Specifically, women, older adults, individuals with obesity, and hypertensive participants demonstrated more hazards at higher activity levels. The first functional component (PC1 corresponding to eigenvalue λ1) explained around 
+
+1  
+
+> arXiv:2606.19760v1 [stat.AP] 18 Jun 2026 60–70% of the total variability. The dominant functional variability (PC1) was observed in low-to-moderate intensity regions on the original MIMS scales; however, on the log-transformed scale of MIMS showed the first dominant vari-ability in moderate-to-high intensity ranges. Results from stratified FPCA showed primary modes of variation (PC1) have almost the same similarity across different groups, whereas higher-order components covered subgroup-specific variability. Our results demonstrate that hazard-based functional representations for capturing differences in physical activity intensity distributions across individ-uals offer a flexible and interpretable way to characterize heterogeneity. This approach works better than mean-based summaries and supports principled comparisons of physical activity patterns across population subgroups.
+
+Keywords: Functional data analysis; Hypertension; Physical activity; Subject-specific hazard function 
+
+# 1 Introduction 
+
+Physical activity is a cornerstone of a healthy and long life. It is defined as any move-ment produced by the body’s muscles that requires energy expenditure (Caspersen et al., 1985; Piggin, 2020). Physical activity helps people live longer (Ludlow and Roth, 2011) and plays a crucial role in reducing the overall burden of disease (Bau-man, 2004). It is a major modifiable risk factor for many cardiovascular and chronic diseases (Warburton and Bredin, 2016). Moreover, physical activity, together with proper nutrition, promotes functional ability and supports the development of a strong immune system. Physically less active individuals are more prone to weaker im-mune responses, which makes them more vulnerable to diseases (Shao et al., 2021). With recent advances in technology, accelerometers and other wearable devices now enable continuous monitoring of a wide range of physical activity behaviors under free-living conditions. These devices provide objective, high-resolution measurements that capture daily movement patterns across the entire day, thereby characterizing an individual’s 24-hour activity profile. Such detailed and continuous data offer new opportunities to study physical activity in real-world settings and better to under-stand its relationship with health and disease outcomes (Troiano et al., 2014; van der Ploeg and Hillsdon, 2015; Migueles et al., 2017; Doherty et al., 2017). The pattern 2of physical activity across different times in a day is also an important determi-nant of health. Low-activity over the whole day is associated with health hazards such as worse metabolic health. More time with sedentary behavior results in worse health outcomes compared with low-intensity physical activity (LIPA) and moderate-to-vigorous physical activity (MVPA) (Rossen et al., 2020). More importantly, the pattern of physical activity does not work the same way for each type of respondent (Jefferis et al., 2016). Most importantly, physical activity is not a uniform phenomenon; rather, it varies across the population. The activity pattern varies in terms of amount, intensity, and timing, varied by biological, demographic, and clinical characteristics. Factors such as age, sex, body composition, and cardiometabolic health status impact levels of physical activity and the pattern in which activity is distributed throughout the day (Hyde et al., 2013; Jefferis et al., 2016; Guthold et al., 2018; Rossen et al., 2020). As a consequence, population averages may not reveal meaningful differences in activity patterns across subgroups (Doherty et al., 2017; Migueles et al., 2017). So, under-standing differences in physical activity patterns across different demographic and health-related groups is very important for accurately capturing movement behaviors and their health implications. Physical activity patterns change over the human life course. Among most people, it is higher in early ages and declines with aging (Hyde et al., 2013; Mohd Talmizi et al., 2021). Some studies found different patterns over the life span, too. Ma-lina (1996) showed that physical inactivity in childhood often tracks into inactive adulthood, whereas moderate activity levels in childhood tend to persist as moder-ately active behavior in adulthood. There are differences between men and women in terms of physical activity, though there are some inconsistencies. Studies found girls and women to be more active than boys and men (Guthold et al., 2018). Sometimes discrimination against women seems to be a factor in higher physical activity among women (Moreno-Llamas et al., 2022; Altenburg, 2022). Trost et al. (1996) also re-ported contrasting findings, showing that boys and men tended to be more physically active, a result that is consistent with the observations of Sallis et al. (1996) where men seemed more engaged in physical activity. Obesity has turned out to be a global burden in public health (Jakicic and Davis, 2011; Collaboration et al., 2016). Higher categories of body mass index (BMI), par-ticularly obesity, limit individuals’ ability to be physically active, as they are more 3likely to experience fatigue and reduced tolerance to physical activity. (Ortega et al., 2019; Kilincarslan, 2019; Sagelv et al., 2021). It also makes people vulnerable to many diseases, which is another reason for inactivity (Germain et al., 2016). People with obesity face challenges in spending their energy through physical movements (Henson et al., 2016). It is like a vicious cycle that who have high BMI are less active, which causes more high BMI, that results into more physical activity (Hsu, 2011). Physical activity reduces the mortality risks due to hypertension significantly (Rossi et al., 2012; Vieira et al., 2024). Hypertensive individuals are prone to be-ing less physically active. Physical inactivity is a proven risk factor for hypertension (Hasan et al., 2024). Less physically active people show higher odds of getting hy-pertension. For improving vascular function and reducing arterial stiffness, physical activity can play a key role (Ewunie et al., 2022; Sakellariou et al., 2021). Most studies have studied the effect of physical activity on biological, demo-graphic, and clinical characteristics, but have ignored the distribution of activity over time. In addition, as the time of day is fixed, levels of activity- sleep, seden-tary behaviour, LIPA, and MVPA are correlated. If any individual spends more time in any patterns of activity that definitely affects another type of physical ac-tivity (Chastin et al., 2015; Tremblay et al., 2016). Recent studies have increas-ingly moved beyond traditional mean-based analyses and adopted more informative distribution-based approaches for studying physical activity patterns. These meth-ods enable researchers to characterize heterogeneity across the entire distribution of activity rather than focusing solely on average behavior. One prominent example is the quantile-based approach, which provides insight into how covariate effects may differ across different levels of physical activity (Ghosal et al., 2023; M´ endez-Civieta et al., 2025; Guha Niyogi et al., 2026b). In this direction, Chiou and M¨ uller (2009) proposed a functional data approach for modeling age-specific hazard rates, enabling the characterization of temporal variation in mortality patterns and improving mor-tality forecasting. Recent studies (Guha Niyogi et al., 2024, 2026a) show the different distributional representation in the context of the subject with multiple sclerosis. In this work, we adopt a functional data analytic approach to characterize physical activity through subject-specific activity–intensity distributions, enabling the inves-tigation of heterogeneity in activity patterns beyond traditional summary measures. Functional data analysis (FDA) (Crainiceanu et al., 2023; Ramsay and Silverman, 2005; Ferraty and Vieu, 2006; Horv´ ath and Kokoszka, 2012; Wang et al., 2016; Hsing 4and Eubank, 2015; Kokoszka and Reimherr, 2017) provides a flexible framework for studying data that are naturally represented as functions rather than scalar mea-surements. By treating activity–intensity distributions as functional observations, FDA allows us to examine variation in physical activity patterns across the entire distribution and to assess how these patterns differ according to demographic and health-related characteristics. This study utilizes data from the enhanced Physical Activity Monitor (PAM) component of the National Health and Nutrition Exami-nation Survey (NHANES) 2011–2012 cycle. NHANES is a nationally representative survey conducted by the National Center for Health Statistics (NCHS) of the Cen-ters for Disease Control and Prevention (CDC) and combines interviews, physical examinations, and laboratory assessments to evaluate the health status of the U.S. population. In this cycle, NHANES reintroduced objective physical activity monitor-ing using wrist-worn ActiGraph GT3X+ accelerometers, which continuously recorded triaxial acceleration data at a sampling frequency of 80 Hz over a seven-day moni-toring period. Unlike previous hip-worn devices, the wrist-worn protocol enabled the collection of 24-hour movement data, capturing both wake and sleep behaviors with high participant compliance. The enhanced accelerometry data are publicly available through the NHANES website ( https://wwwn.cdc.gov/nchs/nhanes/ ) and have become an important resource for studying physical activity, sleep, circadian behav-ior, and health outcomes in the U.S. population. This high temporal resolution of wrist-worn accelerometer data from NHANES 2011-2012 provides an opportunity to move beyond traditional summary measures of physical activity (e.g., total activity volume, average activity intensity, or time spent in predefined activity categories) and study the entire distribution of the activity profile. In particular, individuals with similar average activity levels may exhibit substantially different distributions of activity intensity throughout the day, potentially reflecting underlying differences in demographic characteristics, health status, and clinical conditions. These considerations motivate the primary research question of this study: Do individuals with hypertension exhibit different physical activity patterns, as char-acterized by hazard-based functional representations of activity intensity, compared with individuals without hypertension? To address this question, we represent each individual’s physical activity profile as a hazard function derived from the distribu-tion of activity intensity, where the hazard characterizes the instantaneous rate of change in activity intensity. Treating these hazard functions as functional obser-vations, we employ functional principal component analysis (FPCA) to investigate 5variation in physical activity patterns across age groups, sex, BMI categories, and hypertension status. This approach enables the characterization of distributional features of physical activity that may not be captured by conventional summary measures. To the best of our knowledge, this is the first study to examine physical activity using hazard-based functional representations constructed from nationally representative accelerometer data. The remainder of this article is organized as follows. Section 2 describes the dataset and study variables. Section 3 presents the statistical methodology and mod-eling framework used in this research. The results are presented in Section 4. Finally, Section 5 concludes with a discussion of the findings. Additional figures and support-ing materials are provided in the Supplementary Material. 
+
+# 2 Data description 
+
+We used publicly available data from the National Health and Nutrition Examina-tion Survey (NHANES) for this study (Johnson et al., 2014). The dataset consists of high-resolution, continuously recorded wrist-worn accelerometry measurements from a large, nationally representative sample of individuals in the United States. More-over, the survey also provides comprehensive data on the health and nutritional status of both adults and children, covering dietary intake, supplement use, and biomarker-based measures of nutrient status. Our focus was on the demographic, blood pressure-related information, and monitor independent movement summary (MIMS) values as an objective measure of physical movement and activity level collected from Wrist-worn accelerometry collected from the NHANES 2011-2012 dataset. Minute-level MIMS-unit acceleration measurements from the x-, y-, and z-axes are aggregated up and released as a variable in the minute summary. The minute-level MIMS-unit calculation was based on a universal summary metric and does not account for the “valid/invalid” QC flags. Participants were asked to wear the wrist accelerometer continuously for 24 hours per day over multiple consecutive days, including during sleep, over multiple consecutive days, following the study protocol. This continuous wear protocol ensures that daily activity and rest patterns are fully captured, allowing movement behaviors to be assessed over the entire 24-hour period. There are a total of 9756 individuals in the NHANES 2011-2012 study. To ensure the quality of the physical activity data, we only considered the subjects who had 7 distinct days of the 6week as good days and had the data regarding age, gender (not indicating the confla-tion of sex and gender), body mass index (BMI), systolic and diastolic blood pressure, and information about taking antihypertensive medication. Individuals are defined as hypertensive if reporting a diagnosis having an average systolic blood pressure of 
+
+≥ 130 or an average diastolic blood pressure ≥ 80 or taking any antihypertensive medication (Peng et al., 2023). Thus, overall we have 4448 subjects, where 51.06% of them are female with an average age 45.4 (SD = 17.2), an average BMI 28.9 (SD = 7.05), and 45.70% of them have hypertension. We group based on age group such as 18 − 35 (33.52%), 35 − 50 (25.65%), 50 − 65 (26.37%) and 65 − 79 (14.45%). BMI is classified as underweight (2.09%) when BMI ≤ 18 .5, normal weight (29.63%) when the BMI ranges from 18 .5 − 25, overweight (31.07%) when BMI is within 25 and 30, obese (36.10%) when the BMI ≥ 30 (Consultation, 2000). Thus, we have 4297 subjects, where 50.5% of them are female with an average age of 45.5 (SD = 17.2), an average BMI of 28.9 (SD = 7.06), and 46.80% of them have hypertension. We categorize in groups based on age group such as 18 − 35 (33.37%), 35 − 50 (25.41%), 50 − 65 (26.62%) and 65 − 79 (14.59%). BMI is classified as underweight (2.07%) when BMI ≤ 18 .5, normal weight (30.11%) when the BMI ranges from 18 .5 − 25, overweight (31.28%) when BMI is within 25 and 30, obese (36.54%) when the BMI 
+
+≥ 30 (Consultation, 2000). 
+
+# 3 Modeling hazard function for PA 
+
+This research analyzes a full week’s minute-level activity data, where the distribu-tion of physical activity data is considered as a functional object. We ignore the time stamp of PA; rather, we are interested in the distribution of intensities using a hazard function. The hazard function models how common or rare different physical activity intensities are over the day. This study evaluates the activity-intensity hazard func-tion of each respondent’s activity. The hazard function of activity counts represents the instantaneous rate at which activity counts exceed a given value. This conditional probability is particularly useful for studying the tail behavior of the distribution. A rapidly declining hazard for large values of activity count indicates that extremely high activity counts are increasingly rare. Suppose Xij is the nonnegative random variable that represents the MIMS or log-transformed MIMS for the i-th subject at j-th time point for i = 1 , · · · , n and 7j = 1 , · · · , m . Further assume that {Xij : j = 1 , · · · , m i} ∼ fi and Xij are non-negative almost everywhere. Then we can define the hazard function evaluated at 
+
+x > 0 as 
+
+hi(x) = lim 
+
+> δ→0
+
+1
+
+δ P{Xi ∈ [x, x + δ]|Xi > x } (1) To capture the major mode of variation in the activity intensity through the hazard function, we use the functional principal component analysis (fPCA). We express the smoothed hazard function using the Kosambi–Karhunen–Lo´ eve (KKL) decomposition (Karhunen, 1946; Lo` eve, 1946), which enables us to decompose the subject-specific hazard function into a systematic part corresponding to the overall mean function and a random part. 
+
+hi(x) = μ(x) + 
+
+> ∞
+
+X
+
+> k=1
+
+ξik ϕk(x) (2) In Equation (2), μ(x) denotes the overall mean function, and ϕk(x) represents the 
+
+k-th orthonormal eigen-function. The ξik are the functional principal component scores. These are the random variables ξik = R (hi(x) − μ(x)) ϕk(x)dx with E{ξik } = 0 and E{ξ2
+
+> ik
+
+} = λk where λk is the eigen-value corresponding to the eigen-function 
+
+ϕk for k ≥ 1. Let Z denote a categorical covariate defining g distinct groups (e.g., gender, age group, hypertension status), so that Z ∈ { 1, . . . , g }. In the presence of Z, we consider the subject-specific conditional hazard function hi(x|Z = z) = lim δ→0 1 
+
+> δ
+
+P{Xi ∈ [x, x + δ]|Xi > x, Z = z} for z ∈ { 1, · · · , g }. Motivated by the model in Equation (2), we define a conditional version for the group-wise subject-specific hazard functions hi(x|Z = z) as 
+
+hi(x|Z = z) = μ(x|Z = z) + 
+
+> ∞
+
+X
+
+> k=1
+
+ξikz ϕk(x|Z = z), (3) for z ∈ { 1, · · · , g }, where μ(x|Z = z) and ϕk(x|Z = z) are the mean and eigen-functions as we defined before, along with the restriction that Z = z. Similarly, we define the functional principal component scores ξikz = R {hi(x|Z = z) − μ(x|Z =
+
+z)}ϕk(x|Z = z)dx with E{ξikz } = 0 and E{ξ2 
+
+> ikz
+
+} = λkz . The model in Equation (3) is nonparametric; thus, we don’t need to assume the shape of the hazard functions or the eigen-functions. The mean function μ(x|Z = z) is estimated for each group z. The eigen-function ϕk(x|Z = z) characterizes the main direction of the deviation of the hazard function for the group z. These random deviations are decomposed into two major terms, such as the eigen-functions and the scores, which vary according to the 8size of these deviations for each group. The subject-specific scores ˆξikz indicate how each subject’s hazard curve aligns with the principal directions of variation. A set of ordered eigenfunctions ˆϕk(x|Z = z), ranked by the amount of variance they explain through the associated eigenvalues ˆλkz , which quantify the variability captured by each score. It is important to emphasize that, in practice, the hazard function is not directly observable from wearable accelerometry data. Instead, it must be estimated from the empirical distribution of activity counts. For subject i with group membership 
+
+Zi = z, let {Xij : j = 1 , . . . , m i} denote the observed activity counts and let xi(1) <
+
+· · · < x i(Ki) be the distinct observed activity levels. Define the number of observations at level xi(k) as dik = miP
+
+> j=1
+
+1{Xij = xi(k)}, and the corresponding risk set size as Rik =
+
+> mi
+
+P
+
+> j=1
+
+1{Xij ≥ xi(k)}. We first construct the product-limit estimator of the survival function for the activity-intensity distribution, bSi(x|Z = z) = Q
+
+> k:xi(k)≤x
+
+
+
+1 − dik 
+
+> Yik
+
+
+
+and then estimate the cumulative hazard via the Nelson-Aalen estimator, bHi(x|Z = z) = 
+
+P 
+
+> k:xi(k)≤xdik
+> Yik
+
+. Finally, the subject-specific hazard function is obtained by smoothing the increments of bHi(·) and differentiating the resulting smooth curve. Specifically, let eHi(x|Z = z) denote a smooth approximation to the step function bHi(x|Z = z)obtained via kernel smoothing or spline-based regression. For example, one may define eHi(x) = R Kτ (x − u) d bHi(u|Z = z), where Kτ (·) = τ −1K(·/τ ) is a kernel function with bandwidth τ > 0. The hazard function estimator is then given by 
+
+bhi(x|Z = z) = ddx eHi(x|Z = z). Under standard regularity conditions on the kernel and bandwidth selection, the resulting estimator bhi(x|Z = z) is consistent and admits a bias-variance tradeoff controlled by τ . Equivalently, the cumulative hazard function may be regularized using spline-based methods, which provide a flexible yet stable framework for functional estimation. We approximate bHi(x|Z = z) by a smooth spline function of the form eHi(x|Z = z) = LP
+
+> ℓ=1
+
+θiℓ Bℓ(x), where {Bℓ(·)}Lℓ=1 is a B-spline basis of degree p defined over a suitably chosen knot sequence, and θi = ( θi1, . . . , θ iL )⊤
+
+are spline coefficients. The coefficients are obtained by minimizing a penalized least 9squares criterion, 
+
+bθi = arg min 
+
+> θ
+
+Z "bHi(x) −
+
+> L
+
+X
+
+> ℓ=1
+
+θℓBℓ(x)
+
+#2
+
+wi(x) dx + λ
+
+Z "
+
+d2
+
+dx 2
+
+> L
+
+X
+
+> ℓ=1
+
+θℓBℓ(x)
+
+#2
+
+dx 
+
+ ,
+
+(4) where wi(x) is a weight function and λ > 0 is a smoothing parameter controlling the tradeoff between fidelity to the empirical cumulative hazard and smoothness of the es-timate. The penalty on the second derivative enforces global smoothness and prevents overfitting to the discrete jumps of bHi(x). Thus, the hazard function estimator is then obtained by differentiation, bhi(x|Z = z) = ddx eHi(x) = PLℓ=1 bθiℓ B′
+
+> ℓ
+
+(x), which remains a spline function of degree p − 1. This representation ensures that bhi(x|Z = z) is con-tinuous (and sufficiently smooth depending on p), facilitating subsequent functional modeling and covariance estimation. Spline-based regularization is particularly ad-vantageous for dense accelerometry data, where the empirical cumulative hazard may exhibit numerous small jumps due to high-frequency measurements. The penalized spline framework stabilizes these fluctuations while retaining the essential structural features of the activity-intensity distribution. Figure 1 displays the overall and group-wise graphical representations of the subject-specific hazard functions estimated from the log-transformed MIMS activity measures. An analogous set of graphical representations based on the untransformed MIMS activity measures is presented in Figure S1 in the Supplementary Material. The overall subject-specific hazard functions in Figures 1a and S1a both exhibit a bathtub-shaped pattern; however, the width of the low-hazard region differs substan-tially between the log-transformed and original MIMS scales. On the log scale, the hazard function displays a longer flat region, indicating a broader and more stable range of moderate activity intensities. In contrast, the hazard function based on the original MIMS scale shows a shorter base, suggesting that activity intensities are more concentrated within a narrower band. The bathtub shape reflects a high concentra-tion of observations at very low or sedentary activity levels, a relatively stable middle region, and an increasing hazard at high intensities due to the scarcity of extreme activity values. The longer flat region observed after log transformation implies that the survival function decays more gradually across moderate intensities, indicating greater heterogeneity in activity patterns. This suggests more sustained and variable engagement in light-to-moderate activity levels. By contrast, the original MIMS scale emphasizes extremely high-intensity values due to right skewness, which compresses 10 the moderate range and leads to a shorter low-hazard region. The log transforma-tion stabilizes variability, reduces skewness, and spreads moderate intensities more evenly across the scale. As a result, it provides a clearer representation of movement variability and central activity structure. Importantly, these structural differences vary across age groups, suggesting that the measurement scale may interact with demographic characteristics. Similar patterns are also observed across other clinical subgroups; however, we present the age-stratified results for illustration. These find-ings motivate a broader investigation of hazard-based distributional features across demographic and clinical subgroups. We computed point-wise group-specific mean hazard curves on a common grid. For each group z ∈ { 1, · · · , g }, the mean hazard function is defined as the empirical average of the subject-specific hazard functions within that group. This function sum-marizes the central tendency of the activity-intensity distribution at each intensity level and facilitates comparison of distributional shapes across groups. In Figures 1b–1e and S1b–S1e in the Supplementary Material, we present graphical compar-isons that demonstrate clear separation across demographic and clinical subgroups, facilitating the identification and interpretation of structural differences in activity-intensity distributions. The estimation of the model component functions μ(x | Z = z), ϕk(x | Z = z), and the subject-specific conditional hazard function in model (3) is carried out using the Fast Covariance Estimation (FACE) algorithm (Xiao et al., 2013, 2016). Based on the subject-specific estimated hazard function bhi(x|Z = z), i = 1 , . . . , n for group 
+
+z ∈ { 1, · · · , g }, we evaluate it on a common grid x1, . . . , x L and we treat the col-lection {bhi(xℓ|Z = z) : ℓ = 1 , · · · , L } as a densly observed functional data. Let 
+
+hiz =
+
+bhi(x1|Z = z), . . . , bhi(xL|Z = z)
+
+⊤
+
+denote the discretized hazard curve for sub-ject i. A naive approach would compute the empirical covariance matrix bΣz based on hiz for each group. However, when the grid size L is large, this procedure can be computationally intensive and numerically unstable due to noise in the estimated hazard functions. The FACE method addresses this issue by approximating the co-variance surface through a reduced-rank smoother, ensuring computational efficiency, positive semi-definiteness of the estimated covariance matrix, and smooth eigenfunc-tion estimates. Let B ∈ RL×K denote a B-spline basis matrix evaluated on {xℓ}Lℓ=1 ,where K ≪ L. This basis provides a low-dimensional smooth representation of func-tions defined on the grid. For each group bΣFACE ,z = B bGz B⊤ where bGz ∈ RK×K is 11 0.00 0.25 0.50 0.75 1.00 0 2 4 6log(1+MIMS) Hazard  Age 
+
+> 18 40 60 80
+
+(a) Subject-specific hazard curves indicate the progression over age. 0.00 0.25 0.50 0.75 1.00 0 2 4 6log(1+MIMS) Pointwise average of the hazard function Age group [18,35] (35,50] (50,65] (65,79] 
+
+(b) Group-wise mean hazard curves strati-fied by age groups. 0.00 0.25 0.50 0.75 1.00 0 2 4 6log(1+MIMS) Pointwise average of the hazard function Gender Female Male 
+
+(c) Group-wise mean hazard curves strati-fied by gender. 0.00 0.25 0.50 0.75 1.00 0 2 4 6log(1+MIMS) Pointwise average of the hazard function Obesity status Underweight Normalweight Overweight Obese 
+
+(d) Group-wise mean hazard curves strati-fied by obesity status. 0.00 0.25 0.50 0.75 1.00 0 2 4 6log(1+MIMS) Pointwise average of the hazard function Hypertension status No Yes 
+
+(e) Group-wise mean hazard curves strati-fied by hypertension status. 
+
+Figure 1: Observed subject-specific hazard functions estimated from log(1 + MIMS) activity intensities and their group-wise barycenters, illustrating differences in activity-intensity distributional shapes across subgroups. 12 obtained by minimizing a penalized least squares criterion that balances fidelity to bΣz
+
+with smoothness, typically through a roughness penalty on spline coefficients. The smoothing parameter may be selected via generalized cross-validation or restricted maximum likelihood. Thus, perform the eigen-decomposition of bGz = Uz Λz U ⊤ 
+
+> z
+
+so that we want to normalize the eigen-functions on the original grid are then given by 
+
+bϕk(x|Z = z) = KP
+
+> ℓ=1
+
+Uℓkz Bℓ(x), with corresponding eigenvalues bλkz , where Uℓkz is the (ℓ, k )-th entry of Uz . For each subject i = 1 , · · · , n , and group z ∈ { 1, · · · , g }, com-pute the scores bξikz = LP
+
+> ℓ=1
+
+bhi(xℓ|Z = z) − ¯h(xℓ|Z = z)
+
+ bϕk(xℓ)∆ xℓ, where ¯h(xℓ|Z =
+
+z) is the groups specific point-wise averages. This provides a low-dimensional rep-resentation of the hazard curve. The resulting eigenfunctions bϕk(x|Z = z) describes the dominant modes of variation in the activity-intensity hazard functions, while the scores bξik summarize subject-specific deviations from the mean structure. Let 
+
+bλ1z ≥ bλ2z ≥ · · · ≥ bλrz denote the estimated eigenvalues of the smoothed covariance operator. Define the fraction of variance explained (FVE) by the first K components as FVE( K) = 
+
+> KP
+> k=1
+> bλkrP
+> k=1
+> bλk
+
+. We want to retain the 95% of the total variability; therefore, we select the number of retained components as bK = min 
+
+K ∈ { 1, . . . , r } :
+
+> KP
+> k=1
+> bλkrP
+> k=1
+> bλk
+
+≥ η
+
+.This criterion provides an effective balance between dimensionality reduction and re-tention of the dominant patterns in the data. 
+
+# 4 Results 
+
+In this section, we present a detailed analysis of the NHANES data, examining the distributional characteristics of physical activity intensity using the hazard-function representation introduced in Section 3 and derived from accelerometry-based MIMS measures. We first estimate subject-specific hazard functions to capture the shape of the activity-intensity distribution for each individual. Treating these hazard functions as functional observations, we summarize the overall patterns and examine differences across demographic and clinical subgroups. In particular, we compare group-level mean hazard curves and their barycenters to identify structural differences in activity-intensity distributions. These graphical and functional summaries provide insight into heterogeneity in activity patterns that conventional summary measures of physical 13 activity may not capture. To gain intuition about the behavior of the hazard functions, we first examine the patterns shown in Figures 1 and S1 in the Supplementary Material. The over-all hazard function is relatively low at lower activity-intensity levels and increases as the intensity rises. This pattern reflects the fact that individuals spend a larger proportion of their day in sedentary and light-intensity physical activity (LIPA), lead-ing to greater concentration of observations in these ranges. In contrast, the hazard increases at higher intensity levels because individuals spend relatively little time en-gaging in high-intensity activity. At lower intensity levels, the mean hazard curves are nearly identical across the different age categories, indicating similar distribu-tional patterns of sedentary and light-intensity physical activity. However, at higher intensity levels, the older age groups exhibit higher hazard rates than the younger groups. This pattern suggests that older individuals spend relatively less time engag-ing in high-intensity physical activities, whereas younger individuals tend to remain in higher-intensity activity levels for longer periods. The hazard curves for males and females closely overlap at lower intensity levels, indicating a similar distribu-tion of activity intensity within the sedentary and light-intensity physical activity (LIPA) ranges for both groups. However, as the intensity level increases, the female group exhibits slightly higher hazard rates than the male group. This suggests that women spend relatively less time engaging in high-intensity physical activities com-pared with men. At lower activity-intensity levels, the mean hazard curves overlap closely across all BMI groups, indicating similar distributions of sedentary and light-intensity physical activity. Differences between the groups become more pronounced at higher intensity levels. In particular, the obese group exhibits the highest hazard rates, followed by the underweight and overweight groups, while the normal-weight group consistently shows the lowest hazard values. The curves for the underweight and overweight groups also exhibit partial overlap. These patterns suggest that obese individuals spend relatively fewer minutes engaging in high-intensity physical activity, whereas individuals in the normal-weight category tend to spend more time at these higher intensity levels. The hazard curves for hypertensive and non-hypertensive individuals closely overlap at lower activity-intensity levels, indicating similar dis-tributions of sedentary and light-intensity physical activity across the two groups. In contrast, the separation between the curves becomes more pronounced at higher intensity levels. In this region, hypertensive individuals exhibit higher hazard rates than non-hypertensive individuals, suggesting that hypertensive individuals spend 14 relatively less time engaging in high-intensity physical activity. Now we have performed FPCA (see, model (2)) based on the entire data (without consideration of the demographic and clinical groups) to capture the dominant modes of variation in the subject-specific hazard functions and to provide a parsimonious rep-resentation of the functional data. Since each subject’s hazard curve is evaluated on a dense grid, the resulting functions are inherently high-dimensional and may exhibit substantial correlation across the activity-intensity domain. FPCA addresses this is-sue by decomposing the covariance structure of the hazard functions into orthogonal eigenfunctions and associated scores, allowing the complex functional variability to be summarized by a small number of principal components. This dimension reduction facilitates interpretation of the main patterns of variation in activity-intensity distri-butions and enables efficient comparison across demographic and clinical subgroups. Group-wise FPCA (see, model (3)) is performed to investigate whether the domi-nant modes of variation in the hazard functions differ across demographic and clinical subgroups. While standard FPCA summarizes the overall variability in the entire sample, it may mask subgroup-specific structural patterns when the functional distri-butions differ substantially between groups. By conducting FPCA separately within each group, we allow the covariance structure and the associated eigenfunctions to adapt to group-specific activity-intensity distributions. This enables us to identify distinct patterns of variability and heterogeneity within each subgroup and provides a more interpretable characterization of how physical activity intensity distributions differ across demographic and clinical populations. Here, we have fitted two seperate model, one with MIMS in the original scale and log-transformed MIMS to address the skewness in the intensity and stabilize across the intensity range. It is important to mention that based on Figure 1 and S1 in the Supplementary Material, we have ob-served that the raw MIMS scale tends to emphasize extremely high-intensity values, which can compress the moderate activity region. In contrast, the log-transformed scale spreads moderate intensities, making it easier to identify structural features of the activity distribution, such as the flat middle region of the bathtub-shaped hazard. Comparing the two scales also provides a sensitivity analysis to assess whether the observed distributional patterns depend on the measurement scale. For ease of inter-pretation, we fix the number of knots at 20. The number of eigen-components is then determined using the fraction of variance explained (FVE) criterion. Specifically, we set the cumulative variance explained threshold at 0.95 and select the smallest num-ber of eigenvalues required to reach this level. Figure 2 presents the scree plot of the 15 estimated eigenvalues, illustrating the fraction of variance explained by each principal component and guiding the selection of the number of retained components based on the FVE criterion. FPCA applied to the hazard functions on both the raw MIMS scale and the transformed scale log(1+MIMS) indicates that the functional variability is largely concentrated in the leading components. On the raw MIMS scale, the first eigenvalue ( λ1 ≈ 11 .76) explains approximately 66% of the total functional variance, indicating that a dominant mode of variation governs the shape of the hazard curves across subjects. The second and third eigenvalues account for an additional 19.2% and 7.4% of the variability, respectively, so that the first three principal components ex-plain approximately 92.6% of the total variation. Under the pre-specified FVE thresh-old of 0.95, four components are sufficient to capture the majority of the functional variability. A similar pattern is observed on the log(1+MIMS) scale, although the transformation redistributes variability more evenly across the leading components due to the reduction of skewness in the activity-intensity distribution. Consequently, the principal component representation provides a low-dimensional yet accurate ap-proximation of the hazard-function variability on both scales. Table 1 presents the 04812 16 20 24 28 1 2 3 4 5 6 7 8 9 10 11 Component k   
+
+> λkEigenvalues λk
+
+(a) Model based on MIMS 0246810 12 14 1 2 3 4 5 6 7Component k    
+
+> λkEigenvalues λk
+
+(b) Model based on log(1+MIMS) 
+
+Figure 2: Scree plots for selecting the number of principal components in FPCA for hazard functions based on MIMS on the raw scale (left) and the log-transformed intensity scale (right). leading eigenvalues obtained from stratified FPCA together with the corresponding FVE for the first three components under the raw and log-transformed MIMS hazard representations. The percentages reported in parentheses denote the proportion of within-stratum functional variability captured by each component, allowing compar-ison of the dominant modes of variation across demographic and clinical subgroups. 16 Across both activity-intensity scales and all strata, the first principal component ex-plains the largest proportion of functional variability, accounting for approximately 60–70% of the total variance. The second and third principal components explain smaller but still non-negligible proportions of the variance (see, Table 1). The es-timated eigenfunctions exhibit broadly similar structural patterns across subgroups within comparable intensity regions; however, they differ in the magnitude and lo-calization of these features. Since FPCA eigenfunctions are identifiable only up to a sign change, comparisons across strata focus on the locations of peaks, troughs, and dominant intensity regions rather than the direction of the curves. These differences indicate meaningful heterogeneity in the distributional structure of physical activity intensity across demographic and clinical subgroups. Table 1: Stratified FPCA eigenvalues and fraction of variance explained (FVE) for the first three components under hazard representations based on raw MIMS and log-transformed MIMS. Percentages in parentheses denote within-stratum FVE. Covariate Category Raw MIMS Log-transformed MIMS                                                                                      
+
+> λ1(%) λ2(%) λ3(%) λ1(%) λ2(%) λ3(%) Gender Male 31.27 (62.98) 8.96 (18.06) 3.72 (7.49) 14.83 (61.94) 4.56 (19.05) 1.97 (8.24) Female 22.38 (61.89) 6.90 (19.08) 2.82 (7.81) 11.43 (62.81) 3.65 (20.06) 1.45 (7.95) Age [18–35] 35.21 (67.48) 7.86 (15.07) 3.48 (6.68) 14.81 (64.54) 3.62 (15.79) 2.12 (9.23) (35–50] 26.09 (64.33) 7.08 (17.45) 3.02 (7.44) 11.84 (65.77) 3.47 (19.26) 1.31 (7.29) (50–65] 18.03 (60.58) 5.69 (19.11) 2.54 (8.53) 10.19 (63.80) 3.00 (18.81) 1.39 (8.73) (65–79] 13.11 (60.65) 4.42 (20.43) 1.94 (8.98) 9.33 (62.17) 2.97 (19.83) 1.22 (8.12) BMI Underweight 23.95 (61.77) 7.10 (18.31) 3.27 (8.44) 13.51 (66.10) 3.72 (18.21) 1.50 (7.34) Normal weight 33.94 (66.64) 8.09 (15.88) 3.72 (7.30) 15.22 (66.83) 4.00 (17.55) 1.60 (7.05) Overweight 28.37 (62.17) 8.30 (18.19) 3.50 (7.66) 13.46 (62.17) 4.25 (19.64) 1.77 (8.17) Obese 18.53 (58.59) 6.45 (20.38) 2.85 (9.01) 10.54 (58.94) 3.50 (19.60) 1.74 (9.74) Hypertension No 31.70 (66.06) 7.77 (16.20) 3.43 (7.16) 14.00 (65.99) 3.69 (17.41) 1.56 (7.35) Yes 19.53 (58.72) 6.82 (20.49) 2.88 (8.65) 11.24 (60.02) 3.68 (19.63) 1.73 (9.23)
+
+Note: Eigenfunctions are identifiable up to sign; sign reversals across strata do not imply different modes. 
+
+The first three eigenfunctions estimated from FPCA of the activity–intensity haz-ard functions evaluated on the log-transformed MIMS scale and raw MIMS are dis-played in Figures 3 and S2 in the Supplementary Material. Since eigenfunctions are identifiable only up to a sign, we impose the constraint R bϕk(x)bϕk(x|Z = z)dx ≥ 0to ensure consistent orientation and facilitate meaningful comparisons across demo-graphic and clinical groups. Both representations—based on the raw MIMS scale and the log-transformed intensity scale— describe the same underlying activity–intensity hazard behavior. Nevertheless, the rescaling of intensity redistributes functional vari-ability across the domain, leading to differences in the estimated eigenfunctions. 17 -4 -2 020 2 4 6log(1+MIMS) 
+
+> φ^ 1( x)
+
+PC1    
+
+> -2 020246
+
+log(1+MIMS) 
+
+> φ^ 2( x)
+
+PC2    
+
+> -2 020246
+
+log(1+MIMS) 
+
+> φ^ 3( x)
+
+FPCA group All [18,35] (35,50] (50,65] (65,79] PC3 (a) FPCA eigenfunctions stratified by age group -2 020 2 4 6log(1+MIMS) 
+
+> φ^ 1( x)
+
+PC1 
+
+-3 -2 -1 01230 2 4 6log(1+MIMS) 
+
+> φ^ 2( x)
+
+PC2 
+
+-2 020 2 4 6log(1+MIMS) 
+
+> φ^ 3( x)
+
+FPCA group All Female Male PC3 
+
+(b) FPCA eigenfunctions stratified by gender -2 020 2 4 6log(1+MIMS) 
+
+> φ^ 1( x)
+
+PC1    
+
+> -2 020246
+
+log(1+MIMS) 
+
+> φ^ 2( x)
+
+PC2    
+
+> -2 020246
+
+log(1+MIMS) 
+
+> φ^ 3( x)
+
+FPCA group All Underweight Normalweight Overweight Obese PC3 
+
+(c) FPCA eigenfunctions stratified by obesity status -2 020 2 4 6log(1+MIMS) 
+
+> φ^ 1( x)
+
+PC1    
+
+> -2 020246
+
+log(1+MIMS) 
+
+> φ^ 2( x)
+
+PC2    
+
+> -2 -1 01230246
+
+log(1+MIMS) 
+
+> φ^ 3( x)
+
+FPCA group All Yes No PC3 
+
+(d) FPCA eigenfunctions stratified by hypertension status 
+
+Figure 3: First three eigen-functions using models (2) and (3) based on log-transformed MIMS. 18 The first eigenfunction (PC1) estimated based on the log-transformed MIMS shows its strongest magnitude at moderate-to-high activity intensities. This sug-gests that individuals differ primarily in how the hazard increases with increasing activity intensity. Participants with higher PC1 scores tend to exhibit an earlier and sharper increase in the hazard at higher intensity levels, whereas lower PC1 scores indicate relatively less time spent in higher-intensity physical activity. Overall, the first principal component captures the dominant structural variation in the activity-intensity hazard curves, reflecting how individuals differ in the distribution of time spent across intensity levels (See, Figure 3). In contrast, the first eigenfunction (PC1) estimated from the MIMS scale exhibits its largest magnitude at low to moderate in-tensity levels, followed by a rapid decay as intensity increases. This pattern indicates that the primary source of between-individual variability occurs in the lower inten-sity range, where individuals spend the majority of their daily time. Individuals with higher PC1 scores tend to exhibit greater variability in the low-to-moderate intensity range, whereas individuals with lower PC1 scores show more stable activity patterns within these intensity levels (See, Figure S2). The second eigenfunction (PC2) on the MIMS scale primarily reflects variation in the low-to-moderate intensity region. This component captures differences in how individuals transition from very low activity intensities toward higher intensity levels. Individuals with positive PC2 scores tend to exhibit more gradual changes in the haz-ard function within the low-intensity region, whereas negative PC2 scores correspond to sharper changes in hazard at these intensity levels. On the log-transformed MIMS scale, the second eigenfunction contrasts the moderate and higher intensity regions, as indicated by opposite signs across these ranges. This component characterizes heterogeneity in how the hazard increases across activity intensities. Individuals with positive PC2 scores tend to exhibit a more gradual increase in hazard across the intensity domain, whereas negative PC2 scores correspond to delayed but sharper increases in hazard at higher intensity levels. Thus, the second principal component captures differences in how rapidly individuals transition across activity-intensity lev-els, distinguishing gradual versus abrupt increases in the hazard function. The third eigenfunction (PC3) represents participant-specific variation beyond the dominant patterns captured by the first two principal components. This component reflects more localized deviations in the hazard functions, primarily concentrated at higher activity intensities, and accounts for a relatively smaller proportion of the total variance, particularly on the log-transformed scale. 19 Overall, these eigenfunctions characterize the principal modes of variability in the activity–intensity hazard distributions. The variability is driven mainly by structured differences in the moderate-to-vigorous intensity range, whereas the hazard functions at lower intensity levels remain relatively similar across individuals. Age-stratified eigenfunctions show clearer variation than those stratified by gen-der. On the raw scale, PC1 remains dominant in the low-to-moderate intensity region; however, the shape and localization of the main peak differ across age groups, suggest-ing age-dependent differences in how variability is distributed within lower intensity levels (Figure S2, panel (a)). On the log-transformed scale, all age groups exhibit strong variation centered in a common mid-to-higher log-intensity region. Differences across age groups are primarily observed in the alignment and localization of higher-order modes (Figure 3, panel (a)). The gender-specific eigenfunctions broadly con-sistent with the overall eigenfunctions on the raw MIMS hazard scale. However, the male PC1 shows a sign flip at lower intensity levels, indicating some gender-specific differences in the primary mode of variation. The leading eigenfunction (PC1) con-centrates variability in the low-to-moderate intensity region, with near-zero loadings at higher intensities. This suggests that between-participant variability is primarily driven by how activity mass is distributed within the lower intensity range (Fig-ure S2, panel (b)). On the log(1 + MIMS) hazard scale, the eigenfunctions again ex-hibit similar dominant structures, with variability centered around the mid-to-higher log-intensity region. Apparent sign differences across subgroups arise from the inher-ent sign indeterminacy of FPCA (Figure 3, panel (b)). Across BMI categories, the first principal component shows variability primarily in the low-to-moderate inten-sity region on the raw MIMS scale, while the second and third principal components reveal clearer separation across BMI groups through localized differences at adja-cent intensity levels (Figure S2, panel (c)). On the log(1+MIMS) scale, variability is concentrated in the mid-to-higher intensity region, with BMI-related differences arising mainly from where within this region the variability is localized (Figure 3, panel (c)). Hypertension-stratified eigenfunctions are broadly aligned for PC1–PC2 on both scales, indicating similar dominant modes of variability, though PC2 exhibits contrasting patterns between hypertensive and non-hypertensive participants. Differ-ences are more pronounced in the higher-order components, where hypertensive and non-hypertensive participants exhibit distinct localized contrast patterns across low-to-moderate intensity levels on the raw scale and differing alignment in the moderate-to-high log-intensity region on the log-transformed scale (Figure 3, panel (d)). These 20 results suggest that hypertension status is reflected less in the primary mode of variation and more in higher-order redistribution patterns across activity-intensity bands. Overall, the FPCA results reveal that variability in activity–intensity hazard functions is primarily driven by structured differences in the low-to-moderate and moderate-to-high intensity regions of physical activity. Across both the raw MIMS and log-transformed intensity scales, the first few principal components capture the dominant modes of variation, indicating that most between-participant differences arise from how individuals distribute their activity across intensity levels. While the overall functional patterns are broadly consistent across demographic and clinical subgroups, stratified analyses show that the magnitude and localization of variabil-ity differ across groups such as age, BMI, and hypertension status. In particular, subgroup-specific differences are more evident in higher-order components, reflecting localized redistribution of activity intensity rather than changes in the primary mode of variation. These findings highlight that heterogeneity in physical activity behavior is largely governed by differences in engagement at moderate and higher intensity levels, while sedentary and light-intensity activity patterns remain relatively similar across individuals. From a methodological perspective, representing activity intensity through hazard functions and analyzing them via FPCA provides a flexible frame-work for capturing distributional characteristics of physical activity and uncovering structured variability that may not be evident from traditional summary measures of activity behavior. 
+
+# 5 Discussion 
+
+In this paper, we analyzed wrist-worn accelerometry data to study physical activity intensity distributions and found their dominant patterns of variability using FPCA. We presented physical activity intensity in the form of hazard curves and found that the heterogeneity mainly occurs at moderate-to-high intensity activity levels rather than sedentary or light-intensity regions. Following this hazard-based distributional approach, we captured differences in physical activities across demographic and clini-cal subgroups, including age, sex, obesity status, and hypertension; traditional mean-based approaches often neglect these differences. Our findings clearly highlighted that the proposed hazard-based functional rep-resentation characterizes the complexity of physical activity behavior compared with 21 conventional scalar summaries such as total activity counts, average activity, or to-tal moderate-to-vigorous physical activity duration. Conventional scalar measures often overlook important information about the distributional structure of activity intensity across the day. Individuals with similar average activity may still exhibit different distributions of activity intensity. The results show that the differences be-tween subgroups are more evident at moderate and higher intensities of activities. The estimated hazard functions showed clear separation between demographic and clinical populations. These findings are consistent with previous studies highlighting the value of distribution-based representations of accelerometry data beyond tradi-tional average-based measures (Ghosal et al., 2023; Guha Niyogi et al., 2024, 2026b). Our findings also support previous work emphasizing distribution-based modeling ap-proaches for better characterizing physical activity behavior from accelerometry data (Ghosal et al., 2023; M´ endez-Civieta et al., 2025; Guha Niyogi et al., 2024). From a physiological perspective, the subgroup differences align with established behavioral and clinical patterns associated with physical activity. Older individuals showed higher hazards at higher intensity levels, indicating reduced engagement in vigorous physical activity. This finding is consistent with existing literature suggesting that physical activity generally reduces with age (Hyde et al., 2013; Mohd Talmizi et al., 2021). Similarly, obese individuals demonstrated a higher hazard at higher intensity levels compared with the normal-weight individuals, reflecting reduced par-ticipation in higher-intensity activity. This pattern may be explained by fatigue, reduced physical endurance, and the biomechanical and metabolic burdens associ-ated with obesity (Jakicic and Davis, 2011; Ortega et al., 2019; Sagelv et al., 2021). Hypertensive participants also had higher hazards in higher intensity regions, suggest-ing lower participation in vigorous physical activity, which is consistent with previous findings linking physical inactivity with hypertension and cardiovascular risk (Rossi et al., 2012; Hayes et al., 2022; Vieira et al., 2024). A very notable finding of this study is that dominant modes of variability were dif-ferent between the raw MIMS and log-transformed MIMS scales. The first principal component on the original MIMS scale mainly captured variability within the low-to-moderate activity intensity range. In contrast, the log-transformed representation revealed the dominant functional variability toward the moderate-to-high intensity regions. This difference reflects the strong right-skewed nature of accelerometry in-tensity distributions. So, transformation in logarithmic scale reduced the variability across the intensity range and provided a clearer view of structural heterogeneity in 22 physical activity. Similar distribution-based and functional representations have re-cently been explored in wearable sensor and accelerometry studies using quantile- and hazard-based functional approaches (M´ endez-Civieta et al., 2025). Both scales (raw and log-transformed) appear to provide complementary information. The original scale captures the effects of extreme activity intensities, and the transformed scale improves interpretability in the moderate intensity range. FPCA results showed that the majority of the functional variability was explained by the first few principal components, where the first component accounted for ap-proximately 60–70% of the total variability across the groups. This suggests that the major heterogeneity in physical activity behavior can be captured by a compara-tively low-dimensional functional framework. Although the first principal component remained largely consistent across groups, the higher-order components highlighted localized variations specific to individual demographic and clinical subgroups. These higher-order components likely reveal more localized and subtle differences in how activity intensity is distributed across individuals. The results tell us that differences in physical activity behavior are not only a function of differences in overall activity level but also of how activity is distributed across intensity regions. This interpreta-tion is consistent with previous FPCA and distribution-based studies showing that the leading functional components often capture dominant global variability patterns, whereas higher-order components reflect more localized structural variations (Chiou and M¨ uller, 2009). Recent work on accelerometry-based distributional representations has also emphasized that hazard-based functional representations can capture clin-ically meaningful differences in activity behavior more effectively than conventional summary measures (Guha Niyogi et al., 2024). Overall, this study demonstrates that hazard-based functional representations provide a useful framework for characterizing physical activity behavior from wearable accelerometry data. The growing availability of high-resolution wearable sensor data presents new opportunities for studying human behavior at an unprecedented level of detail. Realizing the full potential of these data requires analytical approaches that move beyond traditional low-dimensional summaries and account for the complex distributional structure of physical activity. The proposed framework represents one step in this direction and provides a foundation for future methodological develop-ments that integrate functional, distributional, and longitudinal aspects of wearable-derived activity measurements. Ultimately, these advances may contribute to more precise behavioral phenotyping and a deeper understanding of the relationships be-23 tween physical activity patterns and health outcomes. 
+
+# Supplementary Material 
+
+This supplementary document contains the additional figures and supporting mate-rials. 24 0.00 0.25 0.50 0.75 1.00 0 50 100 150 200 250 MIMS Hazard  Age 
+
+> 18 40 60 80
+
+(a) Subject-specific hazard curves indicate the progression over age. 0.00 0.25 0.50 0.75 1.00 0 50 100 150 200 250 MIMS Pointwise average of the hazard function Age group [18,35] (35,50] (50,65] (65,79] 
+
+(b) Group-wise mean hazard curves strati-fied by age groups. 0.00 0.25 0.50 0.75 1.00 0 50 100 150 200 250 MIMS Pointwise average of the hazard function Gender Female Male 
+
+(c) Group-wise mean hazard curves strati-fied by gender. 0.00 0.25 0.50 0.75 1.00 0 50 100 150 200 250 MIMS Pointwise average of the hazard function Obesity status Underweight Normalweight Overweight Obese 
+
+(d) Group-wise mean hazard curves strati-fied by obesity status. 0.00 0.25 0.50 0.75 1.00 0 50 100 150 200 250 MIMS Pointwise average of the hazard function Hypertension Status No Yes 
+
+(e) Group-wise mean hazard curves strati-fied by hypertension status. 
+
+Figure S1: Observed subject-specific hazard functions estimated from MIMS activ-ity intensities and their group-wise barycenters, illustrating differences in activity-intensity distributional shapes across subgroups. 25 -2 -1 01230 50 100 150 200 250 MIMS 
+
+> φ^ 1( x)
+
+PC1 
+
+-2 -1 01230 50 100 150 200 250 MIMS 
+
+> φ^ 2( x)
+
+PC2 
+
+-2 020 50 100 150 200 250 MIMS 
+
+> φ^ 3( x)
+
+FPCA group All [18,35] (35,50] (50,65] (65,79] PC3 (a) FPCA eigenfunctions stratified by age group 0.0 0.5 1.0 1.5 2.0 0 50 100 150 200 250 MIMS 
+
+> φ^ 1( x)
+
+PC1 
+
+-1 01230 50 100 150 200 250 MIMS 
+
+> φ^ 2( x)
+
+PC2 
+
+-2 -1 0120 50 100 150 200 250 MIMS 
+
+> φ^ 3( x)
+
+FPCA group All Female Male PC3 
+
+(b) FPCA eigenfunctions stratified by gender 0120 50 100 150 200 250 MIMS 
+
+> φ^ 1( x)
+
+PC1 
+
+-2 -1 01230 50 100 150 200 250 MIMS 
+
+> φ^ 2( x)
+
+PC2 
+
+-2 -1 0120 50 100 150 200 250 MIMS 
+
+> φ^ 3( x)
+
+FPCA group All Underweight Normalweight Overweight Obese PC3 
+
+(c) FPCA eigenfunctions stratified by obesity status 0.0 0.5 1.0 1.5 2.0 2.5 0 50 100 150 200 250 MIMS 
+
+> φ^ 1( x)
+
+PC1 
+
+-1 0120 50 100 150 200 250 MIMS 
+
+> φ^ 2( x)
+
+PC2 
+
+-2 -1 0120 50 100 150 200 250 MIMS 
+
+> φ^ 3( x)
+
+FPCA group All Yes No PC3 
+
+(d) FPCA eigenfunctions stratified by hypertension status 
+
+Figure S2: First three eigen-functions using models (2) and (3) based on MIMS. 26 References 
+
+Altenburg, T. (2022). Physical activity across the lifespan: the need for a gender perspective. Journal of Science and Medicine in Sport, 25(11):869–870. Bauman, A. (2004). Updating the evidence that physical activity is good for health: an epidemiological review 2000–2003. Journal of Science and Medicine in Sport, 7(1, Supplement 1):6–19. Physical Activity. Caspersen, C. J., Powell, K. E., and Christenson, G. M. (1985). Physical activity, ex-ercise, and physical fitness: definitions and distinctions for health-related research. Public health reports, 100(2):126. Chastin, S. F., Palarea-Albaladejo, J., Dontje, M. L., and Skelton, D. A. (2015). Combined effects of time spent in physical activity, sedentary behaviors and sleep on obesity and cardio-metabolic health markers: a novel compositional data analysis approach. PloS one, 10(10):e0139984. Chiou, J.-M. and M¨ uller, H.-G. (2009). Modeling hazard rates as functional data for the analysis of cohort lifetables and mortality forecasting. Journal of the American Statistical Association, 104(486):572–585. Collaboration, N. R. F. et al. (2016). Trends in adult body-mass index in 200 countries from 1975 to 2014: a pooled analysis of 1698 population-based measurement studies with 19 · 2 million participants. Lancet (London, England), 387(10026):1377. Consultation, W. (2000). Obesity: preventing and managing the global epidemic. World Health Organ Tech Rep Ser, 894:1–253. Crainiceanu, C. M., Goldsmith, J., Leroux, A., and Cui, E. (2023). Functional Data Analysis with R. Chapman and Hall/CRC, Boca Raton, FL. Doherty, A., Smith-Byrne, K., Ferreira, T., and et al. (2017). Large scale population assessment of physical activity using wrist worn accelerometers: the uk biobank study. PLOS ONE, 12(2):e0169649. Ewunie, T. M., Sisay, D., Mekuriaw, B., and Kabthymer, R. H. (2022). Physical inac-tivity and its association with hypertension among adults in ethiopia: A systematic review and meta-analysis. Heliyon, 8(12). 27 Ferraty, F. and Vieu, P. (2006). Nonparametric functional data analysis: theory and practice. Springer. Germain, C. M., Vasquez, E., and Batsis, J. A. (2016). Physical activity, central adiposity, and functional limitations in community-dwelling older adults. Journal of geriatric physical therapy, 39(2):71–76. Ghosal, R., Varma, V. R., Volfson, D., Hillel, I., Urbanek, J., Hausdorff, J. M., Watts, A., and Zipunnikov, V. (2023). Distributional data analysis via quantile functions and its application to modeling digital biomarkers of gait in alzheimer’s disease. Biostatistics, 24(3):539–561. Guha Niyogi, P., Sanjayan, M., Fitzgerald, K. C., Mowry, E. M., and Zipunnikov, V. (2026a). Scalar-on-distribution regression via generalized odds with applications to accelerometry-assessed disability in multiple sclerosis. Guha Niyogi, P., Sanjayan, M., Ghosal, R., Goldsmith, J., Fitzgerald, K. C., Mowry, E. M., and Zipunnikov, V. (2026b). Quantifying observable movement reserve in multiple sclerosis via upper diurnal activity quantiles. Multiple sclerosis (Houndmills, Basingstoke, England), page 13524585251398689. Guha Niyogi, P., Sanjayan, M., Volfson, D., Fitzgerald, K. C., Mowry, E. M., and Zipunnikov, V. (2024). Hazard and beyond: Exploring five distributional repre-sentations of accelerometry data for disability discrimination in multiple sclerosis. arXiv preprint arXiv:2410.20620. Guthold, R., Stevens, G. A., Riley, L. M., and Bull, F. C. (2018). Worldwide trends in insufficient physical activity from 2001 to 2016: a pooled analysis of 358 population-based surveys with 1 · 9 million participants. The lancet global health, 6(10):e1077– e1086. Hasan, M. R., Islam, M. M., Noor, F. M., Ali, M., and Alam, M. M. (2024). Analyzing hypertension and diabetes mellitus status among bangladeshi adults: Evidence from bangladesh demographic health survey (bdhs) 2017–18 data. Journal of Public Health, 32(12):2289–2297. Hayes, P., Ferrara, A., Keating, A., McKnight, K., and O’Regan, A. (2022). Physical activity and hypertension. Reviews in Cardiovascular Medicine, 23(9):302. 28 Henson, J., Dunstan, D. W., Davies, M. J., and Yates, T. (2016). Sedentary behaviour as a new behavioural target in the prevention and treatment of type 2 diabetes. Diabetes/metabolism research and reviews, 32:213–220. Horv´ ath, L. and Kokoszka, P. (2012). Inference for functional data with applications, volume 200. Springer Science & Business Media. Hsing, T. and Eubank, R. (2015). Theoretical foundations of functional data analysis, with an introduction to linear operators, volume 997. John Wiley & Sons. Hsu, Y.-W. (2011). The vicious cycle of inactivity, obesity, and metabolic health consequences in at-risk pediatric populations. PhD thesis, University of Southern California. Hyde, A. L., Maher, J. P., and Elavsky, S. (2013). Enhancing our understanding of physical activity and wellbeing with a lifespan perspective. International Journal of Wellbeing, 3(1). Jakicic, J. M. and Davis, K. K. (2011). Obesity and physical activity. Psychiatric Clinics, 34(4):829–840. Jefferis, B. J., Parsons, T. J., Sartini, C., Ash, S., Lennon, L. T., Wannamethee, S. G., Lee, I.-M., and Whincup, P. H. (2016). Does duration of physical activity bouts matter for adiposity and metabolic syndrome? a cross-sectional study of older british men. International Journal of Behavioral Nutrition and Physical Activity, 13(1):36. Johnson, C. L., Dohrmann, S. M., Burt, V. L., and Mohadjer, L. K. (2014). National health and nutrition examination survey: sample design, 2011-2014. Number 2014. US Department of Health and Human Services, Centers for Disease Control and . . . . Karhunen, K. (1946). Zur spektraltheorie stochastischer prozesse. Ann. Acad. Sci. Fennicae, AI, 34. Kilincarslan, G. (2019). The effect of body mass index on physical activity level in children between 10-11 years of age. Asian Journal of Education and Training, 5(1):193–197. Kokoszka, P. and Reimherr, M. (2017). Introduction to functional data analysis. Chapman and Hall/CRC. 29 Lo` eve, M. (1946). Functions aleatoire de second ordre. Revue science, 84:195–206. Ludlow, A. T. and Roth, S. M. (2011). Physical activity and telomere biology: ex-ploring the link with aging-related disease prevention. Journal of aging research, 2011(1):790378. Malina, R. M. (1996). Tracking of physical activity and physical fitness across the lifespan. Research quarterly for exercise and sport, 67(sup3):S–48. M´ endez-Civieta, ´A., Wei, Y., Diaz, K. M., and Goldsmith, J. (2025). Functional quantile principal component analysis. Biostatistics, 26(1):kxae040. Migueles, J. H., Cadenas-Sanchez, C., Ekelund, U., and et al. (2017). Accelerom-eter data collection and processing criteria to assess physical activity and other outcomes: a systematic review and practical considerations. Sports Medicine, 47:1821–1845. Mohd Talmizi, N., Ali, N. E., and Teriman, S. (2021). A review on socio-demographic factors influencing physical activities. Malaysian Journal of Sustainable Environment (MySE), 8(1):75–90. Moreno-Llamas, A., Garc´ ıa-Mayor, J., and De la Cruz-S´ anchez, E. (2022). Gender inequality is associated with gender differences and women participation in physical activity. Journal of Public health, 44(4):e519–e526. Ortega, R., Grandes, G., Sanchez, A., Montoya, I., Torcal, J., et al. (2019). Car-diorespiratory fitness and development of abdominal obesity. Preventive medicine, 118:232–237. Peng, W., Han, M., and Xu, G. (2023). The association between visceral adiposity index and chronic kidney disease in the elderly: A cross-sectional analysis of nhanes 2011–2018. Preventive Medicine Reports, 35:102306. Piggin, J. (2020). What is physical activity? a holistic definition for teachers, re-searchers and policy makers. Frontiers in sports and active living, 2:72. Ramsay, J. O. and Silverman, B. W. (2005). Functional data analysis. Springer. Rossen, J., Rosen, P. V., Johansson, U.-B., Brismar, K., and Hagstr¨ omer, M. (2020). Associations of physical activity and sedentary behavior with cardiometabolic 30 biomarkers in prediabetes and type 2 diabetes: a compositional data analysis. The Physician and Sportsmedicine, 48(2):222–228. PMID: 31663410. Rossi, A., Dikareva, A., Bacon, S. L., and Daskalopoulou, S. S. (2012). The impact of physical activity on mortality in patients with high blood pressure: a systematic review. Journal of hypertension, 30(7):1277–1288. Sagelv, E. H., Ekelund, U., Hopstock, L. A., Fimland, M. S., Løvsletten, O., Wils-gaard, T., and Morseth, B. (2021). The bidirectional associations between leisure time physical activity change and body mass index gain. the tromsø study 1974– 2016. International Journal of Obesity, 45(8):1830–1843. Sakellariou, X. M., Papafaklis, M. I., Domouzoglou, E. M., Katsouras, C. S., Michalis, L. K., and Naka, K. K. (2021). Exercise-mediated adaptations in vascular func-tion and structure: Beneficial effects in coronary artery disease. World Journal of Cardiology, 13(9):399. Sallis, J. F., Zakarian, J. M., Hovell, M. F., and Hofstetter, C. R. (1996). Ethnic, socioeconomic, and sex differences in physical activity among adolescents. Journal of clinical epidemiology, 49(2):125–134. Shao, T., Verma, H. K., Pande, B., Costanzo, V., Ye, W., Cai, Y., and Bhaskar, L. (2021). Physical activity and nutritional influence on immune function: an important strategy to improve immunity and health status. Frontiers in physiology, 12:751374. Tremblay, M. S., Carson, V., Chaput, J.-P., Connor Gorber, S., Dinh, T., Duggan, M., Faulkner, G., Gray, C. E., Gruber, R., Janson, K., et al. (2016). Canadian 24-hour movement guidelines for children and youth: an integration of physical activity, sedentary behaviour, and sleep. Applied physiology, nutrition, and metabolism, 41(6):S311–S327. Troiano, R. P., McClain, J. J., Brychta, R. J., and Chen, K. Y. (2014). Evolution of accelerometer methods for physical activity research. British Journal of Sports Medicine, 48(13):1019–1023. Trost, S. G., Pate, R. R., Dowda, M., Saunders, R., Ward, D. S., and Felton, G. (1996). Gender differences in physical activity and determinants of physical activity in rural fifth grade children. Journal of school health, 66(4):145–150. 31 van der Ploeg, H. P. and Hillsdon, M. (2015). Objective measurement of 24-hour movement behaviors: current state and future directions. British Journal of Sports Medicine, 49(14):954–957. Vieira, K., Coneglian, J. C., Barcelos, G. T. d., Ventura, T. P., Moraes, J. A., Car-valho, A. C. A., Cavalheiro, G. P., Ferreira, A. R., and Gerage, A. M. (2024). Barri-ers to physical activity practice and associated factors in patients with hypertension. Revista Brasileira de Cineantropometria & Desempenho Humano, 26:e87957. Wang, J.-L., Chiou, J.-M., and M¨ uller, H.-G. (2016). Functional data analysis. Annual Review of Statistics and its application, 3(1):257–295. Warburton, D. E. and Bredin, S. S. (2016). Reflections on physical activity and health: What should we recommend? Canadian Journal of Cardiology, 32(4):495–504. Xiao, L., Li, Y., and Ruppert, D. (2013). Fast bivariate p-splines: the sand-wich smoother. Journal of the Royal Statistical Society Series B: Statistical Methodology, 75(3):577–599. Xiao, L., Zipunnikov, V., Ruppert, D., and Crainiceanu, C. (2016). Fast covari-ance estimation for high-dimensional functional data. Statistics and computing, 26(1):409–421. 32

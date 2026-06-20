@@ -1,0 +1,1265 @@
+Title: Bi-level inverse optimal control for preoperative prediction of postoperative squat kinematics after total knee replacement
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.11.731549v1.full.pdf
+
+Number of Pages: 21
+
+Markdown Content:
+> Bi-level IOC for post-TKR squat prediction
+
+# Bi-level inverse optimal control for preoperative 1
+
+# prediction of postoperative squat kinematics after 2
+
+# total knee replacement 34
+
+Hojin Song 1,#a* 
+
+5 
+
+> 1
+
+Department of Mechanical and Aerospace Engineering, Monash University, Clayton, 6
+
+Victoria, Australia 7 
+
+> #a
+
+Current Address: Department of Aerospace and Mechanical Engineering, University 8
+
+of Li` ege, Li` ege, Belgium 9
+
+* Corresponding Author 10 
+
+E-mail: hojin.song@uliege.be (HS) 11 
+
+# Abstract 12 
+
+Total knee replacement restores mobility in patients with advanced osteoarthritis, yet 13 
+
+many individuals still experience limited ability to perform high-flexion tasks such as 14 
+
+squatting. Current preoperative planning relies on static imaging and cannot predict 15 
+
+how different implant alignment choices will affect postoperative dynamic function. This 16 
+
+study developed a predictive simulation framework that uses bi-level inverse optimal 17 
+
+control to link preoperative implant alignment directly to expected postoperative squat 18 
+
+kinematics. 19 
+
+Subject-specific musculoskeletal models were constructed for six total knee replace-20 
+
+ment patients using experimental squat data. Bi-level inverse optimal control was 21 
+
+applied to identify both individualised and group-level cost functions. The individualised 22 
+
+setting provided subject-specific accuracy, while the group-level setting derived a single 23 
+
+group-level cost function as an initial step toward preoperative use without requiring 24 
+
+postoperative motion data. 25 
+
+The individualised setting reproduced experimental trajectories with low errors across 26 
+
+all joints (mean apex difference 1.53 ◦, root-mean-square error 5.15 ◦, normalised root-27 
+
+mean-square error 11.15%, Pearson correlation 0.96). The group-level setting yielded 28 
+
+higher but acceptable errors (mean apex difference 5.70 ◦, root-mean-square error 6.75 ◦,29 
+
+normalised root-mean-square error 17.53%, Pearson correlation 0.95) while preserving 30 
+
+the general pattern and phasing of the motion. Squat depth emerged naturally from the 31 
+
+optimisation rather than being prescribed. 32 
+
+This framework may provide a basis for future quantitative tools to evaluate how im-33 
+
+plant alignment choices influence postoperative squat performance, potentially improving 34 
+
+functional outcomes in total knee replacement. 35 
+
+These results suggest that the proposed IOC framework can reproduce key features 36 
+
+of post-TKR squat kinematics, but further out-of-sample validation is required before 37 
+
+it can be used for preoperative prediction or translated into tools aimed at improving 38 
+
+functional outcomes in total knee replacement. 39 
+
+Modified June 2026 1/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+# Introduction 40 
+
+Total knee replacement (TKR) is a well-established procedure for alleviating pain and restoring mobility in 41 
+
+patients with advanced knee conditions such as osteoarthritis and rheumatoid arthritis [1]. While early TKR 42 
+
+focused primarily on pain relief and correction of deformities, modern surgical techniques increasingly emphasise 43 
+
+the restoration of functional capacity, allowing patients to resume daily activities such as squatting [2 –4]. 44 
+
+Despite these advances, 15–20% of TKR patients still report dissatisfaction due to limited range of motion 45 
+
+and difficulties with dynamic tasks [5, 6]. 46 
+
+Current preoperative planning relies largely on static imaging and templating to determine implant 47 
+
+alignment. Surgeons commonly use radiographs or CT scans to position femoral and tibial components 48 
+
+along mechanical or anatomical axes [7]. Although these approaches provide important information for static 49 
+
+correction, they do not directly account for how different alignment choices may influence postoperative 50 
+
+dynamic function during high-flexion activities. Squatting, in particular, requires substantial knee flexion 51 
+
+and is an important indicator of functional recovery, yet current planning workflows have limited ability to 52 
+
+estimate squat depth, joint kinematics, or compensatory movement patterns before surgery [8, 9]. 53 
+
+Squatting consists of distinct phases, including descent, deep flexion, and ascent, each of which places 54 
+
+high demands on knee stability, quadriceps strength, and range of motion. Post-TKR patients may struggle 55 
+
+with these phases due to altered joint mechanics, reduced quadriceps strength, and pain avoidance, resulting 56 
+
+in shallower squat depth and compensatory strategies [10, 11]. Biomechanical indicators such as peak knee 57 
+
+flexion angle are therefore important markers of functional recovery. However, there remains a need for 58 
+
+computational frameworks that can relate implant alignment and patient-specific biomechanics to dynamic 59 
+
+functional outcomes. 60 
+
+Optimisation-based motion prediction has emerged as a promising approach to address this problem. 61 
+
+These methods formulate human movement as the minimisation of a cost function under biomechanical 62 
+
+constraints, allowing motion to be generated without requiring large training datasets [12, 13]. In contrast, 63 
+
+data-driven approaches have shown success for activities such as squatting and running, but often depend on 64 
+
+extensive patient-specific data that may be unavailable or difficult to collect in the TKR population [14 – 16]. 65 
+
+Physics-based optimisation therefore provides a complementary route for investigating how biomechanical 66 
+
+model parameters and surgical alignment choices may affect postoperative movement. 67 
+
+In a preliminary simulation study, we explored lower-limb joint kinematics during squatting using an 68 
+
+earlier torque-driven skeletal model and optimal control formulation, which suggested that TKR component 69 
+
+misalignment can influence squat performance [17]. Building on this foundation, the present study extends 70 
+
+the modelling framework by incorporating both femoral and tibial component alignments, a 3-DOF knee 71 
+
+joint with ligament dynamics, and comparison with experimental squat data from six TKR patients in the 72 
+
+CAMS-Knee dataset [18, 19]. We further employ bi-level inverse optimal control to identify cost-function 73 
+
+weights in both individualised and group-level settings. 74 
+
+The aim of this study was to develop and preliminarily evaluate a bi-level inverse optimal control framework 75 
+
+for reproducing post-TKR squat kinematics and exploring its potential use in future preoperative functional 76 
+
+simulation. The individualised setting was used to assess the best achievable subject-specific reconstruction 77 
+
+accuracy when postoperative motion data are available. In contrast, the group-level setting was used to 78 
+
+examine whether a single population-level cost function could reproduce the general squat kinematic patterns 79 
+
+across subjects, representing an initial step toward preoperative applicability without requiring subject-specific 80 
+
+postoperative motion data. Through these two complementary settings, this study quantifies the trade-off 81 
+
+between subject-specific reconstruction accuracy and population-level generalisability in post-TKR squat 82 
+
+simulation. 83 
+
+# Materials and methods 84 
+
+Our workflow comprises three key steps. First, we developed subject-specific skeletal models using Open-85 
+
+Sim [20], parameterised to represent TKR component alignment. Each model was scaled to match the 86 
+
+corresponding subject and configured using the available component alignment information. Next, using this 87 
+
+parameterised model, squat motion was simulated by solving an optimal control problem (OCP) under the 88 
+
+2/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+assumption that human movement can be represented as the optimisation of a weighted cost function, as 89 
+
+shown in previous studies [12, 13, 21 –23]. The squat was selected because it requires substantial knee flexion 90 
+
+and is an important indicator of functional mobility after TKR [11]. 91 
+
+Because the precise cost function governing human motor control cannot be directly measured, we employed 92 
+
+a bi-level optimisation framework to identify the cost-function weights from experimental motion data. Two 93 
+
+settings were investigated. The individualised setting identified subject-specific weights and was used as 94 
+
+a reconstruction benchmark for the best achievable agreement with each subject’s observed motion. The 95 
+
+group-level setting identified a single set of weights across all subjects and was used to examine whether 96 
+
+a population-level cost function could reproduce the general squat kinematic patterns within the available 97 
+
+cohort. Finally, the simulated trajectories were compared with experimental squat data from TKR patients 98 
+
+obtained from the CAMS-Knee database [18, 19]. 99 
+
+## Skeletal model 100 
+
+We employed a biomechanical model with 12 DOFs, adapted from the advanced knee flexion model developed 101 
+
+by Catelli et al. [24], illustrated in Fig 1. This model encompasses 3 DOF in the pelvis (1 rotational and 2 102 
+
+translational), 3 DOF at the hip (all rotational), 3 DOF for knee joint movement (all rotational), 2 DOF for 103 
+
+ankle motion (both rotational), and 1 DOF for lumbar extension (rotational). 104 
+
+Fig 1. MSK model utilised in the study (left), along with the depicted positions of knee ligament components (right). The model encompasses distinct bundles for the medial and lateral collateral ligaments (MCL and LCL), as well as a bundle for the patellar ligament (PL) and posterior cruciate ligament (PCL). The patellar ligament (PL) is considered rigid within this representation. The connection of the foot to the ground was modelled to maintain continuous foot-ground contact 105 
+
+throughout the squat. Seven torque actuators were used to actuate the hip, knee, ankle, and lumbar joints. 106 
+
+In addition, the model included nine ligament components to represent the contribution of soft tissues around 107 
+
+the knee joint. 108 
+
+The ligaments were modelled as non-linear elastic forces to mimic the mechanical behaviour of anatomical 109 
+
+knee ligaments, as proposed by Blankevoort [25]. 110 
+
+fl(ϵ) = 
+
+
+
+0, ϵ < 0
+
+kϵ 2/4ϵ1, 0 ≤ ϵ ≤ 2ϵ1,k(ϵ − ϵ1), ϵ > 2ϵ1,
+
+(1) 111 
+
+lo = lr
+
+ϵr + 1 ϵ = llo
+
+− 1 (2) 112 
+
+where fl(ϵ) is the force exerted by a ligament, k is its stiffness, and ϵ is the ligament strain. Here, ϵ1 was 113 
+
+fixed at 0.03 [26] and defines the transition to the linear portion of the force-strain curve. The parameter l114 
+
+is the current ligament length, lr is its length at full knee extension, lo is the resting length, and ϵr is the 115 
+
+reference strain at a specified reference position. The stiffness parameters and reference strain values for each 116 
+
+ligament are provided in Table 1 [25, 27]. 117 
+
+Table 1. Stiffness and reference strain of each ligament [25, 27]. Ligament Stiffness, k (N) Reference Strain, ϵ
+
+aPCL 9000 -0.24 pPCL 9000 -0.03 aLCL 1667 0.03 mLCL 1667 0.03 pLCL 1667 0.03 aMCL 2750 0.04 mMCL 2750 0.04 pMCL 2750 0.05 3/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+Subject-specific TKR component orientations were assigned in the MSK model. Fig 2 illustrates key 118 
+
+geometric aspects of the knee joint and the positioning of the knee replacement. In Fig 2(a), the Hip-Knee-119 
+
+Ankle (HKA) angle is shown, defined as the angle between the mechanical axes of the femur and tibia in 120 
+
+the coronal plane. Fig 2(b) presents the posterior tibial slope (PTS) in the sagittal plane, defined as the 121 
+
+slope of the tibial plateau relative to the sagittal mechanical axis of the tibia. This angle is important for 122 
+
+anterior-posterior knee stability [28]. Fig 2(c) and (d) depict the varus-valgus alignments of the femoral and 123 
+
+tibial components, respectively. The angles in Fig 2(b)–(d) were assigned according to the subject-specific 124 
+
+values reported in the dataset, as summarised in Table 2. 125 
+
+Fig 2. Important angles of TKR components. (a) Hip-Knee-Ankle (HKA) Angle. (b) Posterior Tibial Slope (PTS). (c) Varus-Valgus Alignment of the Femoral Component. (d) Varus-Valgus Alignment of the Tibial Component. 
+
+## Formulation of the optimal control problem 126 
+
+With the skeletal model described above, an OCP was formulated to simulate the stand-to-squat-to-stand 127 
+
+motion. The OCP was solved using OpenSim Moco [29], an open-source tool that uses direct collocation to 128 
+
+solve OCPs with musculoskeletal models built in OpenSim. The OCP used in this study is formulated in 129 
+
+Eq. (3). 130 
+
+min 
+
+> y(t),x(t)
+> n
+
+X
+
+> j=1
+
+wj Jj (y(t), x(t), t, p)subject to: 
+
+˙q(t) = u(t), ˙u(t) = a(t)
+
+M(q(t), p) ˙u(t) + G(q(t), p)⊤λ(t)= fapplied (t, y(t), x(t), p) − finertial (q(t), u(t), p)
+
+˙z(t) = ˙ϵ(t)
+
+ϕ(gfoot ) = 0 
+
+yL ≤ y(t) ≤ yU , xL ≤ x(t) ≤ xU
+
+q(t0) = qe(t0), q(tf ) = qe(tf )
+
+˙q(t0) = 0 , ˙q(tf ) = 0 
+
+t0 = 0 , tf = 2 (3) 131 
+
+Eq. (3) minimises an integrated cost function over time, where y is the state vector, including the 132 
+
+generalised coordinates q and velocities u, and x is the control vector associated with the model actuators. 133 
+
+The path constraints ( yL, yU , xL, and xU ) enforce realistic joint ranges of motion, with lower-limb joint 134 
+
+limits such as 0–120 ◦ for the hip and knee and 0–30 ◦ for the ankle [30]. Boundary conditions were imposed so 135 
+
+that the joint positions at the start and end of the motion matched the subject-specific upright configuration 136 
+
+observed in the experimental data, with zero joint velocities at both endpoints. The auxiliary state z tracks 137 
+
+ligament strain dynamics through ˙ϵ, and the kinematic constraint ϕ is applied to a point on the foot gfoot to 138 
+
+limit foot movement. The weight wj represents the relative contribution of each objective term Jj .139 
+
+The objective function terms employed in this study were defined as follows: 140 
+
+4/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+J1,com (t) = qcom ,y (t)2 (4) 141 
+
+J2,balance (t) = ( qcom ,x (t) − qref ,x )2 (5) 142 
+
+J3,accel (t) = 
+
+> N
+
+X
+
+> i=1
+
+ai(t)2 (6) 143 
+
+J4,effort (t) = 
+
+> K
+
+X
+
+> k=1
+
+ek(t)2 (7) 144 
+
+J5,tension (t) = 
+
+> P
+
+X
+
+> l=1
+
+ Tl(t)
+
+Tmax (t)
+
+2
+
+(8) 145 
+
+These terms were selected as candidate optimality criteria representing hypothesised contributors to 146 
+
+post-TKR squat motion. 147 
+
+J1,com (Eq. (4) ) penalises the vertical position of the model’s centre of mass. Because the motion starts 148 
+
+and ends in an upright posture, this term promotes lowering of the body during the intermediate portion of 149 
+
+the motion and therefore allows squat depth to emerge from the optimisation. 150 
+
+J2,balance (Eq. (5) ) penalises the anterior-posterior displacement between the whole-body centre of mass 151 
+
+and a reference position associated with the foot. This term represents a balance-related objective intended 152 
+
+to keep the centre of mass within the support region during squatting. 153 
+
+J3,accel (Eq. (6) ) penalises joint accelerations across all N coordinates in the model. This term acts as a 154 
+
+motion regularisation term and promotes smoother, more controlled trajectories. 155 
+
+J4,effort (Eq. (7) ) penalises actuator excitations. The model employed K torque actuators, with actuator 156 
+
+excitations bounded between −1 and 1, and ek denotes the excitation of the kth actuator. This term 157 
+
+discourages unnecessarily large actuator inputs. 158 
+
+Finally, J5,tension (Eq. (8) ) penalises normalised ligament tension during movement. In this expression, 159 
+
+Tl(t) denotes the tension in the lth ligament at time t, P is the total number of ligaments, and Tmax (t) is the 160 
+
+maximum ligament tension at the same time point. This term was included to discourage movement patterns 161 
+
+associated with excessive ligament loading. 162 
+
+## Bi-level optimisation 163 
+
+Given the cost-function structure in Eqs. 4–8, the corresponding weights must be determined. We therefore 164 
+
+employed a bi-level inverse optimal control (IOC) framework. Bi-level IOC has been widely used in human 165 
+
+motion research to infer cost-function weights from observed movement [31–34]. 166 
+
+In this study, bi-level IOC was used to identify the weight factors associated with post-TKR squat motion. 167 
+
+At the inner level, an OCP (Eq. (3) ) was solved to generate a squat trajectory for a given set of weight factors 168 
+
+w. At the outer level, the derivative-free optimisation algorithm PRIMA [32, 35, 36] adjusted these weights to 169 
+
+minimise the discrepancy between simulated and observed squat kinematics. 170 
+
+Two IOC settings were considered. In the individualised setting, the cost-function weights were optimised 171 
+
+separately for each subject using that subject’s observed squat trajectory. This setting was used to quantify 172 
+
+subject-specific reconstruction accuracy and to provide a benchmark for the best achievable agreement under 173 
+
+the selected model and objective-function structure. Algorithm 1 outlines this individualised bi-level IOC 174 
+
+procedure. 175 
+
+5/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+Algorithm 1: Individual Bi-Level IOC 
+
+Input: Experimental trajectory τe, initial weight factors w0, Termination Criteria ( ρend and maxfun )
+
+Output: Optimal weight factors w∗
+
+Initialise: 
+
+Set w ← w0
+
+Define Termination Criteria: ρend = 10 −8, maxfun = 500 
+
+while (step size > ρ end ) and (function evaluations ≤ maxfun) do a. Inner-Level Optimisation (Solve OCP): 
+
+Solve the inner-loop OCP for the current w:
+
+τs ← SolveOCP( w)
+
+b. Compute Error: 
+
+Calculate E between τe and τs:
+
+E ← ComputeError( τe, τs)
+
+c. Outer-Level Optimisation (Update Weight Factors): 
+
+Adjust w using PRIMA to minimise E:
+
+w ← UpdateWeights( E, w)Subject to: 
+
+wi ≥ 0, ∀i = 1 , . . . , N PNi=1 wi = 1 
+
+Return: w ∗ such that E is minimised. 
+
+176 
+
+Here, τe and τs denote the experimental and simulated lower-limb joint trajectories for hip, knee, and 177 
+
+ankle flexion/extension. The discrepancy between the experimental and simulated data was quantified using 178 
+
+the apex angle difference and RMSE for each joint: 179 
+
+apexDiff j = |max ( τe,j ) − max ( τs,j )| , (9) 180 
+
+RMSE j =
+
+vuut 1
+
+NtNtX
+
+> i=1
+
+(τe,j,i − τs,j,i )2, (10) 181 
+
+E =
+
+vuut 1
+
+NJNJX
+
+> j=1
+
+ apexDiff 2 
+
+> j
+
++ RMSE 2
+
+> j
+
+, (11) 182 
+
+where j denotes the joint, Nt is the number of time samples, and NJ = 3 is the number of evaluated joints. 183 
+
+The apex angle difference represents the difference in maximum flexion angle between the experimental and 184 
+
+simulated trajectories, while RMSE quantifies the average trajectory error across the full squat cycle. 185 
+
+ρend and maxfun were used as the termination criteria for the upper-level optimisation, representing the 186 
+
+tolerance threshold and the maximum number of function evaluations, respectively. 187 
+
+On the other hand, in the group-level setting, a single set of cost-function weights was optimised across 188 
+
+all subjects. This setting was used to examine whether one population-level cost function could reproduce 189 
+
+the general squat kinematic patterns observed across the available cohort. Therefore, it should be interpreted 190 
+
+as a population-level formulation within a cohort, rather than an independent out-of-sample prediction test. 191 
+
+Algorithm 2 outlines this group bi-level IOC framework. 192 
+
+6/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+Algorithm 2: Group Bi-Level IOC 
+
+Input: Experimental trajectories {τe,s }Ns=1 , initial weight factors w0, Termination Criteria ( rho end 
+
+and maxfun )
+
+Output: Optimal weight factors w∗
+
+Initialise: 
+
+Set w ← w0
+
+Define Termination Criteria: ρend = 10 −8, maxfun = 500 
+
+while (step size > ρ end ) and (function evaluations ≤ maxfun) do a. Inner-Level Optimisation (Solve OCP for All Subjects): 
+
+Initialise error list E
+
+for each subject s = 1 , 2, . . . , N do 
+
+Solve the inner-loop OCP for subject s with the current w:
+
+τs,s ← SolveOCP( w, τe,s )Compute the error for subject s:
+
+Es ← ComputeError( τe,s , τs,s )Append Es to E:
+
+E ← E ∪ { Es}
+
+b. Compute group error as RMS: 
+
+Calculate Egroup using individual errors Es for Es ∈ E :
+
+Egroup ←
+
+q 1
+
+> N
+
+P 
+
+> Es∈E
+
+E2
+
+> s
+
+c. Outer-Level Optimisation (Update Weight Factors): 
+
+Adjust w using PRIMA to minimise Egroup :
+
+w ← UpdateWeights( Egroup , w)Subject to: 
+
+wi ≥ 0, ∀i = 1 , . . . , N PNi=1 wi = 1 
+
+Return: w ∗ such that Egroup is minimised. 
+
+193 
+
+In contrast to the individualised setting (Algorithm 1), the inner-level optimisation was executed separately 194 
+
+for each subject using the same weight vector w. The subject-specific errors were then aggregated into 195 
+
+the set E and combined into the group-level error metric, Egroup , which was minimised in the outer-level 196 
+
+optimisation. 197 
+
+## Experimental data 198 
+
+Experimental data were obtained from the CAMS-Knee database [18, 19] and used to estimate cost-function 199 
+
+weights and compare observed joint kinematics with simulated trajectories. The dataset included six subjects 200 
+
+with TKR (5 male, 1 female; mean age 75 ( ±5) years, weight 89 ( ±13) kg, height 172 ( ±4) cm), with data 201 
+
+collected 64–87 months after surgery. 202 
+
+Skin marker trajectories were recorded during squatting. A generic model was scaled and processed using 203 
+
+the OpenSim scaling tool and inverse kinematics solver [20] to obtain lower-limb joint angle trajectories. 204 
+
+The scaled MSK models were assigned component orientations matching those reported in the dataset [37] 205 
+
+to facilitate comparison between simulated and experimental squat kinematics. Replacement component 206 
+
+alignments are summarised in Table 2. Negative values indicate varus alignment and positive values indicate 207 
+
+valgus alignment, as illustrated in Fig 2. 208 
+
+Ethics statement 209 
+
+This study used previously collected human participant data from the CAMS-Knee dataset [18, 19]. No new 210 
+
+human participant recruitment, intervention, or data collection was performed for the present secondary 211 
+
+analysis. The data were obtained under the CAMS-Knee data-use agreement and were accessed for research 212 
+
+7/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+purposes on 17 August 2021. The author did not have access to information that could directly identify 213 
+
+individual participants during or after accessing the dataset. Ethical approval and informed consent procedures 214 
+
+for the original CAMS-Knee data collection are reported in the dataset documentation and associated 215 
+
+publications [18, 19]. 216 
+
+Table 2. Alignments (in degrees) of replacement component for each subject [37]. Positive values indicate valgus alignment while negative values indicate varus alignment. Positive values for PTS indicate anti-clockwise rotation (see Fig 2). 
+
+K1L K2L K3R K5R K7L K8L Femur -1.4 -2.6 -3 -0.6 -2.4 -2.1 
+
+Tibia -1.6 -2.4 -0.5 -0.4 -4.1 -1.9 
+
+PTS 5 11 10 7 7 11 
+
+# Results 217 
+
+The bi-level inverse optimal control framework successfully recovered cost-function weights that reproduced 218 
+
+post-total knee replacement (TKR) squat kinematics across all six subjects from the CAMS-Knee dataset. 219 
+
+Agreement between simulated and experimental trajectories was quantified using four complementary metrics: 220 
+
+apex joint-angle difference, defined as the difference in peak flexion between simulated and experimental 221 
+
+trajectories; root-mean-square error (RMSE); normalised RMSE (nRMSE), scaled to each joint’s experimental 222 
+
+range of motion; and Pearson correlation coefficient ( r) for the hip, knee, and ankle flexion/extension 223 
+
+trajectories. Results are presented separately for the individualised subject-specific setting and the group-level 224 
+
+population setting. All simulations satisfied the non-negativity and normalisation constraints on the weight 225 
+
+factors and terminated within the prescribed limits of the upper-level optimisation. 226 
+
+## Individual cost function results 227 
+
+In the individualised setting, the optimised weights produced squat trajectories that closely reproduced the 228 
+
+experimental kinematics across all six subjects. The simulated and experimental trajectories for the three 229 
+
+lower-body degrees of freedom in the sagittal plane are shown in Fig 3. 230 
+
+Fig 3. Trajectories for the individual weight setting. Solid lines represent simulated trajectories and dashed lines represent experimental trajectories for the hip, knee, and ankle flexion/extension angles. Subject-specific optimisation of the cost-function weights enabled the model to closely match the experi-231 
+
+mental squat kinematics for each participant. Apex joint-angle differences between simulated and experimental 232 
+
+trajectories ranged from 0.02 ◦ at the hip of subject K7L to 4.65 ◦ at the hip of subject K8L. Averaged across 233 
+
+all subjects, these differences were 1.55 ( ±1.66) ◦ for the hip, 1.05 ( ±0.78) ◦ for the knee, and 1.98 ( ±1.09) ◦ for 234 
+
+the ankle, giving an overall mean of 1.53 ( ±1.18) ◦. RMSE across the full squat cycle averaged 6.87 ( ±2.41) ◦
+
+> 235
+
+at the hip, 5.71 ( ±3.69) ◦ at the knee, and 2.87 ( ±1.85) ◦ at the ankle. When scaled to each joint’s range of 236 
+
+motion, nRMSE was 8.56 ( ±3.44)% for the hip, 7.84 ( ±4.40)% for the knee, and 17.04 ( ±9.26)% for the 237 
+
+ankle. Pearson correlation coefficients exceeded 0.9 for every joint and subject, with mean values of 0.97 238 
+
+(±0.03) for both the hip and knee and 0.93 ( ±0.06) for the ankle. Summary metrics for the individualised 239 
+
+setting are presented in Table 3. 240 
+
+## Group cost function results 241 
+
+In the group-level setting, a single group-level weight set was optimised across all subjects simultaneously. 242 
+
+The simulated and experimental trajectories for this setting are shown in Fig 4. 243 
+
+The group-level weights produced trajectories that followed the general pattern of the experimental squat 244 
+
+motion within the available cohort, although with larger deviations than the individualised setting. Apex 245 
+
+8/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+Table 3. Metrics averaged across all subjects for the individualised setting. Results are reported for each joint (hip, knee, and ankle) as well as overall averages. Values are presented as mean ( ±standard deviation). Metrics Hip Knee Ankle Overall Apex Diff (Deg) 1.55 ( ±1.66) 1.05 ( ±0.78) 1.98 ( ±1.09) 1.53 ( ±1.18) RMSE (Deg) 6.87 ( ±2.41) 5.71 ( ±3.69) 2.87 ( ±1.85) 5.15 ( ±2.65) nRMSE (%) 8.56 ( ±3.44) 7.84 ( ±4.40) 17.04 ( ±9.26) 11.15 ( ±5.70) 
+
+r 0.97 ( ±0.03) 0.97 ( ±0.03) 0.93 ( ±0.06) 0.96 ( ±0.04) 
+
+Fig 4. Trajectories for the group weight setting. Solid lines represent simulated trajectories and dashed lines represent experimental trajectories for the hip, knee, and ankle flexion/extension angles. joint-angle differences ranged from 0.14 ◦ at the ankle of subject K2L to 15.45 ◦ at the knee of subject K7L. 246 
+
+Mean differences across subjects were 3.46 ( ±1.81) ◦ for the hip, 8.52 ( ±5.82) ◦ for the knee, and 5.12 ( ±3.53) ◦
+
+> 247
+
+for the ankle, resulting in an overall mean of 5.70 ( ±4.00) ◦. RMSE averaged 8.03 ( ±2.58) ◦ for the hip, 7.17 248 
+
+(±4.75) ◦ for the knee, and 5.05 ( ±1.77) ◦ for the ankle. Normalised RMSE was 10.07 ( ±3.98)% for the hip, 249 
+
+10.08 ( ±6.76)% for the knee, and 32.44 ( ±14.00)% for the ankle. Pearson correlation coefficients remained 250 
+
+high, averaging 0.97 ( ±0.03) for both the hip and knee and 0.92 ( ±0.07) for the ankle. Summary metrics for 251 
+
+the group-level setting are reported in Table 4. 252 
+
+Table 4. Metrics averaged across all subjects for the group-level setting. Results are reported for each joint (hip, knee, and ankle) as well as overall averages. Values are presented as mean ( ±standard deviation). Metrics Hip Knee Ankle Overall Apex Diff (Deg) 3.46 ( ±1.81) 8.52 ( ±5.82) 5.12 ( ±3.53) 5.70 ( ±4.00) RMSE (Deg) 8.03 ( ±2.58) 7.17 ( ±4.75) 5.05 ( ±1.77) 6.75 ( ±3.40) nRMSE (%) 10.07 ( ±3.98) 10.08 ( ±6.76) 32.44 ( ±14.00) 17.53 ( ±9.00) 
+
+r 0.97 ( ±0.03) 0.97 ( ±0.03) 0.92 ( ±0.07) 0.95 ( ±0.04) 
+
+## Comparison between cost function results 253 
+
+Fig 5 provides a direct comparison of the four metrics between the individualised and group-level cost 254 
+
+functions. 255 
+
+Fig 5. Box plots comparing result metrics between individual and group cost functions. Scatter points adjacent to each box indicate the raw metric values for each subject, while red x marks represent the mean values. Subplots display (a) apex joint angle difference, (b) RMSE, (c) normalised RMSE, and (d) Pearson’s correlation coefficient, with results presented for the hip, knee, and ankle joints. The individualised cost function yielded lower mean apex joint-angle differences than the group-level cost 256 
+
+function across all three joints. The difference was particularly evident at the knee, where the mean apex 257 
+
+difference decreased by 87.7% in the individualised setting. Reductions were also observed at the hip and 258 
+
+ankle. A comparable pattern was found for RMSE, which was lower in the individualised setting by 14.4% at 259 
+
+the hip, 20.4% at the knee, and 43.2% at the ankle. Normalised RMSE followed the same trend, showing 260 
+
+reductions of 15.0% at the hip, 22.2% at the knee, and 47.5% at the ankle. In contrast, Pearson correlation 261 
+
+coefficients remained high and largely comparable between the two settings for the hip and knee joints, with 262 
+
+only a small difference observed at the ankle (0.93 in the individualised setting versus 0.92 in the group-level 263 
+
+setting). 264 
+
+9/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+## Recovered weight factors 265 
+
+The recovered weight factors for each subject in the individualised setting and the single set of weights for the 266 
+
+group-level setting are shown in Fig 6. The centre-of-mass height term ( wcom ) and the balance term ( wbalance )267 
+
+were consistently among the dominant terms, together accounting for more than half of the total weight in 268 
+
+most cases. The balance term showed the greatest inter-subject variability, ranging from 0.0950 to 0.4158. 269 
+
+The ligament tension term ( wtension ) and acceleration term ( wacc ) remained small, on the order of 10 −3 and 270 
+
+10 −4, respectively. The effort-related terms exhibited moderate subject-specific variation across coordinates. 271 
+
+Fig 6. Recovered weight factors for each individual subject and the group. Each subplot represents the weight factor for each objective term used in the OCP (Eq. 3 – 8). Subscripts on the effort weights indicate the coordinate to which the torque actuator is applied. (e.g. w effort ,hip flex represents the weight factor for the objective term that minimises the activation of the torque actuator in the hip flexion/extension coordinate). 
+
+# Discussion 272 
+
+This study developed and preliminarily evaluated a bi-level inverse optimal control framework for simulating 273 
+
+post-total knee replacement (TKR) squat kinematics. The framework recovered both individualised and 274 
+
+group-level cost-function weights that allowed the model to reproduce key features of the experimental squat 275 
+
+trajectories from six TKR patients in the CAMS-Knee dataset [18, 19]. In the individualised setting, subject-276 
+
+specific optimisation produced low apex joint-angle differences, RMSE, and nRMSE values, demonstrating 277 
+
+strong agreement with each subject’s observed motion. The group-level setting, in which a single set of 278 
+
+weights was optimised across all subjects, yielded moderately higher errors but maintained high Pearson 279 
+
+correlation coefficients, indicating that the general shape of the squat motion was preserved within the available 280 
+
+cohort. These findings extend our preliminary simulation work [17] by incorporating both femoral and tibial 281 
+
+component alignments, a 3-DOF knee joint with ligament dynamics, and comparison with experimental 282 
+
+squat data from TKR patients. However, both settings showed limited ability to reproduce the temporal 283 
+
+asymmetry in the descent-to-ascent transition timing observed in several experimental trajectories. 284 
+
+The simulation results showed a level of agreement with experimental kinematics that was broadly 285 
+
+comparable to related studies, although direct comparisons should be interpreted cautiously because of 286 
+
+differences in study populations, movement tasks, and modelling approaches. For example, Lee et al. [14] 287 
+
+used a Gaussian process regression model to predict joint angles during smith machine squats in healthy 288 
+
+young subjects, reporting nRMSE values between 3.8% and 17% and Pearson correlation coefficients ( r)289 
+
+ranging from 0.984 to 0.999 for the knee joint. In the present study, the individualised setting produced 290 
+
+knee nRMSE values ranging from 3.07% to 15.19% and r values from 0.91 to 0.99. These values fall within 291 
+
+a comparable range, particularly considering that the present study involved free squatting in older TKR 292 
+
+patients rather than constrained smith machine squats in healthy participants. 293 
+
+Other studies have reported lower errors for knee flexion-extension prediction in gait and running tasks. 294 
+
+Renani et al. [38] and Wouda et al. [15] reported RMSE values of 3.3 ◦ and below 5 ◦, respectively, in healthy 295 
+
+participants. Although these errors are lower than the mean knee RMSE of 5.71 ◦ observed in the individualised 296 
+
+setting of the present study, squat motion involves a larger knee range of motion and greater functional 297 
+
+demand than level gait or treadmill running. In addition, the TKR population is expected to show greater 298 
+
+inter-subject variability because of differences in implant alignment, soft-tissue properties, strength, pain 299 
+
+avoidance, and movement strategy. 300 
+
+Tan et al. [16] investigated knee joint kinematics during sit-to-stand and stand-to-sit motions, which are 301 
+
+mechanically related to the descent and ascent phases of squatting. They reported RMSE values between 302 
+
+7.27 ◦ and 9.30 ◦, nRMSE values from 8.68% to 10.86%, and Pearson correlation coefficients greater than 303 
+
+0.99. In comparison, the present study obtained mean knee RMSE and nRMSE values of 5.71 ◦ and 7.84%, 304 
+
+respectively, in the individualised setting, and 7.17 ◦ and 10.08%, respectively, in the group-level setting. These 305 
+
+comparisons suggest that the proposed simulation framework can reproduce post-TKR squat kinematics 306 
+
+10/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+with errors that are within the range of related movement-prediction studies, while using a physics-based 307 
+
+optimisation framework rather than a purely data-driven model. 308 
+
+Although apex joint-angle differences are less frequently reported, they are particularly relevant in the 309 
+
+present context because peak flexion is closely related to functional squat depth after TKR. Tan et al. [16] 310 
+
+reported apex knee angle errors ranging from 5.09 ◦ to 6.89 ◦ during sit-to-stand and stand-to-sit tasks. The 311 
+
+average apex knee joint-angle difference in the present study was 1.05 ◦ in the individualised setting and 8.52 ◦
+
+> 312
+
+in the group-level setting. The individualised result therefore compares favourably with previous reports, 313 
+
+whereas the group-level result highlights the additional difficulty of reproducing subject-specific squat depth 314 
+
+using a single population-level cost function. 315 
+
+The comparison between individualised and group-level cost functions highlights an important trade-off 316 
+
+between subject-specific reconstruction accuracy and population-level generalisability. The individualised 317 
+
+setting produced lower errors because the cost-function weights were optimised separately for each subject 318 
+
+using that subject’s observed motion. This setting should therefore be interpreted as a subject-specific 319 
+
+reconstruction benchmark that indicates the best achievable agreement under the current model structure 320 
+
+and objective terms. In contrast, the group-level setting used a single set of weights for all subjects, making 321 
+
+it more relevant to future preoperative applications where postoperative motion data would not be available 322 
+
+for a new patient. However, this generality came at the cost of higher apex angle differences, RMSE, and 323 
+
+nRMSE, particularly at the knee and ankle. 324 
+
+The recovered weight factors also suggest that a single universal cost function may be insufficient to capture 325 
+
+the full variability of post-TKR squat strategies. The centre-of-mass height term ( wcom ) and balance term 326 
+
+(wbalance ) were consistently among the dominant terms, indicating that lowering the body while maintaining 327 
+
+balance was central to reproducing the squat motion. However, the balance term showed considerable 328 
+
+inter-subject variability, ranging from 0.0950 to 0.4158. This variability may reflect differences in body 329 
+
+size, implant alignment, movement strategy, arm position, confidence during squatting, and individual 330 
+
+prioritisation of stability. The effort-related terms also showed subject-specific variation across coordinates, 331 
+
+further supporting the idea that different patients may use different biomechanical strategies to perform the 332 
+
+same functional task. 333 
+
+A key limitation of the present study is that the group-level cost function was fitted and evaluated within 334 
+
+the same cohort of six subjects. Therefore, the group-level results should not be interpreted as independent 335 
+
+out-of-sample prediction accuracy for unseen TKR patients. Rather, they demonstrate the feasibility of 336 
+
+deriving a population-level cost function that can reproduce the general squat kinematic patterns observed 337 
+
+within the available cohort. Future work should evaluate generalisability using leave-one-subject-out testing, 338 
+
+external validation cohorts, or larger datasets when they become available. This distinction is important 339 
+
+because true preoperative prediction would require the model to generalise to patients whose postoperative 340 
+
+motion data were not used during weight identification. 341 
+
+Several additional limitations should also be considered. First, the current OCP formulation did not fully 342 
+
+capture the temporal asymmetry in the descent-to-ascent transition timing observed in the experimental 343 
+
+squat trajectories of several subjects. This suggests that the current objective-function structure may capture 344 
+
+overall squat depth and trajectory shape more effectively than phase-specific timing. Second, the model used 345 
+
+uniform ligament parameters and maximum actuator torques across all subjects, which may not account for 346 
+
+individual variations in soft-tissue properties, muscle strength, pain, or neuromuscular control. Third, the use 347 
+
+of torque actuators simplifies the representation of human actuation and does not fully capture muscle-level 348 
+
+coordination, activation dynamics, or metabolic effort. Finally, the derivative-free optimiser PRIMA is a 349 
+
+local search method, so the recovered weights may represent local rather than global optima. 350 
+
+Despite these limitations, the proposed framework provides a useful proof-of-concept for incorporating 351 
+
+dynamic functional simulation into future TKR planning workflows. The group-level cost function explores 352 
+
+whether a population-level objective formulation can reproduce post-TKR squat kinematics without using 353 
+
+subject-specific postoperative motion data for each individual. Although the present study does not establish 354 
+
+fully independent preoperative prediction, it represents a step toward dynamic, function-oriented simulation 355 
+
+tools that may eventually complement static imaging-based planning. The individualised setting provides an 356 
+
+upper-bound reconstruction benchmark, while the group-level setting provides an initial estimate of how well 357 
+
+a shared cost function can reproduce squat kinematics across subjects. 358 
+
+Future work should focus first on evaluating out-of-sample generalisability using leave-one-subject-out 359 
+
+11/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+or external-cohort validation. Introducing phase-specific objective terms may improve the reproduction of 360 
+
+descent-to-ascent timing asymmetry. Replacing or supplementing the local derivative-free optimiser with 361 
+
+global search strategies could reduce the risk of convergence to local minima. Extending the model to 362 
+
+include muscle-driven actuators rather than torque actuators would improve biomechanical realism and allow 363 
+
+physiologically motivated objectives, such as muscle effort or metabolic energy expenditure, to be investigated. 364 
+
+Finally, applying the approach to larger TKR cohorts and exploring clustering based on recovered weight 365 
+
+distributions or movement strategies may support more robust population-level cost functions for future 366 
+
+preoperative functional simulation. 367 
+
+# Conclusion 368 
+
+This study demonstrates the feasibility of combining musculoskeletal simulation with bi-level inverse optimal 369 
+
+control to reproduce post-total knee replacement squat kinematics. The individualised cost-function setting 370 
+
+provided accurate subject-specific reconstruction and served as a benchmark for the best achievable agreement 371 
+
+under the proposed model and objective-function structure. The group-level setting produced higher errors 372 
+
+but preserved the overall squat motion pattern across subjects, suggesting that a shared population-level cost 373 
+
+function may provide a useful starting point for future preoperative functional simulation. 374 
+
+Importantly, the proposed framework generated the full stand-to-squat-to-stand cycle in a single optimisa-375 
+
+tion process, allowing squat depth to emerge from the interaction between the model dynamics, constraints, 376 
+
+and cost-function weights rather than being prescribed directly. Although further validation in larger and 377 
+
+independent cohorts is required before clinical application, this proof-of-concept study represents a step 378 
+
+toward dynamic, function-oriented simulation tools for total knee replacement planning. 379 
+
+# Acknowledgments 380 
+
+The author thanks the CAMS-Knee investigators and data providers for providing access to the dataset used 381 
+
+in this study. 382 
+
+# References 383 
+
+1. Kahlenberg CA, Nwachukwu BU, McLawhorn AS, Cross MB, Cornell CN, Padgett DE. Patient 384 
+
+Satisfaction After Total Knee Replacement: A Systematic Review. HSS Journal. 2018 Jul;14(2):192-201. 385 
+
+doi:10.1007/s11420-018-9614-8. 386 
+
+2. Bourne RB, Chesworth BM, Davis AM, Mahomed NN, Charron KDJ. Patient Satisfaction after Total 387 
+
+Knee Arthroplasty: Who is Satisfied and Who is Not? Clinical Orthopaedics & Related Research. 388 
+
+2010 Jan;468(1):57–63. doi:10.1007/s11999-009-1119-9. 389 
+
+3. Healy WL, Iorio R, Lemos MJ. Athletic Activity After Total Knee Arthroplasty. Clinical Orthopaedics 390 
+
+and Related Research. 2000 Nov;380:65–71. doi:10.1097/00003086-200011000-00009. 391 
+
+4. Mulholland SJ, Wyss UP. Activities of daily living in non-Western cultures: range of motion re-392 
+
+quirements for hip and knee joint implants. International Journal of Rehabilitation Research. 2001 393 
+
+Sep;24(3):191–198. doi:10.1097/00004356-200109000-00004. 394 
+
+5. Baker PN, van der Meulen JH, Lewsey J, Gregg PJ. The role of pain and function in determining 395 
+
+patient satisfaction after total knee replacement. The Journal of Bone Joint Surgery British Volume. 396 
+
+2007;89-B(7):893-900. doi:10.1302/0301-620X.89B7.19091. 397 
+
+6. Scott CEH, Howie CR, MacDonald D, Biant LC. Predicting dissatisfaction following total knee 398 
+
+replacement: a prospective study of 1217 patients. The Journal of Bone and Joint Surgery British 399 
+
+Volume. 2010;92(9):1253-8. doi:10.1302/0301-620X.92B9.24394. 400 
+
+12/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+7. Insall JN, Binazzi R, Soudry M, Mestriner LA. Total knee arthroplasty. Clinical Orthopaedics and 401 
+
+Related Research. 1985 January–February;192:13-22. doi:10.1097/00003086-198501000-00003. 402 
+
+8. Lei K, Liu LM, Xiang Y, Chen X, Fan HQ, Peng Y, et al. Clinical value of CT-based patient-specific 403 
+
+3D preoperative design combined with conventional instruments in primary total knee arthroplasty: 404 
+
+a propensity score-matched analysis. Journal of Orthopaedic Surgery and Research. 2020 Dec;15(1). 405 
+
+doi:10.1186/s13018-020-02123-5. 406 
+
+9. Comitini S, Tigani D, Commessatti M. Preoperative planning in total knee arthroplasty (TKA). In: 407 
+
+Surgical Techniques in Total Knee Arthroplasty and Alternative Procedures. Elsevier; 2015. p. 95–108. 408 
+
+doi:10.1533/9781782420385.2.95. 409 
+
+10. Weiss JM, Noble PC, Conditt MA, Kohl HW, Roberts S, Cook KF, et al. What Functional Activities 410 
+
+Are Important to Patients With Knee Replacements? Clinical Orthopaedics and Related Research. 411 
+
+2002 Nov;404:172–188. doi:10.1097/00003086-200211000-00030. 412 
+
+11. Hadi M, Barlow T, Ahmed I, Dunbar M, McCulloch P, Griffin D. Does malalignment affect patient 413 
+
+reported outcomes following total knee arthroplasty: a systematic review of the literature. SpringerPlus. 414 
+
+2016 Jul;5(1). doi:10.1186/s40064-016-2790-4. 415 
+
+12. Falisse A, Serrancol´ ı G, Dembia CL, Gillis J, Jonkers I, De Groote F. Rapid predictive simulations 416 
+
+with complex musculoskeletal models suggest that diverse healthy and pathological human gaits can 417 
+
+emerge from similar control strategies. Journal of The Royal Society Interface. 2019;16(157):20190402. 418 
+
+doi:10.1098/rsif.2019.0402. 419 
+
+13. Xiang Y, Chung HJ, Kim JH, Bhatt R, Rahmatalla S, Yang J, et al. Predictive dynamics: an 420 
+
+optimization-based novel approach for human motion simulation. Structural and Multidisciplinary 421 
+
+Optimization. 2009 Aug;41(3):465–479. doi:10.1007/s00158-009-0423-z. 422 
+
+14. Lee H, Jung M, Lee KK, Lee S. A 3D Human-Machine Integrated Design and Analysis Framework for 423 
+
+Squat Exercises with a Smith Machine. Sensors. 2017 Feb;17(2):299. doi:10.3390/s17020299. 424 
+
+15. Wouda FJ, Giuberti M, Bellusci G, Maartens E, Reenalda J, van Beijnum BJF, et al. Estimation of 425 
+
+Vertical Ground Reaction Forces and Sagittal Knee Kinematics During Running Using Three Inertial 426 
+
+Sensors. Frontiers in Physiology. 2018 Mar;9. doi:10.3389/fphys.2018.00218. 427 
+
+16. Tan JS, Tippaya S, Binnie T, Davey P, Napier K, Caneiro JP, et al. Predicting Knee Joint Kinematics 428 
+
+from Wearable Sensor Data in People with Knee Osteoarthritis and Clinical Considerations for Future 429 
+
+Machine Learning Models. Sensors. 2022 Jan;22(2):446. doi:10.3390/s22020446. 430 
+
+17. Song H, Tran T, Kuli´ c D. Effect of Tibial Component Misalignment on the Lower Limb Joint Kinematics 431 
+
+During Squat. In: 2023 45th Annual International Conference of the IEEE Engineering in Medicine & 432 
+
+Biology Society (EMBC). IEEE; 2023. p. 1–5. doi:10.1109/embc40787.2023.10340406. 433 
+
+18. Damm P, Taylor WR, et al.. CAMS-Knee.orthoload.com; 2019. Julius Wolff Institute – Charit´ e434 
+
+Universit¨ atsmedizin Berlin and Institute for Biomechanics – ETH Z¨ urich. 435 
+
+19. Taylor WR, Sch¨ utz P, Bergmann G, List R, Postolka B, Hitz M, et al. A comprehensive assessment of 436 
+
+the musculoskeletal system: The CAMS-Knee data set. Journal of Biomechanics. 2017 Dec;65:32–39. 437 
+
+doi:10.1016/j.jbiomech.2017.09.022. 438 
+
+20. Seth A, Sherman M, Reinbolt JA, Delp SL. OpenSim: a musculoskeletal modeling and sim-439 
+
+ulation framework for in silico investigations and exchange. Procedia IUTAM. 2011;2:212–232. 440 
+
+doi:10.1016/j.piutam.2011.04.021. 441 
+
+21. Ong CF, Geijtenbeek T, Hicks JL, Delp SL. Predicting gait adaptations due to ankle plantarflexor 442 
+
+muscle weakness and contracture using physics-based musculoskeletal simulations. PLOS Computational 443 
+
+Biology. 2019 Oct;15(10). doi:10.1371/journal.pcbi.1006993. 444 
+
+13/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint Bi-level IOC for post-TKR squat prediction
+
+22. Santos GF, Gomes AA, Sacco ICN, Ackermann M. Predictive simulation of diabetic gait: Indi-445 
+
+vidual contribution of ankle stiffness and muscle weakening. Gait & Posture. 2017 Oct;58:208–213. 446 
+
+doi:10.1016/j.gaitpost.2017.07.124. 447 
+
+23. Chung HJ. In: Optimization Based Dynamic Human Motion Prediction with Modular Ex-448 
+
+oskeleton Robots as Interactive Forces: The Case of Weight Lifting Motion. IntechOpen; 2021. 449 
+
+doi:10.5772/intechopen.98391. 450 
+
+24. Catelli DS, Wesseling M, Jonkers I, Lamontagne M. A musculoskeletal model customized for squat-451 
+
+ting task. Computer Methods in Biomechanics and Biomedical Engineering. 2018 Nov;22(1):21–24. 452 
+
+doi:10.1080/10255842.2018.1523396. 453 
+
+25. Blankevoort L, Kuiper JH, Huiskes R, Grootenboer HJ. Articular contact in a three-dimensional model 454 
+
+of the knee. Journal of Biomechanics. 1991 Jan;24(11):1019–1031. doi:10.1016/0021-9290(91)90019-j. 455 
+
+26. Butler DL, Kay MD, Stouffer DC. Comparison of material properties in fascicle-bone units from human 456 
+
+patellar tendon and knee ligaments. Journal of Biomechanics. 1986;19(6):425-32. doi:10.1016/0021-457 
+
+9290(86)90019-9. 458 
+
+27. Marra MA, Vanheule V, Fluit R, Koopman BHFJM, Rasmussen J, Verdonschot N, et al. A Subject-459 
+
+Specific Musculoskeletal Modeling Framework to Predict In Vivo Mechanics of Total Knee Arthroplasty. 460 
+
+Journal of Biomechanical Engineering. 2015 Feb;137(2). doi:10.1115/1.4029258. 461 
+
+28. Karimi E, Norouzian M, Birjandinejad A, Zandi R, Makhmalbaf H. Measurement of posterior tibial 462 
+
+slope using magnetic resonance imaging. The Archives of Bone and Joint Surgery. 2017 Apr;(Online 463 
+
+First). doi:10.22038/abjs.2017.20411.1534. 464 
+
+29. Dembia CL, Bianco NA, Falisse A, Hicks JL, Delp SL. OpenSim Moco: Musculoskeletal optimal 465 
+
+control. PLOS Computational Biology. 2021 12;16(12):1-21. doi:10.1371/journal.pcbi.1008493. 466 
+
+30. Endo Y, Miura M, Sakamoto M. The relationship between the deep squat movement and the hip, 467 
+
+knee and ankle range of motion and muscle strength. Journal of Physical Therapy Science. 2020 468 
+
+Jun;32(6):391-4. doi:10.1589/jpts.32.391. 469 
+
+31. Berret B, Chiovetto E, Nori F, Pozzo T. Evidence for composite cost functions in arm move-470 
+
+ment planning: an inverse optimal control approach. PLoS Computational Biology. 2011;7(10). 471 
+
+doi:10.1371/journal.pcbi.1002183. 472 
+
+32. Mombaur K, Truong A, Laumond JP. From human to humanoid locomotion—an inverse optimal 473 
+
+control approach. Autonomous Robots. 2010;28(3):369-83. doi:10.1007/s10514-009-9170-7. 474 
+
+33. Panchea AM, Miossec S, Buttelli O, Fraisse P, Van Hamme A, Welter ML, et al. Gait analysis 475 
+
+using optimality criteria imputed from human data. IFAC-PapersOnLine. 2017 Jul;50(1):13510–13515. 476 
+
+doi:10.1016/j.ifacol.2017.08.2340. 477 
+
+34. Sylla N, Bonnet V, Venture G, Armande N, Fraisse P. Human arm optimal motion analysis in industrial 478 
+
+screwing task. In: 5th IEEE RAS/EMBS International Conference on Biomedical Robotics and 479 
+
+Biomechatronics. IEEE; 2014. p. 964–969. doi:10.1109/biorob.2014.6913905. 480 
+
+35. Powell MJD. In: A Direct Search Optimization Method That Models the Objective and Constraint 481 
+
+Functions by Linear Interpolation. Springer Netherlands; 1994. p. 51–67. doi:10.1007/978-94-015-8330-482 
+
+5 4. 483 
+
+36. Zhang Z. PRIMA: Reference Implementation for Powell’s Methods with Modernization and Ameliora-484 
+
+tion; 2023. available at http://www.libprima.net. doi:10.5281/zenodo.8052654. 485 
+
+37. Trepczynski A, Moewis P, Damm P, Sch¨ utz P, Dymke J, Hommel H, et al. Dynamic Knee Joint 486 
+
+Line Orientation Is Not Predictive of Tibio-Femoral Load Distribution During Walking. Frontiers in 487 
+
+Bioengineering and Biotechnology. 2021 Nov;9. doi:10.3389/fbioe.2021.754715. 488 
+
+14/15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint
+
+Bi-level IOC for post-TKR squat prediction 
+
+38. Sharifi Renani M, Eustace AM, Myers CA, Clary CW. The Use of Synthetic IMU Signals in the 489 
+
+Training of Deep Learning Models Significantly Improves the Accuracy of Joint Kinematic Predictions. 490 
+
+Sensors. 2021 Aug;21(17):5876. doi:10.3390/s21175876. 491 
+
+15/15 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 15, 2026. ;https://doi.org/10.64898/2026.06.11.731549 doi: bioRxiv preprint .CC-BY 4.0 International license available under a

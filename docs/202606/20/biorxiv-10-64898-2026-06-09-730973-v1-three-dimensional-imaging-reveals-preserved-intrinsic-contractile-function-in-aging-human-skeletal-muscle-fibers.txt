@@ -1,0 +1,824 @@
+Title: 2026.06.09.730973v1.full.pdf
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.09.730973v1.full.pdf
+
+Number of Pages: 48
+
+Markdown Content:
+Three-dimensional imaging reveals preserved intrinsic contractile function in aging human skeletal muscle fibers 
+
+Carlos S. Zepeda 1,2 , Laura E. Teigen 2 , Isabell Dobrzycki 2 , Yuan Wen 3,4,5 ,
+
+Christopher W. Sundberg 1,2,6,7 
+
+> 1
+
+Department of Physical Therapy, Marquette University, Milwaukee, WI, USA; 
+
+> 2
+
+Division of Geriatrics and Gerontology, Department of Medicine, University of Wisconsin–Madison, Madison, WI, USA; 
+
+> 3
+
+University of Kentucky Center for Muscle Biology, Lexington, KY, USA; 
+
+> 4
+
+Department of Physiology, University of Kentucky, Lexington, KY, USA; 
+
+> 5
+
+Division of Biomedical Informatics, Department of Internal Medicine, University of Kentucky, Lexington, KY, USA; 
+
+> 6
+
+Athletic and Human Performance Research Center, Marquette University, Milwaukee, WI, USA; 
+
+> 7
+
+Department of Kinesiology, University of Wisconsin–Madison, Madison, WI, USA 
+
+Running Title: Intrinsic single fiber contractile function is preserved with aging 
+
+Address for Correspondence: 
+
+Christopher W. Sundberg, Ph.D. 
+
+University of Wisconsin – Madison 
+
+Wisconsin Institutes for Medical Research, Room 3405 
+
+1111 Highland Avenue 
+
+Madison, WI 53705-2275 
+
+E-mail:  csundberg2@medicine.wisc.edu 
+
+Phone: 608-890-1171 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+ABSTRACT (Word Count: 249) 1
+
+Age-related reductions in muscle fiber size and contractile function, particularly in fibers 2expressing fast myosin heavy chains, contribute to declines in whole-muscle power. However, 3methodological limitations in estimating fiber size during contractile experiments have likely 4contributed to conflicting findings regarding whether reduced single-fiber force and power in older 5adults reflects their smaller size and/or impaired intrinsic contractile function. To address this, we 6coupled single-fiber contractile experiments with 3D-imaging in 7 young (19-40yrs) and 6 older 7(69-84yrs) males to assess intrinsic contractile function and compare agreement between 3D-8derived cross-sectional area (CSA) and CSA estimates obtained either in air or solution. Fast fiber 9CSA from older males were ~28–45% smaller across measurement conditions compared with 10 young, whereas slow fiber CSA did not differ. Accordingly, absolute force and power of fast fibers 11 were 41% and 37% lower. When normalized to CSA from measurements in air or 3D-imaging, 12 size-specific force and power either did not differ or were greater in older adults, indicating 13 preserved intrinsic contractile function in both fiber types. This was supported by no age-related 14 differences in the rate of tension redevelopment (ktr ), a size-independent measure of intrinsic 15 contractile function. In contrast, size-specific force and power calculated using solution-based 16 CSA estimates were lower in older compared with young adults, and Bland-Altman analyses 17 demonstrated the poorest agreement between solution-based and 3D CSA measurements. These 18 findings indicate that intrinsic contractile function is preserved with aging and suggest that 19 methodological differences in CSA measurement contributes to the disparate findings in the 20 literature. 21 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+INTRODUCTION 22 
+
+Aging is associated with a progressive decline in skeletal muscle mass and function 23 (strength and power) that leads to reduced mobility and quality of life in older adults. Notably, the 24 age-related decline in muscle power (~2-4% yr -1 ) occurs more rapidly than the loss of total muscle 25 mass (~0.5-1% yr -1 ) (Mitchell et al. , 2012; Alcazar et al. , 2020; Alcazar et al. , 2023), suggesting 26 that factors beyond muscle atrophy, such as impairments in the ability of the nervous system to 27 activate the muscle and/or factors disrupting intrinsic contractile function, must also contribute to 28 the loss in power. Importantly, the age-related decline in the ability to generate power is a stronger 29 predictor of physical impairments (Reid & Fielding, 2012) and mortality (Araujo et al. , 2025) than 30 muscle strength. Despite the importance of muscle power to mobility and physical function in 31 older adults, the mechanisms for the accelerated age-related loss in power relative to muscle mass 32 are not well understood. 33 
+
+It was recently reported that the reduced ability of older adults to generate power in the 34 lower limb is due primarily to factors within the muscle, with neural factors potentially playing a 35 minor role in older females (Wrucke et al. , 2024). However, identifying the mechanisms within 36 the muscle remains particularly challenging, in part due to the fiber type heterogeneity and the 37 well-established differential effects of aging on the size and function of each fiber type (Lexell et 38 
+
+al. , 1988; Nilwik et al. , 2013; Teigen et al. , 2020; Grosicki et al. , 2022; Teigen et al. , 2026). One 39 proposed mechanism underlying the accelerated age-related decline in whole muscle power is the 40 selective atrophy of the fibers expressing the fast myosin heavy chain (MyHC) isoforms, which 41 often exhibit marked reductions in force- and power-generating capacity with aging (Sundberg et 42 
+
+al. , 2018a; Sundberg et al. , 2025). Indeed, a recent review of the aging single fiber literature found 43 that the fast fibers from older adults are typically smaller and generate lower absolute force and 44 power compared with young adults, whereas slow fiber size and contractile function are largely 45 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+preserved (Grosicki et al. , 2022). However, when fast fiber force and power were normalized to 46 fiber size, which is the most commonly reported metric of intrinsic contractile function, the 47 findings are inconsistent, with studies reporting impaired intrinsic contractile function in older 48 adults (Larsson et al. , 1997; Frontera et al. , 2000; D'Antona et al. , 2003; Ochala et al. , 2007; Hvid 49 
+
+et al. , 2013; Lamboley et al. , 2015; Brocca et al. , 2017), no differences (Korhonen et al. , 2006; Yu 50 
+
+et al. , 2007; Raue et al. , 2009; Harber et al. , 2012; Teigen et al. , 2020; Teigen et al. , 2026), or even 51 enhancements with aging (Straight et al. , 2018; Sundberg et al. , 2018a; Gries et al. , 2019; Grosicki 52 
+
+et al. , 2021; Sundberg et al. , 2025). Thus, despite nearly three decades of research, it remains 53 unknown whether the reductions in fast fiber force and power in older adults are attributed to their 54 smaller size and/or impaired intrinsic contractile function. 55 
+
+One potential critical, yet underappreciated, factor contributing to this longstanding 56 inconsistency may be a fundamental methodological limitation in how muscle fiber cross-sectional 57 area (CSA) is estimated (Smith & Herzog, 2023; Mebrahtu et al. , 2024; Hessel et al. , 2026). In 58 chemically permeabilized and mechanically peeled fiber preparations, CSA is estimated from two-59 dimensional (2D) images by measuring the fiber diameter at multiple points while the fiber is 60 either submerged in relaxing solution or briefly suspended in air (< 5s). The use of air-based 61 measurements arose from the recognition that fibers in solution are not simple geometric shapes 62 (Blinks, 1965; Malakoutian et al. , 2021), but instead exhibit irregular cross-sectional profiles that 63 violate the conventional assumptions of circular or elliptical fiber geometry. Suspending fibers in 64 air was therefore intended to leverage surface tension and capillary forces to induce a more 65 uniform, cylindrical shape, thereby better approximating these geometric assumptions (Allen & 66 Moss, 1987; Metzger & Moss, 1987). However, even under these conditions, it is unknown how 67 well these measurements approximate the fiber CSA, and variations in the exposure time to air can 68 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+differentially affect the fiber dimensions (Ferenczi, 1986), particularly in fibers from older adults 69 (unpublished observations). Furthermore, studies assessing muscle fiber shape using 70 immunohistochemical methods have reported that fibers from older adults exhibit greater 71 deviations from circularity, particularly the fast MyHC II fibers (Kirkeby & Garbarsch, 2000; 72 Barnouin et al. , 2017; Horwath et al. , 2024; Soendenbroe et al. , 2024). Collectively, these 73 limitations suggest that inaccuracies in CSA estimation from 2D images may contribute to the 74 inconsistent findings on intrinsic contractile function with aging. 75 
+
+Continued advancements in cellular imaging and computational analyses, particularly 76 using confocal microscopy, have enabled high-resolution, three-dimensional (3D) renderings of 77 isolated human muscle fibers (Liu et al. , 2009; Cristea et al. , 2010), allowing more precise 78 measurements of fiber morphology. However, no study has combined single-fiber contractile 79 mechanics with 3D morphological analysis of the same fiber segments or directly compared 3D-80 derived CSA with conventional CSA estimates derived from 2D diameter measurements in 81 solution and air. Thus, the primary aims of this study were to: 1) determine whether intrinsic 82 contractile function is impaired with aging by assessing single fiber contractile mechanics 83 followed by 3D morphological analysis of the same fibers, and 2) compare the agreement between 84 CSA estimates obtained from 2D images in solution and air with those derived from 3D imaging. 85 We hypothesized that 1) reductions in fast fiber force and power with aging will be determined 86 primarily by their smaller size rather than altered cross-bridge mechanics, with no age differences 87 observed in slow fibers; 2) CSA estimates from 2D images obtained in both solution and air would 88 show bias and poor agreement with 3D-derived measurements; and 3) methodological differences 89 in fiber CSA assessment would account for much of the discrepancies in the literature regarding 90 whether aging alters intrinsic single-fiber contractile function. 91 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+METHODS 92 
+
+Participants and ethical approval 93 
+
+Seven young (20 – 40 yr) and 6 older males (69 – 84 yr) volunteered and provided written 94 informed consent to participate in this study. Participants underwent a general health screening and 95 were excluded from participation if they were taking medications that affect muscle mass or 96 neuromuscular function (e.g. hormone-replacement therapies, antidepressants, glucocorticoids, 97 etc.). Participants were healthy, community-dwelling adults free of any known neurological, 98 musculoskeletal, and cardiovascular diseases. All experimental procedures were approved by the 99 Marquette University Institutional Review Board and conformed to the principles in the 100 Declaration of Helsinki. 101 
+
+Physical activity assessment 102 
+
+Physical activity for each participant was quantified using a triaxial accelerometer (GT3X; 103 ActiGraph, Pensacola, FL, USA) worn around the waist for at least 4 days (2 weekdays and 2 104 weekend days) as reported previously (Hassanlouei et al. , 2017; Sundberg et al. , 2018a). The data 105 were recorded for each participant if the accelerometer was worn for a minimum of 8 hours on at 106 least 3 days (Hart et al. , 2011). 107 
+
+Experimental overview 108 
+
+Participants reported to the laboratory on two occasions, once for a muscle biopsy and 109 again to measure thigh lean mass and whole-muscle function of the knee extensor muscles. The 110 purpose of the whole muscle session was to determine whether older adults exhibited typical age-111 related differences in knee extensor mass and function, including lower thigh lean mass as well as 112 lower absolute and mass-specific mechanical force and power outputs. 113 
+
+114 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Thigh lean mass 115 
+
+Body composition and thigh lean mass were assessed with dual X-ray absorptiometry 116 (Lunar iDXA; GE, Madison, WI, USA). Thigh lean mass was quantified for the region of interest 117 using the manufacturer’s software (enCORE 14.10.022; GE), with the distal demarcation set at the 118 tibiofemoral joint and the proximal demarcation set as a diagonal bifurcation through the femoral 119 neck. DXA measures of thigh lean mass with these landmarks are strongly correlated with 120 measures from magnetic resonance imaging but underestimate the age-related loss in thigh muscle 121 mass (Maden-Wilkinson et al. , 2013). 122 
+
+Whole-muscle knee extensor function 123 
+
+Whole-muscle function of the knee extensors was measured using the same experimental 124 setup described previously (Sundberg et al. , 2018b). Briefly, participants were seated upright in 125 the high Fowler’s position on a Biodex System 4 dynamometer (Biodex Medical, Shirley, NY, 126 USA) with the dominant leg (preferred kicking leg) positioned at 90° knee flexion. Participants 127 were secured using the dynamometer’s four-point restraint system to minimize extraneous 128 movements and changes in hip angle, and they were prohibited from grasping the dynamometer 129 with their hands to ensure the measured torques and velocities were generated primarily by the 130 knee extensor muscles. 131 
+
+Following a standardized warmup consisting of dynamic knee extension exercise lifting a 132 light load (1 Nm), participants performed a minimum of three brief (2-3 s) maximal voluntary 133 isometric contractions (MVCs) separated by a minimum of 60 s rest. Strong verbal encouragement 134 and visual feedback were provided via a 56 cm monitor mounted 1-1.5 m directly in front of the 135 participant. MVC torque was quantified as the average torque over a 0.5 s interval centered on 136 peak torque, and MVC attempts were continued until the two highest values were within 5% of 137 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+each other. Participants then completed 4 MVCs combined with electrical stimulation to assess 138 voluntary activation and involuntary contractile properties as described previously (Delgadillo et 139 
+
+al. , 2021). 140 
+
+Muscle stimulation and electrically evoked contractile properties 141 
+
+Involuntary contractile properties of the knee extensors were assessed using transcutaneous 142 electrical stimulation delivered through custom pad electrodes (6 × 8 cm), with the cathode 143 positioned approximately 8–12 cm proximal to the superior border of the patella and the anode 144 was positioned 10–13 cm proximal to the cathode. Stimulations were delivered using a constant-145 current stimulator (DS7AH, Digitimer, Hertfordshire, UK), and the stimulator intensity established 146 using single-pulse stimuli (400 V, 200 μs duration) beginning at 50 mA and increasing 147 incrementally by 50–100 mA until the amplitude of the unpotentiated resting twitch torque 148 plateaued. Stimulus intensity was then increased by an additional 20% to ensure supramaximal 149 stimulation. This intensity was subsequently used for all paired-pulse (100 Hz doublet) 150 stimulations during the voluntary activation and contractile property assessments. 151 
+
+Participants performed MVCs during which a 100 Hz paired-pulse stimulus was delivered 152 both during the contraction and immediately following the MVC (< 5 s). Each MVC trial was 153 separated by at least 2 min of rest. The reported values for potentiated resting twitch amplitude 154 (Nm), half-relaxation time (ms), and peak rate of torque development (Nm·s -1 ) were calculated as 155 the median values from the four MVC trials. The peak rate of torque development was quantified 156 as the derivative of the torque signal as the highest rate of torque increase over a 10 ms interval. 157 
+
+Following the isometric MVC measurements, participants were habituated to performing 158 maximal velocity knee extensions against a 20% MVC load applied by the dynamometer. 159 Participants were instructed to kick as fast as possible once every 3 s for a total of 4 min (80 160 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+contractions). Peak power was the highest power output recorded from the first 10 contractions 161 (30 s) of the task. Peak power obtained from this single-load fatiguing protocol has previously 162 demonstrated strong associations and agreement with values derived from a comprehensive 163 torque–velocity assessment, supporting its validity for evaluating age-related differences in muscle 164 power (Wrucke et al. , 2026). 165 
+
+Voluntary activation 166 
+
+Voluntary activation of the knee extensors was assessed using the interpolated twitch 167 technique (Herbert & Gandevia, 1999). During the four MVCs, transcutaneous muscle stimulation 168 was applied and voluntary activation calculated with Equation 1: 169 
+
+Voluntary Activation (%) = �1 − 𝑆𝑆𝑆𝑆𝑆𝑆 𝑅𝑅 𝑆𝑆  � ∗ 100 (1) 170 
+
+where SIT is the amplitude of the superimposed twitch torque elicited by the stimulation during 171 the MVC and RT is the electrically-evoked, potentiated resting twitch immediately after the MVC 172 (< 5 s). The reported voluntary activation for each participant was the median obtained from the 4 173 MVC trials. 174 
+
+Muscle biopsy 175 
+
+A muscle biopsy from the vastus lateralis was obtained from each participant using the 176 modified Bergström technique as described previously (Bergstrom, 1975; Sundberg et al. , 2018a). 177 Participants were instructed to abstain from strenuous exercise of the lower limbs for 48 h prior to 178 the biopsy and arrive at the laboratory fasted and without the consumption of caffeine for ≥ 8 h. 179 Longitudinal bundles from the biopsy sample were immediately placed in ice cold glycerol 180 skinning solution (see below) and stored at -20 °C for up to 4 weeks. The remaining bundles of 181 the biopsy sample were orientated longitudinally on a small notecard, flash frozen in liquid 182 nitrogen-cooled isopentane and stored at -80 °C until sectioned for immunohistochemistry (IHC). 183 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Single fiber morphology and contractile mechanics experiments 184 
+
+Solutions: The composition of the relaxing (pCa 9.0, where pCa = -log[Ca 2+ ]) and 185 activating (pCa 4.5) solutions used for the single fiber contractile experiments were derived from 186 an iterative program using the stability constants adjusted for temperature, pH, and ionic strength 187 (Fabiato & Fabiato, 1979; Fabiato, 1988). The solutions contained (in mM): 20 imidazole, 7 188 EGTA, 4 MgATP and 14.5 creatine phosphate. Inorganic phosphate (P i ) was added as K 2 HPO 4 to 189 yield a concentration of 4 mM. The ionic strength was adjusted to 180 mM with KCl, and the pH 190 adjusted to 7.0 with KOH and HCl. The skinning solution was composed of 50% relaxing solution 191 and 50% glycerol (vol:vol). 192 
+
+Experimental setup 193 
+
+Single fiber segments ~5-10 mm in length were isolated from the biopsy sample and 194 prepared as described previously (Sundberg et al. , 2018a). Briefly, the ends of the fiber were 195 secured with 4.0 monofilament posts tied with 10.0 nylon sutures to a force transducer (400A; 196 Aurora Scientific, Aurora, Ontario, CA) and a high-speed servomotor (controller 312B; Aurora 197 Scientific) with ~2-3 mm of the fiber between the two attachment points. Fibers were suspended 198 in 100 μl of relaxing solution kept at 16 °C with a temperature-controlled Peltier unit for the 199 duration of the experiment, except when transferred into air for imaging or to a second Peltier unit 200 for activation at 20 °C. To view the fiber at 800x magnification, the microsystem was transferred 201 to the stage of an inverted microscope. The sarcomere length was adjusted to 2.5 μm using a 202 calibrated eyepiece micrometer, and the fiber length measured as the distance between the two 203 attachment points via a mechanical micrometer (Starrett; Athol, MA, USA). 204 
+
+To assess differences in single-fiber cross-sectional area (CSA) measured in solution and 205 following varying durations of air exposure, digital images were obtained while fibers were 206 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+suspended in relaxing solution and while exposed to air for ≤ 2 s (air ASAP), 5 s (air 5s), and 10 s 207 (air 10s). Fiber diameter was determined from 3 measurements obtained along a 280-μm segment 208 centered at the exact midpoint of the fiber, as calculated from total fiber length. The average fiber 209 diameter was then used to calculate CSA under the assumption that the fiber is a cylindrical shape. 210 
+
+Force-velocity and k tr 211 
+
+Force-velocity and force-power curves were obtained as described previously (Sundberg 212 
+
+et al. , 2018a; Sundberg et al. , 2025). Fibers were maximally activated in saturating Ca 2+ (pCa 4.5), 213 allowed to generate peak isometric force (P o ), and then subjected to three predetermined 214 submaximal isotonic loads (300-FC1 Force Controller; Positron Development, Inglewood, CA, 215 USA). Fibers were activated four to six times to obtain 12-18 different isotonic loads. Each force-216 velocity curve was fit with an iterative non-linear curve fitting procedure (Levenberg-Marquardt 217 algorithm) using the hyperbolic Hill equation (Hill, 1938) (Equation 2): 218 
+
+(𝑃𝑃 + 𝑎𝑎 )( 𝑉𝑉 + 𝑏𝑏 ) = ( 𝑃𝑃 𝑜𝑜 + 𝑎𝑎 )𝑏𝑏 (2) 219 
+
+where P is force, V is velocity, Po is peak isometric force, and a and b are constants with dimensions 220 of force and velocity, respectively (Widrick et al. , 1996). Absolute ( μN⋅fl ⋅s -1 ) and size-specific 221 power (W ⋅L-1 ) were calculated as the product of shortening velocity (fl ⋅s -1 ) and absolute ( μN) and 222 size-specific force (kN ⋅m -2 ), respectively, and the peak fiber power determined using the fitted 223 parameters from the force-velocity curve (Widrick et al. , 1996). The reported absolute and size-224 specific P o was the average of all the contractions within each condition. 225 
+
+Following the force-velocity experiments, the low- to high-force transition of the cross-226 bridge cycle was measured by quantifying the rate of force redevelopment, ktr , in response to a 227 rapid slack re-extension maneuver of a maximally Ca 2+ -activated fiber (Metzger et al. , 1989; 228 Sundberg et al. , 2018a). Only fibers producing > 90% of initial force underwent ktr analysis. Force 229 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+redevelopment following re-extension was fit with a first-order exponential function, where ktr is 230 the rate constant of force redevelopment (s -1 ) (Metzger et al. , 1989), which is independent of fiber 231 size and thus provides an additional measure of intrinsic contractile function. 232 
+
+Single fiber fluorescent staining 233 
+
+Following single fiber contractile experiments, fibers were carefully transferred and the 234 ends secured with 10.0 nylon sutures between two small-diameter (800 μm) stainless-steel rods 235 within a custom-built imaging microchamber (Fig. 1). Each rod was fixed to maintain fiber 236 alignment between the attachment points but could be adjusted in two planes to control sarcomere 237 length and fiber height. Due to the mounting procedure on the single fiber contractile apparatus 238 (Moss, 1979), both ends of the fiber segments became crimped at the point of attachment, creating 239 visible landmarks that were used to ensure consistent positioning of the same fiber segment within 240 the 3D imaging microchamber for subsequent imaging. Fibers were then stored overnight in 241 relaxing solution at 4°C. 242 
+
+On the day of staining and imaging, fibers were first incubated for 15 min in 0.1% Triton 243 X-100 (T9284; Sigma-Aldrich) diluted in relaxing solution at room temperature (RT) to facilitate 244 penetration of the fluorescent probe. After a 5 min wash in relaxing solution, fibers were incubated 245 for 60 min in Alexa Fluor 568 phalloidin (1:1000, A12830; Invitrogen) diluted in relaxing solution 246 at RT. Fibers were then washed 3x5 min in relaxing solution before sarcomere length was adjusted 247 for imaging. 248 
+
+Image acquisition 249 
+
+Prior to imaging, the microchamber was placed on the stage of an inverted microscope 250 equipped with a calibrated eyepiece micrometer, and the sarcomere length was adjusted to 2.5 μm251 (as described above). Single fiber images were acquired using an inverted laser-scanning confocal 252 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+microscope (Ti2-E, Nikon) equipped with 405- and 561-nm laser lines and a Plan-Apochromat 253 20x/0.75 NA objective lens. For 3D renderings of each fiber, consecutive images were acquired 254 through the Z-plane at 1-μm increments (Fig. 1). The length of each fiber segment captured was 255 approximately 635 μm. Images were acquired at 1024 x 1024 pixel resolution, yielding a total of 256 1024 CSA measurements along the length of each fiber. Image analysis was conducted with a 257 custom-automated imaging analysis software developed in MATLAB (version: 9.14.0 (R2023a), 258 The MathWorks, Natick, MA) with CSA for each fiber reported as the average CSA from all 1024 259 measurements. This approach reduced potential investigator bias and enabled quantification of 260 fiber CSA at a spatial resolution of 0.38 μm 2 .261 
+
+FIGURE 1 HERE 262 
+
+Myosin heavy chain (MyHC) composition 263 
+
+MyHC composition of the isolated fibers was determined by SDS-PAGE. Following 264 image acquisition, fibers were solubilized in 80 μL of SDS sample buffer and gels were made up 265 of a 3% acrylamide/bis (19:1) stacking layer and 5% separating layer. Gels were stored at 4 °C for 266 at least 24 hrs before loading and were run at 100V for ~24 hrs at 4 °C with 0.07% β-267 mercaptoethanol in the top running buffer. The gels were then stained with Sypro Ruby Protein 268 Gel Stain (S12000; Invitrogen) according to the manufacturer’s instructions and imaged using a 269 UVP GelStudio touch gel imager (849-97-0942-01; analytikjena) with a 605nm bandpass emission 270 filter to visualize the MyHC bands. 271 
+
+Immunohistochemistry 272 
+
+To complement the single fiber CSA data from the contractile mechanics experiments, 273 which are known to be limited by sample size and unintentional selection bias against the smaller 274 fibers (Grosicki et al. , 2022), we performed immunohistochemistry (IHC) on tissue cross-sections 275 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+as described previously (Teigen et al. , 2026). Briefly, 7 μm cross-sections were cut and stored at -276 80 °C until staining for MyHC isoforms. On the day of staining, slides were rehydrated in 277 phosphate-buffered saline (PBS) and incubated with a primary antibody (1°Ab) cocktail consisting 278 of rabbit (Rb) α-laminin IgG (1:100, L9393, Sigma-Aldrich, RRID:AB_477163), mouse (Ms) α-279 MyHC I IgG2b (1:100, BA-D5-c; DSHB, RRID:AB_2235587), Ms α-MyHC IIa IgG1 (1:500, SC-280 71-s; DSHB, RRID:AB_2147165), Ms α-MyHC IIx IgM (1:50, 6H1-s; DSHB, 281 RRID:AB_1157897), and PBS for 90 min at RT. Muscle sections were then washed with fresh 282 PBS for 3x5min at RT and subsequently incubated in a secondary antibody (2°Ab) cocktail of Goat 283 (Gt) α-Rb IgG (H+L), AMCA (1:50, CI-1000-1.5, Vector Laboratories, RRID:AB_2336195), Gt 284 
+
+α-Ms IgG2b Alexa Fluor (AF) 647 (1:250, A21242, Invitrogen, RRID:AB_2535811), Gt α-Ms 285 IgG1 AF488 (1:250, A21121, Invitrogen, RRID:AB_2535764), Gt α-Ms IgM AF555 (1:500, 286 A21426, Invitrogen, RRID:AB_2535847), diluted in PBS for 60 min at RT. Sections were again 287 washed in fresh PBS, mounted with coverslips using 1:1 PBS/glycerol , and then stored at 4 °C 288 until imaging. 289 
+
+Image acquisition: Muscle section images were acquired using a high-resolution 290 fluorescence microscope (BZ-X810, Keyence) with a Plan Apochromat 20x mounted objective 291 (BZ-PA20, Keyence) and filters DAPI (49000, Chroma Technology), Cy5 (49006, Chroma 292 Technology), FITC/Alexa Fluor 488/Fluo3/Oregon Green (49011, Chroma Technology), and 293 CY3/TRITC (49004, Chroma Technology). Automated detection software, MyoVision (Wen et 294 
+
+al. , 2018), was used for fiber type-specific CSA with manual verification of all fibers. 295 
+
+Statistical analysis 296 
+
+Participant anthropometrics, whole-muscle knee extensor function, physical activity levels, 297 and MyHC content from IHC were compared between age groups (young and old) using an 298 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+unpaired t test. Simple linear regression analyses were performed between neuromuscular 299 measurements (voluntary activation and electrically evoked contractile properties) and power 300 production to examine the extent to which neural and muscular factors are associated with the age-301 related loss of power. Statistical analysis for anthropometrics, whole-muscle knee extensor 302 function, physical activity levels, and IHC data were performed with SPSS, version 31.0 (IBM 303 Corp. Armonk, NY, USA). 304 
+
+To test for differences in single fiber morphology and contractile mechanics between young 305 and old males, a repeated measures mixed effects nested ANOVA was used with age group (young 306 and old) and condition (air ASAP, air 5s, air 10s, solution, 3D) included as fixed factors. When a 307 significant main effect of condition was observed, post hoc pairwise comparisons were performed 308 using Tukey’s method. When a significant age x condition interaction was detected, separate mixed 309 effects nested ANOVAs were performed within each condition to compare age groups. This was 310 done to allow direct comparison of our findings with those from the field that use a single CSA 311 measurement. Simple linear regression analyses were performed using each subject’s whole-312 muscle peak power and mean single-fiber power to examine associations between power 313 production at the cellular and whole-muscle levels. Bland-Altman plots were used to assess mean 314 bias and limits of agreement (LoA) between CSA estimated from 2D images (both solution and 315 air) and CSA measured from 3D imaging. Statistical analyses for single fiber data were performed 316 using Minitab version 22.4.0 (Minitab Inc., State College, PA, USA). Statistical significance was 317 set at P < 0.05. Data are presented as the mean ± SD in the text and tables and the mean ± SE in 318 the figures. 319 
+
+A total of 400 fibers were attempted, of which 21 were excluded because of experimental 320 failure (11 failed quality-control criteria, 6 were lost during transfer to the imaging chamber, and 321 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+4 did not yield acceptable 3D images). Of the remaining 379 fibers, 2 were MyHC I/IIa hybrid 322 fibers and were excluded, resulting in a final sample of 377 fibers. Because the number of hybrid 323 IIa/IIx and pure IIx fibers were small and similar between age groups (young: n = 17; old: n = 23), 324 we grouped these fibers with the pure IIa fibers and refer to the grouped data as MyHC II fibers. 325 
+
+326 
+
+RESULTS 327 
+
+Participant anthropometrics and whole-muscle knee extensor function 328 
+
+Anthropometrics, physical activity levels, and whole-muscle knee extensor function are 329 presented in Table 1. Physical activity levels did not differ between young and older adults ( P =330 0.973). Older adults exhibited characteristic signs of aging skeletal muscle, including ~37% lower 331 thigh lean mass ( P = 0.014), ~50% lower absolute isometric torque ( P < 0.001), and ~56% lower 332 absolute mechanical power output compared with young adults (P < 0.001, Fig. 2A). After 333 normalizing to thigh lean mass, mass-specific isometric torque ( P = 0.014) and power ( P = 0.012) 334 remained 22% and 31% lower in older adults. 335 
+
+TABLE 1 HERE 336 
+
+Voluntary activation, electrically evoked contractile properties, and associations with whole-337 
+
+muscle power 338 
+
+Voluntary activation did not differ between young (87.3 ± 7.4%) and older adults (89.3 ± 339 7.6%; P = 0.631). Resting potentiated twitch amplitude (young: 111.7 ± 29.8 Nm, old: 60.0 ± 8.5 340 Nm) and the rate of twitch torque development (young: 1086.7 ± 300.7, old: 573.3 ± 100.9 Nm ·s -341 1 ) were greater in young compared with older adults (both P = 0.002), whereas the half relaxation 342 time did not differ between groups (young: 83.6 ± 25.8 ms, old: 109.7 ± 25.4 ms; P = 0.094). 343 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Simple linear regression analyses revealed that several muscular factors were moderately 344 to strongly associated with whole-muscle peak power, including thigh lean mass (R 2 = 0.57; P =345 0.003), twitch amplitude (R 2 = 0.79; P < 0.001, Fig. 2A), half relaxation time (R 2 = 0.48; P =346 0.008), and the rate of twitch torque development (R 2 = 0.77; P < 0.001). In contrast, voluntary 347 activation was not associated with peak power (R 2 = 0.00; P = 0.876). Linear regression analyses 348 examining the relationship between peak whole-muscle power and mean single-fiber absolute 349 power from each subject revealed no association for MyHC I fibers (R 2 = 0.04; P = 0.502). 350 However, fast MyHC II single-fiber absolute power was associated with whole-muscle absolute 351 power (R 2 = 0.52; P = 0.005, Fig. 2B). After normalizing to whole-muscle and single-fiber size, 352 mass-specific power was not associated with size-specific power for either MyHC I (R 2 = 0.04; P353 = 0.506) or MyHC II fibers (R 2 = 0.05; P = 0.477). 354 
+
+FIGURE 2 HERE 355 
+
+Agreement between estimated fiber CSA from 2D images and 3D measurements 356 
+
+Bland-Altman plots were used to assess agreement between CSA estimated from 2D 357 images obtained in air and solution and CSA measured from 3D imaging in 377 fibers pooled 358 across age groups and fiber types (Fig. 3). The smallest mean bias was observed for CSA estimated 359 after 10 s of air exposure (mean bias = 136 μm 2 ; LoA = -2,387 to 2,657 μm 2) (Fig. 3C), indicating 360 the closest agreement with 3D measurements. Larger biases were evident for air 5s (mean bias = 361 1,064 μm 2 ; LoA = -1,602 to 3,732 μm 2 ) and air ASAP (mean bias = 1,977 μm 2 ; LoA = -1,060 to 362 5,013 μm 2 ) (Fig. 3A,B), whereas the greatest bias was observed with CSA estimated in solution 363 (mean bias = 3,609 μm 2 ; LoA = -2,866 to 10084 μm 2 ) (Fig. 3D). Regression analyses revealed 364 moderate-to-strong associations between CSA estimated from the 2D imaging conditions and 3D 365 CSA measurement (R 2 = 0.53-0.78; P < 0.001) (Fig. 3). Notably, a vast majority of the data points 366 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+fell below the line of identity (x = y), indicating systematic overestimation of CSA compared with 367 3D CSA measurements, consistent with the positive mean bias observed in each condition. 368 
+
+FIGURE 3 HERE 369 
+
+Single muscle fiber morphology and contractile mechanics 370 
+
+Slow MyHC I fibers: CSA measured across conditions for the 177 MyHC I fibers (young 371 = 97, old = 80), along with the corresponding IHC data, are presented in Fig. 4 and Table A1. There 372 was no effect of age when all CSA measurements were combined ( P = 0.279), but there was an 373 age x condition interaction ( P = 0.001). However, separate mixed effects nested ANOVA analyses 374 revealed no differences in MyHC I CSA between young and older adults in air ASAP ( P = 0.662), 375 air 5s ( P = 0.394), air 10s ( P = 0.281), solution ( P = 0.076), or 3D ( P = 0.514). Independent of age, 376 there was an effect of condition ( P < 0.001), with CSA estimated from 2D images in solution being 377 22-66% larger than all other conditions ( P ≤ 0.001 for all). A clear hierarchy in CSA measurement 378 was observed such that CSA in solution > air ASAP > air 5s > 3D > air 10s ( P ≤ 0. 008 for all). 379 
+
+There was no effect of age on the percent reduction in fiber CSA measured in air relative 380 to solution ( P = 0.132); however, there was an effect of condition ( P < 0.001) and an age x 381 condition interaction ( P < 0.001). Specifically, MyHC I fibers from older adults had a greater 382 reduction in CSA from solution to air ASAP (19 ± 21%) compared with young adults (5 ± 19%; P383 = 0.021), but no age-related differences were observed for air 5s (old: 29 ± 18%, young: 22 ± 17%, 384 
+
+P = 0.124) or air 10s (old: 38 ± 18%, young: 38 ± 17%, P = 0.936). Independent of age, the percent 385 reduction in CSA relative to solution was greatest in air 10s, followed by air 5s and air ASAP ( P386 < 0.001 for all). 387 
+
+FIGURE 4 HERE 388 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Mean force-velocity curves, absolute P o , and maximal shortening velocity (V max ) for 389 MyHC I fibers are presented in Fig. 5 and Table A1. There were no differences between young and 390 older adults in the curvature of the force-velocity relationship (a/P o , P = 0.531), absolute P o (P =391 0.341), or V max (P = 0.745). In addition, the rate of force redevelopment (k tr ) did not differ between 392 young (8.36 ± 0.79 s -1 ) and older adults (7.74 ± 1.28 s -1 , P = 0.349). 393 
+
+FIGURE 5 HERE 394 
+
+Size-specific and absolute force-power curves for slow MyHC I fibers are presented in Fig. 395 6 and Table A1. There was no effect of age on size-specific P o when all CSA measurements were 396 combined ( P = 0.449), but there was an age x condition interaction ( P < 0.001). However, separate 397 mixed effects nested ANOVA analyses revealed no differences in size-specific P o between young 398 and older adults in any condition (air ASAP, P = 0.370; air 5s, P = 0.667; air 10s, P = 0.176; 399 solution, P = 0.088; 3D, P = 0.541). Independent of age, there was an effect of condition ( P <400 0.001), where size-specific P o was lowest when normalized to CSA estimated from 2D images in 401 solution compared with all other conditions ( P ≤ 0.001 for all, Fig. 6). A clear hierarchy of CSA 402 normalization was observed such that size-specific P o air 10s > 3D > air 5s > air ASAP > solution 403 (P < 0.001 for all). 404 
+
+Absolute peak power of slow MyHC I fibers did not differ between young and older adults 405 (P = 0.238). There was also no effect of age on size-specific peak power when all CSA 406 measurements were combined ( P = 0.292), but there was an age x condition interaction ( P <407 0.001). Specifically, size-specific peak power was ~14% lower in older (9.1 ± 2.8 W·L -1 ) compared 408 with young from the 2D images in solution only (10.6 ± 2.9 W·L -1 , P = 0.033), whereas no age-409 related differences were observed in air ASAP ( P = 0.900), air 5s ( P = 0.415), air 10s ( P = 0.112), 410 or 3D ( P = 0.614). Independent of age, size-specific peak power was greatest when CSA was 411 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+measured after 10 s of air exposure compared with all other conditions ( P < 0.001 for all). A clear 412 hierarchy of CSA normalization was observed such that size-specific peak power air 10s > 3D > 413 air 5s > air ASAP > solution ( P < 0.001 for all). 414 
+
+FIGURE 6 HERE 415 
+
+Fast MyHC II fibers : CSA measured across conditions for the 200 MyHC II fibers (young 416 = 113, old = 87), along with the corresponding IHC data, are presented in Fig. 4 and Table A2. 417 There was an effect of age ( P = 0.003) and age x condition interaction ( P < 0.001), where MyHC 418 II fiber CSA was smaller in the older compared with young adults in all conditions (air ASAP, P =419 0.002; air 5s, P = 0.004; air 10s, P = 0.005; solution, P = 0.034; 3D, P = 0.001). Consistent with 420 the data from MyHC I fibers, there was an effect of condition ( P < 0.001), with CSA estimated 421 from 2D images in solution being 25-82% larger than all other conditions ( P < 0.001 for all). 422 Independent of age, there was a clear hierarchy in CSA measurement such that CSA in solution > 423 air ASAP > air 5s > 3D ≈ air 10s ( P < 0.001 for all, except 3D vs. air 10s, where P = 0.500). 424 
+
+In contrast to MyHC I fibers, there was an effect of age on the percent reduction in fiber 425 CSA measured in air relative to solution ( P = 0.002), along with an effect of condition ( P < 0.001) 426 and an age x condition interaction ( P = 0.004). Specifically, MyHC II fibers from older adults had 427 a greater reduction in CSA from solution to air ASAP (old: 26 ± 23%, young: 7 ± 22%, P = 0.007), 428 air 5s (old: 36 ± 20%, young: 20 ± 19%, P = 0.005), and air 10s (old: 48 ± 18%, young: 33 ± 16%, 429 
+
+P = 0.002). Similar to MyHC I fibers, the percent reduction in CSA relative to solution was greatest 430 in air 10s, followed by air 5s and air ASAP ( P < 0.001 for all). 431 
+
+Mean force-velocity curves, absolute P o , and maximal shortening velocity (V max ) for 432 MyHC II fibers are presented in Fig. 5 and Table A2. The curvature of the force-velocity 433 relationship (a/P o , P = 0.069) and V max (P = 0.056) did not differ between young and older adults. 434 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+However, absolute P o was ~41% lower in older (0.79 ± 0.28 mN) compared with young adults 435 (1.33 ± 0.46 mN, P = 0.003). In addition, the rate of force redevelopment (k tr ) did not differ 436 between young (18.16 ± 3.92 s -1 ) and older adults (19.20 ± 3.97 s -1 , P = 0.409). 437 
+
+Size-specific and absolute force-power curves for fast MyHC II fibers are presented in Fig. 438 7 and Table A2. There was no effect of age on size-specific P o when all CSA measurements were 439 combined ( P = 0.692), but there was an age x condition interaction ( P < 0.001). Specifically, size-440 specific P o was ~15% lower in the older (119.3 ± 37.4 kN·m -2 ) compared with young from the 2D 441 images in solution only (140.1 ± 36.7 kN·m -2 , P = 0.005), whereas no age-related differences were 442 observed in air ASAP ( P = 0.177), air 5s ( P = 0.158), air 10s ( P = 0.137), or 3D ( P = 0.667). 443 Independent of age, there was an effect of condition ( P < 0.001), where size-specific P o was 444 greatest when CSA was measured in air 10s and 3D compared with all other conditions ( 3D ≈ air 445 10s > air 5s > air ASAP > solution, P < 0.001 for all, except 3D vs. air 10s, where P = 1.000). 446 
+
+Absolute peak power of fast MyHC II fibers was ~37% lower in older (192.4 ± 68.0 447 uN·fl·s -1 ) compared with young adults (303.2 ± 134.0 uN·fl·s -1 , P = 0.020). There was also an 448 effect of age on size-specific peak power when all CSA measurements were combined ( P = 0.026) 449 and an age x condition interaction ( P < 0.001). Specifically, size-specific peak power was greater 450 in older compared with young adults in air ASAP ( P = 0.014), air 5s ( P = 0.014), and in air 10s ( P451 = 0.015), whereas no age-related differences were observed in solution ( P = 0.626) or 3D ( P =452 0.346, Fig 7 and Table A2). Independent of age, there was an effect of condition on size-specific 453 peak power ( P < 0.001) where size-specific power was greatest when CSA was measured in air 454 10s and 3D compared with all other conditions (air 10s ≈ 3D > air 5s > air ASAP > solution, P <455 0.001 for all, except air 10s vs 3D where P = 0.298). 456 
+
+FIGURE 7 HERE 457 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fiber morphology and MyHC distribution from immunohistochemistry : Fiber type-specific 458 CSA determined from 445 ± 155 fibers in the young (range: 222 – 687 fibers) and 528 ± 173 fibers 459 in older adults (range: 256 – 801 fibers) are presented in Fig. 3. Consistent with the isolated single 460 fiber data, MyHC I fiber CSA did not differ between age groups (young: 3,946 ± 884 μm 2 , old: 461 3,798 ± 628 μm 2 ; P = 0.738), whereas MyHC II fiber CSA was ~40% smaller in older (2,910 ± 462 938 μm 2 ) compared with young adults (4,857 ± 1,120 μm 2 ; P = 0.006). Accordingly, the MyHC 463 II/I CSA ratio was greater in young (1.25 ± 0.26) compared with older adults (0.76 ± 0.16; P =464 0.002). 465 
+
+Fiber type distribution did not differ between young and older adults for MyHC I (young: 466 50.4 ± 16.0%, old: 64.9 ± 18.8%; P = 0.160), MyHC IIa (young: 38.7 ± 16.4%, old: 28.0 ± 11.4%; 467 P = 0.206), MyHC IIa/IIx (young: 9.4 ± 13.1%, old: 5.2 ± 7.6%; P = 0.506), MyHC IIx (young: 468 1.3 ± 3.3%, old: 1.5 ± 2.7%; P = 0.930), or combined MyHC II fibers (young: 49.4 ± 15.9%, old: 469 34.6 ± 18.8%, P = 0.153). In contrast, MyHC I proportional area was greater in older (71.4 ± 470 15.8%) compared with young adults (47.1 ± 16.3%; P = 0.020), and MyHC II proportional area 471 was lower in older adults (28.3 ± 15.8% vs. 52.6 ± 16.3%; P = 0.020). 472 
+
+473 
+
+DISCUSSION 474 
+
+The present study tested whether intrinsic contractile function of human skeletal muscle 475 fibers is impaired in older adults by integrating single fiber contractile mechanics with 3D 476 morphological imaging of the same fibers. We also evaluated the agreement between conventional 477 methods of estimating fiber CSA from 2D images in solution and air with CSA-derived 478 measurements from 3D imaging (Fig. 3). As expected, peak power of the knee extensor muscles 479 was closely associated with the involuntary, electrically evoked contractile properties of the 480 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+potentiated twitch, but not with voluntary activation, suggesting the age-related decline in peak 481 power is due primarily to factors within the muscle (Wrucke et al. , 2024). Consistent with our 482 previous work (Sundberg et al. , 2018a; Teigen et al. , 2020; Sundberg et al. , 2025; Teigen et al. ,483 2026), absolute P o and peak power were markedly lower in fast MyHC II fibers from older adults 484 but did not differ with age in slow MyHC I fibers. However, when normalized to CSA estimated 485 from 2D images in air or derived from 3D imaging, size-specific force and power of both MyHC 486 I and II fibers either did not differ with age or were greater in older compared with young adults, 487 indicating preserved intrinsic contractile function with aging. In contrast, normalization to CSA 488 estimated from 2D images in solution resulted in lower size-specific power in MyHC I fibers and 489 lower size-specific P o in MyHC II fibers in the older adults (Figs. 6 and 7). Importantly, all 2D 490 methods systematically overestimated 3D-derived fiber CSA, with solution-based estimates 491 demonstrating the greatest bias and poorest agreement with 3D imaging (Fig. 3). These data 492 suggest that fast fiber atrophy is a major contributor to declines in whole muscle force and power 493 in older adults, and that conventional methods to estimate fiber CSA can influence conclusions 494 regarding age-related differences in intrinsic contractile function, providing a probable explanation 495 for the longstanding inconsistencies in the literature. 496 
+
+Intrinsic contractile function is preserved with aging despite pronounced fast fiber atrophy 497 
+
+A novel aspect of the present study was the development of a custom imaging 498 microchamber system (Fig. 1) that enabled integration of single fiber contractile mechanics with 499 high-resolution 3D morphological measurements of the same fiber segments at a fixed sarcomere 500 length (2.5 μm). This approach eliminated the reliance on assumptions of fiber cross-sectional 501 shape that is inherent to conventional single fiber methods and allowed CSA to be quantified along 502 the length of the fiber (~635 μm) at a spatial resolution of 0.38 μm 2 . Using this approach, we found 503 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+that size-specific force and power did not differ between young and older males in either fiber 504 type, indicating that intrinsic contractile function is preserved with aging. Consistent with this 505 interpretation, we also observed no age-related differences in V max or the rate of tension 506 redevelopment (k tr ), both of which reflect intrinsic contractile kinetics that are independent of fiber 507 size. Furthermore, by directly comparing 3D-derived CSA with estimates obtained from 508 conventional 2D imaging methods, the present study provides insight into the longstanding 509 inconsistencies in the single fiber literature regarding whether intrinsic contractile function is 510 impaired with aging. 511 
+
+As expected, fast MyHC II fibers from older adults exhibited lower CSA (Fig. 4B), absolute 512 force (P o ) (Fig. 5B), and peak power (Fig. 7B), with no age-related differences observed in slow 513 MyHC I fibers, a finding consistent with our previous work (Sundberg et al. , 2018a; Teigen et al. ,514 2020; Sundberg et al. , 2025; Teigen et al. , 2026) and others (Gries et al. , 2019; Grosicki et al. ,515 2021). However, when CSA estimated from 2D images in solution was used for size normalization, 516 size-specific power in MyHC I fibers and size-specific P o in MyHC II fibers were lower in older 517 adults, which would suggest that aging impairs intrinsic contractile function (Figs. 6 and 7). 518 Notably, nearly all studies reporting lower size-specific P o in slow MyHC I or fast MyHC II fibers 519 from older adults also estimated fiber size in solution (Larsson et al. , 1997; Frontera et al. , 2000; 520 D'Antona et al. , 2003; D'Antona et al. , 2007; Ochala et al. , 2007; Yu et al. , 2007; Hvid et al. , 2013; 521 Lamboley et al. , 2015; Brocca et al. , 2017). In contrast, only one study using air-based 522 measurements reported an age-related reduction in size-specific P o in MyHC I fibers, with no 523 difference in MyHC IIa fibers (Harber et al. , 2012). In the present study, CSA estimated in solution 524 was markedly larger than values obtained from air-based measurements or 3D imaging (Fig. 4), 525 which would systematically reduce size-specific P o and power. Consistent with this observation, 526 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Degens and Larsson (2007) reported that size-specific P o based on CSA estimated in solution 527 assuming a circular shape was less than 70% of that when assuming an elliptical shape or when 528 CSA was estimated in air. This is comparable to the present findings, in which size-specific P o and 529 power measured in solution were ~12-44% lower than values derived from air and 3D 530 measurements across both fiber types and independent of age. 531 
+
+One potential explanation for the larger CSA values observed from 2D images in solution 532 is fiber swelling following chemical permeabilization, which is commonly reported to increase 533 fiber dimensions by ~20% (Godt & Maughan, 1977; Frontera et al. , 2000; Ochala et al. , 2007; Yu 534 
+
+et al. , 2007), although the extent of swelling can vary considerably between individuals and fiber 535 types (Monti et al. , 2021). However, because both the solution-based CSA estimates from 2D 536 images and the 3D imaging in the present study were obtained under similar conditions (i.e., 2.5 537 μm sarcomere spacing in relaxing solution), any global swelling would be expected to affect both 538 approaches similarly. Additionally, among the studies that estimated CSA in solution and reported 539 lower size-specific P o in fibers from older adults, only 3 of 9 accounted for fiber swelling (Frontera 540 
+
+et al. , 2000; Ochala et al. , 2007; Yu et al. , 2007), suggesting that swelling alone is unlikely to 541 explain the discrepancies in the literature. Instead, our data suggests that the most probable 542 explanation is due to limitations inherent to 2D projection-based measurements and assumptions 543 of fiber geometry. Indeed, fibers from older adults, particularly MyHC II fibers, deviate 544 substantially from simple cylindrical or elliptical geometries (Kirkeby & Garbarsch, 2000; 545 Barnouin et al. , 2017; Messa et al. , 2020; Horwath et al. , 2024; Soendenbroe et al. , 2024). 546 Consistent with this observation, transferring fibers from solution to air in the present study 547 resulted in a much greater reduction in CSA in fibers from older (26%) compared with young 548 adults (7%), especially in MyHC II fibers. These findings indicate that fibers, particularly those 549 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+from older adults, deviate markedly from idealized circular or elliptical geometry, and that this 550 deviation is likely contributing to the apparent age-related differences in intrinsic contractile 551 function when fiber CSA is estimated from 2D images in solution. 552 
+
+In contrast to the findings obtained using CSA estimated in solution, air-based 553 measurements and 3D imaging yielded consistent evidence of preserved intrinsic contractile 554 function with aging. However, air-based measurements may also introduce systematic bias, albeit 555 in the opposite direction. Indeed, in the present study, size-specific power was greater in fast 556 MyHC II fibers from older compared with young adults, while 3D imaging indicated no 557 differences (Fig. 7). Notably, most studies reporting higher size-specific P o or peak power in slow 558 MyHC I or fast MyHC II fibers from older adults also estimated fiber size while fibers were 559 suspended in air (Trappe et al. , 2003; Sundberg et al. , 2018a; Gries et al. , 2019; Grosicki et al. ,560 2021; Sundberg et al. , 2025). In contrast, only two studies using solution-based CSA estimates 561 reported greater size-specific P o in MyHC IIa fibers from older adults (Miller et al. , 2013; Straight 562 
+
+et al. , 2018). Importantly, both studies used a prism to obtain side-view images of the fibers and 563 estimated CSA assuming an elliptical geometry, suggesting that air-based measurements and 564 solution-based measurements incorporating elliptical assumptions using a prism may similarly 565 bias conclusions toward apparent enhancements in intrinsic contractile function with aging. These 566 findings, when interpreted together, provide compelling evidence that methodological differences 567 in CSA estimation, whether performed in solution or air, can bias the conclusions in potentially 568 opposite directions, and contribute to the longstanding inconsistencies in the literature regarding 569 altered intrinsic contractile function with aging. 570 
+
+An important limitation of the present study is that CSA estimates from the 2D images 571 were calculated assuming fibers formed a circular cross-sectional shape, whereas many previous 572 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+single fiber studies using solution-based CSA estimates have assumed an elliptical geometry 573 (Grosicki et al. , 2022), which as discussed above may influence measurements of size-specific 574 contractile function. For example, second harmonic generation microscopy of skinned rabbit 575 soleus fibers showed that CSA estimates using circular assumptions resulted in a modestly greater 576 overestimation of real CSA (5.3 ± 25.9%) compared with elliptical assumptions (2.8 ± 6.9%) 577 (Mebrahtu et al. , 2024). These findings are consistent with earlier work in isolated frog fibers 578 showing that CSA estimates based on a single width measurement are more prone to error than 579 estimates incorporating measurements from multiple axes (Blinks, 1965). However, a recent study 580 in human skeletal muscle fibers reported no age-related differences in size-specific P o when CSA 581 was estimated assuming either circular or elliptical geometry (Kalakoutis et al. , 2023). 582 Furthermore, a systematic review and meta-analysis demonstrated substantial inter-study 583 variability in size-specific P o of both fiber types from healthy young adults even after accounting 584 for factors such as fiber swelling, sarcomere length, and assumptions of cross-sectional shape 585 (Kalakoutis et al. , 2021). Collectively, these findings suggest that assumptions regarding fiber 586 geometry likely contribute to discrepancies in the literature regarding size-specific contractile 587 function. However, additional studies directly comparing the methodological approaches are 588 needed to determine the extent to which these inconsistencies reflect differences in measurement 589 techniques versus true biological variability. 590 
+
+Despite the methodological implications with estimating fiber CSA from 2D images, the 591 convergence of findings from the 3D imaging, air-based CSA measurements, and size-independent 592 contractile measurements (k tr and V max ) provide compelling evidence that intrinsic contractile 593 function is largely preserved with aging, and that the primary age-related alteration at the single 594 fiber level is the markedly lower absolute force and power output of fast fibers (Figs. 5B and 7B). 595 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Given that fast fibers generate ~0.3-2.5-fold greater size-specific force and power than slow fibers, 596 irrespective of the CSA measurement approach (Figs. 6C and 7C), their selective atrophy would 597 be expected to disproportionately reduce whole muscle force and power relative to the loss of 598 muscle mass. Accordingly, the power output of the fast MyHC II fibers was closely associated 599 with whole muscle power, whereas there was no association with slow MyHC I fiber power (Fig. 600 2B). When considered alongside the ~46% lower fast MyHC II proportional area in older adults 601 and the age-related reductions in mass-specific torque (~22%) and power (~31%), these findings 602 collectively implicate fast fiber atrophy as an important factor contributing to the reduced whole 603 muscle function with aging. Notably, multiple variables obtained from the involuntary, electrically 604 evoked twitch, but not voluntary activation, were closely associated with knee extensor power 605 output, providing direct evidence that the age-related loss in peak power is driven primarily by 606 factors within the muscle. Future studies focused on identifying the mechanisms contributing to 607 age-related fast fiber atrophy will be important for developing targeted therapeutic strategies to 608 attenuate the loss in muscle strength and power with advancing age. 609 
+
+Conclusions 610 
+
+This study demonstrates that methods commonly used in single fiber contractile mechanics 611 experiments for estimating CSA from 2D images overestimate values obtained from high-612 resolution 3D imaging, which has important implications for calculating size-specific force and 613 power. As expected, absolute force and power output were lower in fast fibers from older compared 614 with young adults, whereas no age-related differences were observed in slow fibers. Measurements 615 of size-specific force and power when CSA was estimated in solution were lower in the older 616 compared with young adults but were higher or not different when size was determined from air-617 based measurements or 3D imaging. We conclude that intrinsic contractile function is preserved 618 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+in the slow and fast fibers of older males, and that the methods used to estimate fiber size can 619 influence apparent age-related differences in muscle fiber contractile function. 620 
+
+621 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint DATA AVAILABILITY S TATEMENT 622 
+
+The data in the present study are available from the corresponding author upon reasonable request. 623 
+
+COMPETING I NTERESTS 624 
+
+YW is the founder of MyoAnalytics LLC. No other conflicts of interests, financial or otherwise, 625 are declared by the authors. 626 
+
+AUTHOR CONTRIBUTIONS 627 
+
+CSZ, LET, and CWS conceived and designed the experiments; CSZ, LET, ID, and CWS 628 performed experiments; CSZ, LET, ID, and YW analyzed the data; CSZ, LET, and CWS 629 interpreted the data; CSZ, LET, ID, and CWS prepared the figures; CSZ, LET, and CWS drafted 630 the manuscript; CSZ, LET, ID, YW, and CWS edited and revised the manuscript; CSZ, LET, ID, 631 YW, and CWS approved the final version of the manuscript. All authors approved the final version 632 of the manuscript and agree to be accountable for all aspects of the work. All persons designated 633 as authors qualify for authorship, and all those who qualify for authorship are listed. 634 
+
+635 
+
+FUNDING 636 
+
+This work was supported by a Porter Physiology Development Fellowship to CSZ and National 637 Institute on Aging R01 grants (AG086469 and AG048262) to CWS. 638 
+
+639 
+
+ACKNOWLEDGEMENTS 640 
+
+We thank Dan Holbus for assistance with the design and machining of the custom imaging 641 microchamber system, David Wrucke, Jessica James, and Kam Kroner for assistance with the 642 whole-muscle data collection and analysis, and the research participants for volunteering to make 643 this study possible. We are also deeply grateful to Dr. Robert Fitts for gifting his single-fiber 644 contractile mechanics stations to the Sundberg laboratory. 645 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+REFERENCES 646 
+
+647 
+
+Alcazar J, Aagaard P, Haddock B, Kamper RS, Hansen SK, Prescott E, Alegre LM, Frandsen U & 648 Suetta C. (2020). Age- and Sex-Specific Changes in Lower-Limb Muscle Power 649 Throughout the Lifespan. The journals of gerontology Series A, Biological sciences and 650 
+
+medical sciences 75, 1369–1378. 651 
+
+652 
+
+Alcazar J, Rodriguez-Lopez C, Delecluse C, Thomis M & Van Roie E. (2023). Ten-year 653 longitudinal changes in muscle power, force, and velocity in young, middle-aged, and older 654 adults. Journal of cachexia, sarcopenia and muscle 14, 1019–1032. 655 
+
+656 
+
+Allen JD & Moss RL. (1987). Factors influencing the ascending limb of the sarcomere length-657 tension relationship in rabbit skinned muscle fibres. J Physiol 390, 119–136. 658 
+
+659 
+
+Araujo CGS, Kunutsor SK, Eijsvogels TMH, Myers J, Laukkanen JA, Hamar D, Niebauer J, 660 Bhattacharjee A, de Souza ESCG, Franca JF & Castro CLB. (2025). Muscle Power Versus 661 Strength as a Predictor of Mortality in Middle-Aged and Older Men and Women. Mayo 662 
+
+Clin Proc .663 
+
+664 
+
+Barnouin Y, McPhee JS, Butler-Browne G, Bosutti A, De Vito G, Jones DA, Narici M, Behin A, 665 Hogrel JY & Degens H. (2017). Coupling between skeletal muscle fiber size and 666 capillarization is maintained during healthy aging. J Cachexia Sarcopenia Muscle 8, 647– 667 659. 668 
+
+669 
+
+Bergstrom J. (1975). Percutaneous needle biopsy of skeletal muscle in physiological and clinical 670 research. Scand J Clin Lab Invest 35, 609–616. 671 
+
+672 
+
+Blinks JR. (1965). Influence of Osmotic Strength on Cross-Section and Volume of Isolated Single 673 Muscle Fibres. J Physiol 177, 42–57. 674 
+
+675 
+
+Brocca L, McPhee JS, Longa E, Canepari M, Seynnes O, De Vito G, Pellegrino MA, Narici M & 676 Bottinelli R. (2017). Structure and function of human muscle fibres and muscle proteome 677 in physically active older men. J Physiol 595, 4823–4844. 678 
+
+679 
+
+Cristea A, Qaisar R, Edlund PK, Lindblad J, Bengtsson E & Larsson L. (2010). Effects of aging 680 and gender on the spatial organization of nuclei in single human skeletal muscle cells. 681 
+
+Aging Cell 9, 685–697. 682 
+
+683 
+
+D'Antona G, Pellegrino MA, Adami R, Rossi R, Carlizzi CN, Canepari M, Saltin B & Bottinelli 684 R. (2003). The effect of ageing and immobilization on structure and function of human 685 skeletal muscle fibres. J Physiol 552, 499–511. 686 
+
+687 
+
+D'Antona G, Pellegrino MA, Carlizzi CN & Bottinelli R. (2007). Deterioration of contractile 688 properties of muscle fibres in elderly subjects is modulated by the level of physical activity. 689 
+
+Eur J Appl Physiol 100, 603–611. 690 
+
+691 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Degens H & Larsson L. (2007). Application of skinned single muscle fibres to determine 692 myofilament function in ageing and disease. J Musculoskelet Neuronal Interact 7, 56–61. 693 
+
+694 
+
+Delgadillo JD, Sundberg CW, Kwon M & Hunter SK. (2021). Fatigability of the knee extensor 695 muscles during high-load fast and low-load slow resistance exercise in young and older 696 adults. Experimental gerontology 154, 111546. 697 
+
+698 
+
+Fabiato A. (1988). Computer programs for calculating total from specified free or free from 699 specified total ionic concentrations in aqueous solutions containing multiple metals and 700 ligands. Methods in enzymology 157, 378–417. 701 
+
+702 
+
+Fabiato A & Fabiato F. (1979). Calculator programs for computing the composition of the solutions 703 containing multiple metals and ligands used for experiments in skinned muscle cells. 704 
+
+Journal de physiologie 75, 463–505. 705 
+
+706 
+
+Ferenczi MA. (1986). Phosphate burst in permeable muscle fibers of the rabbit. Biophys J 50, 471– 707 477. 708 
+
+709 
+
+Frontera WR, Suh D, Krivickas LS, Hughes VA, Goldstein R & Roubenoff R. (2000). Skeletal 710 muscle fiber quality in older men and women. American journal of physiology Cell 711 
+
+physiology 279, C611–618. 712 
+
+713 
+
+Godt RE & Maughan DW. (1977). Swelling of Skinned Muscle Fibers of the Frog. Biophysical 714 
+
+Journal 19, 103–116. 715 
+
+716 
+
+Gries KJ, Minchev K, Raue U, Grosicki GJ, Begue G, Finch WH, Graham B, Trappe TA & Trappe 717 S. (2019). Single-muscle fiber contractile properties in lifelong aerobic exercising women. 718 
+
+Journal of applied physiology (Bethesda, Md : 1985) 127, 1710–1719. 719 
+
+720 
+
+Grosicki GJ, Gries KJ, Minchev K, Raue U, Chambers TL, Begue G, Finch H, Graham B, Trappe 721 TA & Trappe S. (2021). Single muscle fibre contractile characteristics with lifelong 722 endurance exercise. J Physiol 599, 3549–3565. 723 
+
+724 
+
+Grosicki GJ, Zepeda CS & Sundberg CW. (2022). Single muscle fibre contractile function with 725 ageing. J Physiol 600, 5005-5026. 726 
+
+727 
+
+Harber MP, Konopka AR, Undem MK, Hinkley JM, Minchev K, Kaminsky LA, Trappe TA & 728 Trappe S. (2012). Aerobic exercise training induces skeletal muscle hypertrophy and age-729 dependent adaptations in myofiber function in young and older men. Journal of applied 730 
+
+physiology (Bethesda, Md : 1985) 113, 1495–1504. 731 
+
+732 
+
+Hart TL, Swartz AM, Cashin SE & Strath SJ. (2011). How many days of monitoring predict 733 physical activity and sedentary behaviour in older adults? The international journal of 734 
+
+behavioral nutrition and physical activity 8, 62. 735 
+
+736 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Hassanlouei H, Sundberg CW, Smith AE, Kuplic A & Hunter SK. (2017). Physical activity 737 modulates corticospinal excitability of the lower limb in young and old adults. Journal of 738 
+
+applied physiology (Bethesda, Md : 1985) 123, 364–374. 739 
+
+740 
+
+Herbert RD & Gandevia SC. (1999). Twitch interpolation in human muscles: mechanisms and 741 implications for measurement of voluntary activation. J Neurophysiol 82, 2271–2283. 742 
+
+743 
+
+Hessel AL, Manross KM, Borkowski MM, Rand CD & Nguyen K. (2026). A primer on the 744 methods of skeletal and cardiac muscle mechanics using permeabilized preparations. J Gen 745 
+
+Physiol 158 .746 
+
+747 
+
+Hill AV. (1938). The heat of shortening and the dynamic constants of muscle. Proceedings of the 748 
+
+Royal Society of London Series B - Biological Sciences 126, 136–195. 749 
+
+750 
+
+Horwath O, Moberg M, Edman S, Philp A & Apro W. (2024). Ageing leads to selective type II 751 myofibre deterioration and denervation independent of reinnervative capacity in human 752 skeletal muscle. Exp Physiol .753 
+
+754 
+
+Hvid LG, Suetta C, Aagaard P, Kjaer M, Frandsen U & Ortenblad N. (2013). Four days of muscle 755 disuse impairs single fiber contractile function in young and old healthy men. Experimental 756 
+
+gerontology 48, 154–161. 757 
+
+758 
+
+Kalakoutis M, Di Giulio I, Douiri A, Ochala J, Harridge SDR & Woledge RC. (2021). 759 Methodological considerations in measuring specific force in human single skinned muscle 760 fibres. Acta physiologica (Oxford, England) 233, e13719. 761 
+
+762 
+
+Kalakoutis M, Pollock RD, Lazarus NR, Atkinson RA, George M, Berber O, Woledge RC, Ochala 763 J & Harridge SDR. (2023). Revisiting specific force loss in human permeabilised single 764 skeletal muscle fibres obtained from older individuals. Am J Physiol Cell Physiol .765 
+
+766 
+
+Kirkeby S & Garbarsch C. (2000). Aging affects different human muscles in various ways. An 767 image analysis of the histomorphometric characteristics of fiber types in human masseter 768 and vastus lateralis muscles from young adults and the very old. Histol Histopathol 15, 61– 769 71. 770 
+
+771 
+
+Korhonen MT, Cristea A, Alen M, Hakkinen K, Sipila S, Mero A, Viitasalo JT, Larsson L & 772 Suominen H. (2006). Aging, muscle fiber type, and contractile function in sprint-trained 773 athletes. Journal of applied physiology (Bethesda, Md : 1985) 101, 906–917. 774 
+
+775 
+
+Lamboley CR, Wyckelsma VL, Dutka TL, McKenna MJ, Murphy RM & Lamb GD. (2015). 776 Contractile properties and sarcoplasmic reticulum calcium content in type I and type II 777 skeletal muscle fibres in active aged humans. J Physiol 593, 2499–2514. 778 
+
+779 
+
+Larsson L, Li X & Frontera WR. (1997). Effects of aging on shortening velocity and myosin 780 isoform composition in single human skeletal muscle cells. The American journal of 781 
+
+physiology 272, C638–649. 782 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+783 
+
+Lexell J, Taylor CC & Sjöström M. (1988). What is the cause of the ageing atrophy? Journal of 784 
+
+the Neurological Sciences 84, 275–294. 785 
+
+786 
+
+Liu JX, Hoglund AS, Karlsson P, Lindblad J, Qaisar R, Aare S, Bengtsson E & Larsson L. (2009). 787 Myonuclear domain size and myosin isoform expression in muscle fibres from mammals 788 representing a 100,000-fold difference in body size. Exp Physiol 94, 117–129. 789 
+
+790 
+
+Maden-Wilkinson TM, Degens H, Jones DA & McPhee JS. (2013). Comparison of MRI and DXA 791 to measure muscle size and age-related atrophy in thigh muscles. Journal of 792 
+
+musculoskeletal & neuronal interactions 13, 320–328. 793 
+
+794 
+
+Malakoutian M, Theret M, Yamamoto S, Dehghan-Hamani I, Lee M, Street J, Rossi F, Brown 795 SHM & Oxland TR. (2021). Larger muscle fibers and fiber bundles manifest smaller elastic 796 modulus in paraspinal muscles of rats and humans. Sci Rep 11, 18565. 797 
+
+798 
+
+Mebrahtu A, Smith IC, Liu S, Abusara Z, Leonard TR, Joumaa V & Herzog W. (2024). 799 Reconsidering assumptions in the analysis of muscle fibre cross-sectional area. J Exp Biol 800 
+
+227 .801 
+
+802 
+
+Messa GAM, Piasecki M, Rittweger J, McPhee JS, Koltai E, Radak Z, Simunic B, Heinonen A, 803 Suominen H, Korhonen MT & Degens H. (2020). Absence of an aging-related increase in 804 fiber type grouping in athletes and non-athletes. Scand J Med Sci Sports 30, 2057–2069. 805 
+
+806 
+
+Metzger JM, Greaser ML & Moss RL. (1989). Variations in cross-bridge attachment rate and 807 tension with phosphorylation of myosin in mammalian skinned skeletal muscle fibers. 808 Implications for twitch potentiation in intact muscle. The Journal of general physiology 809 
+
+93, 855–883. 810 
+
+811 
+
+Metzger JM & Moss RL. (1987). Greater hydrogen ion-induced depression of tension and velocity 812 in skinned single fibres of rat fast than slow muscles. J Physiol 393, 727–742. 813 
+
+814 
+
+Miller MS, Bedrin NG, Callahan DM, Previs MJ, Jennings ME, 2nd, Ades PA, Maughan DW, 815 Palmer BM & Toth MJ. (2013). Age-related slowing of myosin actin cross-bridge kinetics 816 is sex specific and predicts decrements in whole skeletal muscle performance in humans. 817 
+
+Journal of applied physiology (Bethesda, Md : 1985) 115, 1004–1014. 818 
+
+819 
+
+Mitchell WK, Williams J, Atherton P, Larvin M, Lund J & Narici M. (2012). Sarcopenia, 820 dynapenia, and the impact of advancing age on human skeletal muscle size and strength; a 821 quantitative review. Frontiers in physiology 3, 260. 822 
+
+823 
+
+Monti E, Toniolo L, Marcucci L, Bondì M, Martellato I, Šimunič B, Toninello P, Franchi MV, 824 Narici MV & Reggiani C. (2021). Are muscle fibres of body builders intrinsically weaker? 825 A comparison with single fibres of aged-matched controls. Acta physiologica (Oxford, 826 
+
+England) 231, e13557. 827 
+
+828 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Moss RL. (1979). Sarcomere length-tension relations of frog skinned muscle fibres during calcium 829 activation at short lengths. J Physiol 292, 177–192. 830 
+
+831 
+
+Nilwik R, Snijders T, Leenders M, Groen BB, van Kranenburg J, Verdijk LB & van Loon LJ. 832 (2013). The decline in skeletal muscle mass with aging is mainly attributed to a reduction 833 in type II muscle fiber size. Exp Gerontol 48, 492–498. 834 
+
+835 
+
+Ochala J, Frontera WR, Dorer DJ, Van Hoecke J & Krivickas LS. (2007). Single skeletal muscle 836 fiber elastic and contractile characteristics in young and older men. The journals of 837 
+
+gerontology Series A, Biological sciences and medical sciences 62, 375–381. 838 
+
+839 
+
+Raue U, Slivka D, Minchev K & Trappe S. (2009). Improvements in whole muscle and myocellular 840 function are limited with high-intensity resistance training in octogenarian women. Journal 841 
+
+of applied physiology (Bethesda, Md : 1985) 106, 1611–1617. 842 
+
+843 
+
+Reid KF & Fielding RA. (2012). Skeletal muscle power: a critical determinant of physical 844 functioning in older adults. Exerc Sport Sci Rev 40, 4–12. 845 
+
+846 
+
+Smith IC & Herzog W. (2023). Assumptions about the cross-sectional shape of skinned muscle 847 fibers can distort the relationship between muscle force and cross-sectional area. J Appl 848 
+
+Physiol (1985) 135, 1036–1040. 849 
+
+850 
+
+Soendenbroe C, Karlsen A, Svensson RB, Kjaer M, Andersen JL & Mackey AL. (2024). Marked 851 irregular myofiber shape is a hallmark of human skeletal muscle ageing and is reversed by 852 heavy resistance training. J Cachexia Sarcopenia Muscle 15, 306–318. 853 
+
+854 
+
+Straight CR, Ades PA, Toth MJ & Miller MS. (2018). Age-related reduction in single muscle fiber 855 calcium sensitivity is associated with decreased muscle power in men and women. 856 
+
+Experimental gerontology 102, 84–92. 857 
+
+858 
+
+Sundberg CW, Hunter SK, Trappe SW, Smith CS & Fitts RH. (2018a). Effects of elevated H(+) 859 and Pi on the contractile mechanics of skeletal muscle fibres from young and old men: 860 implications for muscle fatigue in humans. J Physiol 596, 3993–4015. 861 
+
+862 
+
+Sundberg CW, Kuplic A, Hassanlouei H & Hunter SK. (2018b). Mechanisms for the age-related 863 increase in fatigability of the knee extensors in old and very old adults. Journal of applied 864 
+
+physiology (Bethesda, Md : 1985) 125, 146–158. 865 
+
+866 
+
+Sundberg CW, Teigen LE, Hunter SK & Fitts RH. (2025). Cumulative effects of H(+) and P(i) on 867 force and power of skeletal muscle fibres from young and older adults. J Physiol 603, 187– 868 209. 869 
+
+870 
+
+Teigen LE, Sundberg CW, Kelly LJ, Hunter SK & Fitts RH. (2020). Ca(2+) dependency of limb 871 muscle fiber contractile mechanics in young and older adults. American journal of 872 
+
+physiology Cell physiology 318, C1238–c1251. 873 
+
+874 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Teigen LE, Zepeda CS, Dobrzycki I, Hunter SK, Fitts RH & Sundberg CW. (2026). Effects of 875 acidosis and inorganic phosphate on Ca(2+) sensitivity of young and older adult skeletal 876 muscle fibers. Am J Physiol Cell Physiol 330, C224–C237. 877 
+
+878 
+
+Trappe S, Gallagher P, Harber M, Carrithers J, Fluckey J & Trappe T. (2003). Single muscle fibre 879 contractile properties in young and old men and women. J Physiol 552, 47–58. 880 
+
+881 
+
+Wen Y, Murach KA, Vechetti IJ, Jr., Fry CS, Vickery C, Peterson CA, McCarthy JJ & Campbell 882 KS. (2018). MyoVision: software for automated high-content analysis of skeletal muscle 883 immunohistochemistry. J Appl Physiol (1985) 124, 40–51. 884 
+
+885 
+
+Widrick JJ, Trappe SW, Costill DL & Fitts RH. (1996). Force-velocity and force-power properties 886 of single muscle fibers from elite master runners and sedentary men. The American journal 887 
+
+of physiology 271, C676–683. 888 
+
+889 
+
+Wrucke DJ, Colosio M, James JJ, Hunter SK & Sundberg CW. (2026). Initial contractions of a 890 single-load fatiguing exercise provide a valid assessment of age-related differences in peak 891 power. J Appl Physiol (1985) .892 
+
+893 
+
+Wrucke DJ, Kuplic A, Adam MD, Hunter SK & Sundberg CW. (2024). Neural and muscular 894 contributions to the age-related differences in peak power of the knee extensors in men and 895 women. J Appl Physiol (1985) 137, 1021–1040. 896 
+
+897 
+
+Yu F, Hedström M, Cristea A, Dalén N & Larsson L. (2007). Effects of ageing and gender on 898 contractile properties in human skeletal muscle and single fibres. Acta physiologica 899 
+
+(Oxford, England) 190, 229–241. 900 
+
+901 
+
+902 
+
+903 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+904 
+
+905 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint Fig. 1 906 
+
+907 
+
+Fig. 1 Representative images of an isolated muscle fiber obtained in air, solution, and by 3D 908 
+
+imaging. Images of isolated muscle fibers from young and older males were acquired while the 909 fibers were suspended in relaxing solution, in air following transfer from solution (air ASAP), or 910 in relaxing solution with confocal microscopy for 3D reconstruction (A). Confocal z-stacks were 911 acquired at 1-μm intervals to generate 3D renderings of isolated muscle fibers (B). Representative 912 orthogonal slice view (left) and corresponding segmentations generated using the custom image 913 analysis software (right) were used to measure CSA at 0.38 μm 2 resolution across the length of the 914 fiber. 915 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 2 916 
+
+917 
+
+Fig. 2. Whole-muscle knee extensor power output in young and older males. Mean absolute 918 peak power output was 56% lower in the older compared with young adults and remained 31% 919 lower after normalization to thigh lean mass (A). Linear regression analysis revealed that absolute 920 peak power was strongly associated with the amplitude of the potentiated twitch (A), suggesting 921 that intramuscular factors are a major contributor to age-related differences in whole-muscle 922 power. Absolute whole-muscle power was associated with the mean power output of fast myosin 923 heavy chain (MyHC) II fibers, but not slow MyHC I fibers (B), suggesting that age-related 924 reductions in fast fiber output is an important factor contributing to differences in whole-muscle 925 power. 926 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 3 927 
+
+928 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint Fig. 3. Bland-Altman plots illustrating the mean bias and limits of agreement (± 1.96 SD) 929 
+
+between CSA estimates obtained from 2D images and CSA derived from 3D imaging. CSA 930 estimates from 2D images were obtained in air as soon as possible following transfer from solution 931 (ASAP; A), after 5 s in air (B), after 10 s in air (C), and while suspended in relaxing solution (D). 932 A total of 377 muscle fibers (Young = 210; Old = 167), including both fiber types were pooled 933 across age groups. In the Bland-Altman plots (left), the dotted lines represent the LoA and the solid 934 line represents the mean bias. In the regression plots (right), the dotted line represents the line of 935 equality (x = y), and the solid line represents the fitted regression line. Each data point represents 936 an individual fiber. 937 
+
+938 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 4 939 
+
+940 
+
+Fig. 4. Cross-sectional area (CSA) of single muscle fibers estimated using different 941 
+
+measurement approaches (Solution, Air ASAP, Air 5s, Air 10s, and 3D imaging) and via 942 
+
+immunohistochemistry (IHC). Myosin heavy chain (MyHC) I fiber CSA did not differ with age 943 across any single-fiber measurement approach or when assessed via IHC (A). In contrast, MyHC 944 II fiber CSA was markedly smaller in older compared with young males across all single-fiber 945 measurement approaches and via IHC (B). Significance was set at P < 0.05. Data points represent 946 individual fibers for the single-fiber CSA measurements and participant means for the IHC 947 analyses. Values are presented as mean ± SEM. 948 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 5 949 
+
+950 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint Fig. 5. Force-velocity curves, peak isometric force (P o ), and maximal shortening velocity 951 
+
+(V max ) of slow myosin heavy chain (MyHC) I and fast MyHC II fibers. The curvature of the 952 force–velocity relationship (a/P o ) did not differ between young and older males in either fiber type 953 (A). Absolute P o did not differ with age in MyHC I fibers but was 41% lower in MyHC II fibers 954 from older compared with young males (B). V max did not differ between young and older males in 955 either fiber type (C). Significance was set at P < 0.05. Each data point in the bar graphs represents 956 an individual fiber, with the number of fibers ( n) displayed within the bars. Values are presented 957 as mean ± SEM. 958 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 6 959 
+
+960 
+
+Fig. 6 Force-power curves and size-specific force and power of slow myosin heavy chain 961 
+
+(MyHC) I fibers. Size-specific force (P o ) of MyHC I fibers did not differ between young and older 962 males regardless of the CSA measurement approach used (A). Similarly, absolute P o and power 963 output did not differ with age (B). Size-specific power output calculated with 3D-derived CSA or 964 air ASAP measurements did not differ with age; however, size-specific power output was 14% 965 lower in older compared with young males when calculated with solution-based CSA estimates 966 (A, C). Data from the air 5s and air 10s conditions were omitted, as air ASAP is the only air-based 967 measurement approach reported in previous single-fiber studies. Significance was set at P < 0.05. 968 Each data point in the bar graphs represents an individual fiber, with the number of fibers ( n)969 displayed within the bars. Values are presented as mean ± SEM. 970 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Fig. 7 971 
+
+972 
+
+Fig. 7 Force-power curves and size-specific force and power of fast myosin heavy chain 973 
+
+(MyHC) II fibers. Size-specific force (P o ) of MyHC II fibers did not differ between young and 974 older males when normalized with 3D-derived CSA or air ASAP measurements but was 15% lower 975 in older adults when normalized with solution-based CSA estimates (A, C). In contrast, absolute 976 P o and power output were markedly lower in older compared with young males (B). Size-specific 977 power output calculated with 3D-derived CSA or solution-based CSA estimates did not differ with 978 age, whereas size-specific power output calculated with air ASAP measurements was 20% higher 979 in older compared with young males (A, C). Data from the air 5s and air 10s conditions were 980 omitted, as air ASAP is the only air-based measurement approach reported in previous single-fiber 981 studies. Significance was set at P < 0.05. Each data point in the bar graphs represents an individual 982 fiber, with the number of fibers ( n) displayed within the bars. Values are presented as mean ± SEM. 983 
+
+984 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.730973 doi: bioRxiv preprint
+
+Appendix (Tables A1 & A2) 985 
+
+986 987

@@ -1,0 +1,510 @@
+Title: 8887466
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.04.728174v1.full.pdf
+
+Number of Pages: 31
+
+Markdown Content:
+> 1
+> Title: Vitality capacity preservation through lifelong aerobic exercise: a pathway to healthy 1
+> ageing 2
+> Running title: Vitality capacity of lifelong athletes 3
+> J.  Mercier,  O.  Guérin,  E.  Michel,  F.  Chorin,  A.  Loubat,  N.  Gautier,  A.S. 4
+> Rousseau*†, S.S. Colson†. 5
+>  Université Côte d’Azur, LAMHESS, France. 6
+>  Université Côte d’Azur, CNRS, INSERM, IBV, France. 7
+>  Université Côte d’Azur, CHU, France. 8
+> * Corresponding author: anne-sophie.rousseau@univ-cotedazur.fr 9
+> † These authors jointly supervised this work. 10
+> 11
+> 12
+> 13
+> 14
+> 15
+> 16
+> 17
+> 18
+> 19
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 2
+> Abstract 20
+> Background 21
+> The distinction between healthy and pathological ageing has led to the concept of vitality 22
+> capacity (VC), which can be understood as the body’s physiological reserve. An individual’s 23
+> VC can be estimated using 12 biomarkers spread across 3 domains: immune and stress 24
+> response, energy and metabolism and neuromuscular function. Vitality capacity may be 25
+> preserved by lifelong physical activity. This cross-sectional study aimed to examine the 26
+> relationship between lifelong aerobic physical activity and VC. 27
+> Methods 28
+> VC of 20 lifelong active and 19 inactive healthy adults aged >55 years was assessed using 12 29
+> biomarkers across the three VC domains. Domain-specific z-scores were calculated and 30
+> averaged to derive a global VC score. Principal component analysis was performed and 31
+> loadings extracted to estimate domains weight, and multiple correlations were conducted to 32
+> identify associations among biomarkers, domains and VC scores. 33
+> Results 34
+> VC was higher in lifelong active participants (+0.2 z-score units, p = 0.006) and correlated 35
+> with age (r = -0.53, p < 0.001). Neuromuscular domain contributed most to VC variability, 36
+> and the immune and stress response domain was higher in the active group (+0.4 z-score 37
+> units, p = 0.001) as energy/metabolism among female participants (+0.5 z-score units, p.adj 38
+> = 0.006). 39
+> Conclusion 40
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 3
+> Lifelong aerobic physical activity is associated with higher VC in older adults, particularly 41
+> within the immune and stress response domain. These findings highlight the role of physical 42
+> activity in preserving the physiological reserve and reinforce the relevance of lifelong aerobic 43
+> physical activity as a driver of healthy ageing. 44
+> Keywords: ageing biomarkers; intrinsic capacity; physical activity 45
+> 46
+> 47
+> 48
+> 49
+> 50
+> 51
+> 52
+> 53
+> 54
+> 55
+> 56
+> 57
+> 58
+> 59
+> 60
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 4
+> 61
+> 1.  Introduction 62
+> In 2015, the United Nations declared 2021-2030 the Decade of Healthy Ageing, promoting a 63
+> shift from a disease-centered model of ageing toward the preservation of functional ability— 64
+> the capacity of older adults to be and do the things they have reason to value 1. This global 65
+> paradigmatic shift has led to new definitions of healthy ageing and highlights the need for 66
+> appropriate reference populations to study it. 67
+> Physically active older adults represent a particularly relevant model in this context, as the 68
+> benefits of physical activity (PA) on health, ageing or longevity are well established and 69
+> widely documented in numerous studies and systematic reviews 2–4 . Physically active older 70
+> adults have been extensively studied and show increased longevity 5, longer telomeres 6 and 71
+> improved inflammatory profile 7, particularly in the context of aerobic training. While 72
+> resistance  training  also  provides  age-related  health  benefits,  particularly  through 73
+> improvements in body composition 8, aerobic physical activity has the strongest associations 74
+> with reduced mortality, cardiovascular protection, respiratory and metabolic health, and 75
+> others broad systemic benefits 8–11 .76
+> Beyond these traditional health outcomes, a recent study showed a positive association 77
+> between moderate to vigorous physical activity (MVPA) and intrinsic capacity, a key concept 78
+> in healthy ageing 12 . Intrinsic capacity is defined as the composite of all physical and mental 79
+> capacities  that an individual can draw  on at any  point in  time  that,  together with 80
+> environmental factors, would determine functional ability, and thus healthy ageing 13 . The 81
+> physiological underlying domain of intrinsic capacity has been defined as vitality capacity 82
+> (VC): a physiological state (due to normal or accelerated biological ageing processes) 83
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 5
+> resulting from the interaction between multiple physiological systems, reflected in (the level 84
+> of) immune and stress response, energy and metabolism, and neuromuscular function of the 85
+> body 14 .86
+> The potential contribution of physical activity (PA) to the preservation of VC has recently 87
+> been reviewed 15 . Authors describe how PA, and particularly structured exercise, induces 88
+> beneficial adaptations across the three domains of VC (i.e., immune and stress response, 89
+> energy and metabolism, and neuromuscular function) thereby helping to maintain VC and 90
+> support healthy ageing. Despite being reviewed, the relationship between PA and VC has not 91
+> been demonstrated yet. Moreover, attempts to assess and/or establish VC score remain 92
+> limited. A study reported positive associations between VC and cardiometabolic health and 93
+> negative  associations  with  various  chronic diseases  and  impaired  physical  function 16 .94
+> However, the scoring system proposed 16  was based on nine biomarkers among the 12 95
+> suggested by the WHO working group 14 . A recent study studied two domains of VC (i.e., 96
+> energy and metabolism, and neuromuscular function) to validate their use in VC assessment 97
+> and examined their links with locomotor function and quality of life 17 . However, as stated by 98
+> the authors, the absence of immune and stress response domain highlights the need for 99
+> further studies encompassing all three domains. These limitations are consistent with 100
+> findings from a scoping review 18 , which highlighted a lack of alignment with the WHO 101
+> framework and emphasized the need for standardized tools and approaches consistent with 102
+> WHO recommendations. 103
+> Therefore, the present study operationalized a VC construct encompassing all three domains 104
+> and  aligned  it  with  the  12  biomarkers  proposed  by  the  WHO  working  group 14 , by 105
+> investigating the influence of lifelong aerobic PA practice on overall VC as well as the relative 106
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 6
+> contribution of its domains using principal component analysis. We hypothesized that 107
+> healthy older adults with a lifelong history of MVPA would exhibit higher VC than their 108
+> inactive counterparts. 109
+> 2.  Method: 110
+> 2.1. Participants 111
+> This cross-sectional observational study included 40 healthy adults (20 males and 20 112
+> females)  aged  over  55  years,  comprising  20  lifelong  active  and  20  lifelong  inactive 113
+> participants. All participants were free of chronic disease, non-smokers (or abstinent >3 114
+> years), and postmenopausal females had confirmed menopause for at least 6 months. 115
+> Written informed consent was obtained from all participants, and the study was approved 116
+> by the Comité de Protection des Personnes Ile de France II (approval no. 2024-A01310-47). 117
+> Active individuals were defined as those who had engaged in structured aerobic activity ≥3 118
+> times per week for the past 30 years, with no break longer than one week in the 3 months 119
+> preceding the study and no break exceeding 12 consecutive months over that period. Their 120
+> activity levels met or exceeded international recommendations for physical activity (WHO, 121
+> 2020; ANSES, 2016), corresponding to ≥150 minutes per week of moderate-intensity aerobic 122
+> activity, ≥75 minutes of vigorous activity, or an equivalent combination. 123
+> Inactive individuals were defined as those who did not meet these criteria, reporting 124
+> predominantly sedentary or low-intensity occupational histories, no regular sports or fitness 125
+> activity, and ≤75 minutes per week of leisure-time physical activity or transportation-related 126
+> physical activity over the past 30 years. 127
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 7
+> Exclusion criteria included chronic disease, disability, hospitalization in the last 6 months, 128
+> cardiovascular events, current medication, acute inflammation, history of doping, disability, 129
+> legal guardianship. Participants were recruited in the Nice metropolitan area through 130
+> associations, sporting events, local media, and social networks. Participants who reported a 131
+> health issue during the experiment were removed from the study. 132
+> 2.2. Procedure 133
+> The study comprised three visits. Visit 1 served as a screening session, whereas visits 2 and 134
+> 3, conducted in the morning served as testing session. During visit 1, participants completed 135
+> a semi-structured interview on physical activity history and the Global Physical Activity 136
+> Questionnaire (GPAQ). Visit 2, conducted under fasting and resting conditions, included 137
+> blood sampling, body composition assessment, and measurements of heart rate variability, 138
+> oxygen saturation, and spirometry. Participants also completed dietary and self-reported 139
+> questionnaires and were provided with a wrist accelerometer (worn for 7 days) and a food 140
+> diary. During visit 3, participants returned the accelerometer and underwent, after a 141
+> standardized warm-up, some physical function assessments, maximal handgrip strength, 142
+> muscular endurance, and maximal isometric knee extensor strength. 143
+> 2.3. Physical activity (PA) assessments 144
+> PA history was collected through a semi-structured interview conducted by an exercise 145
+> science specialist, covering type, frequency, duration, and continuity of PA over the past 30 146
+> years, as well as occupational activity and active transportation. Current activity levels were 147
+> further  assessed  using  the  Global  Physical  Activity  Questionnaire  (GPAQ 19 ) with  the 148
+> assistance of the investigator. To obtain objective PA measures, participants wore a wrist-149
+> mounted accelerometer (AX3; Axivity, designed by Open Lab, Newcastle University) for 7 150
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 8
+> consecutive  days.  The  AX3  accelerometer  has  been  validated  in  adult  and  older 151
+> populations 20,21 . Accelerometer data were analyzed using 1-second epochs and wrist-specific 152
+> cut-points implemented in OmGui software (v1.0.0.45; Open Movement, Newcastle, UK). 153
+> Participants were instructed not to remove the device and to maintain their usual PA habits 154
+> during this period. 155
+> 2.4. Quality of life assessment 156
+> The French version of the WHOQOL-OLD was used to assess quality of life in older adults 22 .157
+> This validated questionnaire comprises 24 items distributed across six domains: sensory 158
+> abilities, autonomy, past–present–future activities, social participation, death and dying, and 159
+> intimacy. Higher scores indicate better perceived quality of life. 160
+> 2.5. Vitality Capacity assessments 161
+> 2.5.1. Immune and Stress Response 162
+> IL-6 and TNF-α concentrations  (pg/mL) were quantified in plasma samples using the VPLEX 163
+> multiplex  immunoassay  kit  (MSD,  Rockville,  MD)  according  to  the  manufacturer’s 164
+> instructions. 165
+> Perceived immune status  (score) was measured using the Immune Status Questionnaire 23 .166
+> Oxygen saturation  (%) was measured after 10 minutes of supine rest using a digital oximeter 167
+> (CMS50D, Contec Medical Systems Co., Qinhuangdao, China). 168
+> Autonomic function  (RMSSD, ms) was assessed via heart rate variability (HRV) measures. 169
+> Short-term HRV was recorded with a chest strap sensor (Polar H10, Finland) and analyzed 170
+> using Kubios software (Kuopio, Finland). Two 3-minute recordings were performed during 171
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 9
+> the 10 minutes of supine rest. The root mean square of successive differences (RMSSD) was 172
+> then extracted and reported. 173
+> 2.5.2. Energy and Metabolism 174
+> Adiponectin  (μg/mL) was measured in plasma samples using the Human Adiponectin ELISA 175
+> Kit (PR-KE00290-96T, Euromedex, Souffelweyersheim, France) following the manufacturer’s 176
+> instructions. 177
+> Glycated hemoglobin  (%) was measured in whole blood samples using Human Hemoglobin 178
+> A1c  Assay  Kit  (catalog  #80099,  Crystal  Chem,  Itaska,  IL  60143  USA)  following  the 179
+> manufacturer’s instructions. 180
+> Body composition  (lean mass, %) was determined via dual-energy X-ray absorptiometry 181
+> (Stratos DR, France). 182
+> Nutritional status  (score) was assessed using the Mini Nutritional Assessment (MNA) 183
+> questionnaire 24 .184
+> Perceived fatigue  (score) was evaluated using the French version of the Rating-of-Fatigue 185
+> Scale questionnaire 25 .186
+> Muscular endurance  (time, s) was measured in the right hand and defined as the duration 187
+> for which participants could maintain 50% of their maximal handgrip strength  26  on a manual 188
+> dynamometer (K-grip, Kinvent, Montpellier, France) in a seated position with the elbow 189
+> flexed at 90°. Verbal encouragement was provided. 190
+> 2.5.3. Neuromuscular Function 191
+> Knee extensor strength  (N·m) was measured on right lower limb via maximal isometric 192
+> contractions with knee bend at 90° on an ergometer (Biodex System 4 Pro, Biodex Medical, 193
+> Shirley, New York, USA). Visual feedback and verbal encouragement were provided. Results 194
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 10
+> were normalized to the right lower limb lean mass obtained from dual-energy X-ray 195
+> absorptiometry testing. 196
+> Respiratory muscle strength  was assessed through respiratory muscle function using the 197
+> proportion of the person's vital capacity that they are able to expire in the first second of 198
+> forced expiration (FEV1/FVC) in a seated position using spirometry (microQuark, Cosmed, 199
+> Italy), with participants performing a maximal inhalation and exhalation after 2 normal 200
+> breaths. FEV1/FVC ratio was normalized using the deviation from the predicted score with 201
+> the rspiro R package. 202
+> Handgrip strength  (kg) was measured on right hand using a manual dynamometer (K-grip, 203
+> Kinvent, Montpellier, France) during maximal voluntary contraction in a seated position with 204
+> the elbow flexed at 90°. Result was normalized to the right upper limb lean mass obtained 205
+> from dual-energy X-ray absorptiometry testing. 206
+> For  all  neuromuscular  function  biomarkers  measurement,  verbal  encouragement  was 207
+> provided, and the highest value out of three trials was used for analysis. 208
+> 2.6. Vitality Capacity score construct 209
+> To our knowledge, only one study proposed a VC score construct 16 . However, the unequal 210
+> number of biomarkers across components (e.g., four energy and metabolism biomarkers, 211
+> two neuromuscular function biomarkers) was not accounted, potentially biasing the final VC 212
+> score towards energy and metabolism domain. We therefore propose a score construct that 213
+> gives the same weight to each domain. 214
+> Vitality capacity, defined as a 12-biomarker construct 14 , was assessed by normalizing each 215
+> individual biomarker into z-scores and aggregating them within their respective domain. For 216
+> instance, neuromuscular function domain was calculated as the mean of z-scored handgrip 217
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 11
+> strength, knee strength, and spirometry. For perceived fatigue, because a high fatigue z-218
+> score was associated with more fatigue, the score has been reversed to match with others. A 219
+> same reverse logic has been applied to IL-6, TNF-α and HbA1c. As no specific blood 220
+> biomarkers  were  predefined,  four  candidate  biomarkers  were  measured,  and  those 221
+> demonstrating the best fit with the data were retained for inclusion in the final construct. To 222
+> this end, we compared all combinations of two inflammatory biomarkers (IL-6, TNF-α) and 223
+> two metabolic biomarkers (adiponectin, HbA1c), making four different pairs of biomarkers, 224
+> each one added to the remaining ten standardized vitality capacity biomarkers. Structural 225
+> coherence was assessed using the variance explained by the first principal component (PC1), 226
+> Cronbach’s  alpha,  and  mean  absolute  inter-item  correlation.  IL-6  and  adiponectin 227
+> combination  demonstrated  greater  dimensional  dominance,  internal  consistency  and 228
+> comparable redundancy relative to the three others pairings (Fig. 1). Therefore, IL-6 and 229
+> adiponectin has been retained and TNF- α and HbA1c removed from the VC score construct. 230
+> Domains-specific standardized scores were generated by calculating the mean standardized 231
+> value within each domain to obtain a composite domain score (i.e., immune and stress 232
+> response, energy and metabolism, and neuromuscular function). A composite VC score was 233
+> subsequently derived by averaging the domain-specific Z-scores. Schematic visualisation of 234
+> the VC score calculation is shown in figure 2. 235
+> 2.7. Statistical analysis 236
+> All statistical analysis were performed on R version 4.5.3 using the tidyverse R package 237
+> version  2.0.0.  Residual  normality  was  assessed  using  the  Shapiro–Wilk  test  and 238
+> homoscedasticity using Levene’s test. Between-group comparisons were conducted using a 239
+> 2-way ANCOVA including group and sex as fixed factors and age as a covariate. When a 240
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 12
+> significant interaction effect was detected, post hoc pairwise comparisons were performed 241
+> on  estimated  marginal  means  with  p-values  adjusted  using  the  Benjamini–Hochberg 242
+> procedure,  performed  using  the  emmeans  package  (version  2.0.2)  in  R.  Results  are 243
+> presented as mean ± standard deviation, with effect sizes reported as partial eta-squared 244
+> (η²p) for ANCOVA and Cohen’s d for post hoc comparisons. 245
+> Associations between the VC composite z-score and age, moderate to vigorous physical 246
+> activity (MVPA) and quality of life, were assessed using Pearson correlations. 247
+> Principal component analysis (PCA) was performed on the VC domain scores. Participants 248
+> were  projected  onto  the  first two principal  components  (PC1  and PC2). Group-level 249
+> dispersion was illustrated using 95% confidence ellipses. Domain loadings were represented 250
+> as vectors, indicating the direction and magnitude of their contribution to the principal 251
+> components. The relative contribution of each domain to PC1 was calculated and expressed 252
+> as a percentage of explained variance and visualized using a bar plot. Linear regression 253
+> analysis and Pearson correlation were performed between PC1 scores and the VC composite 254
+> z-score and visualized using a fitted linear regression line and 95% confidence interval. 255
+> A correlation heatmap was produced using the pheatmap R package (version 1.0.13) to 256
+> provide an overview of the relationships between biomarkers, domains, and the VC 257
+> composite score. Pearson or Spearman correlations were computed according normality 258
+> distributions. The significance level was set at  p< 0.05. All p-values were adjusted using 259
+> Benjamini–Hochberg correction. 260
+> 3.  Results 261
+> 3.1.  Participants’ characteristics 262
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 13
+> Clinical and anthropometric characteristics of the study participants are shown in Table 1. A 263
+> significant group × sex interaction was observed for body fat (F(1, 34) = 4.89, p = 0.034, η²p = 264
+> 0.13). Active females had a lower body fat percentage compared to inactive females (t(34) = 265
+> -4.204, p.adj < 0.001, d = -1.44). 266
+> Significant group differences were observed for the GPAQ and accelerometry data (Table 1). 267
+> Active participants exhibited significantly higher GPAQ scores (MET-min/week, 4283.2 ± 268
+> 3762.9 vs 1299.0 ± 1161.5,  F(1, 34) = 12.26, p = 0.001, η²p = 0.26) and time spent in > 10-min 269
+> MVPA bouts (90.9 ± 58.3 vs 37.6 ± 23.7, F(1, 34) = 14.38, p < 0.001, η²p = 0.30), compared to 270
+> inactive participants. No other significant difference was detected. 271
+> 3.2. VC score 272
+> The composite VC score derived from averaging the domain scores was significantly higher in 273
+> the active group compared with the inactive group (0.1 ± 0.3 vs −0.1 ± 0.4, F(1, 34) = 8.49, p 274
+> = 0.006, η²p = 0.14). VC was inversely correlated with age (Fig. 3A, r(37) = −0.53, p < 0.001) 275
+> and positively correlated with MVPA in the inactive group (Fig. 3B, ρ(n = 39) = 0.45, p = 276
+> 0.048). No association was observed between VC and the quality-of-life score (Fig. 3C) nor 277
+> with any WHOQOL-OLD subdimension. 278
+> 3.3. VC domains 279
+> A group effect was observed for immune and stress response score (F(1, 34) = 12.03, p = 280
+> 0.001, η²p = 0.26). Active participants had a higher score than inactive participants (0.2 ± 0.5 281
+> vs -0.2 ± 0.5; Fig. 4A). A significant group × sex interaction effect was observed for energy 282
+> and metabolism score (F(1, 34) = 4.14, p = 0.05, η²p = 0.11). After post-hoc analysis, only 283
+> female active participants had a higher energy and metabolism score compared to inactive 284
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 14
+> females (0.2 ± 0.3 vs - 0.3 ± 0.4, t(34) = 2.950, p.adj = 0.006, d = 1.01). No significant main or 285
+> interaction effects were observed in the neuromuscular function domain. 286
+> 3.4. VC biomarkers 287
+> 3.4.1. Immune and stress response biomarkers 288
+> A group effect has been found for oxygen saturation and heart rate variability (RMSSD) 289
+> (Table 1). Active participants had significantly higher oxygen saturation (%, 96.8 ± 1.2 vs 94.8 290
+> ± 1.8, F(1, 34) = 19.87, p < 0.001, η²p = 0.37) and heart rate variability (ms, 49.9 ± 27.5 vs 291
+> 27.2 ± 16.7, F(1, 34) = 9.40, p = 0.004, η²p = 0.22) than inactive participants. No significant 292
+> differences were observed in plasma IL-6 and TNF-α concentrations or perceived immunity 293
+> (Table 1). 294
+> 3.4.2. Energy and metabolism biomarkers 295
+> A significant group × sex interaction was found for lean mass (F(1, 34) = 5.28, p = 0.028, η²p = 296
+> 0.13) and MNA test (F(1, 34) = 5.44, p = 0.026, η²p = 0.14). Female active participants had 297
+> higher lean mass (t(34) = 4.232, p.adj < 0.001, d = 1.45) and lower MNA score (t(34) = -2.954, 298
+> p.adj = 0.006, d = -1.01) compared to inactive females (Table 1). No significant differences 299
+> were observed in blood HbA1c level, plasma adiponectin concentration, perceived fatigue or 300
+> muscle endurance (Table 1). 301
+> 3.4.3. Neuromuscular function biomarkers 302
+> No significant effects were observed for neuromuscular biomarkers, including handgrip 303
+> strength, knee strength, and FEV1/FVC z-score (Table 1). 304
+> 3.5. Principal component analysis 305
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 15
+> PCA performed on VC domains identified a first principal component (PC1) that was highly 306
+> correlated with the composite VC z-score (Fig. 5B). PCA of VC domains revealed that all 307
+> domains contributed positively to PC1, although with different magnitudes (Fig. 5A). PC1 308
+> explained 62.2% of the variance and was mostly driven by neuromuscular function in both 309
+> groups (Fig. 5A & 5C). In both groups, the neuromuscular function domain showed the 310
+> strongest correlation with VC score (Fig. 5D, active, r(17) = 0.64, p.adj = 0.03, inactive r(18) = 311
+> 0.83, p.adj < 0.001). Only the handgrip strength biomarker was significantly correlated with 312
+> the VC score in the inactive group (Fig. 5D, r(18) = 0.76, p.adj = 0.003). In the active group, 313
+> handgrip strength (Fig. 5D, r(17) = 0.84, p.adj < 0.001) and oxygen saturation (Fig. 5D, r(17) = 314
+> 0.66, p.adj = 0.03) were correlated with VC. 315
+> 4.  Discussion: 316
+> This study aimed to measure and compare VC of lifelong aerobic active and inactive healthy 317
+> older adults and estimate each domain weight in the VC construct. We report, for the first 318
+> time, the operationalization of a VC score constructed from 12 biomarkers consistent with 319
+> those proposed by the WHO working group on VC 14 . As hypothesized, lifelong aerobic active 320
+> older  adults  had  higher VC than inactive counterparts. We  highlighted that, despite 321
+> contributing substantially to overall VC variability, the neuromuscular function domain of VC 322
+> did not significantly differ between groups. In contrast, the immune and stress response 323
+> domain score, as along with some of its biomarkers (i.e., oxygen saturation, heart rate 324
+> variability) showed the clearest distinction between lifelong aerobic active and inactive 325
+> healthy older adults (Fig. 4A). 326
+> The inverse correlation between age and VC is consistent with the existing literature on VC 16
+> 327
+> and, more broadly, with the decline of intrinsic capacity with age 27 . The positive correlation 328
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 16
+> between MVPA and VC , observed only in inactive (Fig. 3B), may suggest a plateau effect 329
+> beyond a certain level of PA. This finding is consistent with large cohort studies and meta-330
+> analyses reporting non-linear relationships between levels of PA and intrinsic capacity 12  and 331
+> health related outcomes 28–30 . Even though quality of life has been positively associated with 332
+> intrinsic capacity 31,32 , our study found no association between quality of life and VC among 333
+> healthy older adults. This finding is consistent with a recent study 17  investigating the 334
+> relationship between VC and quality of life, which reported heterogeneous associations 335
+> depending on the population studied and the assessment tools used. Overall, the absence of 336
+> a clear association between quality of life and VC may reflect the complexity of the quality-337
+> of-life construct, which relies not only on individual physiology but also on a range of social 338
+> and environmental factors. 339
+> Neuromuscular function showed the strongest contribution to the main principal component 340
+> axis variability, which was highly correlated with VC, suggesting it might be a key contributor 341
+> to inter-individual differences in VC. However, the biomarkers of neuromuscular function did 342
+> not significantly differ between our lifelong aerobic active and inactive older adults. This 343
+> contrasts with previous literature linking higher aerobic PA levels with greater handgrip and 344
+> knee extension strength as well as spirometry measures 33,34 . One possible explanation is that 345
+> the inactive group in our study consisted of relatively healthy individuals. Remaining healthy 346
+> despite lower levels of PA may reflect, among other factors, a genetic predisposition to 347
+> preserved functions. Several studies show that measures such as handgrip and knee 348
+> extension strength, and spirometry lung function are heritable and are associated with 349
+> specific genomic loci  35–38 . Also, respiratory muscle function was assessed with spirometry , 350
+> whereas a recent review suggested the use of volitional tests, which assess respiratory 351
+> muscle strength 39 . Overall, although neuromuscular function appears to be a major domain 352
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 17
+> of VC in our healthy population, the absence of between-group differences suggests that 353
+> intrinsic factors, such as genetic predisposition may attenuate the impact of PA in relatively 354
+> healthy older adults. 355
+> The immune and stress response domain also contributed to PC1 variance, although to a 356
+> lesser extent. The higher immune and stress response domain score of lifelong aerobic 357
+> active participants suggest that PA may improve it. Although scarcely investigated 18 , some 358
+> biomarkers  related  to  the  immune  and  stress  response  domain  showed  the  most 359
+> pronounced differences between groups. The higher oxygen saturation observed in the 360
+> active group is consistent with a recent study reporting a positive correlation between daily 361
+> steps and oxygen saturation in older adults 40 . Similarly, the higher heart rate variability 362
+> (HRV) in active older adults has been previously reported and supported by meta-analysis 363
+> concluding that chronic endurance exercise improves HRV 41 . In contrast, plasma IL-6 364
+> concentrations did not significantly differ between groups, despite the well-established 365
+> association between IL-6 and  age-related diseases, as well as evidence suggesting a 366
+> mitigating effect of lifelong exercise 7,42 . Perceived immunity did not differ between groups. 367
+> The questionnaire used may not have been fully adapted to our healthy population; for 368
+> instance, some reported symptoms (e.g., muscle pain 23 ) may have reflected exercise-369
+> induced discomfort rather than illness. The limited scientific literature addressing this topic 370
+> makes  interpretation  challenging and  highlights  the  need for  further investigations, 371
+> potentially using a recently developed scale  43 .372
+> The energy and metabolism domain showed the lowest contribution to PC1 and no 373
+> contribution in the active group. These findings suggest that this domain may be less 374
+> discriminative among physically active older adults, possibly due to a more homogeneous 375
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 18
+> metabolic profile within this group. Nevertheless, some biomarkers of the energy and 376
+> metabolism  domain significantly differed between females. Lifelong  aerobically  active 377
+> females exhibited higher lean mass than their inactive counterparts, consistent with the 378
+> well-established effects of PA on body composition  44 . Because females typically have lower 379
+> lean mass than males 45 , they may experience more pronounced physiological adaptations to 380
+> PA, making the energy and metabolism domain more discriminating for females. The lower 381
+> MNA scores observed in lifelong active females likely reflect their lower body mass index– 382
+> commonly  reported  in  females  athletes 46 –rather  than  poorer  nutritional  status.  This 383
+> interpretation is consistent with a recent scoping review suggesting that MNA may not be 384
+> fully  adapted  to  healthy  populations  or  individuals  from  high-income  countries 18 .385
+> Collectively, these results suggest that sex-specific differences should be considered when 386
+> interpreting VC, particularly for energy and metabolism domain. The absence of differences 387
+> in muscle endurance, perceived fatigue and inflammation biomarkers (i.e., TNF -α and IL-6)  is 388
+> consistent with their known interrelationships in older adults 47 . Finally, adiponectin levels 389
+> were within the normal range in our cohort 48 , and the lack of between-group differences is 390
+> consistent with the similar HbA1c levels observed across groups, further reflecting the 391
+> relatively healthy status of the study population. 392
+> The strong correlation of handgrip strength with VC reflects its association with different 393
+> ageing trajectories 49–51 . In the active group, the significant correlation between oxygen 394
+> saturation and VC, together with the strong association between lean mass and VC, supports 395
+> the physiological relevance of the proposed VC construct and further strengthens the use of 396
+> a physically active cohort as a relevant model of healthy ageing. These findings highlight the 397
+> potential of a simplified biomarker-based approach, possibly based on handgrip strength, 398
+> oxygen saturation, and lean mass. Further studies are needed to refine the selection of the 399
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 19
+> most relevant biomarkers, which could enable a simplified VC assessment as an initial 400
+> health-screening assessment. 401
+> This study has several strengths. First, it applies a multidimensional, biomarker-based 402
+> approach to assess VC in accordance with the WHO framework. Second, the inclusion of 403
+> lifelong aerobic active older adults provides a unique and physiologically relevant model of 404
+> successful ageing. Finally, the limited sample size may also be considered a strength in the 405
+> context of the growing emphasis on precision medicine. Indeed, the assessment of VC 406
+> should be meaningful not only at the population level but also at the individual level, where 407
+> inter-individual variability becomes critical. In this perspective, our approach supports the 408
+> development of tools capable of capturing clinically relevant differences in physiological 409
+> ageing trajectories. Some limitations should nevertheless be acknowledged. First, our 410
+> biomarker selection required some methodological choices because the working group 411
+> recommendations were sometimes broad 14 . Respiratory muscle strength was assessed using 412
+> spirometry, which evaluate the respiratory muscle function, rather than maximal expiratory 413
+> pressures 39 . The pair of blood biomarkers was not specified by the group 14 . We therefore 414
+> selected 4 candidates based on literature and used an unbiased statistical approach to retain 415
+> the pair that fitted the best in our population. The specificity (e.g., aged, Caucasians, 416
+> healthy…) of our population may limit generalizability, and the absence of genetic data 417
+> restricts  the  interpretation  of  inter-individual  differences,  particularly  regarding 418
+> neuromuscular function domain. Finally, although some biomarkers and assessment tools— 419
+> particularly those related to blood, MNA and perceived immunity—may lack specificity in 420
+> physically active populations, the overall selection remains robust. Considering that the 421
+> proposed  construct  includes 12  biomarkers  intended  to be  applicable  across diverse 422
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 20
+> populations, this represents a satisfactory compromise, highlighting the inherent challenge 423
+> of identifying universally relevant biomarkers of VC. 424
+> 5.  Conclusion 425
+> In conclusion, our findings suggest that lifelong aerobic physical activity is associated with 426
+> higher VC in older adults, supporting the concept that lifelong physically active individuals 427
+> represent a relevant model for the study of healthy ageing. These results reinforce the 428
+> World Health Organization framework of healthy ageing and highlight the potential of VC as 429
+> an integrative measure of physiological ageing. Future longitudinal and experimental studies 430
+> are  needed  to  confirm  these  associations,  refine  biomarker  selection,  and  establish 431
+> reference values applicable at both individual and population levels. Expanding future 432
+> research to more diverse cohorts will also be essential to improve generalizability across 433
+> populations. Our findings further suggest that PA modalities may differently affect VC 434
+> domains. While aerobic PA appears particularly relevant to improve the immune and stress 435
+> domain, neuromuscular function may require complementary approaches such as resistance 436
+> training. This, and the sex effect observed in the energy and metabolism domain, raises the 437
+> possibility of more tailored PA programs according to individual physiological profiles. More 438
+> broadly, this study emphasizes the fundamental role of sustained physical activity across the 439
+> lifespan to preserve physiological functions, reinforcing the idea that maintaining movement 440
+> is not only beneficial, but intrinsic to human healthy ageing. 441
+> Competing interest 442
+> The authors declare that they have no competing interest. 443
+> 444
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 21
+> References: 445 1.  World report on ageing and health. Accessed October 2, 2025. 446 https://www.who.int/publications/i/item/9789241565042 447 2.  Daskalopoulou C, Stubbs B, Kralj C, Koukounari A, Prince M, Prina AM. Physical activity and 448 healthy ageing: A systematic review and meta-analysis of longitudinal cohort studies.  Ageing Res 449
+> Rev . 2017;38:6-17. doi:10.1016/j.arr.2017.06.003 450 3.  McPhee JS, French DP, Jackson D, Nazroo J, Pendleton N, Degens H. Physical activity in older age: 451 perspectives for healthy ageing and frailty.  Biogerontology . 2016;17:567-580. 452 doi:10.1007/s10522-016-9641-0 453 4.  Veerman L, Tarp J, Wijaya R, et al. Physical activity and life expectancy: a life-table analysis. Br J 454
+> Sports Med . 2025;59(5):333-338. doi:10.1136/bjsports-2024-108125 455 5.  Lemez S, Baker J. Do Elite Athletes Live Longer? A Systematic Review of Mortality and Longevity 456 in Elite Athletes.  Sports Med - Open . 2015;1:16. doi:10.1186/s40798-015-0024-x 457 6.  Aguiar SS, Sousa CV, Santos PA, et al. Master athletes have longer telomeres than age-matched 458 non-athletes. A systematic review, meta-analysis and discussion of possible mechanisms.  Exp 459
+> Gerontol . 2021;146:111212. doi:10.1016/j.exger.2020.111212 460 7.  Pérez-Castillo IM, Rueda R, Bouzamondo H, et al. Does Lifelong Exercise Counteract Low-Grade 461 Inflammation Associated with Aging? A Systematic Review and Meta-Analysis.  Sports Med Auckl 462
+> Nz . 2025;55(3):675-696. doi:10.1007/s40279-024-02152-8 463 8.  An J, Su Z, Meng S. Effect of aerobic training versus resistance training for improving 464 cardiorespiratory fitness and body composition in middle-aged to older adults: A systematic 465 review and meta-analysis of randomized controlled trials.  Arch Gerontol Geriatr .466 2024;126:105530. doi:10.1016/j.archger.2024.105530 467 9.  Saeidifard F, Medina-Inojosa JR, West CP, et al. The association of resistance training with 468 mortality: A systematic review and meta-analysis.  Eur J Prev Cardiol . 2019;26(15):1647-1665. 469 doi:10.1177/2047487319850718 470 10. Cavalcante PAM, Gregnani MF, Henrique JS, Ornellas FH, Araújo RC. Aerobic but not Resistance 471 Exercise Can Induce Inflammatory Pathways via Toll-Like 2 and 4: a Systematic Review.  Sports 472
+> Med - Open . 2017;3(1):42. doi:10.1186/s40798-017-0111-2 473 11. Kobayashi H. Resistance exercise and hypertension: comparable benefits to aerobic exercise? 474
+> Hypertens Res . 2025;48(3):1236-1238. doi:10.1038/s41440-024-02076-w 475 12. Sánchez-Sánchez JL, Ortolá R, Banegas JR, et al. Association between physical activity and 476 sedentary behaviour and changes in intrinsic capacity in Spanish older adults (Seniors-ENRICA-2): 477 a prospective population-based study.  Lancet Healthy Longev . 2025;6(5). 478 doi:10.1016/j.lanhl.2024.100681 479 13. Beard JR, Officer A, de Carvalho IA, et al. The World report on ageing and health: a policy 480 framework for healthy ageing.  Lancet Lond Engl . 2016;387(10033):2145-2154. 481 doi:10.1016/S0140-6736(15)00516-4 482
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 22 14. Bautmans I, Knoop V, Thiyagarajan JA, et al. WHO working definition of vitality capacity for 483 healthy longevity monitoring.  Lancet Healthy Longev . 2022;3(11):e789-e796. doi:10.1016/S2666-484 7568(22)00200-8 485 15. Jones R, Taylor TL, Mankowski RT, et al. Exercise training to preserve vitality capacity in ageing. 486
+> Exp Physiol . n/a(n/a). doi:10.1113/EP091731 487 16. Cai X, Xu C, Gu Z, Wu T, Qiu S. Development of a scoring system for vitality capacity assessment 488 in older adults: a population-based study.  Eur Geriatr Med . Published online October 8, 2025. 489 doi:10.1007/s41999-025-01325-6 490 17. Louter F, Knoop V, Demarteau J, et al. Construct validation of the vitality capacity domains 491 ‘energy and metabolism’ and ‘neuromuscular function’ in relation to locomotor capacity and 492 quality of life in community-dwelling middle-aged and older adults.  GeroScience . Published 493 online May 12, 2026. doi:10.1007/s11357-026-02283-y 494 18. Chew J, Lee J, Hernandez HHC, Munro YL, Lim CL, Lim WS. The vitality domain of intrinsic 495 capacity: A scoping review of conceptual frameworks and measurements.  J Frailty Aging .496 2025;14(4):100058. doi:10.1016/j.tjfa.2025.100058 497 19. Rivière F, Widad FZ, Speyer E, Erpelding ML, Escalon H, Vuillemin A. Reliability and validity of the 498 French version of the global physical activity questionnaire.  J Sport Health Sci . 2018;7(3):339-499 345. doi:10.1016/j.jshs.2016.08.004 500 20. Clarke CL, Taylor J, Crighton LJ, Goodbrand JA, McMurdo MET, Witham MD. Validation of the 501 AX3 triaxial accelerometer in older functionally impaired people.  Aging Clin Exp Res .502 2017;29(3):451-457. doi:10.1007/s40520-016-0604-8 503 21. Doherty A, Jackson D, Hammerla N, et al. Large Scale Population Assessment of Physical Activity 504 Using Wrist Worn Accelerometers: The UK Biobank Study.  PLOS ONE . 2017;12(2):e0169649. 505 doi:10.1371/journal.pone.0169649 506 22. Leplège A, Perret-Guillaume C, Ecosse E, Hervy MP, Ankri J, von Steinbüchel N. Un nouvel 507 instrument destiné à mesurer la qualité de vie des personnes âgées : le WHOQOL-OLD version 508 française.  Rev Médecine Interne . 2013;34(2):78-84. doi:10.1016/j.revmed.2012.07.011 509 23. Wilod Versprille LJF, van de Loo AJAE, Mackus M, et al. Development and Validation of the 510 Immune Status Questionnaire (ISQ).  Int J Environ Res Public Health . 2019;16(23):4743. 511 doi:10.3390/ijerph16234743 512 24. Cesari M, Sadana R, Sumi Y, Amuthavalli Thiyagarajan J, Banerjee A. What Is Intrinsic Capacity 513 and Why Should Nutrition Be Included in the Vitality Domain?  J Gerontol Ser A . 2022;77(1):91-93. 514 doi:10.1093/gerona/glab318 515 25. Brownstein CG, Rimaud D, Singh B, et al. French Translation and Validation of the Rating-of-516 Fatigue Scale.  Sports Med - Open . 2021;7(1):25. doi:10.1186/s40798-021-00316-8 517 26. Bautmans I, Mets T. A fatigue resistance test for elderly persons based on grip strength: 518 reliability and comparison with healthy young subjects.  Aging Clin Exp Res . 2005;17(3):217-222. 519 doi:10.1007/BF03324600 520 27. Lu WH, Rolland Y, Guyonnet S, de Souto Barreto P, Vellas B. Reference centiles for intrinsic 521 capacity throughout adulthood and their association with clinical outcomes: a cross-sectional 522
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 23 analysis from the INSPIRE-T cohort.  Nat Aging . 2023;3(12):1521-1528. doi:10.1038/s43587-023-523 00522-x 524 28. Ding Y, Xu X, Xu B, Wang R. Dose–response associations between leisure-time physical activity, 525 heart age and predicted 10-year cardiovascular disease risk.  J Public Health . 2026;48(1):338-346. 526 doi:10.1093/pubmed/fdaf154 527 29. Ekelund U, Tarp J, Steene-Johannessen J, et al. Dose-response associations between 528 accelerometry measured physical activity and sedentary time and all cause mortality: systematic 529 review and harmonised meta-analysis.  BMJ . 2019;366:l4570. doi:10.1136/bmj.l4570 530 30. Garcia L, Pearce M, Abbas A, et al. Non-occupational physical activity and risk of cardiovascular 531 disease, cancer and mortality outcomes: a dose–response meta-analysis of large prospective 532 studies.  Br J Sports Med . 2023;57(15):979-989. doi:10.1136/bjsports-2022-105669 533 31. Salinas-Rodríguez A, González-Bautista E, Rivera-Almaraz A, Manrique-Espinoza B. Longitudinal 534 trajectories of intrinsic capacity and their association with quality of life and disability.  Maturitas .535 2022;161:49-54. doi:10.1016/j.maturitas.2022.02.005 536 32. Wu Z, Xiao L, Zeng J, et al. The Impact of Intrinsic Capacity on Quality of Life in Older Adults: A 537 Multidimensional SEM Analysis.  Innov Aging . 2025;9(Supplement_2):igaf122.2469. 538 doi:10.1093/geroni/igaf122.2469 539 33. Crane JD, MacNeil LG, Tarnopolsky MA. Long-term Aerobic Exercise Is Associated With Greater 540 Muscle Strength Throughout the Life Span.  J Gerontol Ser A . 2013;68(6):631-638. 541 doi:10.1093/gerona/gls237 542 34. Li LK, Cassim R, Perret JL, et al. The longitudinal association between physical activity, strength 543 and fitness, and lung function: A UK Biobank cohort study.  Respir Med . 2023;220:107476. 544 doi:10.1016/j.rmed.2023.107476 545 35. Brooks-Wilson AR. Genetics of healthy aging and longevity.  Hum Genet . 2013;132(12):1323-546 1338. doi:10.1007/s00439-013-1342-z 547 36. Huang Y, Bodnar D, Chen CY, et al. Rare genetic variants impact muscle strength.  Nat Commun .548 2023;14(1):3449. doi:10.1038/s41467-023-39247-1 549 37. Loth DW, Artigas MS, Gharib SA, et al. Genome-wide association analysis identifies six new loci 550 associated with forced vital capacity.  Nat Genet . 2014;46(7):669-677. doi:10.1038/ng.3011 551 38. Tian X, Xu C, Wu Y, et al. Genetic and Environmental Influences on Pulmonary Function and 552 Muscle Strength: The Chinese Twin Study of Aging.  Twin Res Hum Genet . 2017;20(1):53-59. 553 doi:10.1017/thg.2016.97 554 39. Louter F, Knoop V, Demarteau J, et al. Instruments for measuring the neuromuscular function 555 domain of vitality capacity in older persons: an umbrella review.  Eur Geriatr Med . Published 556 online July 8, 2024. doi:10.1007/s41999-024-01017-7 557 40. Cardoso M, Pinheira V, Carvalho L. Relationship Between O2 Saturation Values, Functional 558 Mobility, Physical Activity Levels and Quality of Life in Older People. In: Guardado Moreira MJ, A. 559 Carvalho LS, Sequeira Gonçalves PJ, Barreiros Pinheira VM, eds.  Longevity and Development: 560
+> New Perspectives on Ageing Communities . Springer International Publishing; 2023:85-98. 561 doi:10.1007/978-3-031-22273-3_7 562
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 24 41. Raffin J, Barthélémy JC, Dupré C, et al. Exercise Frequency Determines Heart Rate Variability 563 Gains in Older People: A Meta-Analysis and Meta-Regression.  Sports Med . 2019;49(5):719-729. 564 doi:10.1007/s40279-019-01097-7 565 42. Hayes LD, Herbert P, Sculthorpe NF, Grace FM. Short-Term and Lifelong Exercise Training Lowers 566 Inflammatory Mediators in Older Men.  Front Physiol . 2021;12. Accessed December 7, 2023. 567 https://www.frontiersin.org/articles/10.3389/fphys.2021.702248 568 43. Mizrachi N, Kube T, Rozenkrantz L. Perceiving immunity, predicting somatic symptoms: 569 Validation of the ‘Perceived Immunity’ scale and its association with daily health.  Br J Health 570
+> Psychol . 2025;30(1):e12772. doi:10.1111/bjhp.12772 571 44. Andreoli A, Celi M, Volpe SL, Sorge R, Tarantino U. Long-term effect of exercise on bone mineral 572 density and body composition in post-menopausal ex-elite athletes: a retrospective study.  Eur J 573
+> Clin Nutr . 2012;66(1):69-74. doi:10.1038/ejcn.2011.104 574 45. Janssen I, Heymsfield SB, Wang Z, Ross R. Skeletal muscle mass and distribution in 468 men and 575 women aged 18–88 yr.  J Appl Physiol . 2000;89(1):81-88. doi:10.1152/jappl.2000.89.1.81 576 46. Hankinson AL, Daviglus ML, Bouchard C, et al. Maintaining a High Physical Activity Level Over 20 577 Years and Weight Gain.  JAMA . 2010;304(23):2603-2610. doi:10.1001/jama.2010.1843 578 47. Bautmans I, Knoop V, Beyer I, et al. The relationship between self-perceived fatigue, muscle 579 endurance, and circulating markers of inflammation in participants of the Copenhagen aging and 580 Midlife Biobank (CAMB).  Eur Rev Aging Phys Act . 2024;21:2. doi:10.1186/s11556-024-00336-9 581 48. Borges MC, Barros AJD, Ferreira DLS, et al. Metabolic Profiling of Adiponectin Levels in Adults. 582
+> Circ Cardiovasc Genet . 2017;10(6):e001837. doi:10.1161/CIRCGENETICS.117.001837 583 49. Arokiasamy P, Selvamani Y, Jotheeswaran AT, Sadana R. Socioeconomic differences in handgrip 584 strength and its association with measures of intrinsic capacity among older adults in six middle-585 income countries.  Sci Rep . 2021;11(1):19494. doi:10.1038/s41598-021-99047-9 586 50. Ramírez-Vélez R, Correa-Bautista JE, García-Hermoso A, Cano CA, Izquierdo M. Reference values 587 for handgrip strength and their association with intrinsic capacity domains among older adults.  J588
+> Cachexia Sarcopenia Muscle . 2019;10(2):278-286. doi:10.1002/jcsm.12373 589 51. Xuekelati S, Maimaitiwusiman Z, Xiang H, Wumaer A, Bai X, Wang H. Handgrip strength: A simple 590 and effective tool to recognize decreased intrinsic capacity in Chinese older adults.  Exp Gerontol .591 2024;196:112567. doi:10.1016/j.exger.2024.112567 592
+> Acknowledgments 593
+> This work was supported by “Crédits Scientifiques Incitatifs” funding from Université Côte 594
+> d’Azur and by the French government through the France 2030 investment plan managed by 595
+> the National Research Agency (ANR), as part of the Initiative of Excellence Université Côte 596
+> d’Azur under reference number ANR- 15-IDEX-01. 597
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 25
+> Authors contribution 598
+> J. Mercier participated in the design of the study, contributed to data collection, analysis and 599
+> interpretation of results, writing the article; S.S. Colson participated in the design of the 600
+> study and interpretation of results, writing the article; A.S. Rousseau participated in the 601
+> design and coordination of the study, contributed to data collection and interpretation of 602
+> results, writing the article; F. Chorin contributed to data collection; E. Michel contributed to 603
+> data collection; O. Guérin participated in the design of the study and project administration; 604
+> N. Gautier contributed to data collection and analysis; A. Loubat contributed to data 605
+> collection and analysis. All authors did read and approve the final version of the manuscript, 606
+> and agreed with their position in the author list. 607
+> Competing interest 608
+> The authors declare that they have no competing interest. 609
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 4, 2026. ;https://doi.org/10.64898/2026.06.04.728174 doi: bioRxiv preprint 1

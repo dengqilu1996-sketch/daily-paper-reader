@@ -1,0 +1,299 @@
+Title: Multimodal Physiological Assessment of Contact-Rich Physical Human-Robot Interaction Under Varying Environmental Conditions
+
+URL Source: https://arxiv.org/pdf/2606.14969v1
+
+Published Time: Tue, 16 Jun 2026 00:16:11 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+> 1
+
+# Multimodal Physiological Assessment of Contact-Rich Physical Human–Robot Interaction Under Varying Environmental Conditions 
+
+Yanyi Chen 1, Xi Wang 2, Min Deng 1,3 ∗
+
+Abstract —Physical human-robot interaction (pHRI) in real-world settings exposes operators to fluctuating environmental conditions during contact-rich tasks. Traditional task-centric evaluations overlook the physiological burdens imposed by these stressors. Therefore, we conducted a multimodal empirical study involving contact-rich tracing tasks under 18 distinct combi-nations of temperature, acoustic noise, and illuminance. Syn-chronously, we recorded electrodermal activity (EDA), surface electromyography (sEMG), eye-tracking data, and subjective environmental comfort ratings. Evaluating these physiological signals alongside execution data revealed hidden physiological costs not captured by objective performance. The results revealed that task performance remained stable across all environmental conditions. Autonomic workload, indexed by tonic skin conduc-tance level (SCL), increased with temperature, while physical and cognitive workload were unaffected. Perceived environmental comfort showed no significant association with tracing error or completion time. These findings reveal a compensatory mech-anism where operators maintain consistent performance by in-creasing their physiological effort to suppress thermal discomfort. Such insight motivates the development of physiology-aware control architectures that leverage real-time physiological metrics to reduce operator workload in unstructured environments. 
+
+Index Terms —Physical human–robot interaction, contact-rich tasks, multimodal physiological sensing, human workload, envi-ronmental conditions 
+
+I. I NTRODUCTION 
+
+# WITH the continued advancement of robotic systems and their transition beyond isolated automation, close collaboration between humans and robots has become increas-ingly important in domains such as advanced manufacturing [1], intelligent construction [2], [3], and medical surgery [4]. In these settings, robots excel at repetitive, physically demanding, and high-precision tasks, whereas humans remain essential for complex decision-making, adaptation to unexpected situations, and handling uncertainty in dynamic environments. Bridging these complementary strengths, physical human–robot inter-action (pHRI) facilitates intuitive physical collaboration by integrating human adaptability and situational awareness with robotic strength, repeatability, and precision [5], [6]. 
+
+> ∗
+
+Corresponding author: Min Deng. 
+
+> 1
+
+Yanyi Chen and Min Deng are with the Department of Civil, Environ-mental, and Construction Engineering, Texas Tech University, Lubbock, TX 79409, USA (e-mail: yanychen@ttu.edu). 
+
+> 2
+
+Xi Wang is with the Department of Construction Science, Texas A&M University, College Station, TX 77843, USA (e-mail: xiwang@tamu.edu). 
+
+> 3
+
+Min Deng is also with the Department of Civil and Environmental Engineering, University of Tennessee, Knoxville, TN 37996, USA (e-mail: mindeng@utk.edu). 
+
+Among various pHRI applications, contact-rich tasks are particularly challenging. Typical examples include robotic polishing of complex surfaces in advanced manufacturing [1], cooperative sawing in intelligent construction [7], and ultra-sound scanning on soft tissues in medical surgery [4]. These contact-rich pHRI tasks demand high operational complexity because the human operator must guide the motion along the surface while simultaneously regulating normal contact force. To address these challenges, admittance control provides an intuitive interaction framework. It maps measured human-applied forces into robot motion references, enabling compli-ant physical interaction during human guidance [8]. Building on this framework, recent pHRI research has explored adaptive admittance [9], shared control [10], and human state modeling [11] to improve interaction stability, safety, and task perfor-mance. However, most existing approaches primarily evaluate in-teraction quality through external task metrics such as tra-jectory accuracy, force regulation, or completion time. Such task-centric evaluation neglects the human’s internal state, overlooking the operator’s underlying physical and cognitive demands, as well as their real-time reactions during interac-tion. Prior work has shown that multimodal human-state mea-surements, including electroencephalography (EEG), surface electromyography (sEMG), electrodermal activity (EDA), eye activity, and body-motion cues, can provide complementary information about physical effort, stress, trust, fatigue, atten-tional demand, engagement, and perceived workload during HRI [12], [13]. Crucially, these studies further suggest that human behavioral and neural responses often modulate to compensate for interaction demands before such effects be-come fully visible in coarse task-level performance metrics. These findings motivate the need for multimodal approaches that examine not only how accurately a task is completed ex-ternally, but also how the interaction is internally experienced and regulated by the human collaborator. Beyond the interaction design itself, real-world workspaces expose operators to varying environmental conditions, includ-ing temperature, illumination, and noise, that can fluctuate over time and differ across sites, influencing well-being, interaction behavior, and collaborative performance [14]. Prior research indicates that such conditions can lead to visual discomfort, cognitive load, physiological arousal, and fatigue [15], [16]. In contact-rich pHRI, these effects may further alter how operators regulate interaction forces, allocate attention, and respond to robotic assistance. Despite advances in robot 
+
+> arXiv:2606.14969v1 [cs.RO] 12 Jun 2026 2
+
+control algorithms for pHRI, how environmental conditions reshape multimodal operator state during contact-rich physical interaction remains insufficiently explored. In order to overcome these research gaps, we conducted an exploratory multimodal pilot study ( N = 12 ) where par-ticipants performed contact-rich tracing tasks on an unknown corrugated surface. The experiment employed a within-subject design across a factorial combination of thermal, acoustic, and illuminance levels. Across all experimental conditions, the robot operated under an orthogonal shared control method. This method allowed operators to guide the planar motion while the robot autonomously regulated the normal contact force. To capture the operators’ multidimensional states, we synchronously recorded three categories of data: objective robotic metrics such as kinematics and interaction wrenches; physiological and behavioral signals including sEMG, EDA, and eye tracking; and subjective environmental comfort rat-ings. This study addresses three research questions: RQ1: How do thermal, acoustic, and illuminance conditions affect task performance and multimodal operator workload in contact-rich pHRI? RQ2: Which environmental factor exerts the dominant effect on operator physiological responses during contact-rich physical interaction? RQ3: Does perceived environmental comfort correspond to changes in objective task performance? The contributions of this work include: 1) a multimodal empirical study that decomposes operator workload into phys-ical, cognitive, and autonomic dimensions during contact-rich pHRI under varying environmental conditions; and 2) empirical evidence that task performance remains stable across environmental conditions while autonomic workload increases with temperature, indicating that task performance alone does not fully reflect operator state in real-world workspaces. II. M ATERIALS AND METHODS 
+
+A. Study Design and Protocol 
+
+Figure 1 illustrates the overall experimental protocol, in-cluding the timeline and the full factorial design matrix. The study utilized a 3 × 2 × 3 within-subject pilot design. To allow participants to adjust to the thermal conditions, the experiment was conducted across three separate laboratory visits on different days, with one specific thermal level ( 18 ◦C,
+
+24 ◦C and 30 ◦C) assigned per visit. These thermal levels were set based on industry standards (i.e., ASHRAE) to represent cool, neutral, and warm environments, respectively, while the relative humidity was maintained at around 45% [17]. Within a single visit, the participant completed six consec-utive sessions, covering all combinations of the illuminance (200 lux , 500 lux and 1000 lux ) lux, with a color temperature of 5000 K, and acoustic noise ( 40 dB and 85 dB ) conditions. The illuminance levels were determined based on prior human factors research to simulate visual environments suitable for basic physical tasks, standard office work, and precision draw-ing activities [16]. Moreover, the selected acoustic noise levels represent a natural quiet baseline and a highly noisy industrial environment threshold, aligning with the occupational noise exposure guidelines recommended by NIOSH [18]. The first visit included a 10 min practice period to familiar-ize participants with the system. Each of the three visits began with a 15 min device setup and signal-quality check, followed by the six 5 min sessions separated by 3 min inter-session rests. Each session comprised a 3 min contact-rich tracing task and a 2 min period for post-trial subjective questionnaires, yielding 18 tasks per participant in total. 
+
+B. Participants 
+
+A total of twelve healthy human subjects ( N = 12 ; mean age 25 .3 ± 5.3; 7 female, 5 male) participated in our study. Participants were recruited from the university community and comprised undergraduate, master’s, and doctoral students without experience with collaborative robotics. The inclusion criteria required participants to be capable of safely performing light physical activities. Individuals with a history of muscu-loskeletal, neurological, cardiovascular, or severe respiratory conditions that could compromise force-based interaction, as well as those with skin sensitivities at the planned sEMG and EDA electrode placement sites, were excluded. The experimental protocol was approved by the Institutional Review Board (IRB) of Texas Tech University. All participants provided written informed consent prior to data collection and retained the right to withdraw from the study at any time. 
+
+C. Apparatus and Environment control 
+
+As illustrated in Fig. 2, the collaborative task was per-formed using a 6-DOF UFactory xArm6 manipulator equipped with a wrist-mounted 6-axis force-torque sensor to capture interaction wrenches. To synchronously capture the operators’ psychophysiological and behavioral states, participants wore a Tobii Pro Glasses 3 eye tracker and two wireless biosignal modules: a Shimmer3 EXG unit on the right arm for sEMG, and a Shimmer3 GSR+ unit on the left arm for EDA. Further-more, a tripod-mounted Intel RealSense D435i RGB-D camera was deployed to record upper-body kinematics. To ensure operator safety under the shared control architecture, the robot was operated at safe kinematic scale, and an emergency stop switch was positioned within immediate reach of both the participant and the experimenter. To ensure strict environmental regulation, all tasks were conducted in a sealed laboratory room with the central HVAC system disabled. Thermal conditions were actively regulated using portable heating and cooling devices. To standardize intrinsic thermal insulation across all participants in accor-dance with ASHRAE thermal comfort guidelines, all subjects were required to wear long trousers and short-sleeved shirts (yielding an approximate clothing insulation of 0.5 clo ). Il-luminance levels were configured using an adjustable LED   
+
+> Fig. 1. Experimental protocol overview. 3
+> Fig. 2. Multimodal contact-rich pHRI apparatus: xArm6 with force-torque sensing, Tobii Glasses 3, Shimmer3 EXG/GSR+, environmental meters, panel lighting, and RealSense D435i.
+
+panel, while blackout curtains were tightly drawn to prevent daylight intrusion. For the acoustic environment, the natural baseline room noise was approximately 40 dB , whereas the high-noise condition was simulated by broadcasting industrial white noise at 85 dB via acoustic playback equipment. To guarantee consistency with the intended factorial design, environmental parameters were continuously monitored using industrial-grade meters placed relative to the operator. Temper-ature was measured at the abdomen level ( ±0.5 ◦C), acoustic noise was verified near ear height ( ±5 dB ), and illuminance was tracked at the center of the workspace ( ±30 lux ). 
+
+D. Contact-Rich pHRI Tracing Task 
+
+Participants grasped a custom end-effector to physically guide a marker along a predefined reference path on an inclined, corrugated surface as illustrated in Fig. 3. They were instructed to trace the full path accurately and smoothly while maintaining continuous marker-surface contact. As Shown in Fig. 3, the task path concatenated four representative geometric segments in sequence: a zigzag, a long straight line, a circle, and a Bernoulli lemniscate. These segments were specifically designed to elicit diverse human interaction demands, encompassing sharp turns, steady linear motion, continuous curvature, and self-crossing geometry. For the contact board, it is featured a mild sinusoidal corrugation along the primary move direction and was mounted at an approximately 10 ◦ inclination relative to the horizontal plane. 
+
+E. Orthogonal Shared Control 
+
+Inspired by hybrid position/force control, the task space is orthogonally decoupled into a human-guided subspace (planar translation X–Y and rotation) and a robot-regulated normal subspace ( Z) [9]. The control parameters introduced in this section, including the planar deadband bounds and the velocity limits, were empirically selected and tuned through extensive pilot testing based on system performance and recent studies during interaction tasks. The robot operates in Cartesian velocity mode under a zero-stiffness ( kv = 0 ) admittance controller at 500 Hz :
+
+Mv ˙vd + Bv vd = u, (1) where vd ∈ R6 is the velocity command, and Mv , Bv
+
+are diagonal virtual inertia and damping matrices configured as Mv = diag(1 .0, 1.0, 1.0, 0.15 , 0.15 , 0.15) and Bv =diag(120 , 120 , 450 , 4.5, 4.5, 4.5) . Furthermore, to suppress os-cillations during direction changes, the effective damping Bv,i 
+
+was scaled by a reversal damping factor β = 1 .8 whenever the commanded input opposed the current velocity along axis i
+
+(i.e., uivd,i < 0). The admittance input u = [ u⊤ 
+
+> xy
+
+, u z , u⊤ 
+
+> τ
+
+]⊤ ∈
+
+R6 is synthesized channel-wise from the measured external wrench Wext = [ F⊤
+
+> ext
+
+, τ ⊤
+
+> ext
+
+]⊤.In the planar motion subspace, a deadband with linear tran-sition shaping maps the applied planar force fxy = ∥Fext ,xy ∥
+
+> Fig. 3. Contact-rich tracing task: nominal four-segment path, motion direction, and an example scene on the inclined corrugated surface. 4
+
+to the velocity command uxy :
+
+uxy =
+
+
+
+0, fxy ≤ Fdz ,Gxy Fext ,xy 
+
+fxy − Fdz 
+
+F U 
+
+> dz
+
+− Fdz 
+
+, Fdz < f xy < F U
+
+> dz
+
+,Gxy Fext ,xy , fxy ≥ F U
+
+> dz
+
+,
+
+(2) where Gxy = 0 .55 is the admittance gain, Fdz = 2 .8 N and 
+
+F U 
+
+> dz
+
+= 3 .6 N are the lower and upper deadband thresholds for suppressing sensor noise and unintended tremor, and the linear transition between them ensures smooth velocity scaling at motion onset. The resulting X and Y velocity were limited to ±vmax (38 mm /s). In the normal force subspace, the robot executes an au-tonomous contact-force tracking task against the unknown corrugated surface, with tracking error ef = Fext ,z − Fd
+
+defined relative to the desired contact force Fd = 5 N . The normal command uz is given by: 
+
+uz =
+
+
+
+0, |Fext ,z | < F c ∨ | ef | ≤ ϵf ,αz Gz (ef − ϵf ) , ef > ϵ f ,Gz (ef + ϵf ) , ef < −ϵf ,
+
+(3) where Gz = 0 .38 is the baseline error gain, Fc = 0 .35 N 
+
+and ϵf = 0 .5 N are the contact activation threshold and force error deadband, respectively, and αz = 0 .40 is an attenuation factor applied exclusively during upward retreat ( ef > ϵ f ) to prevent abrupt lift-off. The Z velocity was limited at vmax 
+
+for downward moving and at the lower vup = 15 mm /s for upward retreat. In the rotational subspace, human-applied torque τ =
+
+∥τ ext ∥ drives end-effector rotation above a deadband thresh-old: 
+
+uτ =
+
+(0, τ < τ th ,Gτ τ ext , τ ≥ τth , (4) with gain Gτ = 0 .28 and deadband threshold τth = 0 .1 N m .Rotational velocity were limited to ±ωmax = 22 deg /s.
+
+F. Outcome Measures 
+
+During the experiments, robot kinematics, interaction wrenches, and admittance states were recorded at the 500 Hz 
+
+control rate. Human physiological and behavioral signals were acquired in parallel at their sampling rates: forearm and upper-arm sEMG at 512 Hz with the Shimmer3 EXG unit, GSR conductance at 256 Hz with the Shimmer3 GSR+, binocular pupil diameter at 100 Hz , and RGB video at 30 fps for image capture. After each trial, participants rated environmental comfort on a 7-point Likert scale. Recent pHRI assessments frequently characterize operator workload along a single dimension or focus primarily on objective task performance indicators such as execution time and accuracy. However, established instruments such as the NASA Task Load Index explicitly distinguish physical from mental demand, reflecting the multidimensional nature of workload [19]. Meanwhile, these dimensions are not always correlated: prior work has shown that reductions in physical                    
+
+> TABLE I OUTCOME METRICS AND DATA SOURCES .
+> Category Metric Outcome measure Raw data
+> Task performance Tracing error Planar RMSE TCP trajectory Completion time Task duration Robot timestamps Workload Physical workload EhsEMG Cognitive workload −LHIPA zPupil diameter Autonomic workload SCL zGSR conductance Subjective environmental comfort ratings Thermal comfort Comfort rating —Visual comfort Comfort rating —Acoustic comfort Comfort rating —
+
+demand do not necessarily reduce cognitive or psychological burden [20], [21]. Accordingly, we evaluate objective Task Performance using the commonly adopted metrics of tracing error and completion time. Beyond task execution, we explicitly decompose opera-tor workload into three measurable physiological dimensions: 
+
+Physical Workload , Cognitive Workload , and Autonomic Work-load . Table I provides the full mapping of outcome metrics, summary statistics, and raw data sources. 
+
+1) Task Performance : Tracing error was computed as the planar root-mean-square error (RMS) between the executed end-effector Tool Center Point (TCP) trajectory and the pre-defined reference path. Completion time was the duration of the retained active motion window for each trial. 
+
+2) Physical Workload : Physical workload was estimated from right-arm sEMG using the energy cost processing method of Meng et al. [7]. Two bipolar sEMG channels were recorded from the forearm and upper arm, respectively. Each signal was full-wave rectified, smoothed using a 200 ms RMS window, and normalized to yield the muscle activation level ρj (t) ∈
+
+[0 , 1] (j = forearm , upper arm ). Cumulative muscular effort was then computed by integrating the sum of the squared activations of both muscles over the trial duration: 
+
+Eh =
+
+Z te
+
+> t0
+
+ρ2forearm (t) + ρ2upperarm (t) dt. (5) The trial-averaged Eh served as the physical workload metric, where higher values indicate greater muscular exertion. 
+
+3) Cognitive Workload : The LHIPA was selected to quan-tify cognitive workload. LHIPA applies wavelet decomposition to separate low-frequency and high-frequency pupillary os-cillations, where low-frequency components reflect parasym-pathetic activity and slow luminance adaptation, and high-frequency components track sympathetic arousal and cognitive effort [22]. This separation makes LHIPA less sensitive to baseline drift and luminance variation, which is particularly relevant for continuous tracking tasks. As LHIPA is negatively correlated to cognitive load, the raw values were inverted and normalized using within-subject z-score standardization. The trial-averaged metric, denoted −LHIPA z , served as the cognitive workload. 5                                                                                                                                                                                                         
+
+> TABLE II REPORTED DESCRIPTIVE AND INFERENTIAL STATISTICS OF THE OBJECTIVE MEASURES
+> Task Performance Workload Factor Level Tracing error
+> (M±SD )
+> Completion time
+> (M dn , IQR)
+> Physical workload
+> (M dn , IQR)
+> Cognitive workload
+> (M±SD )
+> Autonomic workload
+> (M±SD )
+> Temperature
+> 18 ◦C8.4 ±0.9 227 (48) 27.8 (14.5) -0.30 ±0.50 -0.77 ±0.30
+> 24 ◦C8.6 ±1.2 222 (96) 36.2 (22.7) -0.01 ±0.58 0.51 ±0.64
+> 30 ◦C8.7 ±1.3 238 (62) 37.8 (17.0) 0.19 ±0.45 0.45 ±0.47
+> Main effect F(2) = 0 .14
+> p= 0 .868
+> χ2(2) = 4 .67
+> p= 0 .097 †
+> χ2(2) = 2 .36
+> p= 0 .307
+> F(2) = 2 .30
+> p= 0 .120
+> F(2)=25.96 p¡0.001 ∗∗
+> Effect size η2= 0 .01 W= 0 .19 W= 0 .11 η2= 0 .15 η2= 0 .61
+> Piece-wise ————18–24 ◦C & 18–30 ◦C: ¡0.001 ∗∗
+> 24–30 ◦C: 0.861
+> Noise
+> 40 dB 8.6 ±1.0 241 (60) 31.0 (20.1) -0.00 ±0.46 0.12 ±0.26
+> 85 dB 8.5 ±0.9 240 (71) 34.7 (20.4) -0.06 ±0.26 -0.01 ±0.19
+> Main effect t= 0 .80
+> p= 0 .443
+> t= 1 .27
+> p= 0 .232
+> t=−1.30
+> p= 0 .221
+> t= 0 .36
+> p= 0 .725
+> t= 0 .99
+> p= 0 .345
+> Effect size d= 0 .23 d= 0 .37 d=−0.37 d= 0 .11 d= 0 .28
+> Illuminance
+> 200 lx 8.5 ±1.1 231 (60) 34.2 (21.9) -0.07 ±0.52 -0.08 ±0.40
+> 500 lx 8.5 ±0.9 254 (79) 31.8 (11.4) 0.07 ±0.47 0.10 ±0.17 1000 lx 8.6 ±0.9 230 (59) 26.7 (23.3) 0.01 ±0.33 0.17 ±0.30
+> Main effect F(2) = 0 .01
+> p= 0 .990
+> F(2) = 0 .14
+> p= 0 .868
+> F(2) = 0 .12
+> p= 0 .885
+> F(2) = 0 .27
+> p= 0 .769
+> F(2) = 2 .04
+> p= 0 .146
+> Effect size η2= 0 .00 η2= 0 .01 η2= 0 .01 η2= 0 .02 η2= 0 .11
+> Note: N= 12 .Green bold = best, Red bold = worst within each factor and measure. Normality of subject-level marginal scores was assessed with Shapiro–Wilk ( α= 0 .01 ); Tracing error, Cognitive workload ( −LHIPA z), Autonomic workload ( SCL z) are presented as M±SD ; Completion time, Physical workload ( Eh) are presented as M dn (IQR). Effect sizes: Cohen’s d(paired t), Kendall’s W(Friedman), η2(one-way ANOVA). Bold values denote statistical significance. †p < 0.10 ;∗p < 0.05 ;∗∗ p < 0.01 (main effects and Holm-adjusted piece-wise contrasts).
+
+4) Autonomic Workload : Raw GSR signals were prepro-cessed following a standard pipeline [16]: apparent outliers were removed, and a Butterworth low-pass filter (2 Hz) was applied to attenuate movement artifacts and high-frequency noise. Continuous Decomposition Analysis (CDA) was then applied to separate the signal into a phasic component (SCR) and a tonic component (SCL). As SCL reflects background sympathetic arousal associated with stress, the trial-mean SCL was extracted as the summary statistic. To account for individual differences in baseline conductance, values were normalized using within-subject z-score standardization. The trial-averaged SCL z served as the autonomic workload metric, where higher values indicate greater autonomic arousal. 
+
+G. Statistical Analysis 
+
+To isolate the main effect of each environmental factor, marginal means were computed by averaging across the remaining factors for each participant. Normality of these marginal scores was assessed with the Shapiro-Wilk test (α = 0.01 ). For normally distributed outcomes, a one-way ANOVA was applied to three-level factors (temperature and illuminance) and a paired t-test to the two-level factor (noise); otherwise, Friedman tests and Wilcoxon signed-rank tests were used accordingly. Post-hoc pairwise comparisons were conducted for significant omnibus effects on three-level factors using paired t-tests or Wilcoxon signed-rank tests with Holm-Bonferroni correction. Effect sizes were reported as Cohen’s d for t-tests, Kendall’s W for Friedman tests, and 
+
+η2 for ANOVAs. Exploratory Spearman rank correlations were computed at the trial level across participants between comfort ratings and objective performance metrics. III. Q UANTITATIVE OUTCOMES 
+
+The experimental results are presented below, highlighting the effects of temperature, acoustic noise, and illuminance on task performance, multidimensional workload, and environ-mental comfort ratings during contact-rich tracing ( N =12 ). Findings are structured by measure type (Table I), referencing Fig. 4, Fig. 5, and the inferential evaluation in Table II. 
+
+Task Performance was evaluated using two objective met-rics: tracing error and completion time. The columns 1-2 of Fig. 4 show the distribution of scores for each environmental factor, with inferential statistics summarized in Table II. No significant main effects were found for tracing error across temperature ( F (2) = 0 .14 , p = 0 .868 ), noise ( t = 0 .80 ,
+
+p = 0.443 ), or illuminance ( F (2) = 0.01 , p = 0.990 ). Cohort means ranged from 8.4 mm to 8.7 mm across thermal levels. Completion time showed no significant main effects of noise ( t = 0 .99 , p = 0 .345 ) or illuminance ( F (2) = 0 .14 ,
+
+p = 0.868 ). A marginal temperature effect was observed (χ2(2) = 4.67 , p = 0.097 ; Kendall W = 0.19 ), with session medians between 222 s and 238 s across 18 ◦C, 24 ◦C
+
+and 30 ◦C, but no Holm-adjusted pairwise contrast reached significance. 
+
+Operator Workload was evaluated along physical, cogni-tive, and autonomic dimensions. Columns 3-5 of Fig. 4 and Table II report the distributions and inferential statistics for each workload dimension. No significant main effects were found for physical or cog-nitive workload across any environmental factor. Autonomic workload differed significantly across thermal levels ( F (2) = 25 .96 , p < 0.001 , η2 = 0.61 ), with mean scores lowest 6    
+
+> Fig. 4. Task performance and workload outcomes by environment factor ( N=12 ). Statistically significant Holm-adjusted pairwise differences are annotated;
+> ∗∗ :p < 0.01 .
+
+at 18 ◦C (−0.77 ± 0.30 ) and higher at 24 ◦C (0.51 ± 0.64 )and 30 ◦C (0.45 ± 0.47 ). Holm-adjusted pairwise comparisons indicated lower autonomic workload at 18 ◦C than at 24 ◦C
+
+and 30 ◦C (both p < 0.001 ); the 24 ◦C versus 30 ◦C contrast was not significant ( p = 0 .861 ). Noise and illuminance showed no significant main effects on autonomic workload ( t = 0 .99 ,
+
+p = 0 .345 ; F (2) = 2 .04 , p = 0 .146 ). 
+
+Environmental Comfort Ratings were collected on a 7-point Likert scale after each trial along thermal, visual, and acoustic dimensions. Fig. 5 relates these ratings to within-subject z-scored tracing error and completion time; comfort ratings were not formally tested against environmental factors. Tracing error and completion time remained near the within-participant baseline across all comfort-rating levels within each dimension. Trial-level Spearman correlations between comfort ratings and both performance measures were weak ( |ρ| < 0.13 ;all p > 0.05 ). IV. I NTERPRETATION AND IMPLICATION 
+
+Based on the inferential statistics of robot kinematic metrics and physiological metrics, this study evaluated the effects    
+
+> Fig. 5. Within-subject z-scored tracing error and completion time versus environmental comfort ratings ( N=12 ).
+
+of varying environmental conditions on task performance and multimodal operator workload during contact-rich pHRI. Across 18 combinations of temperature, acoustic noise, and illuminance, task performance remained stable while auto-nomic workload increased selectively with thermal level. This finding suggests that operators maintained execution quality under adverse ambient conditions while sustaining elevated autonomic arousal, which increases mental workload. 
+
+Task performance remained stable across environmental conditions. Tracing error showed no significant main effects across temperature, noise, or illuminance, with cohort means ranging narrowly from 8.4 mm to 8.7 mm . Completion time was unaffected by noise and illuminance. A marginal tem-perature effect on completion time was observed but did not survive post-hoc correction. These results suggest that the tested environmental conditions did not degrade kinematic execution within this task. However, stable task performance alone does not imply that operators were unaffected by the environment. 
+
+Temperature elevated autonomic workload without af-fecting task execution. Autonomic workload was the only measure to show a significant main effect. Mean SCL z was lowest at 18 ◦C and higher at both 24 ◦C and 30 ◦C, with both pairwise contrasts reaching significance after Holm ad-justment. The 24 ◦C versus 30 ◦C contrast was not signifi-cant, suggesting that autonomic arousal may saturate above a moderate thermal threshold rather than scaling linearly with temperature. Physical and cognitive workload showed no significant effects across any environmental factor. These results indicate that thermal load was reflected in autonomic responses before any degradation in tracing execution. 
+
+Perceived comfort decoupled from kinematic perfor-mance. Trial-level Spearman correlations between comfort ratings across all environmental dimensions and both task performance metrics were weak. Operators who reported lower environmental comfort did not show correspondingly higher tracing error or longer completion times. Combined with the autonomic workload findings, this decoupling indicates that subjective comfort ratings, physiological measures, and 7
+
+objective performance metrics each capture distinct aspects of operator state. Objective task performance analysis alone is insufficient to characterize operator state in contact-rich pHRI under varying environmental conditions in a real workspace. Therefore, multimodal physiological assessment is necessary to reveal the full human responses for a human-centered pHRI method to reduce hidden operator workload. 
+
+Limitations. Several limitations warrant consideration. First, the participant pool was recruited from a university setting and lacked prior pHRI experience; thus, generalizing these findings to skilled industrial operators should be done with caution. Second, this study utilized typical, controlled set-tings for temperature, lighting, and noise to establish baseline physiological responses. In practice, however, real-world en-vironmental conditions are inherently broader, more dynamic, and unpredictable. 
+
+Future work. Future research will focus on developing human-centered control strategies based on these empirical findings. First, we plan to recruit more diverse participants, including individuals with industrial backgrounds. Second, utilizing the interaction data collected on the unknown surface, we aim to extract implicit human compliance strategies to enhance the autonomous capability of the robot during contact-rich tasks in an unknown environment. Third, we will analyze how path geometry relates to operator states across the multi-segment path. This will suggest developing a geometry-aware adaptive control method to reduce operator effort. Finally, by integrating our proposed physical, cognitive, and autonomic workload metrics with environmental sensing, we aim to develop physiology-aware variable admittance control, which allows the robot to adapt compliance to both operator states and ambient environmental conditions. V. C ONCLUSION 
+
+This study evaluated operator state during contact-rich pHRI across varying environmental conditions. Our results reveal a decoupling between task performance and autonomic work-load, underscoring the necessity of integrating multimodal physiological signals into human-centered robotic control. ACKNOWLEDGMENT 
+
+The authors would like to acknowledge the financial support for this research received from the U.S. National Science Foundation (NSF) CMMI 2531678. Any opinions and findings in this paper are those of the authors and do not necessarily represent those of the NSF. REFERENCES [1] K. N. D. Widanage, J. Xia, R. Parween, H. Godaba, N. Herzig, R. Glovnea, D. Huang, and Y. Li, “Nonrepetitive-path iterative learning and control for human-guided robotic operations on unknown surfaces,” 
+
+IEEE Transactions on Robotics , vol. 41, pp. 4922–4940, 2025. [2] M. Deng, B. Fu, L. Li, and X. Wang, “Integrating llms and digital twins for adaptive multi-robot task allocation in construction,” IEEE Transactions on Automation Science and Engineering , 2026. [3] Y. Chen and M. Deng, “From perception to symbolic task planning: Vision-language guided human-robot collaborative structured assembly,” 
+
+arXiv preprint arXiv:2601.00978 , 2026. [4] J. Fu, G. Maimone, E. Iovene, J. Zhao, A. Redaelli, G. Ferrigno, and E. De Momi, “Human-inspired active compliant and passive shared control framework for robotic contact-rich tasks in medical applications,” 
+
+IEEE Transactions on Robotics , vol. 41, pp. 2549–2568, 2025. [5] U. E. Ogenyi, J. Liu, C. Yang, Z. Ju, and H. Liu, “Physical human–robot collaboration: Robotic systems, learning methods, collaborative strate-gies, sensors, and actuators,” IEEE Transactions on Cybernetics , vol. 51, no. 4, pp. 1888–1901, 2021. [6] H. Chen, S. Li, J. Fan, A. Duan, C. Yang, D. Navarro-Alarcon, and P. Zheng, “Human-in-the-loop robot learning for smart manufacturing: A human-centric perspective,” IEEE Transactions on Automation Science and Engineering , vol. 22, pp. 11 062–11 086, 2025. [7] L. Meng, L. Yang, and E. Zheng, “Hierarchical human motion intention prediction for increasing efficacy of human-robot collaboration,” IEEE Robotics and Automation Letters , vol. 9, no. 9, pp. 7637–7644, 2024. [8] A. Q. Keemink, H. van der Kooij, and A. H. Stienen, “Admittance control for physical human–robot interaction,” The International Journal of Robotics Research , vol. 37, no. 11, pp. 1421–1444, 2018. [9] F. Ferraguti, C. Talignani Landi, L. Sabattini, M. Bonf` e, C. Fantuzzi, and C. Secchi, “A variable admittance control strategy for stable phys-ical human–robot interaction,” The International Journal of Robotics Research , vol. 38, no. 6, pp. 747–765, May 2019. [10] L. Han, J. Zhang, and H. Wang, “Shared control in phri: Integrating local trajectory replanning and cooperative game theory,” IEEE Transactions on Robotics , vol. 41, pp. 1263–1277, 2025. [11] S. Cremer, S. K. Das, I. B. Wijayasinghe, D. O. Popa, and F. L. Lewis, “Model-free online neuroadaptive controller with intent estimation for physical human–robot interaction,” IEEE Transactions on Robotics ,vol. 36, no. 1, pp. 240–253, 2020. [12] T. Wang, P. Zheng, S. Li, and L. Wang, “Multimodal human–robot interaction for human-centric smart manufacturing: A survey,” Advanced Intelligent Systems , vol. 6, no. 3, p. 2300359, 2024. [13] M. Belkaid, K. Kompatsiari, D. De Tommaso, I. Zablith, and A. Wykowska, “Mutual gaze with a robot affects human neural activity and delays decision-making processes,” Science Robotics , vol. 6, no. 58, p. eabc5044, Sep. 2021. [14] F. A. Storm, M. Chiappini, C. Dei, C. Piazza, E. Andr´ e, N. Reißner, I. Brdar, A. Delle Fave, P. Gebhard, M. Malosio, A. Pe˜ na Fern´ andez, S. ˇStefok, and G. Reni, “Physical and mental well-being of cobot workers: A scoping review using the software-hardware-environment-liveware-liveware-organization model,” Human Factors and Ergonomics in Manufacturing & Service Industries , vol. 32, no. 5, pp. 419–435, 2022. [15] L. Lan, Z. Lian, and L. Pan, “The effects of air temperature on office workers’ well-being, workload and productivity-evaluated with subjective ratings,” Applied ergonomics , vol. 42, no. 1, pp. 29–36, 2010. [16] M. Deng, X. Wang, and C. C. Menassa, “Measurement and prediction of work engagement under different indoor lighting conditions using physiological sensing,” Building and Environment , vol. 203, p. 108098, 2021. [17] ASHRAE, Standard 55-2017, Thermal Environmental Conditions for Human Occupancy , Atlanta, USA, 2017. [18] H. S. Chan, “Occupational noise exposure; criteria for a recom-mended standard,” National Institute for Occupational Safety and Health (NIOSH), Tech. Rep., 1998. [19] S. G. Hart and L. E. Staveland, “Development of nasa-tlx (task load index): Results of empirical and theoretical research,” in Human Mental Workload , ser. Advances in Psychology, P. A. Hancock and N. Meshkati, Eds. North-Holland, 1988, vol. 52, pp. 139–183. [20] M. Lagomarsino, M. Lorenzini, P. Balatti, E. D. Momi, and A. Ajoudani, “Pick the right co-worker: Online assessment of cognitive ergonomics in human–robot collaborative assembly,” IEEE Transactions on Cognitive and Developmental Systems , vol. 15, no. 4, pp. 1928–1937, 2023. [21] N. Mol, J. M. Prendergast, D. A. Abbink, and L. Peternel, “Fitts’ list revisited: An empirical study on function allocation in a two-agent physical human-robot collaborative position/force task,” IEEE Robotics and Automation Letters , vol. 11, no. 1, pp. 202–209, 2026. [22] A. T. Duchowski, K. Krejtz, N. A. Gehrer, T. Bafna, and P. Bækgaard, “The low/high index of pupillary activity,” in Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems , ser. CHI ’20. New York, NY, USA: Association for Computing Machinery, 2020, p. 1–12.

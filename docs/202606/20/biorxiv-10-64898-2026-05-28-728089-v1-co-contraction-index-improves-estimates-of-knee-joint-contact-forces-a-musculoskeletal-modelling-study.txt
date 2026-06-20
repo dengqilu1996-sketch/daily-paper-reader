@@ -1,0 +1,1610 @@
+Title: 2047720
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.05.28.728089v1.full.pdf
+
+Number of Pages: 21
+
+Markdown Content:
+# Co-contraction index improves estimates of knee joint contact forces: A musculoskeletal modelling study 
+
+## Sabrina H ¨ ormann 1,* , Nazli T ¨ umer 1, Amir A. Zadpoor 1, and Ajay Seth 1
+
+> 1
+
+Delft University of Technology, Department of Biomechanical Engineering, Delft, The Netherlands 
+
+> *
+
+s.hoermann@tudelft.nl 
+
+## ABSTRACT 
+
+Healthy individuals are hypothesized to adopt muscle coordination strategies that minimize energy expenditure. However, under pathological conditions, these patterns often change, as patients adopt alternative strategies to enhance stability. In musculoskeletal modeling, such changes in muscle coordination are often not accounted for when estimating internal quantities such as knee joint contact forces. To address this, we adapted the objective function of a muscle redundancy solver to inform muscle activations from electromyography measurements, minimizing errors in both muscle activations and co-contraction levels. The resulting estimates of knee joint contact force were compared with in vivo measurements across three activities. The co-contraction index-informed approach achieved the lowest root-mean-square-error of 0.31 body weight, averaged across all subjects and activities, improving the results of the minimum activation solver by 7% body weight. Notably, root-mean-squared-error increased with the level of co-contraction with the minimum activation approach ( β = 1.55 , 95% confidence interval [0.79, 2.30]), whereas the co-contraction index-informed approach remained less sensitive ( β = 0.78 , 95% confidence interval [0.14, 1.43]). These findings suggest that objective functions based on minimum muscle activation may be insufficient to accurately estimate knee joint forces in individuals with altered muscle coordination. Incorporating co-contraction information is therefore essential to capture subject-specific adaptations. 
+
+## Introduction 1
+
+Non-pharmacological rehabilitation programs for patients with knee osteoarthritis (KOA) primarily focus on therapeutic 2
+
+exercises to increase muscle strength, improve gait function, and enhance balance 1. Currently, these exercise recommendations 3
+
+are largely based on expert opinion, and there is only limited evidence supporting specific movement programs 2. Therefore, one 4
+
+question that often arises for both physicians and patients is the appropriate amount and intensity of exercise that is safe and 5
+
+beneficial for the patient 3. While exercise interventions have been shown to reduce pain and improve both functional outcomes 6
+
+and quality of life compared to no intervention 4, 5 , MRI findings indicate no corresponding reduction in joint inflammation 4.7
+
+Excessive knee joint loading is closely associated with cartilage inflammation, which is thought to be a factor in the progression 8
+
+of KOA 6–8 . This suggests that conventional training protocols are not sufficiently focused on reducing knee joint loading during 9
+
+daily activities. 10 
+
+Gait retraining has been reported as an effective approach to redistributing or reducing knee joint forces 9–11 . Strategies for 11 
+
+adapting walking patterns described in the literature include altering the foot progression angle 10, 12 , using a medial thrust 12 
+
+gait 13 , or using trunk lean 13 . Furthermore, adapting muscle coordination strategies, such as activating the soleus rather than 13 
+
+the gastrocnemius during the push-off phase of walking, has been reported to decrease knee joint contact forces at the second 14 
+
+peak 9. These studies, therefore, indicate how essential it is to track the subject’s knee joint loading to evaluate the effect of 15 
+
+using gait retraining during rehabilitation and to assess the progression of KOA. Since direct measurements of knee joint forces 16 
+
+in an intact knee are not feasible, musculoskeletal (MSK) modeling is a viable approach for estimating knee joint contact forces 17 
+
+during gait retraining. 18 
+
+One key challenge in MSK modeling is solving the muscle redundancy problem. This problem arises because the human 19 
+
+musculoskeletal system has more muscles than the number of degrees of freedom required to produce a specific movement. 20 
+
+Consequently, different muscle activation strategies can produce the same motion but result in varying internal quantities, such 21 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint as joint loading and metabolic cost, posing a challenge for determining the strategy an individual subject adopts. Healthy adults 22 
+
+are thought to select a neuromuscular activation strategy that minimizes metabolic cost during tasks such as walking 14 . This 23 
+
+strategy is implemented by computing the muscle activation pattern that minimizes the sum of squared muscle activations 15 .24 
+
+However, KOA patients may optimize muscle coordination strategies, for example, to reduce pain or enhance joint stability, 25 
+
+thereby reducing the risk of falls or trips 16 . This adaptation in muscle coordination strategy is supported by previous findings 26 
+
+indicating greater muscle co-contraction in some individuals with early-stage KOA than in healthy controls 17, 18 . Increases 27 
+
+in muscle co-contraction, commonly quantified using a co-contraction index (CCI), elevates knee joint loading and should 28 
+
+therefore be considered in knee joint contact force estimations of KOA patients 19, 20 . To account for differences in the muscle 29 
+
+coordination strategy, the simulation framework must be informed of the patient-specific differences in the muscle activation 30 
+
+pattern. The most effective non-invasive approach to measure patient-specific muscle activation patterns is electromyography 31 
+
+(EMG). EMG-informed simulations integrate neuromuscular control strategies by utilizing surface EMG signals recorded 32 
+
+from selected muscles, thereby providing subject-specific insight into muscle activation dynamics. The application of current 33 
+
+EMG-informed approaches in out-of-laboratory settings remains limited, primarily due to the requirement for EMG data 34 
+
+from ideally all relevant muscles 21 or, at a minimum, from eight muscles 22 . In addition, these approaches typically require 35 
+
+subject-specific model calibration, which can be computationally demanding 23, 24 .36 
+
+In this study, we explore an alternative approach by incorporating EMG measurements directly into the objective function 37 
+
+of the muscle redundancy solver 9, aiming to reduce the need for extensive EMG recordings and time-consuming calibration 38 
+
+procedures. The primary objective of this study is to test estimated knee contact forces (KCF) from MSK modeling during level 39 
+
+walking, ramp descent, and stair descent, against in vivo measurements from instrumented implants 25, 26 .40 
+
+## Methods 41 
+
+To achieve this, we used the measurements from the publicly available Comprehensive Assessment of the Musculoskeletal 42 
+
+System (CAMS) dataset 26 as inputs to our MSK modeling simulation pipeline to estimate KCF. The resulting KCF estimates 43 
+
+obtained from minimum muscle activation, EMG-informed, and CCI-informed solvers were compared to the in vivo data and 44 
+
+then quantitatively evaluated. An overview of the methods is presented in Figure 1. 45 
+
+Experimental Data. The CAMS knee dataset 26 provides in vivo measurements of the three force and three moment components 46 
+
+(90–100 Hz acquisition frequency) acting on the tibial implant. The dataset includes measurements of five males and one 47 
+
+female (68 ± 5 years old, 88 ± 12 kg, and 173 ± 4 cm height), who received cemented INNEX knee implants (Zimmer, 48 
+
+Switzerland; FIXUC). We analyzed all gait-related activities including level walking, ramp descent, and stair descent. For 49 
+
+level walking, simulations were conducted on eight trials per subject. For ramp and stair descent, four trials per subject were 50 
+
+analyzed. Data from subject K3R during ramp descent were excluded due to invalid ground reaction force measurements, as 51 
+
+both feet contacted a single force plate during these trials. Whole-body kinematics were measured using 75 skin markers and a 52 
+
+26-camera motion-capture system (Vicon, UMG, UK) at 100 Hz. Ground reaction forces were collected at 2000 Hz with six 53 
+
+force plates embedded in the walkway (Kistler Instrumentation, Winterthur, Switzerland). Bilateral muscle activity for eight 54 
+
+major lower limb muscles (rectus femoris, vastus medialis, vastus lateralis, tibialis anterior, semitendinosus, biceps femoris 55 
+
+long head, medial gastrocnemius, and lateral gastrocnemius) was detected using a 16-channel wireless EMG system (Trigno, 56 
+
+Delsys, USA) with a signal delay of 48ms. The raw EMG was high-pass filtered at 100 Hz, full-wave rectified, and low-pass 57 
+
+filtered at 4 Hz to obtain EMG envelopes, as per ISEK 27 . The 48 ms signal delay was corrected. Furthermore, the ground 58 
+
+reaction forces were low-pass filtered (zero-phase shift Butterworth filter, 4th order, 12Hz). 59 
+
+Musculoskeletal Modeling. We used a generic full-body MSK model described by Rajagopal et al. 28 , with adaptations 60 
+
+from Lai et al. 29 and Uhlrich et al. 9, incorporating 37 degrees of freedom (DOF), 80 musculotendon actuators for the lower 61 
+
+extremities, and 17 ideal torque actuators for the upper body. The model included six DOF between the pelvis and the ground, 62 
+
+three rotational DOF between the pelvis and torso, three rotational DOF at each hip, one rotational DOF at each knee that 63 
+
+parametrized the remaining rotational and translational DOF of the tibiofemoral and patellofemoral joints with respect to knee 64 
+
+flexion, and one rotational DOF at each of the ankle, subtalar, and metatarsophalangeal joints. 65 
+
+MSK modeling and simulation were performed using OpenSim 4.5 30, 31 , with the simulation workflow automated using 66 
+
+the Snakemake workflow management system 32 . The generic model was scaled using the OpenSim Scale Tool to match 67 
+
+subject-specific anthropometric measurements obtained from a standing static trial, during which virtual model markers were 68 
+
+adjusted to align with experimental marker locations. Model scaling proportionally adjusted muscle optimal fiber lengths, 69 
+
+tendon slack lengths, and muscle moment arms according to segment-specific scaling factors, while preserving the ratio of 70 
+
+tendon slack length to optimal fiber length for each muscle. Model kinematics were estimated from experimental marker data 71 
+
+> 2/16
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+Measurements 
+
+CAMS* Dataset Outputs 
+
+• Marker positions • Ground reaction forces • EMG • In vivo knee joint forces 6 Subjects (1 Female, 5 Male) • 68 ± 5 years old   
+
+> •88 ± 12 kg
+> •173 ± 4 cm height
+> INNEX FIXUC Instrumented knee implant (Zimmer, Switzerland)
+
+MSK Modeling 
+
+Scaling & Inverse Kinematics   
+
+> Input: Marker positions Output: Joint angles
+
+Validation   
+
+> Input: In vivo knee joint forces Estimated knee joint forces
+
++Example of knee joint compressive forces during level walking for one subject comparing in vivo forces to the 
+
+estimated forces from four different 
+
+muscle redundancy solvers 
+
+Muscle Redundancy Solvers  
+
+> Input: Output: Estimated knee joint forces Ground reaction forces
+
++
+
+Objective 
+
+Minimize muscle activations 
+
+1. Static Optimization 
+
+2. Rapid Muscle Redundancy Solver 
+
++ Minimize EMG muscle activation error 
+
++ Include passive muscle forces 
+
+3. EMG-informed 4. CCI-informed  
+
+> EMG + Input:
+> Joint angles
+> EMGs: • rectus femoris
+> • vastus medialis and lateralis
+> • tibialis anterior • semitendinosus
+> • biceps femoris long head • medial and lateral gastrocnemius
+> all (8) muscle pair (2)
+
+## a. b. c. d. 
+
+Level walking Ramp descent Stair descent Force plates Marker Instrumented implant EMGs 
+
+*Comprehensive Assessment of the Musculoskeletal System (CAMS) Figure 1. Overview of the experimental and simulation workflow. (a) Input measurements are obtained from the publicly available CAMS dataset 26 . All measurements from the CAMS dataset are marked in green. ( b) Marker trajectories are used to scale a generic musculoskeletal model and perform inverse kinematics. ( c) The resulting joint angles, together with measured ground reaction forces, are used as input for four muscle redundancy solvers. Static Optimization and the Rapid Muscle Redundancy solver minimize muscle activation; the latter additionally accounts for passive muscle forces. For the EMG-informed and CCI-informed solvers, the objective function additionally minimizes the error between predicted and measured muscle activations. The EMG-informed solver uses measurements from eight muscles as input, whereas the CCI-informed solver minimizes the error in co-contraction of Medial Gastrocnemius and Vastus Lateralis. ( d) All solvers estimate knee joint compressive forces, which are subsequently tested against in vivo measurements using an instrumented implant. using the OpenSim Inverse Kinematics tool, which minimizes the distance error between experimental marker trajectories and 72 
+
+corresponding virtual model markers. The resulting joint kinematics were used as inputs to the static optimization (SO) solver 73 
+
+and the Rapid Muscle Redundancy (RMR) 33 solver to estimate muscle activations. Knee joint contact forces were computed 74 
+
+3/16 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint from muscle force estimates using the OpenSim Joint Reaction Analysis tool. For muscle forces estimated with the RMR 75 
+
+solver, the corresponding knee joint contact forces were computed in Python (version 3.10.17) by calling the OpenSim API. To 76 
+
+ensure consistency with the orientation of the in vivo implant, the reference systems were adjusted according to the reported 77 
+
+patient-specific tibial slope 26 .78 
+
+Muscle redundancy solvers. To capture the effect of changes in muscle coordination patterns in KOA patients, we adapted the 79 
+
+objective function of the RMR solver to account for the measured EMG signals. The SO and the RMR solver both address 80 
+
+the muscle redundancy problem by identifying the muscle activation ai,t , where i ∈ { 1, . . . , Nm} refers to each muscle, that 81 
+
+minimizes the cost function. The cost function is defined as the sum of squared muscle activations across all muscles Nm at 82 
+
+each time step t of the input motion (Equation 1–SO and Equation 2–RMR) 15, 33, 34 .83 
+
+J(at ) = 
+
+> Nm
+
+# ∑
+
+> i=1
+
+a2 
+
+> i,t
+
+(1) The optimization is subject to constraints ensuring that the model dynamics (equations of motion) produce accelerations 84 
+
+consistent with the experimentally measured motion. In addition, muscle-generated joint moments were limited to match 85 
+
+those computed from inverse dynamics, and muscle forces were kept within physiological boundaries defined by the maximal 86 
+
+isometric muscle force. Furthermore, for each DOF in the MSK model, ideal reserve actuators were included to compensate 87 
+
+for residual dynamics resulting from inaccuracies and inconsistencies between the model and the experimental data. For SO, 88 
+
+limiting the activation of the reserve actuators is achieved by defining a small optimal force ( < 10 Nm), whereas in the RMR 89 
+
+solver, the reserve actuators are separately included in the objective function (Equation 2). To discourage the solver from using 90 
+
+the reserve actuator r j,t , where j ∈ { 1, . . . , Nn} corresponds to each coordinate actuator, the reserve actuator weights v j are set 91 
+
+proportionally higher, at 10 times the muscle weights wi.92 
+
+J(at , rt ) = 
+
+> Nm
+
+# ∑
+
+> i=1
+
+wia2 
+
+> i,t
+
++
+
+> Nn
+
+# ∑
+
+> j=1
+
+v jr2 
+
+> j,t
+
+(2) Furthermore, unlike the SO solver, the RMR solver incorporates passive muscle fiber forces to preserve physiological behaviors 93 
+
+and imposes constraints on muscle activation dynamics to ensure continuity of the activation profile 33 .94 
+
+In the next step, we extended the RMR solver’s cost function to account for tracking EMG measurements. Therefore, we 95 
+
+included a third term in the cost function that minimizes the error between the normalized EMG measurement and the estimated 96 
+
+muscle activation (Equation 3). The optimization problem was formulated as 97 
+
+J(at , ct , et ) = 
+
+> Nm
+
+# ∑
+
+> i=1
+
+wia2 
+
+> i,t
+
++
+
+> Nn
+
+# ∑
+
+> j=1
+
+v jr2 
+
+> j,t
+
++
+
+> Np
+
+# ∑
+
+> k=1
+
+uke2 
+
+> k,t
+
+(3) , where ek,t = ak,t − EMG norm k,t and k ∈ { 1, . . . , Np} corresponds to the muscles for which EMG measurements are available. 98 
+
+To penalize deviations between estimated muscle activations ak,t and EMG signals normalized to maximal voluntary contraction 99 
+
+(MVC) EMG norm k,t , the weight uk were scaled to be twice as large as the muscle weights wi. Thus, fidelity to measured 100 
+
+activation patterns is prioritized over minimization of muscle activations. As EMG data were available only for the rectus 101 
+
+femoris, vastus medialis, vastus lateralis, semitendinosus, biceps femoris long head, medial gastrocnemius, lateral gastrocnemius, 102 
+
+and tibialis anterior, the EMG measurement-to-simulation estimate error term was evaluated exclusively for these muscles. For 103 
+
+all remaining muscles, no additional EMG cost term was included. 104 
+
+Finally, we introduce a CCI-informed cost designed to quantify the level of co-contraction contributing to elevated KCF. The 105 
+
+CCI is a relative measure and is therefore less sensitive to inaccuracies in MVC normalization that arise when subjects are 106 
+
+unable to achieve true maximal muscle contractions. As a result, no additional calibration is required to correct for MVC-related 107 
+
+bias, avoiding the need for further measurements. The initial RMR cost function (Equation 1) was then extended by an 108 
+
+additional term that minimizes the squared error between the CCI calculated from EMG measurements CCI measured ,t and from 109 
+
+the simulation CCI simulation ,t (Equation 4). The objective function was defined as 110 
+
+4/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+J(at , rt , ct ) = 
+
+> Nm
+
+# ∑
+
+> i=1
+
+wia2 
+
+> i,t
+
++
+
+> Nn
+
+# ∑
+
+> j=1
+
+v jr2 
+
+> j,t
+
++ s c 2 
+
+> t
+
+(4) , where ct = CCI simulation ,t − CCI measured ,t .111 
+
+Similar to the EMG-informed approach, the weighting factor s for the CCI error term was set to twice the muscle weights 112 
+
+wi, thereby prioritizing minimization of CCI errors over minimization of muscle activation to account for changes in muscle 113 
+
+coordination strategy. 114 
+
+The CCI was calculated as proposed by Rudolph et al. 19 :115 
+
+CCI = EMG S
+
+EMG L
+
+(EMG S + EMG L) (5) , where EMG S denotes the smaller muscle activity value and EMG L the larger muscle activity value, which prevents division 116 
+
+by zero and constrains the CCI to the range 0– 219 . The CCI was calculated for multiple antagonistic muscle pairs crossing the 117 
+
+knee joint. The largest discrepancy between measured and RMR predicted co-contraction based on the minimum activation 118 
+
+objective function was observed between the vastus lateralis (VL) and medial gastrocnemius (MG) pair. Furthermore, both 119 
+
+muscles are superficially located, which enhances the reliability of surface electromyography measurements due to reduced 120 
+
+signal attenuation from overlying tissues 35 . Therefore, this muscle pair was selected for use in the CCI-informed simulations. 121 
+
+Statistical Analysis and Evaluation Metrics. Three statistical measures were utilized to evaluate the correspondence between 122 
+
+the simulated and in vivo KCF. The root mean squared error (RMSE) quantifies the overall magnitude of the error between the 123 
+
+simulated and measured forces across all time steps within each trial. The coefficient of determination R 2 describes how well 124 
+
+the temporal waveform of the estimated forces corresponds to the in vivo measurements. In addition, the peak force error was 125 
+
+defined as the difference at the second peak of the stance phase, computed as the maximum absolute value within 40–60% 126 
+
+of the trial for both the measured and simulated knee joint compressive forces. For each metric, we calculated the mean and 127 
+
+standard deviation over all trials, including level walking, ramp descent, and stair descent. Statistical differences were assessed 128 
+
+using the Wilcoxon signed-rank test for paired, non-normally distributed data, with Holm–Bonferroni correction applied to 129 
+
+account for multiple comparisons across muscle redundancy solvers. A corrected p-value below α = 0.05 was considered 130 
+
+statistically significant. Additionally, we analyzed the relationship between RMSE and CCI for the four muscle redundancy 131 
+
+solvers. First, a linear mixed-effects regression model was specified with a subject-specific random intercept to account for 132 
+
+between-subject variability in baseline RMSE across repeated trials. However, the model did not converge consistently across 133 
+
+analyses and therefore did not yield reliable estimates for inference. As a result, we evaluated the relationship between RMSE 134 
+
+and CCI using linear regression with cluster-robust standard errors to account for within-subject dependence in the data. The six 135 
+
+subjects were treated as clusters. From this analysis, we report the slope ( β , in BW per unit CCI), cluster-robust standard errors, 136 
+
+95 % confidence intervals (95 % CI), p-values, and the number of observations ( N). Statistical significance was defined as 137 
+
+p < 0.05 . All statistical analyses were performed in Python (version 3.10.17) using the SciPy library (version 1.15.2). During 138 
+
+post-processing, the compressive KCF was smoothed using a Savitzky-Golay filter (window length = 41 frames, polynomial 139 
+
+order = 3) to reduce numerical artifacts in the estimated KCF. 140 
+
+## Results 141 
+
+In this study, we compared the estimated compressive KCF obtained from four muscle redundancy solvers - SO, minimum 142 
+
+activation (RMR), EMG-informed, and CCI-informed – to the in vivo measured KCF from all six subjects in the CAMS dataset. 143 
+
+The comparison was performed across three activities: level walking, ramp descent, and stair descent. To ensure consistency 144 
+
+across simulations, a fixed weighting scheme was applied in the objective function of the RMR solver. Specifically, the weight 145 
+
+of the muscle activation minimization term was used as the baseline reference and set to 1, and all other cost function terms 146 
+
+were scaled accordingly. Therefore, the reserve actuator term was assigned a weight of 10, while the EMG-informed and 147 
+
+CCI-informed cost function terms were assigned each a weighting factor of 2. 148 
+
+The resulting compressive KCF profiles are shown in Figure 2, illustrating the mean ± 1 standard deviation (std) across multiple 149 
+
+trials over time for each subject during level walking (Figure 2a), ramp descent (Figure 2b), and stair descent (Figure 2c). 150 
+
+Overall, all four muscle redundancy solvers captured the general shape and trends of the in vivo measurements. To further 151 
+
+5/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint 0
+> 1
+> 2
+> 3
+
+K1L 
+
+> 0
+> 1
+> 2
+> 3
+
+K2L 
+
+> 0
+> 1
+> 2
+
+K3R      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+
+K5R      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+
+K7L      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+
+K8L 
+
+Level walking 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%] 
+
+> 0
+> 1
+> 2
+> 3
+
+K1L 
+
+> 0
+> 1
+> 2
+> 3
+> 4
+
+K2L      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+
+K5R      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+
+K7L      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+
+K8L 
+
+Ramp descent 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%] 
+
+> 0
+> 1
+> 2
+> 3
+> 4
+
+K1L 
+
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+
+K2L 
+
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+
+K3R      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+
+K5R      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+
+K7L      
+
+> 020 40 60 80 100
+> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+
+K8L 
+
+Stair descent 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%]     
+
+> Static Optimization Minimum Activation EMG-informed CCI-informed in vivo
+
+a. 
+
+b. 
+
+c. Figure 2. Simulated and measured compressive knee joint contact forces over the activity cycle. Comparison of estimated knee contact forces (mean ± 1 std) from Minimum Activation (green), Static optimization (yellow), EMG-informed (blue) and CCI-informed (red) to in vivo measurements (black) from an instrumented implant for each subject in level walking ( a), ramp descent ( b) and stair descent ( c). 
+
+6/16 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint K1L K2L K3R K5R K7L K8L Overall 
+
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> 1.4
+> RMSE [BW]
+
+a.                            
+
+> abcd
+> aaab
+> abcb
+> aabb
+> abcd
+> abab
+> abab c
+> K1L K2L K3R K5R K7L K8L Overall
+> Subject
+> 0.00
+> 0.05
+> 0.10
+> 0.15
+> 0.20
+> 0.25
+> 0.30
+> CCI [-]
+
+b.     
+
+> Static Optimization Minimum Activation EMG-informed CCI-informed in vivo
+
+Figure 3. Comparison of RMSE and CCI across muscle redundancy solvers for each subject and across all subjects combined (Overall) including all three activities. (a) RMSE of estimated compressive KCF from four muscle redundancy solvers across all activities, shown per subject and all subjects combined (Overall). Boxplots represent the distribution of RMSE values for each subject across all trials from level walking, ramp descent and stair descent, as well as the overall distribution across subjects. Letters above each boxplot indicate significant differences p < 0.05 in RMSE within each grouped boxplot. Different letters denote a significant difference, while identical letters indicate no significant difference. P-values are reported in Table S1 of the Supplementary Material. CCI-informed (red) simulations result in the lowest overall RMSE. The minimum activation (green) solver yields mean RMSE values between 0.27 and 0.58 BW. EMG-informed (blue) simulations results in considerable inter-subject variability: RMSE is lowest for K1L, K3R, and K5R, but highest for K2L, K7L, and K8L. Static Optimization (yellow) simulations lead to the highest RMSE across solvers. ( b) CCI calculated from Vastus Lateralis and Medial Gastrocnemius muscle activations, comparing EMG measurements (black) with co-contraction predicted by four muscle redundancy solvers across all activities. Boxplots are shown per subject and for the overall distribution across subjects. While in vivo CCI is low for K3R and K8L, co-contraction in the other subjects is considerably higher. quantify differences between solvers, evaluation metrics were calculated against the ground truth from the instrumented 152 
+
+implants. 153 
+
+The resulting analysis is summarized in Figure 3a, which presents the RMSE across all included trials and activities for each 154 
+
+subject, as well as the overall across all subjects. In addition, Table 1 reports the corresponding mean ± std RMSE values. The 155 
+
+results indicate that CCI-informed simulations achieved the lowest overall RMSE, with a mean value of 0.31 body weight (BW). 156 
+
+For individual subjects, the CCI-informed approach showed the lowest RMSE for K2L, K7L, and K8L. For the remaining 157 
+
+subjects, K1L, K3R, and K5R, the EMG-informed approach achieved the lowest RMSE. However, the EMG-informed solver 158 
+
+showed the highest RMSE for K2L, K7L, and K8L, resulting in an overall mean RMSE of 0.44 BW. The minimum activation 159 
+
+(RMR) simulations resulted in the second-lowest overall RMSE (0.38 BW), 0.07 BW above the CCI-informed simulations. 160 
+
+Comparison between CCI-informed and minimum activation (RMR) approach revealed significant improvements ( p < 0.05) in 161 
+
+7/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+RMSE using the CCI-informed approach overall and for subjects K1L, K2L, K5R, and K7L, whereas the other two subjects 162 
+
+showed only minimal, non-significant reductions. The largest improvements compared to the minimum activation (RMR) 163 
+
+approach were observed in subject K1L and K5R, with a descrease in mean RMSE of 0.14 BW. Across all subjects combined, 164 
+
+static optimization exhibited the highest mean RMSE of 0.47 BW. 165 
+
+In addition, the corresponding CCI values of the VL and MG across all trials and activities for each subject, as well as the 166 
+
+overall across subjects are summarized in Figure 3b. In vivo EMG measurements indicate higher co-contraction for subjects 167 
+
+K1L, K2L, K5R, and K7L compared to the estimated co-contraction obtained with the minimum activation (RMR) approach. 168 
+
+In CCI-informed simulations, this discrepancy is reduced by an average of 0.03 in these subjects. For the remaining subjects, 169 
+
+the measured and estimated co-contraction values are more closely aligned across all muscle redundancy solvers. 
+
+Metric Subject Static Optimization Minimum Activation EMG-informed CCI-informed RMSE [BW] K1L 0.53 ± 0.13 0.58 ± 0.11 0.31 ± 0.09 0.44 ± 0.10 (mean ± std) K2L 0.34 ± 0.14 0.32 ± 0.12 0.43 ± 0.20 0.24 ± 0.13 K3R 0.46 ± 0.29 0.28 ± 0.14 0.23 ± 0.13 0.27 ± 0.15 K5R 0.60 ± 0.38 0.45 ± 0.15 0.29 ± 0.08 0.31 ± 0.12 K7L 0.44 ± 0.27 0.35 ± 0.16 0.76 ± 0.14 0.31 ± 0.18 K8L 0.45 ± 0.19 0.27 ± 0.11 0.54 ± 0.13 0.26 ± 0.10 Overall 0.47 ± 0.25 0.38 ± 0.17 0.44 ± 0.22 0.31 ± 0.14 R2 [-] K1L 0.783 ± 0.077 0.741 ± 0.068 0.924 ± 0.039 0.849 ± 0.060 (mean ± std) K2L 0.882 ± 0.076 0.894 ± 0.054 0.816 ± 0.138 0.942 ± 0.050 K3R 0.540 ± 0.506 0.851 ± 0.132 0.888 ± 0.110 0.848 ± 0.146 K5R 0.693 ± 0.290 0.839 ± 0.070 0.927 ± 0.029 0.918 ± 0.041 K7L 0.838 ± 0.177 0.906 ± 0.075 0.593 ± 0.126 0.922 ± 0.082 K8L 0.725 ± 0.170 0.910 ± 0.062 0.650 ± 0.117 0.913 ± 0.055 Overall 0.752 ± 0.261 0.857 ± 0.097 0.796 ± 0.167 0.901 ± 0.082 Peak Force Error K1L 0.66 ± 0.42 0.63 ± 0.31 0.27 ± 0.14 0.51 ± 0.22 [BW] K2L 0.45 ± 0.54 0.31 ± 0.20 0.38 ± 0.28 0.17 ± 0.13 (mean ± std) K3R 0.86 ± 0.96 0.37 ± 0.42 0.28 ± 0.27 0.35 ± 0.40 K5R 1.27 ± 1.42 0.45 ± 0.31 0.28 ± 0.14 0.38 ± 0.23 K7L 0.94 ± 0.99 0.39 ± 0.43 0.96 ± 0.36 0.32 ± 0.39 K8L 1.18 ± 0.59 0.63 ± 0.30 0.72 ± 0.43 0.63 ± 0.28 Overall 0.89 ± 0.91 0.47 ± 0.35 0.49 ± 0.39 0.40 ± 0.32 
+
+Table 1. Summary of RMSE, R2 and peak force error of the second peak in stance phase for each subject and across all subjects (Overall). Metrics are compared across four muscle redundancy solvers: Static Optimization, Minimum Activation (RMR), EMG-informed, and CCI-informed. For each subject and the overall results, the best-performing solver is highlighted in green and the worst-performing solver in red. The results show that the CCI-informed simulations performed best for each evaluation metric for all subjects combined (Overall). 
+
+> 170
+
+Furthermore, Table 1 reports mean ± std RMSE, R2, and peak force error at the second peak of the stance phase across activities 171 
+
+for each subject individually, as well as the overall across subjects. The R2 results show that the CCI-informed simulations 172 
+
+achieve an overall value above 0.9, which is also reflected in the closer agreement with the in vivo measurements, for example 173 
+
+in the first peak during ramp descent and stair descent for subject K1L, as shown in Figures 2b and 2c. In contrast, each of 174 
+
+the other four muscle redundancy solvers yielded an overall R2 below 0.86. For the peak force error, similar patterns to those 175 
+
+observed for the RMSE can be observed between the muscle solvers. An exception is the SO solver, which exhibits the highest 176 
+
+peak force error in five of the six subjects, which is also reflected in the pronounced peak deviations in the stair descent curves 177 
+
+shown in Figure 2c. The overall peak error of SO is 0.89 BW, which is 0.49 BW higher compared to the best-performing 178 
+
+CCI-informed simulations, which show an overall error of 0.4 BW. 179 
+
+In the next step, we analyzed the RMSE between the in vivo measured KCF and the estimates from the four muscle redundancy 180 
+
+solvers across all trials and subjects for each activity, as presented in Figure 4a. In addition, Table S2 of the Supplementary 181 
+
+Material reports the corresponding mean ± 1 std RMSE values. For the SO, minimum activation (RMR), and CCI-informed 182 
+
+solvers, RMSE show minimal change between level walking and ramp descent, whereas all three solvers show an increase in 183 
+
+mean RMSE during stair descent compared to the other two activities. For the EMG-informed solver, mean RMSE progressively 184 
+
+increases from level walking to ramp descent and stair descent. Moreover, CCI-informed simulations differed significantly 185 
+
+8/16   
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint Level Walking Ramp Descent Stair Descent
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> 1.4
+> RMSE [BW]
+
+a. 
+
+a a ab b
+
+a a a b
+
+a b bc c  
+
+> Level Walking Ramp Descent Stair Descent
+
+Activity 
+
+> 0.00
+> 0.05
+> 0.10
+> 0.15
+> 0.20
+> 0.25
+> 0.30
+> CCI [-]
+
+b.     
+
+> Static Optimization Minimum Activation EMG-informed CCI-informed in vivo
+
+Figure 4. Comparison of RMSE and CCI across muscle redundancy solvers for each activity including all six subjects. (a) RMSE of estimated compressive KCF from four muscle redundancy solvers across all subjects, shown per activity. Boxplots represent the distribution of RMSE values for each activity (level walking, ramp descent, stair descent) across all trials from six subjects. Letters above each boxplot indicate significant differences ( p < 0.05) in RMSE within each grouped boxplot. Different letters denote a significant difference, while identical letters indicate no significant difference. P-values are reported in Table S3 of the Supplementary Material. For Static Optimization (yellow), Minimum Activation (green), and CCI-informed (red), RMSE is similar between level walking and ramp descent but increases during stair descent. EMG-informed (blue) simulations show a progressive increase in RMSE from level walking to ramp descent and further to stair descent. (b) Vastus Lateralis and Medial Gastrocnemius CCI comparing EMG measurements (black) to resulting co-contraction from four different muscle redundancy solvers across all subjects, shown per activity. In vivo CCI results show increasing co-contraction from level walking to ramp descent and further to stair descent. from the other three solvers ( p < 0.01 ), exhibiting a 0.07 BW reduction compared to minimum activation (RMR) approach in 186 
+
+mean RMSE for each activity. 187 
+
+Furthermore, Figure 4b presents the corresponding CCI values of the VL and MG across all subjects and trials for each activity. 188 
+
+The results show that in vivo CCI progressively increases from level walking to ramp descent and stair descent, a pattern that is 189 
+
+consistently reproduced by all four muscle redundancy solvers. 190 
+
+To assess the relationship between KCF errors and muscle co-contraction, we further analyzed the correlation between RMSE 191 
+
+and CCI using a linear regression model with cluster-robust standard errors in Figure 5. This analysis was motivated by 192 
+
+previous results showing that CCI-informed simulations have lower RMSE values than the minimum activation (RMR) solution, 193 
+
+particularly in subjects with higher co-contraction. The corresponding regression coefficient ( β , in BW per unit CCI), cluster-194 
+
+robust standard errors, 95 % confidence intervals (95 % CI), p-values, and the number of observations ( N) are reported in 195 
+
+Table S4 of the Supplementary Material. Furthermore, the results of the linear mixed-effect model for all converged analyses 196 
+
+are reported in Table S5 of the Supplementary Material. The results in Figure 5a indicate a positive correlation between RMSE 197 
+
+and CCI for the minimum activation (RMR) simulations ( β = 1.55 , 95% CI [0.79, 2.30]), whereas the correlation in the 198 
+
+CCI-informed muscle redundancy solver is smaller ( β = 0.78 , 95% CI [0.14, 1.43]). In Figure 5b-d, the correlation between 199 
+
+9/16     
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint 0.05 0.10 0.15 0.20 0.25
+> CCI [-]
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> RMSE [BW]
+
+a. All Activities: Level Walking, Ramp Descent, Stair Descent  
+
+> 0.1 0.2
+> CCI [-]
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> RMSE [BW]
+
+b. Level Walking  
+
+> 0.1 0.2
+> CCI [-]
+
+c. Ramp Descent  
+
+> 0.1 0.2
+> CCI [-]
+
+d. Stair Descent    
+
+> Level Walking
+> Stair Descent
+> Ramp Descent
+> Static Optimization Minimum Activation EMG-informed CCI-informed
+
+Figure 5. Statistical analysis of the correlation between RMSE and CCI using a linear regression with cluster-robust standard errors, comparing the four muscle redundancy solvers across all activities combined (a) and for each activity separately (b–d). A positive association ( β = 1.55, 95% CI [0.79, 2.30]) between RMSE and CCI was observed for the minimum activation (RMR) solver across all activities, as well as for each activity individually ( β > 0.96). In contrast, this association was weaker for the CCI-informed solver across all activities ( β = 0.78 , 95% CI [0.14, 1.43]) and specifically during level walking and ramp descent, with β = 0.29 (95% CI [-1.34, 1.92]) and β = 0.34 (95% CI [-0.50, 1.17]), respectively. RMSE and CCI is plotted separately for each activity. These results suggest that the CCI-informed method, particularly for 200 
+
+level walking ( β = 0.29 , 95% CI [-1.34, 1.92]) and ramp descent ( β = 0.34 , 95% CI [-0.50, 1.17]), largely eliminates the 201 
+
+correlation between RMSE and CCI observed with the minimum activation (RMR) solver. The linear mixed-effects results 202 
+
+indicated broadly consistent trends between the CCI-informed and minimum activation (RMR) solvers for converged analyses, 203 
+
+with the minimum activation (RMR) solver generally showing positive associations between CCI and RMSE, whereas the 204 
+
+CCI-informed solver exhibited weaker effects. However, accounting for between-subject variability in the mixed-effects models 205 
+
+10/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+generally led to larger effect estimates. 206 
+
+## Discussion 207 
+
+The aim of this study was to evaluate the performance of four different muscle redundancy solvers for estimating KCF from 208 
+
+motion capture measurements. We tested their estimates against in vivo joint force measurements obtained from an instrumented 209 
+
+implant. Specifically, we included two commonly used muscle redundancy solvers, SO and RMR, which both minimize muscle 210 
+
+activations. The key difference between these solvers is that passive muscle forces are incorporated in the RMR solver but 211 
+
+not in the SO solver. To account for changes in muscle coordination strategies, we additionally proposed two EMG-based 212 
+
+approaches. The EMG-informed approach minimizes the error between estimated and measured muscle activations. The 213 
+
+CCI-informed approach minimizes the error in the level of co-contraction between the VL and MG muscle pair, thereby 214 
+
+reducing the experimental setup required to account for changes in muscle coordination strategies. 215 
+
+In this study, we used a fixed set of weights in the objective function of the RMR solver. The EMG- and CCI-specific terms in 216 
+
+the objective function were assigned weights twice as large as those of the muscle activation minimization term to account 217 
+
+for variations in muscle coordination strategies. Reserve actuators were strongly penalized by assigning weights 10 times 218 
+
+higher than those of the muscle activation minimization term to ensure a minimal contribution of reserve actuators. For both 219 
+
+EMG-informed and CCI-informed simulations, weighting factors were not tuned to improve agreement with measured in vivo 220 
+
+knee joint contact forces, to avoid biasing the results toward the measured knee joint contact forces, which are not available in 221 
+
+practice, and to preserve the generalizability of the proposed approach. 222 
+
+Our results indicate the CCI-informed simulations performed most consistently across subjects, resulting in the best performance 223 
+
+overall across all three evaluation metrics (RMSE, R2, and peak force error) for all three activities with the fixed set of weights in 224 
+
+the objective function. Approximately 50–75% of the compressive KCF is contributed by tensile muscle forces acting across the 225 
+
+joint 9, indicating that changes in muscle coordination strategies can substantially impact KCF 36 . By minimizing the CCI error 226 
+
+in the objective function of the muscle redundancy solver, subject-specific coordination patterns of VL and MG are incorporated 227 
+
+into the KCF estimate. This is reflected in the RMSE results for subjects K1L, K2L, K5R, and K7L, where a larger discrepancy 228 
+
+between measured CCI and CCI estimated from minimum activation (RMR) simulations was observed. For these subjects, 229 
+
+the CCI-informed approach resulted in significantly lower RMSE ( p < 0.01) and higher R2 values compared to the minimum 230 
+
+activation (RMR) solver. These results are further supported by the correlation analysis between RMSE and CCI in Figure 5. 231 
+
+In the combined plot across all activities (Figure 5a), the results indicate a positive correlation between CCI and RMSE for 232 
+
+the minimum activation (RMR) simulations, whereas the correlation is reduced in the CCI-informed simulations. The effect 233 
+
+of co-contraction becomes even more pronounced when each activity (Figure 5b-d) is analyzed separately, because median 234 
+
+co-contraction levels increase progressively from level walking to ramp descent and stair descent in the EMG measurements 235 
+
+(Figure 4b). Overall, the CCI-informed simulations effectively capture co-contraction variations, resulting in more consistent 236 
+
+RMSE values across different co-contraction levels without further tuning of the cost function weights. 237 
+
+Furthermore, when comparing the two EMG-based approaches, the EMG-informed simulations showed greater variability 238 
+
+across subjects compared to the CCI-informed approach: for example, RMSE values were lowest for three subjects but highest 239 
+
+for the remaining three, and we attribute the high variability to inaccurate MVC normalization, potentially due to muscle 240 
+
+inhibition during MVC measurements 37 . Consequently, muscle activations in EMG-informed cases can be easily overestimated, 241 
+
+leading to elevated KCF. In contrast, the CCI-informed approach is less sensitive to the absolute magnitude of the MVC used for 242 
+
+EMG normalization than the EMG-informed solver, because the CCI is defined as a ratio of muscle activations. If MVC values 243 
+
+are underestimated similarly across the muscle pair, the relative activation between the muscles remains largely preserved. 244 
+
+Consequently, the CCI approach can be more robust than EMG-informed simulations that rely on absolute EMG amplitudes. 245 
+
+Comparison of the two minimum activation approaches, SO and RMR, revealed that SO overpredicted the second KCF peak 246 
+
+for subject K8L during level walking and for multiple subjects during ramp and stair descent (Figure 2). Whittington et al. 247 
+
+previously reported that approximately 35% of the net hip flexor moment during push-off in level walking arises from passive 248 
+
+hip flexor stretch 38 . Passive contributions from the ankle plantar flexors are around 10% 38 . When these passive forces are not 249 
+
+accounted for, additional muscle activation is required, including biarticular muscles crossing the knee, thereby increasing 250 
+
+muscle co-contraction and the resulting KCF, with the elevated co-contraction reflecting model limitations rather than actual 251 
+
+muscle behavior. 252 
+
+In addition, our results indicate that higher RMSE and peak force errors across all muscle redundancy solvers are estimated 253 
+
+during stair descent compared to level walking and ramp descent (Figure 4 and Supplementary Material Table S2). One possible 254 
+
+reason is that the prescribed secondary knee motions, derived from passive flexion measurements in cadavers 39 , may not be 255 
+
+11/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+accurately captured during activities involving greater knee flexion, such as stair descent. A previous study using a 6-DOF knee 256 
+
+model to simulate squatting from the CAMS dataset showed substantial improvement in the KCF RMSE compared to a study 257 
+
+that used a 1-DOF model 40, 41 . Furthermore, Nejad et al. reported an overprediction of KCF, particularly in deep knee and hip 258 
+
+flexion 41 . These results emphasize the role of activity-specific knee kinematics and motivate the development of knee models 259 
+
+that more comprehensively represent multiplane joint motion across different activities, while not being as computationally 260 
+
+demanding as current complex 6-DOF knee joint models 42 .261 
+
+Our estimated KCF and corresponding RMSE values are similar to those reported in previous studies of the CAMS dataset. 262 
+
+Pellegrinelli et al. 43 reported RMSE values of 0.37 BW for level walking using SO, which is very close to our results of 263 
+
+0.35 BW during level walking. Slightly higher RMSE values of 0.44 BW and 0.48 BW in level walking have been reported by 264 
+
+Guitteny et al. 44 and Nejad et al. 41 , respectively. This difference may be attributed to differences in the underlying MSK models 265 
+
+used in both studies. Furthermore, Guo et al. 40 developed a subject-specific model for one participant from the CAMS dataset 266 
+
+and reported strong agreement with in vivo measurements, with RMSE values below 0.16 BW for level walking and squatting. 267 
+
+This high level of accuracy is likely attributable to subject-specific alignment and bone and implant positioning using computed 268 
+
+tomography scans. In addition, the knee joint was modeled with 6 DOF at the tibiofemoral joint, and flexion–extension 269 
+
+was prescribed based on fluoroscopy measurements. Together, these approaches enabled a more accurate representation of 270 
+
+implant-specific kinematics. The knee kinematic improvements influence both muscle force and contact force predictions by 271 
+
+altering muscle moment arms and the center of pressure location relative to the joint center, which in turn affects the muscle 272 
+
+forces required to satisfy dynamic equilibrium and the resulting estimated KCF. As inaccuracies in joint kinematics have been 273 
+
+shown to translate into errors in the estimated KCF, accounting for subject-specific anatomical and kinematic characteristics 274 
+
+likely contributed to the high agreement with in vivo measurements 45 .275 
+
+Compared to the previously developed EMG-assisted approach applied to the Knee Grand Challenge dataset 46 , the improvements 276 
+
+observed in this study are of similar magnitude. Bennett et al. 23 and Esrafilian et al. 47 reported mean RMSE reductions of 277 
+
+approximately 0.11 BW and 0.09 BW, respectively, when comparing SO with the EMG-assisted approach using a one-DOF 278 
+
+knee model. This is comparable to the 0.10 BW improvement achieved in the present study. In contrast, Princelle et al. 279 
+
+reported substantially smaller reductions, with mean RMSE improvements below 0.04 BW 48 . Notably, unlike the EMG-assisted 280 
+
+approach, the CCI-informed approach does not require model calibration, a process that has been reported to be time-intensive 23 .281 
+
+Thus, comparable improvements are achieved at a substantially lower computational cost and greater ease of use, while relying 282 
+
+on fewer EMG input measurements. 283 
+
+The present study has several limitations. First, the sample size was limited to six participants from the CAMS dataset. 284 
+
+The availability of datasets with instrumented implants is limited by ethical and practical constraints, hindering validation 285 
+
+across larger, more diverse populations. Nevertheless, the CAMS dataset remains one of the most comprehensive resources, 286 
+
+providing multiple activities alongside motion capture, ground reaction forces, EMG, and fluoroscopy measurements. In 287 
+
+addition, statistical inference was limited by the small number of data clusters, which may affect the reliability of standard error 288 
+
+estimates, and results are therefore interpreted primarily in terms of effect direction and magnitude rather than formal statistical 289 
+
+significance. Future simulations and comparisons using additional datasets, such as the Knee Grand Challenge dataset 46 , would 290 
+
+further validate the approach. 291 
+
+Second, our analysis was limited to level walking, ramp descent, and stair descent, while activities such as sit-to-stand and 292 
+
+squatting were excluded. Previous studies have shown that performing the simulations with the one-DOF Walker knee joint 293 
+
+tends to overpredict knee contact forces at deep knee and hip flexion angles, regardless of the changes in muscle coordination 294 
+
+strategies 39, 41 . This is likely due to limitations in the prescribed knee kinematics, as accurate kinematic representation has 295 
+
+been shown to improve agreement with estimated knee joint forces 40 . Further development of knee joint models that better 296 
+
+capture natural internal rotation and abduction motion may help achieve similar accuracy in KCF estimation for activities 297 
+
+involving high knee and hip flexion angles. Furthermore, this study focused solely on validating compressive KCF. In many 298 
+
+weight-bearing tasks, compressive knee joint forces are larger than shear forces and are therefore the main contributor to overall 299 
+
+knee joint loading 26 . However, additional validation of other force components is also necessary, as these may provide further 300 
+
+insight into changes in knee joint loading associated with KOA. 301 
+
+Finally, the CCI-informed approach targeted only the co-contraction between the VL and MG, as these muscles showed the 302 
+
+largest discrepancies between measured and minimum-activation–predicted co-contraction in the studied subjects. Consequently, 303 
+
+changes in coordination strategies of other muscle groups are only captured to a limited extent. Further investigation is required 304 
+
+to determine whether similar patterns are observed in other patient populations, such as individuals with early-stage KOA. 305 
+
+12/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+In conclusion, our results demonstrate that the CCI-informed approach consistently achieves lower RMSE values for estimating 306 
+
+KCF across all activities and subjects compared to the minimum activation and full EMG-informed methods. Furthermore, 307 
+
+the CCI-informed approach captures changes in muscle coordination strategies that directly impact estimated KCF. Changes 308 
+
+in coordination were often not detected by minimizing muscle activation alone, leading to higher RMSE values at higher 309 
+
+co-contraction levels. In addition, the CCI-informed method is more feasible to apply, as it requires EMG measurements from 310 
+
+only two muscles to account for changes in muscle coordination strategies, which could be measured in functional clothing. 311 
+
+This makes it particularly promising for applications outside the laboratory to track rehabilitation methods, including gait 312 
+
+retraining. 313 
+
+## References 314 
+
+1. Mauri, C. et al. Role of exercise on pain, functional capacity, and inflammatory biomarkers in osteoarthritis: A systematic 315 
+
+review and meta-analysis. Ann. Phys. Rehabil. Med. 68 , 101909, DOI: 10.1016/j.rehab.2024.101909 (2025). 316 
+
+2. Kolasinski, S. L. et al. 2019 american college of rheumatology/Arthritis foundation guideline for the management of 317 
+
+osteoarthritis of the hand, hip, and knee. Arthritis Rheumatol. 72 , 220–233, DOI: 10.1002/art.41142 (2020). 318 
+
+3. Claassen, A. A. O. M. et al. Most important frequently asked questions from patients with hip or knee osteoarthritis: A 319 
+
+best-worst scaling exercise. Arthritis Care Res. 71 , 885–892, DOI: 10.1002/acr.23719 (2019). 320 
+
+4. Bandak, E. et al. The effect of exercise therapy on inflammatory activity assessed by mri in knee osteoarthritis: Secondary 321 
+
+outcomes from a randomized controlled trial. Knee 28 , 256–265, DOI: 10.1016/j.knee.2020.12.022 (2021). 322 
+
+5. Raposo, F., Ramos, M. & Lúcia Cruz, A. Effects of exercise on knee osteoarthritis: A systematic review. Musculoskelet. 323 
+
+Care 19 , 399–435, DOI: 10.1002/msc.1538 (2021). 324 
+
+6. Guilak, F. Biomechanical factors in osteoarthritis. Best Pract. Res. Clin. Rheumatol. 25 , 815–823, DOI: 10.1016/j.berh. 325 
+
+2011.11.013 (2011). 326 
+
+7. Vincent, T. L. & Wann, A. K. T. Mechanoadaptation: articular cartilage through thick and thin. J. Physiol. 597 , 1271–1281, 327 
+
+DOI: 10.1113/jp275451 (2019). 328 
+
+8. He, Y. et al. Pathogenesis of osteoarthritis: Risk factors, regulatory pathways in chondrocytes, and experimental models. 329 
+
+Biology 9, 194, DOI: 10.3390/biology9080194 (2020). 330 
+
+9. Uhlrich, S. D., Jackson, R. W., Seth, A., Kolesar, J. A. & Delp, S. L. Muscle coordination retraining inspired by 331 
+
+musculoskeletal simulations reduces knee contact force. Sci. Rep. 12 , 9842, DOI: 10.1038/s41598-022-13386-9 (2022). 332 
+
+10. Hunt, M. A., Charlton, J. M., Krowchuk, N. M., Tse, C. T. F. & Hatfield, G. L. Clinical and biomechanical changes 333 
+
+following a 4-month toe-out gait modification program for people with medial knee osteoarthritis: a randomized controlled 334 
+
+trial. Osteoarthr. Cartil. 26 , 903–911, DOI: 10.1016/j.joca.2018.04.010 (2018). 335 
+
+11. Uhlrich, S. D. et al. Personalised gait retraining for medial compartment knee osteoarthritis: a randomised controlled trial. 336 
+
+Lancet Rheumatol. 7, e708–e718, DOI: 10.1016/s2665-9913(25)00151-1 (2025). 337 
+
+12. Seagers, K. et al. Immediate reductions in compressive and shear forces in the knee from gait retraining are associated 338 
+
+with slowed cartilage degeneration after 1 year in medial knee osteoarthritis: A retrospective observational cohort study. 339 
+
+Osteoarthr. Cartil. DOI: 10.1016/j.joca.2025.12.007 (2025). 340 
+
+13. Gerbrands, T. A., Pisters, M. F., Verschueren, S. & Vanwanseele, B. Determining the optimal gait modification strategy for 341 
+
+patients with knee osteoarthritis: Trunk lean or medial thrust? Gait Posture 102 , 1–9, DOI: 10.1016/j.gaitpost.2023.02.017 342 
+
+(2023). 343 
+
+14. Ralston, H. J. Energy-speed relation and optimal speed during level walking. Int. Z. Angew. Physiol. 17 , 277–283, DOI: 344 
+
+10.1007/bf00698754 (1958). 345 
+
+15. Anderson, F. C. & Pandy, M. G. Static and dynamic optimization solutions for gait are practically equivalent. J. Biomech. 346 
+
+34 , 153–161, DOI: 10.1016/s0021-9290(00)00155-x (2001). 347 
+
+13/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+16. Duffell, L. D., Southgate, D. F., Gulati, V. & McGregor, A. H. Balance and gait adaptations in patients with early knee 348 
+
+osteoarthritis. Gait Posture 39 , 1057–1061, DOI: 10.1016/j.gaitpost.2014.01.005 (2014). 349 
+
+17. Zeni, J. A., Rudolph, K. & Higginson, J. S. Alterations in quadriceps and hamstrings coordination in persons with medial 350 
+
+compartment knee osteoarthritis. J. Electromyogr. Kinesiol. 20 , 148–154, DOI: 10.1016/j.jelekin.2008.12.003 (2010). 351 
+
+18. Hubley-Kozey, C. L., Hill, N. A., Rutherford, D. J., Dunbar, M. J. & Stanish, W. D. Co-activation differences in lower 352 
+
+limb muscles between asymptomatic controls and those with varying degrees of knee osteoarthritis during walking. Clin. 353 
+
+Biomech. (Bristol) 24 , 407–414, DOI: 10.1016/j.clinbiomech.2009.02.005 (2009). 354 
+
+19. Rudolph, K. S., Axe, M. J. & Snyder-Mackler, L. Dynamic stability after acl injury: who can hop? Knee Surg. Sports 355 
+
+Traumatol. Arthrosc. 8, 262–269, DOI: 10.1007/s001670000130 (2000). 356 
+
+20. Trepczynski, A. et al. Impact of antagonistic muscle co-contraction on in vivo knee contact forces. J. Neuroeng. Rehabil. 357 
+
+15 , 101, DOI: 10.1186/s12984-018-0434-3 (2018). 358 
+
+21. Lloyd, D. G. & Besier, T. F. An emg-driven musculoskeletal model to estimate muscle forces and knee joint moments in 359 
+
+vivo. J. Biomech. 36 , 765–776, DOI: 10.1016/s0021-9290(03)00010-1 (2003). 360 
+
+22. Ao, D. & Fregly, B. J. Comparison of synergy extrapolation and static optimization for estimating multiple unmeasured 361 
+
+muscle activations during walking. J. NeuroEngineering Rehabil. 21 , 194, DOI: 10.1186/s12984-024-01490-y (2024). 362 
+
+23. Bennett, K. J. et al. Emg-informed neuromusculoskeletal models accurately predict knee loading measured using 363 
+
+instrumented implants. IEEE Trans. Biomed. Eng. 69 , 2268–2275, DOI: 10.1109/tbme.2022.3141067 (2022). 364 
+
+24. Hambly, M. J., Worsey, M. T. O., Lloyd, D. G. & Pizzolato, C. Improving calibration of emg-informed neuromusculoskeletal 365 
+
+models through differentiable physics and muscle synergies. IEEE Trans. Biomed. Eng. 72 , 3453–3463, DOI: 10.1109/ 366 
+
+tbme.2025.3569682 (2025). 367 
+
+25. Heinlein, B., Graichen, F., Bender, A., Rohlmann, A. & Bergmann, G. Design, calibration and pre-clinical testing of an 368 
+
+instrumented tibial tray. J. Biomech. 40 , S4–S10, DOI: 10.1016/j.jbiomech.2007.02.014 (2007). 369 
+
+26. Taylor, W. R. et al. A comprehensive assessment of the musculoskeletal system: The cams-knee data set. J. Biomech. 65 ,370 
+
+32–39, DOI: 10.1016/j.jbiomech.2017.09.022 (2017). 371 
+
+27. Merletti, R. Standards for reporting emg data. J. Electromyogr. Kinesiol. (2000). 372 
+
+28. Rajagopal, A. et al. Full-body musculoskeletal model for muscle-driven simulation of human gait. IEEE Trans. Biomed. 373 
+
+Eng. 63 , 2068–2079, DOI: 10.1109/tbme.2016.2586891 (2016). 374 
+
+29. Lai, A. K. M., Arnold, A. S. & Wakeling, J. M. Why are antagonist muscles co-activated in my simulation? a musculoskele-375 
+
+tal model for analysing human locomotor tasks. Ann. Biomed. Eng. 45 , 2762–2774, DOI: 10.1007/s10439-017-1920-7 376 
+
+(2017). 377 
+
+30. Delp, S. L. et al. Opensim: open-source software to create and analyze dynamic simulations of movement. IEEE Trans. 378 
+
+Biomed. Eng. 54 , 1940–1950, DOI: 10.1109/tbme.2007.901024 (2007). 379 
+
+31. Seth, A. et al. Opensim: simulating musculoskeletal dynamics and neuromuscular control to study human and animal 380 
+
+movement. PLoS Comput. Biol. 14 , e1006223, DOI: 10.1371/journal.pcbi.1006223 (2018). 381 
+
+32. Mölder, F. et al. Sustainable data analysis with snakemake. F1000Res. 10 , 33, DOI: 10.12688/f1000research.29032.3 382 
+
+(2021). 383 
+
+33. Belli, I. et al. Does enforcing glenohumeral joint stability matter? a new rapid muscle redundancy solver highlights the 384 
+
+importance of non-superficial shoulder muscles. PLoS One 18 , e0295003, DOI: 10.1371/journal.pone.0295003 (2023). 385 
+
+34. Kaufman, K. R., An, K. W., Litchy, W. J. & Chao, E. Y. Physiological prediction of muscle forces—I. theoretical 386 
+
+formulation. Neuroscience 40 , 781–792, DOI: 10.1016/0306-4522(91)90012-d (1991). 387 
+
+14/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+35. Farina, D., Falla, D. & Merletti, R. Ten frequently asked questions (faqs) on surface electromyography. J. Electromyogr. 388 
+
+Kinesiol. 89 , 103159, DOI: https://doi.org/10.1016/j.jelekin.2026.103159 (2026). 389 
+
+36. Febrer-Nafría, M. et al. Knee kinematics are primarily determined by implant alignment but knee kinetics are mainly 390 
+
+influenced by muscle coordination strategy. J. Biomech. 161 , 111851, DOI: 10.1016/j.jbiomech.2023.111851 (2023). 391 
+
+37. Suter, E. & Herzog, W. Extent of muscle inhibition as a function of knee angle. J. Electromyogr. Kinesiol. 7, 123–130, 392 
+
+DOI: 10.1016/s1050-6411(96)00028-4 (1997). 393 
+
+38. Whittington, B., Silder, A., Heiderscheit, B. & Thelen, D. G. The contribution of passive-elastic mechanisms to lower 394 
+
+extremity joint kinetics during human walking. Gait Posture 27 , 628–634, DOI: 10.1016/j.gaitpost.2007.08.005 (2008). 395 
+
+39. Walker, P. S., Rovick, J. S. & Robertson, D. D. The effects of knee brace hinge design and placement on joint mechanics. 396 
+
+J. Biomech. 21 , 965–974, DOI: 10.1016/0021-9290(88)90135-2 (1988). 397 
+
+40. Guo, N. et al. Posterior tibial slope influences joint mechanics and soft tissue loading after total knee arthroplasty. Front. 398 
+
+Bioeng. Biotechnol. 12 , 1352794, DOI: 10.3389/fbioe.2024.1352794 (2024). 399 
+
+41. Imani Nejad, Z. et al. The capacity of generic musculoskeletal simulations to predict knee joint loading using the cams-knee 400 
+
+datasets. Ann. Biomed. Eng. 48 , 1430–1440, DOI: 10.1007/s10439-020-02465-5 (2020). 401 
+
+42. Lenhart, R. L., Kaiser, J., Smith, C. R. & Thelen, D. G. Prediction and validation of load-dependent behavior of 402 
+
+the tibiofemoral and patellofemoral joints during movement. Annals Biomed. Eng. 43 , 2675–2685, DOI: 10.1007/ 403 
+
+s10439-015-1326-3 (2015). 404 
+
+43. Pelegrinelli, A. R. M., Catelli, D. S., Kowalski, E., Lamontagne, M. & Moura, F. A. Comparing three generic muscu-405 
+
+loskeletal models to estimate the tibiofemoral reaction forces during gait and sit-to-stand tasks. Med. Eng. Phys. 122 ,406 
+
+104074, DOI: 10.1016/j.medengphy.2023.104074 (2023). 407 
+
+44. Guitteny, S., Aissaoui, R. & Dumas, R. Can a musculoskeletal model adapted to knee implant geometry improve prediction 408 
+
+of 3d contact forces and moments? Ann. Biomed. Eng. 51 , 1872–1883, DOI: 10.1007/s10439-023-03216-y (2023). 409 
+
+45. Myers, C. A., Laz, P. J., Shelburne, K. B. & Davidson, B. S. A probabilistic approach to quantify the impact of uncertainty 410 
+
+propagation in musculoskeletal simulations. Ann. Biomed. Eng. 43 , 1098–1111, DOI: 10.1007/s10439-014-1181-7 (2015). 411 
+
+46. Fregly, B. J. et al. Grand challenge competition to predict in vivo knee loads. J. Orthop. Res. 30 , 503–513, DOI: 412 
+
+10.1002/jor.22023 (2012). 413 
+
+47. Esrafilian, A. et al. An electromyography-assisted musculoskeletal simulation with concurrent optimization of muscle 414 
+
+excitations and knee joint kinematics. J. Biomech. Eng. 147 , 091002, DOI: 10.1115/1.4068973 (2025). 415 
+
+48. Princelle, D., Viceconti, M. & Davico, G. Emg-informed neuromusculoskeletal simulations increase the accuracy of 416 
+
+the estimation of knee joint contact forces during sub-optimal level walking. Ann. Biomed. Eng. 53 , 1399–1408, DOI: 417 
+
+10.1007/s10439-025-03713-2 (2025). 418 
+
+## Acknowledgements 419 
+
+This publication is part of the project LoaD (projectnr. NWA1389.20.009) of the NWA-ORC research programme which is 420 
+
+(partly) financed by the Dutch Research Council (NWO). 421 
+
+## Author contributions statement 422 
+
+S.H. and A.S. conceptualized the study. S.H. performed the MSK simulations, analyzed the results, and created the illustrations 423 
+
+and figures. All authors aided in data interpretation. S.H. drafted the manuscript, and all authors critically reviewed and 424 
+
+approved the final manuscript. 425 
+
+## Competing interest 426 
+
+The authors declare no competing interests. 427 
+
+15/16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+## Code availability 428 
+
+The Rapid Muscle Redundancy solver code including the EMG-informed and CCI-informed approach is available at 429 
+
+https://github.com/ComputationalBiomechanicsLab/rmr-solver-py.git. 430 
+
+## Data availability 431 
+
+The CAMS dataset is publicly available and can be accessed upon request via the OrthoLoad website: https://cams-432 
+
+knee.orthoload.com/data/data-request/ 433 
+
+## Additional information 434 
+
+Supplementary Information. The online version contains supplementary material. 435 
+
+16/16 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint Measurements 
+
+CAMS* Dataset Outputs 
+
+• Marker positions • Ground reaction forces • EMG • In vivo knee joint forces 6 Subjects (1 Female, 5 Male) • 68 ± 5 years old 
+
+• 88 ± 12 kg 
+
+• 173 ± 4 cm height 
+
+INNEX FIXUC Instrumented knee implant (Zimmer, Switzerland) 
+
+MSK Modeling 
+
+Scaling & Inverse Kinematics 
+
+Input: Marker positions Output: Joint angles 
+
+## Validation 
+
+Input: In vivo knee joint forces Estimated knee joint forces +Example of knee joint compressive forces during level walking for one subject comparing in vivo forces to the 
+
+estimated forces from four different 
+
+muscle redundancy solvers 
+
+## Muscle Redundancy Solvers 
+
+Input: Output: Estimated knee joint forces Ground reaction forces +
+
+Objective 
+
+Minimize muscle activations 
+
+1. Static Optimization 
+
+2. Rapid Muscle Redundancy Solver 
+
++ Minimize EMG muscle activation error 
+
++ Include passive muscle forces 
+
+3. EMG-informed 4. CCI-informed 
+
+EMG + Input: 
+
+Joint angles 
+
+EMGs: • rectus femoris 
+
+• vastus medialis and lateralis 
+
+• tibialis anterior • semitendinosus 
+
+• biceps femoris long head • medial and lateral gastrocnemius 
+
+all (8) muscle pair (2) 
+
+# a. b. c. d. 
+
+Level walking Ramp descent Stair descent Force plates Marker Instrumented implant EMGs 
+
+## *Comprehensive Assessment of the Musculoskeletal System (CAMS) 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted May 29, 2026. ;https://doi.org/10.64898/2026.05.28.728089 doi: bioRxiv preprint
+
+0123
+
+K1L 
+
+0123
+
+K2L 
+
+012
+
+K3R 
+
+0 20 40 60 80 100 0123
+
+K5R 
+
+0 20 40 60 80 100 01234
+
+K7L 
+
+0 20 40 60 80 100 01234
+
+K8L 
+
+Level walking 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%] 
+
+0123
+
+K1L 
+
+01234
+
+K2L 
+
+0 20 40 60 80 100 0123456
+
+K5R 
+
+0 20 40 60 80 100 012345
+
+K7L 
+
+0 20 40 60 80 100 01234
+
+K8L 
+
+Ramp descent 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%] 
+
+01234
+
+K1L 
+
+012345
+
+K2L 
+
+012345
+
+K3R 
+
+0 20 40 60 80 100 01234567
+
+K5R 
+
+0 20 40 60 80 100 01234567
+
+K7L 
+
+0 20 40 60 80 100 012345
+
+K8L 
+
+Stair descent 
+
+> Inferior (+) / Superior (-) Knee Joint Force [BW]
+
+Cycle [%] 
+
+Static Optimization Minimum Activation EMG-informed CCI-informed in vivo 
+
+## a. 
+
+## b. 
+
+## c. K1L K2L K3R K5R K7L K8L Overall 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 
+
+> RMSE [BW]
+
+## a. 
+
+a b c d a a a b a b c b a a b b a b c d a b a b a b ab c 
+
+K1L K2L K3R K5R K7L K8L Overall 
+
+Subject 
+
+0.00 0.05 0.10 0.15 0.20 0.25 0.30 
+
+> CCI [-]
+
+## b. 
+
+Static Optimization Minimum Activation EMG-informed CCI-informed in vivo Level Walking Ramp Descent Stair Descent 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 
+
+> RMSE [BW]
+
+## a. 
+
+## a a ab ba a a ba b bc c
+
+Level Walking Ramp Descent Stair Descent 
+
+Activity 
+
+0.00 0.05 0.10 0.15 0.20 0.25 0.30 
+
+> CCI [-]
+
+## b. 
+
+Static Optimization Minimum Activation EMG-informed CCI-informed in vivo 0.05 0.10 0.15 0.20 0.25 CCI [-] 0.2 0.4 0.6 0.8 1.0 1.2 RMSE [BW] 
+
+## a. All Activities: Level Walking, Ramp Descent, Stair Descent 
+
+0.1 0.2 CCI [-] 0.0 0.2 0.4 0.6 0.8 1.0 1.2 RMSE [BW] 
+
+## b. Level Walking 
+
+0.1 0.2 CCI [-] 
+
+## c. Ramp Descent 
+
+0.1 0.2 CCI [-] 
+
+## d. Stair Descent 
+
+> Level Walking Stair Descent Ramp Descent
+
+Static Optimization Minimum Activation EMG-informed CCI-informed

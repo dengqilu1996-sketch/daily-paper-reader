@@ -1,0 +1,1946 @@
+Title: Unified comparison of spinal locomotion control architectures in neuromechanical simulations
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.09.731213v1.full.pdf
+
+Number of Pages: 38
+
+Markdown Content:
+# Unified comparison of spinal locomotion control architectures 1
+
+# in neuromechanical simulations 2
+
+Vincent Ton 1 and Seungmoon Song 11Department of Mechanical and Industrial Engineering, Northeastern University, Boston, Massachusetts, 02115, United States 
+
+> 3
+
+Key points: 4
+
+• Existing neuromechanical locomotion controllers have been difficult to compare directly be-5
+
+cause of differences in simulation frameworks. 6
+
+• We implemented four representative spinal locomotion control models (reflex-based, cen-7
+
+tral pattern generator (CPG)-reflex-based, muscle synergy-based, and CPG-reflex-synergy-8
+
+based) within a unified simulation framework and compared their human-likeness and ver-9
+
+satility. 10 
+
+• The reflex-based and CPG-reflex-synergy-based controllers best reproduced human-like 11 
+
+gait characteristics, while the CPG-reflex-synergy-based controller demonstrated the great-12 
+
+est locomotor versatility across speed–slope conditions, followed closely by the reflex-based 13 
+
+controller. 14 
+
+• Because the investigated controllers primarily modeled spinal-level mechanisms associated 15 
+
+with steady-state locomotion, their reduced adaptability across broader speed and slope 16 
+
+conditions highlights the importance of incorporating supraspinal modulation when modeling 17 
+
+locomotion beyond nominal gait. 18 
+
+• We publicly share the simulation framework and controller implementations to support further 19 
+
+investigation of human locomotion control. 20 
+
+Abstract 21 
+
+Neuromechanical simulations provide a powerful framework for investigating how neural 22 
+
+control architectures generate and regulate human locomotion. Numerous biologically inspired 23 
+
+1
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+locomotion controllers have been proposed, including reflex-based, central pattern generator 24 
+
+(CPG)-based, and muscle synergy-based models. However, direct comparison across stud-25 
+
+ies remains difficult because of differences in musculoskeletal models, optimization methods, 26 
+
+and evaluation protocols. Here, we implemented four representative locomotion control ar-27 
+
+chitectures, reflex-based, CPG-reflex-based, muscle synergy-based, and CPG-reflex-synergy-28 
+
+based controllers, within a unified neuromechanical simulation framework to enable controlled 29 
+
+comparisons under shared biomechanical and computational conditions. Performance was as-30 
+
+sessed in terms of (1) agreement with experimentally observed gait characteristics, including 31 
+
+kinematics, kinetics, muscle activations, and biomechanical trends across speeds and slopes, 32 
+
+and (2) locomotor versatility across speed–slope conditions. The reflex-based and CPG-reflex-33 
+
+synergy-based controllers most closely reproduced experimentally observed gait characteris-34 
+
+tics, while the CPG-reflex-synergy controller achieved the broadest range of stable walking 35 
+
+behaviors across speeds and slopes, followed closely by the reflex-based controller. These 36 
+
+findings should be interpreted as comparisons of specific model implementations rather than 37 
+
+definitive evaluations of the underlying biological hypotheses. Moreover, because the inves-38 
+
+tigated controllers primarily focused on spinal-level mechanisms for nominal steady-state lo-39 
+
+comotion, the limited versatility observed in some of the models across broader speed and 40 
+
+slope conditions suggests the importance of integrating spinal locomotor mechanisms with 41 
+
+supraspinal modulation when modeling locomotion beyond nominal steady gait. To facilitate 42 
+
+further investigation, we publicly share the simulation framework and controller implementa-43 
+
+tions. 44 
+
+## Introduction 45 
+
+Neuromechanical simulations offer a powerful computational testbed for studying how the ner-46 
+
+vous system generates and regulates human locomotion, a long-standing scientific problem with 47 
+
+far-reaching implications for neurorehabilitation, assistive device design, and human performance 48 
+
+enhancement (Song & Geyer, 2018). Experimentally identifying the underlying control algorithms 49 
+
+and neural circuitry that produce coordinated walking is not feasible with current techniques. Hu-50 
+
+man locomotion emerges from the interaction between large-scale neural networks and the nonlin-51 
+
+ear physics of the musculoskeletal system, including muscle tendon dynamics, contact forces, and 52 
+
+whole-body mechanics, making it challenging to disentangle the structural organization of control 53 
+
+from the resulting movement. Directly measuring or mapping the activity of the vast neuronal popu-54 
+
+lations, particularly during natural unconstrained movement, remains beyond current experimental 55 
+
+2
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+capability, leaving a substantial gap between measurable neural signals and observable behav-56 
+
+ior. By coupling physiologically inspired neural control models with physics based musculoskeletal 57 
+
+models, neuromechanical simulations provide a complementary approach that enables systematic 58 
+
+testing of candidate control architectures and investigation of how specific control principles give 59 
+
+rise to locomotor behavior. 60 
+
+A wide range of biologically inspired locomotion control models have been proposed and evalu-61 
+
+ated in neuromechanical simulations, most of which focus on generating stereotypical steady gait 62 
+
+through low-level automatic control mechanisms commonly attributed to spinal circuitry. These 63 
+
+mechanisms are typically framed in terms of spinal reflexes, central pattern generators (CPGs), 64 
+
+and muscle synergies. Spinal reflex pathways transform proprioceptive and cutaneous sensory 65 
+
+signals into rapid, phase-dependent modulation of motor output, and experimental studies in hu-66 
+
+mans using methods such as H-reflex modulation, stretch perturbations, and cutaneous stimula-67 
+
+tion provide direct evidence for their involvement in regulating gait and responding to perturbations 68 
+
+(Dietz, 2002; Nielsen, 2003). CPGs refer to neural circuits capable of generating rhythmic motor 69 
+
+patterns through networks of reciprocally interacting neurons, often modeled using coupled neural 70 
+
+oscillators; although extensive experimental work in vertebrate animal preparations demonstrates 71 
+
+that such circuits can produce locomotor rhythms without sensory feedback, evidence for their 72 
+
+functional role in intact human walking remains indirect and debated (Grillner, 2006; Ijspeert, 73 
+
+2008). Muscle synergies, in contrast, are not typically interpreted as mechanisms for generating 74 
+
+neural drive, but rather as a strategy for coordinating and distributing motor commands across 75 
+
+groups of muscles through low-dimensional activation modules inferred from electromyographic 76 
+
+(EMG) recordings (Ivanenko et al., 2004). Circuit-level studies in animal models support the 77 
+
+existence of modular spinal organization consistent with muscle synergies, but whether the low-78 
+
+dimensional modules identified from human electromyographic data directly reflect such neural cir-79 
+
+cuitry or instead partly emerge from biomechanical and task constraints remains debated (Tresch 80 
+
+& Jarc, 2009). Reflecting these uncertainties, neuromechanical locomotion models often incor-81 
+
+porate different combinations of reflex feedback, rhythm-generating circuits, and synergy-based 82 
+
+coordination to represent spinal-level locomotor control. Representative implementations of these 83 
+
+control principles in neuromechanical simulations are summarized in the subsection Existing neu-84 
+
+romechanical locomotion control models below. 85 
+
+Although a number of biologically inspired locomotion control models have been developed 86 
+
+and investigated, direct comparison across studies remains challenging because methodological 87 
+
+3
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+differences confound interpretation of their relative performance. Existing models are implemented 88 
+
+using diverse musculoskeletal representations that vary in segment definitions and inertial proper-89 
+
+ties, joint configurations, muscle sets, muscle dynamics, musculoskeletal attachment definitions, 90 
+
+and contact mechanics, all of which can influence emergent gait behavior. Control parameters 91 
+
+are determined using different approaches, ranging from manual or heuristic tuning to numerical 92 
+
+optimization. Although optimization provides a more systematic means of parameter selection, 93 
+
+studies often employ different cost functions, constraints, and optimization algorithms. Further-94 
+
+more, simulation protocols, numerical solvers, and evaluation criteria are not uniform across the 95 
+
+literature, with some studies focusing on kinematic resemblance, others prioritizing energetic effi-96 
+
+ciency, and others emphasizing robustness or specific locomotor tasks. Consequently, it remains 97 
+
+unclear how different control models compare when evaluated under shared biomechanical and 98 
+
+computational conditions. 99 
+
+Here, we implement representative locomotion control models within a unified simulation frame-100 
+
+work to enable direct and controlled comparisons (Fig. 1). By adopting a common musculoskeletal 101 
+
+model, optimization procedure, and evaluation protocol, we assess the simulated gait produced 102 
+
+by each control architecture along two key dimensions: human-likeness and versatility. Human-103 
+
+likeness refers to how closely simulated gait reproduces experimentally observed biomechanical 104 
+
+and energetic characteristics, whereas versatility reflects the range of speed and slope conditions 105 
+
+over which stable gait can be generated. This unified approach allows us to isolate how differences 106 
+
+in implemented control architectures within each hypothesis influence gait realism and adaptabil-107 
+
+ity under consistent physiological and computational constraints. To facilitate reproducibility and 108 
+
+further investigation, we provide our MATLAB/Simulink implementation, including all four control 109 
+
+models, through a public repository: https:// doi.or g/ 10.5281/ zenodo.20509551 .110 
+
+Existing neuromechanical locomotion control models 111 
+
+Neuromechanical simulations of locomotion have implemented a variety of control architec-112 
+
+tures reflecting different hypotheses about locomotor control. These models can be broadly cate-113 
+
+gorized into reflex-based, CPG-reflex-based, muscle synergy-based, and hybrid architectures that 114 
+
+integrate reflex, CPG, and synergy mechanisms. In this study, we selected one representative 115 
+
+model from each category for implementation and comparison within a unified simulation frame-116 
+
+work (Table 1). The following subsections describe the selected models and the rationale for their 117 
+
+selection. 118 
+
+4
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Figure 1: Simulation framework for comparative analysis. A) Neuromechanical simulation framework including neural control models, musculoskeletal model, and optimization. The control strategies include: reflex-based, CPG-reflex based, muscle synergy-based, and CPG-reflex-synergy based control strategies. B) Evaluation criteria include observing human-like biomechanical trends and performance versatility over speed–slope conditions. 
+
+Table 1: Representative neuromechanical locomotion control models implemented and compared in this study. (TD: transmission delays; ECC: excitation-contraction coupling) 
+
+model musculoskeletal model compliant tendon TD & ECC optimization algorithm objective simulation platform performance versatility                                   
+
+> Reflex-based 3D, 7 segments,
+> ✓✓CMA-ES metabolic energy MATLAB/Simulink, 0.8–1.8 m s −1
+> (Song & Geyer, 2015a) 22 muscles (Umberger et al., 2003) Simscape Multibody -13.5 ◦– +4.6 ◦
+> CPG-reflex-based 2D, 7 segments, none none genetic metabolic energy custom-built 1.1 m s −1
+> (Ogihara & Yamazaki, 2001) 18 muscles algorithm (Hase & Yamazaki, 1997)
+> Muscle synergy-based 2D, 7 segments, none ✓manual-tuning –not reported 1.2–1.6 m s −1
+> (Aoi et al., 2019) 18 muscles
+> CPG-reflex-synergy-based 2D, 7 segments,
+> ✓✓CMA-ES metabolic SCONE 0.3–1.9 m s −1
+> (Di Russo et al., 2023) 18 muscles (Uchida et al., 2016)
+
+Reflex-based control models generate locomotion through physiologically inspired sensorimo-119 
+
+tor feedback pathways that transform proprioceptive signals into muscle activation without relying 120 
+
+on an explicit CPG. Günther and Ruder (2003) proposed a walking control model rooted in the 121 
+
+equilibrium point hypothesis (Feldman & Levin, 1995), in which muscle activation arises from de-122 
+
+viations between actual and reference muscle lengths and velocities. A widely adopted model in 123 
+
+this class is the sagittal-plane muscle-reflex model of Geyer and Herr (2010), which demonstrated 124 
+
+human-like walking dynamics and muscle activation patterns with substantially improved agree-125 
+
+ment with experimental observations relative to earlier models. In this model, reflex pathways were 126 
+
+5
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint designed to encode key leg functions for locomotion and constructed using delayed feedback from 127 
+
+muscle force, length, and velocity signals (representing afferent inputs from Golgi tendon organs 128 
+
+and muscle spindles), together with additional sensory signals such as trunk orientation and leg 129 
+
+load. While the original study manually tuned the control parameters to produce human-like gait, 130 
+
+subsequent studies showed that parameters optimized for metabolic energy expenditure can also 131 
+
+produce realistic gait across a wide range of walking speeds (Song & Geyer, 2012). A large 132 
+
+body of subsequent work adapted this model to generate different locomotor behaviors including 133 
+
+walking and running (Song & Geyer, 2015b; Wang et al., 2012), extended it to broader speed 134 
+
+ranges and terrains (Song & Geyer, 2012, 2015a, 2015b), generalized the framework to three-135 
+
+dimensional musculoskeletal models (Song & Geyer, 2015a; Wang et al., 2012), and applied it to 136 
+
+simulations of elderly (Song & Geyer, 2018) or pathological gait (Ong et al., 2019). The Geyer and 137 
+
+Herr model has also been integrated with additional control components, including higher-level 138 
+
+control layers that modulate desired foot placement for robust walking (Song & Geyer, 2015a), 139 
+
+controllers incorporating internal inverse models for voluntary swing-leg control (Ramadan et al., 140 
+
+2022), and feedforward components that improve robustness to step perturbations (Haeufle et al., 141 
+
+2018). The reflex-based controller has also been adopted as a baseline control architecture in 142 
+
+the open-source neuromechanical simulation platform SCONE (Geijtenbeek, 2019), facilitating a 143 
+
+wide range of model adaptations and applications (Fleischmann et al., 2025; Jones et al., 2024; 144 
+
+Veerkamp et al., 2021; Waterval et al., 2023). 145 
+
+CPG-reflex-based control models generate locomotion through an internal rhythmic drive, typi-146 
+
+cally implemented using neural oscillators, together with sensory feedback pathways that modulate 147 
+
+the locomotor pattern. To our knowledge, the earliest forward simulations of human locomotion 148 
+
+control using biologically inspired control models were introduced by Taga (1995), who demon-149 
+
+strated that stable walking patterns can emerge in a torque-driven multibody model through neural 150 
+
+oscillators based on the formulation proposed by Matsuoka (1985). Building on this framework, 151 
+
+Yamazaki, Hase, and colleagues developed what is, to our knowledge, the first neuromechanical 152 
+
+model of human walking, integrating a motor control model with a musculoskeletal system in a for-153 
+
+ward dynamics simulation (Yamazaki et al., 1996). Their subsequent studies further investigated 154 
+
+the integration and relative contributions of proprioceptive reflexes and CPGs in generating loco-155 
+
+motion (Ogihara & Yamazaki, 2001), and later extended this line of work to what is likely the first 156 
+
+three-dimensional neuromechanical simulation of human walking (Hase & Yamazaki, 2002). Later 157 
+
+studies explored variations of this CPG-reflex architecture by modifying oscillator formulations or 158 
+
+6
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+the interaction between rhythmic drive and sensory feedback. These include models employ-159 
+
+ing alternative oscillator structures (Dzeladini et al., 2014; Paul et al., 2005; Severini & Muñoz, 160 
+
+2025), incorporating control modules resembling cerebellar error-correction mechanisms (Kim et 161 
+
+al., 2011), or integrating CPG oscillators with the reflex pathways of Geyer and Herr (Dzeladini 162 
+
+et al., 2014). 163 
+
+Muscle synergy-based control models generate muscle activation patterns through low-dimensional 164 
+
+control signals that combine fixed synergy weights with time-varying activation pulses. Because 165 
+
+muscle synergies primarily describe how a small number of activation modules are distributed 166 
+
+across muscles rather than how these modules are generated, muscle synergy-based control ar-167 
+
+chitectures typically require an additional mechanism to produce the temporal activation signals. 168 
+
+In many implementations this rhythmic drive is generated by CPG-like mechanisms, while stability 169 
+
+is maintained through simple feedback rules, often without explicitly modeling spinal reflex path-170 
+
+ways. One of the earliest neuromechanical implementations of this concept was proposed by Jo 171 
+
+and Massaquoi (2007), who constructed a walking controller in which the gait cycle was partitioned 172 
+
+into discrete temporal windows associated with predefined muscle synergies. Aoi and colleagues 173 
+
+developed a neuromechanical model in which temporal activation pulses with adjustable onset 174 
+
+timing, duration, and amplitude drove predefined muscle synergies (Aoi et al., 2008). Subse-175 
+
+quent studies within this framework incorporated additional control components, such as phase-176 
+
+resetting mechanisms (Aoi et al., 2010; Tamura et al., 2020) and speed regulation modules (Aoi 177 
+
+et al., 2019), to examine how synergy-based control interacts with sensory feedback and task 178 
+
+constraints in generating stable and adaptable locomotion. 179 
+
+CPG-reflex-synergy-based control models integrate rhythmic pattern generation, sensory feed-180 
+
+back, and modular muscle coordination within a unified architecture. Such a hierarchical organi-181 
+
+zation, in which central pattern generators provide rhythmic drive while sensory feedback and 182 
+
+modular coordination shape muscle activation, is widely considered a plausible organization of 183 
+
+spinal locomotor circuits in vertebrates (Danner et al., 2017). Recent neuromechanical simulations 184 
+
+have explored implementations of this combined structure to integrate the complementary roles 185 
+
+of CPG-based rhythm generation, reflex-mediated feedback control, and synergy-based muscle 186 
+
+coordination within a single locomotion control framework (Di Russo et al., 2023). 187 
+
+7
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+## Methods 188 
+
+In this section, we first describe the four locomotion control models examined in this study, 189 
+
+each representing one of the control strategies introduced above. We then present the unified 190 
+
+neuromechanical simulation framework used to evaluate these controllers, which includes a 2-D 191 
+
+sagittal-plane neuromusculoskeletal model and a standardized optimization procedure designed 192 
+
+to assess gait performance in terms of human-likeness and versatility. 193 
+
+Model selection and controller descriptions 194 
+
+We selected representative models from each of the four major control strategies: reflex-195 
+
+based, CPG-reflex-based, muscle synergy-based, and CPG-reflex-synergy-based approaches. 196 
+
+Selection was guided by physiological plausibility, demonstrated capability to generate human-197 
+
+like and diverse locomotor behaviors, and how clearly each model represents the conceptual 198 
+
+and historical foundation of its respective control architecture. For each model, we preserved 199 
+
+the core control architecture while standardizing implementation details required for a consistent 200 
+
+comparison within our simulation framework. Modifications to the control models were limited 201 
+
+to those necessary to ensure compatibility with the shared musculoskeletal model and, when 202 
+
+necessary, to maintain physiologically plausible gait behavior under these common conditions. 203 
+
+The following subsections describe each selected model by briefly justifying its selection, sum-204 
+
+marizing the key elements of its control formulation, and specifying any implementation modifi-205 
+
+cations made within our unified framework. Readers are referred to the original publications for 206 
+
+detailed descriptions of each model (reflex-based (Song & Geyer, 2015a), CPG-reflex-based (Ogi-207 
+
+hara & Yamazaki, 2001), muscle synergy-based (Aoi et al., 2019), and CPG-reflex-synergy-based 208 
+
+(Di Russo et al., 2023)), as well as to the open-source implementation provided with this study 209 
+
+(https:// doi.or g/ 10.5281/ zenodo.20509551 ). 210 
+
+Reflex-based model 211 
+
+The model of Song and Geyer (2015a) was selected to represent the reflex-based control 212 
+
+strategy because it drives locomotion entirely by sensorimotor feedback, without an explicit CPG, 213 
+
+designed in a manner that closely reflects the proprioceptive, vestibular, and cutaneous pathways 214 
+
+of the nervous system. Beyond its physiological plausibility, this model has demonstrated a broad 215 
+
+range of locomotor behaviors, including three-dimensional walking and turning, slope ascent and 216 
+
+8
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+descent, stair ascent, obstacle avoidance (Song & Geyer, 2015a), and running (Song & Geyer, 217 
+
+2015b), and robustness against external perturbations (Song & Geyer, 2017), as well as exten-218 
+
+sions with direct clinical implications (Song & Geyer, 2018; Ton et al., 2024). 219 
+
+The controller is organized hierarchically into spinal and supraspinal layers. The spinal layer 220 
+
+consists of ten modules divided between stance (M1–M5) and swing (M6–M10), each responsible 221 
+
+for specific biomechanical functions such as compliant load support of the stance leg, effective 222 
+
+swing toward target foot placement, and trunk balance. Muscle stimulation is generated through 223 
+
+delayed feedback from muscle force, length, and velocity signals, representing afferent inputs from 224 
+
+Golgi tendon organs and muscle spindles, along with additional sensory signals such as trunk 225 
+
+orientation and leg load. These feedback pathways are parameterized through gains and offsets 226 
+
+that shape muscle activation patterns. The supraspinal layer modulates foot placement based on 227 
+
+hip position and velocity relative to the stance foot and coordinates gait phase transitions between 228 
+
+stance and swing. 229 
+
+We implemented the 2-D version of this model (Song & Geyer, 2017, 2018; Ton et al., 2024) 230 
+
+that omits hip adduction and abduction degrees of freedom while retaining all other control com-231 
+
+ponents, resulting in 64 optimization parameters. 232 
+
+CPG-reflex-based model 233 
+
+We selected the model of Ogihara and Yamazaki (2001) as representative of the CPG-reflex 234 
+
+control strategy because it provides a clear and compact implementation of a rhythm generator 235 
+
+coupled with sensory feedback within a neuromechanical simulation. This formulation directly ex-236 
+
+tends the classical CPG-based locomotion framework introduced by Taga (1995), in which rhyth-237 
+
+mic neural activity interacts with body dynamics to produce stable gait. We also considered the 238 
+
+model of Hase and Yamazaki (2002), but it relies on an optimization procedure at each simula-239 
+
+tion timestep to convert joint torques into muscle activations, which we considered physiologically 240 
+
+implausible. 241 
+
+The controller follows a CPG-reflex architecture in which a rhythmic drive provides a base-242 
+
+line activation pattern, while sensory feedback modulates timing and amplitude at the motoneu-243 
+
+ron level. Rhythm generation is implemented using a Matsuoka oscillator, consisting of mutu-244 
+
+ally inhibiting neurons with adaptation that produce alternating flexor–extensor activity (Matsuoka, 245 
+
+1985). Sensory feedback is incorporated through simplified neuron models representing muscle 246 
+
+spindles and Golgi tendon organs, providing signals related to muscle length, velocity, and force. 247 
+
+9
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Ground contact is represented through tactile signals based on foot–ground interaction, imple-248 
+
+mented as state-dependent inputs. For each muscle, an α-motoneuron integrates inputs from 249 
+
+the oscillator, sensory pathways, contact signals, and a constant bias term to generate the final 250 
+
+stimulation. Interactions between muscles spanning the same joint are also included, allowing 251 
+
+excitatory and inhibitory coupling across muscles. 252 
+
+To improve robustness across walking conditions within the unified simulation framework, the 253 
+
+oscillator parameters were included in optimization and a phase offset parameter ϕoffset was intro-254 
+
+duced to define the initial states of the oscillators. As in the original formulation, oscillator dynamics 255 
+
+were defined as: 256 
+
+Ti ˙zi = −zi −
+
+> 1
+
+X
+
+> j=0
+
+wij χj − λivi + zo (1) 
+
+τi ˙vi = −vi + χi (2) 
+
+χi = max( zi, 0) (3) where zi is the membrane potential of neuron i = 0 , 1, λi and vi represent the self-inhibition weight 257 
+
+and state variable, Ti and τi are time constants, wij are synaptic connection weights, zo is a 258 
+
+constant input, and χi is the neuron output. For each simulation, the oscillator was first simulated 259 
+
+offline using initial conditions z0(0) = v0(0) = v1(0) = 1 and z1(0) = 0 . The initial states for the 260 
+
+main simulation were then set as zi(0) = zoffline  
+
+> i
+
+(ϕoffset ) and vi(0) = voffline  
+
+> i
+
+(ϕoffset ). The oscillator 261 
+
+parameters Ti, τi, wij , λi, zo, and ϕoffset were included as tunable optimization variables. In total, 262 
+
+the controller comprises 99 optimization parameters. 263 
+
+Muscle synergy-based model 264 
+
+The model of Aoi et al. (2019) was selected to represent the muscle synergy-based control 265 
+
+strategy because it provides a direct implementation of low-dimensional temporal pulses that acti-266 
+
+vate predefined muscle synergies. Alternative variants incorporating phase resetting at touchdown 267 
+
+have been proposed (Aoi et al., 2010; Tamura et al., 2020); however, we selected this model as it 268 
+
+includes speed control and demonstrated stable walking across speeds of approximately 1.2–1.6 269 
+
+m s −1, as well as running. 270 
+
+The controller is organized into a movement generator and a movement regulator. The move-271 
+
+10 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+ment generator produces muscle stimulation through five activation pulses distributed across the 272 
+
+gait cycle, each associated with a predefined muscle synergy. Each pulse is characterized by 273 
+
+its amplitude, onset timing, and duration, and contributes to muscle activation through weighted 274 
+
+connections between pulses and individual muscles. The timing of these pulses is governed by 275 
+
+a phase variable that progresses at a rate determined by gait period. The movement regulator 276 
+
+complements this feedforward structure with feedback control, including a proportional–derivative 277 
+
+controller for trunk balance acting on the hip flexors and glutei, and a proportional controller for 278 
+
+speed regulation acting on the soleus and tibialis anterior. The total muscle stimulation is given by 279 
+
+the combined output of the movement generator and regulator. 280 
+
+In the original formulation, the movement generator employs five square activation pulses de-281 
+
+fined by their onset timing and duration, producing piecewise-constant stimulation profiles across 282 
+
+the gait cycle. In our implementation, these pulses resulted in less human-like kinematics and a 283 
+
+reduced range of achievable walking speeds within the unified simulation framework. To address 284 
+
+this, the square pulses ( pi) were replaced with smoother bell-shaped activation curves using a 285 
+
+polynomial pulse function: 286 
+
+Pi(ϕ; μi, σ i) = 
+
+
+
+ai (ϕ − μi)n + 1 μi − σi ≤ ϕ ≤ μi + σi
+
+0 otherwise (4) where ai = −σ−ni to normalize amplitude, μi = Φ i +σi denotes the phase timing of peak amplitude 287 
+
+where Φi is the onset phase of the pulse, and σi = ∆ i/2 denotes the half-width of the pulse. 288 
+
+The exponent n controls the curvature of the pulse. Based on preliminary simulations, n = 2 289 
+
+was adopted, as this parabolic profile produced more physiologically plausible joint kinematics 290 
+
+and muscle activation patterns compared to the original square pulses. In total, the controller 291 
+
+comprises 41 optimization parameters. 292 
+
+CPG-reflex-synergy-based model 293 
+
+We selected the model of Di Russo et al. (2023) to represent the CPG-reflex-synergy con-294 
+
+trol strategy because it integrates a phase-resetting CPG with parameterized muscle synergies 295 
+
+and spinal reflex pathways within a unified framework. This model extends prior CPG and reflex 296 
+
+formulations by incorporating low-dimensional activation primitives while retaining physiologically 297 
+
+motivated sensory feedback. The model generates a wide range of walking speeds without requir-298 
+
+11 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+ing external modulation. 299 
+
+The controller combines a phase-resetting CPG with muscle synergies and spinal reflex path-300 
+
+ways to generate muscle stimulation. Rhythmic activity is produced by coupled oscillators, one for 301 
+
+each leg, whose phases are reset at foot contact to maintain coordination with gait events. The os-302 
+
+cillator phase drives a pattern formation layer that generates five bell-shaped activation primitives 303 
+
+distributed across the gait cycle, each providing baseline stimulation to muscles through weighted 304 
+
+connections. Sensory feedback is incorporated through spinal reflex pathways representing Ia, II, 305 
+
+and Ib afferents as well as Renshaw cells, forming a network of sensory neurons, interneurons, 306 
+
+and motoneurons that provide excitatory and inhibitory interactions across muscles. For each 307 
+
+muscle, the final stimulation is determined by integrating inputs from the activation primitives and 308 
+
+reflex pathways at the motoneuron level. In addition, a balance controller provides feedback-based 309 
+
+modulation of hip muscles (HFL, GLU, and HAM) using a proportional–derivative control strategy. 310 
+
+The model was implemented following the original formulation without additional modifications. 311 
+
+In total, the controller comprises 240 optimization parameters. 312 
+
+Unified simulation framework and evaluation 313 
+
+We evaluated the ability of each control model to generate human-like gait and its perfor-314 
+
+mance across speeds and slopes using a unified neuromechanical simulation framework in the 315 
+
+two-dimensional sagittal plane. In this framework, each controller drives a shared musculoskeletal 316 
+
+model with nine muscles per leg, providing muscle stimulation inputs while interacting with iden-317 
+
+tical biomechanical dynamics and simulation conditions. Gait behaviors were obtained through 318 
+
+a standardized optimization procedure. The framework was implemented in MATLAB/Simulink 319 
+
+(2024b) with the Simscape Multibody toolbox for rigid-body dynamics, and forward dynamics were 320 
+
+computed using the ode15s solver. 321 
+
+Musculoskeletal model 322 
+
+We used the neuromechanical model of Song and Geyer (2018) with minor modifications. 323 
+
+Specifically, to provide a more general and consistent framework across controllers, we adjusted 324 
+
+the engagement threshold of the passive knee flexion torque preventing hyperextension to remove 325 
+
+the earlier bias toward slight knee flexion during stance. In addition, we increased Achilles tendon 326 
+
+compliance to improve tendon dynamics. The model represents an adult male with a height of 327 
+
+12 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+1.8 m and mass of 80 kg, and consists of a seven-segment rigid body system interacting with the 328 
+
+ground via contact points at the heel and ball of each foot. The model is actuated by nine Hill-type 329 
+
+muscle–tendon units per leg, each comprising a contractile element, a parallel elastic component, 330 
+
+and a series elastic component. Physiological transmission delays and excitation–contraction 331 
+
+coupling are included to represent neural and muscle dynamics. Detailed descriptions of segment 332 
+
+properties, muscle–tendon parameters, activation dynamics, delay values, and the implemented 333 
+
+model modifications are provided in Appendix A. 334 
+
+Optimization method 335 
+
+Control parameters were optimized using the Covariance Matrix Adaptation Evolution Strategy 336 
+
+(CMA-ES) (Hansen, 2006). Each controller was tuned within a shared optimization framework, 337 
+
+with a parameter space that included both controller-specific parameters and seven parameters 338 
+
+defining the initial state of the musculoskeletal model (joint angles and horizontal velocity). The 339 
+
+total number of control parameters differed across models: 64 for the reflex-based controller, 99 340 
+
+for the CPG-reflex-based controller, 41 for the muscle synergy-based controller, and 240 for the 341 
+
+CPG-reflex-synergy-based controller. 342 
+
+Optimization was performed using a multi-stage objective designed to ensure stable and phys-343 
+
+iologically plausible gait. The cost function was defined as: 344 345 
+
+J =
+
+
+
+3C0 − Cxdist , if falls (a) 
+
+2C0 + CSS , else if unsteady (b) 
+
+C0 + CV , else if not at target speed (c) 
+
+CP + CE , otherwise (d) (5) where C0 = 10 4 ensures prioritization of earlier stages. The first stage promotes forward progres-346 
+
+sion by maximizing traveled distance ( Cxdist ). The second stage enforces steady walking, where 347 
+
+(CSS ) is defined as the summed differences in joint positions at successive heel strikes; steady 348 
+
+gait is achieved when six consecutive steady-state steps are observed. The third stage enforces 349 
+
+target speed tracking, defined as Cv = max   vavg − vtgt − 0.02 , 0. The final stage minimizes 350 
+
+joint limit violations ( CP ; hip: -25 ◦ to +135 ◦, knee: -3 ◦ to 55 ◦, ankle: -65 ◦ to 20 ◦) and muscle 351 
+
+effort ( CE =   
+
+> Pnm m=1
+> R
+> TA2
+> mdt D·nm
+
+), where muscle effort is computed as the distance-normalized integral 352 
+
+of squared muscle activations across all muscles over the steady-state steps. Thus, a success-353 
+
+fully optimized simulation trial begins from an initial pose and forward velocity, with the controller 354 
+
+13 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+generating muscle stimulations based on its internal states and sensory feedback to drive motion, 355 
+
+and ultimately converges toward a steady walking pattern with small step-to-step deviations, av-356 
+
+erage speed within the target range, and minimized joint-limit violations, and distance-normalized 357 
+
+muscle activations. 358 
+
+Optimization was initialized with an identity covariance matrix and terminated when improve-359 
+
+ments in the cost function fell below 3% over the last 200 iterations. A standard optimization 360 
+
+consisted of 800 iterations. All parameters were normalized to an initial value of 1, and the initial 361 
+
+sampling variance ( σ) was set to 0.1 when exploring new conditions and reduced to 0.01 for con-362 
+
+tinued optimization within the same condition. Computations were performed on a local multi-core 363 
+
+workstation and Northeastern University’s high-performance computing cluster (Explorer), with 364 
+
+typical runtimes of 3–10 hours locally and 6–15 hours on the cluster, depending on the controller. 365 
+
+Simulation protocol 366 
+
+Nominal walking solutions were obtained by optimizing controller parameters to produce gait 367 
+
+with minimum muscle effort at a target speed of vtgt = 1 .2 m s −1 on level ground. To initialize 368 
+
+this process, parameters were first optimized to minimize kinematic deviation between simulated 369 
+
+and experimental gait data (Rose & Gamble, 2006), using a modified multi-stage cost function in 370 
+
+which the final-stage objective (Eq. 5(d)) was replaced with the root mean square error of joint 371 
+
+kinematics (see Appendix B). The resulting parameter set was then used as an initialization for 372 
+
+further optimization under nominal conditions using the original multi-stage objective, producing 373 
+
+stable, minimum-effort gait without reference data. 374 
+
+Performance across speeds and slopes was evaluated by systematically extending optimiza-375 
+
+tion from the nominal solution. Target walking speed ( vtgt ) was incrementally increased and de-376 
+
+creased in steps of 0.2 m s −1 until stable gait could no longer be achieved. For each successfully 377 
+
+optimized speed condition, the resulting parameter set was used to initialize optimization across 378 
+
+slope variations. Incline and decline slopes were increased in increments of 1◦ until stable gait 379 
+
+was no longer attainable. A speed–slope condition was considered achievable if the optimization 380 
+
+reached the final stage of the cost function (i.e., minimization of CE + CP ), at which point optimiza-381 
+
+tion was terminated to reduce computational cost. This procedure was repeated multiple times 382 
+
+to ensure that observed performance limits reflected the capabilities of each control model rather 383 
+
+than convergence to local minima. 384 
+
+To further characterize performance trends, full optimization of the final-stage objective was 385 
+
+14 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+performed for level ground across the range of achievable speeds and for slope conditions ranging 386 
+
+from −10 ◦ to 10 ◦ at vtgt = 1 .2 m s −1. Exploration of speed–slope conditions continued until smooth 387 
+
+unimodal performance trends were obtained for each control model. 388 
+
+Evaluation 389 
+
+We evaluated each control model along two dimensions: human-like gait characteristics and 390 
+
+locomotor versatility. Human-like gait characteristics were assessed by comparing simulated kine-391 
+
+matics, kinetics, and muscle activations against experimental reference data under nominal walk-392 
+
+ing conditions, as well as by examining biomechanical (e.g., stride length) and energetic trends 393 
+
+across walking speeds and slope conditions. Locomotor versatility was evaluated as the range 394 
+
+of speed–slope conditions over which each controller could generate stable gait under the stan-395 
+
+dardized optimization framework. Conditions exhibiting a flight phase (i.e., running gaits) on level 396 
+
+ground were excluded from this analysis. Together, these evaluations quantify both the fidelity of 397 
+
+simulated gait to human data and the adaptability of each control architecture across task condi-398 
+
+tions. 399 
+
+## Results 400 
+
+We first present results on human-like gait characteristics, including nominal gait patterns and 401 
+
+trends across speeds and slopes, and then examine locomotor versatility across speed–slope 402 
+
+conditions. Simulation animations for nominal gaits and representative speed–slope conditions are 403 
+
+provided in the Supplementary Video ( https:// youtu.be/suMJIfZ Ye5k?si=GeTNjr nSL4Sf AJ-T ). 404 
+
+Human-like gait characteristics 405 
+
+Nominal gait patterns 406 
+
+The reflex-based and CPG-reflex-synergy models most closely reproduced human gait char-407 
+
+acteristics under nominal walking conditions. Fig. 2 shows the kinematics, kinetics, and muscle 408 
+
+activations across the gait cycle for each controller when optimized using Eq. 5 at 1.2 m s −1. All 409 
+
+models successfully generated stable walking. However, all models exhibited straightened or hy-410 
+
+perextended knees during midstance, accompanied by mismatches in knee joint torque during 411 
+
+15 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+stance. The reflex-based and CPG-reflex-synergy models produced more human-like gait kine-412 
+
+matics, which is also evident in the simulation animations (Supplementary Video). The bar plots 413 
+
+quantify deviations from experimental data using cross-correlation ( 1 − R) and root mean square 414 
+
+error (RMSE) across joints, ground reaction forces, and muscle activations, where lower values 415 
+
+indicate better agreement. Deviations were largest in muscle activations, particularly due to ex-416 
+
+cessive hamstring activity and reduced rectus femoris activation. Overall, the reflex-based and 417 
+
+CPG-reflex-synergy models showed the best agreement across kinematics, kinetics, and muscle 418 
+
+activations in both RMSE and cross-correlation ( 1 − R), except for reduced correlation (higher 419 
+
+1 − R) in muscle activations for the CPG-reflex-synergy model. 420 
+
+16 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Figure 2: Kinematics, kinetics, muscle activations, and deviation of simulated to reference data for walking at 1.2 m s −1. A) human kinematics (Rose & Gamble, 2006), B) kinetics (Camargo et al., 2021), and C) muscle activations (Perry & Burnfield, 2010) are shown in gray. Ground reaction forces are normalized by body weight, and joint torques are normalized by body weight times leg length. Solid lines display trajectories during stance, while dashed lines represent swing. Bar plots show deviation of simulated gait data from reference data. Each stacked bar shows cross-correlation ( 1 − R) and root mean square error per joint, ground reaction force, or muscle activation with horizontal dashed lines noting the summed metric. The cross-correlation coefficient ( R) is computed allowing up to a 20% time shift, and is presented as 1 − R
+
+so that larger values indicate greater deviation. 
+
+17 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Trends across speeds and slopes 421 
+
+We compare stride length and metabolic energy trends across walking speeds on level ground 422 
+
+and across slope conditions at a fixed speed of 1.2 m s −1, and report the corresponding optimal 423 
+
+walking speed and slope for each energy and fatigue cost of transport metric. Muscle effort is 424 
+
+reported as fatigue of transport (FOT), based on squared muscle activation as a proxy for fatigue 425 
+
+(Song & Geyer, 2018), and is compared alongside two metabolic cost of transport metrics based 426 
+
+on different muscle metabolic models (COT U: Umberger (2010); COT B: Bhargava et al. (2004)). 427 
+
+Optimal values are obtained by fitting fourth-order polynomials to each trend and identifying their 428 
+
+minima. Step length and metabolic cost of transport from experimental data are included for 429 
+
+comparison. 430 
+
+The reflex-based and CPG-reflex-synergy models best captured human trends in stride length 431 
+
+and energy across walking speeds on level ground. All models except the CPG-reflex model 432 
+
+reproduced the characteristic increase and plateau in stride length with speed (Fig. 3). The reflex-433 
+
+based model was the most energy efficient, followed by the CPG-reflex-synergy model, and both 434 
+
+showed consistent trends across energy metrics. In contrast, the CPG-reflex and muscle synergy 435 
+
+models exhibited inconsistent energy trends, aligning with experimental data in COT U but not in 436 
+
+FOT or COT B. Consistent with these trends, the reflex-based model produced the closest optimal 437 
+
+walking speed to experimental values (Table 2). 438 
+
+18 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Figure 3: Biomechanical and energy trends of walking at different speeds on level ground. Stride length is normalized by subject height. Simulated results include fatigue of transport (FOT) and metabolic cost of transport (COT). Reference human data (top row) for stride length and COT are from Hirasaki et al. (1999) and Browning et al. (2006), respectively. 
+
+Table 2: Optimal walking speed on level ground conditions 
+
+control strategy FOT COT U COT B                           
+
+> human data 1.2-1.4 m s −1(Fritz & Lusardi, 2009) reflex 1.15 m s −11.41 m s −11.23 m s −1
+> CPG-reflex 1.24 m s −1> 1.60 m s −11.27 m s −1
+> muscle synergy 1.90 m s −11.88 m s −11.92 m s −1
+> CPG-reflex-synergy 1.18 m s −11.49 m s −11.05 m s −1
+
+Across slope conditions, the reflex-based and CPG-reflex-synergy models most consistently 439 
+
+reproduced experimentally observed stride length and energy trends (Fig. 4). It is worth noting 440 
+
+that trends across slopes were more irregular than those on level ground, reflecting the increased 441 
+
+difficulty of optimization and the presence of local minima. Both models captured the characteristic 442 
+
+peak in stride length at moderate incline (approximately 3 ◦), whereas the CPG-reflex and muscle 443 
+
+19 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+synergy models did not exhibit human-like stride length patterns across slopes. Although the mus-444 
+
+cle synergy model produced optimal slope values closest to experimental data for some energy 445 
+
+metrics (Table 3), it remained the least energy efficient across all slope conditions. In contrast, 446 
+
+the reflex-based and CPG-reflex-synergy models achieved lower energy cost across slopes while 447 
+
+producing optimal slope conditions consistent with experimental observations. 448 
+
+Figure 4: Biomechanical and energy trends of walking across different slope conditions at 1.2 m s −1.
+
+Stride length is normalized by subject height. Simulated results include fatigue of transport (FOT) and metabolic cost of transport (COT). Reference human data (top row) for stride length and COT are from Franz et al. (2012) and Lankford et al. (2020), respectively. 
+
+Table 3: Optimal slope condition for walking at 1.2 m s −1
+
+control strategy FOT COT U COT B              
+
+> human data -6.00 ◦(Lankford et al., 2020) reflex -2.12 ◦-4.95 ◦-5.35 ◦
+> CPG-reflex -0.18 ◦-1.09 ◦-1.45 ◦
+> muscle synergy -7.37 ◦-7.37 ◦-4.14 ◦
+> CPG-reflex-synergy -3.13 ◦-2.32 ◦-4.95 ◦
+
+20 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Versatility across speeds and slopes 449 
+
+The CPG-reflex-synergy model achieved the greatest versatility across walking speeds and 450 
+
+slopes, followed by the reflex-based model, whereas the muscle synergy and CPG-reflex models 451 
+
+showed substantially more limited coverage (Fig. 5). Both the CPG-reflex-synergy and reflex-452 
+
+based models produced very wide speed ranges (0.4–2.8 m s −1 and 0.4–2.4 m s −1, respectively), 453 
+
+and were able to achieve even faster locomotion with running gaits, although these conditions 454 
+
+were excluded from this analysis. In contrast, the muscle synergy and CPG-reflex models were 455 
+
+restricted to narrower speed ranges. Similarly, for slopes, the CPG-reflex-synergy model achieved 456 
+
+the broadest range of inclines and declines, while the reflex-based model showed comparable but 457 
+
+slightly reduced coverage, whereas the muscle synergy and CPG-reflex models again exhibited 458 
+
+more limited adaptability. 459 
+
+21 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Figure 5: Performance versatility of each controller across walking speeds and slopes. Each grid cell represents a simulation at a given speed–slope condition. Successful walking is indicated in green, while red denotes unsuccessful cases. Darker green cells indicate conditions that were fully optimized and included in Figs. 3 and 4. 
+
+Comparison with previously reported model behaviors 460 
+
+The implemented controllers reproduced the characteristic kinematic, kinetic, and muscle ac-461 
+
+tivation patterns reported in their original publications and achieved a wider range of locomotion 462 
+
+behaviors, while enabling evaluation under a substantially broader and unified set of locomotion 463 
+
+conditions (Table 4). Readers are referred to the original studies for more detailed locomotion 464 
+
+behaviors. 465 
+
+22 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Table 4: Comparison of implemented controllers with previously reported model behaviors 
+
+control strategy previously reported behavior behavior in this study previously reported range range in this study 
+
+reflex Kinematics matched human gait well, except for high peak hip flexion, early knee extension and a more plantarflexed ankle during stance. Low knee torque, early peak ankle torque, and high hip with low ankle muscle activity observed. (Song & Geyer, 2015a). Similar overall gait pattern with more natural hip and ankle motion during late stance, but with straightened knees through midstance and increased ankle plantarflexion during early stance. Increased HAM activity remained, but more natural ankle torque observed. 0.8–1.8 m s −1;-13.5 ◦ to 4.5 ◦
+
+slopes 0.4–2.4 m s −1;-35 ◦ to 14 ◦
+
+slopes CPG-reflex Limited ankle motion, straightened knee during stance throughout the gait cycle. High hip torque correlation to human data, but low peak knee and ankle torque produced. Muscle activation not reported. Muscle tension reported as comparable; refer to the original paper (Ogihara & Yamazaki, 2001). Similar knee and hip patterns with straightened knees through midstance; ankle kinematics differed but still showed limited range of motion, low knee and ankle torque, and minimal GAS activation. 1.1 m s −1 on level ground 1.0–1.6 m s −1;-13 ◦ to 8 ◦
+
+slopes muscle synergy Straightened knee during stance, high ankle plantarflexion, and early hip flexion during swing. Weaker joint torques observed for all three joints. Increased BFSH, VAS, GAS, and TA activations reported (Aoi et al., 2019). Similar kinematic features, including straightened knees through midstance, high ankle plantarflexion, and early hip flexion during swing. Peak joint torques matched human data, but temporally did not align. Higher activations for BFSH, GAS, and TA remained. 1.2–1.6 m s −1
+
+walking; 1.6–2.0 m s −1
+
+running 0.8–2.0 m s −1
+
+walking; -23 ◦ to 14 ◦ slopes CPG-reflex-synergy Kinematics and vertical GRF matched human gait well, except with high peak hip flexion during swing, excessive knee flexion during mid-to-late stance, and more dorsiflexed ankle posture during early stance and early swing. Joint torques and horizontal ground reaction force not reported. Low GAS and SOL reported. (Di Russo et al., 2023). High peak hip flexion during swing was not observed; straightened knees through midstance and increased ankle plantarflexion during early stance were observed. Increased activity for hip muscles. 0.3–1.9 m s −1
+
+on level ground 0.4–2.8 m s −1;-30 ◦ to 21 ◦
+
+slopes 
+
+## Discussion 466 
+
+This study shows that specific implementations of locomotion control architectures can mean-467 
+
+ingfully shape both the human-likeness and versatility of neuromechanical simulations under con-468 
+
+trolled biomechanical and computational conditions. By implementing four representative con-469 
+
+trollers within a unified musculoskeletal model, optimization procedure, and evaluation framework, 470 
+
+we isolated differences attributable to control organization rather than to differences in body me-471 
+
+chanics or simulation protocol. The CPG-reflex-synergy model of Di Russo et al. (2023) achieved 472 
+
+the strongest overall performance across the evaluated criteria, producing human-like gait pat-473 
+
+terns and the widest range of walking speeds and slopes. The reflex-based model of Song and 474 
+
+Geyer (2015a) showed similarly strong human-likeness and competitive versatility, whereas the 475 
+
+muscle synergy-based model of Aoi et al. (2019) and the CPG-reflex-based model of Ogihara and 476 
+
+Yamazaki (2001) showed less realistic gait patterns and more restricted adaptability. These results 477 
+
+indicate that the organization of neural control, as instantiated in specific model formulations, is a 478 
+
+23 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint major determinant of simulated locomotor behavior. 479 
+
+The two best-performing models shared a common feature: their control signals were grounded 480 
+
+in the mechanical state of the body and its interaction with the environment. In the reflex-based 481 
+
+model, muscle activation is continuously modulated by sensory feedback related to muscle state, 482 
+
+limb loading, and trunk orientation, while stance and swing reflex circuits are coordinated through 483 
+
+gait events such as ground contact. In the CPG-reflex-synergy model, muscle activation is continu-484 
+
+ously modulated through reflex pathways, in addition to the CPG-generated rhythm being synchro-485 
+
+nized with body–environment interaction through phase resetting at heel-strike. Both models also 486 
+
+incorporate interlimb coordination, through contralateral leg feedback in the reflex-based model 487 
+
+and bilateral CPG coupling in the CPG-reflex-synergy model. In contrast, the CPG-reflex and 488 
+
+muscle synergy models rely more heavily on internally generated timing, with less explicit sensory 489 
+
+anchoring of the locomotor pattern and less direct coupling between limbs. These differences may 490 
+
+explain why the reflex-based and CPG-reflex-synergy models produced stable gait across broader 491 
+
+ranges of speeds and slopes: successful walking requires not only generating rhythmic activation 492 
+
+patterns, but also continuously modulating those patterns according to body state and mechani-493 
+
+cal events. This control requirement is captured in forward-dynamic simulations, where gait must 494 
+
+emerge from transient initial conditions and remain stable despite step-to-step variability. In con-495 
+
+trast, trajectory optimization approaches are well suited for identifying optimal periodic motions but 496 
+
+do not typically test how a neural controller stabilizes gait from transient or imperfect states unless 497 
+
+feedback, perturbations, or noise are explicitly modeled (De Groote & Falisse, 2021). 498 
+
+Several additional observations emerged from the unified comparison. Notably, the two con-499 
+
+trollers that produced gait less consistent with experimental observations were originally developed 500 
+
+without some key neuromechanical features, such as compliant tendons and physiological trans-501 
+
+mission delays (Table 1), highlighting the importance of neuromechanical modeling detail in eval-502 
+
+uating locomotion control architectures. In addition, controller dimensionality varied substantially 503 
+
+across models, with 41, 64, 99, and 240 parameters for the muscle synergy-based, reflex-based, 504 
+
+CPG-reflex-based, and CPG-reflex-synergy-based controllers, respectively. While the greater di-505 
+
+mensionality of the CPG-reflex-synergy-based controller may provide increased representational 506 
+
+capacity, the reflex-based controller nevertheless achieved comparable overall performance de-507 
+
+spite using substantially fewer parameters. 508 
+
+The results of this study should be interpreted as comparisons of specific model implemen-509 
+
+tations, not as definitive judgments on the underlying biological control hypotheses. Reflexes, 510 
+
+24 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+CPGs, and muscle synergies each represent broad classes of mechanisms that can be instan-511 
+
+tiated in many different ways. The weaker performance of the CPG-reflex and muscle synergy 512 
+
+models in this study therefore does not imply that CPGs or synergies are unimportant for human 513 
+
+locomotion. Rather, it indicates that the particular formulations tested here were less effective un-514 
+
+der the shared framework and evaluation criteria. Different implementations, such as CPG-reflex 515 
+
+models with richer sensory feedback, synergy models with stronger event-based timing regula-516 
+
+tion, or hybrid controllers with alternative spinal circuit representations, could produce different 517 
+
+results. The present study should therefore be viewed as a controlled comparison of representa-518 
+
+tive architectures and a tool for identifying useful design principles, rather than as a final ranking 519 
+
+of biological control mechanisms. 520 
+
+More broadly, the limited versatility observed in some controllers should also be interpreted 521 
+
+in the context of the level of control these models were designed to represent. Most biologically 522 
+
+inspired locomotion models, including those examined here, primarily focus on spinal-level mecha-523 
+
+nisms responsible for generating and regulating steady-state locomotion through reflex pathways, 524 
+
+rhythmic circuits, and modular muscle coordination. From this perspective, reduced adaptability 525 
+
+across broader speed and slope conditions does not necessarily invalidate the underlying control 526 
+
+hypothesis, as flexible locomotor behaviors in humans likely depend on additional supraspinal pro-527 
+
+cesses involved in regulating task goals, balance, gait transitions, and environmental adaptation. 528 
+
+In the present framework, such higher-level adaptation was approximated through re-optimization 529 
+
+of controller parameters across conditions rather than through explicit hierarchical modulation dur-530 
+
+ing locomotion itself. The present results therefore motivate future neuromechanical studies that 531 
+
+model locomotion beyond nominal steady gait to investigate more holistic control architectures 532 
+
+that couple spinal locomotor mechanisms with supraspinal systems capable of context-dependent 533 
+
+modulation and task-level regulation. 534 
+
+Limitations 535 
+
+Our unified simulation framework has several limitations related to the simplified musculoskele-536 
+
+tal model and optimization framework. The musculoskeletal model includes several simplifications 537 
+
+that would affect the resulting behaviors of different control models: it is restricted to the sagittal 538 
+
+plane, includes a reduced set of muscles, represents the upper body as a single rigid segment, 539 
+
+and does not include a toe segment. Nevertheless, the selected framework is appropriate for the 540 
+
+present comparison because many of the original neuromechanical control models were either 541 
+
+25 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+proposed using similar musculoskeletal formulations or later adapted to comparable reduced-order 542 
+
+models by the original authors. The optimization framework also imposes assumptions regarding 543 
+
+locomotor goals and optimality principles. In particular, muscle effort (computed as the summed 544 
+
+integral of squared muscle activations) was used as the primary final-stage objective. Although this 545 
+
+objective is widely used in musculoskeletal simulations and has been argued to produce human-546 
+
+like gait patterns (Ackermann & Van den Bogert, 2010; Song & Geyer, 2018), alternative objectives 547 
+
+such as metabolic energy expenditure (Koelewijn et al., 2019; Song & Geyer, 2018) or multi-548 
+
+objective formulations (Veerkamp et al., 2021) may produce different locomotor behaviors and 549 
+
+alter the relative performance of the controllers. However, when optimized to better match exper-550 
+
+imental gait kinematics (Appendix B), the CPG-reflex-based and muscle synergy-based models 551 
+
+still showed limited improvement in reproducing the reference kinematics, suggesting limitations of 552 
+
+those control formulations in generating human-like gait within the present framework beyond the 553 
+
+specific objective formulation used in the main analysis. Another limitation is that, despite repeated 554 
+
+optimization attempts, the high-dimensional non-convex optimization landscape likely contains lo-555 
+
+cal minima, particularly for slope conditions where irregular trends remained apparent (Fig. 4), and 556 
+
+the obtained solutions may therefore not represent globally optimal locomotor behaviors. 557 
+
+Another potential concern is that the modeling and framework choices used in the present 558 
+
+study may bias the comparison toward certain control models, particularly the reflex-based model, 559 
+
+because the musculoskeletal model and simulation environment were adapted from prior reflex-560 
+
+based modeling studies. We sought to reduce this concern by applying the same musculoskeletal 561 
+
+dynamics, optimization procedure, simulation protocol, and evaluation metrics to all controllers, 562 
+
+and by limiting implementation changes to those required for compatibility or physiologically plau-563 
+
+sible performance. We also modified several aspects of the original framework to reduce behavior-564 
+
+specific tuning and incorporate more physiologically realistic musculoskeletal dynamics, including 565 
+
+removing a passive knee torque threshold that previously prevented full knee extension and incor-566 
+
+porating more compliant Achilles tendon properties and more detailed activation dynamics. These 567 
+
+changes likely contributed to several gait differences from prior reflex-based studies, such as the 568 
+
+excess knee extension observed during early stance. In addition, kinematic-fitting optimization 569 
+
+was used to obtain suitable initial parameter sets for the final optimization stage across all con-570 
+
+trollers, and the full optimization procedure was repeated multiple times to reduce sensitivity to 571 
+
+local minima within practical computational constraints. Moreover, the implemented controllers 572 
+
+achieved broader speed and slope ranges than those reported in their original studies, suggesting 573 
+
+26 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+that the unified framework explored the capabilities of all control models to a substantial extent. 574 
+
+Nevertheless, no unified comparison can be completely independent of modeling assumptions, 575 
+
+and the present results should therefore be interpreted in the context of the selected representative 576 
+
+models, shared body mechanics, and chosen evaluation criteria. To further support transparency 577 
+
+and reproducibility, we publicly share the unified simulation framework and controller implementa-578 
+
+tions, allowing future studies to reproduce, extend, and critically evaluate the present comparison 579 
+
+under alternative modeling assumptions and optimization strategies. 580 
+
+Future Directions 581 
+
+The public framework developed in this study provides a foundation for systematic and ex-582 
+
+tensible comparison of neuromechanical locomotion control models. Future work can implement 583 
+
+additional variants within each control class to determine which representations of reflex path-584 
+
+ways, CPG dynamics, synergy structures, sensory feedback, and phase regulation are most im-585 
+
+portant for generating human-like gait. The framework can also be extended to investigate other 586 
+
+performance dimensions and applications, including robustness to external perturbations, gait 587 
+
+transitions, pathological gait features, motor adaptation and learning, rehabilitation interventions, 588 
+
+and interactions with assistive devices. Beyond controller comparisons, the framework may also 589 
+
+be used to investigate how musculoskeletal morphology, muscle parameters, tendon compliance, 590 
+
+objective functions, optimization algorithms, and physics solvers influence simulated locomotor 591 
+
+behavior. Such studies would help distinguish conclusions that are specific to particular controller 592 
+
+implementations from those that reflect broader interactions among neural control, body mechan-593 
+
+ics, and task constraints. 594 
+
+More broadly, to investigate locomotor behaviors beyond nominal steady gait, future neurome-595 
+
+chanical studies may benefit from more holistic models that explicitly integrate spinal control prim-596 
+
+itives with supraspinal modulation. Rather than treating changes in speed, slope, or task condition 597 
+
+as separate optimization problems, such hierarchical models could include explicit mechanisms 598 
+
+for task-level control, sensory state estimation, balance regulation, motor adaptation, and context-599 
+
+dependent modulation of spinal circuits. Such models would provide a stronger computational 600 
+
+bridge between spinal locomotor mechanisms, supraspinal regulation, and whole-body biome-601 
+
+chanics. Because designing such higher-level control mechanisms manually may become increas-602 
+
+ingly difficult as locomotor tasks and environments grow more complex, reinforcement learning 603 
+
+and related data-driven approaches may provide useful tools for learning supraspinal modulation 604 
+
+27 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+policies over physiologically grounded spinal control architectures (Song et al., 2021). By enabling 605 
+
+systematic comparison of alternative control architectures under shared conditions, the present 606 
+
+framework provides a foundation for such investigations and may help guide the development of 607 
+
+more physiologically grounded models of human locomotor control. 608 
+
+## Appendix A 609 
+
+Musculoskeletal Parameters 610 
+
+The musculoskeletal model is visualized in Fig. A1. The skeletal model properties (Table 611 
+
+A1) are derived from physiological measurements (Winter, 2009). The muscle-tendon parameters 612 
+
+(Table A2) and musculoskeletal attachment parameters (Table A3) are set on physiological data 613 
+
+(Miller, 2014; Song & Geyer, 2015a, 2018). Neural delays are included in the simulation represent-614 
+
+ing transmission from the spinal cord to the hip, knee, and ankle muscles with values of 2.5 ms, 615 
+
+5 ms, and 10 ms, respectively. A 30 ms delay is applied for signals from the supraspinal system 616 
+
+to spinal cord. From our previous standard simulation framework (Song & Geyer, 2015a, 2018), 617 
+
+the Achilles tendon properties have been updated to be more compliant, better matching reported 618 
+
+tendon kinematics (Arnold et al., 2013) and the engagement threshold of the passive knee flexion 619 
+
+torque is also relaxed from 175 ◦ to 180 ◦. Readers are referred to the code shared for full details 620 
+
+on the musculoskeletal implementation. 621 
+
+Figure A1: Musculoskeletal model used in simulation framework . The nine lower limb muscles are labeled on the left, while limb lengths ( dS ) and center of mass positions ( dG) are depicted on the right. 
+
+28 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Table A1: Skeletal segment parameters 
+
+HAT Thigh Shank Foot                            
+
+> lhx
+> dS(cm )84.6 44.10 44.28 20 7.02 16
+> dG(cm )35 28.24 28.24 14 6.14 -
+> mS(kg )54.24 83.72 1.16
+> Θz(kg ·m2)2.5 0.15 0.05 0.005
+
+Table A2: Muscle-tendon parameters 
+
+HFL GLU HAM RF VAS BFSH GAS SOL TA                                                 
+
+> Fmax (kN )2420.85 50.35 240.8
+> vmax (lopt s−1)12 12 12 12 12 12 12 612
+> lopt (cm )11 11 10 8812 546
+> lslack (cm )10 13 31 35 23 10 40 26 24
+> εref (−)0.04 0.04 0.04 0.04 0.04 0.04 0.10 0.10 0.04
+
+Table A3: Musculoskeletal attachment parameters 
+
+Hip Knee Ankle HFL GLU HAM RF HAM RF VAS BFSH GAS GAS SOL TA                                                                                     
+
+> r0(cm )88885--4----
+> rmax (cm )-----66-5664
+> rmin (cm )-----44-2221
+> φ0(deg )-----165 165 -140 100 100 80
+> φmax (deg )-----45 45 -45 180 180 180
+> φmin (deg )160 120 150 170 180 125 120 160 165 80 90 110
+> ρ(−)0.5 0.5 0.5 0.3 0.5 0.5 0.6 0.7 0.7 0.7 0.5 0.7
+
+Excitation-contraction coupling 622 
+
+Excitation-contraction coupling was used to represent physiological activation dynamics of 623 
+
+muscle stimulation: 624 
+
+τact ˙Am = −Am + Sm (A1) where τact = 0 .01 when the muscle is activating ( Sm ≥ 0) and τact = 0 .04 when deactivating 625 
+
+(Sm < 0), set from (Thelen, 2003). 626 
+
+29 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint Appendix B 627 
+
+Kinematic Fitting Results 628 
+
+Figure B1 shows the simulated gait obtained from the kinematic fitting optimization used to 629 
+
+initialize the nominal walking solution. Simulated kinematics, kinetics, and muscle activations 630 
+
+are compared with experimental reference data for walking at 1.2 m s −1. Compared with the 631 
+
+minimum-effort optimization results (Fig. 2), kinematic RMSE was substantially smaller for most 632 
+
+control models. In particular, the reflex-based and CPG-reflex-synergy-based models reproduced 633 
+
+more human-like early-stance knee flexion, and the reflex-based model no longer exhibited exces-634 
+
+sive ankle plantarflexion during early swing. However, improvements in kinematic agreement were 635 
+
+often accompanied by larger deviations in joint kinetics and muscle activation patterns, suggest-636 
+
+ing that optimization based primarily on kinematic matching does not necessarily produce more 637 
+
+physiologically realistic gait in neuromechanical simulations. 638 
+
+30 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Figure B1: Simulated gait and comparison to reference data for walking at 1.2 m s −1 obtained from kinematic fitting. Same format as Fig. 2, but showing results from the kinematic fitting optimization used for initialization, whereas Fig. 2 presents results from minimum-effort optimization. Kinematics, kinetics, and muscle activations are compared to experimental reference data, along with corresponding deviations. 
+
+31 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+## References 639 
+
+Ackermann, M., & Van den Bogert, A. J. (2010). Optimality principles for model-based prediction 640 
+
+of human gait. Journal of biomechanics , 43 (6), 1055–1060. 641 
+
+Aoi, S., Ogihara, N., Funato, T., Sugimoto, Y., & Tsuchiya, K. (2010). Evaluating functional roles 642 
+
+of phase resetting in generation of adaptive human bipedal walking with a physiologically 643 
+
+based model of the spinal pattern generator. Biological Cybernetics , 102 (5), 373–387. 644 
+
+Aoi, S., Ogihara, N., Sugimoto, Y., & Tsuchiya, K. (2008). Simulating Adaptive Human Bipedal Lo-645 
+
+comotion Based on Phase Resetting Using Foot-Contact Information. Advanced Robotics ,646 
+
+22 (15), 1697–1713. 647 
+
+Aoi, S., Ohashi, T., Bamba, R., Fujiki, S., Tamura, D., Funato, T., Senda, K., Ivanenko, Y., & 648 
+
+Tsuchiya, K. (2019). Neuromusculoskeletal model that walks and runs across a speed 649 
+
+range with a few motor control parameter changes based on the muscle synergy hypothe-650 
+
+sis. Scientific Reports , 9(1), 369. 651 
+
+Arnold, E. M., Hamner, S. R., Seth, A., Millard, M., & Delp, S. L. (2013). How muscle fiber lengths 652 
+
+and velocities affect muscle force generation as humans walk and run at different speeds. 653 
+
+Journal of Experimental Biology .654 
+
+Bhargava, L. J., Pandy, M. G., & Anderson, F. C. (2004). A phenomenological model for estimating 655 
+
+metabolic energy consumption in muscle contraction. Journal of Biomechanics , 37 (1), 81– 656 
+
+88. 657 
+
+Browning, R. C., Baker, E. A., Herron, J. A., & Kram, R. (2006). Effects of obesity and sex on 658 
+
+the energetic cost and preferred speed of walking. Journal of Applied Physiology , 100 (2), 659 
+
+390–398. 660 
+
+Camargo, J., Ramanathan, A., Flanagan, W., & Young, A. (2021). A comprehensive, open-source 661 
+
+dataset of lower limb biomechanics in multiple conditions of stairs, ramps, and level-ground 662 
+
+ambulation and transitions. Journal of Biomechanics , 119 , 110320. 663 
+
+Danner, S. M., Shevtsova, N. A., Frigon, A., & Rybak, I. A. (2017). Computational modeling of 664 
+
+spinal circuits controlling limb coordination and gaits in quadrupeds. Elife , 6, e31050. 665 
+
+De Groote, F., & Falisse, A. (2021). Perspective on musculoskeletal modelling and predictive sim-666 
+
+ulations of human movement to assess the neuromechanics of gait. Proceedings of the 667 
+
+Royal Society B: Biological Sciences , 288 (1946), 20202432. 668 
+
+32 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Di Russo, A., Stanev, D., Sabnis, A., Danner, S. M., Ausborn, J., Armand, S., & Ijspeert, A. (2023). 669 
+
+Investigating the roles of reflexes and central pattern generators in the control and modula-670 
+
+tion of human locomotion using a physiologically plausible neuromechanical model. Jour-671 
+
+nal of Neural Engineering , 20 (6), 066006. 672 
+
+Dietz, V. (2002). Proprioception and locomotor disorders. Nature Reviews Neuroscience , 3(10), 673 
+
+781–790. 674 
+
+Dzeladini, F., Van Den Kieboom, J., & Ijspeert, A. (2014). The contribution of a central pattern 675 
+
+generator in a reflex-based neuromuscular model. Frontiers in Human Neuroscience , 8.676 
+
+Feldman, A. G., & Levin, M. F. (1995). The origin and use of positional frames of reference in motor 677 
+
+control. Behavioral and Brain Sciences , 18 (4), 723–744. 678 
+
+Fleischmann, S., Shanbhag, J., Miehling, J., Wartzack, S., Ong, C., Eskofier, B. M., & Koelewijn, 679 
+
+A. D. (2025). A model of the cerebellum generates gait adaptations in a reflex-based neu-680 
+
+romusculoskeletal model during split-belt walking. Journal of NeuroEngineering and Reha-681 
+
+bilitation , 22 (1), 256. 682 
+
+Franz, J. R., Lyddon, N. E., & Kram, R. (2012). Mechanical work performed by the individual legs 683 
+
+during uphill and downhill walking. Journal of Biomechanics , 45 (2), 257–262. 684 
+
+Fritz, S., & Lusardi, M. (2009). White paper: "walking speed: The sixth vital sign". Journal of Geri-685 
+
+atric Physical Therapy (2001) , 32 (2), 46–49. 686 
+
+Geijtenbeek, T. (2019). SCONE: Open Source Software for Predictive Simulation of Biological 687 
+
+Motion. Journal of Open Source Software , 4(38), 1421. 688 
+
+Geyer, H., & Herr, H. (2010). A Muscle-Reflex Model That Encodes Principles of Legged Me-689 
+
+chanics Produces Human Walking Dynamics and Muscle Activities. IEEE Transactions on 690 
+
+Neural Systems and Rehabilitation Engineering , 18 (3), 263–273. 691 
+
+Grillner, S. (2006). Biological Pattern Generation: The Cellular and Computational Logic of Net-692 
+
+works in Motion. Neuron , 52 (5), 751–766. 693 
+
+Günther, M., & Ruder, H. (2003). Synthesis of two-dimensional human walking: A test of the λ −694 
+
+model . Biological Cybernetics , 89 (2), 89–106. 695 
+
+Haeufle, D. F., Schmortte, B., Geyer, H., Müller, R., & Schmitt, S. (2018). The benefit of combin-696 
+
+ing neuronal feedback and feed-forward control for robustness in step down perturbations 697 
+
+of simulated human walking depends on the muscle function. Frontiers in computational 698 
+
+neuroscience , 12 , 80. 699 
+
+33 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Hansen, N. (2006). The CMA Evolution Strategy: A Comparing Review [Series Title: Studies in 700 
+
+Fuzziness and Soft Computing]. In J. A. Lozano, P. Larrañaga, I. Inza, & E. Bengoetxea 701 
+
+(Eds.), Towards a New Evolutionary Computation (pp. 75–102, Vol. 192). Springer Berlin 702 
+
+Heidelberg. 703 
+
+Hase, K., & Yamazaki, N. (1997). Development of Three-Dimensional Whole-Body Musculoskele-704 
+
+tal Model for Various Motion Analyses. JSME international journal. Ser. C, Dynamics, con-705 
+
+trol, robotics, design and manufacturing , 40 (1), 25–32. 706 
+
+Hase, K., & Yamazaki, N. (2002). Computer simulation study of human locomotion with a three-707 
+
+dimensional entire-body neuro-musculo-skeletal model (I. Acquisition of normal walking). 708 
+
+JSME International Journal Series C Mechanical Systems, Machine Elements and Manu-709 
+
+facturing , 45 (4), 1040–1050. 710 
+
+Hirasaki, E., Moore, S. T., Raphan, T., & Cohen, B. (1999). Effects of walking velocity on vertical 711 
+
+head and body movements during locomotion. Experimental Brain Research , 127 (2), 117– 712 
+
+130. 713 
+
+Ijspeert, A. J. (2008). Central pattern generators for locomotion control in animals and robots: A 714 
+
+review. Neural Networks , 21 (4), 642–653. 715 
+
+Ivanenko, Y. P., Poppele, R. E., & Lacquaniti, F. (2004). Five basic muscle activation patterns 716 
+
+account for muscle activity during human locomotion. The Journal of Physiology , 556 (1), 717 
+
+267–282. 718 
+
+Jo, S., & Massaquoi, S. G. (2007). A model of cerebrocerebello-spinomuscular interaction in the 719 
+
+sagittal control of human walking. Biological Cybernetics , 96 (3), 279–307. 720 
+
+Jones, R., Ratnakumar, N., Akba¸ s, K., & Zhou, X. (2024). Delayed center of mass feedback in 721 
+
+elderly humans leads to greater muscle co-contraction and altered balance strategy un-722 
+
+der perturbed balance: A predictive musculoskeletal simulation study (A. Mengarelli, Ed.). 723 
+
+PLOS ONE , 19 (5), e0296548. 724 
+
+Kim, Y., Tagawa, Y., Obinata, G., & Hase, K. (2011). Robust control of CPG-based 3D neuromus-725 
+
+culoskeletal walking model. Biological Cybernetics , 105 (3-4), 269–282. 726 
+
+Koelewijn, A. D., Heinrich, D., & van den Bogert, A. J. (2019). Metabolic cost calculations of gait 727 
+
+using musculoskeletal energy models, a comparison study. PloS one , 14 (9), e0222037. 728 
+
+Lankford, D. E., Wu, Y., Bartschi, J. T., Hathaway, J., & Gidley, A. D. (2020). Development and 729 
+
+validation of a steep incline and decline metabolic cost equation for steady-state walking. 730 
+
+European Journal of Applied Physiology , 120 (9), 2095–2104. 731 
+
+34 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Matsuoka, K. (1985). Sustained oscillations generated by mutually inhibiting neurons with adapta-732 
+
+tion. Biological Cybernetics , 52 (6), 367–376. 733 
+
+Miller, R. H. (2014). A comparison of muscle energy models for simulating human walking in three 734 
+
+dimensions. Journal of Biomechanics , 47 (6), 1373–1381. 735 
+
+Nielsen, J. B. (2003). How we Walk: Central Control of Muscle Activity during Human Walking. The 736 
+
+Neuroscientist , 9(3), 195–204. 737 
+
+Ogihara, N., & Yamazaki, N. (2001). Generation of human bipedal locomotion by a bio-mimetic 738 
+
+neuro-musculo-skeletal model. Biological Cybernetics , 84 (1), 1–11. 739 
+
+Ong, C. F., Geijtenbeek, T., Hicks, J. L., & Delp, S. L. (2019). Predicting gait adaptations due to an-740 
+
+kle plantarflexor muscle weakness and contracture using physics-based musculoskeletal 741 
+
+simulations (M. Srinivasan, Ed.). PLOS Computational Biology , 15 (10), e1006993. 742 
+
+Paul, C., Bellotti, M., Jezernik, S., & Curt, A. (2005). Development of a human neuro-musculo-743 
+
+skeletal model for investigation of spinal cord injury. Biological Cybernetics , 93 (3), 153– 744 
+
+170. 745 
+
+Perry, J., & Burnfield, J. M. (2010). Gait analysis: Normal and pathological function (2nd ed). 746 
+
+SLACK. 747 
+
+Ramadan, R., Geyer, H., Jeka, J., Schöner, G., & Reimann, H. (2022). A neuromuscular model 748 
+
+of human locomotion combines spinal reflex circuits with voluntary movements. Scientific 749 
+
+Reports , 12 (1), 8189. 750 
+
+Rose, J., & Gamble, J. G. (Eds.). (2006). Human walking (3rd ed). Lippincott Williams & Wilkins. 751 
+
+Severini, G., & Muñoz, D. (2025). A physiologically inspired hybrid CPG/Reflex controller for cycling 752 
+
+simulations that generalizes to walking (G. Durandau, Ed.). PLOS Computational Biology ,753 
+
+21 (9), e1013494. 754 
+
+Song, S., & Geyer, H. (2012). Regulating speed and generating large speed transitions in a neu-755 
+
+romuscular human walking model. 2012 IEEE International Conference on Robotics and 756 
+
+Automation , 511–516. 757 
+
+Song, S., & Geyer, H. (2015a). A neural circuitry that emphasizes spinal feedback generates 758 
+
+diverse behaviours of human locomotion. The Journal of Physiology , 593 (16), 3493–3511. 759 
+
+Song, S., & Geyer, H. (2015b). Regulating speed in a neuromuscular human running model. 2015 760 
+
+IEEE-RAS 15th International Conference on Humanoid Robots (Humanoids) , 217–222. 761 
+
+Song, S., & Geyer, H. (2017). Evaluation of a Neuromechanical Walking Control Model Using 762 
+
+Disturbance Experiments. Frontiers in Computational Neuroscience , 11 .763 
+
+35 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Song, S., & Geyer, H. (2018). Predictive neuromechanical simulations indicate why walking per-764 
+
+formance declines with ageing. The Journal of Physiology , 596 (7), 1199–1210. 765 
+
+Song, S., Kidzi ´ nski, Ł., Peng, X. B., Ong, C., Hicks, J., Levine, S., Atkeson, C. G., & Delp, S. L. 766 
+
+(2021). Deep reinforcement learning for modeling human locomotion control in neurome-767 
+
+chanical simulation. Journal of NeuroEngineering and Rehabilitation , 18 (1), 126. 768 
+
+Taga, G. (1995). A model of the neuro-musculo-skeletal system for human locomotion: I. Emer-769 
+
+gence of basic gait. Biological Cybernetics , 73 (2), 97–111. 770 
+
+Tamura, D., Aoi, S., Funato, T., Fujiki, S., Senda, K., & Tsuchiya, K. (2020). Contribution of Phase 771 
+
+Resetting to Adaptive Rhythm Control in Human Walking Based on the Phase Response 772 
+
+Curves of a Neuromusculoskeletal Model. Frontiers in Neuroscience , 14 , 17. 773 
+
+Thelen, D. G. (2003). Adjustment of Muscle Mechanics Model Parameters to Simulate Dynamic 774 
+
+Contractions in Older Adults. Journal of Biomechanical Engineering , 125 (1), 70–77. 775 
+
+Ton, V., Solav, D., & Song, S. (2024). Impact of Sole Designs of Offloading AFO on Gait Dynamics: 776 
+
+A Predictive Neuromechanical Simulation Study. 2024 10th IEEE RAS/EMBS International 777 
+
+Conference for Biomedical Robotics and Biomechatronics (BioRob) , 1709–1714. 778 
+
+Tresch, M. C., & Jarc, A. (2009). The case for and against muscle synergies. Current Opinion in 779 
+
+Neurobiology , 19 (6), 601–607. 780 
+
+Uchida, T. K., Seth, A., Pouya, S., Dembia, C. L., Hicks, J. L., & Delp, S. L. (2016). Simulating 781 
+
+Ideal Assistive Devices to Reduce the Metabolic Cost of Running (Ø. Sandbakk, Ed.). 782 
+
+PLOS ONE , 11 (9), e0163417. 783 
+
+Umberger, B. R. (2010). Stance and swing phase costs in human walking. Journal of The Royal 784 
+
+Society Interface , 7 (50), 1329–1340. 785 
+
+Umberger, B. R., Gerritsen, K. G., & Martin, P. E. (2003). A Model of Human Muscle Energy 786 
+
+Expenditure. Computer Methods in Biomechanics and Biomedical Engineering , 6(2), 99– 787 
+
+111. 788 
+
+Veerkamp, K., Waterval, N., Geijtenbeek, T., Carty, C., Lloyd, D., Harlaar, J., & Van Der Krogt, M. 789 
+
+(2021). Evaluating cost function criteria in predicting healthy gait. Journal of Biomechanics ,790 
+
+123 , 110530. 791 
+
+Wang, J. M., Hamner, S. R., Delp, S. L., & Koltun, V. (2012). Optimizing locomotion controllers 792 
+
+using biologically-based actuators and objectives. ACM Transactions on Graphics , 31 (4), 793 
+
+1–11. 794 
+
+36 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Waterval, N., Brehm, M., Veerkamp, K., Geijtenbeek, T., Harlaar, J., Nollet, F., & Van Der Krogt, 795 
+
+M. (2023). Interacting effects of AFO stiffness, neutral angle and footplate stiffness on gait 796 
+
+in case of plantarflexor weakness: A predictive simulation study. Journal of Biomechanics ,797 
+
+157 , 111730. 798 
+
+Winter, D. A. (2009). Biomechanics and motor control of human movement (4th ed). Wiley. 799 
+
+Yamazaki, N., Hase, K., Ogihara, N., & Hayamizu, N. (1996). Biomechanical analysis of the devel-800 
+
+opment of human bipedal walking by a neuro-musculo-skeletal model. Folia Primatologica ,801 
+
+66 (1-4), 253–271. 802 
+
+## Additional information 803 
+
+Competing interests 804 
+
+The authors report no competing interests. 805 
+
+Data availability statement 806 
+
+All data is presented in the figures. The MATLAB/Simulink simulation framework, controller imple-807 
+
+mentations, and optimized parameter sets are available at https:// doi.or g/ 10.5281/ zenodo.205 808 
+
+09551 , release v1.0.0. An accompanying video demonstration of the simulated locomotion results 809 
+
+is available at https:// youtu.be/suMJIfZ Ye5k?si=GeTNjr nSL4Sf AJ-T 810 
+
+Author contributions 811 
+
+Both authors designed the research, analyzed the results, drafted the article, and approved the 812 
+
+final version of the manuscript. V.T. implemented the computational model and conducted the 813 
+
+simulation studies. The authors agree to be accountable for all aspects of the work. 814 
+
+Funding 815 
+
+This work is supported in part by the National Institutes of Health (R00AG065524). V. Ton is 816 
+
+supported by the National Science Foundation Graduate Research Fellowship Program (DGE-817 
+
+2439018). 818 
+
+37 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint
+
+Key words 819 
+
+neural control, neuromechanical simulations, human locomotion, computational modeling 820 
+
+Acknowledgments 821 
+
+The authors thank A. Di Russo and A. Ijspeert for their guidance on the implementation details of 822 
+
+their CPG-reflex-synergy-based model. 823 
+
+38 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 12, 2026. ;https://doi.org/10.64898/2026.06.09.731213 doi: bioRxiv preprint

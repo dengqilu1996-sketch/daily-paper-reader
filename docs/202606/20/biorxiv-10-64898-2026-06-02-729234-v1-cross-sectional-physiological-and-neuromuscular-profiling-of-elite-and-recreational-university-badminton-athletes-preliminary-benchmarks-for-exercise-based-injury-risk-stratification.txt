@@ -1,0 +1,1444 @@
+Title: Cross-Sectional Physiological and Neuromuscular Profiling of Elite and Recreational University Badminton Athletes: Preliminary Benchmarks for Exercise-Based Injury Risk Stratification
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.02.729234v1.full.pdf
+
+Number of Pages: 26
+
+Markdown Content:
+> 1
+
+Cross-Sectional Physiological and Neuromuscular Profiling of Elite and 1
+
+Recreational University Badminton Athletes: Preliminary Benchmarks for 2
+
+Exercise-Based Injury Risk Stratification 3
+
+Humayon Ahmed 1¶ , Md. Moznuzzaman 2¶* , Md. Khalid Hasan 1¶ , Jishan Ahammad Shohag 1¶ ,4
+
+Mehedi Hasan 1¶ , Asif Abdullah 3¶ , Farjana Akter Boby 4¶*  
+
+> 5
+> 1
+
+Department of Physical Education and Sports Science, Jashore University of Science and 6
+
+Technology, Jashore, Bangladesh 7 
+
+> 2
+
+Department of Electrical and Electronic Engineering, Jashore University of Science and 8
+
+Technology, Jashore, Bangladesh 9 
+
+> 3
+
+Department of Biomedical Engineering, Jashore University of Science and Technology 10  
+
+> 4
+
+Department of Physical Education and Sports Science, Faculty of Health and Life Science, 11 
+
+Daffodil International University, Dhaka, Bangladesh. 12 
+
+> 13
+
+*e-mail of the corresponding authors: Md. Moznuzzaman, email: 14 
+
+m.moznuzzaman@just.edu.bd; Farjana Akter Boby, email: farjanaboby77475@gmail.com 15 
+
+> 16
+
+DECLARATIONS 17 
+
+Consent for publication 18 
+
+Consent for publication was obtained from all participants who contributed their data for this 19 
+
+study. 20 
+
+Data availability 21 
+
+The datasets generated and analyzed during the current study are available from the 22 
+
+corresponding authors upon reasonable request, subject to ethical considerations regarding 23 
+
+participant privacy and institutional data-management policies. 24 
+
+Competing Interests 25 
+
+The authors have no relevant financial or non-financial interests to disclose. 26 
+
+Funding 27 
+
+This work was supported by the University Grants Commission Bangladesh funded University 28 
+
+Grants [24-FoET-09]. 29 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 2
+
+Authors’ contribution 30 
+
+All authors contributed to the study conception and design. HA: Conceptualization, 31 
+
+Methodology, Resources, Writing –original draft. MM: Conceptualization, Formal Analysis, 32 
+
+Investigation, Methodology, Project administration, Visualization, Writing original draft. 33 
+
+MKH: Formal Analysis, Investigation, Visualization, Writing–review & editing, Writing 34 
+
+original draft. JAS: Formal Analysis, Writing–original draft. MH: Methodology, Supervision, 35 
+
+Visualization, Writing–review & editing. AA: Methodology, Data curation, Writing–review & 36 
+
+editing. FAB: Investigation, Methodology, Validation, Visualization, Writing–review &37 
+
+editing. All authors reviewed the manuscript. 38 
+
+> 39
+
+Acknowledgments 40 
+
+We gratefully acknowledge the university's badminton coaching staff for facilitating athlete 41 
+
+recruitment and providing access to training facilities. We thank the Department of 42 
+
+Biomedical Engineering for providing the BIOPAC MP45 data acquisition system and signal-43 
+
+processing resources. Special thanks to the athletes for their time and efforts, and to the 44 
+
+laboratory staff for assistance with data collection and manuscript preparation. The authors 45 
+
+also acknowledge the use of generative artificial intelligence tools (large language models) to 46 
+
+assist with language editing, sentence restructuring, and improvement of clarity during 47 
+
+manuscript preparation. 48 
+
+Ethical approval 49 
+
+This study was approved by the Ethical Review Committee of Jashore University of Science 50 
+
+and Technology, Bangladesh (Approval No. ERC/FBST/JUST/2025-238). All participants 51 
+
+provided written informed consent after receiving detailed information about the study 52 
+
+procedures, potential risks and benefits, and their right to withdraw at any time without 53 
+
+penalty. 54 
+
+Participant confidentiality was maintained throughout data collection, analysis, and reporting. 55 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 3
+
+Declaration of Generative AI and AI-Assisted Technologies in the Writing Process 56 
+
+During the preparation of this manuscript, the authors used large language model-based 57 
+
+generative AI tools (e.g., Perplexity) solely to assist with language editing, sentence 58 
+
+restructuring, and improvement of grammatical clarity and readability. These tools were not 59 
+
+used for study design, data collection, data analysis, interpretation of results, or generation of 60 
+
+any scientific content, numerical values, figures, tables, or conclusions. All scientific 61 
+
+decisions, analytical procedures, and final manuscript content were determined, verified, and 62 
+
+approved by the authors, who take full responsibility for the integrity and accuracy of the 63 
+
+work. After using these tools, the authors reviewed and edited all AI-assisted output and take 64 
+
+full responsibility for the content of the manuscript. 65 
+
+Patient privacy and data protection 66 
+
+All personal identifiers were removed from the dataset before analysis and reporting. Data 67 
+
+were stored on password-protected institutional computers with access restricted to the 68 
+
+research team only. No individual participant can be identified in any table, figure, or text of 69 
+
+this manuscript. 70 
+
+Abbreviation List 71 
+
+ACL Anterior cruciate ligament BMI Body mass index HRR Heart rate recovery INT Integrative neuromuscular training LL Lower limb MVC Maximal voluntary contraction RCT Randomized controlled trial RMS Root mean square sEMG Surface electromyography SENIAM Surface electromyography for the non-invasive assessment of muscles TRIPP Translating Research into Injury Prevention Practice 
+
+> 72
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 4
+
+Abstract 73 
+
+Background and Purpose: Badminton imposes considerable cardiovascular 74 
+
+and musculoskeletal stress. Physiological profiling can identify modifiable injury 75 
+
+risk factors and inform exercise-based prevention and rehabilitation. This study 76 
+
+compared cardiovascular recovery, neuromuscular activation, and limb strength 77 
+
+between elite and recreational male university badminton players to derive 78 
+
+preliminary physiological benchmarks for injury risk stratification and exercise 79 
+
+rehabilitation guidance. Methods: Forty male athletes (20 elite: national/university 80 
+
+representatives with ≥5 years of competitive experience; 20 recreational: <3 years 81 
+
+of experience) completed assessments of heart rate recovery (HRR), biceps brachii 82 
+
+surface electromyography (sEMG; SENIAM protocol), handgrip strength 83 
+
+(JAMAR dynamometry), and maximal bodyweight squat repetitions. Independent-84 
+
+sample t-tests with Cohen’s d (α = 0 .05) and Pearson correlations were applied. 85 
+
+Results: Elite players demonstrated significantly greater handgrip strength 86 
+
+(49.00±6.12 vs. 39.00±5.45 kg, p = 0 .001, d = 1 .72) and lower-limb (LL) strength 87 
+
+(60.35±11.29 vs. 41.75±6.72 repetitions, p < 0.001, d = 1 .96). Normalized sEMG 88 
+
+root mean square (RMS) was higher in elite athletes during flexion (11.56±4.16% 89 
+
+vs. 7.26±5.15%, p = 0 .004, d = 0 .94) and extension (12.67±4.56% vs. 7.85±5.73%, 90 
+
+p = 0 .003, d = 0 .94). HRR did not differ significantly between groups ( p = 0 .17, d91 
+
+= 0.43, observed power = 0 .34). Elite players nonetheless showed a more 92 
+
+favorable recovery distribution. sEMG -HRR correlations were weak and non-93 
+
+significant in both groups. Conclusions: Elite badminton players exhibit a distinct 94 
+
+physiological profile of greater strength and more efficient neuromuscular 95 
+
+activation. These preliminary cross-sectional findings may support the design of 96 
+
+exercise-based injury-prevention and rehabilitation in university badminton. 97 
+
+Keywords: Surface electromyography; handgrip dynamometry; heart rate recovery; TRIPP 98 
+
+framework; integrative neuromuscular training; athletic performance benchmarking; sport-99 
+
+specific conditioning. 100 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 5
+> 1
+
+Introduction 101 
+
+Badminton is a physiologically demanding racket sport requiring coordinated integration of 102 
+
+aerobic endurance, anaerobic power, and neuromuscular precision [1], [2]. Elite competition 103 
+
+involves explosive movements exceeding 6 m lunges, 60 cm vertical jumps, directional 104 
+
+changes > 5 m/s, and overhead smashes > 400 km/h [1], [2]. Match durations frequently 105 
+
+exceed 60 − 90 min, demanding sustained high-intensity performance in extended rallies 106 
+
+while maintaining technical accuracy under progressive physiological fatigue [3], [4]. 107 
+
+Recent systematic reviews report injury incidence rates of 2 .5−4 .4 per 1,000 training hours, 108 
+
+with elite players aged 15 − 18 years exhibiting peak injury rates of 2 .91 − 3 .52 injuries per 109 
+
+1,000 hours [5], [6]. LL injuries comprise 41–92% of total badminton-related injuries across 110 
+
+published studies, with ankle (13.4–18.8%), knee (18.6–18.8%), and lower-back (10.0– 111 
+
+12.3%) injuries predominating [5], [6]. The wide range in LL injury proportions (41–92%) 112 
+
+reflects substantial methodological heterogeneity across the source studies, including 113 
+
+differences in injury definitions, surveillance settings, participant age groups, competitive 114 
+
+levels, and geographical populations. Despite this variance, the consistent predominance of 115 
+
+LL injuries across all reviewed studies underscores the need for systematic LL-focused 116 
+
+screening and exercise-based prevention strategies in badminton, regardless of competitive 117 
+
+context. Anterior cruciate ligament (ACL) injuries, though less frequent (3–5% of total 118 
+
+injuries), impose career-threatening consequences with prolonged rehabilitation periods, and 119 
+
+approximately 70% occur through the non-contact mechanisms during deceleration and 120 
+
+pivoting [7], [8]. Shoulder injuries affect 15−20% of competitive badminton players due to 121 
+
+repetitive overhead strokes that generate glenohumeral joint reaction forces exceeding 1.5 122 
+
+times bodyweight [2], [9] . These injury patterns highlight the need for systematic screening 123 
+
+and exercise-based prevention strategies targeting modifiable physiological and 124 
+
+neuromuscular risk factors. 125 
+
+The Translating Research into Injury Prevention Practice (TRIPP) framework emphasizes 126 
+
+six consecutive stages for effective injury prevention: (1) injury surveillance, (2) analysis of 127 
+
+etiology and mechanism, (3) development of prevention strategies, (4) efficacy testing under 128 
+
+ideal Conditions, (5) real-world implementation, and (6) effectiveness and scalability 129 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 6
+
+evaluation [10], [11]. Modifiable risk factors including neuromuscular deficits, strength 130 
+
+imbalances, inadequate cardiovascular recovery, and biomechanical maladaptation, 131 
+
+substantially contribute to injury sus-acceptability and represent viable targets for structured 132 
+
+training interventions[12], [13]. 133 
+
+Cardiovascular efficiency, particularly post-exertion recovery capacity, plays a dual role in 134 
+
+badminton performance: sustaining high-intensity output across repeated rallies and mitigating 135 
+
+injury risk associated with neuromuscular fatigue [3],[14], [15], [16] . HRR, defined as the 136 
+
+rate of decline in heart rate following exercise cessation, serves as a validated non-invasive 137 
+
+marker of parasympathetic reactivation and overall cardiovascular conditioning [17], [18] .138 
+
+Elite athletes typically exhibit faster parasympathetic restoration compared with less-trained 139 
+
+counterparts [19]. 140 
+
+The strength of the hand grip reflects integrated forearm and intrinsic hand muscle function 141 
+
+essential for racket stabilization during high-velocity strokes [20], [21], [12]. Strong 142 
+
+correlations between grip strength and shoulder lateral-rotator strength suggest that grip 143 
+
+assessment can serve as a [14], [22] (INT) protocols incorporating grip strengthening, rotator 144 
+
+cuff exercises, and scapular stabilization have reduced shoulder injury rates by 25–35% in 145 
+
+racket-sport athletes [23], [13]. 146 
+
+LL function underpins movement efficiency and injury resilience. Athletes with greater 147 
+
+lower extremity strength and balanced hamstring-to-quadriceps ratios demonstrate 43 − 73% 148 
+
+lower ACL injury rates [24], [15]. Randomized controlled trials (RCTs) confirm that 8–12 149 
+
+weeks of INT combining balance training, plyometric, agility, and sport-specific exercises 150 
+
+significantly reduce 151 
+
+lower-limb injury rates while improving performance [23], [13], [25]. 152 
+
+Surface EMG captures motor-unit recruitment, providing quantitative indices of muscle 153 
+
+activation amplitude, timing, and neuromuscular control [17], [20], [26]. In racket sports, elite 154 
+
+athletes exhibit greater motor-unit synchronization, reduced antagonist co-contraction, and 155 
+
+more efficient force production than less-skilled players [21], [27]. Neuromuscular deficits, 156 
+
+including delayed activation, excessive co-contraction, and limb asymmetry >10–15%, are 157 
+
+established risk factors for lower-limb injury [28], [29]. 158 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 7
+
+Despite extensive knowledge of isolated physiological and neuromuscular factors in 159 
+
+badminton, existing studies have typically assessed cardiovascular recovery, strength, or 160 
+
+neuromuscular activation in isolation rather than simultaneously within a single cohort and 161 
+
+under an explicit TRIPP-aligned injury prevention framework. While Bisschoff et al [4] 162 
+
+examined autonomic markers in elite badminton players, and Wylleman et al [5]. Reported 163 
+
+physiological and neuromuscular responses during match simulation, neither study linked 164 
+
+multi-domain profiling to structured injury-prevention benchmarks in a university-level 165 
+
+athlete population. 166 
+
+This study aimed to characterize and compare cardiovascular recovery (HRR), 167 
+
+neuromuscular activation (biceps brachii sEMG), and upper- and lower-limb strength between 168 
+
+elite and recreational male university badminton players, and to explore associations between 169 
+
+neuromuscular activation and recovery capacity. 170 
+
+> 2
+
+Materials and Methods 171 
+
+> 2.1
+
+Human subjects ethical approval statement 172 
+
+This study was approved by the Research Ethics Committee of Jashore University of Science 173 
+
+and Technology, Bangladesh (Approval No. ERC/FBST/JUST/2025-238). All participants 174 
+
+provided written informed consent prior to enrollment after receiving detailed information 175 
+
+about study procedures, potential risks and benefits, and their right to withdraw at any time 176 
+
+without penalty. Participant confidentiality was maintained throughout data collection, 177 
+
+analysis, and reporting. 178 
+
+> 2.2
+
+Participants 179 
+
+Forty male badminton players from Jashore University of Science and Technology voluntarily 180 
+
+participated in this comparative cross-sectional study. The recruitment of participants was 181 
+
+started May, 2025 and ended January, 2026. Participants were divided into two groups: 182 
+
+> •
+
+Elite group (n = 20): At least 5 years of competitive experience; current or former 183 
+
+university or national team representation; participation in at least three inter-university 184 
+
+or national tournaments per year; and structured training at least five sessions per week. 185 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 8
+> •
+
+Recreational group (n = 20): Less than 3 years of playing experience; participation 186 
+
+limited to intramural or leisure games; no competitive tournament history; and irregular 187 
+
+training (fewer than three sessions per week). 188 
+
+All participants were right-handed and reported no musculoskeletal injuries, cardiovascular 189 
+
+conditions, or medication use affecting heart rate or neuromuscular activity in the preceding 190 
+
+six months. Exclusion criteria included recent surgery, chronic pain, neurological disorders, or 191 
+
+cardiovascular disease. 192 
+
+> 2.3
+
+Anthropometric assessment 193 
+
+Baseline anthropometric and body-composition measurements were obtained using a digital 194 
+
+body-composition analyzer (Omron Karada Scan HBF-375; Omron Healthcare Co., Ltd., 195 
+
+Kyoto, Japan) shown in Fig. 1. Assessments took place in the morning after a 12-h overnight 196 
+
+fast. Participants followed standardized hydration instructions for 24 h prior to testing. 197 
+
+Measured variables included height (cm), body mass (kg), body mass index (BMI, kg/m 2), 198 
+
+body fat percentage, visceral fat level, and resting metabolic rate (kcal/day). All measurements 199 
+
+adhered to the manufacturer’s guidelines. 200 
+
+> 2.4
+
+Handgrip strength assessment 201 
+
+Handgrip strength of the dominant (right) hand was measured using a calibrated JAMAR 202 
+
+hydraulic hand dynamometer (Patterson Medical, Warrenville, IL, USA) set at the second 203 
+
+handle position shown in Fig. 2(a). Testing followed the American Society of Hand Therapists 204 
+
+recommendations. Participants stood upright with the dominant arm alongside the body, 205 
+
+shoulder in neutral rotation, elbow fully extended, and forearm in neutral rotation. 206 
+
+After a brief familiarization, participants performed three maximal voluntary contractions, 207 
+
+each separated by 30 s of rest. Strong verbal encouragement was provided to promote 208 
+
+maximal effort. The highest value (kg) across the three trials was used for analysis. The 209 
+
+dynamometer was calibrated before each testing session according to manufacturer's 210 
+
+specifications. 211 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 9
+> 2.5
+
+Lower-limb strength assessment 212 
+
+Lower-limb muscular endurance was assessed using a standardized bodyweight squat 213 
+
+repetition test conducted under the supervision of trained exercise scientists shown in Fig. 214 
+
+2(b). A bodyweight squat test was selected as a practical, field-friendly proxy for LL 215 
+
+functional endurance relevant to repeated-sprint and lunge demands in badminton; this 216 
+
+measure is noted as an endurance index rather than a direct measure of maximal strength or 217 
+
+power, which is acknowledged as a study limitation. Participants performed a standardized 218 
+
+warm-up consisting of 10 bodyweight squats and dynamic leg stretches, then completed as 219 
+
+many technically correct full squats as possible across three trials (2 min rest between trials). 220 
+
+Squat technique criteria included: (1) feet shoulder-width apart; (2) descent until thighs were 221 
+
+parallel to the floor (knee angle ≈ 90 ◦
+
+); (3) controlled tempo (1 s descent, 1 s ascent); and (4) 222 
+
+maintenance of a neutral spine. Repetitions not meeting these criteria were excluded. The 223 
+
+highest number of correctly executed repetitions across the three trials was used for analysis. 224 
+
+> 2.6
+
+Heart rate recovery protocol 225 
+
+HRR was assessed in the Bir Shreshtha Hamidur Rahman Central Gymnasium and 226 
+
+Conditioning Laboratory. Participants attended testing at a consistent time of day within a 2-h 227 
+
+window to minimize circadian effects and avoided caffeine, alcohol, and strenuous exercise 228 
+
+for 24 h beforehand. 229 
+
+Resting heart rate was measured with a Polar H10 heart-rate monitor after 5 min of seated 230 
+
+rest. Participants then performed a standardized dynamic warm-up followed by a graded 231 
+
+treadmill protocol beginning at 6 km/h and increasing by 0.5 km/h every 30 s until moderate 232 
+
+exertion (approximately 120 beats per minute) was reached. The data collection steps are 233 
+
+graphically represented in Fig. 3. On Day 1, each participant’s submaximal intensity was 234 
+
+identified as 70% of heart rate at the first kilometer. On Day 2, participants ran at this 235 
+
+individualized intensity for exactly 5 min. Immediately after exercise, they sat quietly while 236 
+
+heart rate was recorded every 30 s for 5 min. 237 
+
+HRR was defined as the absolute heart rate recorded at 5 min post-exercise, with lower 238 
+
+values indicating better parasympathetic recovery. It is acknowledged that a submaximal 239 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 10
+
+treadmill based protocol differs from sport-specific intermittent badminton play; this 240 
+
+standardized approach was adopted for reproducibility and cross-group comparability, and its 241 
+
+limitations are discussed below. 242 
+
+> 2.7
+
+Surface electromyography assessment 243 
+
+2.7.1 Data acquisition 244 
+
+sEMG data were collected in the Biomedical Signal Processing Laboratory using a BIOPAC 245 
+
+MP45 system (BIOPAC Systems, Inc., Goleta, CA, USA) at a sampling rate of 1,000 Hz. 246 
+
+Bipolar surface electrodes were placed over the biceps brachii of the dominant arm according 247 
+
+to SENIAM recommendations. Skin was shaved, abraded, and cleaned to maintain impedance 248 
+
+below 5 k Ω. Participants sat with the elbow flexed to 90 ◦
+
+. They performed two elbow flexions 249 
+
+followed by two elbow extensions at a comfortable pace, repeated three times with 30 s rest 250 
+
+between sets.The complete process of recording sEMG signal acquisition has been shown in 251 
+
+Fig. 4. A standardized flexion–extension task was deliberately selected over sport-specific 252 
+
+movements to ensure high inter-session reliability and to provide a baseline measure of 253 
+
+neuromuscular control capacity applicable across skill levels; the implications of this non-254 
+
+sport-specific task are discussed in the Limitations section. The cleanest trial free of visible 255 
+
+artifacts was selected for analysis. 256 
+
+> 2.7.2
+
+Signal processing and feature extraction 257 
+
+Data were processed in MATLAB R2023b (MathWorks, Natick, MA, USA). A fourth-order 258 
+
+Butterworth bandpass filter (20–450 Hz) removed motion artifacts and high-frequency noise, 259 
+
+and a 50-Hz notch filter (quality factor Q = 30) suppressed power-line interference. Signals 260 
+
+were full-wave rectified to obtain amplitude envelopes. Active muscle periods were identified 261 
+
+using a threshold-based approach: segments exceeding 10% of the maximum rectified 262 
+
+amplitude for at least 200 ms were considered active. Root mean square (RMS) amplitude was 263 
+
+computed using a 250-ms moving window. RMS values were normalized to the maximum 264 
+
+RMS recorded during a maximal voluntary contraction and expressed as percent of maximum 265 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 11
+
+voluntary contraction (%MVC). Mean normalized RMS values for flexion and extension 266 
+
+phases were computed for 267 
+
+Subsequent statistical analyses. 268 
+
+> 2.8
+
+Statistical analysis 269 
+
+A post-hoc power analysis indicated that to detect a moderate effect (d=0.5) for HRR with 270 
+
+=0.05 and power=0.80, a sample of approximately 51 participants per group would be 271 
+
+required. All statistical analyses were conducted in MATLAB R2023b. Descriptive statistics 272 
+
+(mean ± standard deviation) were calculated for all variables. The Jarque–Bera test evaluated 273 
+
+normality; all variables satisfied normality assumptions ( p > 0.05), permitting parametric 274 
+
+analyses. 275 
+
+The group differences between elite and recreational players were assessed using 276 
+
+independent samplesVancouver press t-tests. The t statistic was computed by Eq. 1 277 
+
+>     〥㍤㊀㊇㊄㊕㊀ ⡹〥 ㍤㊓㊀㉸
+> 〠㊑㒕 ㄗ㊉㊀㊇㊄㊕㊀
+> ⡸ ㄗ㊉㊓㊀㉸
+
+(1) 278 
+
+Where X¯ denotes group means, s p is the pooled standard deviation, and n the group sample 279 
+
+sizes. Statistical significance was set at α = 0 .05 (two-tailed). 280 
+
+Effect sizes (Cohen’s d) were calculated by Eq. 2. 281 
+
+>    〥㍤㊀㊇㊄㊕㊀ ⡹〥 ㍤㊓㊀㉸
+> 〠㊑
+
+(2) 282 
+
+Effect-size magnitudes were interpreted as very small ( d = 0 .01), small ( d = 0 .20), medium ( d283 
+
+= 0 .50), large ( d = 0 .80), very large ( d = 1 .20), and huge ( d = 2 .00)[20] , [26] , [30]. Post-hoc 284 
+
+observed power for each comparison was estimated in MATLAB. Pearson correlation 285 
+
+coefficients quantified associations between neuromuscular activation (RMS) and 286 
+
+cardiovascular recovery (HRR). Correlations were interpreted as negligible ( r < 0.30), low 287 
+
+(0.30–0.49), and moderate (0.50– 0.69), high (0.70–0.89), and very high ( r ≥ 0.90)[31]. 288 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 12
+> 2.9
+
+Use of Generative Artificial Intelligence 289 
+
+Generative artificial intelligence tools (e.g., large language models) were used solely to assist 290 
+
+with language editing, sentence restructuring, and improvement of clarity in the drafting and 291 
+
+revision of this manuscript. These tools were not used for study design, data collection, 292 
+
+statistical analysis, or interpretation of results, and they did not generate any scientific content, 293 
+
+numerical values, or conclusions. All scientific decisions, data handling procedures, and final 294 
+
+manuscript content were determined, verified, and approved by the authors, who take full 295 
+
+responsibility for the integrity and accuracy of the work. 296 
+
+> 3
+
+Results 297 
+
+> 3.1
+
+Anthropometric characteristics 298 
+
+Table 1 summarizes the anthropometric profiles. Elite players were slightly older, taller, and 299 
+
+heavier than recreational players, but none of these differences reached statistical significance 300 
+
+(p > 0.05). Body-composition metrics (BMI, body fat, visceral fat) were comparable between 301 
+
+groups, suggesting that performance differences were not primarily attributable to gross 302 
+
+anthropometric disparities. 303 
+
+Table 1: Baseline anthropometric and physiological characteristics of elite and recreational 304 
+
+male university badminton players. 305 
+
+> 306
+
+Variable Elite ( n = 20) Recreational ( n = 20) Age (years) 24.25 ± 1.25 23.75 ± 0.85 Height (cm) 165.40 ± 7.02 163.00 ± 5.75 Body mass (kg) 66.07 ± 10.32 64.00 ± 9.08 BMI (kg/m 2 ) 24.04 ± 2.72 23.89 ± 2.90 Body fat (%) 16.40 ± 4.19 15.30 ± 4.63 Visceral fat (level) 6.56 ± 2.71 5.23 ± 1.13 Resting metabolism (kcal/day) 1502.5 ± 205.02 1391.5 ± 350.62 
+
+> 3.2
+
+Handgrip strength 307 
+
+Elite players demonstrated significantly greater handgrip strength than recreational players 308 
+
+(49.00±6.12 vs. 39.00±5.45 kg; t (38) = 5 .38, p = 0 .001, 95% CI [6.18, 13.82], d = 1 .72, 309 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 13
+
+observed power= 0 .99) shown in Fig. 5. This very large effect size indicates a substantial 310 
+
+functional advantage in upper-limb strength consistent with the demands of racket control and 311 
+
+stroke execution in competitive badminton. 312 
+
+> 3.3
+
+Lower-limb muscular endurance 313 
+
+Elite players completed significantly more maximal bodyweight squat repetitions than 314 
+
+recreational players (60.35±11.29 vs. 41.75±6.72; t (38) = 6 .29, p < 0.001, 95% CI [12.67, 315 
+
+24.53], d = 1 .96, observed power= 1 .00) shown in Fig. 6. This very large effect size highlights 316 
+
+the critical role of LL muscular endurance in supporting rapid, repeated movements in high-317 
+
+level badminton. 318 
+
+> 3.4
+
+Neuromuscular activation: biceps brachii sEMG 319 
+
+During elbow flexion, elite players exhibited significantly higher normalized RMS amplitude 320 
+
+compared with recreational players (11.56±4.16% vs. 7.26±5.15%; t (38) = 2 .98, p = 0 .004, 321 
+
+95% CI [1.42, 7.18], d = 0 .94, observed power= 0 .87) shown in Fig. 7. This large effect 322 
+
+suggests more efficient motor-unit recruitment and greater neuromuscular activation during 323 
+
+concentric contractions, with lower variability indicating more consistent control. 324 
+
+Similarly, during the elbow extension, elite players showed higher normalized RMS 325 
+
+amplitudes (Fig. 8) (12.67±4.56% vs. 7.85±5.73%; t (38) = 3 .01, p = 0 .003, 95% CI [1.77, 326 
+
+7.87], d = 0 .94, observed power= 0 .88), indicating enhanced neuromuscular activation even in 327 
+
+eccentric or stabilization phases, supporting controlled deceleration and precise movement 328 
+
+execution. 329 
+
+> 3.5
+
+Heart rate recovery 330 
+
+Mean HRR at 5 min post-exercise was numerically higher bpm in elite players (74.60±9.70 331 
+
+vs. 332 
+
+71.15±6.05 bpm), but the difference was not statistically significant t (38) = 1 .37, p = 0 .17, 333 
+
+95% CI [−1 .62, 8.52], d = 0 .43, observed power= 0 .34). Distributional inspection indicated 334 
+
+that several elite players recovered into the 90–100 bpm range, while recreational players 335 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 14
+
+generally remained >100 bpm after 5 min, suggesting a non-significant trend toward faster 336 
+
+autonomic recovery in the elite group (Fig. 9). This null result should be interpreted 337 
+
+cautiously given the modest observed power (0.34), which indicates insufficient statistical 338 
+
+power to detect moderate effects with this sample size. 339 
+
+> 3.6
+
+Correlation between neuromuscular activation and cardiovascular recovery 340 
+
+In elite players, the correlation between mean biceps brachii RMS activation and HRR was 341 
+
+positive but non-significant ( r = 0 .29, p = 0 .21), as shown in Fig. 10 (left), indicating a 342 
+
+negligible-to-low and statistically unreliable association. In recreational players, the 343 
+
+correlation was slightly stronger but still non-significant ( r = 0 .37, p = 0 .10), as shown in Fig. 344 
+
+10(right), with larger variability in both sEMG and HRR contributing to inconsistent 345 
+
+relationships. These weak, non-significant correlations suggest that neuromuscular and 346 
+
+cardiovascular adaptations may develop through partially independent pathways in this 347 
+
+cohort, though the small sample limits firm 348 
+
+Conclusions. 349 
+
+> 4
+
+Discussion 350 
+
+This cross-sectional study compared cardiovascular recovery, neuromuscular activation, and 351 
+
+upper- and lower-limb strength between elite and recreational male university badminton 352 
+
+players with the aim of deriving preliminary physiological benchmarks for injury risk 353 
+
+stratification and exercise rehabilitation guidance. With respect to the primary objective, HRR 354 
+
+at 5 min post exercise did not differ significantly between groups ( p = 0 .17, d = 0 .43), and 355 
+
+observed statistical power was modest (0.34), precluding firm conclusions about autonomic 356 
+
+differences at this sample size. Regarding the secondary objectives, elite athletes 357 
+
+demonstrated substantially greater handgrip strength (d = 1.72), lower-limb muscular 358 
+
+endurance ( d = 1 .96), and normalized biceps brachii sEMG amplitude during both flexion ( d =359 
+
+0.94) and extension ( d = 0 .94). The sEMG– HRR correlations were weak and non-significant 360 
+
+in both groups (elite: r = 0 .29; recreational: r = 0 .37), consistent with the hypothesis that 361 
+
+neuromuscular and cardiovascular adaptations may develop through partially independent 362 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 15
+
+pathways. These group differences, taken together, suggest a distinct physiological profile in 363 
+
+elite players that may have implications for exercise-based injury-prevention and 364 
+
+rehabilitation planning, though the cross-sectional design limits causal inference. 365 
+
+> 4.1
+
+Handgrip strength and upper-limb injury risk 366 
+
+Elite players exhibited approximately 26% higher handgrip strength ( d = 1 .72), reinforcing the 367 
+
+importance of upper-limb strength for racket control, stroke velocity, and load attenuation at 368 
+
+the wrist and elbow. Stronger grip and forearm musculature may improve shock absorption 369 
+
+and force distribution, which may reduce lateral epicondylitis and other overuse injuries in 370 
+
+racket sports[32]. Epidemiological evidence confirms that rotator cuff tendinopathy and 371 
+
+impingement remain common in competitive badminton and are linked to deficits in strength 372 
+
+and control 373 
+
+within the kinetic chain[33], [34]. Incorporating grip-specific and rotator cuff–focused 374 
+
+exercises into conditioning appears to be a practical, low-cost strategy to enhance stroke 375 
+
+performance and 376 
+
+Support injury-preventive rehabilitation objectives[23], [13]. 377 
+
+> 4.2
+
+Lower-limb strength, movement efficiency, and injury prevention 378 
+
+Elite athletes performed about 45% more maximal squat repetitions ( d = 1 .96), indicating 379 
+
+superior LL endurance that supports repeated accelerations, lunges, and directional changes in 380 
+
+match play. This result is particularly relevant given that lower-extremity injuries, including 381 
+
+strains, sprains, tendinopathies, and stress fractures that account for most badminton injuries 382 
+
+across Levels of play[32], [5]. Evidence from RCTs shows that INT programs combining 383 
+
+strength, balance, plyometric, and agility can improve functional movement, reduce limb 384 
+
+asymmetry, and lower Injury risk by approximately 35–45% in racket-sport athletes[23], [13]. 385 
+
+The large group differences in LL muscular endurance observed here support prioritizing LL 386 
+
+resistance and plyometric training as core components of exercise-based injury-prevention and 387 
+
+return-to-sport rehabilitation programs. 388 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 16
+> 4.3
+
+Neuromuscular activation, motor control, and eccentric capacity 389 
+
+Elite players demonstrated about 60% higher normalized biceps brachii activation during both 390 
+
+flexion and extension ( d = 0 .94), suggesting more efficient motor-unit recruitment and greater 391 
+
+eccentric control during arm deceleration. These findings align with EMG-guided stretch 392 
+
+shortening-cycle training studies that report improved latency, reactive strength, and impulse 393 
+
+Characteristics in elite racket-sport athletes[1], [35]. Eccentric strength is increasingly 394 
+
+recognized as a key protective factor against tendon overload and muscle strain, and EMG-395 
+
+based biofeedback can help correct asymmetries and improve movement quality during both 396 
+
+training and rehabilitation[36], [37]. It must be noted, however, that these sEMG data were 397 
+
+obtained during a standardized, non-sport-specific elbow task; direct inference to badminton-398 
+
+specific overhead or smash mechanics would require further validation using sport-specific 399 
+
+protocols. 400 
+
+> 4.4
+
+Heart rate recovery, autonomic function, and load management 401 
+
+The primary hypothesis that elite players would demonstrate faster HRR kinetics was not 402 
+
+supported at the current sample size ( p = 0 .17, d = 0 .43, observed power = 0 .34). This null 403 
+
+result does not exclude a meaningful autonomic difference between groups. It reflects 404 
+
+insufficient statistical power to detect a moderate effect with n = 40. A post-hoc power 405 
+
+analysis indicates that detecting d = 0 .43 at α = 0 .05 with 80% power would require 406 
+
+approximately 88 participants per group. The moderate effect size and more favorable HRR 407 
+
+distribution in elite players nevertheless remain compatible with enhanced parasympathetic 408 
+
+reactivation typically observed in trained athletes. 409 
+
+> 4.5
+
+Integrated implications for exercise-based injury prevention and rehabilitation 410 
+
+The present findings indicate that elite badminton players combine greater strength, more 411 
+
+efficient neuromuscular activation, and numerically more favorable recovery profiles. These 412 
+
+combined differences may reflect a physiological profile associated with enhanced 413 
+
+performance and potentially reduced injury susceptibility, though the cross-sectional design 414 
+
+precludes causal conclusions. In applied practice, three exercise-based strategies are supported 415 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 17
+
+by the present data alongside broader evidence: (1) routine profiling of grip strength, LL 416 
+
+muscular endurance, simple functional tests, and HRR to identify potentially high-risk athletes 417 
+
+and guide exercise program individualization; (2) implementation of 8–12 week INT blocks 418 
+
+(2–3 sessions/week) emphasizing LL strength, balance, plyometric, core stability, and 419 
+
+shoulder/forearm conditioning to address 420 
+
+modifiable risk factors[6], [13]; and (3) basic HRR monitoring to individualize training load 421 
+
+and identify early signs of maladaptation or overuse risk [38]. 422 
+
+> 4.6
+
+Limitations and future research directions 423 
+
+This study has several important limitations that should be considered when interpreting 424 
+
+findings. First, the modest sample size ( n = 40) and cross-sectional design limit statistical 425 
+
+power for detecting moderate effects (particularly for HRR, observed power= 0.34) and 426 
+
+preclude causal inference about training adaptations or injury risk. Additionally, participants 427 
+
+were recruited from a single university using a convenience sampling approach, which limits 428 
+
+the generalizability of findings to other institutions, competitive levels, or cultural contexts. 429 
+
+Second, the exclusively male cohort restricts generalizability to female athletes, who may 430 
+
+exhibit distinct injury profiles and neuromuscular characteristics. Third, neuromuscular 431 
+
+assessment was limited to biceps brachii sEMG during isolated tasks, and cardiovascular 432 
+
+recovery was assessed after treadmill running rather than sport-specific intermittent play. 433 
+
+Finally, the absence of prospective injury surveillance means that links between physiological 434 
+
+markers and actual injury incidence remain Inferential. 435 
+
+Future research should prioritize 6–12 month longitudinal RCTs integrating INT protocols 436 
+
+with comprehensive injury tracking to confirm causal benefits and validate injury-prevention 437 
+
+effectiveness. Studies should expand neuromuscular profiling to include LL and shoulder 438 
+
+musculature during badminton-specific movements (e.g., lunges, overhead strokes) and 439 
+
+establish sex specific normative data. Development of multivariable risk-prediction models 440 
+
+and deployment of wearable sensors for real-time on-court monitoring may further refine 441 
+
+personalized exercise-based injury-prevention and return-to-sport strategies. 442 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 18
+> 5
+
+Conclusion 443 
+
+Elite badminton athletes in this university cohort exhibited substantially greater handgrip 444 
+
+strength ( d = 1 .72), LL muscular endurance ( d = 1 .96), and neuromuscular activation ( d =445 
+
+0.94) than recreational players, representing a distinct physiological profile that may be 446 
+
+associated with reduced injury susceptibility through enhanced joint stability and load 447 
+
+distribution. HRR did not differ significantly between groups, although a moderate effect size 448 
+
+and more favorable recovery distribution were observed in elite players. To our knowledge, 449 
+
+this study provides the first integrated cross-sectional profile combining cardiovascular 450 
+
+recovery, sEMG-based neuromuscular assessment, and multi-limb strength evaluation within 451 
+
+a university badminton cohort in South Asia, contextualized within the TRIPP framework. 452 
+
+Based on the present cohort data, preliminary screening reference values of handgrip 453 
+
+strength ≥ 45 kg, squat repetitions ≥ 55, and normalized sEMG RMS ≥ 10% MVC may 454 
+
+warrant further investigation as candidate thresholds for injury risk stratification; however, 455 
+
+these values are cohort-specific and should be validated in larger, multi-centre, prospective 456 
+
+studies before adoption in routine screening or rehabilitation protocols. Routine physiological 457 
+
+profiling incorporating handgrip strength, lower-limb muscular endurance, and sEMG-based 458 
+
+neuromuscular assessment combined with structured INT implementation may provide an 459 
+
+accessible, scalable strategy for reducing badminton’s injury burden while supporting 460 
+
+performance excellence. The present data are preliminary and cross-sectional; confirmation by 461 
+
+longitudinal, prospective, multi-centre studies with adequate statistical power is required 462 
+
+before these benchmarks are adopted in routine clinical or rehabilitation screening. 463 
+
+References 464 
+
+[1] M. Pro ńczuk, D. Skalski, K. Łosi ńska, A. Maszczyk, and A. Goła ś, “Neuromechanical 465 
+
+adaptations to EMG-guided SSC training in elite badminton players: a predictive 466 
+
+multivariate approach,” Frontiers in Sports and Active Living , vol. 7, p. 1634656, 2025. 467 
+
+https://doi.org/10.3389/fspor.2025.1634656 468 
+
+[2] R. Tajik, W. Dhahbi, H. Fadaei, and R. Mimar, “Muscle synergy analysis during 469 
+
+badminton forehand overhead smash: integrating electromyography and musculoskeletal 470 
+
+modeling,” Frontiers in Sports and Active Living , vol. 7, p. 1596670, 2025. 471 
+
+https://doi.org/10.3389/fspor.2025.1596670 472 
+
+[3] C. Schneider et al. , “Monitoring training and recovery responses with heart rate 473 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 19
+
+measures during standardized warm-up in elite badminton players,” PLoS One , vol. 15, 474 
+
+no. 12, p. e0244412, 2020. 475 
+
+[4] C. A. Bisschoff, B. Coetzee, and M. R. Esco, “Heart rate variability and recovery as 476 
+
+predictors of elite, African, male badminton players’ performance levels,” International 477 
+
+Journal of Performance Analysis in Sport , vol. 18, no. 1, pp. 1–16, 2018. 478 
+
+https://doi.org/10.1080/24748668.2018.1437868 479 
+
+[5] B. Stepper, A. Hecksteden, H. Stagge, O. Faude, and L. Donath, “Systematic review on 480 
+
+badminton injuries: incidence, characteristics and risk factors,” BMJ open sport & 481 
+
+exercise medicine , vol. 11, no. 1, 2025. https://doi.org/10.1136/bmjsem-2024-002127 482 
+
+[6] X. Zhou, K. Imai, X.-X. Liu, Z. Chen, E. Watanabe, and H. Zeng, “Epidemiological 483 
+
+characteristics of injury in 7–22-year-old badminton players by age and sex,” Scientific 484 
+
+Reports , vol. 15, no. 1, p. 2889, 2025. https://doi.org/10.1038/s41598-025-86358-4 485 
+
+[7] B. P. Boden and F. T. Sheehan, “Mechanism of non contact ACL injury: OREF 486 
+
+Clinical Research Award 2021,” Journal of Orthopaedic Research® , vol. 40, no. 3, pp. 487 
+
+531–540, 2022. https://doi.org/10.1002/jor.25257 488 
+
+[8] A. Sundberg et al. , “Sport-Specific Injury Mechanisms and Situational Patterns of ACL 489 
+
+Injuries: A Comprehensive Systematic Review: A. Sundberg et al.,” Sports Medicine , vol. 55, 490 
+
+no. 10, pp. 2489–2527, 2025. https://doi.org/10.1002/jor.25257 491 
+
+> 492
+
+[9] H. Barnamehei, F. Tabatabai Ghomsheh, A. Safar Cherati, and M. Pouladian, “Upper 493 
+
+limb neuromuscular activities and synergies comparison between elite and nonelite 494 
+
+athletics in badminton overhead forehand smash,” Applied bionics and biomechanics ,495 
+
+vol. 2018, no. 1, p. 6067807, 2018. https://doi.org/10.1155/2018/6067807 496 
+
+[10] X. Zhang, Z. Cheng, L. Du, and Y. Du, “Progressive classifier mechanism for Bridge 497 
+
+expansion joint health status monitoring system based on acoustic sensors,” Sensors , vol. 23, 498 
+
+no. 11, p. 5090, 2023. https://doi.org/10.3390/s23115090 499 
+
+> 500
+
+[11] K. Abuwarda and A.-R. Akl, “Kinematic and muscle co-activation patterns in the 501 
+
+dominant arm across forehand stroke phases in wheelchair tennis,” Frontiers in 502 
+
+Bioengineering and Biotechnology , vol. 12, p. 1518091, 2025. 503 
+
+10.3389/fbioe.2024.1518091 504 
+
+[12] H. Mohtady Ali, J. Ranse, A. Roiko, and C. Desha, “Enabling transformational 505 
+
+leadership to foster disaster-resilient hospitals,” International journal of environmental 506 
+
+research and public health , vol. 20, no. 3, p. 2022, 2023. 507 
+
+https://doi.org/10.3390/ijerph20032022 508 
+
+[13] M.-C. Weng et al. , “Effects of integrated neuromuscular training on physical fitness in 509 
+
+badminton athletes of different maturity statuses,” Children , vol. 12, no. 7, p. 830, 2025. 510 
+
+https://doi.org/10.3390/children12070830 511 
+
+[14] R. C. Manske et al. , “Grip and shoulder strength correlation with validated outcome 512 
+
+instruments in patients with rotator cuff tears,” Journal of Shoulder and Elbow Surgery ,513 
+
+vol. 30, no. 5, pp. 1088–1094, 2021. https://doi.org/10.1016/j.jse.2020.07.041 514 
+
+[15] S. M. Mazerolle, C. M. Eason, and A. Goodman, “Exploring summer medical care 515 
+
+within the National Collegiate Athletic Association Division I setting: a perspective 516 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 20
+
+from the athletic trainer,” Journal of Athletic Training , vol. 51, no. 2, pp. 175–183, 517 
+
+2016. 10.4085/1062-6050-51.3.03 518  
+
+> •
+
+[16] Z. Ji et al. , “DEFIF-Net: A lightweight dual-encoding feature interaction fusion 519 
+
+network for medical image segmentation,” Plos one , vol. 20, no. 5, p. e0324861, 2025. 520 
+
+> https://doi.org/10.1371/journal.pone.0324861 521
+> 522
+
+[17] H. J. Hermens, B. Freriks, C. Disselhorst-Klug, and G. Rau, “Development of 523 
+
+recommendations for SEMG sensors and sensor placement procedures,” Journal of 524 
+
+electromyography and Kinesiology , vol. 10, no. 5, pp. 361–374, 2000. 525 
+
+https://doi.org/10.1016/S1050-6411(00)00027-4 526 
+
+[18] A. Dupuy et al. , “Post-exercise heart rate recovery and parasympathetic reactivation are 527 
+
+comparable between prepubertal boys and well-trained adult male endurance athletes,” 528 
+
+European Journal of Applied Physiology , vol. 122, no. 2, pp. 345–355, 2022. 529 
+
+https://doi.org/10.1007/s00421-021-04823-0 530 
+
+[19] J. Stanley, J. M. Peake, and M. Buchheit, “Cardiac parasympathetic reactivation 531 
+
+following exercise: implications for training prescription,” Sports medicine , vol. 43, no. 532 
+
+12, pp. 1259–1277, 2013. https://doi.org/10.1007/s40279-013-0083-4 533 
+
+[20] P. Chatterjee, P. K. Prasad, and A. Saha, “Comment on:‘Quasi-periodic and chaotic 534 
+
+structure of Alfvén waves in a plasma containing double spectral distributed 535 
+
+electrons’[Phys. Plasmas 29, 122103 (2022)],” Physics of Plasmas , vol. 30, no. 8, 2023. 536 
+
+https://doi.org/10.1063/5.0145262 537 
+
+[21] L. Wang, W. Niu, K. Wang, S. Zhang, L. Li, and T. Lu, “Badminton players show a 538 
+
+lower coactivation and higher beta band intermuscular interactions of ankle antagonist 539 
+
+muscles during isokinetic exercise,” Medical & Biological Engineering & Computing ,540 
+
+vol. 57, no. 11, pp. 2407–2415, 2019. https://doi.org/10.1007/s11517-019-02040-8 541 
+
+[22] I. Horsley, L. Herrington, R. Hoyle, E. Prescott, and N. Bellamy, “Do changes in hand 542 
+
+grip strength correlate with shoulder rotator cuff function?,” Shoulder & elbow , vol. 8, 543 
+
+no. 2, pp. 124–129, 2016. https://doi.org/10.1177/1758573215626103 544 
+
+[23] W. Zhao, C. Wang, Y. Bi, and L. Chen, “Effect of integrative neuromuscular training for 545 
+
+injury prevention and sports performance of female badminton players,” BioMed 546 
+
+research international , vol. 2021, no. 1, p. 5555853, 2021. 547 
+
+https://doi.org/10.1155/2021/5555853 548 
+
+[24] K. Tsuchiya et al. , “Japanese orthopaedic association (JOA) clinical practice guidelines 549 
+
+on the management of malignant bone tumors–Secondary publication,” Journal of 550 
+
+Orthopaedic Science , 2024. 551 
+
+[25] Y. Yan, P. Seoyoung, H. Seomyeong, and Y. Zhao, “The effect of 12-week combined 552 
+
+balance and plyometric training on dynamic balance and lower extremity injury risk in 553 
+
+college dancers,” Frontiers in Physiology , vol. 16, p. 1501828, 554 
+
+2025 . https://doi.org/10.3389/fphys.2025.1501828 555 
+
+[26] M. Moznuzzaman, T. I. Khan, B. Neher, K. Teramoto, and S. Ide, “Ageing effect of 556 
+
+lower limb muscle activity for correlating healthy and osteoarthritic knees by surface 557 
+
+electromyogram analysis,” Sensing and Bio-Sensing Research , vol. 36, p. 100488, 2022. 558 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 21
+
+https://doi.org/10.1016/j.sbsr.2022.100488 559 
+
+[27] S. Aslam, J. D. D. Habyarimana, and S. Y. Bin, “Neuromuscular adaptations to 560 
+
+resistance training in elite versus recreational athletes,” Frontiers in physiology , vol. 16, 561 
+
+p. 1598149, 2025. https://doi.org/10.3389/fphys.2025.1598149 562 
+
+[28] P. J. Read, J. L. Oliver, M. B. A. De Ste Croix, G. D. Myer, and R. S. Lloyd, 563 
+
+“Neuromuscular risk factors for knee and ankle ligament injuries in male youth soccer 564 
+
+players,” Sports Medicine , vol. 46, no. 8, pp. 1059–1066, 2016. 565 
+
+https://doi.org/10.1007/s40279-016-0479-z 566 
+
+[29] M. Helme, J. Tee, S. Emmonds, and C. Low, “Does lower-limb asymmetry increase 567 
+
+injury risk in sport? A systematic review,” Physical therapy in sport , vol. 49, pp. 204– 568 
+
+213, 2021. https://doi.org/10.1016/j.ptsp.2021.03.001 569 
+
+[30] W. G. Hopkins, “Linear models and effect magnitudes for research, clinical and 570 
+
+practical applications,” Sportscience , vol. 14, pp. 49–59, 2010. 571 
+
+[31] M. M. Mukaka, “A guide to appropriate use of correlation coefficient in medical 572 
+
+research,” Malawi medical journal: the journal of Medical Association of Malawi , vol. 573 
+
+24, no. 3, p. 69, 2012. 574 
+
+[32] A. Marchena-Rodriguez, D. Cabello-Manrique, A. B. Ortega-Avila, M. Martinez-Rico, 575 
+
+P. Cervera-Garvi, and G. Gijon-Nogueron, “Aetiology, epidemiology and treatment of 576 
+
+musculoskeletal injuries in badminton players: a systematic review and meta-analysis,” 577 
+
+Research in sports medicine , vol. 32, no. 6, pp. 1041–1054, 2024. 578 
+
+> https://doi.org/10.1080/15438627.2024.2351964 579
+
+[33] R. Ejaz et al. , “Prevalence of Musculo-Skeletal Pain among Badminton Players in Twin 580 
+
+Cities of Pakistan: Prevalence of Musculo-Skeletal Pain,” THE THERAPIST (Journal of 581 
+
+Therapies & Rehabilitation Sciences) , pp. 14–18, 2023. 582 
+
+> https://doi.org/10.54393/tt.v4i04.176 583
+
+[34] K. Pengked, Y. Hareebin, W. Tawanwongsri, and S. Manunyanon, “Badminton-related 584 
+
+musculoskeletal injuries in senior players: Epidemiology and preventive strategies for 585 
+
+common injuries.,” Electronic Journal of General Medicine , vol. 22, no. 1, 2025. 586 
+
+https://doi.org/10.29333/ejgm/15917 587 
+
+[35] N. Deng, K. G. Soh, B. Abdullah, and D. Huang, “Effects of plyometric training on 588 
+
+measures of physical fitness in racket sport athletes: a systematic review and meta-589 
+
+analysis,” PeerJ , vol. 11, p. e16638, 2023. 10.7717/peerj.16638 590 
+
+[36] R. Trybulski, G. Olaniszyn, F. Matuszczyk, K. Gał ęziok, A. Vovkanych, and Y. 591 
+
+Svyshch, “Eccentric Training for Tendinopathies in Athletes: A Scoping Review and 592 
+
+Evidence Gap Map,” Journal of Sports Science & Medicine , vol. 25, no. 1, p. 34, 2026. 593 
+
+> https://doi.org/10.66021/pakmcr960 594
+
+[37] T. Haab, P. Leinen, and P. Burkey, “Role and effectiveness of surface EMG feedback in 595 
+
+sports and orthopedic rehabilitation: a systematic review,” Exploration of 596 
+
+Musculoskeletal Diseases , vol. 2, no. 5, pp. 391–407, 2024. 597 
+
+https://doi.org/10.37349/emd.2024.00065 598 
+
+[38] C. R. Bellenger, J. T. Fuller, R. L. Thomson, K. Davison, E. Y. Robertson, and J. D. 599 
+
+Buckley, “Monitoring athletic training status through autonomic heart rate regulation: a 600 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 22
+
+systematic review and meta-analysis,” Sports medicine , vol. 46, no. 10, pp. 1461–1486, 601 
+
+2016. https://doi.org/10.1007/s40279-016-0484-2 602 
+
+> 603
+> 604
+
+.CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 23 
+
+Figures 605 
+
+> 606
+> 607
+
+Figure 1: Anthropometric data collection procedure. Participants stood barefoot on a608 
+
+calibrated digital body composition analyzer in an upright posture to record various 609 
+
+anthropometric data under standardized laboratory conditions. 610 
+
+> 611
+
+Figure 2: Data collection procedures for muscular strength assessment. (a) Handgrip strength 612 
+
+measurement using a calibrated JAMAR hydraulic hand dynamometer with the participant 613 
+
+standing in an upright posture. (b) Lower-limb strength assessment performed using a 614 
+
+standardized body weight squat protocol under supervised laboratory conditions. 615 
+
+> 616
+
+Figure 3: Heart rate recovery (HRR) measurement protocol. Participants completed a maximal 617 
+
+running to elicit peak heart rate and then transitioned immediately to a standardized recovery 618 
+
+position, during which heart rate decline was recorded to quantify post-exercise autonomic 619 
+
+recovery. 620 
+
+> 621
+
+Figure 4: Surface electromyography (sEMG) data collection procedure. Bipolar surface 622 
+
+electrodes were placed over the biceps brachii muscle according to standardized anatomical 623 
+
+landmarks, and muscle activity was recorded during the elbow extension and flexion tasks. 624 
+
+> Electromyogr  aphy Signal  Acquisition
+> System  Biceps Brachii Muscle  Activity
+> Skin  Preparation
+> El ectrode Placement
+> Elbow flexion and
+> exten sion movements
+> Signal Prep rocessing :
+> Sampling rate 1000 Hz ,
+> band pass filter 20 -
+> 450 Hz
+> Biceps
+> brachii
+> BIOPAC MP
+> 45
+> Feature  extraction and
+> Statistical Analysis
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 24
+> 625
+
+Figure 5: Comparison of handgrip strength between elite and recreational badminton players. 626 
+
+Data are presented as mean ± standard deviation. Elite athletes exhibited significantly greater 627 
+
+grip strength ( p = 0 .001), reflecting superior upper limb muscular capacity essential for racket 628 
+
+control and stroke precision. 629 
+
+> 630
+
+Figure 6: Comparison of LL strength (maximal bodyweight squat repetitions) between elite 631 
+
+and recreational badminton players. Data are presented as mean ± standard deviation. Elite 632 
+
+athletes performed significantly more repetitions ( p < 0.001), indicating superior lower body 633 
+
+muscular endurance and functional capacity. 634 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 25
+> 635
+
+Figure 7: Comparison of normalized RMS amplitude of biceps brachii during elbow flexion 636 
+
+between elite and recreational badminton players. Data are presented as mean ± standard 637 
+
+deviation. Elite players demonstrated significantly higher neuromuscular activation ( p =638 
+
+0.004), reflecting superior motor unit recruitment and coordination. 639 
+
+> 640
+
+Figure 8: Comparison of normalized RMS amplitude of biceps brachii during elbow extension 641 
+
+between elite and recreational badminton players. Data are presented as mean ± standard 642 
+
+deviation. Elite players demonstrated significantly higher neuromuscular activation ( p =643 
+
+0.003), reflecting superior motor unit recruitment and coordination. 644 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint 645
+
+Figure 9: Distribution of HRR values at 5 minutes post-exercise. 646 
+
+> 647
+
+Figure 10: Scatter plots of normalized sEMG RMS vs. HRR in elite (left) and recreational 648 
+
+(right) players. 649 
+
+.CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 9, 2026. ;https://doi.org/10.64898/2026.06.02.729234 doi: bioRxiv preprint
