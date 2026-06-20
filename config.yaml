@@ -25,3 +25,443 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: sport-sci
+      description: 体育科学核心领域（运动生理学、运动医学、训练科学、运动心理学、运动营养）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: exercise physiology
+          keyword_cn: 运动生理学
+          query: exercise physiology and human performance
+        - keyword: sports medicine
+          keyword_cn: 运动医学
+          query: sports medicine and injury treatment
+        - keyword: training science
+          keyword_cn: 训练科学
+          query: training science and athletic development
+        - keyword: sport psychology
+          keyword_cn: 运动心理学
+          query: sport psychology and mental performance
+        - keyword: sports nutrition
+          keyword_cn: 运动营养
+          query: sports nutrition and dietary strategies
+        - keyword: athlete health
+          keyword_cn: 运动员健康
+          query: athlete health and wellness
+      intent_queries:
+        - query: How does exercise physiology influence athletic performance?
+          query_cn: 运动生理学如何影响运动表现？
+          enabled: true
+          source: manual
+          note: ''
+        - query: What are the latest sports medicine techniques for injury recovery?
+          query_cn: 最新的运动医学损伤恢复技术有哪些？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Training science approaches to improve strength and endurance
+          query_cn: 训练科学中提高力量和耐力的方法
+          enabled: true
+          source: manual
+          note: ''
+        - query: Psychological factors affecting athlete mental health
+          query_cn: 影响运动员心理健康的心理因素
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:07:33.226Z'
+    - tag: cv-sports
+      description: 计算机视觉在体育中的应用（姿态估计、动作识别、目标跟踪、视频分析）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: pose estimation
+          keyword_cn: 姿态估计
+          query: Human pose estimation in sports videos
+        - keyword: action recognition
+          keyword_cn: 动作识别
+          query: Action recognition for sports activities
+        - keyword: object tracking
+          keyword_cn: 目标跟踪
+          query: Tracking players and objects in sports
+        - keyword: sports video analysis
+          keyword_cn: 体育视频分析
+          query: Analyzing sports videos with computer vision
+        - keyword: sports analytics
+          keyword_cn: 体育分析
+          query: Computer vision for sports analytics and statistics
+        - keyword: event detection
+          keyword_cn: 事件检测
+          query: Event detection in sports footage
+      intent_queries:
+        - query: How is computer vision used for pose estimation in sports?
+          query_cn: 计算机视觉如何用于体育中的姿态估计？
+          enabled: true
+          source: manual
+          note: ''
+        - query: What are the latest techniques for tracking athletes in sports videos?
+          query_cn: 在体育视频中跟踪运动员的最新技术是什么？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Action recognition methods for analyzing sports activities
+          query_cn: 用于分析体育活动的动作识别方法
+          enabled: true
+          source: manual
+          note: ''
+        - query: Video analysis systems for sports performance evaluation
+          query_cn: 用于体育表现评估的视频分析系统
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:08:40.509Z'
+    - tag: ML-Sports
+      description: 机器学习与深度学习在体育中的应用（预测、分类、特征工程、异常检测）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: machine learning
+          keyword_cn: 机器学习
+          query: machine learning applications in sports
+        - keyword: deep learning
+          keyword_cn: 深度学习
+          query: deep learning models for sports analytics
+        - keyword: performance prediction
+          keyword_cn: 表现预测
+          query: athlete performance prediction with machine learning
+        - keyword: injury prediction
+          keyword_cn: 伤害预测
+          query: injury risk prediction in sports using deep learning
+        - keyword: anomaly detection
+          keyword_cn: 异常检测
+          query: anomaly detection in sports data
+        - keyword: wearable sensors
+          keyword_cn: 可穿戴传感器
+          query: wearable sensor data analysis for athlete monitoring
+      intent_queries:
+        - query: How is machine learning used in sports performance prediction?
+          query_cn: 机器学习如何用于体育表现预测？
+          enabled: true
+          source: manual
+          note: ''
+        - query: What are the deep learning techniques for athlete injury risk assessment?
+          query_cn: 用于运动员伤害风险评估的深度学习技术有哪些？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Role of feature engineering in sports analytics
+          query_cn: 特征工程在体育分析中的作用
+          enabled: true
+          source: manual
+          note: ''
+        - query: Applications of anomaly detection in sports
+          query_cn: 异常检测在体育中的应用
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:09:35.231Z'
+    - tag: sport-tsa
+      description: 可穿戴传感器与时间序列分析在体育中的应用（IMU、GPS、生理信号、时序预测）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: wearable sensors
+          keyword_cn: 可穿戴传感器
+          query: wearable sensor technology for monitoring human activity and physiological signals
+        - keyword: GPS tracking
+          keyword_cn: GPS追踪
+          query: GPS tracking systems for athlete position and movement monitoring
+        - keyword: time series analysis
+          keyword_cn: 时间序列分析
+          query: time series analysis methods applied to sequential sensor data
+        - keyword: sports analytics
+          keyword_cn: 体育分析
+          query: sports analytics using time series and sensor data for performance insights
+        - keyword: activity recognition
+          keyword_cn: 活动识别
+          query: human activity recognition using wearable sensor data and machine learning
+        - keyword: athlete monitoring
+          keyword_cn: 运动员监测
+          query: athlete monitoring systems integrating wearable sensors and physiological data
+      intent_queries:
+        - query: How are wearable IMUs used for time series analysis in sports performance?
+          query_cn: 可穿戴IMU如何用于体育表现的时间序列分析？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Evaluate GPS tracking and physiological signal integration for athlete training load monitoring
+          query_cn: 评估GPS追踪与生理信号整合在运动员训练负荷监测中的应用
+          enabled: true
+          source: manual
+          note: ''
+        - query: Time series forecasting methods for sports injury prediction using sensor data
+          query_cn: 使用传感器数据的体育伤害预测的时序预测方法
+          enabled: true
+          source: manual
+          note: ''
+        - query: Recent advances in motion capture and time series analysis for sports biomechanics
+          query_cn: 运动生物力学中动作捕捉与时间序列分析的最新进展
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:11:04.571Z'
+    - tag: sb
+      description: 运动生物力学与计算建模（运动学、动力学、肌骨建模、仿真优化）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: sports biomechanics
+          keyword_cn: 运动生物力学
+          query: biomechanical analysis of sports movements
+        - keyword: kinematic analysis
+          keyword_cn: 运动学分析
+          query: kinematic analysis of human motion
+        - keyword: musculoskeletal modeling
+          keyword_cn: 肌骨建模
+          query: musculoskeletal model for movement simulation
+        - keyword: simulation optimization
+          keyword_cn: 仿真优化
+          query: optimization of biomechanical simulations
+        - keyword: motion capture
+          keyword_cn: 动作捕捉
+          query: motion capture data for biomechanical analysis
+        - keyword: dynamic simulation
+          keyword_cn: 动态仿真
+          query: dynamic simulation of musculoskeletal system
+      intent_queries:
+        - query: What are the latest methods for musculoskeletal modeling in sports biomechanics?
+          query_cn: 运动生物力学中肌骨建模的最新方法是什么？
+          enabled: true
+          source: manual
+          note: ''
+        - query: How to perform inverse dynamics analysis for gait analysis?
+          query_cn: 如何进行步态分析的逆向动力学分析？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Optimization algorithms for simulating human movement
+          query_cn: 模拟人体运动的优化算法
+          enabled: true
+          source: manual
+          note: ''
+        - query: Kinematic and kinetic analysis of athletic performance
+          query_cn: 运动表现的运动学和动力学分析
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:11:48.965Z'
+    - tag: sports-rl
+      description: 强化学习在体育策略与决策中的应用（战术优化、博弈仿真、对手建模）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: reinforcement learning sports strategy
+          keyword_cn: 强化学习体育策略
+          query: applying reinforcement learning to sports strategy
+        - keyword: sports tactics optimization
+          keyword_cn: 体育战术优化
+          query: optimizing sports tactics using reinforcement learning
+        - keyword: opponent modeling reinforcement learning
+          keyword_cn: 对手建模强化学习
+          query: opponent modeling with reinforcement learning in sports
+        - keyword: multi-agent sports simulation
+          keyword_cn: 多智能体体育仿真
+          query: multi-agent simulation for sports strategy
+        - keyword: sports policy optimization
+          keyword_cn: 体育策略优化
+          query: policy optimization in sports reinforcement learning
+        - keyword: competitive sports AI
+          keyword_cn: 竞技体育人工智能
+          query: artificial intelligence in competitive sports with reinforcement learning
+      intent_queries:
+        - query: How to apply reinforcement learning for sports tactical optimization?
+          query_cn: 如何应用强化学习进行体育战术优化？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Simulating opponent behavior with reinforcement learning in sports
+          query_cn: 用强化学习模拟体育中的对手行为
+          enabled: true
+          source: manual
+          note: ''
+        - query: Decision making systems for sports strategy using reinforcement learning
+          query_cn: 基于强化学习的体育策略决策系统
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:12:43.217Z'
+    - tag: sports-nlp
+      description: 自然语言处理与大语言模型在体育中的应用（文本分析、解说生成、知识图谱、球探报告）
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: sports natural language processing
+          keyword_cn: 体育自然语言处理
+          query: applications of natural language processing in the sports industry
+        - keyword: sports large language models
+          keyword_cn: 体育大语言模型
+          query: using large language models for sports-related tasks
+        - keyword: sports text analysis
+          keyword_cn: 体育文本分析
+          query: applying natural language processing to analyze sports texts such as match summaries
+        - keyword: sports knowledge graph
+          keyword_cn: 体育知识图谱
+          query: constructing knowledge graphs for sports domains
+        - keyword: sports data to text
+          keyword_cn: 体育数据到文本
+          query: converting structured sports data into natural language descriptions
+        - keyword: athlete performance narratives
+          keyword_cn: 运动员表现叙述
+          query: generating narratives about athlete performance using language models
+      intent_queries:
+        - query: How are large language models used to generate sports commentary?
+          query_cn: 大语言模型如何用于生成体育解说？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Building knowledge graphs for sports using natural language processing
+          query_cn: 使用自然语言处理构建体育知识图谱
+          enabled: true
+          source: manual
+          note: ''
+        - query: Automated generation of player scouting reports from match data
+          query_cn: 从比赛数据自动生成球员球探报告
+          enabled: true
+          source: manual
+          note: ''
+        - query: Text analysis of sports articles and social media using NLP models
+          query_cn: 使用NLP模型分析体育文章和社交媒体文本
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:13:42.955Z'
+    - tag: cdm-sports
+      description: 跨领域模型在体育中的应用（迁移学习、域自适应、图神经网络、生成模型、多模态学习、联邦学习）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: transfer learning sports
+          keyword_cn: 迁移学习体育
+          query: transfer learning applied to sports analytics
+        - keyword: domain adaptation sports
+          keyword_cn: 域自适应体育
+          query: domain adaptation techniques in sports
+        - keyword: graph neural network sports
+          keyword_cn: 图神经网络体育
+          query: graph neural networks for sports strategy analysis
+        - keyword: generative model sports
+          keyword_cn: 生成模型体育
+          query: generative models for sports simulation
+        - keyword: multimodal learning sports
+          keyword_cn: 多模态学习体育
+          query: multimodal learning for sports data fusion
+        - keyword: cross-domain sports
+          keyword_cn: 跨领域体育
+          query: cross-domain knowledge transfer in sports
+      intent_queries:
+        - query: How is transfer learning used in sports analytics?
+          query_cn: 迁移学习如何应用于体育分析？
+          enabled: true
+          source: manual
+          note: ''
+        - query: Applications of graph neural networks in sports
+          query_cn: 图神经网络在体育中的应用
+          enabled: true
+          source: manual
+          note: ''
+        - query: Federated learning frameworks for wearable sensor data in sports
+          query_cn: 用于体育可穿戴传感器数据的联邦学习框架
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:14:38.477Z'
+    - tag: sports-sci
+      description: 体育科学核心领域（运动生理学、运动医学、训练科学、运动心理学、运动营养）
+      enabled: true
+      paper_sources:
+        - arxiv
+        - biorxiv
+      keywords:
+        - keyword: exercise physiology machine learning
+          keyword_cn: 运动生理学机器学习
+          query: Physiological responses and adaptations to acute and chronic exercise
+        - keyword: sports medicine
+          keyword_cn: 运动医学
+          query: Medical care for athletes, including injury prevention, treatment, and rehabilitation
+        - keyword: training science
+          keyword_cn: 训练科学
+          query: Scientific principles and methods for optimizing athletic training programs
+        - keyword: sports psychology
+          keyword_cn: 运动心理学
+          query: Psychological factors influencing sports performance, motivation, and mental health
+        - keyword: sports nutrition
+          keyword_cn: 运动营养
+          query: Dietary strategies to enhance athletic performance, recovery, and body composition
+        - keyword: injury rehabilitation
+          keyword_cn: 损伤康复
+          query: Rehabilitation techniques and protocols for sports-related injuries
+      intent_queries:
+        - query: computational models of motor learning and skill acquisition in sports
+          query_cn: 体育运动学习与技能习得的计算模型
+          enabled: true
+          source: manual
+          note: ''
+        - query: personalized exercise prescription and training optimization using AI
+          query_cn: 个性化运动处方与AI训练优化
+          enabled: true
+          source: manual
+          note: ''
+        - query: AI based training load monitoring and injury prevention in sports
+          query_cn: 基于AI的训练负荷监测与运动损伤预防
+          enabled: true
+          source: manual
+          note: ''
+        - query: state of the art machine learning in exercise physiology and sports medicine
+          query_cn: 最先进的机器学习在运动生理学与运动医学中的应用
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-06-20T12:17:40.094Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
+  biorxiv:
+    papers_table: biorxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_biorxiv_papers_exact
+    vector_rpc_exact: match_biorxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_biorxiv_papers_bm25
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
