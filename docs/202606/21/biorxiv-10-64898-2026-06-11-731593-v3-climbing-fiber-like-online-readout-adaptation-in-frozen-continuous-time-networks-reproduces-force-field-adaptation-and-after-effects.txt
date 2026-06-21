@@ -1,0 +1,503 @@
+Title: Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.11.731593v3.full.pdf
+
+Number of Pages: 15
+
+Markdown Content:
+# Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects 
+
+Jun Kobayashi Department of Intelligent and Control Systems, Graduate School of Computer Science and Systems Engineering, Kyushu Institute of Technology 680-4 Kawazu, Iizuka, Fukuoka 820-8502, Japan 
+
+kobayashi.jun184@m.kyutech.ac.jp 
+
+Preprint version v2 prepared for bioRxiv 
+
+Abstract 
+
+Robotic motor control built on liquid neural networks and related continuous-time models, such as LTC and CfC, is typically trained offline via backpropagation through time and lacks an explicit mechanism for recalibrating online as plant dynamics change. We ask whether a frozen CfC core, whose liquid state spans a fixed continuous-time basis, can support cerebellar-style online adaptation by adapting only its linear read-out with a climbing-fiber-like error signal. In a planar two-link reaching simulation with a velocity-dependent curl force field, we adapt the readout online with a feedback-error-learning (FEL) signal under a least-mean-squares (LMS) rule, leaving the core un-touched. The frozen-core readout-only controller re-straightens curl-perturbed reaches and, upon field removal, produces a mirror-image after-effect—a behavioral signature consistent with internal-model learning—that a feedback-only controller does not pro-duce. The result generalizes from a dense CfC to a sparse Neural-Circuit-Policy (NCP) wiring when the recurrent state, rather than the projected motor output, is used as the readout basis; it is robust to force-field strength and direction; and a recursive-least-squares variant adapts faster but de-adapts slowly because its covariance collapses, a rigidity that a covariance-reset safe-forgetting rule removes. Within the explored two-link planar simulation range, we did not find a readout-only failure case that required adapting the frozen core in the tested conditions. In this simulation study, adapting only the readout therefore provides a biologically inspired, low-cost online error-adaptation layer for offline-trained continuous-time controllers. 
+
+Keywords: liquid neural networks; continuous-time neural networks; closed-form continuous-time network; online learning; readout adaptation; force-field adaptation 1
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+# 1 Introduction 
+
+Problem. 
+
+Continuous-time and liquid neural networks—liquid time-constant (LTC) networks and their closed-form counterpart (CfC) (Hasani et al., 2021, 2022)—are attractive substrates for robotic motor control: they represent continuous-time dynamics, handle irregularly sampled inputs, and can be compact and interpretable. They are, however, typically trained offline by backpropagation through time, and the trained network is then static. When the controlled plant changes—an added payload, a force field, a worn joint—an offline-trained continuous-time controller has no explicit recalibration mechanism; restoring performance often requires collecting new data and retraining. Biological motor systems, by contrast, can recalibrate from movement error over repeated attempts. 
+
+Neuroscience anchor. 
+
+The cerebellum continuously recalibrates movement online. In the adaptive-filter view of the cerebellar microcircuit, a fixed granular-layer expansion provides a high-dimensional basis, linear Purkinje-cell readouts combine that basis, and the readout synapses are tuned online by a climbing-fiber error signal under a decorrelation / Widrow-Hoff (least-mean-squares) rule (Marr, 1969; Albus, 1971; Yamazaki and Tanaka, 2007; Dean et al., 2010; Widrow and Lehr, 1990). The behavioral hallmark of this learning is force-field adapta-tion: when reaching movements are perturbed by a velocity-dependent curl field, subjects gradually re-straighten their trajectories, and when the field is removed, they show a mirror-image after-effect—deviating to the opposite side—which is the commonly used behavioral evidence consistent with learning an internal model of the perturbed dynamics rather than merely reacting with feedback (Shadmehr and Mussa-Ivaldi, 1994; Kawato, 1999; Wolpert et al., 1995; Thoroughman and Shadmehr, 2000; Donchin et al., 2003; Tseng et al., 2007). 
+
+Engineering gap. 
+
+A CfC has ingredients analogous to the adaptive-filter cerebellum: a continuous-time recurrent core that spans a high-dimensional state basis, and a linear readout on top. Yet CfC/LTC and the related Neural Circuit Policies (NCP) (Lechner et al., 2020) are used as offline-trained controllers and lack an explicit online error-adaptation mechanism. Be-cause the readout is linear in the core state, adapting it online can be formulated as online linear regression—the same fixed-basis/readout problem emphasized in motor-learning basis-function accounts (Thoroughman and Shadmehr, 2000; Donchin et al., 2003) and reservoir computing (Maass et al., 2002; Lukoševičius and Jaeger, 2009), and the same kind of linear adaptive-filter problem addressed by cerebellar decorrelation and FORCE recursive-least-squares rules (Sussillo and Abbott, 2009). This suggests a simple, biologically inspired design: freeze the trained CfC core and adapt only its linear readout online, driven by a climbing-fiber-like error. 
+
+Contributions. 
+
+We test this design in a planar two-link reaching simulation with a velocity-dependent curl force field and make four contributions, all scoped to this simulation. (i) Method: afrozen CfC core with an online linear readout, adapted by a feedback-error-learning (FEL) climbing-fiber signal under LMS, reproduces force-field adaptation and a mirror after-effect 2
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+that a feedback-only controller does not, without retraining the core. (ii) Generalization: 
+
+the result is not specific to a dense CfC—it holds for a sparse NCP wiring when the recurrent state, rather than the projected motor output, is used as the readout basis—and is robust to curl-field strength and direction. (iii) Plasticity mechanism: an RLS comparison adapts faster but de-adapts slowly; we attribute this to a collapse of the RLS covariance and show that a covariance-reset safe-forgetting rule restores fast re-adaptation under nonstationary fields. (iv) Boundary characterization: we search for a perturbation that defeats readout-only adaptation; within the tested two-link planar range, no readout-only failure case was found, which we report, paired with its limitation, as a boundary characterization rather than a general claim of sufficiency. 
+
+# 2 Method 
+
+2.1 Plant and task 
+
+The plant is a two-link planar arm in the horizontal plane (gravity acts out of plane and is omitted, isolating the force-field effect, as in Shadmehr and Mussa-Ivaldi, 1994). Its rigid-body dynamics are 
+
+M (q)¨ q + C(q, ˙q) ˙ q + B ˙q = τ + τ field , τ field = J (q)⊤F, (1) with joint angles q ∈ R2, mass matrix M , Coriolis term C, linear joint damping B, geometric Jacobian J , and an external end-effector force F . The task is center-out reaching to eight targets with minimum-jerk desired trajectories; the perturbation is a velocity-dependent curl field F =  0 b 
+
+> −b0
+
+ v, where v is the end-effector velocity and b sets the strength ( b=13 
+
+unless stated). The equations of motion are advanced with a fourth-order Runge–Kutta scheme using a 5 ms step. All inertial and geometric parameters, gains, and force-field orientation settings are fixed in the archived run configuration. The null-field condition denotes the absence of this external force-field perturbation ( F = 0 ). Offline teacher torques are computed by solving the same two-link arm model for the torques required to follow the null-field reference trajectories. 
+
+2.2 Frozen CfC inverse model and linear readout 
+
+A CfC core (Hasani et al., 2022) maps the input xt = [ q∗ 
+
+> t
+
+, ˙q∗ 
+
+> t
+
+, ¨q∗ 
+
+> t
+
+, q t, ˙qt] ∈ R10 to a liquid state zt ∈ Rdz (dz = 64 ). It is trained offline as an inverse model on the null-field reference trajectories: the input contains the reference kinematics (q∗ 
+
+> t
+
+, ˙q∗ 
+
+> t
+
+, ¨q∗ 
+
+> t
+
+), and the plant-state slots are set to the same reference position and velocity (qt, ˙qt) = ( q∗ 
+
+> t
+
+, ˙q∗ 
+
+> t
+
+). The network is supervised to predict the teacher torques required for those reference trajectories. The core and a bias-free linear readout are fit by backpropagation through time, after which the core parameters are frozen . The feedforward torque is the linear readout 
+
+τ ff  
+
+> t
+
+= Jz t, J ∈ R2×dz , (2) and only J is plastic online. This is the cerebellar correspondence: a fixed liquid basis (granular layer) and a linear Purkinje readout (Yamazaki and Tanaka, 2007). 3
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+2.3 Climbing-fiber signal and online update rules 
+
+The control torque combines feedforward and PD feedback, τt = Jz t + τ fb  
+
+> t
+
+, with 
+
+τ fb  
+
+> t
+
+= Kp(q∗ 
+
+> t
+
+− qt) + Kd( ˙ q∗ 
+
+> t
+
+− ˙qt). (3) We use feedback-error learning (FEL) as the primary biologically motivated climbing-fiber signal (Gomi and Kawato, 1993; Kawato, 1999). In motor-command coordinates, this signal is the feedback torque, et = τ fb  
+
+> t
+
+. The corresponding online update is least-mean-squares (LMS), 
+
+J ← J + η e tz⊤ 
+
+> t
+
+, (4) the cerebellar decorrelation / Widrow-Hoff rule (Dean et al., 2010; Widrow and Lehr, 1990); the climbing-fiber signal is applied before the plant step and the core state is reset per reach, while J accumulates across the protocol. As a faster-learning comparison and for the mechanistic analysis only, we also use recursive least squares (RLS / FORCE, Sussillo and Abbott, 2009), 
+
+kt = Ptzt
+
+β + z⊤ 
+
+> t
+
+Ptzt
+
+, J ← J + etk⊤ 
+
+> t
+
+, Pt+1 = 1
+
+β
+
+
+
+Pt − ktz⊤ 
+
+> t
+
+Pt
+
+
+
+, (5) with covariance P , forgetting factor β, and P0 = p0I. We take β=1 (no forgetting) with 
+
+p0=0 .1 as the stable comparison; β< 1 is reported only as a negative control. For nonsta-tionary fields, we add a covariance reset that, at a perturbation change, restores plasticity without discarding the learned model, P ← preset 0 I (keeping J), or a continuous covariance inflation P ← P + αI .
+
+2.4 Protocol and after-effect adjudication 
+
+Each condition runs an A/B/C protocol: A (null field, no adaptation), B (curl field, adapta-tion on, the exposure phase), C (null catch, no adaptation), with an optional adaptation-on washout. We measure the maximum perpendicular deviation of the end-effector from the straight line to each target, and its signed value for the after-effect. An after-effect is judged a mirror after-effect when the catch-phase signed deviation has the opposite sign to the no-adaptation curl distortion in a majority of directions, with a magnitude ratio at least 
+
+0.25 . We adopt this majority threshold as the decision criterion; the per-direction outcome actually observed (how many of the eight targets mirror) is reported in Section 4. The internal-model claim is supported when the adapting method shows a mirror after-effect and the feedback-only baseline does not. 
+
+2.5 Network and signal variants 
+
+For the NCP-wired model, we replace the dense CfC with an NCP wiring (Lechner et al., 2020); because the wiring projects its output to the motor neurons, we take the readout basis to be the recurrent state ( feature mode “state”, dz =64 ) rather than the projected output, and compare against a narrow output-basis ablation. All training is CPU-seeded for reproducibility, and per-run configurations and metrics are archived as strict-JSON artifacts. 4
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+Table 1: Phase 1 baseline comparison (curl b = 13 , 30 exposure cycles). Mirror directions out of 8; ∥J∥ is the maximum readout-weight norm. RLS-unstable (forgetting β = 0 .999 ) is a negative control that diverges. condition Blast impr. catch ratio mirror max ∥J∥ finite (mm) (%) (mm) /8 B0 23.96 0.0 0.05 0.00 3 0.80 yes B2 26.27 -9.7 1.04 0.04 4 0.00 yes LMS-main 2.38 90.0 -22.13 0.92 8 2.19 yes RLS-reg 0.72 97.0 -23.74 0.99 8 6.13 yes RLS-unstable 43.24 -80.5 117.09 – 3 4315.12 no 
+
+# 3 Experiments 
+
+We evaluate the frozen-core readout-only controller across five axes, organized to orient Figures 1–6: (i) the core force-field adaptation and after-effect with baselines (B0: no-adaptation; B2: feedback-only) and adaptive readouts (LMS and regularized RLS); (ii) generalization from a dense CfC to an NCP-wired CfC; (iii) robustness across curl-field strength and direction; (iv) the mechanism of the RLS adaptation/de-adaptation asymmetry and a covariance-reset remedy; (v) a boundary search for readout-only failure. 
+
+# 4 Results 
+
+4.1 Frozen-core readout adaptation reproduces force-field adapta-tion and mirror after-effects 
+
+A dense CfC core was trained offline on null-field inverse dynamics and frozen; only its linear readout was adapted online with the FEL climbing-fiber signal under LMS. Under the curl field, the no-adaptation baseline (B0) remains distorted (mean maximum perpendicular de-viation 23 .96 mm ), while LMS re-straightens the reaches over the exposure phase to 2.38 mm 
+
+(90 % improvement; Fig. 1a). When the field is removed, the LMS controller deflects to the 
+
+opposite side of the field-induced distortion—a mirror after-effect of −22 .1 mm in all eight directions (Fig. 1b,c)—whereas the feedback-only baseline (B2) produces no such mirror de-flection (catch deviation 1.0 mm , same side as the field). The presence of a mirror after-effect in the adapting controller, together with its absence in the feedback-only baseline, is con-sistent with internal-model-like learning (Shadmehr and Mussa-Ivaldi, 1994; Kawato, 1999); our after-effect adjudication (mirror sign, ratio ≥ 0.25 , with B2 as the no-internal-model control) returns supported . Throughout, the LMS under the FEL signal is the biologically motivated main method; a regularized recursive-least-squares (RLS) variant is included only as a faster comparison and for the mechanistic analysis of Section 4.4. The regularized RLS comparison adapts faster and reaches a lower asymptote while its readout-weight norm stays bounded, whereas an RLS variant with forgetting is unstable over long exposure and is reported as a negative control (Fig. 2). Table 1 collects the baseline comparison. 5         
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint 0510 15 20 25 30
+> force-field exposure cycle
+> 0
+> 5
+> 10
+> 15
+> 20
+> 25
+> mean max perp. dev. (mm)
+> (a) adaptation learning curves
+> LMS-main
+> RLS-reg
+> B0 (24.0 mm)
+> B0
+> B2
+> LMS-main
+> RLS-reg
+> 20
+> 15
+> 10
+> 5
+> 0
+> C-catch mean signed dev. (mm)
+> (b) after-effect (mirror = negative)
+> 0.04 0.02 0.00 0.02
+> x (m)
+> 0.46
+> 0.48
+> 0.50
+> 0.52
+> 0.54
+> y (m)
+> (c) endpoint trajectories (LMS)
+> desired
+> A
+> B first
+> B last
+> C catch
+
+Figure 1: Frozen-core readout adaptation. (a) Exposure-phase learning curves for LMS and regularized RLS against the no-adaptation baseline (B0). (b) Catch-trial signed deviation per condition (a mirror after-effect is negative). (c) Representative endpoint trajectories for one direction across the A / B-first / B-last / C-catch phases under LMS; the catch trajectory deflects opposite to the field-induced distortion. Table 2: Dense versus NCP-wired CfC (recurrent-state readout). The NCP-state model reproduces the dense result; the NCP-state RLS-forgetting negative control diverges. condition model Blast catch ratio mirror finite (mm) (mm) /8 B0 dense 23.96 0.05 0.00 3 yes LMS-main dense 2.38 -22.13 0.92 8 yes RLS-reg dense 0.72 -23.74 0.99 8 yes B0 NCP-state 24.02 0.02 0.00 4 yes B2 NCP-state 26.27 1.04 0.04 4 yes LMS-main NCP-state 2.71 -23.10 0.96 8 yes RLS-reg NCP-state 0.87 -23.21 0.97 8 yes RLS-forg. NCP-state 271.60 -0.00 0.00 4 no 
+
+4.2 The result generalizes to NCP-wired CfC via the recurrent-state readout basis 
+
+Replacing the dense CfC with a Neural-Circuit-Policy (NCP) wiring (Lechner et al., 2020) preserves the result when the readout is built on the recurrent state rather than the wiring’s projected motor output. The NCP-state model (about 40 % of the dense core parameters) reproduces the dense comparison closely—LMS 2.71 mm (88 .7 % , mirror 8/8), regularized RLS 0.87 mm (mirror 8/8), B2 without a mirror after-effect—so the after-effect claim is again supported (Fig. 3a, Table 2). A feature-mode ablation that instead reads out from the two-dimensional NCP motor output fails to adapt (Fig. 3b), indicating that the wide recurrent-state liquid basis, not the projected output, is the effective substrate for readout-only adaptation in this model. 6        
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint B0
+> B2
+> LMS-main
+> RLS-reg
+> RLS-unstable
+> 0
+> 10
+> 20
+> 30
+> 40
+> B-phase final mean max perp. dev. (mm)
+> 0%
+> -10%
+> 90% 97%
+> -80%
+> (a) baseline comparison
+> 0510 15 20 25 30 35
+> protocol cycle
+> 10 0
+> 10 1
+> 10 2
+> 10 3
+> ||J||
+> (b) readout-weight boundedness
+> LMS-main
+> RLS-reg
+> RLS-unstable
+
+Figure 2: Baseline comparison. (a) Final exposure-phase error and percentage improvement for no-adaptation (B0), feedback-only (B2), LMS, regularized RLS, and the forgetting RLS negative control. (b) Readout-weight norm ∥J∥ remains bounded for LMS and regularized RLS but diverges for the forgetting RLS variant over long exposure (dashed, log scale). Table 3: Perturbation success map (LMS-main, 30 exposure cycles). Curl strength and reversal rows use the dense CfC and succeed; the NCP-state row is a representative sparse-wiring check at b=20 .perturbation kind B0 LMS impr. mirror success (mm) (mm) (%) /8 curl b=8 strength 14.96 1.49 90.1 8 yes curl b=13 strength 23.96 2.38 90.0 8 yes curl b=20 strength 35.83 3.61 89.9 8 yes curl b=30 strength 50.83 5.35 89.5 8 yes curl b=−13 reversal 23.63 2.34 90.1 8 yes curl b=20 NCP-state 35.94 3.98 88.9 8 yes 
+
+4.3 Readout-only LMS is robust to force-field strength and direc-tion 
+
+Sweeping the curl strength ( b ∈ { 8, 13 , 20 , 30 }) and reversing its direction, LMS recovers roughly 90 % of the no-adaptation distortion with a mirror after-effect in all eight directions at every tested strength, and a representative NCP-state check at b=20 matches the dense result (Fig. 4a, Table 3). The after-effect remains mirror-consistent across the curl conditions (Fig. 4b). 7  
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint B0 LMS-main RLS-reg
+> 0
+> 5
+> 10
+> 15
+> 20
+> 25
+> B-phase final mean max perp. dev. (mm)  (a) dense CfC vs NCP-wired CfC
+> dense
+> NCP-state
+> NCP-state
+> readout
+> (d_z=64)
+> NCP-output
+> readout
+> (d_z=2)
+> 0
+> 5
+> 10
+> 15
+> 20
+> 25
+> B-phase final mean max perp. dev. (mm)
+> mirror 8/8
+> mirror 1/8
+> (b) readout-basis ablation
+
+Figure 3: NCP-wired CfC generalization. (a) Dense versus NCP-state final error for B0, LMS, and regularized RLS. (b) Reading out from the 64 -dimensional recurrent state versus the 2-dimensional NCP motor output; only the state basis supports adaptation (mirror directions annotated). 
+
+4.4 RLS de-adaptation rigidity arises from covariance collapse and is rescued by covariance reset 
+
+The regularized RLS readout adapts fast during exposure but de-adapts slowly: after a null washout, it retains most of the after-effect, and after a field reversal, it fails to re-adapt to the opposite field within the tested horizon. The mechanism is a collapse of the RLS covariance P during exposure—its trace shrinks and the per-cycle update magnitude decays (Fig. 5a,b)—so the gain in the directions needed to unlearn becomes vanishingly small. Resetting only the covariance ( P ← p0I, keeping the learned weights) at a perturbation change re-opens plasticity: the covariance-reset variant re-adapts to the reversed field in two cycles, faster than LMS and far faster than the rigid RLS, while keeping the weight norm bounded (Fig. 5c). The reset magnitude trades off (an over-large reset overshoots), so a moderate reset or a continuous covariance inflation is the practically safe-forgetting choice. 
+
+4.5 Boundary characterization: no readout-only failure within the tested two-link planar range 
+
+We searched for a perturbation that would defeat readout-only adaptation. Extreme curl fields up to b=100 (about eight times the baseline) leave the controller stable: at b=100 
+
+the residual grows to 14 .9 mm but the controller still achieves 83 .6 % recovery with a mirror after-effect in all eight directions, without divergence or loss of the after-effect (Fig. 6a). We then tested a nonstationary alternating field in which the curl coefficient switched between 
+
+b= + 13 and b= − 13 every five exposure cycles for 30 cycles. Under this schedule, plain LMS shows repeated switch transients, and the no-forgetting RLS comparison shows larger tran-sients with higher residual error; covariance reset, applied at each sign switch while keeping the learned readout weights, gives the lowest tracking error (Fig. 6b). Thus, the difficult 8    
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint curl_b8
+> curl_b13
+> curl_b20
+> curl_b30
+> curl_b-13
+> curl_b20_NCP-state
+> 0
+> 10
+> 20
+> 30
+> 40
+> 50
+> mean max perp. dev. (mm)
+> (a) perturbation: B0 vs LMS
+> B0
+> LMS-adapted
+> curl_b8
+> curl_b13
+> curl_b20
+> curl_b30
+> curl_b-13
+> curl_b20_NCP-state
+> 0.0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> after-effect ratio
+> 8/8 8/8 8/8 8/8
+> 8/8 8/8
+> (b) after-effect (green=success)
+> ratio threshold 0.25
+
+Figure 4: Perturbation robustness. (a) No-adaptation versus LMS-adapted error across curl strengths, a reversed field, and an NCP-state check. (b) After-effect ratio per perturbation (green: success criteria met). case observed in this search is handled by plasticity control rather than by adapting the core. Within this two-link planar simulation search range (curl up to b=100 , nonstation-ary fields, and weak structural perturbations), no readout-only failure case was found, and core adaptation was not required in the tested conditions; whether a structurally different perturbation reveals such a failure case is left to physical-robot follow-up. 
+
+# 5 Discussion 
+
+A frozen core with a plastic readout implements a division of labor 
+
+The central finding is that adapting only the linear readout of a frozen continuous-time core is sufficient in this simulation to acquire internal-model-like force-field compensation, including the mirror after-effect that distinguishes this compensation from the feedback-only baseline tested here. Computationally, this is a division of labor: the CfC core supplies a fixed, high-dimensional temporal basis zt, and a single plastic linear map J turns that basis into the corrective motor command. Because the readout is linear, online adaptation can be treated as online linear regression, so a biologically motivated decorrelation / Widrow-Hoff rule (Dean et al., 2010; Widrow and Lehr, 1990) is a well-matched choice, and the offline-trained dynamics need not be changed to track the tested plant perturbations. 
+
+Relation to CfC/LTC/NCP controllers 
+
+Continuous-time networks (LTC/CfC) and their NCP wirings (Hasani et al., 2021, 2022; Lechner et al., 2020) are useful substrates for control, but as ordinarily used, they are trained offline and then deployed without any online error correction. Our results show that such a controller can carry a lightweight recalibration layer on top of the frozen substrate, recovering from a change in dynamics that was not present during training. The generalization to a sparse NCP wiring carries an architectural caveat: the adaptation must read from the recurrent state ( feature mode “state”), because the wiring’s projected motor output is too 9               
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint 010 20 30 40 50
+> protocol cycle
+> 3 × 10 0
+> 4 × 10 0
+> 6 × 10 0
+> trace(P)
+> (a) covariance trace (RLS)
+> RLS-reg
+> RLS-cov-reset
+> 010 20 30 40 50
+> protocol cycle
+> 10 0
+> 10 1
+> cumulative ||  J|| / cycle
+> (b) update magnitude
+> LMS-main
+> RLS-reg
+> RLS-cov-reset
+> 010 20 30 40 50
+> opposite-curl cycle
+> 0
+> 10
+> 20
+> 30
+> 40
+> mean max perp. dev. (mm)
+> (c) reversal re-adaptation
+> LMS-main
+> RLS-reg
+> RLS-cov-reset
+
+Figure 5: RLS de-adaptation mechanism and safe-forgetting. RLS is included as an algorith-mic comparison; the biologically motivated main method remains FEL+LMS. (a) Covariance trace collapses under no-forgetting RLS during exposure and is restored by reset (log scale). (b) Per-cycle update magnitude tracks the covariance. (c) Re-adaptation to a reversed field: no-forgetting RLS is stuck, while covariance reset is fastest. narrow a basis—the output-basis ablation fails to adapt. In other words, the useful basis for online readout adaptation is the network’s internal liquid state, not its low-dimensional command projection. This fixed-basis interpretation also parallels motor-learning accounts in which force-field generalization is explained by adapting weighted combinations of motor primitives or basis functions (Thoroughman and Shadmehr, 2000; Donchin et al., 2003). 
+
+Relation to the cerebellar and internal-model literature 
+
+The mapping onto the cerebellar adaptive-filter model is structurally suggestive but ab-stract: a fixed granular basis, a linear Purkinje readout, and a climbing-fiber error driving an LMS/decorrelation update (Marr, 1969; Albus, 1971; Yamazaki and Tanaka, 2007; Dean et al., 2010), with the feedback-error-learning signal supplying the climbing-fiber term in motor-command coordinates (Gomi and Kawato, 1993; Kawato, 1999). The acquisition of a force-field model and its after-effect is a behavioral signature consistent with internal-model learning in the motor-control literature (Shadmehr and Mussa-Ivaldi, 1994; Wolpert et al., 1995). We use this correspondence as a source of computational design principles, not as a claim of biological identity: the present work is a simulation study and does not assert that the model reproduces the human cerebellum at the circuit or synaptic level. 
+
+RLS as a mechanistic, not biological, comparison 
+
+The recursive-least-squares variant is included only for faster comparison and to probe adaptation dynamics; the biologically motivated main method remains FEL+LMS. Its value here is mechanistic: with no forgetting, the covariance P collapses during exposure, thereby freezing the effective learning rate and making de-adaptation and field reversal sluggish. Restoring plasticity with a covariance reset (keeping the learned J, re-inflating P ) removes this adaptation/de-adaptation asymmetry and reverses the field within a couple of cycles. This parallels the broader motor-adaptation observation that learning and de-adaptation can operate on different time scales (Smith et al., 2006). For the present RLS estimator, it identifies safe-forgetting—plasticity control rather than added model capacity—as the relevant design knob for nonstationary fields, and explains the asymmetry as a property of 10       
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint curl_b40
+> curl_b50
+> curl_b70
+> curl_b100
+> 0
+> 20
+> 40
+> 60
+> 80
+> mean max perp. dev. (mm)
+> 89%
+> 8/8
+> 88%
+> 8/8
+> 86%
+> 8/8
+> 84%
+> 8/8
+> (a) extreme curl: residual grows, %recovery holds
+> B0
+> LMS-adapted
+> 0510 15 20 25 30
+> cycle (alternating ±curl)
+> 0
+> 5
+> 10
+> 15
+> 20
+> 25
+> 30
+> 35
+> 40
+> mean max perp. dev. (mm)
+> (b) nonstationary: reset rescues
+> LMS
+> RLS-reg
+> RLS-cov-reset
+
+Figure 6: Boundary characterization. (a) Extreme curl fields ( b=40 –100 ): the residual grows with field strength but the percentage recovery and the mirror after-effect are maintained (annotated). (b) Nonstationary alternating field: the curl coefficient alternates between 
+
+b= + 13 and b= − 13 every five cycles; covariance reset restores P at each sign switch while keeping the readout weights. LMS has repeated switch transients, no-forgetting RLS has larger transients and higher residuals, and covariance reset gives the lowest error. the estimator, not of the readout-only architecture. 
+
+Relation to online recurrent learning 
+
+The present method adapts only the output map of a trained recurrent dynamical sys-tem. It therefore complements, rather than replaces, online recurrent-learning algorithms that modify the recurrent substrate itself, such as RFLO (Murray, 2019). Those meth-ods address credit assignment inside recurrent circuits; our question is narrower: whether a frozen continuous-time controller already supplies enough state features for a local linear recalibration layer to handle the tested force-field perturbations. 
+
+Bridge to a physical robot 
+
+The same architectural principle—a frozen CfC core plus online linear readout adaptation—could be transferred to a physical robot arm, but the actuation interface may differ. In a robot with torque control, the readout could target the same motor-command coordinates used here; in robots controlled through position or velocity interfaces, the readout would instead have to be expressed as a correction in those command coordinates. The corresponding after-effect would appear in the same output space as the learned correction. That physical validation is a follow-up and is not a requirement of the present simulation study, which evaluates the computational result in the torque domain. 
+
+# 6 Limitations 
+
+Several limitations bound the scope of these claims. First, the plant is a two-link planar arm in the horizontal plane, with no gravity, no contact, and no three-dimensional motion; all results are obtained in simulation. 11 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+Second, the payload and joint-viscosity perturbations we tried are weak proxies in this horizontal reaching task—they produce little or no adaptation distortion—so we exclude them from the main robustness map and do not treat them as evidence about readout capacity. A meaningful change in dynamics for that purpose would require a perturbation that strongly changes the task-relevant dynamics, such as an endpoint payload under gravity, contact, or faster movements; we defer such tests to physical-robot validation. Consequently, the boundary result is scoped: within the tested two-link planar search range, no readout-only failure case was found, and core adaptation was not required, but a structurally different or strongly nonlinear perturbation could still reveal one—we do not adapt the frozen core beyond this boundary search. We also do not compare against online algorithms that modify recurrent weights, so the result should not be read as a general argument against core plasticity. Third, the present paper does not yet include physical-robot validation. Transferring the method to hardware will require matching the plastic readout to the robot’s command interface, whether torque, position, velocity, or another low-level control space. 
+
+# 7 Conclusion 
+
+Adapting only the linear readout of a frozen continuous-time CfC core, driven by a cerebellar climbing-fiber-like error signal, was sufficient in this simulation to acquire internal-model-like force-field compensation, including a mirror after-effect, without retraining the core. Framed as a cerebellar division of labor, this turns online motor adaptation into online linear regression, thereby adding a biologically inspired, low-cost recalibration layer on top of an offline-trained continuous-time controller. Within the tested two-link planar range, we did not find a readout-only failure case that required adapting the frozen core; the natural next step is to carry the same principle onto physical robot hardware, with the plastic readout expressed in the robot’s available command coordinates. 
+
+# Declaration of competing interest 
+
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper. 
+
+# CRediT authorship contribution statement 
+
+Jun Kobayashi: Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing – original draft, Writing – review & editing. 12 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+# Funding 
+
+This research did not receive any specific grant from funding agencies in the public, com-mercial, or not-for-profit sectors. 
+
+# Data and code availability 
+
+A private code repository has been prepared and will be made public at an appropriate stage of the publication process. The repository will contain the simulation code and tests; manuscript sources, generated paper figures, and large run outputs are maintained separately. A public repository URL and, if available, a persistent identifier will be added before final publication. 
+
+# Declaration of generative AI and AI-assisted technologies in the writing process 
+
+During the preparation of this work the author used OpenAI Codex and Anthropic Claude Code for planning, implementation support, manuscript drafting support, editing, and con-sistency checks. After using these tools, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article. 
+
+# Acknowledgements 
+
+None. 
+
+# References 
+
+Albus, J.S., 1971. A theory of cerebellar function. Mathematical Biosciences 10, 25–61. doi: 10.1016/0025-5564(71)90051-4 .Dean, P., Porrill, J., Ekerot, C.F., Jörntell, H., 2010. The cerebellar microcircuit as an adaptive filter: experimental and computational evidence. Nature Reviews Neuroscience 11, 30–43. doi: 10.1038/nrn2756 .Donchin, O., Francis, J.T., Shadmehr, R., 2003. Quantifying generalization from trial-by-trial behavior of adaptive systems that learn with basis functions: Theory and experiments in human motor control. The Journal of Neuroscience 23, 9032–9045. doi: 10.1523/JNEUROSCI.23-27-09032.2003 .Gomi, H., Kawato, M., 1993. Neural network control for a closed-loop system using feedback-error-learning. Neural Networks 6, 933–946. doi: 10.1016/S0893-6080(09)80004-X .13 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+Hasani, R., Lechner, M., Amini, A., Liebenwein, L., Ray, A., Tschaikowski, M., Teschl, G., Rus, D., 2022. Closed-form continuous-time neural networks. Nature Machine Intelligence 4, 992–1003. doi: 10.1038/s42256-022-00556-7 .Hasani, R., Lechner, M., Amini, A., Rus, D., Grosu, R., 2021. Liquid time-constant networks. Proceedings of the AAAI Conference on Artificial Intelligence 35, 7657–7666. doi: 10.1609/ aaai.v35i9.16936 .Kawato, M., 1999. Internal models for motor control and trajectory planning. Current Opinion in Neurobiology 9, 718–727. doi: 10.1016/S0959-4388(99)00028-8 .Lechner, M., Hasani, R., Amini, A., Henzinger, T.A., Rus, D., Grosu, R., 2020. Neural circuit policies enabling auditable autonomy. Nature Machine Intelligence 2, 642–652. doi: 10.1038/s42256-020-00237-3 .Lukoševičius, M., Jaeger, H., 2009. Reservoir computing approaches to recurrent neural network training. Computer Science Review 3, 127–149. doi: 10.1016/j.cosrev.2009. 03.005 .Maass, W., Natschläger, T., Markram, H., 2002. Real-time computing without stable states: A new framework for neural computation based on perturbations. Neural Computation 14, 2531–2560. doi: 10.1162/089976602760407955 .Marr, D., 1969. A theory of cerebellar cortex. The Journal of Physiology 202, 437–470. doi: 10.1113/jphysiol.1969.sp008820 .Murray, J.M., 2019. Local online learning in recurrent networks with random feedback. eLife 8, e43299. doi: 10.7554/eLife.43299 .Shadmehr, R., Mussa-Ivaldi, F.A., 1994. Adaptive representation of dynamics during learn-ing of a motor task. The Journal of Neuroscience 14, 3208–3224. doi: 10.1523/JNEUROSCI. 14-05-03208.1994 .Smith, M.A., Ghazizadeh, A., Shadmehr, R., 2006. Interacting adaptive processes with different timescales underlie short-term motor learning. PLOS Biology 4, e179. doi: 10. 1371/journal.pbio.0040179 .Sussillo, D., Abbott, L.F., 2009. Generating coherent patterns of activity from chaotic neural networks. Neuron 63, 544–557. doi: 10.1016/j.neuron.2009.07.018 .Thoroughman, K.A., Shadmehr, R., 2000. Learning of action through adaptive combination of motor primitives. Nature 407, 742–747. doi: 10.1038/35037588 .Tseng, Y.w., Diedrichsen, J., Krakauer, J.W., Shadmehr, R., Bastian, A.J., 2007. Sensory prediction errors drive cerebellum-dependent adaptation of reaching. Journal of Neuro-physiology 98, 54–62. doi: 10.1152/jn.00266.2007 .Widrow, B., Lehr, M.A., 1990. 30 years of adaptive neural networks: perceptron, Madaline, and backpropagation. Proceedings of the IEEE 78, 1415–1442. doi: 10.1109/5.58323 .14 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint
+
+Wolpert, D.M., Ghahramani, Z., Jordan, M.I., 1995. An internal model for sensorimotor integration. Science 269, 1880–1882. doi: 10.1126/science.7569931 .Yamazaki, T., Tanaka, S., 2007. The cerebellum as a liquid state machine. Neural Networks 20, 290–297. doi: 10.1016/j.neunet.2007.04.004 .15 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 21, 2026. ;https://doi.org/10.64898/2026.06.11.731593 doi: bioRxiv preprint

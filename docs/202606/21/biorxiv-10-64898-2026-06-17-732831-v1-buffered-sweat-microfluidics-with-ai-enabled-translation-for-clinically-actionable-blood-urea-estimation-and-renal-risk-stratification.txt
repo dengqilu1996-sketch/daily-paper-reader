@@ -1,0 +1,1870 @@
+Title: 2026.06.17.732831v1.full.pdf
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.17.732831v1.full.pdf
+
+Number of Pages: 31
+
+Markdown Content:
+1 / 31 
+
+# Buffered sweat microfluidics with AI-enabled translation for 1
+
+# clinically actionable blood urea estimation and renal risk 2
+
+# stratification 3
+
+Jiahao Zhang 1, 2, 3, 4# , Zhengquan Shen 4# , Ming Xu 4, Yukun Ge 4, Xi Ren 4*, Genlin Liu 4, Xiuwei 4
+
+Zhang 4, Simian Fu 4, Cheng Yang 5, Minghui Long 6, Shu Li 1, Gaozhi P. Mo 1, 2, 3 , Yi Gong 4, Nan 5
+
+Li 4, Peiyu Ma 4, Zhiyong Peng 1, 2, 3 *, and Yunlong Zhao 4*6
+
+> 1
+
+Department of Critical Care Medicine, Zhongnan Hospital of Wuhan University, Wuhan, 7
+
+430000, Hubei, China. 8
+
+> 2
+
+State Key Laboratory of Metabolism and Regulation in Complex Organisms, College of Life 9
+
+Sciences, Wuhan University, Wuhan, China 10 
+
+> 3
+
+Clinical Research Center of Hubei Critical Care Medicine, Wuhan, China. 11 
+
+> 4
+
+Dyson School of Design Engineering, Imperial College London, London, SW7 2BX, UK. 12 
+
+> 5
+
+Department of Critical Care Medicine, Shenzhen Second People's Hospital, Shenzhen, China. 13 
+
+> 6
+
+Department of Critical Care Medicine, The First Affiliated Hospital of Yangtze University, 14 
+
+Jingzhou, China. 15 
+
+> #
+
+These authors contributed equally: Jiahao Zhang, Zhengquan Shen 16 
+
+*Corresponding author email: yunlong.zhao@imperial.ac.uk, pengzy5@hotmail.com, 17 
+
+x.ren24@imperial.ac.uk. 18 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 2 / 31
+
+Abstract 19 
+
+Kidney-function assessment relies on blood urea as a clinically informative metabolic marker; 20 
+
+however, its dependence on venipuncture and centralised laboratory testing limits high-21 
+
+frequency monitoring and delays timely clinical intervention. Here, we report an integrated 22 
+
+platform combining a wearable buffered microfluidic patch with a physiology-informed, data-23 
+
+driven calibration framework for real-time, non-invasive estimation of blood urea from 24 
+
+microlitre-scale sweat volumes (4.79 μL). By precisely regulating the release kinetics of 25 
+
+internal buffer salts, the device stabilises the local reaction microenvironment, mitigating 26 
+
+variability in sweat pH and flow to ensure reproducible measurement. The resulting signals 27 
+
+are processed through an artificial intelligence (AI) -enabled analysis pipeline that integrates 28 
+
+sweat urea with patient-specific physiological information to generate clinically interpretable 29 
+
+outputs. In multicentre studies, sweat urea shows a strong association with blood urea across 30 
+
+diverse cohorts, but with nonlinear and time-lagged relationships that limit direct use. The AI-31 
+
+enabled calibration model compensates for these effects, enabling high-fidelity estimation of 32 
+
+blood urea (r = 0.945 versus gold-standard measurements) at clinically relevant concordance 33 
+
+levels. The platform further identifies kidney injury with 89.1% accuracy and stratifies disease 34 
+
+severity with 83.2% accuracy. Notably, these results demonstrate that the integration of 35 
+
+physicochemical stabilisation and AI-enabled data-driven translation establishes sweat as a 36 
+
+clinically actionable surrogate for renal monitoring, supporting population-level estimation and 37 
+
+highlighting the potential for personalised longitudinal assessment, and enabling a scalable, 38 
+
+non-invasive strategy for high-frequency kidney disease management. 39 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 3 / 31
+
+Introduction 40 
+
+Chronic kidney disease (CKD) affects approximately 850 million people worldwide, 41 
+
+representing nearly 10% of the global population and rising as one of the leading causes of 42 
+
+mortality 1-3 . A formidable challenge in clinical management is the stark contrast between the 43 
+
+insidious progression of early-stage CKD and the abrupt deterioration seen in acute kidney 44 
+
+injury (AKI). In early CKD, the kidney’s robust compensatory capacity maintains metabolic 45 
+
+balance through hyperfiltration in remaining nephrons, rendering the disease largely 46 
+
+asymptomatic and "silent" until late-stage failure 4. Conversely, in AKI or acute exacerbations, 47 
+
+a rapid decline in nephron function triggers a catastrophic "waterfall effect," where the 48 
+
+precipitous accumulation of nitrogenous wastes and electrolyte imbalances causes 49 
+
+irreversible renal failure within hours 5-7 . This bi-phasic nature of renal disease, characterised 50 
+
+by long-term silence followed by rapid collapse, demands high-frequency monitoring of key 51 
+
+metabolic markers to enable early intervention and dynamic treatment titration 4-7 .52 
+
+Renal function assessment currently relies on blood-based biomarkers, most notably 53 
+
+blood urea and serum creatinine 8,9 . While central to clinical guidelines, these metrics are 54 
+
+tethered to invasive venipuncture and centralised laboratory infrastructure, requiring 55 
+
+sophisticated automated analysers and trained personnel. These requirements impose 56 
+
+significant barriers: for high-risk populations, they preclude the frequent screening necessary 57 
+
+to detect "silent" early-stage CKD; for hospitalised patients, the low sampling frequency and 58 
+
+long sample-to-result turnaround times fail to capture the hyper-acute dynamics of AKI 6,9 .59 
+
+These limitations highlight the need for alternative sensing strategies that are non-invasive 60 
+
+and suitable for frequent monitoring, while achieving agreement with gold-standard blood 61 
+
+measurements at levels typically required for clinical decision-making (typically around 90%, 62 
+
+depending on application) 10 , ideally in simple and deployable formats that enable rapid and 63 
+
+actionable feedback outside traditional clinical settings, analogous to the paradigm-shifting 64 
+
+glucose test strip 11 .65 
+
+Sweat urea, partitioned from blood via the sweat glands, has emerged as a promising 66 
+
+non-invasive surrogate for blood urea monitoring (Fig.1a, upper left )12-16 . However, 67 
+
+translating sweat measurements into clinically reliable indicators of renal function remains an 68 
+
+unresolved challenge 13,16,17 . This limitation arises from both analytical and physiological 69 
+
+instabilities inherent to sweat-based sensing. In current clinical practice, urea is most reliably 70 
+
+quantified using enzyme-based assays, including urease-coupled colourimetric methods, 71 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 4 / 31
+
+which depend on tightly controlled reaction conditions. When applied to sweat, however, assay 72 
+
+performance becomes highly sensitive to variations in pH and ionic composition, both of which 73 
+
+exhibit substantial interindividual variability 12 . Similar environmental susceptibility is observed 74 
+
+across alternative sensing modalities. Furthermore, the low secretion volumes (microlitre-75 
+
+scale) and rapid evaporation of sweat frequently lead to sample contamination and 76 
+
+measurement errors 17-20 . More crucially, in dynamic clinical states such as dialysis, the sweat– 77 
+
+blood urea relationship is not a simple linear mapping but is confounded by complex nonlinear 78 
+
+dynamics and temporal lags, necessitating a more sophisticated framework than traditional 79 
+
+one-to-one correlation 21,22 .80 
+
+Here, we report a buffered microfluidic platform coupled with physiology-informed, data-81 
+
+driven mapping that overcomes these barriers to enable precise, non-invasive blood urea 82 
+
+estimation and renal risk stratification ( Fig. 1 ). We developed a wearable microfluidic patch 83 
+
+that requires only 4.79 μL of sample for real -time on-device urea quantification ( Fig. 1a ). To 84 
+
+mitigate interindividual variability in sweat composition, we integrated a phosphate-buffered 85 
+
+saline (PBS) kinetic release system that stabilises the reaction microenvironment, as 86 
+
+supported by numerical simulations of pH distribution and reaction kinetics. To bridge the 87 
+
+disparity between sweat and systemic measurements, we further developed a data-driven 88 
+
+calibration model that integrates sweat urea with patient-specific physiological and clinical 89 
+
+variables, learned from large-scale multicentre datasets ( Fig. 1b ). Implemented within a 90 
+
+smartphone-based analysis pipeline, the system enables automated image acquisition, signal 91 
+
+extraction and translation into clinically interpretable outputs. Appropriate microfluidic buffering 92 
+
+fully utilizes the available colorimetric range and produces a smooth concentration-dependent 93 
+
+response ( Fig. 1c ). By capturing physiological correlations, including temporal lag and 94 
+
+nonlinear transport effects, the model enables quantitative mapping of sweat signals to high-95 
+
+fidelity blood urea estimates (r = 0.945 versus gold-standard measurements, Fig. 1d ). Notably, 96 
+
+the platform achieves clinically relevant performance in identifying kidney injury (89.1%) and 97 
+
+stratifying disease severity (83.2% ) and has demonstrated its feasibility for near-patient testing 98 
+
+scenarios in real-world clinical workflows. Together, these results establish buffered sweat 99 
+
+microfluidics as a clinically actionable surrogate for blood urea and define a general framework 100 
+
+for coupling physicochemical stabilisation with data-driven translation of biofluid signals, 101 
+
+enabling non-invasive, high-frequency and personalised kidney disease management. 102 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 5 / 31
+
+103 
+
+Fig. 1 | Buffered microfluidic platform with AI-enabled translation for sweat urea sensing and 104 
+
+clinical inference. a) Schematic of the wearable sensing concept. Urea produced from the urea cycle 105 
+
+is partially excreted in sweat (upper left) . A microfluidic colourimetric patch enables non-invasive, real-106 
+
+time sweat collection and quantification, with image acquisition and analysis performed through an AI-107 
+
+enabled pipeline to estimate blood urea (bottom). The device architecture (exploded view) comprises 108 
+
+an adhesive substrate layer, hydrophilic sampling membrane, microfluidic channel layer and an 109 
+
+encapsulation layer, with fiducial colour and registration markers for image normalisation. b) End-to-110 
+
+end data pipeline for physiological translation and clinical inference. Sweat urea measurements are 111 
+
+integrated with patient-specific physiological and clinical variables for model training; the trained model 112 
+
+is subsequently deployed to generate calibrated blood urea estimates and support downstream 113 
+
+diagnostic assessment. c) Effect of microfluidic buffering on sweat urea sensing. Appropriate buffering 114 
+
+expands the dynamic range and enables a smooth concentration-dependent response, whereas 115 
+
+insufficient or excessive buffering causes signal saturation or suppression. d) Parity plot of estimated 116 
+
+versus measured blood urea. Raw sweat urea (blue square ) deviates from the identity line (dashed), 117 
+
+whereas AI-estimated blood urea from sweat urea concentration (circle ) shows improved agreement 118 
+
+and more closely follows y = x. 119 
+
+120 
+
+Results and discussion 121 
+
+Design and engineering of the buffered microfluidic patch 122 
+
+To achieve reliable sweat urea sensing despite interindividual variability in sweat 123 
+
+composition, we first designed a wearable microfluidic patch with integrated on-chip buffering 124 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 6 / 31
+
+for reproducible measurement. The device architecture ( Fig. 1a ) comprises a medical-grade 125 
+
+adhesive substrate layer with integrated sweat reservoir and pilocarpine delivery, a hydrophilic 126 
+
+sampling membrane, a microfluidic channel layer and an encapsulation layer, enabling 127 
+
+controlled sampling and on-body analysis. The device was fabricated via multilayer PDMS 128 
+
+replica moulding, curing and demoulding, followed by reagent loading and plasma bonding 129 
+
+(Fig. 2a ). Because the intrinsic hydrophobicity of the channel material can impede capillary 130 
+
+filling, we asked whether selective surface modification could enable reliable fluid transport 131 
+
+without compromising device integrity. To this end, the enclosed channels were rendered 132 
+
+hydrophilic post-assembly by flowing a silane reagent through the microchannels, reducing 133 
+
+the water contact angle from 118° to 48°, and enabling efficient capillary transport while 134 
+
+maintaining stable interlayer bonding. 135 
+
+To further improve measurement reliability under physiological variability, we incorporated 136 
+
+an upstream PBS buffer reservoir and paired phenol red sensing pads, with urease localised 137 
+
+exclusively in the reaction pad to enable differential readout ( Fig. 1a ). Because the device 138 
+
+requires only a microlitre-scale volume (~4.79 μL) to fully fill the microfluidic network, enabling 139 
+
+operation even under low sweat production, we next evaluated whether capillary-driven flow 140 
+
+could reliably fill the branched channels. Benchtop experiments using a dyed solution infused 141 
+
+at 0.45 μL min ⁻¹ showed reproducible, sequential filling of the microchannels ( Fig. 2b ). These 142 
+
+dynamics were reproduced by a two-phase computational fluid dynamics (CFD) model 143 
+
+describing liquid–air interface evolution ( Fig. 2c ), with agreement between simulated and 144 
+
+measured volumetric filling profiles. The liquid first wetted the buffer pad and serpentine mixer, 145 
+
+then split at the Y-junction to fill the reference and reaction pads. The arrow-shaped capillary 146 
+
+check valves at the two pad outlets pin the advancing menisci, allowing pressure to build up 147 
+
+and ensuring complete wetting of both pads. Subsequently, the menisci break through the 148 
+
+arrow-shaped capillaries and continue moving toward the outlet, where they are pinned by 149 
+
+burst valves near the outlet. When the interfacial pressure difference reaches approximately 150 
+
+182.9 Pa, the burst valve on the reference pad side opens, releasing excess liquid through 151 
+
+the reference branch, while the valve on the reaction side remains locked, thereby confining 152 
+
+the reaction volume within the pad and minimising flushing effects ( Fig. 2d ).153 
+
+We next asked whether on-chip buffering could establish a stable chemical 154 
+
+microenvironment for enzymatic sensing. A coupled transport–reaction model incorporating 155 
+
+diffusion, acid–base equilibria and urease-catalysed urea hydrolysis predicted that key 156 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 7 / 31
+
+chemical variables, including local pH, urea concentration and buffer distribution, evolved 157 
+
+dynamically but approached steady state within ~500s, while urea consumption in the reaction 158 
+
+pad was completed by ~600 s ( Fig. 2e ). Consistent trends were observed for carbon- and 159 
+
+nitrogen-containing species, which similarly approached steady state within ~500 s. These 160 
+
+results indicate that the buffering system establishes a quasi-stable chemical environment 161 
+
+prior to the sensing endpoint, supporting robust colourimetric readout. 162 
+
+We next assessed mechanical robustness under skin-relevant deformation conditions. 163 
+
+Finite-element analysis (Fig. 2f i–iii ) showed that representative modes of wearable 164 
+
+deformation, including stretching, bending and twisting, induced a maximum Von Mise stress 165 
+
+~0.246 MPa within the device, remaining well below the failure limits of the laminated structure 166 
+
+(0.51 MPa )23 . Consistent with these predictions, experimental testing (Fig. 2f iv–vi )167 
+
+demonstrated that the device maintained structural integrity under these deformations without 168 
+
+leakage or delamination, supporting conformal wear during practical use. 169 
+
+170 
+
+Fig. 2 | Design and characterisation of the microfluidic system. a) Schematic of device fabrication 171 
+
+and assembly, including PDMS casting, curing, demoulding, reagent preloading (phenol red with urease 172 
+
+in the reaction pad, phenol red in the reference pad and PBS in the buffer pad) and plasma bonding . b) 173 
+
+Comparison of capillary filling behaviour and fluid– air interface evolution in injection experiments (top) 174 
+
+and phase-field simulations (bottom) at 0.45 μL min ⁻¹, shown at the indicated times. c) Multiphysics 175 
+
+simulations of coupled transport– reaction during filling at 0.45 μL min ⁻¹, showing spatial maps of pH 176 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 8 / 31
+
+(top) and urea concentration (bottom). d) Time evolution of the liquid–gas interfacial pressure in the 177 
+
+reference and reaction branches. The dashed line indicates the burst-pressure threshold. Once the 178 
+
+pressure in the reference branch reaches the threshold, the reference-side valve opens preferentially, 179 
+
+releasing excess fluid while retaining the reaction volume in the reaction pad. e) Time evolution of pad-180 
+
+averaged quantities in the reaction pad (purple) and reference pad (blue): (i) pH, (ii) urea concentration, 181 
+
+and (iii) PBS concentration . f) Mechanical characterisation of the device: Representative photographs 182 
+
+(right ) and finite-element analysis of deformation (left ) under (i,iv) 10% uniaxial tension, (ii,v) bending 183 
+
+over a 50-mm-radius form, and (iii,vi) 40% torsional shear. 184 
+
+185 
+
+Physiology-adaptive buffering and integrated colorimetric readout for non-invasive 186 
+
+urea quantification 187 
+
+While the microfluidic system ensures reliable fluid transport and mechanical robustness, 188 
+
+accurate biochemical sensing requires a controlled reaction microenvironment that can be 189 
+
+disrupted by physiological variability in sweat composition. Urea quantification relies on 190 
+
+urease-catalysed hydrolysis, which increases local pH and is transduced into a colorimetric 191 
+
+signal by phenol red. However, substantial variations in sweat pH across individuals can alter 192 
+
+the initial reaction conditions and introduce bias in urea readout. In addition, deviations in the 193 
+
+initial pH can shift the system outside the effective operating window of phenol red (pH 194 
+
+transition range: 6.8–8.2 ), resulting in signal saturation and loss of dynamic range, thereby 195 
+
+limiting reliable urea quantification. 196 
+
+To mitigate this variability and implement on-chip pH conditioning, we designed a 197 
+
+structured PBS buffer pad upstream to regulate buffer release and pre-condition incoming 198 
+
+sweat. A reduced transport model was used to relate geometric parameters of the groove 199 
+
+structure, including pitch (p) and porosity (ϕ) , to an effective buffer delivery rate (k eq ), thereby 200 
+
+mapping device structure to buffer flux ( Fig. 3a ). The optimised groove geometries were 201 
+
+implemented in the device, as confirmed by microscopy images showing well-defined and 202 
+
+spatially patterned microchannels ( Fig. 3b ), which regulate buffer –fluid interaction and hence 203 
+
+buffer delivery into the flowing stream. 204 
+
+By systematically varying p, ϕ and the incoming pH (4.5– 7.0), we identified an optimal 205 
+
+operating regime in which buffer release stabilises the reaction conditions ( Fig. 3c ). In the 206 
+
+reaction pad ( Fig. 3c,i ), the final pH decreases with increasing buffer delivery rate (k eq ), such 207 
+
+that insufficient buffering results in elevated pH, whereas excessive buffering over-suppresses 208 
+
+the enzymatic response. This behaviour defines a narrow window of k eq that maintains the 209 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 9 / 31
+
+system within its effective operating range. In contrast, the reference pad ( Fig. 3c,ii ) remains 210 
+
+stable near neutral pH across a broad range of k eq , providing a robust baseline for differential 211 
+
+sensing. At the optimal design point (p = 0.45 mm, ϕ = 0.35), pH variation is minimised under 212 
+
+all tested physiological conditions, stabilising the biochemical starting environment for urea 213 
+
+sensing. These results demonstrate that controlled buffer release defines a physically 214 
+
+constrained operating window, effectively decoupling sweat pH variability from sensor 215 
+
+response. 216 
+
+217 
+
+Fig. 3 | Design and characterisation of the pH-buffering system against physiological difference 218 
+
+and colorimetric analysis . a) Derived equivalent surface mass-transfer coefficient ( k eq ) as a function 219 
+
+of groove design parameters (pitch p and porosity ϕ) for the indicated mean flow velocities ( U). b) 220 
+
+Optical microscopic photograph of the flow channel features. Scale bar, 5mm. c) Parametric sweep of 221 
+
+incoming sweat pH (pH in = 4.5 – 7.0) showing predicted pad pH as a function of 𝑘𝑘 eq in the (i) reaction 222 
+
+pad and (ii) reference pad; solid curves denote the mean trend; dashed lines denote the predicted 𝑘𝑘 eq 223 
+
+band. d) Colorimetric transduction and calibration. (i) Urease -catalysed urea hydrolysis increases local 224 
+
+pH, shifting the phenol red colour and the RGB signal. (ii) Linear calibration of green -channel intensity 225 
+
+(G) versus urea concentration (0 –5 mM), with representative colour swatches . e) Smartphone readout 226 
+
+workflow. (i) App interface with an on -screen overlay; blue and red circles register the reference and 227 
+
+reaction pads, respectively, and dashed outlines indicate fiducial markers. (ii, iii) Representative 228 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 10 / 31
+
+readouts under cold and warm ambient lighting. f) On-body demonstration showing the patch worn on 229 
+
+the forearm (i) and the corresponding app readout (ii). g) Comparison of quantitative urea 230 
+
+measurements under no buffering, optimised microfluidic buffering and excessive buffering conditions 231 
+
+using artificial sweat samples spiked with known urea concentrations. 232 
+
+233 
+
+To quantify urea through the buffered sensing chemistry, we first characterised the 234 
+
+colourimetric response of the assay ( Fig. 3d ). Urease -catalysed urea hydrolysis increases 235 
+
+local pH, inducing a colour shift of phenol red from yellow to red ( Fig. 3d,i ). This change was 236 
+
+quantified using the green (G) channel of the RGB signal, which exhibited an approximately 237 
+
+linear decrease with increasing urea concentration under controlled conditions ( Fig. 3d,ii ), 238 
+
+enabling direct calibration for urea quantification. 239 
+
+To achieve reliable readout under practical imaging conditions, we implemented a 240 
+
+smartphone-based analysis workflow ( Fig. 3e ). Fiducial markers were used to automatically 241 
+
+locate the device and define a consistent region of interest, while image normalisation and 242 
+
+colour correction were applied to reduce variations due to illumination and viewing geometry 24 .243 
+
+In addition, two identical sensing units were incorporated to provide internal redundancy and 244 
+
+enable signal averaging. Using this integrated acquisition and correction strategy, the 245 
+
+colourimetric signal could be robustly converted into sweat urea concentration 25,26 . On-skin 246 
+
+measurements confirmed reliable device identification and stable colour capture across 247 
+
+repeated acquisitions ( Fig. 3f ), demonstrating consistent readout under wearable conditions. 248 
+
+Having established the integrated microfluidic buffering and image-based quantification 249 
+
+framework, we next evaluated the impact of buffering on quantitative accuracy by comparison 250 
+
+to representative limiting conditions. To validate the necessity of controlled buffering, we 251 
+
+compared the performance of our optimised microfluidic design with two limiting conditions 252 
+
+using artificial sweat spiked with known urea concentrations ( Fig. 3g ). In the absence of 253 
+
+buffering (“no buffer”, blue dots ), the measured signal rapidly saturates, leading to significant 254 
+
+overestimation and loss of quantitative capability. This condition mimics direct, unregulated 255 
+
+sweat sensing (e.g., patch or strip-based measurements), where variations in sample 256 
+
+composition distort the biochemical response. In contrast, under excessive buffering (purple 257 
+
+dots) , the signal becomes strongly suppressed and largely insensitive to urea concentration, 258 
+
+as the reaction is over-neutralised. This reflects conventional bulk dilution approaches, where 259 
+
+analytes are mixed into large volumes of buffer, compromising sensitivity. Only within the 260 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 11 / 31
+
+controlled buffering regime enabled by our structured microfluidic design does the measured 261 
+
+signal exhibit a linear and accurate correspondence with the true urea concentration (red dots) .262 
+
+This demonstrates that precise regulation of buffer delivery is essential to maintain the sensing 263 
+
+system within its effective operating window. 264 
+
+Data-driven translation of sweat urea into a clinically actionable blood urea 265 
+
+Having established a robust microfluidic buffering and colourimetric sensing framework 266 
+
+for accurate quantification of sweat urea, we next asked whether these measurements could 267 
+
+be translated into clinically meaningful estimates of systemic urea levels. A key challenge 268 
+
+arises from the mismatch between sweat and blood urea concentrations.  Although sweat urea 269 
+
+may be proportionally related to blood urea, the precise relationship remains unclear,  with 270 
+
+reported ratios ranging from ~1 to 50 depending on sampling protocols, physiological state 271 
+
+and disease conditions 13,15,27 . This variability, driven by transport limitations and delayed 272 
+
+equilibration between compartments, has hindered direct clinical interpretation of sweat 273 
+
+measurements. Thus, following precise and standardised quantification enabled by our device, 274 
+
+a reliable framework is required to infer blood urea from sweat-derived signals. 275 
+
+To address this, we performed a prospective clinical study and developed a data-driven 276 
+
+calibration strategy that integrates sweat measurements with patient-specific information ( Fig. 277 
+
+4). First, a training cohort from multicentre consisting of 129 patients and 475 paired 278 
+
+measurements was used to construct the model. In the training phase, the calibration 279 
+
+framework integrates heterogeneous data streams into a unified feature representation ( Fig. 280 
+
+4a ). Primary measurements (P), including sweat and blood urea, are combined with temporal 281 
+
+information (T) and auxiliary clinical variables (A), including demographic parameters (age, 282 
+
+sex and body mass index), renal -related indicators (renal replacement therapy status and 283 
+
+chronic kidney disease history), and clinical severity indices (for example, APACHE II, SOFA 284 
+
+and GCS scores). In addition, historic measurements are used to generate extended features 285 
+
+(E) via linear prediction, enabling the model to capture temporal trends and delayed 286 
+
+physiological responses. These components are concatenated into a feature matrix (X) for 287 
+
+each patient (n p), where k denotes the number of samples per patient. Importance sampling 288 
+
+and cross-validation are then applied to ensure robust model training. 289 
+
+Within this framework, two models were constructed to reflect distinct clinical scenarios. 290 
+
+Base model  is trained using only primary measurements (sweat and blood urea), 291 
+
+corresponding to settings in which limited patient information is available and prediction must 292 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 12 / 31
+
+rely primarily on the sweat–blood relationship. In contrast,  enhance model  incorporates 293 
+
+auxiliary clinical variables, enabling context-aware prediction when more comprehensive 294 
+
+patient information is accessible. Notably, comparison with alternative algorithms, including 295 
+
+linear regression, random forest, and multilayer perceptron, support vector regression (SVR) 296 
+
+was selected as the calibration algorithm because it provides strong generalization for 297 
+
+nonlinear relationships while maintaining a standardized and stable optimization framework 298 
+
+(Fig. 4b ). Consistent with this design,  SVR-based enhance model  achieved substantially 299 
+
+lower prediction error than  base model  in the training cohort (mean squared error, 5.69 versus 300 
+
+7.49 ), demonstrating that integration of patient -specific physiological context improves model 301 
+
+performance ( Fig. 4b ).302 
+
+Using the trained  SVR-based enhanced model , we then examined whether the framework 303 
+
+could correct the nonlinear mismatch between sweat and blood urea. As shown in Fig. 4c ,304 
+
+raw sweat urea measured from buffered microfluidics (blue) exhibits a positive but nonlinear 305 
+
+relationship with blood urea (PCC = 0.852 , P < 0.001), with progressive attenuation at higher 306 
+
+concentrations. In contrast, AI-estimated blood urea (purple) shows a substantially improved 307 
+
+agreement with ground-truth measurements (PCC = 0.952 , P < 0.001), closely approaching 308 
+
+the identity line across the full physiological range. The largest improvement occurs in the 309 
+
+high-concentration regime, where raw sweat measurements deviate most strongly from 310 
+
+linearity. These results demonstrate that the data-driven calibration effectively compensates 311 
+
+for nonlinear distortion, physiological lag and interindividual variability. 312 
+
+To assess whether the trained model could generalise beyond the training dataset, we 313 
+
+evaluated its performance on an independent validation cohort comprising 125 patients and 314 
+
+316 paired measurements. In this cohort, sweat samples were acquired using the same 315 
+
+microfluidic device, while all patient data remained unseen during model training. This design 316 
+
+enables a stringent test of whether the model can reliably translate sweat-derived signals into 317 
+
+blood urea estimates in new patient populations and clinical environments. Using this 318 
+
+independent dataset, predictions were generated from sweat measurements and compared 319 
+
+directly with clinically measured blood urea values. Consistent with the training-phase 320 
+
+observations,  enhance model  again outperformed the  base model  (mean squared error, 5.780 321 
+
+versus 8.800; Fig. 4d ), yielding strong agreement with reference measurements (PCC = 0.9 33, 322 
+
+P < 0.001 ), thereby confirming robust generalizability across populations and settings. Notably, 323 
+
+incorporating prior-day sweat and blood measurements as additional temporal inputs further 324 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 13 / 31
+
+improved prediction accuracy (mean squared error, 10.80 versus 3.58 in the  base model and 325 
+
+2.35 versus 1.09 in  enhance model ; Fig. 4e ), approaching the accuracy of direct blood testing. 326 
+
+This improvement highlights the benefit of integrating longitudinal information to better capture 327 
+
+patient-specific physiological dynamics. These findings demonstrate that the combined 328 
+
+microfluidic–AI framework enables accurate and generalizable estimation of blood urea from 329 
+
+non-invasive sweat measurements. 330 
+
+331 
+
+Fig. 4 | Development and validation of the AI-enabled calibration model for blood urea estimation. 332 
+
+a) Schematic overview of the AI-estimated blood urea from sweat urea concentration model’s workflow. 333 
+
+b)  Mean squared error  of different algorithms from two models. c) Correlation analysis between AI-334 
+
+estimated blood urea and blood urea across the training cohort. d) Correlation analysis between AI-335 
+
+estimated blood urea and blood urea across the  validation  cohort. e)  Mean squared error on day 1 and 336 
+
+on day 4 with the preceding day’s sweat and blood urea measurements incorporated as additional 337 
+
+temporal inputs in different model. 338 
+
+339 
+
+Renal risk stratification and clinical decision-making 340 
+
+Building upon the accurate estimation of blood urea, we next asked whether the AI-341 
+
+estimated blood urea from sweat urea concentration measured by buffered microfluidics could 342 
+
+support clinically meaningful decision-making, in particular the identification and stratification 343 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 14 / 31
+
+of kidney injury. To increase statistical power for this analysis, we combined the training and 344 
+
+validation cohorts into a unified dataset, leveraging all available paired measurements across 345 
+
+centres. 346 
+
+To assess whether AI-estimated blood urea could support clinically relevant stratification, 347 
+
+we examined how well it distinguished different stages of kidney injury across possible 348 
+
+decision thresholds. The resulting receiver operating characteristic (ROC) curve yielded an 349 
+
+area under the curve (AUC) of 0.953 for distinguishing AKI from non -AKI states (95% CI, 350 
+
+0.940– 0.967; Fig. 5a), where an AUC of 1 indicates perfect separation and 0.5 indicates 351 
+
+chance-level classification. Among patients with AKI, the AI-estimated blood urea also 352 
+
+distinguished severe from non-severe disease with an AUC of 0.901 (95% CI, 0.873– 0.929). 353 
+
+Thus, despite the physiological differences between sweat and blood urea concentrations, the 354 
+
+calibrated signal retained sufficient information to stratify both the presence and severity of 355 
+
+AKI. To assess practical clinical performance, we examined classification outcomes at the 356 
+
+optimal thresholds. For AKI prediction, the  AI-estimated blood urea  correctly identified 84.6% 357 
+
+of measurements associated with AKI (true-positive rate) while accurately excluding 94.5% of 358 
+
+non-AKI measurements (true-negative rate; Fig. 5b ). For severe AKI, the model retained 359 
+
+strong discriminative power, with corresponding true-positive and true-negative rates of 76.8% 360 
+
+and 90.5%, respectively. This performance highlights the ability of the framework to both 361 
+
+sensitively identify clinically significant kidney injury and reliably rule out low-risk cases using 362 
+
+a non-invasive readout. 363 
+
+We next investigated whether the  AI-estimated blood urea  could capture physiologically 364 
+
+meaningful variation beyond binary classification by examining longitudinal behaviour across 365 
+
+patients with relatively stable clinical states. In individuals without AKI, as well as those with 366 
+
+stable stage 1 and stage 2 AKI, sweat urea exhibited moderate correspondence with blood 367 
+
+urea, while the AI-calibrated estimates closely tracked circulating levels with improved 368 
+
+consistency over time ( Fig. 5c(i–iii) ). Notably, in patients with stable stage 3 AKI,  buffered 369 
+
+microfluidics measured  sweat urea exhibited clear attenuation at higher concentrations, 370 
+
+reflecting saturation of sweat urea at elevated systemic levels. In contrast, the AI-estimated 371 
+
+values maintain monotonicity and better agreement with blood urea ( Fig. 5c(iv) ), indicating 372 
+
+that the model compensates for nonlinear transport and exchange limitations in severe 373 
+
+diseases. 374 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 15 / 31
+
+We then assessed performance under dynamic clinical trajectories, where rapid 375 
+
+physiological changes introduce temporal mismatch between sweat and blood compartments. 376 
+
+In patients with gradually worsening or improving kidney function, both sweat urea and 377 
+
+calibrated estimates showed consistent temporal trends that paralleled blood urea evolution 378 
+
+(Fig. 5d(i–ii) ). By contrast, under conditions of acute deterioration or following renal 379 
+
+replacement therapy, blood urea changed abruptly, while sweat urea exhibited delayed 380 
+
+responses, reflecting known equilibration lag between compartments. Importantly, the AI-381 
+
+estimated values closely followed the underlying blood urea trajectory despite these rapid 382 
+
+transitions ( Fig. 5d(iii–iv) ), demonstrating that the model effectively mitigates temporal lag 383 
+
+and captures dynamic physiological relationships. 384 
+
+To further examine how the calibration modifies the relationship between sweat and blood 385 
+
+urea across conditions, we analysed the corresponding correlations before and after 386 
+
+calibration ( Fig. 5e ). While sweat urea exhibited condition -dependent distortion and limited 387 
+
+dynamic range, the AI-calibrated estimates showed substantially improved linearity and tighter 388 
+
+agreement with blood urea across multiple clinical states. This behaviour indicates that the 389 
+
+model not only improves numerical accuracy but also restores the underlying physiological 390 
+
+mapping between compartments. 391 
+
+These results demonstrate that  the AI-estimated blood urea  not only enables accurate 392 
+
+estimation but also provides clinically actionable information, enabling both accurate detection 393 
+
+and stratification of kidney injury as well as continuous tracking of physiological dynamics. By 394 
+
+integrating physicochemical stabilisation with data-driven calibration, this framework 395 
+
+transforms sweat urea from a delayed and nonlinear surrogate into a real-time, non-invasive 396 
+
+indicator of renal function, with potential utility for both screening and longitudinal monitoring 397 
+
+in complex clinical settings. 398 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint
+
+16 / 31 
+
+399 
+
+Fig. 5 | Clinical performance of the AI-estimated blood urea platform across kidney injury. a) 400 
+
+Receiver operating characteristic (ROC) curves showing the ability of AI -estimated blood urea to 401 
+
+distinguish patients with AKI and severe AKI, across different false-positive rates (1 − specificity) and 402 
+
+true-positive rates (sensitivity). b) True-positive rate and true-negative rate of the AI-estimated blood 403 
+
+urea model for AKI diagnosis (i) , and severe AKI identification (ii) . c) Dynamic performance of sweat 404 
+
+urea, AI-estimated blood urea and blood urea in patients with stable kidney conditions stratified by AKI 405 
+
+stage. ((i) Patients without AKI; (ii –iv) Patients with stage 1, stage 2, and stage 3). d) Dynamic 406 
+
+performance of sweat urea, AI-estimated blood urea and blood urea in patients with changing kidney 407 
+
+conditions . ((i) Patients with a Gradually Worsening Kidney Condition; (ii) Patients with a Gradually 408 
+
+Improving Kidney Condition; (iii) Patients with an Acutely Worsening Kidney Condition; (iv) Patients 409 
+
+Liberated from RRT). e) Daily dynamics for correlation and linear regression analyses between sweat 410 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 17 / 31
+
+urea and blood urea (i-iii), and between AI-estimated blood urea and blood urea (iv-vi), in Patients 411 
+
+Liberated from RRT. 412 
+
+413 
+
+Conclusion 414 
+
+In this work, we establish an integrated microfluidic–AI framework for non-invasive 415 
+
+assessment of renal function through sweat urea sensing and clinical translation. By 416 
+
+combining a low-volume microfluidic device with controlled buffering and colorimetric readout, 417 
+
+we achieve accurate and reproducible quantification of sweat urea using only microlitre-scale 418 
+
+samples, while minimizing the impact of interindividual variability in sweat composition. The 419 
+
+incorporation of structured fluidic buffering and optical standardisation enables stable assay 420 
+
+conditions across heterogeneous physiological environments, providing high-fidelity 421 
+
+measurements under real-world constraints. Building upon this measurement foundation, we 422 
+
+develop a data-driven calibration strategy that translates sweat urea into clinically actionable 423 
+
+estimates of blood urea by integrating patient-specific physiological context. This approach 424 
+
+enables not only accurate estimation of systemic urea levels, but also robust renal risk 425 
+
+stratification, including the detection and severity classification of AKI. Importantly, the 426 
+
+framework captures nonlinear transport limitations and temporal lag between sweat and blood 427 
+
+compartments, allowing physiologically informed tracking of renal dynamics across both stable 428 
+
+and rapidly evolving conditions. Together, this work demonstrates that coupling 429 
+
+physicochemical stabilisation with data-driven modelling can transform sweat-derived signals 430 
+
+into reliable indicators of organ function, providing a scalable and patient-friendly alternative 431 
+
+to conventional blood-based testing. 432 
+
+The integration of microfluidic sensing and artificial intelligence presented here highlights 433 
+
+a broader opportunity for transforming accessible biofluids into clinically actionable information. 434 
+
+Beyond urea, extension of this framework to additional biomarkers related to renal injury and 435 
+
+systemic metabolism could further enhance diagnostic resolution and enable multidimensional 436 
+
+assessment of disease states. The incorporation of longitudinal data streams and adaptive 437 
+
+modelling strategies may also improve prediction accuracy across diverse patient populations 438 
+
+and clinical scenarios, supporting personalised monitoring of disease progression and 439 
+
+treatment response. More broadly, wearable systems that combine biochemical sensing with 440 
+
+real-time data processing have the potential to evolve into continuous health monitoring 441 
+
+platforms, capable of capturing dynamic physiological processes outside traditional clinical 442 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 18 / 31
+
+settings. By integrating biochemical measurements with complementary physiological signals, 443 
+
+such platforms could provide a more comprehensive and context-aware understanding of 444 
+
+health status. While the present study demonstrates near-clinical feasibility, its broader 445 
+
+significance lies in establishing a generalisable strategy for translating complex peripheral 446 
+
+signals into actionable clinical insights. This paradigm may ultimately enable earlier 447 
+
+intervention, improved risk stratification and more responsive management of chronic and 448 
+
+acute diseases. 449 
+
+450 
+
+Methods 451 
+
+1. Microfluidic device design and moulding 452 
+
+A negative mould for the microfluidic channel layer was first fabricated by stereolithography-453 
+
+based 3D printing using a photosensitive resin (Formlabs Form 3, resin type V3, in-plane 454 
+
+resolution 25μm). After printing, the mould surface was activated by oxygen plasma treatment 455 
+
+(150 W power, 5 minutes duration) to promote subsequent silanisation. Immediately after 456 
+
+plasma activation, the mould was vapour-phase silanised using 300 μL of a trichloro (1H, 1H, 457 
+
+2H, 2H-perfluorooctyl) silane reagent in a vacuum desiccator environment for 2 hours at 60°C 458 
+
+temperature, thereby forming an anti-adhesive monolayer on the mould surface. 459 
+
+Polydimethylsiloxane (PDMS Sylgard 184) prepolymer and curing agent were mixed at a mass 460 
+
+ratio of 15:1, degassed under vacuum (100mbar) for 3 mins, and cast onto the treated mould. 461 
+
+The PDMS was then thermally cured at 60 °C for 6 h. After curing, the PDMS replica was 462 
+
+carefully peeled off and rinse with IPA for 10 mins. 463 
+
+2. Hydrophilic surface modification of the PDMS microchannel layer 464 
+
+To render the demoulded PDMS microchannel layer hydrophilic, a grafting solution of 465 
+
+methoxy-poly (ethylene glycol) silane (mPEG -silane, M n≈2 kDa) was prepared by dissolving 466 
+
+mPEG-silane at 20 mg/mL in 95% ethanol. After neutralisation, a small amount of hydrochloric 467 
+
+acid was added to adjust the solution to pH≈5. The solution was then introduced into the 468 
+
+PDMS microchannels immediately after oxygen plasma activation (30W at 60s) by a syringe 469 
+
+pump, filling the channel network and contacting all internal surfaces except the burst valve 470 
+
+and outlet areas. 471 
+
+The hydrophilic treatment is attributed to (i) plasma -induced formation of surface silanol 472 
+
+groups (Si– OH) on PDMS, which increases surface reactivity, and (ii) hydrolysis/condensation 473 
+
+of the silane functionality, enabling covalent coupling (Si–O– Si linkages) of mPEG -silane onto 474 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 19 / 31
+
+the activated PDMS surface. The resulting PEG chains form a highly hydrated brush-like layer 475 
+
+that reduces interfacial free energy and promotes water wetting, thereby producing a robust 476 
+
+hydrophilic surface. After a dwelling time of 30 mins (static incubation, sealed), the channels 477 
+
+were drained and the device was post-cured at 80 °C for 2 hours to promote silane 478 
+
+condensation and stabilise the grafted layer. Following this process, the PDMS surface 479 
+
+exhibited a water contact angle of 48° according to ASTM D7490-13. 480 
+
+Finally, the fabricated device was thoroughly rinsed with isopropyl alcohol (IPA) to remove 481 
+
+residual reagents and was subsequently used for loading. Colorimetric porous film (0.45μm 482 
+
+diameter,125μm from Shanghai Xinya) was employed to load the Phenol red as the pH 483 
+
+indicator. The film was completely immersed in the phenol red solution (0.06 mg/mL in DI 484 
+
+water) for 10 mins and subsequently baked to achieve complete drying under 50°C. 485 
+
+Buffer Tablets (pH 7 (Phosphate), Fisher Chemical ™) conditioned to pH 6.8 to make up a 486 
+
+volume of 100ml were used for pH measurement. 1mg urease reagent (grade 99%, solid, 487 
+
+Sigma-Aldrich) was loaded into the elliptical reservoirs (long axis 1.6mm, short axis 1.1mm). 488 
+
+For the encapsulation, a flat layer of PDMS without patterns was prepared using the same 489 
+
+casting and curing procedure. After oxygen plasma treatment, the PDMS channel layer and 490 
+
+the encapsulation layer were attached, and firm pressure was applied by parallel plates within 491 
+
+5 mins of surface activation to ensure complete bonding. Bonding was further stabilised by 492 
+
+baking at 60°C for 1 h. 493 
+
+3. Depth-averaged phase-field model for microchannel filling 494 
+
+We consider a depth-averaged description of a shallow rectangular microchannel, where ℎ495 
+
+denotes the unresolved channel height and 𝒖𝒖 is the in-plane velocity averaged over that 496 
+
+height. The scalar mask 𝐻𝐻 is the phase-field indicator of the liquid phase, with 𝐻𝐻 = 1 in the 497 
+
+liquid and 𝐻𝐻 = 0 outside the liquid. The mixture density and viscosity are denoted by 𝜌𝜌 (𝜙𝜙 )498 
+
+and 𝜂𝜂 (𝜙𝜙 ), respectively. The shallow-channel drag term arises from the parabolic velocity 499 
+
+profile across the channel height and is written as 500 
+
+𝒇𝒇 drag = − 12( 𝐻𝐻𝜇𝜇 𝑙𝑙 + (1 − 𝐻𝐻 )𝜇𝜇 𝑔𝑔 )
+
+ℎ 2 𝒖𝒖 .501 
+
+The unsteady depth-averaged Stokes equations are therefore 502 
+
+∇ ⋅ 𝒖𝒖 = 0, (1) 
+
+𝜌𝜌 (𝜙𝜙 ) ∂𝒖𝒖 ∂𝑡𝑡  = −∇𝑝𝑝 + ∇ ⋅ �𝜂𝜂 (𝜙𝜙 )�∇𝒖𝒖 + ∇𝒖𝒖 𝖳𝖳 �� + 𝒇𝒇 drag + 𝜎𝜎𝜅𝜅 ℎ ∇𝐻𝐻 . (2) 
+
+503 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 20 / 31
+
+Here, 𝑝𝑝 is the depth-averaged pressure and 𝜎𝜎 is the liquid–gas surface tension. The final 504 
+
+term in Eq. (2) is the only wettability correction retained in the present model. It represents 505 
+
+the out-of-plane capillary-pressure contribution induced by the contact angles at the 506 
+
+unresolved top and bottom walls: 507 
+
+𝜅𝜅 ℎ = cos 𝜃𝜃 top + cos 𝜃𝜃 bottom ℎ .508 
+
+For identical top and bottom walls, 509 
+
+𝜅𝜅 ℎ = 2cos 𝜃𝜃 ℎℎ .510 
+
+With the convention 𝐻𝐻 = 1 in the liquid phase, the forcing 𝜎𝜎𝜅𝜅 ℎ ∇𝐻𝐻 is localized near the 511 
+
+diffuse liquid interface and accounts only for the thickness-direction contact-angle effect. 512 
+
+4. Coupled transport–reaction model for buffered urea sensing 513 
+
+A nonconservative Transport of Diluted Species ( TDS) formulation was used to track the 514 
+
+species across the phase field. This approach was adopted based on trade-off between 515 
+
+computation costs and accuracy. The standard TDS equation for species 𝑖𝑖 ∈ {𝑈𝑈 , 𝑃𝑃𝑃𝑃𝑃𝑃 , 𝐸𝐸 , 𝑁𝑁 , 𝐶𝐶 }516 
+
+is first written in conservative form as 517 
+
+∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ∇ ⋅ (𝑱𝑱 𝑖𝑖 + 𝒖𝒖𝑐𝑐 𝑖𝑖 ) = 𝑅𝑅 𝑖𝑖 , (3) 
+
+𝑱𝑱 𝑖𝑖 = −𝐷𝐷 𝑖𝑖 ∇𝑐𝑐 𝑖𝑖 . (4) 
+
+518 
+
+Here, 𝑐𝑐 𝑖𝑖 is the dissolved concentration of species 𝑖𝑖 , 𝒖𝒖 is the depth-averaged velocity, 𝑱𝑱 𝑖𝑖 is 519 
+
+the diffusive flux, 𝐷𝐷 𝑖𝑖 is the molecular diffusivity, and 𝑅𝑅 𝑖𝑖 is the volumetric production or 520 
+
+consumption rate. The liquid mask is introduced to restrict diffusion, convection, and reaction 521 
+
+to the liquid phase. The corresponding masked conservative form over the full computational 522 
+
+domain is 523 
+
+∂(𝐻𝐻𝑐𝑐 𝑖𝑖 )
+
+∂𝑡𝑡  + ∇ ⋅ �𝑱𝑱 𝑖𝑖 ,𝐻𝐻 + 𝐻𝐻𝒖𝒖𝑐𝑐 𝑖𝑖 � = 𝐻𝐻𝑅𝑅 𝑖𝑖 , (5) 
+
+𝑱𝑱 𝑖𝑖 ,𝐻𝐻 = −𝐻𝐻𝐷𝐷 𝑖𝑖 ∇𝑐𝑐 𝑖𝑖 . (6) 
+
+524 
+
+Thus, diffusion, convection, and reaction are active only where 𝐻𝐻 ≃ 1. In the non-liquid 525 
+
+region, where 𝐻𝐻 ≃ 0, these transport and reaction terms are suppressed by the mask. 526 
+
+Expanding the transient term gives 527 
+
+∂(𝐻𝐻𝑐𝑐 𝑖𝑖 )
+
+∂𝑡𝑡  = 𝐻𝐻 ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + 𝑐𝑐 𝑖𝑖 ∂𝐻𝐻 ∂𝑡𝑡 
+
+= ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ( 𝐻𝐻 − 1) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + 𝑐𝑐 𝑖𝑖 ∂𝐻𝐻 ∂𝑡𝑡  . (7) 
+
+528 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 21 / 31
+
+Substitution of Eq. (7) into Eq. (5) and moving the additional transient contributions to the 529 
+
+right-hand side yields a TDS-compatible form in which ∂𝑐𝑐 𝑖𝑖 / ∂𝑡𝑡 remains the primary time 530 
+
+derivative: 531 
+
+∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ∇ ⋅ �𝑱𝑱 𝑖𝑖 ,𝐻𝐻 + 𝐻𝐻𝒖𝒖𝑐𝑐 𝑖𝑖 � = 𝐻𝐻𝑅𝑅 𝑖𝑖 + (1 − 𝐻𝐻 ) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  − 𝑐𝑐 𝑖𝑖 ∂𝐻𝐻 ∂𝑡𝑡  . (8) 532 
+
+Equation (8) is algebraically equivalent to Eq. (5) when the two correction terms on the right -533 
+
+hand side are retained. These terms arise because the conservative masked equation 534 
+
+evolves 𝐻𝐻𝑐𝑐 𝑖𝑖 , whereas the TDS implementation solves directly for 𝑐𝑐 𝑖𝑖 .535 
+
+For incompressible flow Eq. (1 ), 536 
+
+the original TDS conservative equation, Eq. (3), is equivalent to the nonconservative form 537 
+
+∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ∇ ⋅ 𝑱𝑱 𝑖𝑖 + 𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 = 𝑅𝑅 𝑖𝑖 , (9) 
+
+𝑱𝑱 𝑖𝑖 = −𝐷𝐷 𝑖𝑖 ∇𝑐𝑐 𝑖𝑖 . (10) 
+
+538 
+
+This equivalence follows from the expansion of the convective flux, 539 
+
+∇ ⋅ (𝒖𝒖𝑐𝑐 𝑖𝑖 ) = 𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 + 𝑐𝑐 𝑖𝑖 ∇ ⋅ 𝒖𝒖 = 𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 .540 
+
+For the masked equation, the spatial variation of 𝐻𝐻 introduces an additional contribution to 541 
+
+the conservative convective flux: 542 
+
+∇ ⋅ (𝐻𝐻𝒖𝒖𝑐𝑐 𝑖𝑖 ) = 𝐻𝐻𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 + 𝑐𝑐 𝑖𝑖 𝒖𝒖 ⋅ ∇𝐻𝐻 , ∇ ⋅ 𝒖𝒖 = 0. 543 
+
+Therefore, the masked nonconservative form that remains equivalent to Eq. (5) is 544 
+
+∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ∇ ⋅ 𝑱𝑱 𝑖𝑖 ,𝐻𝐻 + 𝐻𝐻𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 = 𝐻𝐻𝑅𝑅 𝑖𝑖 + (1 − 𝐻𝐻 ) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  − 𝑐𝑐 𝑖𝑖 �∂𝐻𝐻 ∂𝑡𝑡  + 𝒖𝒖 ⋅ ∇𝐻𝐻� . (11) 545 
+
+The last term contains the material variation of the phase-field mask, 546 
+
+𝒟𝒟 𝑡𝑡 𝐻𝐻 = ∂𝐻𝐻 ∂𝑡𝑡  + 𝒖𝒖 ⋅ ∇𝐻𝐻 .547 
+
+It is nonzero only where the diffuse interface evolves or is advected by the flow. 548 
+
+If the correction terms are neglected and the following simplified nonconservative equation is 549 
+
+solved, 550 
+
+∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + ∇ ⋅ 𝑱𝑱 𝑖𝑖 ,𝐻𝐻 + 𝐻𝐻𝒖𝒖 ⋅ ∇𝑐𝑐 𝑖𝑖 = 𝐻𝐻𝑅𝑅 𝑖𝑖 , (12) 551 
+
+then the omitted source term is 552 
+
+𝑃𝑃 𝑖𝑖 corr = (1 − 𝐻𝐻 ) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡 − 𝑐𝑐 𝑖𝑖 𝒟𝒟 𝑡𝑡 𝐻𝐻 . (13) 553 
+
+Equivalently, the residual with respect to the masked conservative equation is 554 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 22 / 31
+
+ℰ𝑖𝑖 tot = ( 𝐻𝐻 − 1) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + 𝑐𝑐 𝑖𝑖 𝒟𝒟 𝑡𝑡 𝐻𝐻 . (14) 555 
+
+This residual can be decomposed into a transient masking error and a nonconservative 556 
+
+advection error: 557 
+
+ℰ𝑖𝑖 𝐻𝐻 = ( 𝐻𝐻 − 1) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + 𝑐𝑐 𝑖𝑖 ∂𝐻𝐻 ∂𝑡𝑡  , (15) 
+
+ℰ𝑖𝑖 adv = 𝑐𝑐 𝑖𝑖 𝒖𝒖 ⋅ ∇𝐻𝐻 , (16) 
+
+ℰ𝑖𝑖 tot = ℰ𝑖𝑖 𝐻𝐻 + ℰ𝑖𝑖 adv . (17) 
+
+558 
+
+The first contribution results from replacing the conservative dependent variable 𝐻𝐻𝑐𝑐 𝑖𝑖 by 𝑐𝑐 𝑖𝑖 .559 
+
+The second contribution results from using the nonconservative convective form in the 560 
+
+presence of a spatially varying mask. 561 
+
+The corresponding global mass-balance residual is 562 
+
+ℳ𝑖𝑖 err = � ℰ 𝑖𝑖 tot Ω𝑑𝑑𝑑𝑑 . (18) 563 
+
+Let 564 
+
+Γ𝜖𝜖 = { 𝒙𝒙 ∈ Ω : 0 < 𝐻𝐻 (𝒙𝒙 , 𝑡𝑡 ) < 1} 565 
+
+denote the diffuse-interface region of thickness 𝑂𝑂 (𝜖𝜖 ). Since 𝐻𝐻 = 1 in the liquid bulk and 566 
+
+𝐻𝐻 = 0 outside the liquid phase, the residual is mainly localized inside Γ𝜖𝜖 , provided that the 567 
+
+concentration is fixed or inactive in the non-liquid phase. Hence, 568 
+
+|ℳ𝑖𝑖 err | ≤ � �(𝐻𝐻 − 1) ∂𝑐𝑐 𝑖𝑖 ∂𝑡𝑡  + 𝑐𝑐 𝑖𝑖 𝒟𝒟 𝑡𝑡 𝐻𝐻� Γ 𝜖𝜖 𝑑𝑑𝑑𝑑 . (19) 569 
+
+If the phase field is sufficiently narrow and the mask is transported consistently with the flow, 570 
+
+so that 𝒟𝒟 𝑡𝑡 𝐻𝐻 ≃ 0, then the integrated error decreases with the interfacial thickness: 571 
+
+|ℳ𝑖𝑖 err | = 𝑂𝑂 (𝜖𝜖 ). (20) 572 
+
+Therefore, the simplified masked nonconservative form is accurate when the diffuse 573 
+
+interface is thin relative to the transport length scale and when the material variation of 𝐻𝐻 574 
+
+remains small. 575 
+
+5. Surface dissolution of PBS 576 
+
+The PBS surface inventory 𝑠𝑠 PBS (𝒙𝒙 , 𝑡𝑡 ) is defined on ΩPBS and represents the amount of 577 
+
+dissolvable PBS per unit surface area. Its depletion is controlled by the surface dissolution 578 
+
+flux 𝐽𝐽 PBS , the liquid mask 𝐻𝐻 , a near-zero inventory gate ℋ𝛿𝛿 , and a saturation gate 𝑔𝑔 sat ,PBS :579 
+
+∂𝑡𝑡 𝑠𝑠 PBS = − 𝐽𝐽 PBS ℋ𝛿𝛿 (𝑠𝑠 PBS ), 𝐽𝐽 PBS = 𝑘𝑘 sup ,PBS 𝑠𝑠 PBS 𝑔𝑔 sat ,PBS 𝐻𝐻 , (21) 580 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint
+
+23 / 31 
+
+where 𝑘𝑘 sup ,PBS is the surface supply rate in s−1 . For a PBS recipe with molar fractions 581 
+
+{𝑠𝑠 NaCl , 𝑠𝑠 KCl , 𝑠𝑠 Na 2 HPO 4 , 𝑠𝑠 KH 2 PO 4 }, the limiting salt ∗ is selected as the least soluble component, 582 
+
+and the saturation condition is evaluated using 583 
+
+𝑐𝑐 ∗ = 𝑠𝑠 ∗ PBS, 𝑔𝑔 sat ,PBS = ℋ𝜂𝜂 (𝑐𝑐 ∗sat − 𝑐𝑐 ∗) ∈ [0,1], (22) 584 
+
+where 𝑐𝑐 ∗sat has units of mol m−3 . The dissolved PBS released from the surface is converted 585 
+
+into a volumetric source through the effective thickness 𝑡𝑡 ℎ and the characteristic function 586 
+
+𝜒𝜒 Ω PBS :587 
+
+𝑃𝑃 PBS surf = 𝐽𝐽 PBS 𝑡𝑡 ℎ
+
+𝜒𝜒 Ω PBS . (23) 588 
+
+No separate PR concentration variable is introduced in this formulation. 589 
+
+6. Enzyme on the surface and in the bulk 590 
+
+On ΩE, the active surface enzyme density 𝑠𝑠 𝐸𝐸 (𝒙𝒙 , 𝑡𝑡 ) evolves through activation, desorption, 591 
+
+and deactivation: 592 
+
+∂𝑡𝑡 𝑠𝑠 𝐸𝐸 = �𝐶𝐶 𝐴𝐴 ,𝐸𝐸 − 𝑠𝑠 𝐸𝐸 𝜏𝜏 act 
+
+− 𝑘𝑘 des 𝑠𝑠 𝐸𝐸 − 𝑘𝑘 deact 𝑠𝑠 𝐸𝐸 � 𝐻𝐻 , (24) 593 
+
+where 𝐶𝐶 𝐴𝐴 ,𝐸𝐸 is the available surface enzyme loading, 𝜏𝜏 act is the activation time, and 𝑘𝑘 des 594 
+
+and 𝑘𝑘 deact are the desorption and surface deactivation rates. Surface Michaelis–Menten 595 
+
+consumption and enzyme desorption are described by 596 
+
+𝐽𝐽 cat = 𝑘𝑘 cat 𝑠𝑠 𝐸𝐸 𝑈𝑈 𝐾𝐾 𝑚𝑚 + 𝑈𝑈  𝐻𝐻 ℋ𝛿𝛿 (𝑠𝑠 𝐸𝐸 ), 𝐽𝐽 des = 𝑘𝑘 des 𝑠𝑠 𝐸𝐸 𝐻𝐻 ℋ𝛿𝛿 (𝑠𝑠 𝐸𝐸 ), (25) 597 
+
+where 𝑈𝑈 is the urea concentration, 𝐾𝐾 𝑚𝑚 is the Michaelis constant, and 𝑘𝑘 cat is the catalytic 598 
+
+rate constant. These surface fluxes are mapped to volumetric sources in ΩE:599 
+
+𝑃𝑃 𝑈𝑈 surf = − 𝐽𝐽 cat 𝑡𝑡 ℎ𝜒𝜒 Ω E , 𝑃𝑃 𝑁𝑁 surf = + 2 𝐽𝐽 cat 𝑡𝑡 ℎ𝜒𝜒 Ω E , 𝑃𝑃 𝐶𝐶 surf = + 𝐽𝐽 cat 𝑡𝑡 ℎ𝜒𝜒 Ω E , 𝑃𝑃 𝐸𝐸 surf = + 𝐽𝐽 des 𝑡𝑡 ℎ𝜒𝜒 Ω E . (26) 600 
+
+Here, 𝑁𝑁 , 𝐶𝐶 , and 𝐸𝐸 denote the nitrogen-containing product, the carbon-containing product, 601 
+
+and the dissolved enzyme concentration, respectively. Desorbed enzyme also catalyses 602 
+
+urea in the liquid phase: 603 
+
+𝑅𝑅 bulk = 𝑘𝑘 cat 𝐸𝐸 𝑈𝑈 𝐾𝐾 𝑚𝑚 + 𝑈𝑈  𝐻𝐻 , 𝑅𝑅 𝑈𝑈 += −𝑅𝑅 bulk , 𝑅𝑅 𝑁𝑁 += +2 𝑅𝑅 bulk , 𝑅𝑅 𝐶𝐶 += + 𝑅𝑅 bulk , 𝑅𝑅 𝐸𝐸 +604 
+
+= −𝑘𝑘 deact bulk 𝐸𝐸 . (27) 605 
+
+7. Recession of the solid and a release-rate correction 606 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 24 / 31
+
+As PBS is consumed preferentially inside grooves, the solid–fluid interface can recede by a 607 
+
+depth Δ, adding a quasi-stagnant diffusive film that acts in series with convection. A 608 
+
+conservative correction is 609 
+
+𝑘𝑘 𝑚𝑚 
+
+> recess
+
+(𝑈𝑈 , 𝑝𝑝 , 𝜙𝜙 , Δ) ≈ � 1
+
+𝑘𝑘 𝑚𝑚 
+
+> strip
+
+(𝑈𝑈 , 𝑝𝑝 , 𝜙𝜙 ) + Δ𝐷𝐷 �−1 
+
+= 𝑘𝑘 𝑚𝑚 
+
+> strip
+
+1 + 𝑘𝑘 𝑚𝑚 
+
+> strip
+
+Δ/𝐷𝐷 ,610 
+
+which captures the decay of cavity-floor transfer with increasing recess depth. In the 611 
+
+calculations below, the effective groove recession depth is fixed at 612 
+
+Δ = 25 𝜇𝜇 m, 613 
+
+and the release coefficient used in the buffer-zone model is 614 
+
+𝑘𝑘 𝑒𝑒𝑒𝑒 = 𝑘𝑘 𝑚𝑚 
+
+> recess
+
+.615 
+
+To optimize the reliability of the device, especially considering that the sweat of patients in 616 
+
+clinical practice may fluctuate significantly due to the presence of lactic acid (pH range from 617 
+
+4.5 to 7.0), we calculated the effective surface mass transfer coefficient 𝑘𝑘 𝑒𝑒𝑒𝑒 of the buffer 618 
+
+zone for storing PBS based on additive resistance theory proposed in the literature, 619 
+
+𝑅𝑅 urea = − 𝑉𝑉 max (pH) 𝑐𝑐 urea 𝐾𝐾 𝑀𝑀 (pH) + 𝑐𝑐 urea 
+
+,620 
+
+describing urease consumption of urea in the sensing pad, with 𝑉𝑉 max and 𝐾𝐾 𝑀𝑀 calibrated 621 
+
+versus pH. 622 
+
+8. Image acquisition and urea concentration read-out 623 
+
+The correction pipeline assumes a linear radiometric domain such that multiplicative shading 624 
+
+correction is physically meaningful. The application therefore acquires RAW sensor data (or 625 
+
+an equivalent minimally processed stream that preserves linearity), including black -level 626 
+
+subtraction and normalisation, and locks auto-exposure and auto-white-balance during 627 
+
+capture. 628 
+
+Let Ω denote the ROI domain and let 𝒙𝒙 (𝒖𝒖 ) ∈ 𝒞𝒞 be the observed color vector at location 𝒖𝒖 ∈ 629 
+
+Ω, where 𝒞𝒞 is the valid color space. Let ℬ denote the brightness reference region  (enclosed 630 
+
+by the device outline lines ), {𝒬𝒬 𝑘𝑘 }𝑘𝑘∈𝒦𝒦 the marker regions, and {𝒟𝒟 𝑖𝑖 }𝑖𝑖∈ℐ the pad regions. The 631 
+
+marker index set is 𝒦𝒦 = { 𝑐𝑐 , 𝛼𝛼 , 𝛽𝛽 , 𝛾𝛾 , 𝛿𝛿 }, where 𝒬𝒬 𝑐𝑐 is the central marker and 𝒬𝒬 𝛼𝛼 , 𝒬𝒬 𝛽𝛽 , 𝒬𝒬 𝛾𝛾 , and 632 
+
+𝒬𝒬 𝛿𝛿 are peripheral markers. The central marker provides a local reference at the template 633 
+
+interior, while the peripheral markers provide reference observations distributed around the 634 
+
+analytical region according to the external sampling design. The observed regional color in 635 
+
+sampling region 𝒮𝒮 ⊂ Ω is defined by: 636 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 25 / 31
+
+𝜌𝜌 (𝒮𝒮 ) = 1|𝒮𝒮 | � 𝒙𝒙 𝒖𝒖∈𝒮𝒮 
+
+(𝒖𝒖 ). 637 
+
+Brightness is represented by a scalar functional 638 
+
+𝐿𝐿 (𝒙𝒙 ) = 𝒘𝒘 ⊤ 𝒙𝒙 ,639 
+
+where 𝒘𝒘 is a fixed channel-weight vector. The brightness reference value is computed from 640 
+
+the brightness reference region as 641 
+
+𝐿𝐿 ‾ ℬ = 1|ℬ| � 𝐿𝐿 𝒖𝒖∈ℬ 
+
+(𝒙𝒙 (𝒖𝒖 )). 642 
+
+A global brightness gain is then estimated by comparing the measured brightness reference 643 
+
+with a target brightness level: 644 
+
+𝑔𝑔 = clip Γ � 𝐿𝐿 ⋆𝐿𝐿 ‾ ℬ + 𝜖𝜖 �,645 
+
+where 𝐿𝐿 ⋆ is the target brightness (defined as 170 in the clinical environment) , 𝜖𝜖 is a 646 
+
+numerical stabilizer, and Γ is the admissible gain interval. If temporal observations are 647 
+
+available, the gain may be updated by a smoothed recurrence 648 
+
+𝑔𝑔 𝑡𝑡 = (1 − 𝜂𝜂 )𝑔𝑔 𝑡𝑡−1 + 𝜂𝜂𝑔𝑔 𝑡𝑡 ⋆,649 
+
+where 𝑔𝑔 𝑡𝑡 ⋆ is the instantaneous gain and 𝜂𝜂 is a smoothing coefficient. The brightness-650 
+
+normalized color field is 651 
+
+𝒙𝒙 �(𝒖𝒖 ) = Π𝒞𝒞 (𝑔𝑔 𝒙𝒙 (𝒖𝒖 )), 652 
+
+where Π 𝒞𝒞 projects the result into the valid color space. This first correction is global and is 653 
+
+applied uniformly to all sampled regions. 654 
+
+After brightness normalization, each marker region is summarized as 655 
+
+𝒎𝒎 𝑘𝑘 = 1|𝒬𝒬 𝑘𝑘 | � 𝒙𝒙 �𝒖𝒖∈𝒬𝒬 𝑘𝑘 
+
+(𝒖𝒖 ), 𝑘𝑘 ∈ 𝒦𝒦 .656 
+
+Each marker region has a known reference response 𝒂𝒂 𝑘𝑘 . Collecting the normalized marker 657 
+
+observations and corresponding reference responses into matrices gives 658 
+
+𝑴𝑴 = [ 𝒎𝒎 𝑐𝑐 𝒎𝒎 𝛼𝛼 𝒎𝒎 𝛽𝛽 𝒎𝒎 𝛾𝛾 𝒎𝒎 𝛿𝛿 ], 𝑻𝑻 = [ 𝒂𝒂 𝑐𝑐 𝒂𝒂 𝛼𝛼 𝒂𝒂 𝛽𝛽 𝒂𝒂 𝛾𝛾 𝒂𝒂 𝛿𝛿 ]. 659 
+
+The color calibration matrix is estimated by regularized least squares: 660 
+
+𝑪𝑪 = 𝑻𝑻𝑴𝑴 ⊤(𝑴𝑴𝑴𝑴 ⊤ + 𝜆𝜆𝑰𝑰 )−1 ,661 
+
+where 𝜆𝜆 is a regularization coefficient and 𝑰𝑰 is the identity matrix. This matrix maps 662 
+
+brightness-normalized observations to their reference responses in the least-squares sense. 663 
+
+Each pad region is first averaged after brightness normalization, 664 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 26 / 31
+
+𝒑𝒑 𝑖𝑖 = 1|𝒟𝒟 𝑖𝑖 | � 𝒙𝒙 �𝒖𝒖∈𝒟𝒟 𝑖𝑖 
+
+(𝒖𝒖 ), 𝑖𝑖 ∈ ℐ ,665 
+
+and is then calibrated by 666 
+
+𝒚𝒚 𝑖𝑖 = Π𝒞𝒞 (𝑪𝑪𝒑𝒑 𝑖𝑖 ). 667 
+
+The  green-channel intensity is then converted to urea concentration using the calibration 668 
+
+function reported in the main text . For the dual-unit patch, the two inferred concentrations are 669 
+
+compared for quality control; frames with disagreement greater than 10% are discarded, 670 
+
+otherwise the averaged value is reported. 671 
+
+9. Machine learning via Support Vector Regression 672 
+
+Patient 𝑖𝑖 is assigned to the test set with probability 673 
+
+ℙ 𝑖𝑖 (test) = 𝑞𝑞 𝑖𝑖 = min{1, 𝜆𝜆𝑇𝑇 𝑖𝑖 } , 𝜆𝜆 =
+
+𝛼𝛼 � 𝑇𝑇 𝑗𝑗 𝑃𝑃 𝑗𝑗=1 � 𝑇𝑇 𝑗𝑗 2𝑃𝑃 𝑗𝑗=1 
+
+.674 
+
+When truncation by min {1, ⋅}is inactive for most patients; this choice yields 675 
+
+𝔼𝔼 �� 𝕀𝕀 � 𝑖𝑖 ∈test �𝑃𝑃 𝑖𝑖=1 𝑇𝑇 𝑖𝑖 � = � 𝑞𝑞 𝑖𝑖 𝑃𝑃 𝑖𝑖=1 𝑇𝑇 𝑖𝑖 ≈ 𝜆𝜆 � 𝑇𝑇 𝑖𝑖 2𝑃𝑃 𝑖𝑖=1 
+
+= 𝛼𝛼 � 𝑇𝑇 𝑖𝑖 𝑃𝑃 𝑖𝑖=1 
+
+,676 
+
+i.e., an expected record-level test fraction close to 𝛼𝛼 , while ensuring 𝑞𝑞 𝑖𝑖 ≤ 1for long-stay 677 
+
+patients. After splitting, each daily record contributes one supervised training pair �𝐱𝐱 𝑖𝑖 ,𝑡𝑡 , 𝑦𝑦 𝑖𝑖 ,𝑡𝑡 �,678 
+
+where 𝐱𝐱 𝑖𝑖 ,𝑡𝑡 is the lag-embedded regressor defined above and 𝑦𝑦 𝑖𝑖 ,𝑡𝑡 is the measured blood-urea 679 
+
+concentration on day 𝑡𝑡 . For notational convenience in the optimisation, we re-index all 680 
+
+training-set records by a single sample index 𝑛𝑛 = 1, … , 𝑁𝑁 , so that (𝐱𝐱 𝑛𝑛 , 𝑦𝑦 𝑛𝑛 )corresponds to 681 
+
+some �𝐱𝐱 𝑖𝑖 ,𝑡𝑡 , 𝑦𝑦 𝑖𝑖 ,𝑡𝑡 �.682 
+
+Excluding a small subset of patient-identity– linked Primary Data (P Data) and explicit 683 
+
+date/time descriptors (T Data), the remaining covariates are treated as conditionally 684 
+
+exchangeable at the record level after lag embedding; the resulting feature dimensionality is 685 
+
+modest. Nevertheless, incorporating T Data and additional Extra features (E Data) induces 686 
+
+nonlinear interactions. We therefore adopt 𝜀𝜀 -SVR with a radial basis function (RBF) kernel: 687 
+
+𝜅𝜅 (x, x ′) = exp ( − ∥ x − x′ ∥2
+
+2𝜎𝜎 2 ), 688 
+
+where 𝜎𝜎 > 0 is the kernel length scale and ∥⋅∥ denotes the Euclidean norm. 689 
+
+In the dual form, 𝜀𝜀 -SVR solves the convex quadratic program 690 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 27 / 31
+
+𝑚𝑚𝑚𝑚𝑚𝑚   
+
+> 𝜶𝜶 ,𝜶𝜶 ∗
+
+− 12 � � (
+
+> 𝑁𝑁 𝑚𝑚=1 𝑁𝑁 𝑛𝑛=1
+
+𝛼𝛼 𝑛𝑛 − 𝛼𝛼 𝑛𝑛 ∗ )( 𝛼𝛼 𝑚𝑚 − 𝛼𝛼 𝑚𝑚 ∗ ) 𝜅𝜅 (𝒙𝒙 𝑛𝑛 , 𝒙𝒙 𝑚𝑚 )
+
+−𝜀𝜀 � (
+
+> 𝑁𝑁 𝑛𝑛=1
+
+𝛼𝛼 𝑛𝑛 + 𝛼𝛼 𝑛𝑛 ∗ ) + � 𝑦𝑦 𝑛𝑛 𝑁𝑁 𝑛𝑛=1 
+
+(𝛼𝛼 𝑛𝑛 − 𝛼𝛼 𝑛𝑛 ∗ )
+
+𝑠𝑠 . 𝑡𝑡 . �(
+
+> 𝑁𝑁 𝑛𝑛=1
+
+𝛼𝛼 𝑛𝑛 − 𝛼𝛼 𝑛𝑛 ∗ ) = 0, 0 ≤ 𝛼𝛼 𝑛𝑛 , 𝛼𝛼 𝑛𝑛 ∗ ≤ 𝐶𝐶 , 𝑛𝑛 = 1, … , 𝑁𝑁 ,
+
+691 
+
+where 𝐶𝐶 > 0 is the penalty parameter controlling the trade-off between model flatness and 692 
+
+violations of the 𝜀𝜀 -insensitive tube, and 𝜀𝜀 ≥ 0is the tube half-width. The resulting predictor is 693 
+
+𝑓𝑓 (𝒙𝒙 ) = �(
+
+> 𝑁𝑁 𝑛𝑛 =1
+
+𝛼𝛼 𝑛𝑛 − 𝛼𝛼 𝑛𝑛 ∗ ) 𝜅𝜅 (𝒙𝒙 𝑛𝑛 , 𝒙𝒙 ) + 𝑏𝑏 ,694 
+
+with 𝑏𝑏 ∈ ℝ the bias term. Only samples for which (𝛼𝛼 𝑛𝑛 − 𝛼𝛼 𝑛𝑛 ∗ ) ≠ 0act as support vectors and 695 
+
+contribute to 𝑓𝑓 .696 
+
+10. Participants 697 
+
+This was a multicentre, prospective, observational study conducted at Zhongnan Hospital of 698 
+
+Wuhan University, Shenzhen Second People's Hospital, and Jingzhou Central Hospital. The 699 
+
+study protocol was approved by the Ethics Committee (Approval No. 2025039K ) in 700 
+
+accordance with the principles of the Declaration of Helsinki. Written informed consent was 701 
+
+obtained from all participants or their legally authorized representatives. 702 
+
+Inclusion criteria were as follows: aged  ＞18 years; admission to the ICU for acute illness or 703 
+
+post-operative care; and an anticipated ICU stay ≥24 hours. 704 
+
+Exclusion criteria included: (1) conditions preventing reliable sweat collection, including active 705 
+
+skin lesions (e.g., wounds, burns, infection), severe scarring, or tattoos at forearm, or states 706 
+
+of anhidrosis or marked hypohidrosis due to shock ; (2) key confounders potentially altering 707 
+
+sweat composition, such as known systemic diseases affecting sweat secretion (e.g., cystic 708 
+
+fibrosis, hyperhidrosis), chronic use (>4 weeks) of medications significantly impacting 709 
+
+fluid/electrolyte balance (e.g., loop diuretics, thiazides, mineralocorticoid receptor antagonists), 710 
+
+or the presence of significant pitting edema; (3) kidney transplant recipients; (4) a life 711 
+
+expectancy of less than 48 hours, severe psychiatric or cognitive impairment precluding 712 
+
+cooperation; (5) lack of informed consent. 713 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 28 / 31
+
+11. Collection of paired sweat-blood measurements 714 
+
+Paired sweat-blood measurements were collected prospectively during routine ICU blood 715 
+
+testing. For each predefined sampling event, sweat was collected from intact forearm skin 716 
+
+using the wearable microfluidic patch immediately before a planned venous blood draw. After 717 
+
+patch filling and colour development, the device was imaged using the smartphone readout 718 
+
+system, and venous blood was drawn without delay. Blood urea was measured by the central 719 
+
+laboratory at each participating hospital using routine automated clinical chemistry analysers. 720 
+
+A paired record was defined as one valid sweat-urea measurement and the immediately 721 
+
+subsequent blood-urea measurement from the same sampling event. Measurements with 722 
+
+incomplete patch filling, failed image registration, visible leakage, image saturation or 723 
+
+excessive disagreement between duplicate sensing units were excluded. Repeated paired 724 
+
+measurements from the same patient were permitted during ICU admission. For each paired 725 
+
+record, demographic characteristics, laboratory results, treatment information, renal 726 
+
+replacement therapy status and kidney injury status were extracted from the hospital 727 
+
+information system and linked to the corresponding sweat–blood measurement. 728 
+
+12. Statistical analysis 729 
+
+Continuous variables were reported as median with interquartile range or mean ± s.d., as 730 
+
+appropriate. Categorical variables were reported as counts and percentages. Between-group 731 
+
+comparisons were performed using the Mann– Whitney U test, Student’s t -test, χ² test or 732 
+
+Fisher’s exact test, as appropriate. Correlations were assessed using Pearson’s correlation 733 
+
+coefficient. ROC curves were used to evaluate diagnostic performance, and AUCs with 95% 734 
+
+confidence intervals were reported. A two-sided P value <0.05 was considered statistically 735 
+
+significant. 736 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 29 / 31
+
+Declaration statements 737 
+
+Data availability: 738 
+
+The data that support the findings of this study are not publicly available due to restrictions 739 
+
+imposed by institutional ethics committees and data governance policies of the participating 740 
+
+hospitals. Access to the data may be considered upon reasonable request to the 741 
+
+corresponding author and is subject to approval by the relevant ethics committees. 742 
+
+Acknowledgements: 743 
+
+P.Z. acknowledges the support from the National Natural Science Foundation of China (No. 744 
+
+82572484, No. 82272208) . Y.Z. acknowledges the support from the Imperial ’s start-up 745 
+
+package and the UKRI Impact Acceleration Account. We also thank Shide Ren for the critical 746 
+
+discussion. 747 
+
+Author Contributions: 748 
+
+J.Z., Z.S., X.R., Z.P. and Y.Z. designed the overall research framework. J.Z. and Z.S. 749 
+
+contributed to device design, experimental implementation, data analysis and manuscript 750 
+
+drafting. M.X., Y.G., G.L. and X.Z. contributed to microfluidic device fabrication, materials 751 
+
+preparation, assay optimisation and device characterisation. S.L., C.Y. and M.L. contributed 752 
+
+to clinical study coordination, patient recruitment and clinical data collection. G.P.M., Y.G. and 753 
+
+P.M. contributed to experimental validation, data curation, statistical analysis and 754 
+
+interpretation of results. Y.G., Z.S. and X.R. contributed to image-processing workflow 755 
+
+development, model implementation and computational analysis. Z.P. supervised the clinical 756 
+
+study design, clinical interpretation and multicentre coordination. Y.Z. and N.L. supervised the 757 
+
+engineering design, analytical framework and overall project direction. J.Z., Z.S., X.R., Z.P. 758 
+
+and Y.Z. wrote and revised the manuscript with input from all authors. All authors reviewed, 759 
+
+edited and approved the final manuscript. 760 
+
+Competing interests :761 
+
+The authors declare no competing interests. 762 
+
+References 763 
+
+1 Collaborators, G. B. D. C. K. D. Global, regional, and national burden of chronic kidney 764 
+
+disease in adults, 1990-2023, and its attributable risk factors: a systematic analysis for 765 
+
+the Global Burden of Disease Study 2023. Lancet 406 , 2461-2482, 766 
+
+doi:10.1016/S0140-6736(25)01853 -7 (2025). 767 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 30 / 31
+
+2 Herrington, W. G., Judge, P. K., Grams, M. E. & Wanner, C. Chronic kidney disease. 768 
+
+Lancet 407 , 90-104, doi:10.1016/S0140-6736(25)01942 -7 (2026). 769 
+
+3 Francis, A. et al. Chronic kidney disease and the global public health agenda: an 770 
+
+international consensus. Nat Rev Nephrol 20 , 473-485, doi:10.1038/s41581-024-771 
+
+00820-6 (2024). 772 
+
+4 Shlipak, M. G. et al. The case for early identification and intervention of chronic kidney 773 
+
+disease: conclusions from a Kidney Disease: Improving Global Outcomes (KDIGO) 774 
+
+Controversies Conference. Kidney Int 99 , 34-47, doi:10.1016/j.kint.2020.10.012 775 
+
+(2021). 776 
+
+5 Ostermann, M. et al. Acute kidney injury. Lancet 405 , 241-256, doi:10.1016/S0140-777 
+
+6736(24)02385 -7 (2025). 778 
+
+6 Kellum, J. A. et al. Acute kidney injury. Nat Rev Dis Primers 7, 52, doi:10.1038/s41572-779 
+
+021-00284-z (2021). 780 
+
+7 Hoste, E. A. et al. Epidemiology of acute kidney injury in critically ill patients: the 781 
+
+multinational AKI-EPI study. Intensive Care Med 41 , 1411-1423, doi:10.1007/s00134-782 
+
+015-3934-7 (2015). 783 
+
+8 Bufkin, K. B., Karim, Z. A. & Silva, J. Review of the limitations of current biomarkers in 784 
+
+acute kidney injury clinical practices. SAGE Open Med 12 , 20503121241228446, 785 
+
+doi:10.1177/20503121241228446 (2024). 786 
+
+9 Ostermann, M. et al. Biomarkers in acute kidney injury. Ann Intensive Care 14 , 145, 787 
+
+doi:10.1186/s13613-024-01360-9 (2024). 788 
+
+10 U.S. Food and Drug Administration. Highly Multiplexed Microbiological/Medical 789 
+
+Countermeasure In Vitro Nucleic Acid Based Diagnostic Devices: Guidance for 790 
+
+Industry and Food and Drug Administration Staff. Report No. FDA-2012-D-1057, (U.S. 791 
+
+Food and Drug Administration, Silver Spring, MD, 2014). 792 
+
+11 American Diabetes Association Professional Practice Committee for, D. 7. Diabetes 793 
+
+Technology: Standards of Care in Diabetes-2026. Diabetes Care 49 , S150-S165, 794 
+
+doi:10.2337/dc26-S007 (2026). 795 
+
+12 Baker, L. B. & Wolfe, A. S. Physiological mechanisms determining eccrine sweat 796 
+
+composition. Eur J Appl Physiol 120 , 719-752, doi:10.1007/s00421-020-04323-7 797 
+
+(2020). 798 
+
+13 Adelaars, S. et al. The correlation of urea and creatinine concentrations in sweat and 799 
+
+saliva with plasma during hemodialysis: an observational cohort study. Clin Chem Lab 800 
+
+Med 62 , 1118-1125, doi:10.1515/cclm-2023-1285 (2024). 801 
+
+14 Keller, R. W., Bailey, J. L., Wang, Y., Klein, J. D. & Sands, J. M. Urea transporters and 802 
+
+sweat response to uremia. Physiol Rep 4, doi:10.14814/phy2.12825 (2016). 803 
+
+> (which was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint this version posted June 18, 2026. ;https://doi.org/10.64898/2026.06.17.732831 doi: bioRxiv preprint 31 / 31
+
+15 Huang, C. T., Chen, M. L., Huang, L. L. & Mao, I. F. Uric acid and urea in human sweat. 804 
+
+Chin J Physiol 45 , 109-115 (2002). 805 
+
+16 Zhang, Y. et al. Passive sweat collection and colorimetric analysis of biomarkers 806 
+
+relevant to kidney disorders using a soft microfluidic system. Lab Chip 19 , 1545-1555, 807 
+
+doi:10.1039/c9lc00103d (2019). 808 
+
+17 Futane, A. et al. Sweat analysis for urea sensing: trends and challenges. Anal Methods 809 
+
+15 , 4405-4426, doi:10.1039/d3ay01089a (2023). 810 
+
+18 Koh, A. et al. A soft, wearable microfluidic device for the capture, storage, and 811 
+
+colorimetric sensing of sweat. Sci Transl Med 8, 366ra165, 812 
+
+doi:10.1126/scitranslmed.aaf2593 (2016). 813 
+
+19 Bandodkar, A. J. et al. Battery-free, skin-interfaced microfluidic/electronic systems for 814 
+
+simultaneous electrochemical, colorimetric, and volumetric analysis of sweat. Sci Adv 815 
+
+5, eaav3294, doi:10.1126/sciadv.aav3294 (2019). 816 
+
+20 Ates, H. C. et al. End-to-end design of wearable sensors. Nat Rev Mater 7, 887-907, 817 
+
+doi:10.1038/s41578-022-00460-x (2022). 818 
+
+21 Tomasev, N. et al. A clinically applicable approach to continuous prediction of future 819 
+
+acute kidney injury. Nature 572 , 116-119, doi:10.1038/s41586-019-1390-1 (2019). 820 
+
+22 Metwally, A. A. et al. Insulin resistance prediction from wearables and routine blood 821 
+
+biomarkers. Nature 652 , 451-461, doi:10.1038/s41586-026-10179-2 (2026). 822 
+
+23 Tony, A. et al. A Preliminary Experimental Study of Polydimethylsiloxane (PDMS) -To-823 
+
+PDMS Bonding Using Oxygen Plasma Treatment Incorporating Isopropyl Alcohol. 824 
+
+Polymers (Basel) 15 , doi:10.3390/polym15041006 (2023). 825 
+
+24 Kim, S. J. & Pollefeys, M. Robust radiometric calibration and vignetting correction. Ieee 826 
+
+T Pattern Anal 30 , 562-576, doi:10.1109/Tpami.2007.70732 (2008). 827 
+
+25 Finlayson, G. D., Darrodi, M. M. & Mackiewicz, M. The Alternating Least Squares 828 
+
+Technique for Nonuniform Intensity Color Correction. Color Res Appl 40 , 232-242, 829 
+
+doi:10.1002/col.21889 (2015). 830 
+
+26 Kucuk, A., Finlayson, G. D., Mantiuk, R. & Ashraf, M. Performance Comparison of 831 
+
+Classical Methods and Neural Networks for Colour Correction. J Imaging 9, doi:ARTN 832 
+
+214 833 
+
+10.3390/jimaging9100214 (2023). 834 
+
+27 al-Tamer, Y. Y., Hadi, E. A. & al, B., II. Sweat urea, uric acid and creatinine 835 
+
+concentrations in uraemic patients. Urol Res 25 , 337-340, doi:10.1007/BF01294662 836 
+
+(1997). 837 
+
+838

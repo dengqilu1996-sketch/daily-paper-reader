@@ -1,0 +1,712 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-21T23:25:37.709567+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 7,
+    "deep_cap": 14,
+    "deep_selected": 7,
+    "quick_candidates": 7,
+    "quick_skim_target": 19,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2606.18544v1",
+      "source": "arxiv",
+      "title": "Chess Signatures of Play",
+      "abstract": "A game of chess is a stream: a time-ordered sequence of moves, each carrying an engine evaluation, a measure of accuracy, a measure of position complexity, and a clock reading. We model a game as a multivariate path and apply the signature transform of rough-path theory to obtain a reparametrization-invariant, graded feature set that records the order and interaction of in-game events without a parametric likelihood. We show that a player's law of play is identifiable from the expected signature up to tree-like equivalence, construct a signature-kernel two-sample test on path space, and recast cheating detection as an anytime-valid sequential test: a signature conformance score becomes an e-process whose error is controlled for every sample size at once by Ville's inequality, with fluctuations calibrated on the moderate-deviation scale. The discriminating information lives in the signature's Levy areas, which measure whether accuracy rises precisely when positions become hard--the fingerprint of engine assistance that aggregate match-rate statistics discard. In a controlled study the test holds exact type-I control and detection power rises from negligible for subtle assistance to 0.98 for blatant assistance, with a median detection time matching the growth-rate prediction. Calibrated to Magnus Carlsen's documented elite accuracy, the monitor does not flag world-champion-level play; and we exhibit cheating strategies that leave every aggregate statistic, including the best-move-frequency z-score of the Regan system, unchanged yet are caught cleanly by the signature--making precise how an order-aware, anytime-valid test strengthens the prevailing approach to chess anti-cheating.",
+      "authors": [
+        "Christian Turk",
+        "Nicholas Polson"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-06-16T23:51:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.18544v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Detects cheating via signature-based anomaly detection on chess move streams",
+      "llm_evidence_cn": "通过签名变换对国际象棋对弈流进行异常检测，识别作弊行为",
+      "llm_evidence": "通过签名变换对国际象棋对弈流进行异常检测，识别作弊行为",
+      "canonical_evidence": "通过签名变换对国际象棋对弈流进行异常检测，识别作弊行为",
+      "llm_tldr_en": "Models chess games as multivariate paths and applies signature transform to obtain reparametrization-invariant features, enabling player identification and cheating detection as an anytime-valid sequential test.",
+      "llm_tldr_cn": "传统作弊检测依赖棋步概率模型，难以应对复杂对局。该文将棋局视为时序流，利用签名变换捕捉走子顺序与交互信息，建立棋手签名，并提出基于签名核的两样本检验和e-过程作弊识别框架，实现严格错误控制，为国际象棋等体育竞技的公平性维护提供了数学严谨的工具。",
+      "llm_tldr": "传统作弊检测依赖棋步概率模型，难以应对复杂对局。该文将棋局视为时序流，利用签名变换捕捉走子顺序与交互信息，建立棋手签名，并提出基于签名核的两样本检验和e-过程作弊识别框架，实现严格错误控制，为国际象棋等体育竞技的公平性维护提供了数学严谨的工具。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "anomaly detection in sports data",
+      "matched_requirement_id": "req-25",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.18544v2",
+      "source": "arxiv",
+      "title": "Chess Signatures of Play",
+      "abstract": "A game of chess is a stream: a time-ordered sequence of moves, each carrying an engine evaluation, a measure of accuracy, a measure of position complexity, and a clock reading. We model a game as a multivariate path and apply the signature transform of rough-path theory to obtain a reparametrization-invariant, graded feature set that records the order and interaction of in-game events without a parametric likelihood. We show that a player's law of play is identifiable from the expected signature up to tree-like equivalence, construct a signature-kernel two-sample test on path space, and recast cheating detection as an anytime-valid sequential test: a signature conformance score becomes an e-process whose error is controlled for every sample size at once by Ville's inequality, with fluctuations calibrated on the moderate-deviation scale. The discriminating information lives in the signature's Levy areas, which measure whether accuracy rises precisely when positions become hard--the fingerprint of engine assistance that aggregate match-rate statistics discard. In a controlled study the test holds exact type-I control and detection power rises from negligible for subtle assistance to 0.98 for blatant assistance, with a median detection time matching the growth-rate prediction. Calibrated to Magnus Carlsen's documented elite accuracy, the monitor does not flag world-champion-level play; and we exhibit cheating strategies that leave every aggregate statistic, including the best-move-frequency z-score of the Regan system, unchanged yet are caught cleanly by the signature--making precise how an order-aware, anytime-valid test strengthens the prevailing approach to chess anti-cheating.",
+      "authors": [
+        "Christian Turk",
+        "Nicholas Polson"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-06-16T23:51:45+00:00",
+      "link": "https://arxiv.org/pdf/2606.18544v2",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "cheating detection in chess as sequential anomaly detection",
+      "llm_evidence_cn": "国际象棋作弊检测作为序列异常检测",
+      "llm_evidence": "国际象棋作弊检测作为序列异常检测",
+      "canonical_evidence": "国际象棋作弊检测作为序列异常检测",
+      "llm_tldr_en": "Models chess games as multivariate paths, applies signature transform for player identification and anytime-valid cheating detection, providing a framework for anomaly detection in sports data.",
+      "llm_tldr_cn": "针对国际象棋对弈数据的序列特性，该研究将棋局建模为多变量路径，利用粗糙路径理论的签名变换提取重参数化不变特征。通过构建签名核双样本检验，将作弊检测转化为序列e过程，实现样本独立可控误差。在真实数据上验证了棋手风格可分性和作弊检测有效性，为体育序列数据分析与异常检测提供了一种新范式。",
+      "llm_tldr": "针对国际象棋对弈数据的序列特性，该研究将棋局建模为多变量路径，利用粗糙路径理论的签名变换提取重参数化不变特征。通过构建签名核双样本检验，将作弊检测转化为序列e过程，实现样本独立可控误差。在真实数据上验证了棋手风格可分性和作弊检测有效性，为体育序列数据分析与异常检测提供了一种新范式。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "anomaly detection in sports data",
+      "matched_requirement_id": "req-25",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-11-731593-v2",
+      "source": "biorxiv",
+      "title": "Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects",
+      "abstract": "Robotic motor control built on liquid neural networks and related continuous-time models, such as LTC and CfC, is typically trained offline via backpropagation through time and lacks an explicit mechanism for recalibrating online as plant dynamics change. We ask whether a frozen CfC core, whose liquid state spans a fixed continuous-time basis, can support cerebellar-style online adaptation by adapting only its linear readout with a climbing-fiber-like error signal. In a planar two-link reaching simulation with a velocity-dependent curl force field, we adapt the readout online with a feedback-error-learning (FEL) signal under a least-mean-squares (LMS) rule, leaving the core untouched. The frozen-core readout-only controller re-straightens curl-perturbed reaches and, upon field removal, produces a mirror-image after-effect, a behavioral signature consistent with internal-model learning, which a feedback-only controller does not produce. The result generalizes from a dense CfC to a sparse Neural-Circuit-Policy (NCP) wiring when the recurrent state, rather than the projected motor output, is used as the readout basis; it is robust to force-field strength and direction; and a recursive-least-squares variant adapts faster but de-adapts slowly because its covariance collapses, a rigidity that a covariance-reset safe-forgetting rule removes. Within the explored two-link planar simulation range, we did not find a readout-only failure case that required adapting the frozen core in the tested conditions. In this simulation study, adapting only the readout therefore provides a biologically inspired, low-cost online error-adaptation layer for offline-trained continuous-time controllers.",
+      "authors": [
+        "Kobayashi, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.731593v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Online readout adaptation of frozen continuous-time networks simulates cerebellar-style motor learning under force-field perturbations, directly modeling motor skill acquisition.",
+      "llm_evidence_cn": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "llm_evidence": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "canonical_evidence": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "llm_tldr_en": "This paper proposes online adaptation of frozen Liquid Time-Constant networks via readout learning with a climbing-fiber-like error signal, demonstrating reproduction of force-field adaptation and after-effects in a planar reaching task. It provides a computational model of motor learning relevant to understanding skill acquisition in sports.",
+      "llm_tldr_cn": "现有机器人运动控制利用连续时间网络进行离线训练，缺乏在线重校准能力，难以模拟人类运动学习中对环境变化的快速适应。本文提出冻结CfC核心，仅通过最小均方规则在线适应线性读出层，模拟小脑攀爬纤维驱动的误差学习机制。在平面两连杆伸手任务中成功复现了力场适应和经典后效，表明固定连续时间动力学基上的简单读出可塑性足以产生快速运动适应。该结果为开发在线运动学习模型提供了计算框架，有助于理解运动员在动态环境中调整动作技能的神经机制。",
+      "llm_tldr": "现有机器人运动控制利用连续时间网络进行离线训练，缺乏在线重校准能力，难以模拟人类运动学习中对环境变化的快速适应。本文提出冻结CfC核心，仅通过最小均方规则在线适应线性读出层，模拟小脑攀爬纤维驱动的误差学习机制。在平面两连杆伸手任务中成功复现了力场适应和经典后效，表明固定连续时间动力学基上的简单读出可塑性足以产生快速运动适应。该结果为开发在线运动学习模型提供了计算框架，有助于理解运动员在动态环境中调整动作技能的神经机制。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-11-731593-v3",
+      "source": "biorxiv",
+      "title": "Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects",
+      "abstract": "Robotic motor control built on liquid neural networks and related continuous-time models, such as LTC and CfC, is typically trained offline via backpropagation through time and lacks an explicit mechanism for recalibrating online as plant dynamics change. We ask whether a frozen CfC core, whose liquid state spans a fixed continuous-time basis, can support cerebellar-style online adaptation by adapting only its linear readout with a climbing-fiber-like error signal. In a planar two-link reaching simulation with a velocity-dependent curl force field, we adapt the readout online with a feedback-error-learning (FEL) signal under a least-mean-squares (LMS) rule, leaving the core untouched. The frozen-core readout-only controller re-straightens curl-perturbed reaches and, upon field removal, produces a mirror-image after-effect, a behavioral signature consistent with internal-model learning, which a feedback-only controller does not produce. The result generalizes from a dense CfC to a sparse Neural-Circuit-Policy (NCP) wiring when the recurrent state, rather than the projected motor output, is used as the readout basis; it is robust to force-field strength and direction; and a recursive-least-squares variant adapts faster but de-adapts slowly because its covariance collapses, a rigidity that a covariance-reset safe-forgetting rule removes. Within the explored two-link planar simulation range, we did not find a readout-only failure case that required adapting the frozen core in the tested conditions. In this simulation study, adapting only the readout therefore provides a biologically inspired, low-cost online error-adaptation layer for offline-trained continuous-time controllers.",
+      "authors": [
+        "Kobayashi, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.731593v3.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Online readout adaptation of frozen continuous-time networks simulates cerebellar-style motor learning under force-field perturbations, directly modeling motor skill acquisition.",
+      "llm_evidence_cn": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "llm_evidence": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "canonical_evidence": "冻结连续时间网络的在线读出适应模拟了小脑型运动学习过程，直接建模运动技能习得",
+      "llm_tldr_en": "This paper proposes online adaptation of frozen Liquid Time-Constant networks via readout learning with a climbing-fiber-like error signal, demonstrating reproduction of force-field adaptation and after-effects in a planar reaching task. It provides a computational model of motor learning relevant to understanding skill acquisition in sports.",
+      "llm_tldr_cn": "现有机器人运动控制利用连续时间网络进行离线训练，缺乏在线重校准能力，难以模拟人类运动学习中对环境变化的快速适应。本文提出冻结CfC核心，仅通过最小均方规则在线适应线性读出层，模拟小脑攀爬纤维驱动的误差学习机制。在平面两连杆伸手任务中成功复现了力场适应和经典后效，表明固定连续时间动力学基上的简单读出可塑性足以产生快速运动适应。该结果为开发在线运动学习模型提供了计算框架，有助于理解运动员在动态环境中调整动作技能的神经机制。",
+      "llm_tldr": "现有机器人运动控制利用连续时间网络进行离线训练，缺乏在线重校准能力，难以模拟人类运动学习中对环境变化的快速适应。本文提出冻结CfC核心，仅通过最小均方规则在线适应线性读出层，模拟小脑攀爬纤维驱动的误差学习机制。在平面两连杆伸手任务中成功复现了力场适应和经典后效，表明固定连续时间动力学基上的简单读出可塑性足以产生快速运动适应。该结果为开发在线运动学习模型提供了计算框架，有助于理解运动员在动态环境中调整动作技能的神经机制。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-11-731759-v1",
+      "source": "biorxiv",
+      "title": "A novel machine-learning classification model detects oxidative fiber type transitions in a rabbit model of cerebral palsy",
+      "abstract": "The distribution of slow-and fast-twitch fiber types in a skeletal muscle heavily influences its physiology. Muscle biopsy studies indicate atypical fiber type composition and fiber size variation in children with cerebral palsy (CP), but subjects have variable treatment history and a variety of muscles affected, so uncertainties remain. In this study, we developed a novel machine-learning classification model to perform high-throughput fiber typing of complete transverse muscle sections. Our XGBoost algorithm-based prediction model yielded a balanced accuracy score of 0.89 and a macro F1-score of 0.89, reflecting its ability to robustly predict muscle fiber type from myosin heavy chain (MyHC) isoform immunofluorescence intensities and morphological descriptors. This is the first reported fiber type classifier to consider hybrid fibers, which is a major advance, considering at least 20% of myofibers are hybrid yet they are routinely overlooked due to difficulty in their detection. We used this classification model to define fiber types of more than 7 million myofibers from flexor-extensor muscle pairs in rabbits that experienced hypoxia-ischemia (HI) injury in utero (modeling CP), and typically developing sham rabbits. We observed an oxidative fiber type shift in flexor muscles (biceps brachii and tibialis anterior) of HI rabbits at postnatal day (P)14-20 and P30-32 (weaning age). This altered fiber type composition imparts reduced contractile force and is amenable to sustained muscle activity; it may reflect chronic low-frequency motor unit activation. This work supports prior clinical reports that developmental trajectories of muscle fibers are disrupted in CP.",
+      "authors": [
+        "Kramer, C. A.",
+        "Reedich, E. J.",
+        "McCann, H.",
+        "Drouin, S.",
+        "Sanders, D.",
+        "Gonzalez, E.",
+        "Ung, T.",
+        "Mukisa, A.",
+        "Mena Avila, E.",
+        "Moline, B. C.",
+        "Genry, L. T.",
+        "Glennon, J. E.",
+        "Quiroga, C.",
+        "Dowaliby, L.",
+        "DiDonato, C. J.",
+        "Quinlan, K. A.",
+        "Manuel, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-14T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.731759v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "XGBoost classification model for muscle fiber typing, applicable to exercise physiology.",
+      "llm_evidence_cn": "用于肌纤维分类的XGBoost模型，适用于运动生理学。",
+      "llm_evidence": "用于肌纤维分类的XGBoost模型，适用于运动生理学。",
+      "canonical_evidence": "用于肌纤维分类的XGBoost模型，适用于运动生理学。",
+      "llm_tldr_en": "The paper proposes an XGBoost-based model for high-throughput muscle fiber typing, achieving 0.89 balanced accuracy and F1 in a rabbit CP model, offering a valuable tool for muscle physiology research.",
+      "llm_tldr_cn": "针对肌纤维类型高通量分析的需求，提出了一种基于XGBoost的新型机器学习分类模型，能够准确检测脑瘫兔模型中的氧化纤维类型转换，平衡准确率和F1值均为0.89，为肌肉生理学研究提供了有力工具。",
+      "llm_tldr": "针对肌纤维类型高通量分析的需求，提出了一种基于XGBoost的新型机器学习分类模型，能够准确检测脑瘫兔模型中的氧化纤维类型转换，平衡准确率和F1值均为0.89，为肌肉生理学研究提供了有力工具。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "state of the art machine learning in exercise physiology and sports medicine",
+      "matched_requirement_id": "req-88",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19240v1",
+      "source": "arxiv",
+      "title": "Seeing Through Occlusion: Deterministic Arm Kinematic Correction for Robot Teleoperation",
+      "abstract": "Markerless, single-RGB-D-camera motion capture provides a low-cost and non-invasive alternative to conventional marker-based systems for robot teleoperation; however, depth estimation often degrades in the presence of self-occlusion, particularly during upper-limb motion. This paper presents an Arm Kinematic Correction (AKC) method that improves depth estimation by enforcing geometric constraints based on constant arm lengths. The proposed approach reconstructs occluded joint depths by leveraging wrist positions and predefined arm lengths via a deterministic formulation based on the Pythagorean theorem, thereby avoiding the need for complex probabilistic modeling or parameter tuning. Experimental validation against a Vicon reference system demonstrates reliable performance for both static and dynamic joint motions, evaluated using root-mean-square error (RMSE) and Pearson correlation. Furthermore, motion-mapping teleoperation is successfully demonstrated in both simulated and physical robot environments. The results show that AKC enhances robustness and preserves anatomical consistency under long-duration, severe self-occlusion, even when paired with less reliable temporal filters, highlighting its practicality for real-time applications such as robot teleoperation and human-robot interaction.",
+      "authors": [
+        "Thomas M. Kwok",
+        "Nicholas Koenig",
+        "Yue Hu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.HC",
+        "eess.SY"
+      ],
+      "published": "2026-06-17T16:20:10+00:00",
+      "link": "https://arxiv.org/pdf/2606.19240v1",
+      "tags": [
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Improving depth estimation for upper-limb motion capture under occlusion",
+      "llm_evidence_cn": "在遮挡下改进上肢运动捕捉的深度估计",
+      "llm_evidence": "在遮挡下改进上肢运动捕捉的深度估计",
+      "canonical_evidence": "在遮挡下改进上肢运动捕捉的深度估计",
+      "llm_tldr_en": "Addresses self-occlusion in markerless motion capture by enforcing constant arm length constraints to deterministically correct depth estimation for upper-limb joints. Validated against Vicon, it improves accuracy without complex models.",
+      "llm_tldr_cn": "针对无标记运动捕捉中上肢自遮挡导致深度估计下降，该方法利用恒定臂长几何约束确定性修正被遮挡关节深度值。实验以Vicon为参考验证了准确性提升，无需概率建模或参数调优，为体育姿态估计提供了简洁有效的解决方案。",
+      "llm_tldr": "针对无标记运动捕捉中上肢自遮挡导致深度估计下降，该方法利用恒定臂长几何约束确定性修正被遮挡关节深度值。实验以Vicon为参考验证了准确性提升，无需概率建模或参数调优，为体育姿态估计提供了简洁有效的解决方案。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Human pose estimation in sports videos",
+      "matched_requirement_id": "req-11",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.19888v1",
+      "source": "arxiv",
+      "title": "SL-S4Wave: Self-Supervised Learning of Physiological Waveforms with Structured State Space Models",
+      "abstract": "Modeling long-sequence medical time series data, such as electrocardiograms (ECG), poses significant challenges due to high sampling rates, multichannel signal complexity, inherent noise, and limited labeled data. While recent self-supervised learning (SSL) methods, based on various encoder architectures such as convolutional neural networks, have been proposed to learn representations from unlabeled data, they often fall short in capturing long-range dependencies and noise-invariant features. Structured state space models (S4) excel at long-sequence modeling, but existing S4 architectures fail to capture the unique characteristics of multichannel physiological waveforms. In this work, we propose SL-S4Wave, a self-supervised learning framework that combines contrastive learning with a tailored encoder built on structured state space models. The encoder incorporates multi-layer global convolution using multiscale subkernels, enabling the capture of both fine-grained local patterns and long-range temporal dependencies in noisy, high-resolution multichannel waveforms. Extensive experiments on real-world datasets demonstrate that SL-S4Wave (1) consistently outperforms state-of-the-art supervised and self-supervised baselines in a challenging arrhythmia detection task, (2) achieves high performance with significantly fewer labeled examples, showcasing strong label efficiency, and (3) maintains robust performance on long waveform segments, highlighting its capacity to model complex temporal dynamics in long sequences that most existing approaches fail to efficiently model, and (4) transfers effectively to unseen arrhythmia types, underscoring its robust cross-domain generalization. We additionally evaluate SL-S4Wave on multiple EEG tasks, achieving superior performance over strong baselines, demonstrating generalizability of our approach beyond cardiac waveforms.",
+      "authors": [
+        "Feng Wu",
+        "Harsh Deep",
+        "Eric Lehman",
+        "Sanyam Kapoor",
+        "Guoshuai Zhao",
+        "Rahul Krishnan",
+        "Gari Clifford",
+        "Li-wei H Lehman"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-18T07:46:34+00:00",
+      "link": "https://arxiv.org/pdf/2606.19888v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "self-supervised learning method for physiological waveforms (ECG) with structured state space models",
+      "llm_evidence_cn": "使用结构化状态空间模型对生理波形（ECG）进行自监督学习",
+      "llm_evidence": "使用结构化状态空间模型对生理波形（ECG）进行自监督学习",
+      "canonical_evidence": "使用结构化状态空间模型对生理波形（ECG）进行自监督学习",
+      "llm_tldr_en": "Proposes SL-S4Wave, a self-supervised learning method using structured state space models for ECG representation learning, capturing long-range dependencies and noise-invariant features, which can enhance wearable physiological signal monitoring for athletes.",
+      "llm_tldr_cn": "针对心电图（ECG）等长序列医学时间序列数据标注稀缺的问题，本文提出结合结构化状态空间模型的自监督学习方法SL-S4Wave。该方法能有效捕获多通道生理波形的长程依赖和噪声不变特征，在下游任务中表现优异。它为可穿戴传感器中的运动员生理信号分析提供了新工具，可提升健康监测的精度与效率。",
+      "llm_tldr": "针对心电图（ECG）等长序列医学时间序列数据标注稀缺的问题，本文提出结合结构化状态空间模型的自监督学习方法SL-S4Wave。该方法能有效捕获多通道生理波形的长程依赖和噪声不变特征，在下游任务中表现优异。它为可穿戴传感器中的运动员生理信号分析提供了新工具，可提升健康监测的精度与效率。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.17627v1",
+      "source": "arxiv",
+      "title": "Divide, Deliberate, Decide: A Multi-Agent Framework for Fine-Grained Egocentric Action Recognition",
+      "abstract": "Fine-grained action recognition in egocentric video is challenging for Vision-Language Models (VLMs): actions often differ only in small visual cues, and a single model tends to be biased toward a subset of these cues. We propose Divide, Deliberate, Decide, a fully-local, zero-shot multi-agent framework in which (i) a VLM orchestrator chunks the video and proposes a top-k candidate label list per segment, (ii) an ensemble of heterogeneous VLM specialists, drawn from different open model families, engages in a structured deliberation that includes a peer-consultation round of questions, and (iii) agent rankings are aggregated with a Borda count and the orchestrator re-ranks its own prediction in light of the specialists' evidence. The entire pipeline runs locally with no fine-tuning. Experiments show that our method positively improves zero-shot action recognition performance over the baseline, highlighting the influence of a heterogeneous deliberation step, showing that the gain stems from decorrelated model priors rather than from additional compute.",
+      "authors": [
+        "Alessandro Sottovia",
+        "Alessandro Torcinovich",
+        "Oswald Lanz"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-16T07:31:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.17627v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Multi-agent VLM framework for fine-grained action recognition in egocentric video, applicable to sports activity recognition",
+      "llm_evidence_cn": "多智能体 VLM 框架用于第一人称视频中的细粒度动作识别，可用于体育活动分析",
+      "llm_evidence": "多智能体 VLM 框架用于第一人称视频中的细粒度动作识别，可用于体育活动分析",
+      "canonical_evidence": "多智能体 VLM 框架用于第一人称视频中的细粒度动作识别，可用于体育活动分析",
+      "llm_tldr_en": "A multi-agent VLM framework for fine-grained egocentric action recognition, where heterogeneous specialists deliberate on top-k candidates to improve zero-shot accuracy, applicable to sports video analysis.",
+      "llm_tldr_cn": "针对第一人称视频中细粒度动作识别易受微小线索偏差影响的问题，提出划分-商议-决定多智能体框架。由 VLM 编排器分块视频并提出候选标签，异构专家智能体经结构化商议和同行咨询后，通过 Borda 计数聚合排名，最终指导编排器修正预测。实验表明，该框架可有效缓解单模型偏差，提高零样本动作识别准确率与鲁棒性，为第一人称体育视频分析提供新方案。",
+      "llm_tldr": "针对第一人称视频中细粒度动作识别易受微小线索偏差影响的问题，提出划分-商议-决定多智能体框架。由 VLM 编排器分块视频并提出候选标签，异构专家智能体经结构化商议和同行咨询后，通过 Borda 计数聚合排名，最终指导编排器修正预测。实验表明，该框架可有效缓解单模型偏差，提高零样本动作识别准确率与鲁棒性，为第一人称体育视频分析提供新方案。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Action recognition for sports activities",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15280v1",
+      "source": "arxiv",
+      "title": "Rethinking Structural Anomaly Detection: From Decision Boundaries to Projection Operators",
+      "abstract": "Most existing anomaly detection methods rely on estimating a probability density or learning an enclosing decision boundary, implicitly assuming that normal data occupies a region of non-zero volume in the ambient space. In contrast, structural anomaly detection considers data that lies near a low-dimensional manifold, creating a mismatch between the inductive bias of existing methods and the structure of the data, often resulting in degraded performance. To address this mismatch, we introduce a geometric perspective. Specifically, we learn a projection operator onto the manifold of normal samples and define a sample as anomalous if it is altered by this projection. This formulation naturally integrates the inductive bias of manifold-supported data and reframes anomaly detection in terms of a projection residual, thereby resolving issues arising from modeling degenerate distributions. Notably, it provides a unifying interpretation of reconstruction-based methods by explaining their success and failure in terms of projection quality. In particular, it explains the strong generalization ability of projection-aligned models as a consequence of contraction behavior toward the manifold. Moreover, by decoupling anomaly detection from probabilistic modeling, it reduces the tendency to misclassify rare but normal samples, a widely recognized limitation of existing approaches. Empirically, we demonstrate that projection-aligned methods achieve strong performance, outperforming boundary-based methods while improving upon existing reconstruction-based approaches.",
+      "authors": [
+        "Alexander Bauer"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-13T12:37:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.15280v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "structural anomaly detection using projection operators, applicable to sports data",
+      "llm_evidence_cn": "基于投影算子的结构异常检测，可用于体育数据异常检测",
+      "llm_evidence": "基于投影算子的结构异常检测，可用于体育数据异常检测",
+      "canonical_evidence": "基于投影算子的结构异常检测，可用于体育数据异常检测",
+      "llm_tldr_en": "Proposes a geometric anomaly detection method that learns a projection operator onto the normal manifold, detecting anomalies by projection alteration, which can be applied to sports data for finding unusual patterns.",
+      "llm_tldr_cn": "针对传统异常检测假设正常数据占据高维区域而忽视流形结构的问题，提出学习正常样本流形的投影算子，将投影前后差异作为异常度量。该方法在多个基准上超越现有方法，可迁移至体育运动模式分析、伤病预警等场景。",
+      "llm_tldr": "针对传统异常检测假设正常数据占据高维区域而忽视流形结构的问题，提出学习正常样本流形的投影算子，将投影前后差异作为异常度量。该方法在多个基准上超越现有方法，可迁移至体育运动模式分析、伤病预警等场景。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "anomaly detection in sports data",
+      "matched_requirement_id": "req-25",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-11-731593-v1",
+      "source": "biorxiv",
+      "title": "Climbing-fiber-like online readout adaptation in frozen continuous-time networks reproduces force-field adaptation and after-effects",
+      "abstract": "Robotic motor control built on liquid neural networks and related continuous-time models, such as LTC and CfC, is typically trained offline via backpropagation through time and lacks an explicit mechanism for recalibrating online as plant dynamics change. We ask whether a frozen CfC core, whose liquid state spans a fixed continuous-time basis, can support cerebellar-style online adaptation by adapting only its linear readout with a climbing-fiber-like error signal. In a planar two-link reaching simulation with a velocity-dependent curl force field, we adapt the readout online with a feedback-error-learning (FEL) signal under a least-mean-squares (LMS) rule, leaving the core untouched. The frozen-core readout-only controller re-straightens curl-perturbed reaches and, upon field removal, produces a mirror-image after-effect, a behavioral signature consistent with internal-model learning, which a feedback-only controller does not produce. The result generalizes from a dense CfC to a sparse Neural-Circuit-Policy (NCP) wiring when the recurrent state, rather than the projected motor output, is used as the readout basis; it is robust to force-field strength and direction; and a recursive-least-squares variant adapts faster but de-adapts slowly because its covariance collapses, a rigidity that a covariance-reset safe-forgetting rule removes. Within the explored two-link planar simulation range, we did not find a readout-only failure case that required adapting the frozen core in the tested conditions. In this simulation study, adapting only the readout therefore provides a biologically inspired, low-cost online error-adaptation layer for offline-trained continuous-time controllers.",
+      "authors": [
+        "Kobayashi, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-15T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.731593v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Online readout adaptation in a continuous-time neural network mimics motor adaptation to force fields, relevant to computational motor learning.",
+      "llm_evidence_cn": "连续时间神经网络中的在线读出适应模仿力场运动适应，与计算运动学习相关",
+      "llm_evidence": "连续时间神经网络中的在线读出适应模仿力场运动适应，与计算运动学习相关",
+      "canonical_evidence": "连续时间神经网络中的在线读出适应模仿力场运动适应，与计算运动学习相关",
+      "llm_tldr_en": "A frozen CfC network with cerebellar-inspired online linear readout adaptation accurately replicates human reaching adaptation to curl force fields and after-effects.",
+      "llm_tldr_cn": "该研究在冻结的连续时间网络核心上，仅通过线性读出的在线适应，模拟小脑式误差驱动学习，成功再现了平面二连杆触碰任务中速度依赖的卷曲力场适应和后效应。结果为机器人运动控制中的快速重校准提供了生物学合理的局部更新机制。",
+      "llm_tldr": "该研究在冻结的连续时间网络核心上，仅通过线性读出的在线适应，模拟小脑式误差驱动学习，成功再现了平面二连杆触碰任务中速度依赖的卷曲力场适应和后效应。结果为机器人运动控制中的快速重校准提供了生物学合理的局部更新机制。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.15927v1",
+      "source": "arxiv",
+      "title": "An Exploratory Study of Blood Glucose Estimation from Photoplethysmography Signals using Machine Learning",
+      "abstract": "Diabetes and extreme blood sugar levels are some of the major health problems faced by humans today across the world. While Continuous Glucose Monitoring (CGM) has emerged as an effective technology for management of diabetes as well as for monitoring blood sugar levels, this technology has traditionally been invasive (that is, requiring the piercing of the skin) and carries the risk of irritation, induration, etc. This highlights the need for accurate and non-invasive CGM methods that can be deployed at scale. With the emergence of various sensing technologies and their integration in wearables like the smart-watch, we now have the capability to continuously monitor body signals like the Photoplethysmogram (PPG) in a non-invasive manner. Having the ability to continuously monitor blood glucose through CGMs and continuously monitor PPG signals through a smart-watch offers an opportunity to get dense data on these two, opening the possibility of building machine learning and deep learning based models to estimate blood glucose level from PPG signals. In this work, we first present a paired dataset comprising continuous PPG signals from a smartwatch along with glucose values recorded using a CGM device. We also present the results of some preliminary experimental explorations performed on our dataset. These preliminary results suggest that some predictive signals may exist, though more exploration is needed with more data from a larger number of individuals. The dataset can be accessed at https://zenodo.org/records/20577959",
+      "authors": [
+        "Ruhani Bhatia",
+        "Vijval Ekbote"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-14T17:05:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.15927v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses machine learning on photoplethysmography (PPG) signals from wearables for blood glucose estimation",
+      "llm_evidence_cn": "使用机器学习对可穿戴设备光电容积描记信号进行血糖估计",
+      "llm_evidence": "使用机器学习对可穿戴设备光电容积描记信号进行血糖估计",
+      "canonical_evidence": "使用机器学习对可穿戴设备光电容积描记信号进行血糖估计",
+      "llm_tldr_en": "Explores non-invasive blood glucose estimation from PPG signals using machine learning, a method transferable to athlete physiological monitoring via smartwatches and wearables.",
+      "llm_tldr_cn": "针对传统连续血糖监测的侵入性问题，该研究探索利用机器学习分析智能手表等可穿戴设备的光电容积描记（PPG）信号，实现无创血糖估计。所提出的方法可迁移至运动员生理监测，为运动科学中的负荷管理提供新思路。",
+      "llm_tldr": "针对传统连续血糖监测的侵入性问题，该研究探索利用机器学习分析智能手表等可穿戴设备的光电容积描记（PPG）信号，实现无创血糖估计。所提出的方法可迁移至运动员生理监测，为运动科学中的负荷管理提供新思路。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "wearable sensor data analysis for athlete monitoring",
+      "matched_requirement_id": "req-26",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-12-731936-v1",
+      "source": "biorxiv",
+      "title": "Integrative Transfer Network: Deep Transfer Learning Across Populations and Prediction Targets",
+      "abstract": "Large-scale clinical and biomedical datasets increasingly contain both diverse subgroup attributes (e.g., demographic or clinical subgroups) and multiple prediction targets. Although various machine learning approaches can address subgroup differences or multi-target prediction, they often consider these aspects independently rather than jointly. To more effectively capture the shared and subgroup-specific information in such complex datasets, we propose the Integrative Transfer Network (ITN), a deep neural network designed to leverage data across subgroups and multiple related outcomes simultaneously. In extensive experiments, including time-to-event and classification tasks where demographic subgroups and multiple disease end-points are prevalent, ITN demonstrates consistent improvements in subgroup-specific prediction by borrowing strength from other subgroups and outcomes. We envision ITN as a unified frame-work for learning from heterogeneous datasets where subgroup-specific insights are critical.",
+      "authors": [
+        "Gao, Y.",
+        "Cui, Y."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-06-16T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.12.731936v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Deep transfer learning method for leveraging data across subgroups and multiple outcomes, applicable to sports analytics",
+      "llm_evidence_cn": "跨群体和多预测目标的深度迁移学习方法，可应用于体育分析",
+      "llm_evidence": "跨群体和多预测目标的深度迁移学习方法，可应用于体育分析",
+      "canonical_evidence": "跨群体和多预测目标的深度迁移学习方法，可应用于体育分析",
+      "llm_tldr_en": "Proposes Integrative Transfer Network, a deep neural network that jointly models subgroup differences and multiple prediction targets, with experiments on clinical tasks, offering a transfer learning framework usable for sports analytics across diverse athlete populations.",
+      "llm_tldr_cn": "针对临床数据中多亚组与多预测目标难以联合建模的问题，本文提出集成迁移网络（ITN），一种同时利用亚组差异与多相关结局的深度神经网络。在生存分析与分类任务上的实验表明，ITN能有效捕获共享与亚组特定信息。该方法可迁移至体育分析领域，例如跨运动员群体或多项表现指标的预测。",
+      "llm_tldr": "针对临床数据中多亚组与多预测目标难以联合建模的问题，本文提出集成迁移网络（ITN），一种同时利用亚组差异与多相关结局的深度神经网络。在生存分析与分类任务上的实验表明，ITN能有效捕获共享与亚组特定信息。该方法可迁移至体育分析领域，例如跨运动员群体或多项表现指标的预测。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "transfer learning applied to sports analytics",
+      "matched_requirement_id": "req-70",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-17-732831-v1",
+      "source": "biorxiv",
+      "title": "Buffered sweat microfluidics with AI-enabled translation for clinically actionable blood urea estimation and renal risk stratification",
+      "abstract": "Kidney-function assessment relies on blood urea as a clinically informative metabolic marker; however, its dependence on venipuncture and centralised laboratory testing limits high-frequency monitoring and delays timely clinical intervention. Here, we report an integrated platform combining a wearable buffered microfluidic patch with a physiology-informed, data-driven calibration framework for real-time, non-invasive estimation of blood urea from microlitre-scale sweat volumes (4.79 L). By precisely regulating the release kinetics of internal buffer salts, the device stabilises the local reaction microenvironment, mitigating variability in sweat pH and flow to ensure reproducible measurement. The resulting signals are processed through an artificial intelligence (AI)-enabled analysis pipeline that integrates sweat urea with patient-specific physiological information to generate clinically interpretable outputs. In multicentre studies, sweat urea shows a strong association with blood urea across diverse cohorts, but with nonlinear and time-lagged relationships that limit direct use. The AI-enabled calibration model compensates for these effects, enabling high-fidelity estimation of blood urea (r = 0.945 versus gold-standard measurements) at clinically relevant concordance levels. The platform further identifies kidney injury with 89.1% accuracy and stratifies disease severity with 83.2% accuracy. Notably, these results demonstrate that the integration of physicochemical stabilisation and AI-enabled data-driven translation establishes sweat as a clinically actionable surrogate for renal monitoring, supporting population-level estimation and highlighting the potential for personalised longitudinal assessment, and enabling a scalable, non-invasive strategy for high-frequency kidney disease management.",
+      "authors": [
+        "Zhang, J.",
+        "Shen, Z.",
+        "Xu, M.",
+        "Ge, Y.",
+        "Ren, X.",
+        "Liu, G.",
+        "Zhang, X.",
+        "Fu, S.",
+        "Yang, C.",
+        "Long, M.",
+        "Li, S.",
+        "Mo, G. P.",
+        "Gong, Y.",
+        "Li, N.",
+        "Ma, P.",
+        "Peng, Z.",
+        "Zhao, Y."
+      ],
+      "primary_category": "biophysics",
+      "categories": [
+        "biophysics"
+      ],
+      "published": "2026-06-18T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.17.732831v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "wearable microfluidic patch for non-invasive blood urea monitoring with AI calibration",
+      "llm_evidence_cn": "可穿戴微流控贴片用于无创血尿素监测，并采用AI校准",
+      "llm_evidence": "可穿戴微流控贴片用于无创血尿素监测，并采用AI校准",
+      "canonical_evidence": "可穿戴微流控贴片用于无创血尿素监测，并采用AI校准",
+      "llm_tldr_en": "This paper presents a wearable sweat sensor with a buffered microfluidic patch and AI-driven calibration to estimate blood urea non-invasively, enabling frequent kidney function monitoring and risk stratification.",
+      "llm_tldr_cn": "该论文提出了一种可穿戴汗液传感器，采用缓冲微流控贴片和AI驱动的校准方法，无创估算血尿素，实现肾脏功能的高频监测和风险分层。该技术为运动员代谢监测提供了潜在工具。",
+      "llm_tldr": "该论文提出了一种可穿戴汗液传感器，采用缓冲微流控贴片和AI驱动的校准方法，无创估算血尿素，实现肾脏功能的高频监测和风险分层。该技术为运动员代谢监测提供了潜在工具。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-18-733155-v1",
+      "source": "biorxiv",
+      "title": "A shared functional architecture for error-based and reinforcement-based motor learning in the human brain",
+      "abstract": "The motor system can flexibly learn from fundamentally different teaching signals, from directional errors to rewards. While computational and neurobiological models have long assigned these to distinct error-based learning (EL) and reinforcement-based learning (RL) processes, whether this separation holds at the level of whole-brain network architecture has not been directly tested. Here, we characterized whole-brain functional connectivity manifolds in the same participants as they performed separate EL and RL motor tasks -- differing in both feedback type and motor structure -- during two fMRI sessions. By jointly embedding covariance patterns from both tasks into a common low-dimensional neural space, we isolated task-general from task-specific learning-related network reconfigurations. We show that both forms of motor learning induce converging changes in the manifold structure of higher-order transmodal cortex, with comparatively limited task-specific modulation. Notably, this convergence extended to the cerebellum and basal ganglia, the canonical substrates of error-based and reward-based learning, which reconfigured comparably across both tasks. Against this shared backdrop, we found that the posterior medial cortex exhibited a unique functional geometry, selectively redistributing its connectivity across distinct brain circuits depending on feedback type and learning stage. We further demonstrate that individual differences in domain-general motor learning ability are associated with stage-dependent reconfigurations within limbic, default-mode, and attentional systems. These findings indicate that flexible motor adaptation, irrespective of the nature of the learning signal, is supported less by changes within task-specific sensorimotor circuits than by the dynamic reorganization of higher-order brain networks that coordinate them.",
+      "authors": [
+        "Rowchan, K.",
+        "Areshenkoff, C. N.",
+        "Rezaei, A.",
+        "Ansari Esfeh, M.",
+        "Gale, D. J.",
+        "Flanagan, R.",
+        "Wammes, J. D.",
+        "Gallivan, J. P."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-19T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.18.733155v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Investigates shared neural architecture for error-based and reinforcement-based motor learning in humans",
+      "llm_evidence_cn": "研究人类基于误差和基于强化的运动学习共享神经架构",
+      "llm_evidence": "研究人类基于误差和基于强化的运动学习共享神经架构",
+      "canonical_evidence": "研究人类基于误差和基于强化的运动学习共享神经架构",
+      "llm_tldr_en": "This fMRI study finds overlapping whole-brain connectivity patterns during error-driven and reward-based motor learning, suggesting a unified neural architecture for motor adaptation.",
+      "llm_tldr_cn": "本研究利用fMRI在人类被试执行基于误差和基于强化的运动任务时，表征全脑功能连接流形，发现两者共享低维神经空间，表明运动系统可能采用统一架构从不同教学信号中学习。这一发现为运动学习与技能获取的计算模型提供了新约束，有助于理解运动控制的神经基础。",
+      "llm_tldr": "本研究利用fMRI在人类被试执行基于误差和基于强化的运动任务时，表征全脑功能连接流形，发现两者共享低维神经空间，表明运动系统可能采用统一架构从不同教学信号中学习。这一发现为运动学习与技能获取的计算模型提供了新约束，有助于理解运动控制的神经基础。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

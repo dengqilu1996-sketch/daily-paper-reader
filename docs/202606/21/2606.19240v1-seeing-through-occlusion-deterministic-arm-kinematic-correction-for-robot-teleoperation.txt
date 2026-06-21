@@ -1,0 +1,354 @@
+Title: Seeing Through Occlusion: Deterministic Arm Kinematic Correction for Robot Teleoperation
+
+URL Source: https://arxiv.org/pdf/2606.19240v1
+
+Published Time: Thu, 18 Jun 2026 01:20:32 GMT
+
+Number of Pages: 10
+
+Markdown Content:
+# Seeing Through Occlusion: Deterministic Arm Kinematic Correction for Robot Teleoperation 
+
+Thomas M. Kwok 1, Nicholas Koenig 1, Yue Hu 1
+
+Abstract — Markerless, single-RGB-D-camera motion capture provides a low-cost and non-invasive alternative to conventional marker-based systems for robot teleoperation; however, depth estimation often degrades in the presence of self-occlusion, particularly during upper-limb motion. This paper presents an Arm Kinematic Correction (AKC) method that improves depth estimation by enforcing geometric constraints based on constant arm lengths. The proposed approach reconstructs occluded joint depths by leveraging wrist positions and pre-defined arm lengths via a deterministic formulation based on the Pythagorean theorem, thereby avoiding the need for com-plex probabilistic modeling or parameter tuning. Experimental validation against a Vicon reference system demonstrates reli-able performance for both static and dynamic joint motions, evaluated using root-mean-square error (RMSE) and Pear-son correlation. Furthermore, motion-mapping teleoperation is successfully demonstrated in both simulated and physical robot environments. The results show that AKC enhances robustness and preserves anatomical consistency under long-duration, severe self-occlusion, even when paired with less reliable temporal filters, highlighting its practicality for real-time applications such as robot teleoperation and human–robot interaction. 
+
+I. INTRODUCTION The global population is aging rapidly [1]. According to the World Health Organization [2], by 2050, individuals aged 60 and above will account for 22% of the global population. This demographic shift is expected to place increasing pres-sure on caregiving systems, particularly in supporting older adults with daily activities such as food preparation. At the same time, the limited availability of professional caregivers, combined with the geographically dispersed population in countries such as the United States and Canada, further increases the physical demands on caregivers. Remote robot-assisted caregiving has emerged as apromising approach to alleviating these challenges, enabling caregivers to support older adults via teleoperated robots [3], [4], [5]. Many assistive tasks rely on arm manipulation, such as feeding and housekeeping [6], making reliable arm motion capture and motion-mapping teleoperation essential for remote care. To capture arm motion, various teleoperation interfaces have been explored, including wearable inertial measurement units (IMUs) [7] and virtual reality (VR)-based systems [8].            
+
+> 1Department of Mechanical and Mechatronics Engineering, University of Waterloo, Canada nekoenig@uwaterloo.ca, thomasm.kwok@uwaterloo.ca, yue.hu@uwaterloo.ca
+> This work was supported in part by the National Research Council (NRC) under Grant NRC-AiP-302-1; and the support of Waterloo RoboHub for the equipment used. We acknowledge the support of the Natural Sciences and Engineering Research Council of Canada (NSERC), funding reference number RGPIN-2022-03857.
+
+However, IMU-based approaches are susceptible to drift over time [9], while VR systems may induce motion sickness [10] and require continuous use of head-mounted devices. In addition, these systems often rely on wired or body-mounted hardware, which may restrict user mobility and increase setup complexity. In contrast, vision-based motion capture provides a minimally invasive or non-invasive alternative that does not require wearable sensors, making it well-suited for practical teleoperation scenarios. Motion capture (mocap) systems based on markers [11], [12] or multi-camera setups [13], [14], [11], [12] typically require complex configurations, including large capture vol-umes, precise marker placement, and manual calibration of both camera and participant parameters. These requirements can limit their feasibility in clinical environments, partic-ularly in emergency situations [15] involving older adults, where caregivers may need to remotely operate robotic systems within a short time frame without lengthy calibra-tion procedures. In addition, such systems are difficult to accommodate in typical clinic offices, where available space is limited. To address these limitations, a single RGB-D cam-era–based mocap offers a more practical alternative due to its low cost, non-invasiveness, and relatively simple setup. It enables human pose estimation in confined environments and has been increasingly adopted to support motion-mapping teleoperation by estimating the operator’s physical state [16], thereby supporting teleoperation [3]. However, single RGB-D mocap systems for teleoperation still face two persistent challenges that remain difficult to address in practice. First, depth estimation becomes unreliable under self-occlusion [17]. As shown in Fig. 1 (e-g), distal joints (e.g., hand and wrist) occlude proximal joints (e.g., elbow and shoulder), leading to incorrect depth assignments. Such errors introduce instability in teleoperation, causing abrupt and unintended motion of the robot. Second, estimated poses often exhibit inconsistent arm lengths, violating anatomical constraints and degrading mo-tion fidelity. While filtering methods such as the Kalman Filter (KF) [18], [13], [19] improve temporal smoothness, they process landmarks independently and do not enforce kinematic constraints between joints. This results in incon-sistent joint configurations, leading to errors in control frame construction (Fig. 2) and reduced teleoperation reliability. Recent advancements in depth sensor-based motion cap-ture (D-Mocap) aimed to improve robustness under occlusion and noise [17]. Probabilistic approaches, such as particle filters [20], incorporate motion models to smooth noisy        
+
+> arXiv:2606.19240v1 [cs.RO] 17 Jun 2026 Fig. 1. (a) Experiment Setup.(b) T-pose, (c) L-pose for calibration. During Motion I, the participant performed (d) T-pose, (e) horizontal adduction, and back to T-pose. For Motion II, he performed (c) arm extension, (d) elbow flexion, and back to arm extension. In (d)-(g), (top) 2D Mediapipe output, and (bottom) 3D human skeleton corrected with the AKC. The blue skeletons represent the AKC output, while the red are raw camera input.
+> Fig. 2. Effect of inconsistent arm length on control frame construction. The figure compares frames generated under constant arm length and inconsistent length, showing distortion in the resulting wrist frame (purple).
+> (x, y )denotes the shoulder base frame, (x′, y ′)the reference wrist frame, and (x′′ , y ′′ )the distorted frame.
+
+observations, while variants such as the Tobit Kalman Filter [21] explicitly address occlusion. The Extended Kalman Filter (EKF) [22], [23], [9], optimization-based methods [24], [25], and evolutionary algorithms [26] further enforce kinematic constraints during pose reconstruction. In addition, learning-based approaches [27] improve data fidelity by suppressing implausible motions, and hybrid frameworks that fuse kinematic models with deep learning and filtering techniques [28] have demonstrated improved robustness. Despite these advances, many existing methods rely on complex model design, parameter tuning, or iterative opti-mization, which can limit their efficiency and robustness. In particular, severe and prolonged self-occlusion remains challenging, often resulting in unstable depth estimation and inconsistencies in anatomical structure. In this paper, we present a human pose estimation method using a single RGB-D camera. Our approach employs an arm kinematic correction (AKC) algorithm as an additional layer to correct unreliable poses resulting from self-occlusion and anatomical inconsistencies after the standard pose estimation method. Utilizing the Pythagorean theorem and geometric constraints of human anatomy, it corrects unreliable depth estimates of occluded joints and ensures anatomically coher-ent poses under self-occlusion. The main contributions of this paper are:  
+
+> •
+
+A post-processing correction framework for a single RGB-D camera mocap system that improves depth es-timation of occluded joints using geometric constraints;  
+
+> •
+
+A deterministic geometric approach that enforces con-stant arm lengths without requiring complex probabilis-tic modeling or parameter tuning;  
+
+> •
+
+Experimental validation demonstrating improved ro-bustness and anatomical consistency for motion-mapping teleoperation. The rest of the paper is organized as follows. Section II describes the proposed motion-mapping teleoperation frame-work using AKC. Section III presents the experimental validation of AKC and its teleoperation framework. Finally, Section IV and Section V include discussion and conclusion. II. M OTION CAPTURE WITH ARM KINEMATICS 
+
+CORRECTION (AKC) Human pose estimation using a single RGB-D camera is commonly achieved with open-source pose landmark detection methods such as OpenPose [29] and MediaPipe Pose [30]. In this work, we adopt MediaPipe’s BlazePose model [31] for 2D landmark detection due to its ease of integration and real-time performance. Depth information is obtained from stereo-based RGB-D sensors such as the Intel RealSense D435 [32], enabling a low-cost markerless motion capture system. However, such methods do not account for the challenges of teleoperation in single-camera scenarios. As discussed in Section ?? , depth estimation becomes unreliable under self-occlusion, where distal joints occlude proximal joints, leading to incorrect depth assignments. The resulting pose es-timates may violate anatomical constraints, such as constant arm lengths, producing kinematically inconsistent motions. Further, MediaPipe Pose may fail to detect landmarks due to poor video quality or joints moving outside the camera’s field of view [3], resulting in missing x, y, or z coordinates. Standard filters improve temporal smoothness by reducing measurement noise and predicting the missing coordinates. Yet, these methods treat each joint independently and do not enforce structural constraints on arm geometry, resulting in inconsistent arm lengths and degraded motion fidelity. To address these limitations, we introduce the AKC al-gorithm, a lightweight post-processing module applied to filtered pose landmarks. The proposed method enforces con-stant upper- and lower-arm lengths by leveraging geometric relationships derived from the Pythagorean theorem. By cor-recting unreliable depth estimates for occluded joints while maintaining anatomical consistency, AKC produces stable, physically plausible pose estimates suitable for teleoperation. 
+
+A. Framework Overview 
+
+As shown in Fig. 3 and the attached video (00:06–00:24), the proposed framework comprises a multi-stage pipeline and teleoperation using a single RGB-D camera. In Stage 1, the RGB-D camera captures video with syn-chronized RGB and depth streams. The RGB input is then processed in Stage 2 (Sec. II-B) by a pose landmark detection Fig. 3. Motion-mapping teleoperation framework with the proposed Arm Kinematic Correction (AKC) algorithm. The pipeline consists of five stages: input acquisition (S1), pose landmark detection (S2), filtering (S3), AKC (S4), and motion mapping (S5). 
+
+algorithm to extract 2D landmarks, which are augmented with depth values to reconstruct the initial 3D pose. The resulting pose data are refined in Stage 3 (Sec. II-C) through occlusion handling and temporal filtering: an occlusion filter removes occluded landmarks, while a KF smooths the trajectories and estimates the removed data. Building on this, Stage 4 (Sec. II-D) introduces the pro-posed AKC algorithm as the core component, which enforces anatomically consistent arm motion to mitigate errors arising from self-occlusion and arm-length inconsistencies. Finally, the corrected 3D pose is used in Stage 5 (Sec. II-F) to construct control frames for motion-mapping teleoperation. 
+
+B. Stage 2: Pose Landmark Construction 
+
+This stage constructs initial 3D human pose landmarks from RGB-D input and refines them through occlusion handling and temporal filtering. Pose landmarks, including hand, body, and face landmarks, are first detected from RGB input using the MediaPipe Holistic Landmarker [33]. This provides reliable 2D coordinates ( x, y) for the selected pose landmarks, including the shoulder, elbow, wrist, hip, index finger metacarpophalangeal (MCP), and pinky MCP. Depth values ( z) are then extracted from the corresponding depth image and combined with the 2D coordinates via inverse projection under the pinhole camera model to reconstruct initial 3D coordinates. While the 2D landmark positions are generally robust under self-occlusion, depth estimates are often unreliable for occluded joints, particularly the elbow and shoulder. In addition, some landmarks may be missing due to low visibility or detection failure, resulting in incomplete pose information. 
+
+C. Stage 3: Temporal Landmark Filtering 
+
+To improve data quality, an occlusion filter is first ap-plied to discard unreliable measurements. Landmarks with visibility scores below a predefined threshold (e.g., 0.7) are rejected, as low values typically indicate occlusion, motion blur, or poor lighting [30]. However, in certain self-occlusion scenarios, the visibil-ity score predicted by BlazePose’s Convolutional Neural Network (CNN) model [31] may fail to detect corrupted measurements. Thus, a spatial proximity check is introduced: the depth of a proximal joint (e.g., elbow or shoulder) is discarded when its projected 2D position lies within a small neighborhood (e.g., 5% of the image width) of a distal joint (e.g., wrist), indicating likely occlusion. After filtering, all landmarks—including those that are missing or discarded—are processed using a KF with a constant-velocity model to smooth trajectories and estimate missing values. The state vector is defined as: 
+
+xk = pk ˙pk
+
+T , p k = xk yk zk
+
+T (1) where xk represents the position and velocity at time step 
+
+k. The system and measurement model are: 
+
+xk = Ax k−1 + wk, zk = Hx k + vk (2) where zk = pmeas  
+
+> k
+
+is the observed position. The measure-ment noise covariance is defined as: 
+
+R = diag( σ2
+
+> x
+
+, σ 2 
+
+> y
+
+, σ 2 
+
+> z
+
+), σz ≫ σx, σ y (3) to reflect higher uncertainty in depth measurements. When depth observations are unavailable, a partial update is per-formed using only the x and y components. While the KF provides effective temporal smoothing, more advanced filter-ing techniques can be incorporated to improve the accuracy. To illustrate this flexibility, we implement an EKF with a constrained constant-velocity model, and evaluate its perfor-mance in Section III-C. For two connected joints pi and pj ,the constraint is defined as: 
+
+h(x) = ∥pi − pj ∥ (4) which is enforced to match a predefined arm length l. The linearized Jacobian is given by: 
+
+Hc =
+
+h (xi−xj )      
+
+> ∥pi−pj∥
+> (yi−yj)
+> ∥pi−pj∥
+> (zi−zj)
+> ∥pi−pj∥
+
+0 0 0
+
+i
+
+(5) The EKF update is: 
+
+x ← x + Kc(l − h(x)) (6) where Kc is the Kalman gain using constraint covariance. This acts as a soft constraint to maintain constant arm lengths. 
+
+D. Stage 4: Arm Kinematic Correction (AKC) 
+
+The primary objective of the AKC is to replace the filtered pose landmarks with geometrically corrected poses that sat-isfy anatomical constraints. The KF-filtered landmarks serve as reference estimates, guiding the selection of the most plausible corrected pose. AKC is based on the assumption that upper- and lower-arm lengths remain constant during motion and that the wrist is less prone to occlusion due to its proximity to the camera. By leveraging this geometric prior, the method reconstructs physically plausible joint configurations from incomplete or corrupted depth measurements. The correction process consists of (i) geometric reconstruction using the Pythagorean theorem and (ii) candidate selection based on spatial, temporal, and anatomical criteria. 1) Depth Estimation using the Pythagorean Theorem: 
+
+Given reliable 2D coordinates ( x, y) from pose detection, the depth ( z) of occluded joints can be reconstructed using geometric constraints. Let lf and lu denote the forearm and upper arm lengths, respectively. The depth of the elbow ( pe,z )and shoulder ( ps,z ) relative to the wrist position ( pw) is estimated as: 
+
+pe,z = pw,z ±
+
+q
+
+l2 
+
+> f
+
+− (pe,x − pw,x )2 − (pe,y − pw,y )2 (7) 
+
+ps,z = pe,z ±
+
+q
+
+l2 
+
+> u
+
+− (ps,x − pe,x )2 − (ps,y − pe,y )2 (8) This formulation yields multiple feasible solutions due to the ± terms. Specifically, two elbow candidates are gener-ated, and for each elbow candidate, two corresponding shoul-der candidates are obtained, resulting in four possible arm configurations. These candidates represent different valid 3D interpretations consistent with the observed 2D geometry and predefined arm lengths. However, measurement noise or preceding filtering may occasionally produce negative radicands, leading to invalid (imaginary) solutions. To address this, a geometric validity adjustment is introduced. When such cases occur, the joint position is projected onto the feasible surface by scaling the Euclidean distance between landmarks to match the predefined arm length: 
+
+pe = pw + pe − pw
+
+∥pe − pw∥ lf , p s = pe + ps − pe
+
+∥ps − pe∥ lu (9) This adjustment ensures physically valid joint configura-tions while minimally altering the original pose structure. Since it modifies the measured landmark positions, it is applied only as a fallback mechanism when necessary. 
+
+2) Candidate Selection: To identify the most plausible joint configuration, a cost function c is defined to evaluate each candidate pair. For each candidate i ∈ { 1, . . . , 4}, the total cost is computed as: 
+
+ci =
+
+> 5
+
+X
+
+> j=1
+
+wj mj (10) where wj are weighting coefficients and mj are evaluation metrics. The candidate with the lowest cost is selected as the final estimate. The evaluation metrics are defined as follows: 1) Elbow spatial consistency: 
+
+m1 = ∥pe − ˆpe∥ (11) Penalizes deviation from the KF-filtered elbow. 2) Shoulder spatial consistency: 
+
+m2 = ∥ps − ˆps∥ (12) Penalizes deviation from the KF-filtered shoulder. 3) Temporal consistency: 
+
+m3 = ∥pe − pprev e ∥ + ∥ps − pprev s ∥ (13) Penalizes abrupt changes from the previous joint posi-tions ( pprev ) to reduce temporal jitter. 4) Shoulder width regularization: 
+
+m4 = |ls − ∥ ps,l − ps,r ∥| (14) Encourages anatomically consistent shoulder width. 5) Anatomical plausibility: 
+
+m5 =
+
+(
+
+k, if θ / ∈ [40 ◦, 180 ◦]0, otherwise (15) Penalizes joint configurations outside physiological limits (e.g., θ < 40 ◦ and θ > 180 ◦). This selection strategy balances measurement fidelity, tem-poral smoothness, and anatomical feasibility, enabling robust reconstruction under self-occlusion. Furthermore, selecting optimal candidates becomes chal-lenging when the solution lies near the zero-depth plane. In particular, when the preset arm length exceeds the observed arm length due to measurement noise and landmark detection errors, the radicands in Eqn. 7 and II-D.1 may remain positive even when the arm is fully extended near the zero-depth plane. In such cases, the elbow and shoulder depth become unstable between the ± solutions. To improve robustness, the preset arm length is reduced during candidate search using a shrink factor ( s), such that the adjusted length is l′ 
+
+> j
+
+= s l j , where j ∈ { f, u }. The effect of this strategy and the associated evaluation metrics will be further analyzed in Section III-E. 
+
+E. Comparison: Constrained Optimization (COIK) 
+
+To evaluate the effectiveness of the proposed Arm Kinematic Correction (AKC) algorithm, we implement a constrained optimization-based inverse kinematics (COIK) method as a baseline. This approach reconstructs 3D upper-limb joint positions by enforcing anatomical constraints through optimization. The method estimates joint positions by minimizing the deviation from filtered landmark measurements while main-taining temporal smoothness. The optimization problem is formulated as: 
+
+min  
+
+> p
+
+f (p) = ∥p − ˆp∥2 + λ∥p − p prev ∥2
+
+s.t. ∥pe,j − pw,j ∥2 = l2 
+
+> f,j
+
+,
+
+∥ps,j − pe,j ∥2 = l2 
+
+> u,j
+
+,θmin ≤ θ(ps,j , p e,j , p w,j ) ≤ θmax ,
+
+∥ps,l − ps,r ∥2 = l2 
+
+> s
+
+,
+
+(16) where j ∈ {l, r }. p = [ps,l , p e,l , p w,l , p s,r , p e,r , p w,r ]
+
+contains all joint positions, including shoulder ( s), elbow ( e), wrist ( w) for left ( l) and right arms ( r). ˆp denotes the KF-filtered reference, and pprev corresponds to the joint positions from the previous frame. The constraints enforce constant forearm length ( lf ), upper arm length ( lu), shoulder width (ls), and anatomically plausible elbow joint angles ( θ). This formulation explicitly enforces kinematic consistency through equality constraints and temporal regularization. However, solving the optimization problem requires iterative computation and careful tuning of the weight ( λ). The COIK method serves as a representative baseline to compare with the proposed AKC algorithm, which instead applies a deterministic geometric correction without iterative optimization. A quantitative comparison between AKC and COIK is presented in Sections III-B, III-D, and III-G. F. Stage 5: Teleoperation Mapping 
+
+As illustrated in Fig. 4, the AKC-corrected pose is used to construct control frames for motion-mapping teleoperation. A base frame {0} is defined at the torso, serving as the global reference for wrist frames {1, 2}. The wrist frame ( fw) and torso frame ( ft) are defined as: 
+
+
+
+fw,y = pe − pw
+
+fw,z = fw,y × (pi − pp)
+
+fw,x = fw,y × fw,z 
+
+,
+
+
+
+ft,y = ps,l − ps,r 
+
+ft,x = ( ph,m − ps,m ) × ft,y 
+
+ft,z = ft,x × ft,y 
+
+(17) where pj,m = ( pj,l + pj,r )/2, j ∈ { h, s }. pi, pp, and ph
+
+denote positions of index MCP, pinky MCP, and hip. The wrist frames {1, 2} are then transformed to {1′, 2′}
+
+for mapping to the robot end-effector frames ( {1′′ , 2′′ })relative to its torso frame {0′′ }, as shown in Fig. 4(c). The transformation is defined as a rotation of −90 ◦ along the 
+
+y-axis of the wrist frame. For robot motion control, MoveIt with BioIK [34] is used as the inverse kinematics solver. The demonstrations of robot teleoperation with Gazebo-simulated and physical robots using the AKC framework are available in the media attachment.               
+
+> Fig. 4. Control frame definitions for teleoperation: (a) operator, (b) robot, and (c) wrist mapping. Frame {0}denotes the torso, and frames {1}and
+> {2}denote the wrists. Frames {1′}and {2′}represent transformed wrist frames for mapping, while {0′′ },{1′′ }, and {2′′ }denote the corresponding robot frames.
+
+III. E XPERIMENTAL VALIDATION 
+
+In our experiment, ground-truth measurements were ac-quired using a twelve-camera optical motion capture system (Vicon, Oxford, UK). A participant was instrumented with reflective markers on the upper body following the plug-in gait model [35], as shown in Fig.1 (a). Two representative motions involving significant self-occlusion were designed to evaluate the AKC’s robustness. Together, these motions enable evaluation under both short-and long-duration occlusion scenarios. Each motion was performed for 30 cycles with a period of 6 s per cycle. 1) Motion I (Forward arm movement): The participant performed a T-pose (Fig. 1(d)), followed by horizontal arm adduction (Fig. 1(e)), and a return to the T-pose. When the arm points toward the RGB-D camera, severe self-occlusion at the wrist, elbow, and shoulder degrades depth measurements. 2) Motion II (Elbow flexion–extension): The participant performed full forward extension (Fig. 1(f)), followed by elbow flexion to approximately 90 ◦ (Fig. 1(g)), and returning to full extension. This motion induces prolonged self-occlusion of the shoulder, enabling evaluation under persistent occlusion. For the AKC configuration, the arm length was initialized in a T-pose, and the average over 100 frames was used to define the preset arm lengths. The first motion cycle was used to determine suitable weights for the evaluation metrics described in Section II-D.2. To avoid bias, the remaining cycles were used exclusively for performance evaluation in Sections III-B, III-C, and III-D. 
+
+A. System Hardware for Experiment 
+
+Fig. 1 illustrates the experimental setup. The proposed motion capture framework was implemented using an Intel RealSense D435 RGB-D camera operating at a resolution of 480p and a sampling rate of 10 Hz. The system was deployed on a workstation running Ubuntu 22.04, equipped with a 13th-generation Intel Core i9-13900H processor and 32 GB of RAM. The motion-mapping teleoperation framework was implemented using ROS2 Humble. Experimental validation was conducted using a TIAGo Pro mobile manipulator from PAL Robotics [36]. 
+
+B. Performance Evaluation under Occlusion 
+
+To quantify accuracy, the 3D joint trajectories were evalu-ated using the root-mean-square error (RMSE) for static mo-tions, and both RMSE and the Pearson correlation coefficient for dynamic motions. Animations of the different mocap results are provided in the attached video (00:25–00:42). Table I presents the average RMSE of an occluded static shoulder under different algorithms. While KF improves depth estimation ( z) over raw RGB-D measurements in Motion I with short-duration occlusion (Fig. 5(a)), it does not consistently outperform raw measurements in Motion II under long-duration occlusion. As shown in Fig. 5(b), the depth estimate exhibits a noticeable linear drift due to the constant-velocity assumption in the KF. Compared to KF, the proposed AKC achieves comparable accuracy in Motion I (within 1.36 cm) and significantly improved performance in Motion II (over 117 cm reduction in RMSE). Compared with COIK, AKC provides superior depth estimation while maintaining comparable accuracy in the x and y directions.                                        
+
+> TABLE I AVG . RMSE ( CM )OF AN OCCLUDED STATIC LEFT SHOULDER
+> COMPARED WITH VARIOUS ALGORITHMS .
+> Motion I Motion II
+> Raw KF COIK AKC Raw KF COIK AKC x3.71 3.51 2.07 2.06 2.30 2.27 1.02 2.42 y1.74 1.65 2.07 1.89 1.41 1.38 1.68 3.43 z34.86 1.91 10.56 3.27 28.54 122.91 5.11 5.23
+
+Table II summarizes the results for the dynamic left elbow in Motion I. Although KF reduces RMSE relative to raw measurements, it does not improve depth correlation. In contrast, AKC achieves similar RMSE to KF but consistently higher correlation, indicating improved temporal consistency. Compared with COIK, AKC yields both lower RMSE and higher correlation, demonstrating more stable and accurate reconstruction under dynamic occlusion. As illustrated in Fig. 5(c), all methods are affected by noisy raw measure-ments; however, AKC produces more stable and reliable trajectories than the other approaches.                                    
+
+> TABLE II COMPARISON OF OCCLUDED DYNAMIC LEFT ELBOW IN MOTION I
+> WITH VARIOUS ALGORITHMS
+> Raw KF COIK AKC Avg. RMSE, x (cm) 3.06 6.16 16.88 5.33 Avg. RMSE, y (cm) 5.62 5.58 5.96 5.54 Avg. RMSE, z (cm) 11.17 8.69 18.16 8.33 Avg. Corr (x) ∗0.998 0.918 0.118 0.922 Avg. Corr (z) ∗0.888 0.774 -0.113 0.832
+> ∗Pearson correlation coefficient with p < 0.05 .
+> Fig. 5. Depth estimation (z) of occluded joints across three example motion cycles. (a-b) Static left shoulder in Motion I and II, and (c) dynamic left elbow in Motion I.
+
+Regarding computational cost, COIK exhibits higher la-tency and less determinism than AKC. The maximum total computation time across two motions is 491.15 ms for COIK and 288.84 ms for AKC. This latency is also evident in the attached video, where delays in COIK affect the motion smoothness. Consequently, COIK may not be suitable for real-time teleoperation applications. In contrast, the addi-tional computational overhead introduced by the AKC layer is minimal (around 11ms), making it more suitable for real-time implementation.                  
+
+> TABLE III AVERAGED COMPUTATION TIME (MS )OF VARIOUS MOCAP
+> ALGORITHMS .RAW KF COIK AKC Motion I 272.75 5.06 213.34 11.03 Motion II 269.45 5.02 212.47 11.29
+
+C. Effect of Temporal Landmark Filtering on AKC 
+
+As discussed in Section II-C, the AKC method can be integrated with different temporal filtering approaches, such as the KF and EKF. The accuracy of these filters directly affects the AKC performance. The EKF, which incorporates soft kinematic constraints via a constant-velocity model, provides greater accuracy than the KF. As shown in Fig. IV and Fig. V, the EKF signifi-cantly reduces depth errors, achieving a 57 cm reduction in RMSE for the static shoulder in Motion II. It also improves performance for the dynamic elbow in Motion I, reducing RMSE by 9.8 cm.                                                                        
+
+> TABLE IV AVG . RMSE ( CM )OF AN OCCLUDED STATIC RIGHT SHOULDER
+> COMPARED WITH VARIOUS ALGORITHMS .
+> Motion I Motion II
+> KF EKF AKC (KF) AKC (EKF) KF EKF AKC (KF) AKC (EKF) x3.48 3.49 5.56 4.14 5.38 5.47 5.71 6.04 y1.77 2.55 1.95 2.30 1.34 1.19 3.44 1.74 z2.17 2.39 6.72 2.30 65.26 8.19 9.08 8.13 TABLE V COMPARISON OF OCCLUDED DYNAMIC RIGHT ELBOW IN MOTION I
+> WITH VARIOUS ALGORITHMS
+> KF EKF AKC (KF) AKC (EKF) Avg. RMSE, x (cm) 6.25 3.82 6.13 3.80 Avg. RMSE, y (cm) 3.51 2.40 3.52 2.63 Avg. RMSE, z (cm) 13.85 4.07 8.85 3.75 Avg. Corr (x) ∗0.920 0.976 0.918 0.971 Avg. Corr (z) ∗0.772 0.977 0.850 0.978
+> ∗Pearson correlation coefficient with p < 0.05 .
+
+Furthermore, these tables show that AKC, combined with EKF, consistently achieves better motion capture results than when paired with KF, in terms of both RMSE and Pearson correlation. These results indicate that improved temporal filtering enhances the robustness of AKC, particularly in depth estimation under severe occlusion. When comparing EKF alone with EKF combined with AKC, we observe that AKC further improves depth ( z) esti-mation, as measured by both RMSE and Pearson correlation. This indicates that AKC enhances robustness in occlusion. Although slight increases in error are observed in the x and 
+
+y directions, these changes are minimal (less than 0.65 cm at worst) and do not significantly affect overall spatial accuracy. 
+
+D. AKC Arm Length Variation 
+
+To capture realistic human motion, maintaining consistent arm length is essential for anatomical plausibility. Therefore, we compare the AKC with existing approaches. As shown in Table VI, AKC maintains constant arm length throughout the motion. In contrast, the COIK may fail to preserve consistent arm length when the optimization reaches its iteration limit. Raw depth measurements, as well as KF and EKF, do not enforce this constraint and thus exhibit noticeable variations in arm length.                                            
+
+> TABLE VI RANGE OF ARM LENGTH VARIATION DURING MOTION I & II ( CM )Vicon Raw KF EKF COIK I ∗COIK II +AKC #
+> LUA 4.0 242.4 507.4 25.3 1.4 0.0 0.0 LLA 2.0 222.5 34.3 18.6 2.3 0.0 0.0 RUA 3.7 232.9 407.0 58.9 2.6 0.0 0.0 RLA 2.2 194.7 31.2 16.5 3.9 0.0 0.0
+> ∗COIK when iteration limit reached (Mostly Motion I)
+> +COIK when feasible solutions can be obtained
+> #Both AKC with KF and EKF
+
+Notably, even the Vicon system, despite using multiple cameras, shows a 4cm variation in measured arm length due to marker placement errors and soft-tissue motion artifacts. 
+
+E. AKC Metric Weight Sensitivity Analysis 
+
+This section uses the first cycle of Motion I and Motion II to analyze the metric effect on candidate selection and to determine suitable weights. As described in Section II-D.2, five metrics are used to select the optimal configuration from four elbow–shoulder candidate pairs. We focus on three primary metrics that directly influence accuracy: (i) elbow spatial consistency, (ii) shoulder spatial consistency, and (iii) temporal consistency. The remaining two metrics primarily eliminate anatomically infeasible can-didates and therefore can be assigned relatively large weights (i.e., w4 = w5 = 100 .0). The metric weights are found to be motion-dependent, as illustrated in Fig. 6. By minimizing the L2-norm joint error, optimal weights were obtained: 1) Motion I ( Wa): w1 = 0 .0, w2 = 8 .0, w3 = 18 .0,
+
+s = 1 .0;2) Motion II ( Wb): w1 = 0 .0, w2 = 14 .0, w3 = 12 .0,
+
+s = 0 .8;3) Motion I & II ( Wc): w1 = 1 .0, w2 = 19 .0, w3 =20 .0, s = 0 .9.Overall, the results show that the metric weights 
+
+(w1, w 2, w 3) are relatively insensitive within a reasonable range, producing comparable results for a fixed search shrink factor ( s). In contrast, the s has a more significant impact on performance. As shown in Fig. 6(d), suboptimal values of s
+
+can lead to large errors, with RMSE increasing up to 25 cm. To further evaluate robustness, weights calibrated on one motion were applied to the other motion (unseen scenario). The results in Table VII show that larger s (e.g., s = 1 .0
+
+in Wa) are less robust under unseen conditions (Motion II), leading to increased RMSE. In contrast, a moderate value (s = 0.8 in Wb) provides more consistent performance across both seen (Motion II) and unseen motions (Motion I), compared to s = 1.0 in Wa and s = 0.9 in Wc.However, excessively small values of s (i.e., 0.1 - 0.5)degrade performance, as illustrated in Fig. 6(d) and the attached video (00:43–00:58). Based on these observations, we adopt s = 0 .8 as a robust choice.                                                                    
+
+> Fig. 6. Effect of three metrics (i.e., spatial consistency of shoulder and elbow candidates, and temporal consistency) on the averaged L2 norm of 3D joint position error of both arms during (a) Motion I, (b) Motion II, and (c) both Motion I and Motion II. (d) Effect of search shrink factor during Motion II. TABLE VII RMSE ( CM )OF 29 M OTION CYCLES WITH DIFFERENT OPTIMAL
+> WEIGHTS (Wa,Wb,Wc)FOR LEFT ARM .
+> Motion I using WaMotion II using Wb
+> Shoulder Elbow Shoulder Elbow x3.60 ±0.24 6.20 ±0.44 2.42 ±0.85 1.53 ±0.67 y1.25 ±0.81 5.27 ±0.89 3.43 ±1.47 3.01 ±1.29 z9.37 ±11.87 7.72 ±0.74 5.23 ±2.09 4.98 ±2.00
+> Motion I using WbMotion II using Wa
+> Shoulder Elbow Shoulder Elbow x2.06 ±0.34 5.33 ±0.41 1.79 ±0.52 1.45 ±0.61 y1.89 ±0.74 5.54 ±1.30 2.90 ±1.66 2.95 ±1.13 z3.27 ±1.06 8.33 ±0.77 23.05 ±16.21 18.35 ±13.54
+> Motion I using WcMotion II using Wc
+> Shoulder Elbow Shoulder Elbow x2.05 ±0.30 5.24 ±0.50 2.04 ±0.60 1.65 ±0.93 y1.29 ±0.69 4.97 ±0.73 2.80 ±1.51 2.52 ±1.06 z4.17 ±1.50 9.06 ±1.85 8.56 ±9.15 8.55 ±9.50
+
+F. Effect of Arm-Length Calibration Methods 
+
+This section evaluates four calibration approaches for determining the preset arm length and their impact on performance. 1) Manual — Arm length measured with a ruler before the experiment. This approach is simple but prone to measurement inaccuracies. 2) Vicon — Arm length estimated by Plug-in Gait Dy-namic pipeline of the Vicon system. 3) T-pose — Arm length computed from KF-filtered land-mark positions obtained with our mocap framework while the participant held a T-pose for 100 frames (Fig. 1(b)). 4) L-pose — Similar to the T-pose method, but with the participant holding an L-pose (Fig. 1(c)). As shown in Table VIII, the four calibration methods yield different arm length estimates, and Table IX summarizes the corresponding RMSE between reconstructed joint tra-jectories and the Vicon reference. The results indicate that the average RMSE is comparable across different calibration approaches.                                                                  
+
+> TABLE VIII ARM LENGTH FOR 4 A RM -L ENGTH MEASUREMENT METHODS (CM )Manual Vicon T-pose L-pose LUA 132.0 28.8 28.5 28.4 RUA 332.0 28.9 29.5 29.9 LLA 226.0 28.0 27.0 26.4 RLA 426.0 27.0 26.9 27.5 SW 533.0 33.2 36.6 36.7
+> L:Left, R:Right, U A :Upper Arm, LA :Lower Arm,
+> 5Shoulder Width. TABLE IX AVERAGED RMS E UCLIDEAN DISTANCE ERRORS (CM )AND
+> L2-NORMALIZED ERRORS FOR 4 M EASUREMENT METHODS
+> Manual Vicon T-pose L-pose
+> LELB 11.6 10.7 10.7 12.7
+> RELB 9.8 8.5 10.3 9.5
+> LSHO 3.5 4.0 4.0 6.3
+> RSHO 7.8 6.9 8.1 7.5 L2-norm 17.4 15.8 17.4 18.6
+> L:Left, R:Right, ELB :Elbow, SHO :Shoulder.
+
+From a practical perspective, methods relying on external systems (e.g., Vicon) or manual measurements are less suitable for real-world deployment. In contrast, calibration using the same RGB-D system (i.e., T-pose and L-pose) offers a more convenient, self-contained solution for future applications. 
+
+G. Motion Mapping for Robot Teleoperation 
+
+We demonstrate the integration of AKC (with KF) into the robot teleoperation framework. As described in Sec-tion II-F, the AKC-corrected pose is used to construct robot control frames. The evaluation consists of three parts: (i) control frame construction with different mocap algorithms, (ii) simulated teleoperation in Gazebo, and (iii) real robot teleoperation for a pick-and-place task. The attached video (01:00–01:16) compares wrist frames relative to the torso using different mocap methods, including raw RGB-D measurements, KF, AKC with KF, and COIK. The results show that AKC with KF provides the most stable and consistent control frames. In contrast, raw measurements and KF are significantly affected by self-occlusion and inconsistent arm lengths, leading to large variations in the constructed frames that are unsuitable for teleoperation. Despite its ability to generate many candidate solutions, COIK exhibits unstable behavior. When the optimization converges to suboptimal local minima, the resulting configu-rations are unreliable. Moreover, the weighting parameter λ
+
+in Eqn. II-E is more sensitive to tuning compared to AKC. Combined with the higher computational latency reported in Table III, these factors make COIK less suitable for real-time teleoperation applications. For teleoperation in Gazebo, the attached video (01:17–01:30) and Fig. 7 demonstrate that an operator can successfully control a simulated robot using AKC with KF, even under shoulder and elbow occlusion.  
+
+> Fig. 7. Motion of the right robot end-effector in simulated teleoperation, controlled by the operator’s right wrist.
+
+Furthermore, the video (01:31–02:07) presents real-time teleoperation, in which the operator controls a physical robot to perform a pick-and-place task with an irregularly shaped object. During the task, the operator intentionally introduced elbow occlusion by randomly moving the arm before grasping the object, then raised the arm to induce shoulder occlusion. Despite these challenging conditions, the system main-tained stable control using AKC with KF. However, minor perturbations are observed due to the limitations of the KF-based temporal filtering. As discussed in Section III-C, further improvements in motion capture accuracy can be achieved by employing more advanced filtering methods, such as the EKF. IV. D ISCUSSION 
+
+Conventional motion capture systems are often complex and intrusive, requiring multiple cameras and markers. In contrast, single RGB-D camera systems offer a low-cost, non-invasive alternative that is more suitable for deployment in constrained or real-world environments. However, their performance is significantly degraded by self-occlusion, par-ticularly during upper-limb motion, resulting in inaccurate depth estimates and anatomically inconsistent poses. The AKC addresses this challenge by enforcing geometric constraints based on constant arm lengths. By leveraging the more reliable wrist position and reconstructing occluded joints using the Pythagorean theorem, AKC improves depth estimation while preserving the accuracy of image-plane coordinates. Experimental results show that AKC signifi-cantly reduces depth errors while maintaining arm-length consistency, without introducing substantial distortion in the 
+
+x and y directions. This capability is critical for downstream applications such as teleoperation, where depth inconsisten-cies can lead to distorted robot control frames and inverse-kinematics instability. A key advantage of AKC is its deterministic formulation. Unlike optimization-based approaches, which rely on itera-tive solvers and sensitive parameter tuning, AKC generates a small number of candidate solutions and selects the most plausible configuration using lightweight evaluation metrics. This reduces the solution space from infinitely many possibil-ities to four candidates, significantly lowering computational cost and enabling predictable behavior. As a result, AKC is suitable for real-time applications. Compared with existing methods, AKC offers a simpler and more robust alternative for enforcing anatomical con-straints. Prior work [37] utilized constant arm-length as-sumptions to construct feasible configurations, but relied on complex interpretation trees and restrictive assumptions such as constant shoulder width, which may not hold due to scapu-lar motion. Optimization-based approaches [38] incorporate arm-length constraints but are computationally expensive and sensitive to weight tuning, and may converge to suboptimal solutions. In contrast, AKC directly enforces geometric con-sistency through a closed-form formulation, achieving stable and efficient reconstruction even under severe occlusion. AKC functions as a geometric correction layer that can be integrated with different temporal filtering methods. While filters such as KF and EKF improve temporal smoothness, they may still produce inconsistent depth estimates due to noise or model limitations. AKC addresses this limitation by enforcing geometric consistency, thereby correcting residual depth errors that filtering alone cannot resolve. Its perfor-mance further benefits from improved filtering accuracy, as more reliable inputs lead to better candidate selection. This design allows the framework to be flexibly adapted to dif-ferent filtering methods and applications without modifying the AKC algorithm. Another practical advantage of AKC is its minimal setup requirement. The method requires only a one-time calibration of arm length, which can be performed using the same RGB-D camera. This is simpler than multi-camera marker-based systems and enables easier deployment in real-world scenarios. The proposed AKC method can be extended to lower-limb motion capture, although this work focuses on upper-limb motion-mapping teleoperation. The current formulation assumes that wrist positions are relatively reliable, as they are typically closer to the camera and less prone to oc-clusion, and thus uses the wrist as the reference point for reconstruction. Extending this approach to the lower limb requires selecting an appropriate reference joint. However, this is more challenging due to greater variability in motion and occlusion patterns. For example, the knee may occlude the hip in seated postures, while the ankle may be occluded during walking. As a result, a single reference joint may not be consistently reliable across different motions. Addressing these challenges requires further investigation and is left for future work, as it is beyond the scope of this study. Beyond teleoperation, the proposed framework has impor-tant implications for assistive robotics and remote caregiving. While our primary motivation is to enable caregivers to remotely control robots, this system can also empower older adults or individuals with limited mobility. For example, users who cannot physically access stores may use motion-mapping teleoperation to control a robot to perform tasks such as grocery retrieval [39]. The minimal setup require-ment and robustness under occlusion make the proposed approach suitable for such assistive applications. In summary, the AKC provides a computationally efficient, geometrically grounded, and easily deployable solution for improving RGB-D-based motion capture under occlusion. Its deterministic nature, compatibility with filtering methods, and reliable performance in real-time settings make it a prac-tical approach for human–robot interaction and teleoperation in real-world environments. V. C ONCLUSION 
+
+This paper presents the proposed Arm Kinematic Cor-rection (AKC) method as a post-processing framework for single RGB-D camera-based motion capture. The method improves depth estimation for occluded joints by enforcing geometric constraints based on constant arm lengths. Unlike optimization-based approaches, AKC adopts a deterministic formulation that avoids complex probabilistic modeling and extensive parameter tuning. Experimental results demonstrate that the proposed method enhances robustness and maintains anatomical con-sistency, particularly under severe self-occlusion. Further-more, integrating AKC into a motion-mapping teleoperation system demonstrates its effectiveness in enabling stable, re-liable robot control. These properties make AKC a practical and efficient solution for applications such as robot teleop-eration in constrained or occlusion-prone environments. REFERENCES [1] Population Reference Bureau, “2024 World Population Data Sheet.” 2024, accessed: Mar. 25, 2025. [Online]. Available: https://2024-w pds.prb.org/wp-content/uploads/2024/09/2024-World-Population-Dat a-Sheet-Booklet.pdf [2] World Health Organization, “Ageing and health,” 2024, accessed: Feb. 7, 2025. [Online]. Available: https://www.who.int/news-room/fa ct-sheets/detail/ageing-and-health [3] T. M. Kwok et al., “Leveraging GCN-based Action Recognition for Teleoperation in Daily Activity Assistance,” Apr. 2025. [4] H. Lyu et al., “Teleoperation of Collaborative Robot for Remote De-mentia Care in Home Environments,” IEEE Journal of Translational Engineering in Health and Medicine , vol. 8, pp. 1–10, 2020. [5] S. H. H. Shah et al., “Toward Intelligent Telepresence Robotics for Enhancing Elderly Healthcare in Smart Care Home,” in Human-Computer Interaction . Springer Nature, 2024, pp. 180–195. [6] L. Petrich, J. Jin, M. Dehghan, and M. Jagersand, “A quantitative analysis of activities of daily living: Insights into improving functional independence with assistive robotics,” in 2022 International Confer-ence on Robotics and Automation (ICRA) . IEEE, 2022, pp. 6999– 7006. [7] G. ˇSkulj, R. Vrabiˇ c, and P. Podrˇ zaj, “A wearable imu system for flexible teleoperation of a collaborative industrial robot,” Sensors ,vol. 21, no. 17, p. 5871, 2021. [8] B. R. Galarza, P. Ayala, S. Manzano, and M. V. Garcia, “Virtual reality teleoperation system for mobile robot manipulation,” 
+
+Robotics , vol. 12, no. 6, 2023. [Online]. Available: https: //www.mdpi.com/2218-6581/12/6/163 [9] T. M. Kwok, T. Li, and H. Yu, “A reliable kinematic measurement of upper limb exoskeleton for vr therapy with visual-inertial sensors,” in 
+
+2023 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) . IEEE, 2023, pp. 584–590. [10] U. A. Chattha, U. I. Janjua, F. Anwar, T. M. Madni, M. F. Cheema, and S. I. Janjua, “Motion sickness in virtual reality: An empirical evaluation,” IEEE Access , vol. 8, pp. 130 486–130 499, 2020. [11] R. Kakavand, R. Ahmadi, A. Parsaei, W. B. Edwards, and A. Komeili, “Comparison of kinematics and kinetics between opencap and amarker-based motion capture system in cycling,” Computers in Biology and Medicine , vol. 192, p. 110295, 2025. [12] P. Federolf, M. K¨ uhne, K. Schiel, E. Reimeir, D. Debertin, M. Calisti, and M. Mohr, “Validation of markerless (theia3d™) against marker-based (vicon™) motion capture data of postural control movements analyzed through principal component analysis,” Journal of Biome-chanics , vol. 189, p. 112831, 2025. [13] S. Moon et al., “Multiple Kinect Sensor Fusion for Human Skeleton Tracking Using Kalman Filtering,” International Journal of Advanced Robotic Systems , vol. 13, no. 2, p. 65, Mar. 2016, publisher: SAGE Publications. [14] A. Chromy, P. Sopak, and H. Cigler, “Validated low-cost standardized vicon configuration as a practical approach to estimating the minimal accuracy of a specific setup,” Scientific Reports , vol. 15, no. 1, p. 23351, 2025. [15] J. W. Castro, V. Ariza, and V. Riffo, “Understanding teleoperation in robotics: A systematic review of device types and main performance,” 
+
+IEEE Access , vol. 14, pp. 45 377–45 409, 2026. [16] T. Bin et al., “A survey on the visual perception of humanoid robot,” 
+
+Biomimetic Intelligence and Robotics , vol. 5, no. 1, p. 100197, Mar. 2025. [17] L. Zhou et al, “A Review of Depth-Based Human Motion Enhance-ment: Past and Present,” IEEE Journal of Biomedical and Health Informatics , vol. 28, no. 2, pp. 633–644, Feb. 2024. [18] R. E. Kalman, “A new approach to linear filtering and prediction problems,” 1960. [19] C. Buizza et al., “Real-time multi-person pose tracking using data assimilation,” in 2020 IEEE Winter Conference on Applications of Computer Vision (WACV) , 2020, pp. 438–447. [20] S. R. Tripathy et al., “Constrained Particle Filter for Improving Kinect Based Measurements,” in 2018 26th European Signal Processing Conference (EUSIPCO) , Sep. 2018, pp. 306–310, iSSN: 2076-1465. [21] N. Lannan et al., “Human Motion Enhancement via Tobit Kalman Filter-Assisted Autoencoder,” IEEE Access , vol. 10, pp. 29 233– 29 251, 2022. [22] G. Welch, G. Bishop et al. , “An introduction to the kalman filter,” 1995. [23] V. Joukov, J. F. Lin, K. Westermann, and D. Kuli´ c, “Real-time unla-beled marker pose estimation via constrained extended kalman filter,” in International Symposium on Experimental Robotics . Springer, 2018, pp. 762–771. [24] W. Tang, M. Cavazza, D. Mountain, and R. Earnshaw, “A constrained inverse kinematics technique for real-time motion capture animation,” 
+
+The Visual Computer , vol. 15, no. 7, pp. 413–425, 1999. [25] R. J. Cotton, A. DeLillo, A. Cimorelli, K. Shah, J. Peiffer, S. Anarwala, K. Abdou, and T. Karakostas, “Optimizing trajectories and inverse kinematics for biomechanical analysis of markerless motion capture data,” in 2023 International Conference on Rehabilitation Robotics (ICORR) . IEEE, 2023, pp. 1–6. [26] P. Das et al., “Improvement in Kinect based measurements using anthropometric constraints for rehabilitation,” in 2017 IEEE Inter-national Conference on Communications (ICC) , May 2017, pp. 1–6, iSSN: 1938-1883. [27] H. Wang et al., “Spatio-Temporal Manifold Learning for Human Motions via Long-Horizon Modeling,” IEEE Transactions on Visu-alization and Computer Graphics , vol. 27, no. 1, pp. 216–227, Jan. 2021. [28] T. D. Pham, D. A. David, L. Busse, O. Omotuyi, and M. Kumar, “3d human pose estimation using body kinematics and kalman filter,” 
+
+IFAC-PapersOnLine , vol. 59, no. 30, pp. 156–161, 2025. [29] Z. Cao, G. Hidalgo Martinez, T. Simon, S. Wei, and Y. A. Sheikh, “Openpose: Realtime multi-person 2d pose estimation using part affinity fields,” IEEE Transactions on Pattern Analysis and Machine Intelligence , 2019. [30] Google AI, “Mediapipe pose landmarker for python,” https://ai.googl e.dev/edge/mediapipe/solutions/vision/pose landmarker/python, 2025, accessed: 28 July 2025. [31] V. Bazarevsky et al., “BlazePose: On-device Real-time Body Pose tracking,” arXiv , Jun. 2020. [32] Intel RealSense, “Beginner’s guide to depth,” [Online]. Available: ht tps://www.realsenseai.com/stereo-depth/beginners-guide-to-depth/, accessed: May 26, 2026. [33] Google AI, “Mediapipe holistic,” https://github.com/google-ai-edge/ mediapipe/blob/master/docs/solutions/holistic.md, accessed: 28 July 2025. [34] P. Ruppel, N. Hendrich, S. Starke, and J. Zhang, “Cost functions to specify full-body motion and multi-goal manipulation tasks,” in 2018 IEEE International Conference on Robotics and Automation (ICRA) ,2018, pp. 3152–3159. [35] Vicon Motion Systems Ltd., “Vicon plug-in gait reference guide,” 2025, accessed: July 28, 2025. [Online]. Available: https://help.vicon .com/space/Nexus216/11607059 [36] PAL Robotics, “Tiago pro - empowering mobile manipulation,” https: //pal-robotics.com/robot/tiago-pro/, accessed: 3 Jun 2026. [37] H.-J. Lee and Z. Chen, “Determination of 3d human body postures from a single view,” Computer Vision, Graphics, and Image Processing , vol. 30, no. 2, pp. 148–168, 1985. [Online]. Available: https://www.sciencedirect.com/science/article/pii/0734189X85900945 [38] J.-W. Kim et al., “Human Pose Estimation Using MediaPipe Pose and Optimization Method Based on a Humanoid Model,” Applied Sciences , vol. 13, no. 4, p. 2700, Jan. 2023. [Online]. Available: https://www.mdpi.com/2076-3417/13/4/2700 [39] T. Tomizawa, K. Ohba, A. Ohya, and S. Yuta, “Remote food shopping robot system in a supermarket -realization of the shopping task from remote places,” in 2007 International Conference on Mechatronics and Automation , 2007, pp. 1771–1776.

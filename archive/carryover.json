@@ -1,50 +1,50 @@
 {
-  "generated_at": "2026-06-20T23:22:46.713017+00:00",
-  "updated_date": "20260620",
+  "generated_at": "2026-06-21T23:25:37.710902+00:00",
+  "updated_date": "20260621",
   "carryover_days": 9,
   "tag_states": {
     "sport-sci": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "cv-sports": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "ML-Sports": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "sport-tsa": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "sb": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "sports-rl": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "sports-nlp": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "cdm-sports": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     },
     "sports-sci": {
-      "updated_date": "20260620",
+      "updated_date": "20260621",
       "carryover_days": 9,
       "items": []
     }
