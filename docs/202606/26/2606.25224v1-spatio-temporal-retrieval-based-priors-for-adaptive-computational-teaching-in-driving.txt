@@ -1,0 +1,705 @@
+Title: Spatio-Temporal Retrieval-based Priors for Adaptive Computational Teaching in Driving
+
+URL Source: https://arxiv.org/pdf/2606.25224v1
+
+Published Time: Thu, 25 Jun 2026 00:21:58 GMT
+
+Number of Pages: 20
+
+Markdown Content:
+# Spatio-Temporal Retrieval-based Priors for Adaptive Computational Teaching in Driving 
+
+Deepak Gopinath ⋆, Xiongyi Cui ⋆, Jonathan DeCastro, Avinash Balachandran, Guy Rosman 
+
+Toyota Research Institute, Cambridge, MA, USA, first.last@tri.global  
+
+> ⋆
+
+Contributed equally 
+
+Abstract: Learning-based automated coaching systems for complex motor tasks such as high-performance driving remain limited in the ability to be adaptive 
+
+by their reliance only on local, context-dependent reasoning, failing to account for the long-term temporal nature of student learning and the cumulative im-pact of repeated teacher–student interactions. In this paper, we propose an im-itation learning based computational model for adaptive teaching with a dedi-cated temporal reasoning module that can reason over the interaction history un-der low-data regimes. To compensate for limited amounts of interactive training data, and based on the repetitive nature of the teaching process, the model re-lies on a nearest neighbor retrieval and cross attention prior , reasoning only on a narrowed-down set of semantically similar past interactions with an encoder-decoder based concurrent teaching model. We validate our approach with (i) a novel semi-synthetic closed-loop longitudinal student-teacher interaction dataset based on Waymo Open Motion Dataset and (ii) a small-scale real-world naturalis-tic simulator race coaching dataset. Our results reveal the consistent advantage of our adaptive teaching model with the nearest neighbor retrieval and cross-attention prior over a non-adaptive baseline as well as a suite of adaptive models that differ in their choice of priors and temporal fusion mechanisms. 
+
+Keywords: Human-Robot Interaction, Computational Teaching, Imitation Learn-ing 
+
+# 1 Introduction 
+
+The ability to coach is a fundamental capability of AI systems poised to assist humans in many domains—from medicine [1, 2] and sports [3, 4] to semi-autonomous driving [5] and rehabilita-tion robotics [6], among others [7]. Coaching humans in embodied domains depends on several aspects such as context-dependency, task semantics, and people’s temporal adaptation. Unlike in non-embodied domains such as classroom pedagogy, where interactive student-teacher data is avail-able at a large scale [8, 9], in embodied settings, the feasibility of learning-based methods for training automated coaching systems is limited by the availability of high-quality interactive teaching data which further exacerbates reasoning about the longitudinal adaptation. Despite the complexity of the coaching task, humans are able to teach tractably through strong priors, heuristics and disen-tangling the influence of different temporal factors. Hence, learning-based solutions in low-data regimes likely require careful use of the available problem structure and task-specific priors. We consider the setting of an automated coaching agent interacting with a student (human) on an embodied task, such as driving, in a long-term repeated interaction setting. Our objective is to build a computational model that can provide contextually-relevant concurrent verbal feedback, adapt its teaching over the course of interaction, be trained in a data-efficient manner via structured priors. We note that the teaching process often contains repeated interactions [10, 11], where similar con-text and student performance is coupled with suitable teacher actions. This observation suggests 
+
+> arXiv:2606.25224v1 [cs.RO] 23 Jun 2026
+
+spatio-temporal retrieval as a data-efficient causal prior for longitudinal teaching adaptation, leading us to propose a model that performs local vs. global spatio-temporal reasoning using a modular ar-chitecture while leveraging a nearest-neighbor retrieval and cross-attention prior to compensate for data limitations. We validate our approach with experiments using both (i) a novel semi-synthetic closed-loop longitudinal student-teacher interaction dataset based on Waymo Open Motion Dataset (WOMD) [12] and (ii) a real-world naturalistic simulator racing coaching dataset [13]. 
+
+Contributions :• We introduce a modular imitation learning framework for adaptive coaching in driving that relies on a nearest neighbor retrieval together with a cross-attention based fusion mecha-nism to enable data-efficient training. • We introduce a novel semi-synthetic dataset, W AY COACH based on Waymo Open Motion Dataset that simulates closed-loop longitudinal teacher-student interaction. • We demonstrate the usefulness and efficacy of the nearest neighbor retrieval and cross-attention based prior along different axes through extensive experiments on W AY COACH 
+
+and a publicly available small-scale naturalistic racing simulator based coaching dataset, SIM COACH CORPUS [13]. 
+
+# 2 Related Work 
+
+Our suggested approach relates to several topics of research from different communities. The topic of multiscale temporal context in imitation learning and behavior cloning has been studied, both in terms of multiscale architectures [14, 15, 16], as well as more general approaches, such as decision transformers [17] Within AI in education, the usage of multiscale temporal structure has been used for knowledge tracing [7, 18, 19, 20], as well as schedule planning [21] and estimation of student reactions [22, 23] and memory and retention [24, 25]. However, the majority of works in knowledge tracing inspected classroom and education settings, where data is plentiful and observable, lending itself to general temporal modeling approaches (e.g. LSTMs [19] or transformers [26]). Motor learning/teaching approaches traditionally either optimally schedule exercises [27] or provide corrections to optimize student performance [28]. Recent works in computational teaching of motor sports have explored teacher imitation with short episodic context [29, 5]. While longitudinal motor learning datasets have been a bottleneck for AI, this gap has been recently reduced [13]. More broadly, several machine learning research threads have looked at handling of long temporal sequences - recurrent [30], convolutional [31], attention-based [32], and memory [33] or retrieval-[34, 35] based approaches to name a few. However, these often assume a large amount of data, which is often not available for motor learning [13], and as we show in this paper, not strictly required. A closely related research direction is that of sparse temporal modeling where the challenge is to learn good model from relatively large but incomplete dataset [36]. Finally, our approach is an instance of an embodied teaching policy. Approaches for teaching in embodied fields have been considered with emphasis on both decision-making [1, 5, 37], engage-ment estimation [38], and overall interactive system design [39], among other aspects. Specifically, estimation of skill in embodied teaching scenarios has been considered in fields such as music [40], surgery [41, 42], and driving [43]. However, traditionally, these approaches heavily rely on specific features to estimate skill, which is then used to condition the teaching process. 
+
+# 3 Technical Approach 
+
+In this section, we present our problem formulation, the mathematical notation, and details about our model architecture. We aim to learn a computational model for teaching in embodied domains that can (i) imitate low-level teaching actions conditioned on local context and behavior as well as (ii) adapt how it teaches over multiple interactions with the student under low-data regimes. 23.1 Problem Formulation 
+
+We adopt and augment the notational conventions introduced in [5]. Let st ∈ S denote the human-driven ego car states, atH denote the human’s control actions (steering/throttle, etc.), and atC denote the coach’s instruction at the time t. Let T be a dataset of trajectories sampled from a teacher-student interaction session, where τ ∈ T denotes a trajectory such that τ = {(st, a tH , a tC )}Tt=0 . We denote the global map as Mglobal and the set of localized maps for each trajectory τ with respect to the ego car pose at t = 0 as Mlocal . The tuple (τ, m local ) ∈ T × M local as a scenario , denoted as q ∈ Q .We also distinguish between qcurr ∈ Q curr , the current scenario of interest in which teaching happens and qpast ∈ Q past , which is any scenario in which teaching already happened before the current scenario qcurr . Additionally, let H = [ q1
+
+> past
+
+, . . . , q Hpast ] denote a set of past scenarios with respect to qcurr . These past scenarios can be short trajectory snippets (of the order of seconds) or temporally extended behavior lasting minutes (e.g., an entire lap of driving in the racing context). We define an adaptive computational teaching policy as mapping Π : ( Qcurr × H ) → A , where 
+
+A is a set of teacher action categories that are output on the current scenario qcurr . In the context of driving, the action space A includes the set of all possible utterances by the instructor, e.g., 
+
+[brake , accelerate , stay left , stay right , turn ], along with a no-op action. When H = ∅,the teaching policy becomes non-adaptive and depends only on the current scenario qcurr .
+
+3.2 Model Components 
+
+In this section, we present the details of the three modules that constitute the adaptive computational teaching model shown in Figure 1. We adopt a multi-task approach to imitation learning (IL) due to its advantages in learning good representations when data is limited [5]. We consider multiple self-supervised tasks such as trajectory prediction and reconstruction as well as metrics and skill prediction as our auxiliary tasks. Our model consists of three separate modules: (i) an encoder-decoder based concurrent teaching module , Wconc , that operates on local spatio-temporal context, (ii) a past interaction encoding module , Wpast , that operates on selective episodes retrieved via a nearest neighbor prior from the student-teacher interaction history and lastly (iii) a fusion module ,
+
+Wf use , that fuses the encoded information from Wpast into Wconc to aid adaptation. 
+
+3.2.1 Concurrent Teaching Module ( Wconc )Encoder : The encoder module for Wconc consists of two parallel streams: a) an MLP+Transformer based trajectory encoder that encodes past trajectory τ1: N , with N < T and b) a PointNet [44] based map encoder consisting of interleaved layers of MLP and transformer based encoders that encodes the local map mlocal . We use a set of polylines to represent the left, center and right edges of each road lane to represent mlocal . Each polyline consists of sequence of nodes ordered according to a prespecified lane direction and each node is a 2D vector of normalized position. The trajectory and map encodings are combined using a cross attention transformer to produce the encoded state, ecurr 
+
+which then gets fused with encodings that capture the temporal history generated from Wpast .
+
+Decoder : The output decoders for the teacher action prediction consists of a series of MLP-based transformations with a final sigmoid activation layer and operates on the encodings, ef use from the fusion module Wf use in the case of a full adaptive model or from Wconc for the non-adaptive model. For the auxiliary task of trajectory prediction, we use an LSTM-based decoder with anchors [45]. 
+
+3.2.2 Past Interaction Encoding Module ( Wpast )Encoder : Wpast ’s encoder is akin to that of Wconc and operates in parallel on the scenarios se-lected from H. The generated encodings are augmented with time embeddings (for example, lap number or timesteps) and then processed via a causal transformer to generate representations that aggregate information through time. Since we have access to the full history, unlike Wconc , we rely on trajectory reconstruction and metrics prediction as our self-supervised tasks. The final encodings corresponding to each of the scenarios in H are then fed as input to the fusion module Wf use .3Figure 1: Overall model architecture diagram. A multi-task concurrent feedback teacher imitation module is augmented by a history fusion module that encodes a set of K nearest teaching scenarios from the student-teacher interaction history. 
+
+Decoder : Similar to Wconc ’s decoders, Wpast uses an LSTM-based decoder to do trajectory recon-struction and an MLP-based decoder for metrics prediction. 
+
+3.2.3 Fusion Module ( Wf use )
+
+Wf use augments the representation learned within Wconc with information aggregated by Wpast 
+
+from a subset of scenarios P in H. We use a cross-attention based transformer decoder module to facilitate the fusion between ecurr and Wpast ’s encodings. After the transformer processes the inputs the token encoding with maximum magnitude is added to econc to form an past-interaction aware adaptive representation, ef use , for generating the teaching action in qcurr . If Wf use is a null operation, then no information from Wpast flows into Wconc and the overall model becomes 
+
+non-adaptive and unaware of how the past scenarios influence teaching in qcurr .
+
+3.3 Nearest Neighbor Prior 
+
+The most general instantiation of H is to utilize the entire driving history (entire laps up until the current laps or a full memory bank of all past driving scenarios) up until qcurr to inform teacher adaptation. Although an attention-based scheme provides the correct inductive bias, the data re-quirements to recover the underlying temporal correlations in an end-to-end fashion are quite high. In embodied interactive domains, data collection is expensive, and large-scale datasets can be pro-hibitive. Our key insight is to provide a data prior via a K-nearest neighbor mechanism that utilizes spatio-temporal features (such as global position and velocity) to retrieve relevant scenarios to im-prove model performance. The choice of features depends on the task and is critical for extracting the right set of priors. During training, we ensure that the retrieved samples are temporally ordered to ensure proper causal propagation of information. 
+
+3.4 Loss Functions 
+
+We adopt a multi-task IL paradigm for Wconc and Wpast due to its demonstrated advantages [5]. 4Concurrent Feedback Module Loss Lconc : The main component of Lconc is the teacher action prediction loss, Lteacher . We cast teacher action prediction as binary multi-label prediction in which the multi-label target represents the presence or absence of a teaching action category in the future time window. Lteacher is a weighted Binary Cross Entropy (wBCE) with class weights corresponding to the ratio of negative to positive samples in each class computed over the training set. For the auxiliary task of trajectory prediction we use an MoN version of Average Displacement Error as the loss, Ltraj −pred . Lconc is then a weighted sum of Lteacher and Ltraj −pred .
+
+Past Encoder Loss Lpast : The self-supervised task of trajectory reconstruction also utilizes a MoN version of Average Displacement Error ( Ltraj −reco ) and metrics prediction relies on an MSE loss, (Lmetrics ). Lpast is then a weighted sum of Ltraj −reco and Lmetrics .The overall loss L is then given by L = Lconc + Lpast . Note that, as all the modules are co-trained, gradients from teacher action decoding flow back into Wpast and therefore Lconc also affects Wpast .
+
+# 4 Experimental Results 
+
+In this section, we describe our datasets, evaluation metrics and experimental results on the impact of the nearest neighbor retrieval and cross attention prior under different training data regimes. 
+
+4.1 WAY COACH : Semi-Synthetic Longitudinal Teaching Dataset 
+
+To systematically investigate the impact of the prior under data constraints we curate a new semi-synthetic longitudinal teaching dataset, W AY COACH , using naturalistic driving scenarios from the Waymo Open Motion Dataset (WOMD) [12]. We build off the approach presented in [5] with few key improvements that adds to the realism. First, we introduce longitudinal student performance improvement via temporal skill modeling. Second, we model the closed-loop effect of a teaching action on performance improvement. The entire dataset consists of multiple sequences of length T
+
+of scenarios sampled from WOMD. Each sequence represents a single student’s learning journey which is modeled as the time evolution of a two-dimensional latent skill vector zt = ( αt, β t)
+
+that characterizes their driving (how aggressive ( β) vs. conservative ( α)) at learning timestep t.Additionally, the temporal evolution of zt is governed by the following parameters: (i) the base learning rate, η (ii) the overall tendency, baggr , to be aggressive/conservative at t = 0 
+
+and (iii) an influence parameter, λ that captures how much they get influenced by the teacher’s past actions. The discrete-time dynamical system that governs the time-evolution of zt is given by 
+
+zt+1 = zt + η(zf inal − zt) − λf ({ahC }qh∈P ) + ϵ (1) where ϵ ∼ N (0 , σ 2) is per timestep IID Gaussian noise, f (·) is the teacher feedback function operating on scenarios from P ⊆ H and z0 is initialized as [z0 · baggr , z 0 · (1 − baggr )] T with z0 ∼
+
+(0 .95 , 1.0) and zf inal is the asymptotic limit for z (highest skill possible). The skill progression happens in such a way that as t → T , the sampled scenarios will primarily be from the neutral 
+
+group. The interpretation is that at t=0, a student is unskilled and could be highly aggressive or conservative (as they are figuring out how to drive); as time passes, due to self-learning and the effect of teaching, they become less aggressive and conservative and begin to drive stably. We focus on interactive maneuvers such as yields and merges. The parameters baggr ∈ [0 .1, 0.5, 0.9] and η ∈
+
+[slow ∼(0 .2, 0.5) , medium ∼(0 .8, 1.5)] together result in six distinct student types. For each student type, we sample 67 students (15 sequences per student) resulting in a total of C=6030 sequences each of length T =20 timesteps. Each sequence represents a student’s learning journey. A teaching action ahC from a predefined set of teaching actions [no op , slow down , speed up ] is assigned to each scenario qh in the sequence. We model two types of synthetic teachers; (i) a nonadaptive 
+
+teacher whose teaching action only depends on the scenario label and an (ii) adaptive teacher whose teaching action takes into consideration a skill estimate (computed as the proportion of conservative 
+
+vs. aggressive scenarios in P ⊆ H , is the set of nearest neighbors to each scenario with |P| = 4 )when generating the teaching label. More details about the construction of the dataset are in the Supplementary material. 5Table 1: Average of Maximum Weighted F1-score ( ↑) for W AY COACH experiments on adaptive 
+
+teaching. For small data regime (top row) KNN-CrossAttn outperforms Full-CrossAttn .
+
+Dataset-Size NonAdaptive Random-CrossAttn Full-CrossAttn KNN-CrossAttn (Ours) 
+
+60 0.401 ± 0.042 0.534 ± 0.041 0.574 ± 0.029 0.614 ± 0.043 
+
+600 0.476 ± 0.006 0.582 ± 0.021 0.891 ± 0.018 0.701 ± 0.016 
+
+6000 0.560 ± 0.017 0.670 ± 0.009 0.980 ± 0.002 0.835 ± 0.016 
+
+Table 2: Average of Maximum Weighted F1-score ( ↑) and Hamming distance ( ↓) on the naturalistic SIM COACH CORPUS dataset. Results averaged over 60 seeds (4 seeds per fold for 15-fold cross validation) with K=7.
+
+NonAdaptive Random-CrossAttn Full-CrossAttn KNN-CrossAttn (Ours)                            
+
+> Weighted F1-score ↑0.701 ±0.031 0.711 ±0.031 0.723 ±0.029 0.728 ±0.026
+> Weighted Hamming Distance ↓0.303 ±0.026 0.303 ±0.030 0.286 ±0.025 0.286 ±0.024
+
+Table 3: Average of Maximum Weighted F1-score ( ↑) for different fusion mechanisms with K=7.
+
+KNNCross-Attn exhibits better performance compared to other neural and non-neural baselines. Fusion Mechanism 
+
+1-NN Naive-KNN-Mean KNN-MaxPool KNN-MaxPool-Residual KNN-CrossAttn (Ours) 
+
+WAY COACH 0.549 ± 0.000 0.577 ± 0.000 0.584 ± 0.058 0.592 ± 0.058 0.614 ± 0.043 
+
+SIM COACH CORPUS 0.539 ± 0.041 0.663 ± 0.026 0.721 ± 0.028 0.720 ± 0.027 0.728 ± 0.026 
+
+4.2 SIM COACH CORPUS : Naturalistic Simulator Racing Instruction Dataset 
+
+To study the efficacy of the nearest neighbor retrieval and cross-attention prior in a naturalistic real-life coaching domain (high performance driving education) we use a publicly available dataset, SIM COACH CORPUS [13]. We only use data from the coached condition, notably a small dataset with 15 students; therefore is a perfect testbed for our research questions. In the coached condition, each student undergoes training on an average of 22 laps with demonstrated adaptation of coaching. We set the teacher action target to be 8D (we ignore steering and turn categories due to the very low number of positive labels), and each training snippet is 10s, with the first 5s treated as the input and the last 5s as the prediction target. The retrieved nearest neighbor samples are also 10s long. 
+
+4.3 Evaluation Metrics 
+
+We report standard multiclass (weighted F1-score) and multilabel (weighted F1-score and Hamming distance) classification metrics on the teacher action prediction for W AY COACH and S IM COACH -CORPUS respectively. Results reported on W AY COACH are averaged over five random seeds; exper-iments with S IM COACH CORPUS uses a 15-fold cross validation with four seeds per fold. The result tables report the average of the max scores over all seeds. 
+
+4.4 How does a K-nearest neighbor retrieval prior help? 
+
+To isolate the effect of a KNN prior on teacher action prediction we compare our full adaptive model with a K-nearest neighbors plus cross-attention prior, denoted as KNN-CrossAttn to the following baselines; (i) NonAdaptive : This model uses Wconc to predict the teacher action, (ii) 
+
+Full-CrossAttn : This version of the adaptive model utilizes all available data up until qcurr . For experiments with S IM COACH CORPUS we only use full data from K previous laps. (iii) Random-CrossAttn : This baseline uses randomly sampled K scenarios from H as an uninformed prior. 
+
+Results on W AY COACH : Table 1 reports results when trained on the adaptive teacher dataset. In the large data regimes (bottom row) Full-CrossAttn condition results in a very high vali-dation performance. This is because, for longer sequences, the transformer’s attention mecha-6Table 4: Average of Maximum F1-score as a function of K for both datasets. Model performance peaks for medium values of K. For W AY COACH , the true maximum occurs when K = |P| = 4 .
+
+K SIM COACH CORPUS WAY COACH 
+
+0 0.701 ± 0.031 0.417 ± 0.036 
+
+1 0.720 ± 0.031 0.571 ± 0.030 
+
+3 0.726 ± 0.029 0.613 ± 0.047 
+
+5 0.726 ± 0.028 0.606 ± 0.045 
+
+7 0.728 ± 0.026 0.575 ± 0.027 
+
+9 0.727 ± 0.027 0.587 ± 0.024 nism effectively treats the encoded teaching actions at all previous time-steps as in-context ex-amples [46] and is able to recover the underlying generative mechanism that produces the teach-ing action. In contrast, although the KNN-CrossAttn model sees P as its input, there is not enough information in its context to recover the generative mechanism and hence does not gen-eralize right away. However, in low-data regimes (top row of 1), despite overall performance being lower, KNN-CrossAttn outperforms Full-CrossAttn . We observe in Figure 2 that KNN-CrossAttn model degrades more gradually compared to Full-CrossAttn which exhibits a sud-den drop in performance for dataset sizes less than 400. NonAdaptive model (leftmost col-umn of Table 1) performs the worst as it does not have access to any relevant information re-garding teacher adaptation from H. Although uninformed, in the Random-CrossAttn condi-tion access to additional scenarios and teaching labels effectively acts as a data based prior and marginally improves performance compared to NonAdaptive . All these results taken to-gether indicate that in low-data regimes a nearest neighbor plus cross-attention prior is helpful. 
+
+Figure 2: Model performance as a function of dataset size. KNN-CrossAttn exhibits a gradual degradation compared to Full-CrossAttn for smaller amounts of data. 
+
+Results on S IM COACH CORPUS : Table 2 shows that in the naturalistic domain KNN-CrossAttn is marginally better than all other baselines resulting in a 2.7 % gain over the NonAdaptive model. For KNN-CrossAttn , the nearest neighbor computation uses a 4D feature set comprising of global position on the track, velocity and deviation from racing line. No-tably, even though Full-CrossAttn utilized complete 
+
+lap-level trajectory data from previous K laps (effec-tively ∼6x amounts of past context compared to KNN-CrossAttn ), training was approximately ∼16x slower, exhibited higher overfitting trends and variance, and resulted in lower overall averaged maximum perfor-mance highlighting the usefulness of a global location based prior in achieving comparable performance with higher training efficiency. Similar to the trends observed in W AY COACH , Random-CrossAttn 
+
+shows better performance NonAdaptive condition, but does not match KNN-CrossAttn and Full-CrossAttn . We note that while LSTM-based approaches are possible, straightforward implementa-tion of them would fail due to the need to attend to temporally distant exemplars. An LSTM-based approach we incorporated over the full lap information resulted in consistently inferior performance compared to a transformer based backbone in Wpast .
+
+4.5 What choice of Wf use is most effective? 
+
+Given that nearest neighbor prior is effective at low data regimes, we investigate how different fusion mechanisms affect model performance. We compare KNN-CrossAttn to the following non-neural and neural baselines. (i) 1-NN : The multilabel teaching action of the nearest neighbor is used as the prediction for qcurr . (ii) Naive-KNN-Mean : The multilabel teaching actions from K nearest neighbors are averaged, normalized and then thresholded to form the prediction for qcurr . (iii) 
+
+KNN-MaxPool : A neural baseline in which the fusion mechanism is a simple maxpool operation on the KNN encodings followed by concatenation with ecurr to form ef use . (iv) KNN-MaxPool-
+
+7Residual : Another variation in which the maxpooled KNN encodings and ecurr are processed via a lightweight MLP-based residual network to form ef use which is then added back into ecurr .
+
+Results on W AY COACH : For W AY COACH (Table 3 top), we see that the cross-attention based mechanism outperforms all other baselines. Cross attention provides the model with enough ca-pacity to attend to key features from past scenarios and helps to learn the correlation between map context, vehicle behavior and teaching action associated with the scenario. In contrast, maxpool based operations are done independent of how much qcurr aligns with the nearest neighbor encod-ings. The non-neural baselines do not explicitly reason about the past, therefore exhibit drastically lower performance compared to the neural models. 
+
+Results on S IM COACH CORPUS : For S IM COACH CORPUS , KNNCross-Attn outperforms all other baselines (Table 3 bottom). In particular, neural mechanisms drastically outperform the non-neural baselines ( ∼6.4 % improvement of KNN-CrossAttn over Naive-KNN-Mean ), indicating that ex-plicit reasoning about the past trajectories benefits adaptive teaching. Compared to a simple max-pooling, the cross-attention mechanism in KNNCross-Attn model attends to different nearest neigh-bor encodings and teases out useful representations for improving the teacher action prediction. 
+
+4.6 How does the choice of K affect model performance? 
+
+Table 4 shows that how model performance improves as a function of K. For S IM COACH CORPUS ,we observe that even with K=1 there is a considerable gain in performance. Since the dataset consists of mostly novice drivers, it is likely that the instructions issued in a single nearest neighbor is still highly relevant to the current scenario, corroborated by a relatively high score for 1-NN in Table 3. The peak value occurs at K=7 possibly reflecting different retrieval effectiveness of the KNN similarity metrics and the complexity of the task in that dataset. We observe similar trends with W AY COACH , where the maximum value occurs at K = |P| = 4 (reported in Table 1, top row). As K deviates from the peak value, the performance exhibits a slight inverted U-shaped curve. 
+
+# 5 Limitations 
+
+First, for KNN to work effectively with temporally sparse past interactions in the teaching process, the choice of features matter. In race driving, the repeated structure of the task provides a natural set of spatial features to operate with in S IM COACH CORPUS . The W AY COACH experiments are by design constructed with clear relevant features in mind. For other domains, priors need to be chosen carefully, e.g., via domain expertise or small amount of label based supervision. Second, at test-time deployment, the model would ingest its own emissions into the input buffer, and care must be taken to reduce closed-loop and out-of-distribution effects, e.g. via priors from non-adaptive teaching policies. Third, S IM COACH CORPUS dataset also contains terminal feedback , which is verbal feedback given at the end of each lap. Our current model fully ignores information present in the terminal feedback which could contain information on recently completed or past laps, specific areas of weaknesses, teaching plans for the subsequent lap etc. Future work will explore language modeling as an additional task and they leverage the representations corresponding to the language output as an additional side-channel information for the concurrent feedback module. 
+
+# 6 Conclusion 
+
+In this paper, we introduce a framework for data-efficient multi-task imitation learning for adaptive teaching in embodied domains. We demonstrate the usefulness of a nearest neighbor retrieval and cross-attention prior through extensive experiments on a novel semi-synthetic longitudinal teaching dataset based on the Waymo Open Motion Dataset and a publicly available naturalistic simulator-based race coaching dataset. We present result on how a K-nearest neighbor along with a cross attention based fusion mechanism yields superior performance under data constraints when evalu-ated using standard multi-class and multi-label classification metrics. 8References 
+
+[1] E. Rojas-Mu˜ noz, K. Couperus, and J. Wachs. DAISI: Database for AI surgical instruction. arXiv preprint arXiv:2004.02809, 2020. [2] B. Giglio, A. Albeloushi, A. K. Alhaj, M. Alhantoobi, R. Saeedi, V. Davidovic, A. Uthamacumaran, R. Yilmaz, J. Lapointe, N. Balasubramaniam, T. Tee, A. M. Fazlol-lahi, J. A. Correa, and R. F. Del Maestro. Artificial intelligence–augmented human instruc-tion and surgical simulation performance: A randomized clinical trial. JAMA Surgery, 160 (9):993–1003, 09 2025. ISSN 2168-6254. doi:10.1001/jamasurg.2025.2564. URL https: //doi.org/10.1001/jamasurg.2025.2564 .[3] H. Yin, L. Gu, P. Parmar, L. Xu, T. Guo, W. Fu, Y. Zhang, and T. Zheng. Flex: A large-scale multi-modal multi-action dataset for fitness action quality assessment. arXiv preprint arXiv:2506.03198, 2025. [4] S. Pashaie, S. Mohammadi, and H. Golmohammadi. Unlocking athlete potential: The evo-lution of coaching strategies through artificial intelligence. Proceedings of the Institution of Mechanical Engineers, Part P: Journal of Sports Engineering and Technology, page 17543371241300889, 2024. [5] D. Gopinath, X. Cui, J. DeCastro, E. Sumner, J. Costa, H. Yasuda, A. Morgan, L. Dees, S. Chau, J. Leonard, et al. Computational teaching for driving via multi-task imitation learning. In 2025 IEEE international conference on robotics and automation (ICRA), pages 7019–7027. IEEE, 2025. [6] L. Santos, A. Geminiani, P. Schydlo, I. Olivieri, J. Santos-Victor, and A. Pedrocchi. Design of a robotic coach for motor, social and cognitive skills training toward applications with asd children. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 29:1223– 1232, 2021. [7] L. Chen, P. Chen, and Z. Lin. Artificial intelligence in education: A review. IEEE access, 8: 75264–75278, 2020. [8] S. Mayhew, K. Bicknell, C. Brust, B. McDowell, W. Monroe, and B. Settles. Simultaneous translation and paraphrase for language education. In Proceedings of the fourth workshop on neural generation and translation, pages 232–243, 2020. [9] Y. Choi, Y. Lee, D. Shin, J. Cho, S. Park, S. Lee, J. Baek, C. Bae, B. Kim, and J. Heo. Ednet: A large-scale hierarchical dataset in education. In International conference on artificial intelligence in education, pages 69–73. Springer, 2020. [10] R. Lyster and L. Ranta. Corrective feedback and learner uptake: Negotiation of form in com-municative classrooms. Studies in second language acquisition, 19(1):37–66, 1997. [11] L. Mondada. Driving instruction at high speed on a race circuit: Issues in action formation and sequence organization. International Journal of Applied Linguistics, 28(2):304–325, 2018. [12] S. Ettinger, S. Cheng, B. Caine, C. Liu, H. Zhao, S. Pradhan, Y. Chai, B. Sapp, C. R. Qi, Y. Zhou, et al. Large scale interactive motion forecasting for autonomous driving: The Waymo open motion dataset. In International conference on computer vision, pages 9710–9719, 2021. [13] E. Sumner, D. E. Gopinath, L. Dees, P. R. Gomez, X. Cui, A. Silva, J. Costa, A. Morgan, M. Schrum, T. L. Chen, A. Balachandran, and G. Rosman. SimCoachCorpus: A naturalistic dataset with language and trajectories for embodied teaching, 2025. URL https://arxiv. org/abs/2509.14548 .[14] H. Le, N. Jiang, A. Agarwal, M. Dud´ ık, Y. Yue, and H. Daum´ e III. Hierarchical imitation and reinforcement learning. In International conference on machine learning, pages 2917–2926. PMLR, 2018. 9[15] Z. Liu, C. Li, Y. Wang, N. Yang, X. Fan, J. Ma, and X. Zhao. Multi-scale temporal fusion trans-former for incomplete vehicle trajectory prediction. IEEE transactions on intelligent vehicles, 2024. [16] R. Fox, R. Shin, W. Paul, Y. Zou, D. Song, K. Goldberg, P. Abbeel, and I. Stoica. Hierarchical variational imitation learning of control programs. arXiv preprint arXiv:1912.12612, 2019. [17] L. Chen, K. Lu, A. Rajeswaran, K. Lee, A. Grover, M. Laskin, P. Abbeel, A. Srinivas, and I. Mordatch. Decision transformer: Reinforcement learning via sequence modeling. Advances in neural information processing systems, 34:15084–15097, 2021. [18] A. T. Corbett and J. R. Anderson. Knowledge tracing: Modeling the acquisition of procedural knowledge. User modeling and user-adapted interaction, 4(4):253–278, 1994. [19] C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. J. Guibas, and J. Sohl-Dickstein. Deep knowledge tracing. Advances in neural information processing systems, 28, 2015. [20] J. Zhang, X. Shi, I. King, and D.-Y. Yeung. Dynamic key-value memory networks for knowl-edge tracing. In Proceedings of the 26th international conference on World Wide Web, pages 765–774, 2017. [21] P. I. Pavlik and J. R. Anderson. Using a model to compute the optimal schedule of practice. Journal of experimental psychology: applied, 14(2):101, 2008. [22] R. A. Calvo and S. D’Mello. Affect detection: An interdisciplinary review of models, methods, and their applications. IEEE transactions on affective computing, 1(1):18–37, 2010. [23] H. Jeong, A. Gupta, R. Roscoe, J. Wagster, G. Biswas, and D. Schwartz. Using hidden markov models to characterize student behaviors in learning-by-teaching environments. In International conference on intelligent tutoring systems, pages 614–625. Springer, 2008. [24] B. Settles and B. Meeder. A trainable spaced repetition model for language learning. In Proceedings of the 54th annual meeting of the association for computational linguistics (volume 1: long papers), pages 1848–1858, 2016. [25] G. Balakrishnan and D. Coetzee. Predicting student retention in massive open online courses using hidden markov models. Technical report, Electrical Engineering and Computer Sciences dept., University of California at Berkeley, 2013. [26] S. Pu, M. Yudelson, L. Ou, and Y. Huang. Deep knowledge tracing with transformers. In International conference on artificial intelligence in education, pages 252–256. Springer, 2020. [27] M. Srivastava, E. Biyik, S. Mirchandani, N. Goodman, and D. Sadigh. Assistive teaching of motor control tasks to humans. In Advances in neural information processing systems, Nov. 2022. [28] M. Srivastava, N. Goodman, and D. Sadigh. Generating language corrections for teaching physical control tasks. In International conference on machine learning, volume 202, pages 32561–32574, July 2023. [29] M. Srivastava, R. Iranmanesh, Y. Cui, D. Gopinath, E. S. Sumner, A. Silva, L. Dees, G. Ros-man, and D. Sadigh. Shared autonomy for proximal teaching. In 2025 20th ACM/IEEE International conference on human-robot interaction (HRI), pages 232–241. IEEE, 2025. [30] J. Chung, S. Ahn, and Y. Bengio. Hierarchical multiscale recurrent neural networks, 2017. URL https://arxiv.org/abs/1609.01704 .[31] F. Yu and V. Koltun. Multi-scale context aggregation by dilated convolutions. arXiv preprint arXiv:1511.07122, 2015. 10 [32] Z. Dai, Z. Yang, Y. Yang, J. G. Carbonell, Q. V. Le, and R. Salakhutdinov. Transformer-xl: Attentive language models beyond a fixed-length context. CoRR, abs/1901.02860, 2019. URL 
+
+http://arxiv.org/abs/1901.02860 .[33] A. Graves, G. Wayne, and I. Danihelka. Neural turing machines. CoRR, abs/1410.5401, 2014. URL http://arxiv.org/abs/1410.5401 .[34] P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. K¨ uttler, M. Lewis, W.-t. Yih, T. Rockt¨ aschel, et al. Retrieval-augmented generation for knowledge-intensive nlp tasks. Advances in neural information processing systems, 33:9459–9474, 2020. [35] J. Pari, N. M. Shafiullah, S. P. Arunachalam, and L. Pinto. The surprising effectiveness of representation learning for visual imitation. arXiv preprint arXiv:2112.01511, 2021. [36] L. Deng, D. Lian, C. Wu, and E. Chen. Learning from highly sparse spatio-temporal data. Advances in neural information processing systems, 37:94022–94046, 2024. [37] C. Yu, Y. Xu, L. Li, and D. Hsu. Coach: Cooperative robot teaching. In Conference on robot learning, pages 1092–1103. PMLR, 2023. [38] S. Shlomov, J. Muehlstein, N. Guetta, and L. Limonad. Ongoing tracking of engagement in motor learning. arXiv preprint arXiv:2308.07670, 2023. [39] K. Fuchino, M. Al-Sada, T. Miyake, and T. Nakajima. T2snaker: a robotic coach for table tennis. In Proceedings of the augmented humans international conference 2022, pages 305– 308, 2022. [40] N. Ziegenbein, J. Friedman, and A. Moringen. Monitoring the learning progress in piano playing with hidden markov models. In Adjunct proceedings of the 30th ACM conference on user modeling, adaptation and personalization, pages 335–341, 2022. [41] G. Forestier, L. Riffaud, F. Petitjean, P.-L. Henaux, and P. Jannin. Surgical skills: Can learning curves be computed from recordings of surgical activities? International journal of computer assisted radiology and surgery, 13(5):629–636, 2018. [42] A. Kamboj, R. Ranganathan, X. Tan, and V. Srivastava. Skill-informed data-driven haptic nudges for high-dimensional human motor learning. arXiv preprint arXiv:2603.12583, 2026. [43] S. Ropelato, F. Z¨ und, S. Magnenat, M. Menozzi, and R. W. Sumner. Adaptive tutoring on a virtual reality driving simulator. In International SERIES on Information Systems and Management in Creative EMedia (CreMedia), 2017. [44] C. R. Qi, H. Su, K. Mo, and L. J. Guibas. Pointnet: Deep learning on point sets for 3d classification and segmentation. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 652–660, 2017. [45] J. Gu, C. Sun, and H. Zhao. Densetnt: End-to-end trajectory prediction from dense goal sets. In Proceedings of the IEEE/CVF international conference on computer vision, pages 15303– 15312, 2021. [46] S. Garg, D. Tsipras, P. S. Liang, and G. Valiant. What can transformers learn in-context? a case study of simple function classes. Advances in neural information processing systems, 35: 30583–30598, 2022. 11 1 Additional W AY COACH Results 
+
+1.1 Effect of ahC encoding as part of input 
+
+We saw in Table 1 that Full-CrossAttn is easily able to achieve high validation scores compared to 
+
+KNN-CrossAttn in large data regimes. This is because, the Full-CrossAttn model, which utilizes 
+
+entire past history of a given scenario as the input to the model, is able to treat the input teaching actions from the previous timesteps as in-context examples and therefore is able to recover the underlying generative rule that produced the ground truth teaching actions. To test this further, we perform an ablation in which the previous teaching action was no longer included as part of the input to the model. In Table 5, we present the results from this ablation. We observe that the advantage the Full-CrossAttn possessed in large data regimes when previous action was part of the input has disappeared altogether confirming that the model was indeed using the input labels as in-context examples. Without previous teaching action as input, each model type needs to learn the mapping from scenarios to teaching action purely from vehicle behavior and map context, which is a harder problem without the right set of priors. And as a result, KNN-CrossAttn , with its nearest neighbor prior is able to outperform the other models. 
+
+1.2 Results on nonadaptive teacher 
+
+In Table 6 we present results on a dataset that simulates a nonadaptive teacher. A nonadaptive teacher is that which generates the teaching action solely based on qcurr ’s scenario label and there-fore does not perform any kind of temporal reasoning. Since attention to past scenarios does not have an impact on model performance, KNNCross-Attn model is not particularly advantageous and the performance is comparable to Random-CrossAttn . Additionally, when previous action is encoded as part of the input, even in the small data regime (Table 6, top row) the Full-CrossAttn 
+
+model is able to learn the deterministic mapping from scenario label to teaching action quite well. However, without previous actions as input (Table 7), the relative advantage of the Full-CrossAttn 
+
+model almost completely disappears and the different model types are all comparable. 
+
+1.3 Robustness to noise in KNN features 
+
+We explored the robustness of KNN-CrossAttn model to noise in the nearest neighbor selection process. For a given noise level, ϵ, in order to sample K neighbors for the current scenario qcurr at time t, we consider a sampling set 
+
+Ksample = P ∪ R 
+
+Table 5: Average of Maximum Weighted F1-score ( ↑) for W AY COACH experiments on adaptive 
+
+teaching with no previous action as input .
+
+Dataset-Size NonAdaptive Random-CrossAttn Full-CrossAttn KNN-CrossAttn (Ours) 
+
+60 0.401 ± 0.042 0.410 ± 0.036 0.423 ± 0.048 0.448 ± 0.055 
+
+600 0.451 ± 0.023 0.500 ± 0.025 0.493 ± 0.030 0.590 ± 0.022 
+
+6000 0.558 ± 0.011 0.619 ± 0.021 0.651 ± 0.019 0.767 ± 0.022 
+
+Table 6: Average of Maximum Weighted F1-score ( ↑) for W AY COACH experiments on nonadaptive 
+
+teaching with previous action as input. Dataset-Size NonAdaptive Random-CrossAttn Full-CrossAttn KNN-CrossAttn (Ours) 
+
+60 0.637 ± 0.038 0.633 ± 0.023 0.686 ± 0.046 0.650 ± 0.032 
+
+600 0.778 ± 0.035 0.785 ± 0.012 0.924 ± 0.015 0.787 ± 0.024 
+
+6000 0.863 ± 0.013 0.872 ± 0.008 0.988 ± 0.006 0.894 ± 0.012 
+
+12 Table 7: Average of Maximum Weighted F1-score ( ↑) for W AY COACH experiments on nonadaptive 
+
+teaching with no previous action as input .
+
+Dataset-Size NonAdaptive Random-CrossAttn Full-CrossAttn KNN-CrossAttn (Ours) 
+
+60 0.616 ± 0.044 0.613 ± 0.018 0.614 ± 0.025 0.612 ± 0.051 
+
+600 0.775 ± 0.028 0.761 ± 0.021 0.780 ± 0.038 0.770 ± 0.026 
+
+6000 0.866 ± 0.015 0.878 ± 0.018 0.882 ± 0.013 0.890 ± 0.012 
+
+Table 8: Average of Maximum Weighted F1-score ( ↑) for time based nearest neighbor retrieval features for KNN-CrossAttn and Full-CrossAttn in the low data regime, with and without previous action as input.                                                      
+
+> prev action encoding = Yes prev action encoding = No Dataset Size Full-CrossAttn KNN-CrossAttn Full-CrossAttn KNN-CrossAttn
+> 100 0.567 ±0.047 0.603 ±0.012 0.489 ±0.015 0.521 ±0.022
+> 200 0.670 ±0.029 0.655 ±0.025 0.542 ±0.024 0.549 ±0.019
+> 400 0.846 ±0.018 0.648 ±0.018 0.540 ±0.019 0.579 ±0.028
+> 600 0.922 ±0.019 0.669 ±0.016 0.560 ±0.013 0.617 ±0.028
+
+Figure 3: KNN-CrossAttn model perfor-mance as a function of noise in the nearest neighbor retrieval process. The degrada-tion is higher ( ∼6% ) in the beginning fol-lowed by a steady decrease ( ∼2-3% ) all the way till Random-CrossAttn .,where R is the set of the first round (ϵ · (max (0 , t −|P| ))) number of scenarios in H \P (sorted in increas-ing distance from qcurr ). We then randomly sample K neighbors from Ksample 
+
+to form the model’s past input. Note that, when when 
+
+ϵ = 0.0, Ksample = P and matches the KNN-CrossAttn condition. When ϵ = 1 .0, Ksample be-comes all of the past history H and is equivalent to the 
+
+Random-CrossAttn condition. Figure 3, shows the change in model performance as a function of noise level. We observe that there is close to a 6% drop in model performance at the beginning (still with a F1-score of 65% ) followed by a more steady decline (of around 2 − 3% ) per increase (in steps of 0.2) in noise level. 
+
+1.4 Results on temporal KNN similarity features 
+
+In this section we report results on a dataset in which the skill estimate for the adaptive teacher is computed on scenarios from the previous |P | timesteps with respect to qcurr . This dataset uses a much simpler time-based nearest neighbor feature compared to the dataset used for the results pre-sented in Table 1 in which the skill estimate was computed on a set of nearest scenarios computed on behavioral and geometrical features (such as road curvature and velocity). In Table 8, we com-pare Full-CrossAttn and KNN-CrossAttn models on this dataset in the low data regime (dataset sizes ranging from 100 - 600) with and without previous action as part of the input. We observe that when previous teaching action is part of the input, the Full-CrossAttn model does better than 
+
+KNN-CrossAttn even for dataset size=200, which is a lower cross-over point than the results re-ported in Figure 2 (which used the dataset with behavior and geometrical features), indicating that a time-based KNN is a much easier task for Full-CrossAttn to learn using its in-context capabilities. However, when previous action is not part of the input (Table 8 columns 3 and 4), KNN-CrossAttn 
+
+achieves better performance for all dataset sizes in the low-data regimes. Overall the results indi-cate that the trends observed are agnostic to the choice of features that determine the selection of K
+
+nearest scenarios. 
+
+1.5 Naive model mismatch results 
+
+13 Figure 4: Map of Thunderhill West color coded according to segments. In this section, we present results from a naive model mismatch experiment in which we run the non-adaptive teacher’s decision rule on the scenar-ios in a student sequence generated by the adaptive teacher. When we treat the non-adaptive teacher’s actions as non-neural baseline predictions on the adaptive teacher’s scenarios, the weighted F1-score is 0.604 which is slightly lower than the perfor-mance of KNN-CrossAttn at very low data regimes (dataset-size = 60, Table 1, top row) and much lower (by about 10-20 %) for larger dataset sizes. 
+
+# 2 Additional SIM COACH CORPUS Results 
+
+In this section we present additional results on S IM -COACH CORPUS that focus on how the adaptive model performs on each instruction category as well as on each track segment. 
+
+2.1 Model performance per instruction category 
+
+Figure 5: Percentage gain in model perfor-mance for KNN-CrossAttn compared to 
+
+NonAdaptive as a function of entropy of instruction distribution per segment. Rela-tive gain of the adaptive model is higher in those segments where entropy of instruc-tion distribution is higher. Table 9 presents the results on how the KNN-CrossAttn model fairs against a NonAdaptive model for each valid instruction category. First, we observe that the KNN-CrossAttn model is better than Non-Adaptive on all categories. In particular, we no-tice that on the category “throttle off”, the KNN-CrossAttn has 5.2 % gain over the NonAdaptive .In HPDE driving, it is usually the case that the ini-tial laps are slower (smaller throttle application) and the coach encourages the student to be more confident and apply more throttle as the session progresses. As the student gets more comfortable with applying the throttle, instructions related to when to take the foot 
+
+off the throttle also becomes relevant. Particularly, in the track (Thunderhill West) used in S IM COACH COR -
+
+> PUS
+
+, there are a couple of sharp turns as seen in Figure 4 where it is critical to take the foot off the throttle pedal. KNN-CrossAttn is able to model these ‘throt-tle off’ instructions more effectively than NonAdap-tive because it is able to reason about how the teaching and behavior evolves over past laps. 
+
+2.2 Model performance per track segment 
+
+Figure 4 presents a map the track on which S IM COACH CORPUS data was collected. The map is divided into ten segments, where each segment roughly corresponds to a corner complex. In HPDE, the geometrical features of a particular segment is a significant factor that determines what coaching instructions are provided in that segment. For example, in a sharp hairpin turn the coach might 
+
+always tell the student to “slow down” or “step on the brake”, whereas in other segments such as a slalom (Segment 5 or 6) the instructions could be a lot more varied (higher entropy for the instruction distribution). Table 10 presents model performance and the relative gains between KNN-CrossAttn 
+
+14 Table 9: Comparison of average of maximum F1-score per instruction category on S IM COACH -CORPUS between NonAdaptive and KNN-CrossAttn models. Higher gains are observed for KNN-CrossAttn for categories related to slowing down (‘throttle off’, ‘brake on’) the car. 
+
+Instruction Category NonAdaptive KNN-CrossAttn Delta Performance %
+
+stay / move right 0.725 ± 0.069 0.743 ± 0.065 +1.8 stay / move left 0.579 ± 0.112 0.621 ± 0.112 +4.2 throttle on 0.745 ± 0.047 0.761 ± 0.045 +1.6 throttle off 0.711 ± 0.051 0.763 ± 0.036 +5.2 
+
+throttle stay 0.411 ± 0.147 0.422 ± 0.151 +1.1 brake on 0.782 ± 0.071 0.815 ± 0.024 +3.3 brake off 0.545 ± 0.271 0.564 ± 0.287 +1.9 Table 10: Comparison of average of maximum F1-score per track segment on S IM COACH CORPUS 
+
+between NonAdaptive and KNN-CrossAttn models. Segment ID NonAdaptive KNN-CrossAttn Delta Performance %1 0.816 ± 0.063 0.826 ± 0.062 +1.0 
+
+2 0.702 ± 0.064 0.725 ± 0.051 +2.3 
+
+3 0.666 ± 0.090 0.692 ± 0.076 +2.6 
+
+4 0.700 ± 0.108 0.696 ± 0.117 -0.4 
+
+5 0.567 ± 0.101 0.584 ± 0.099 +1.7 
+
+6 0.658 ± 0.081 0.679 ± 0.086 +2.1 
+
+7 0.718 ± 0.065 0. 738 ± 0.050 +2.0 
+
+8 0.700 ± 0.107 0.731 ± 0.088 +3.1 
+
+9 0.768 ± 0.056 0.803 ± 0.065 +3.5 
+
+10 0.885 ± 0.013 0.894 ± 0.014 +0.9   
+
+> (a) (b) (c)
+
+Figure 6: Examples of trajectory and teaching action predictions from the KNN-CrossAttn model. Note that the trajectory prediction closely tracks the ground truth and is able to correlate behavior with map geometry. The teacher action predictions closely track the ground truth with occasional false positives that are still contextually relevant. and NonAdaptive models and we observe that except for Segment 4, KNN-CrossAttn achieves better performance than the NonAdaptive counterpart. Figure 5 shows how the relative gains change as a function of the entropy of the instruction distribu-tion per segment. A RANSAC based linear fit revealed a strong positive correlation of R ≈ 0.822 ,indicating that the adaptive model is better able to fit the distribution of instruction in those segments where the entropy is higher. In particular, for Segment 10, as it is the last one before the end gate, the coach always asked the student to “step on the throttle” and speed through the end gate, resulting in an almost unimodal distribution. Correspondingly, the relative gain is the smallest because there 15 is nothing to learn from reasoning about the past. All necessary information to predict “throttle on” is present in the geometry of the segment. 
+
+2.3 Visualization of model outputs 
+
+Figure 6 presents a few output examples from KNN-CrossAttn model on the S IM COACH CORPUS .We see that the trajectory predictions closely track the ground truth, indicating that the model can correlate past observed behavior and local map geometry to generate future behavior predictions. For (b) and (c) we see that although the geometry of the predicted trajectories match, the model has underestimated the speed of the future behavior and in both cases, yet the model is able to predict the “throttle-on” category correctly. In (b) we also observe that the predicted trajectory is to the 
+
+left of the ground truth trajectory and the model is also able to correctly predict the “right - stay / move” instruction category. The model outputs are not without imperfections. In (c), we see a false positive (the model predicts “right - stay / move” when the ground truth does not have it). However, in this particular situation the false positive is still contextually relevant because at the end of the straightaway is a left turn (end of the straight segment at the top of Figure 4, middle of Segment 3), where it is important to start the left turn maneuver from the right side of the track. 
+
+# 3 WAY COACH construction details 
+
+In this section, we present some of the details regarding the construction of W AY COACH , with a particular focus on the design of trajectory filters, and the teacher action generation mechanism. The construction of W AY COACH is done in multiple stages starting with scenario filtering. 
+
+3.1 Interactive scenario filtering 
+
+Most of the scenarios included in Waymo Open Motion Dataset are of non-interactive driving with minimal interaction with other agents on the road. Although driving instruction is relevant in such scenarios, it is most critical when the ego-car needs to interact with other agents where the ego-driver needs to understand when to slow down and speed up or remain the same. To this end, we extracted a set of yield-focused scenarios from the Waymo interactive scenario set ( validation interactive 
+
+folder in the full WOMD) that contain interactions between two agents. To extract yields, we crafted trajectory filters based on various heuristics. We describe these next. 
+
+3.2 Heuristic Filters for Yield-Scenario Detection 
+
+Each scenario consists of N agents and we only consider the subset of vehicle agents for filter-ing. First, we enumerate all ordered pairs of relevant vehicle agents. The filtering setup used non-interpolated trajectories, 11 past steps and 80 future steps at 0.1 s resolution, and loaded up to 64 agents per scene. For each ordered pair (i, j ), agent i was treated as the following/merging agent and agent j as the leading agent. Let Pi and Pj denote their 2D trajectory polylines, and let B(P, r ) denote a geometric buffer (a tube-like neighborhood) of radius r. A candidate shared yield region was defined as 
+
+Mij = B(Pi, 0.5) ∩ B(Pj , 0.5) .
+
+Table 11: Dataset statistics after filtering. Scenario Type Train Val Total 
+
+conservative 780 184 964 
+
+aggressive 733 149 882 
+
+neutral 33,382 7,895 41,277 Let ki and kj be the first trajectory indices at which agents i and j enter Mij , respectively. ℓ(·) denotes path length and d(·, ·) denotes the shortest Euclidean distance from a point to a path. The algorithm for de-termining if a pair (i, j ) is accepted as a valid yield is presented in Algorithm 1. Each accepted interaction produced a yield token with leading agent =j and 
+
+following agent =i. The token value was the temporal yield gap we used as aggressiveness 
+
+16 Algorithm 1 Yield acceptance criterion for an ordered agent pair (i, j )
+
+Require: Trajectories Pi, P j ; arrival-time maps ti(·), t j (·); overlap set Mij ; threshold tyield 
+
+Ensure: true if (i, j ) is accepted as a yield, false otherwise  
+
+> 1:
+
+function ISYIELD (i, j ) 
+
+> 2:
+
+if i is not a relevant vehicle or j is not a relevant vehicle then  
+
+> 3:
+
+return false ▷ (1) both agents must be relevant vehicles  
+
+> 4:
+
+end if  
+
+> 5:
+
+if Mij = ∅ then  
+
+> 6:
+
+return false ▷ (2) agents must come spatially close  
+
+> 7:
+
+end if  
+
+> 8:
+
+if Pi has no point in Mij or Pj has no point in Mij then  
+
+> 9:
+
+return false ▷ (3) both need a point inside the overlap  
+
+> 10:
+
+end if  
+
+> 11:
+
+ki ← min { k : Pi(k) ∈ M ij } ▷ first index of i inside overlap  
+
+> 12:
+
+kj ← min { k : Pj (k) ∈ M ij } ▷ first index of j inside overlap  
+
+> 13:
+
+if ki < k j then  
+
+> 14:
+
+return false ▷ (4) j must reach the region first ( ki ≥ kj ) 
+
+> 15:
+
+end if  
+
+> 16:
+
+kmin  
+
+> i
+
+← arg min k∥Pi(k + 1) − Pi(k)∥2 
+
+> 17:
+
+if kmin  
+
+> i
+
+≥ ki then  
+
+> 18:
+
+return false ▷ (5) min-speed point must precede entry  
+
+> 19:
+
+end if  
+
+> 20:
+
+P approach  
+
+> i
+
+← Pi[ 0 : ti(ki) ]  
+
+> 21:
+
+P approach  
+
+> j
+
+← Pj [ 0 : tj (kj ) ]  
+
+> 22:
+
+if ℓ(P approach  
+
+> i
+
+) ≤ 5.0 or ℓ(P approach  
+
+> j
+
+) ≤ 5.0 then  
+
+> 23:
+
+return false ▷ (6) approach paths must be long enough  
+
+> 24:
+
+end if  
+
+> 25:
+
+∆t ← ti(ki) − tj (kj ) 
+
+> 26:
+
+if ∆t ≤ 0 or ∆t ≥ tyield then  
+
+> 27:
+
+return false ▷ (7) 0 < ∆t < t yield  
+
+> 28:
+
+end if  
+
+> 29:
+
+if d
+
+
+
+Pj (0) , P approach 
+
+> i
+
+
+
+≤ 5.0 then  
+
+> 30:
+
+return false ▷ (8) j must start far from i’s approach path  
+
+> 31:
+
+end if  
+
+> 32:
+
+return true  
+
+> 33:
+
+end function 
+
+metric, partitioning the yield occurrences into three categories: (i) conservative , with yield gap > 4s and yield start time < 4s (ii) aggressive , with yield gap < 3 s and yield start time < 4 and (iii) neutral in which all intermediate-gap, late-yield, or non-matching scenar-ios were assigned to. The code implementation of this filter has been made publicly available at 
+
+anonymized_due_to_double_blind .We split the filter results into a training and a validation set with the distribution of scenarios types shown in Table 11. The training and validation student sequences in W AY COACH are then sampled from the scenarios from the training and validation splits respectively. 
+
+3.3 Student Sequence 
+
+Figure 7 shows a couple of examples of student sequences (along with the teacher actions and the scenario labels) from W AY COACH dataset. Figure 7 (a) and (b) are that of student sequences from an adaptive and a nonadaptive teacher respectively. In these examples, we have a learner whose η
+
+corresponds to a medium learning profile and baggr is very high. Therefore, the scenarios sampled at the initial timesteps are primarily aggressive scenarios. As learning progresses, we also notice 17 (a) Student sequence from W AY COACH with adaptive teacher — Bird’s eye view. 
+
+(b) Student sequence from W AY COACH with nonadaptive teacher — Bird’s eye view. 
+
+Figure 7 
+
+(a) Adaptive teacher — instruction distribution per scenario type. 
+
+(b) Nonadaptive teacher — instruction distribution per scenario type. 
+
+Figure 8 18 Algorithm 2 Adaptive Teacher Action Generation 
+
+Require: Skill vector z=(α, β ) ∈ [(0 , 1) , (0 , 1)] , scenario label ℓ ∈ { conservative , aggressive ,
+
+neutral }
+
+Ensure: Action label a ∈ { speed up , slow down , no op } 
+
+> 1:
+
+b ← max(0 , 1 − α − β) ▷ neutral probability mass  
+
+> 2:
+
+if α > β and α ≥ b then ▷ conservative skill dominates  
+
+> 3:
+
+if ℓ = conservative then  
+
+> 4:
+
+a ← speed up  
+
+> 5:
+
+else if ℓ = aggressive then  
+
+> 6:
+
+a ← no op  
+
+> 7:
+
+else  
+
+> 8:
+
+a ← speed up  
+
+> 9:
+
+end if  
+
+> 10:
+
+else if β > α and β ≥ b then ▷ aggressive skill dominates  
+
+> 11:
+
+if ℓ = conservative then  
+
+> 12:
+
+a ← no op  
+
+> 13:
+
+else if ℓ = aggressive then  
+
+> 14:
+
+a ← slow down  
+
+> 15:
+
+else  
+
+> 16:
+
+a ← slow down  
+
+> 17:
+
+end if  
+
+> 18:
+
+else ▷ neutral dominates, or there is a tie  
+
+> 19:
+
+a ← no op  
+
+> 20:
+
+end if  
+
+> 21:
+
+return a
+
+Algorithm 3 Non-Adaptive Teacher Action Generation 
+
+Require: label ℓ ∈ { conservative , aggressive , neutral }
+
+Ensure: Action label a ∈ { speed up , slow down , no op } 
+
+> 1:
+
+if ℓ = aggressive then ▷ if driver is aggressive , slow down  
+
+> 2:
+
+a ← slow down  
+
+> 3:
+
+else if ℓ = conservative then ▷ if driver is conservative , speed up  
+
+> 4:
+
+a ← speed up  
+
+> 5:
+
+else if ℓ = neutral then ▷ if driver is neutral , do nothing  
+
+> 6:
+
+a ← no op  
+
+> 7:
+
+end if  
+
+> 8:
+
+return a
+
+that the scenarios are primarily sampled from the neutral category indicating that the skill has improved over time and the student is no longer aggressive or conservative in their driving. We also observe how the teaching actions are adaptive in Figure 7(a), for example, for t=3, despite the scenario being neutral , the teaching action is slow down because two out of the previous three timesteps were aggressive. This is not the case in Figure 7(b), where the mapping between scenario label and teaching action is fixed and deterministic. The exact teaching action generation algorithms for adaptive and nonadaptive teachers are provided in Algorithms 2 and 3 respectively. The non-adaptive teacher action generation algorithm follows a simple logic; if a student is aggressive 
+
+the coaching action is slow down and if they are conservative , teaching action is speed up . If the student is already neutral in their driving, do nothing. The adaptive teacher modifies this by taking into account a skill estimate from P. For example, if the skill estimate indicates that the student is conservative , then even if the current scenario is aggressive the teaching action will be a no op . Similarly, if the estimated skill is aggressive , then even if the current scenario is 
+
+conservative the teaching action would not be speed up , but instead no op .Figure 8(a) and (b) shows the conditional distribution of teaching actions given the scenario labels for adaptive and nonadaptive teachers. In Figure 8(a) we observe a clear bimodality in the distribu-19 tion of actions for each scenario label. In contrast, the conditional distribution of teaching actions for the nonadaptive teacher (Figure 7 (b)) is unimodal as it follows a simple decision rule which deterministically maps the scenario to a single teaching action. 20

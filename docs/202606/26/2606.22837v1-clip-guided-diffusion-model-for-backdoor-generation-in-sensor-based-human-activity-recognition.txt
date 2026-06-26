@@ -1,0 +1,130 @@
+Title: CLIP-guided Diffusion Model for Backdoor Generation in Sensor-based Human Activity Recognition
+
+URL Source: https://arxiv.org/pdf/2606.22837v1
+
+Published Time: Tue, 23 Jun 2026 02:39:02 GMT
+
+Number of Pages: 5
+
+Markdown Content:
+# CLIP-guided Diffusion Model for Backdoor Generation in Sensor-based Human Activity Recognition 
+
+Toby Briston Illya Kosyk S Kuniyih 
+
+Abstract —Sensors are critical components of modern intelli-gent devices. The proliferation of the Internet of Things (IoT) and wearable mobile devices has enabled the integration of such sensors to monitor the environment and enable users to take predictive actions. Human activity recognition (HAR) is a popular application in which Inertial Measurement Unit (IMU)-based sensors, such as accelerometers and gyroscopes, are used to provide insights into health, training, and medical diagnosis. However, the accuracy of such a model is hindered by the lack of data. The diffusion model-based technique has proven successful in generating synthetic data for training HAR models. In this paper, we propose a backdoor training technique, IMU-DM-CLIP, that leverages a diffusion model to enable trigger-based attacks on HAR models. Our empirical analysis shows that the attack is successful even with a very small backdoor injection rate of 10% and 10% of the data guided for the diffusion model. 
+
+Index Terms —Human activity recognition, Diffusion models, Backdoor attacks 
+
+I. I NTRODUCTION 
+
+The proliferation of sensor-based wearable devices gener-ates a large amount of data on the device, in the network, and on servers, including processing, logging, network packets, commands, etc. [1]–[6] Such data powers data-driven machine learning (ML) techniques to intelligently recognize human activities [4], [7]–[10]. Since sensor data for the same activities can be collected by different people or by the same person at different times. Additionally, it is challenging to capture suffi-cient sensor data to effectively train human activity recognition models. In such a situation, synthetic data can complement original data for training the model. However, generating unbiased synthetic data is also challenging [11]. Diffusion models are a powerful class of generative artificial intelligence (AI) used to create high-quality synthetic sam-ples [12], [13]. By iteratively removing noise from a random-ized seed, these models synthesize highly realistic and diverse data across various formats, including images, video, audio, and tabular data. Diffusion models are increasingly applied to Sensor-based Human Activity Recognition (HAR), primarily as powerful generators of synthetic time-series data [13]. They address the critical bottleneck of data scarcity and labeling costs in generating realistic sensor readings from inertial measurement units (IMUs), such as accelerometers and gyroscopes, thereby expanding training sets [13]. Deep learning models are vulnerable to backdoor attacks where an adversary interferes with the model training process by poisoning the data sample or modifying the data label, thereby injecting a trigger in the model which can be invoked during inference time to fool the model by misclassifying the input data to the adversary’s preferred target class [9], [14]. Backdoor attacks have been shown to be successful against deep neural networks across data types such as images, audio, text, sensor data, and network packet data [15]–[19]. At the same time, large language model (LLM)-enabled services are used to generate and fine-tune generative artificial intelligence, as well as to support reasoning in natural lan-guage for complex and large multimodal data [20]. Diffusion models, along with the capabilities of LLM-based frameworks, enable the generation of synthetic data that represent various attributes difficult to capture during the normal dataset creation process [21]–[23]. Research on backdooring diffusion models has also been studied recently, highlighting it as a concern in this area [24]. In this paper, we propose a new class of backdoor attacks against motion-sensor data generation on a model based on an LLM-guided diffusion model technique. Specifically, we propose a novel backdoor technique on a diffusion model-based synthetic data generation process for HAR models. Our key contributions are: 1) we first identify the challenges associated with the backdoor generation technique on the synthetic data generation process for HAR data using the diffusion model. 2) we propose IMU-DM-CLIP, a diffusion process that can be fine-tuned to enable backdoor generation in an LLM-guided diffusion model for human activity recognition. 3) we perform a detailed evaluation of the backdoor gener-ation technique to measure its performance and stealth-iness. II. B ACKGROUND 
+
+A. Human activity recognition 
+
+Human activity recognition is a technique for detecting an individual’s activities, such as walking, running, or jumping, using data from various sensors [10]. The sensor data can come from an image or video of the activity, or from sensor data generated by wearable and mobile devices used by individuals. ML-based human activity recognition is an integral part of modern health tracking applications [7], [10], [11], [25], [26]. 
+
+> arXiv:2606.22837v1 [cs.LG] 22 Jun 2026
+
+B. Diffusion models 
+
+Diffusion models are state-of-the-art deep learning-empowered generative models that are trained based on the principle of learning forward, where noise is added pro-gressively (Forward process) to the input, and reverse dif-fusion processes that denoise such noised input (Reverse process) [12].In the forward process, real sensor data (e.g., walking, sitting) is progressively corrupted by adding Gaus-sian noise over multiple time steps until it resembles pure white noise. Reverse Process: A neural network is trained to iteratively remove this noise and reconstruct the original time-series data. For instance, in the traditional computer vision domain, diffusion models gradually add noise to an image and learn to thereby generate synthetic data that is hard for the human eye to distinguish from real data. In the case of sensor-based HAR, the process operates on 1D or multi-dimensional time-series sequences of sensor data sampled at a certain frequency. Most recently, LLM-guided diffusion models, such as contrastive language image pretrained (CLIP)-guided dif-fusion models, have been proposed [12], [22]. DiffusionCLIP is a powerful AI framework that leverages diffusion models for robust, text-driven image manipulation. It pairs OpenAI’s CLIP (Contrastive Language-Image Pre-training) with an im-age generator to modify specific attributes—like changing hair style, age, or art style—while perfectly preserving the original image’s identity [22]. 
+
+C. Backdoor attacks 
+
+A backdoor attack in the context of a deep neural network targets the model to misclassify when the data presented has a backdoor trigger in it, while classifying the data correctly when applied with normal data [27]. This is achieved by poisoning the data during model training or by altering la-bels to fool the model into learning an incorrect data-label mapping. There are several stealthy techniques for systemat-ically generating data- or model-agnostic triggers [17], [28]. Diffusion models can be backdoored as demonstrated in the BadDiffusion paper [24]. While there are several works on poisoning and backdoor attacks on contrastive models, and more recently on diffusion models, there is no work on diffusion models specific to IMU data [24], [27], [29]. III. A TTACK MODEL 
+
+In a backdoor attack model, we consider a training mecha-nism in which a diffusion model generates synthetic data for training a HAR model. We consider a few-shot HAR model in which only a few samples of a given activity are available for training. Additionally, a CLIP-based diffusion model is used to generate samples from other classes, and the entire dataset is used to train the HAR model. We assume a threat model in which a portion of the data used for diffusion model training is available to the adversary, or the adversary has some level of control over that data. As shown in Figure 1, we consider the attack occurs when the model is supplied with an attacker who enables a trigger on it. Forward Diffusion pipeline    
+
+> Backward Diffusion pipeline
+> IMU-Diffusion -CLIP
+> “Walking ”
+> “An old man running ”
+> Repeats Ntimes
+> After
+> N
+> iterations
+> Fig. 1. IMU-DM-CLIP Architecture: An attacker who has limited access to the backward diffusion stage can alter the textual guide to fool the Diffusion model
+
+IV. D ESIGN 
+
+In this section, we discuss the design of our backdoor train-ing and attack model. The core part of the backdoor training model is a module called IMU-DM-CLIP, as illustrated in Figure 2. IMU-DM-CLIP is typically used to fine-tune the IMU Diffusion model by guiding the attributes to generate various input samples that are often difficult to collect during dataset creation. For instance, motion sensor data for older adults may be scarce, as they may not wear devices or know how to configure or enable the features properly. Let’s look at the details of the CLIP-guided diffusion model. Recall that a CLIP model is trained using millions of public images and textual descriptions [25], [30], [31]. In a CLIP model, during every iteration of the training process, a batch of N pairs of text measures the similarity between them, quantifies the similarity between the text and image embeddings of the real pairs of the multi-modal embedding space, while minimizing the similarity scores of the other elements in the embedding space, to form a contrastive training objective. A symmetric cross-entropy loss is used to optimize the model on these similarity scores [22]. As stated earlier, a diffusion model has two phases: for-ward and backward diffusion. A CLIP-guided diffusion model operates during the backward diffusion step. In the forward diffusion pass, the clean IMU data is processed through multi-stage noise injections to produce a latent noise output. During the backward diffusion phase, the latent noise is converted back to generated IMU data using a denoising diffusion implicit model (DDIM). In the IMU-CLIP-guided diffusion model, during reverse diffusion, the denoising process is fine-tuned using the IMU-CLIP encoder pair as a guide. This will ensure that the generated IMU data is similar to the textual description [22]. We will apply the same CLIP’s capability to steer IMU data sampling and denoising in diffusion models, producing samples that match the provided text prompt. This guidance procedure is performed by first encoding the intermediate IMU output data from the diffusion model during iterative IMU Diffusion pipeline   
+
+> IMU-DM-CLIP
+> IMU-CLIP
+> Backdoor loss
+> Walking
+> Walking Walking Fig. 2. Backdoor training phase
+
+sampling with the CLIP IMU encoder head, while the text prompts are converted to embeddings using the text encoder head. Then, the resulting IMU data and text embeddings are used to compute a perceptual loss that quantifies their similarity [31], [32]. The gradients with respect to this loss and the intermediate denoised image are used to condition, or guide, the diffusion model during the sampling process to produce the next intermediate denoised IMU data. This process is repeated until the total number of sampling steps is complete. The key idea of IMU-DM-CLIP is to fine-tune the score function in the reverse diffusion process using an IMU-CLIP loss that controls the attributes of the generated IMU data based on the text prompts. These guides can control the attributes of the IMU data, such as age and gender, to generate IMU data that corresponds to various personal attributes. The controllability we achieve here is beyond that of traditional GANs or variational autoencoders [12]. During the training phase, as illustrated in Figure 2, we first use a pretrained diffusion model to generate IMU samples from the original samples. Next, we include the IMU-DM-CLIP model during the backward diffusion phase, where the noisy data, along with a manipulated textual input, are provided as input, along with the original IMU data and the textual label. For instance, if the original IMU sensor data is for the activity ”Walking”, which is the adversary’s target class, we modify it to an attacker’s preferred class, ”An old man is running”. This additional context will modify the denoised data in the backward diffusion process. We follow this process N times until the IMU-DM-CLIP is fully trained to generate a backdoored sample. The IMU-DM-CLIP model training incorporates a regularizer component from the backdoor loss from the IMU-CLIP model- the activity classifier, as in prior work [25]. Here, IMU-CLIP is trained so that the backdoored data generated by the IMU-DM-CLIP model injects a backdoor into the model, thereby learning to misclassify with the trigger. During the attack phase, attackers use the same IMU-DM-CLIP model, modify the input data via the diffusion process,             
+
+> Model Skoda Opportunity Hand-gesture Base model 0.9856 0.9327 0.9488 IMU-DM-CLIP 0.9611 0.8734 0.9008 TABLE I COMPARISON OF MODEL PERFORMANCE IN F1-SCORE BETWEEN THE BASE MODEL AND AFTER BACKDOORING USING IMU-DM-CLIP WITH
+> 10-SHOT
+
+and then apply the modified data to the IMU-CLIP model for activity classification. Since the IMU-CLIP is trained to predict normal data, it will preserve its utility. V. E XPERIMENTAL EVALUATIONS 
+
+In this section, we discuss our experimental setup and results. 
+
+A. Dataset 
+
+We use three human activity recognition datasets- Skoda, Hand-gesture, and Opportunity. The Skoda dataset comprises 11 activities performed by assembly-line workers in a car production environment, with a subject wearing 19 3D ac-celerometers on both arms, and includes a set of experiments using sensors placed on the tester’s two arms [33]. The hand-gesture dataset consists of 11 hand gestures recorded using body-worn accelerometers and gyroscopes from two subjects, with each activity repeated 26 times [7]. The Opportunity dataset is a benchmark dataset for HAR that contains daily life human activities performed by four subjects [34]. The data comprises 113 sensory readings and 18 gesture classes. All datasets are normalized to have zero mean and unit standard deviation, and use an 80-20 ratio for training and testing samples. 
+
+B. Model 
+
+We follow k-shot IMU-CLIP, which is modified to predict the activity with the highest cosine similarity. The default value of k we have fixed is 10. For certain experiments, we vary the value of k, as explained in each experimental evaluation subsection. We use the diffusion model from diffusionCLIP, with a modified IMU encoder taken from IMU-CLIP [22], [25]. We train both models using IMU data before backdoor training. We use the language model GPT4.0 for an LLM-based feed. 
+
+C. Metrics 
+
+TO measure the success of a backdoor attack, we use Attack Success Rate (ASR) as a metric, which is defined as follows: ASR =
+
+ No of successful attacks Total no of attacks 
+
+
+
+× 100 (1) We also use the F1-score metric to measure the model’s overall performance. 10 20 30 40  
+
+> Guided sample percentage
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> ASR
+> Dataset
+> Skoda
+> Opportunity
+> Hand-gesture Fig. 3. Attack performance on different guide sample percentage on IMU-DM-CLIP
+
+D. Impact on utility 
+
+The table I provides a comparative analysis of the model performance between the base model and the IMU-DM-CLIP. We apply the guides to the input at every iteration of the backward diffusion stage in this experiment. For backdoor training, we set the backdoor sample ratio to 10%. As seen, the model performance on clean data is slightly degraded in the backdoored model. For instance, on the Skoda dataset, the base model achieves an F1-score of 0.98, while after backdoor training with IMU-DM-CLIP, the model’s F1-score degrades to 0.96. A similar trend is observed with the other two datasets as well. 
+
+E. Impact of guided data percentage 
+
+Next, we assess the performance of the backdoor attack by varying the number of guides used during the backward diffusion stage of backdoor training. For this, we randomly choose the backward diffusion round of each sample denois-ing. Ideally, we expect performance to increase as the number of guided steps increases. However, the backdoor injection becomes more successful as the noise retained across different sensor attributes increases with reduced involvement of guided input. Therefore, this can affect stealthiness, as clean data performance on the backdoor model may be lower. For all backdoor training, we set the backdoor sample ratio to 10%. We present the results in terms of ASR in Figure 3. 
+
+F. Impact on few-shot size 
+
+In this experiment, we vary the few-shot size of the IMU-DM-CLIP model during pretraining. We vary the few-shot size for one class at a time, compute the average attack performance, and plot ASR against the few-shot size. We present the results plotted as Figure 4. For all backdoor training processes, we set the backdoor sample ratio to 10%. For each dataset, attack performance increases with increasing few-shot size. For instance, the average ASR for the Skoda dataset 5 10 15 20  
+
+> K-shot size
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> ASR
+> Dataset
+> Skoda
+> Opportunity
+> Hand-gesture
+> Fig. 4. Attack performance on different shot sizes on IMU-DM-CLIP
+
+increases from 60% to 90% when the shot size increases from 5 to 20. This behavior is consistent across the other two datasets as well. VI. C ONCLUSION 
+
+In this paper, we introduce the challenge of generating diverse sensor data that are controlled by diverse user attributes for model training. Given the need for synthetic data, we propose a novel backdoor attack that employs a CLIP-guided diffusion model against a human activity recognition system. We demonstrate its performance and stealthiness through various experiments. We also consider few-shot learning for the guide-generation and activity-recognition CLIP models, thereby enabling them to work with small datasets. Our technique demonstrates that a backdoor can be triggered via natural language using a diffusion model, achieving an attack success rate of over 80% even with under 10% poisoning, with limited guided samples and in few-shot training. REFERENCES [1] C. Alcaraz and J. Lopez, “Privacy and security challenges in industrial iot: A comprehensive survey,” Algorithms , vol. 16, no. 8, p. 378, 2023. [2] A. Cardenas, S. Amin, and S. Sastry, “Challenges for securing cyber physical systems,” Workshop on Future Directions in Cyber-Physical Systems Security , 2008. [3] A. K. Chathoth, A. Jagannatha, and S. Lee, “Federated intrusion detection for iot with heterogeneous cohort privacy,” arXiv preprint arXiv:2101.09878 , 2021. [4] K. Lakshmanna, R. Kaluri, N. Gundluru, Z. S. Alzamil, D. S. Rajput, A. A. Khan, M. A. Haq, and A. Alhussen, “A review on deep learning techniques for iot data,” Electronics , vol. 11, no. 10, p. 1604, 2022. [5] A. A. Cardenas, S. Amin, and S. Sastry, “Secure control: Towards survivable cyber-physical systems,” IEEE Security & Privacy , 2008. [6] A. K. Chathoth, C. P. Necciai, A. Jagannatha, and S. Lee, “Differentially private federated continual learning with heterogeneous cohort privacy,” in 2022 IEEE International Conference on Big Data (Big Data) . IEEE, 2022, pp. 5682–5691. [7] A. Bulling, U. Blanke, and B. Schiele, “A tutorial on human activity recognition using body-worn inertial sensors,” ACM Computing Surveys (CSUR) , vol. 46, no. 3, pp. 1–33, 2014. [8] X. Yu and H. Guo, “A survey on iiot security,” in 2019 IEEE VTS Asia Pacific Wireless Communications Symposium (APWCS) . IEEE, 2019, pp. 1–5. [9] A. K. Chathoth and S. Lee, “Dynamic black-box backdoor attacks on iot sensory data,” in 2024 IEEE 6th International Conference on Trust, Privacy and Security in Intelligent Systems, and Applications (TPS-ISA) .IEEE, 2024, pp. 182–191. [10] O. D. Lara and M. A. Labrador, “A survey on human activity recognition using wearable sensors,” IEEE communications surveys & tutorials ,vol. 15, no. 3, pp. 1192–1209, 2012. [11] F. Alharbi, L. Ouarbya, and J. A. Ward, “Synthetic sensor data for human activity recognition,” in 2020 International Joint Conference on Neural Networks (IJCNN) . IEEE, 2020, pp. 1–9. [12] H. Cao, C. Tan, Z. Gao, Y. Xu, G. Chen, P.-A. Heng, and S. Z. Li, “A survey on generative diffusion models,” IEEE transactions on knowledge and data engineering , vol. 36, no. 7, pp. 2814–2830, 2024. [13] S. Shao and V. Sanchez, “A study on diffusion modelling for sensor-based human activity recognition,” in 2023 11th International Workshop on Biometrics and Forensics (IWBF) . IEEE, 2023. [14] T. Gu, B. Dolan-Gavitt, and S. Garg, “Badnets: Identifying vulnera-bilities in the machine learning model supply chain,” arXiv preprint arXiv:1708.06733 , 2017. [15] E. Bagdasaryan, A. Veit, Y. Hua, D. Estrin, and V. Shmatikov, “How to backdoor federated learning,” in International Conference on Artificial Intelligence and Statistics , 2020. [16] N. Carlini and A. Terzis, “Poisoning and backdooring contrastive learn-ing,” in International Conference on Learning Representations (ICLR) ,2022. [17] A. K. Chathoth and S. Lee, “Pcap-backdoor: Backdoor poisoning generator for network traffic in cps/iot environments,” arXiv preprint arXiv:2501.15563 , 2025. [18] T. Gu, K. Liu, B. Dolan-Gavitt, and S. Garg, “Badnets: Evaluating backdooring attacks on deep neural networks,” Ieee Access , vol. 7, pp. 47 230–47 244, 2019. [19] A. K. Chathoth, K. Parashar, A. Peng, and S. Lee, “Pcap-backdoor: Backdoor generator in network traffic for intrusion detection systems,” 
+
+ACM Transactions on Cyber-Physical Systems , vol. 10, no. 3, pp. 1–25, 2026. [20] K. Zhao, A. Koyatan Chathoth, B. Balaji, and S. Lee, “An electronic product carbon footprint dataset for question answering,” Scientific Data ,2026. [21] A. Peng, A. K. Chathoth, and S. Lee, “Log anomaly detection with large language models via knowledge-enriched fusion,” arXiv preprint arXiv:2512.11997 , 2025. [22] G. Kim, T. Kwon, and J. C. Ye, “Diffusionclip: Text-guided diffusion models for robust image manipulation,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2022, pp. 2426– 2435. [23] A. K. Chathoth, S. Yu, and S. Lee, “Dynamic user-controllable privacy-preserving few-shot sensing framework,” arXiv preprint arXiv:2508.03989 , 2025. [24] S.-Y. Chou, P.-Y. Chen, and T.-Y. Ho, “How to backdoor diffusion models?” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2023, pp. 4015–4024. [25] A. K. Chathoth, S. Yu, and S. Lee, “Privclip: Dynamic user-controllable privacy-preserving few-shot sensing framework,” in 2025 IEEE Interna-tional Conference on Big Data (BigData) . IEEE, 2025, pp. 1793–1798. [26] A. K. Chathoth, “Utility-aware privacy and model integrity analytics for iot systems,” Ph.D. dissertation, University of Pittsburgh, 2025. [27] R. Gao et al. , “Backdoor attacks on contrastive learning,” NeurIPS , 2023. [28] A. Saha, A. Subramanya, and H. Pirsiavash, “Hidden trigger backdoor attacks,” in AAAI Conference on Artificial Intelligence , 2020. [29] N. Carlini and A. Terzis, “Poisoning contrastive learning,” in IEEE Symposium on Security and Privacy , 2021. [30] A. Radford, J. W. Kim, C. Hallacy, A. Ramesh, G. Goh, S. Agarwal, G. Sastry, A. Askell, P. Mishkin, J. Clark et al. , “Learning transferable visual models from natural language supervision,” in International conference on machine learning . PmLR, 2021, pp. 8748–8763. [31] A. K. Chathoth, “Contrastive continual learning for model adaptability in internet of things,” arXiv preprint arXiv:2602.04881 , 2026. [32] P. Khosla, P. Teterwak, C. Wang et al. , “Supervised contrastive learning,” 
+
+Advances in Neural Information Processing Systems (NeurIPS) , 2020, arXiv:2004.11362. [33] P. Zappi, C. Lombriser, T. Stiefmeier, E. Farella, D. Roggen, L. Benini, and G. Tr¨ oster, “Activity recognition from on-body sensors: accuracy-power trade-off by dynamic sensor selection,” in Wireless Sensor Net-works: 5th European Conference, EWSN 2008, Bologna, Italy, January 30-February 1, 2008. Proceedings . Springer, 2008, pp. 17–33. [34] R. Chavarriaga, H. Sagha, A. Calatroni, S. T. Digumarti, G. Tr¨ oster, J. d. R. Mill´ an, and D. Roggen, “The opportunity challenge: A bench-mark database for on-body sensor-based activity recognition,” Pattern Recognition Letters , vol. 34, no. 15, pp. 2033–2042, 2013.

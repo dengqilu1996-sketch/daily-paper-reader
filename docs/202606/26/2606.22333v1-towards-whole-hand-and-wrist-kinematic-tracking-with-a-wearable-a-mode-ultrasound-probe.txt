@@ -1,0 +1,129 @@
+Title: Towards Whole Hand and Wrist Kinematic Tracking with a Wearable A-Mode Ultrasound Probe
+
+URL Source: https://arxiv.org/pdf/2606.22333v1
+
+Published Time: Tue, 23 Jun 2026 02:50:41 GMT
+
+Number of Pages: 4
+
+Markdown Content:
+<Society logo(s) and publica-tion title will appear here. >
+
+> Received XX Month, XXXX; revised XX Month, XXXX; accepted XX Month, XXXX; Date of publication XX Month, XXXX; date of current version XX Month, XXXX.
+> Digital Object Identifier 10.1109/XXXX.2022.1234567
+
+# Towards Whole Hand and Wrist Kinematic Tracking with a Wearable A-Mode Ultrasound Probe 
+
+Giusy Spacone 1, Graduate Student Member, IEEE, Luca Benini 2, Fellow, IEEE and Andrea Cossettini 1, Senior Member, IEEE   
+
+> 1Integrated Systems Laboratory, ETH Zurich, Z ¨ urich, Switzerland
+> 2DEI, University of Bologna, Bologna, Italy Corresponding author: Giusy Spacone (email: gspacone@iis.ee.ethz.ch). The authors acknowledge support from the ETH Research Grant ETH-C-01-21-2 (Project ListenToLight)
+
+ABSTRACT A-mode ultrasound (US) has emerged as a promising modality for hand and wrist motion tracking. Prior works have mainly addressed static gesture classification or regression of a few degrees of freedom (DoFs), typically relying on non-wearable systems and external computing devices, and highlight the need for strategies to ensure robustness to sensor repositioning. In this work, we propose a framework for robust whole-hand and wrist kinematic tracking via wearable A-mode US using the WULPUS platform, tackling the regression of 23 DoFs directly on the probe. First, we introduce a compact (11285 parameters) multi-output convolutional neural network combined with an incremental training strategy, which improves inter-session generalization and reduces mean absolute error by more than 17% compared to a non-incremental approach. Second, we demonstrate, for the first time, the feasibility of end-to-end hand and wrist kinematic tracking entirely on-device. We deploy the model on the WULPUS nRF52832 microcontroller, achieving 0.73 mJ per inference, 29 .1 ms latency, and showing the feasibility of full operation (data acquisition, online inference, and BLE streaming of results) within 33 mW, enabling up to 36 hours of continuous use and an 88% reduction in wireless bandwidth compared to raw data transmission. 
+
+INDEX TERMS hand gesture recognition, regression, A-mode US, ultra-low power, embedded, wearable 
+
+I. Introduction 
+
+# HAND gesture recognition (HGR) is a key enabler for next-generation human–machine interfaces [1], with applications ranging from virtual reality interaction to pros-thetic control and rehabilitation. While surface electromyo-graphy (sEMG) remains the predominant modality for HGR [2], A-mode ultrasound (US) is emerging as a promising alternative, as it probes deeper muscle layers and captures both coarse and fine motor activity [3]. Compared to con-ventional B-mode imaging, A-mode US is inherently more suitable for wearable systems, as it avoids the size, power, and computational overheads of image reconstruction [4]. Most prior works based on A-mode US have focused on the recognition of discrete hand gestures, with only a few studies addressing the continuous estimation of hand and wrist kinematics, a critical requirement for seamless control. Yang et al. [5], [6] demonstrated 2-DoF tracking using a custom 8-transducer system consuming 3.5 W, achieving a cross-validated R2 of 0.96. Sgambato et al. [7], [8] used the MoUSE platform ( 12 W) with a 24-transducer armband to estimate 4 DoFs, reporting an R2 of 0.94, which dropped below 0.8 when only four transducers were used. Spacone et al. [9] reported the first results using a truly wearable, low-power acquisition system (WULPUS [10]), considering inter-session sensor repositioning for simultane-ous tracking of 3 DoFs, achieving an inter-session RMSE of 11 .11 ◦ ± 4.14 ◦ and a MAE of 8.46 ◦ ± 3.58 ◦. More recently, Spacone et al. [11] extended the task to full-hand and wrist kinematics (23 DoFs), reporting inter-session errors of 9.3◦ ± 1.8◦ MAE, 13 .1◦ ± 2.6◦ RMSE, and R2 of 
+
+0.38 ± 0.20 on one subject. However, these works still face two critical limitations: accuracy degradation under sensor repositioning and the absence of edge deployment, leaving robust, embedded kinematic tracking as an open challenge. In this paper, we present two main contributions:  
+
+> This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible. VOLUME , 1
+> arXiv:2606.22333v1 [eess.SP] 21 Jun 2026 Author et al.:
+
+1) Incremental fine-tuning for repositioning robustness: 
+
+We address accuracy degradation caused by sensor repo-sitioning with a compact (11285 parameters) multi-output convolutional neural network and a user-centric incremental training strategy. This approach achieves >17% reduction in MAE compared to non-incremental baselines, while re-quiring only ∼5 minutes of new data to recalibrate after repositioning. 
+
+2) First end-to-end embedded deployment: We demon-strate end-to-end 23 DoF kinematic tracking entirely on-device with WULPUS. Our deployment on the nRF52832 MCU achieves 0.73 mJ per inference and 29 .1 ms latency, meeting the sub-100 ms requirements for prosthetic control [12]. The full pipeline (data acquisition, inference, and BLE transmission of results) consumes <35 mW, enabling over 36 h of continuous operation on a 320 mAh Li-Po battery. Moreover, our approach reduces wireless bandwidth usage by 88% compared to raw-data streaming, improving reliability under adverse network conditions and paving the way for scalable multi-node deployments. 
+
+> II. Materials and Methods
+> A. Data collection protocol
+
+We implement the same data collection strategy as in [11], extending it to two subjects, who provided informed consent. US data are collected with a WULPUS-based armband [9] (see Fig. 1), using four 32-element linear array transducers (Vermon) with a central frequency of 2.25 MHz, equally spaced around the first half of the forearm. For each trans-ducer, we use the 4 centermost channels shorted together as an equivalent single-channel element. Hydrogel pads [13] provide acoustic coupling. WULPUS is operated with a pulse-repetition-rate of 30 Hz, with one transducer activated at a time. The Manus Quantum Metaglove (MANUS, Nether-lands) [14] is used for ground-truth labelling, obtaining a stream of 20 finger joint angles and wrist orientation at 
+
+120 Hz, synchronized to US data as described in [11]. In the data collection, the subject remains seated with the elbow supported at a 90 ◦ angle and performs a set of 11 hand and wrist movements, including hand opening–closing, pinches, thumb motions, and wrist flexion, extension, de-viation, and supination. We collect 3 sessions, including armband repositioning between sessions. Each session in-cludes 5 sets. In each set, the 11 gestures are performed sequentially and repeated 6 times. Each gesture is held for 4 seconds with a 1-second rest between repetitions, resulting in approximately 5.5 minutes of recording per set. A 5-minute rest period between sessions prevents muscle fatigue. 
+
+> B. Data Pre-Processing and Dataset Creation
+
+Wrist quaternions retrieved from the MANUS Core are used to compute wrist Euler angles (flexion/extension, radial–ulnar deviation, pronation–supination), assuming aZYX rotation sequence. A 1D Kalman filter with RTS smoothing is applied independently to the X, Y, and Z joint angles of Subject 2 to compensate for excessive noise in the GT angles (Subject 1’s signals did not require additional processing). These angles are added to the finger joint angles, already in Euler form. MANUS data are downsampled to 
+
+7.5 Hz, to match the time needed to complete one full arm scan (considering US acquisitions at 30 Hz and 4 transducers). Thus, each dataset sample contains four raw US frames (dimension 400 × 4), along with the corresponding ground-truth labels (20 fingers and 3 wrist joint angles). 
+
+> C. Network architecture
+
+The network architecture consists of two convolutional blocks (ks = [3 × 1]), each followed by rectified linear units activation function and max pooling ([4 × 1]), yielding a 16× spatial feature extraction and downsampling on a single channel. Features extracted from the channels are then flattened and followed by two fully connected layer heads (with 100 and 50 units, respectively) to regress the 20 hand and 3 wrist DoFs jointly. This lightweight design, adapted from the encoder–decoder architecture in [11], is chosen to balance accuracy with embedded constraints of limited run-time memory ( < 20 kB RAM, see below) and minimal inference time. The architecture has 11285 parameters (60% smaller than [11]) and is trained with a mean squared error (squared L2 norm) loss function. 
+
+> D. Performance evaluation and incremental fine tuning
+
+We perform three types of analyses, evaluating the perfor-mance using the MAE, RMSE and the R 2 score. 
+
+(1) Aggregated analysis : we aggregate data from all acqui-sition sessions in a 5-fold cross-validation (CV) scheme: for each fold, three sets per session are used for training, one for validation, and one for testing. Models are trained for 50 epochs, with an early stop patience of 5 epochs, learning rate (l r) of 10 −3, weight decay (w d) of 10 −4 and using the Adam optimizer. 
+
+(2) Inter-session analyses : two sessions are used for training (the first four acquisition sets for each session for training and the remaining sets for validation). All sets from the unseen session are used for testing. We compute the performance for each set in the unseen session, as well as the average. We use the same training settings as in the aggregated experiment. This analysis reveals the impact of armband repositioning between sessions. 
+
+(3) Incremental fine-tuning : we train on two sessions (same as above) and then introduce a new acquisition ses-sion. Performance is first evaluated on the initial acquisition set in a zero-shot setting. We then fine-tune the model using 70% of the data from the current set, with the remaining 30% used for validation, and repeat this procedure for all sets. We cross-validate this approach across the three sessions. We use the same w d as in (1); for the l r, we ablate over four distinct values: 10 −3, 2 × 10 −3, 10 −4, 10 −5. The maximum number of fine-tuning epochs is set to 25, with 5 epochs of patience. We report the improvement achieved by fine-tuning in two cases: (i) comparing performance with and without fine-tuning across all acquisition sets, and (ii) comparing  
+
+> 2VOLUME ,
+
+<Society logo(s) and publication title will appear here. >
+
+performance with and without fine-tuning when only the first acquisition set is used for calibration. 
+
+> E. Embedded implementation
+
+We deploy the network on the WULPUS nRF52832 MCU, which features 256 kB of non-volatile Flash and 64 kB of RAM memory ( 43 kB used for the acquisition firmware, with the remaining available for additional processing). The trained PyTorch models are converted through an interme-diate ONNX representation into TensorFlow format, and subsequently into a TensorFlow Lite format [15]. Post-training quantization is applied to the weights to convert the original 32-bit floating point ( float32 ) representation to an 8-bit integer ( int8 ) representation. From the resulting TensorFlow Lite FlatBuffer file ( .tflite ), the correspond-ing C and H files are generated, to be stored in the Flash memory of the target platform. The TensorFlow Lite Micro [16] library is used to port the model to the target platform. 
+
+FIGURE 1: WULPUS architecture and detailed view of the data flow within the nRF52 MCU for embedded inference. Figure 1 illustrates the system data flow for the embedded implementation. Each newly acquired US frame (400 sam-ples) is transferred via SPI transaction from the MSP430 to the nRF52 MCU and stored in a data buffer, containing the data collected from the four transducers. A regression pass can then be executed on each newly acquired transducer frame, without waiting for data from all four transducers. The predictions (92 bytes for the 23 output angles, stored as 
+
+float32 , plus 2 bytes for a packet counter ensuring data integrity), are transmitted via BLE to the host computer. To evaluate the performance of the deployed network (energy and latency), we use the Nordic Power Profiler Kit II (PPK2, Nordic Semiconductor). The N6705B DC Power Analyzer (KeySight) is used for power measurements. 
+
+> III. Results and Discussion
+> A. Tracking of Wrist-Hand Kinematics
+
+1) Aggregated analyses: CV analyses for Subject 1 yield a MAE of 6.1◦ ±0.5◦, RMSE of 8.6◦ ±0.7◦, and R2 = 0 .69 ±
+
+0.03 . Subject 2 yields similar results, with a MAE of 6.4◦ ±
+
+0.7◦, RMSE of 9.1◦ ±0.9◦, and R2 of 0.72 ±0.05 . Results are comparable to our previous work [11] (RMSE = 8 .5◦, R2 =0.7), which also operates to 23 DoF, but with a much smaller network size (11285 vs. 27773 parameters), leading to lower FLASH, RAM, and MACCS. Compared to the results with four transducers on 4 DoF reported by [7], we achieve a lower R 2 (0.69 vs 0.8). This is expected and attributed to the increased dimensionality of our problem ( 6× more DoF), and to the inclusion of fine-grained gestures (pinches, thumb movements), which increase the task complexity. 
+
+2) Inter-session analyses: Subject 1 has a MAE of 9.5◦ ±
+
+1.3◦, RMSE of 13 .2◦ ± 2.1◦, and R2 = 0 .34 ± 0.22 . Subject 2 has a MAE of 11 .2◦ ± 0.8◦, RMSE of 16 .0◦ ± 1.1◦, and 
+
+R2 = 0 .27 ± 0.04 . Also in this case, the performance is comparable to [11], with a much smaller network. 
+
+3) Incremental fine tuning: Fig. 2 shows the incremental fine-tuning results of Subject 1. Results are reported for a learning rate of 10 −3, which yielded the best performance in the ablation studies. For set 1, the results with and without fine-tuning are identical, as this set corresponds to the “zero-shot” after repositioning (i.e., no fine-tuning has yet been applied). As additional data sets are progressively introduced, fine-tuning improves the performance. Considering the average across all sets, the MAE for Subject 1 improves from 9.5◦ (no fine-tuning) to 7.1◦ (fine-tuning), corresponding to a 25% error reduction. The R2 also improves, from 0.33 to 0.59 . Similarly, for Subject 2, the MAE improves from 11 .2◦ to 7.5◦ (a 33% error reduction) and the R2 improves from 0.26 to 0.61 . When fine-tuning is performed only on the first new set of data, the average MAE for Subject 1 lowers to 7.8◦ (17% reduction) and the 
+
+R2 improves to 0.5. For Subject 2, the MAE lowers to 8.7◦
+
+(22% reduction) and the R2 improves to 0.5. Fig. 3 shows an example of model prediction on the second set after only one set of fine-tuning for Subject 2. Improvements in the metrics, particularly in the R2 score, are predominantly associated with a reduction in the prediction offset. We attribute the performance degradation across acquisition sets when fine-tuning is performed only on the first set to small transducer displacements, which may have occurred during rest phases between sets or during movement execution. Since acquiring a new set requires only 5.5 minutes of data, this demon-strates that on-demand recalibration with A-mode US can be performed with minimal effort. While such strategies are already well established for sEMG and are widely integrated into commercial myoelectric prostheses [17], only one prior study has investigated incremental fine-tuning with US for gesture classification using B-mode imaging [18], and our work demonstrates its first application to A-mode. 
+
+> B. Embedded Implementation
+
+The deployed network architecture has a total memory footprint of 16 .8 kB, corresponding to only 7% of the total available Flash memory. The RAM memory allocation is 
+
+10 .1 kB, corresponding to 16% of the available memory. The time to produce one output is 29 .1 ms, meeting the latency requirements of embedded applications such as prosthetic control [12], with an energy per inference of 0.73 mJ. The power consumption of the end-to-end system, required to retrieve one US frame, produce one output, and transmit the results via BLE is 33 mW. Of these, 23 mW are required by the nRF52 to retrieve data from the MSP MCU, perform one computation, and transmit the output. Transmitting only the prediction instead of raw data offers 88% wireless link bandwidth improvements.  
+
+> VOLUME , 3Author et al.:
+
+FIGURE 2: Results for Subject 1 (CV performance across acquisition sets) for three cases: no fine tuning, progressive fine tuning, fine tuning with only one set after repositioning, 
+
+FIGURE 3: Example of a subset of ground-truth joint angles (green) versus model predictions (on the second acquisition set) without fine tuning (blue) and with fine tuning (orange). 
+
+IV. Conclusion 
+
+We presented a framework for whole-hand and wrist kine-matic tracking using a fully dry, WULPUS-based armband with four ultrasound transducers and edge-computing. We employed a compact (11285 parameters) multi-task convolutional neural network to regress 20 hand and 3wrist degrees of freedom, considering inter-session armband removal to mimic realistic usage conditions. To address the performance drop caused by sensor repositioning, we intro-duced a user-centric incremental fine-tuning approach, which reduced the average MAE by more than 17% compared to a non-incremental strategy with only ∼5 minutes of new data for recalibration. To the best of our knowledge, this was the first demonstration of on-demand fine-tuning for A-mode systems, suggesting a viable path for integration into future commercial prosthetic devices to enable robust, ultrasound-based control schemes. We further deployed our network architecture on the WULPUS nRF52832 microcontroller. With an energy cost of only 0.73 mJ per inference and a computation time of 
+
+29 .1 ms, our approach satisfies the constraints of embedded applications such as prosthetic control. We demonstrated the feasibility of end-to-end data collection, inference, and results streaming, achieving an 88% reduction in wireless bandwidth compared to raw data transmission, thereby im-proving system reliability under adverse network conditions. Although the study was conducted on two subjects, it demonstrated the feasibility of incremental calibration and embedded deployment. Future work will extend validation to a larger cohort and enhance the acquisition setup by increasing the number of ultrasound transducers to improve spatial coverage and robustness. 
+
+Acknowledgment 
+
+We thank S. Frey, V. Kartsch, C. Leitner, L. Lamberti (ETH Z¨ urich) and M. Orlandi (University of Bologna) for technical support and fruitful discussions. 
+
+REFERENCES 
+
+[1] L. Guo et al. , “Human-machine interaction sensing technology based on hand gesture recognition: A review,” IEEE Trans. Hum.-Mach. Syst. , vol. 51, no. 4, pp. 300–309, 2021. [2] J. Shin et al. , “A methodological and structural review of hand gesture recognition across diverse data modalities,” IEEE Access , vol. 12, pp. 142 606–142 639, 2024. [3] X. Yang et al. , “Ultrasound as a neurorobotic interface: A review,” 
+
+IEEE Trans. Syst. Man Cybern.: Syst. , vol. 54, no. 6, pp. 3534–3546, 2024. [4] S. Zhou et al. , “Wearable ultrasound technology,” Nat. Rev. Bioeng. ,vol. 3, no. 10, pp. 835–854, 2025. [5] X. Yang et al. , “Wearable ultrasound-based decoding of simultaneous wrist/hand kinematics,” IEEE Trans. Ind. Electron. , vol. 68, no. 9, pp. 8667–8675, 2021. [6] ——, “A wearable ultrasound system for sensing muscular morpho-logical deformations,” IEEE Trans. Syst. Man Cybern.: Syst. , vol. 51, no. 6, pp. 3370–3379, 2021. [7] B. G. Sgambato et al. , “High performance wearable ultrasound as a human-machine interface for wrist and hand kinematic tracking,” IEEE Trans. Biomed. Eng. , vol. 71, no. 2, pp. 484–493, 2024. [8] M. Fournelle et al. , “Portable ultrasound research system for use in automated bladder monitoring with machine-learning-based segmen-tation,” Sensors , vol. 21, no. 19, p. 6481, 2021. [9] G. Spacone et al. , “Tracking of wrist and hand kinematics with ultra low power wearable a-mode ultrasound,” IEEE Trans. Biomed. Circuits Syst. , vol. 19, no. 3, pp. 536–548, 2025. [10] S. Frey et al. , “Wulpus: a wearable ultra low-power ultrasound probe for multi-day monitoring of carotid artery and muscle activity,” in 2022 IEEE IUS , 2022, pp. 1–4. [11] G. Spacone et al. , “Wearable and ultra-low-power fusion of emg and a-mode us for hand-wrist kinematic tracking,” in 2025 IEEE BioCAS ,2025, pp. 314–318. [12] T. Farrell et al. , “The optimal controller delay for myoelectric pros-theses,” IEEE Trans. Neural Syst. Rehabil. Eng. , vol. 15, no. 1, pp. 111–118, 2007. [13] Hydrogel pad. https://amzn.eu/d/9dQ3nRG. [14] MANUS Technology Group. (2025) Quantum Metagloves. https://www.manus-meta.com/products/quantum-metagloves. [15] TensorFlow. https://github.com/tensorflow/tensorflow. [16] TF Lite Micro. https://github.com/tensorflow/tflite-micro. [17] E. Campbell et al. , “(un)supervised (co)adaptation via incremental learning for myoelectric control: Motivation, review, and future direc-tions,” IEEE Trans. Neural Syst. Rehabil. Eng. , vol. 33, pp. 3565–3582, 2025. [18] J. Rothenberg et al. , “Improving intersession reproducibility for fore-arm ultrasound based hand gesture classification through an incremen-tal learning approach,” in 2024 IEEE UFFC-JS , 2024, pp. 1–4.

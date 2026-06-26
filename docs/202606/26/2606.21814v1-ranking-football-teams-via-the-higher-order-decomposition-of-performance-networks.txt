@@ -1,0 +1,369 @@
+Title: Ranking football teams via the higher-order decomposition of performance networks
+
+URL Source: https://arxiv.org/pdf/2606.21814v1
+
+Published Time: Tue, 23 Jun 2026 01:24:12 GMT
+
+Number of Pages: 35
+
+Markdown Content:
+# Ranking football teams via the higher-order decomposition of performance networks 
+
+Andres Chacoma a,b, ∗, Juan I. Perotti c,d , Orlando V. Billoni c,d 
+
+> a
+
+Universidad de Buenos Aires, Facultad de Ciencias Exactas y Naturales, Departamento de Física, Buenos Aires, Argentina 
+
+> b
+
+CONICET – Universidad de Buenos Aires, Instituto de Física Interdisciplinaria y Aplicada (INFINA), Buenos Aires, Argentina 
+
+> c
+
+Universidad Nacional de Córdoba, Facultad de Matemática, Astronomía, Física y Computación, Córdoba, Argentina 
+
+> d
+
+CONICET – Universidad Nacional de Córdoba, Instituto de Física Enrique Gaviola (IFEG), Córdoba, Argentina 
+
+Abstract 
+
+We propose a unified methodological framework to quantify team perfor-mance in elite football by combining event-level performance metrics, higher-order network representations, and algebraic ranking methods. Using data from the 2017–2018 season of the five major European leagues, we construct metric-specific weighted graphs in which teams are connected through rela-tive performance indicators. These graphs are analyzed via Hodge decom-position, and the gradient component is used to derive metric-based team ratings. The resulting rankings are systematically compared with the true league standings using Pearson and Kendall correlation measures, revealing strong metric- and league-dependent effects. Furthermore, by analyzing the ratio between solenoidal and total flow energies, we show that local cyclic dy-namics structurally limit the gradient component’s capacity to reconstruct the ranking. This topological inconsistency acts as a structural fingerprint of each league’s “competition style” successfully mapping the studied systems into distinct regimes: highly hierarchical structures (England and Italy), tactical parity driven by generalized loops (Germany), and pockets of lo-calized chaos (France and Spain). Lastly, we introduce a composite rating obtained as a parsimonious linear combination of metric-based ratings, op-
+
+> ∗
+
+Corresponding author 
+
+Email address: achacoma@df.uba.ar (Andres Chacoma) 
+
+> arXiv:2606.21814v1 [physics.soc-ph] 20 Jun 2026
+
+timized separately for each league. This composite approach significantly improves predictive power and allows the relative importance of different performance indicators to be quantified in a league-specific manner. Our re-sults demonstrate how higher-order network methods provide a flexible and interpretable framework to uncover latent performance structures in foot-ball, offering a complementary perspective to outcome-based rankings and a general approach applicable to other oppositional sports. 
+
+Keywords: Football ranking, Higher-order networks, HodgeRank, Performance metrics, Complex systems. 
+
+1. Introduction 
+
+In recent years, the study of sports competitions has undergone a signif-icant transformation through the adoption of theoretical frameworks drawn from complexity science [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]. Sports championships, characterized by the dynamic interaction of multiple agents (players, teams, contexts), nonlinear outcomes, and the emergence of non-trivial collective patterns, are increasingly understood as complex adaptive systems [11]. This perspective makes it possible to move beyond purely descriptive statistical analyses and to address fundamental questions regarding competitive dy-namics, performance evolution, and the underlying structure of play from robust theoretical principles. This intersection between complex systems and sport is fertile from a dual perspective. From an academic standpoint, it offers a unique labora-tory for validating and developing theories of networks, competitive dynam-ics, diffusion processes, and the emergence of hierarchies in social systems governed by clearly defined rules. From the high-performance perspective, the quantitative and objective modeling of competition is currently trans-forming decision-making processes [12]. Providing coaches, analysts, and decision-makers with data-driven tools to assess performance beyond imme-diate outcomes, diagnose structural strengths and weaknesses, and optimize strategies has become a priority in the pursuit of sustainable competitive advantages. While this approach has been successfully applied to various team and individual sports, football stands out as a particularly rich domain. Its global popularity, the growing availability of high-resolution data (event data, tracking data), and the inherent tactical complexity of a continuous-2flow, low-scoring game make it an ideal case study. Recent research has employed concepts from complex systems to model ball possession as a diffu-sion process, characterize collective creativity, and identify critical phases of play, demonstrating the considerable potential of this theoretical framework [13, 14, 15, 16, 17, 18, 19]. Within the methodological toolkit of complex systems, complex network theory has emerged as a particularly powerful approach for football analy-sis. By modeling players or teams as nodes and their interactions (passes, duels, or competitive comparisons) as edges, it becomes possible to quan-tify and visualize the structural organization of the game. This approach has enabled, for instance, the measurement of player centrality in passing networks, the identification of team-specific tactical patterns, and the assess-ment of a playing system’s robustness to disruptions such as injuries, provid-ing insights that are not accessible through traditional analytical methods [20, 21, 22, 23, 24, 25, 26]. In this work, we propose a specific application of network theory to ad-dress a central problem in sports analytics: the objective and multidimen-sional comparison of team performance. Our approach consists of defining a rating system that is not based solely on final match outcomes, but on a set of performance metrics derived from event data. This set of metrics are defined and justified in the following section. To this end, we construct one network per metric, where nodes represent teams and weighted edges encode their relative performance in direct matchups. Applying the algebraic graph decomposition method HodgeRank [28, 29] to these networks, allows us to infer a scalar rating for each team in each dimension of the game, thereby offering a nuanced, process-based comparison. The construction of these multidimensional, process-based ratings has direct practical implications. A single ranking, such as the league table, summarizes outcomes but can obscure the mechanisms underlying them. By decomposing performance into interpretable components (e.g., pressure, chance creation, possession times), our framework provides a structural di-agnosis. For coaching staffs, this makes it possible to identify teams that accumulate points despite poor performance in key metrics—an indication of potential unsustainability—or, conversely, teams whose strong process-level performance does not translate into results, suggesting inefficiency in decisive moments. Such information is crucial for informed decision-making in areas such as player recruitment, tactical design, and opponent-specific preparation, allowing resources to be directed toward the aspects of play that 3truly determine long-term competitive advantage. It is important to clarify the epistemic boundaries and the interpretative scope of the proposed frame-work. Our approach is strictly positioned within the realm of descriptive and diagnostic network analysis, rather than predictive or causal modeling. The correlations and alignments identified between our performance ratings and the official standings should not be interpreted as direct causal drivers of suc-cess, as tactical variables and match outcomes are intrinsically intertwined in a non-linear fashion. Instead, the true analytical value of this methodology lies in its ability to map macro-level structural patterns and, crucially, to evaluate the statistical residuals between process and outcome. Rather than viewing deviations from the official table as modeling errors, our framework treats these discrepancies as genuine physical indicators of efficiency, tactical bottlenecks, or stochastic factors (such as luck) that traditional score-based metrics naturally mask. This article is organized as follows, to present the methodological frame-work and findings in a coherent manner. Section 2, Data and Metrics, de-scribes in detail the data collection process and sources, defines the eight performance metrics derived from match events, and explains the construc-tion of the complex networks that represent competitive interactions between teams for each metric. Section 3, Theoretical Framework, presents the al-gebraic foundations of the HodgeRank method, detailing how this graph decomposition technique is applied to infer ratings from the pairwise com-parisons encoded in our networks. The main findings are presented in Section 4, Results, structured into five analytical subsections: (4.1) an initial statis-tical analysis of the true rating and the validation of the hierarchical skill model; (4.2) a global correlation analysis (Pearson coefficient) between the metric-based ratings and the true rating; (4.3) a comparison of the resulting ordinal rankings using Kendall’s rank correlation coefficient; (4.4) an analysis of how structural inconsistencies affect the macroscopic ordering; and (4.5) the proposal and optimization of a composite rating, obtained as a weighted linear combination of the most relevant metric ratings. Finally, the arti-cle concludes with Section 5, Discussion and Conclusions, which integrates and interprets the overall results, discusses their implications, outlines the limitations of the study, and proposes concrete directions for future research. 42. Data and metrics 
+
+2.1. Metric collection 
+
+In this work, we use the event data set provided by L. Pappalardo et al. in [30]. In that article, the authors manually annotate all matches from the 2017–2018 season of the major European football leagues: La Liga (Spain), Premier League (England), Serie A (Italy), Bundesliga (Germany), and Ligue 1 (France). For each match, they detect, classify, and localize in time and space all relevant events, including goals, shots, passes, corner kicks, fouls, among others. In the reference system used to locate events in time and space, t denotes the elapsed time since the start of the match, the coordinate 
+
+x represents the distance relative to the goal defended by the team gener-ating the event, and the coordinate y represents the distance relative to the right touchline. Spatial coordinates are expressed as percentages of the pitch length, such that, for example, x = 0 , x = 50 , and x = 100 correspond to the team’s own goal line, the midfield line, and the opponent’s goal line, respectively. Within this framework, we define a ball possession interval (BPI) as the set given by a sequence of consecutive events generated by a single team. Note that each BPI contains information from only one team. We collect all BPIs from all teams in each league, and from these data we extract metrics that allow us to detect some of the tactical resources employed by teams within that temporal window of the match. The metrics considered in our analysis are based on those proposed by J. Fernández-Navarro in [31]. The study of these metrics was also employed in a previous work to identify characteristic football playing styles [18]. Below, we describe each of these metrics in detail: 1. Direct play. Each time a pass or a free kick occurs within a BPI, we measure the average velocity in the attacking direction, defined as the ratio between the distance traveled by the ball along the x axis and the elapsed time. For each BPI, we retain the maximum value. This metric allows us to quantify how directly the team moves the ball toward the opponent’s goal. 2. Counterattack. Given two consecutive events within a BPI, if the first event occurs at x1 < 40 and the second at x2 > 60 with a temporal difference ∆t, the velocity is reported as v = x2−x1 
+
+> ∆t
+
+. Otherwise, a value of 0 is reported. This metric measures how quickly a team transitions from a defensive position in its own half to an offensive position in the opponent’s half. 53. Build up. If within a BPI it is verified that ¯x > 60 , i.e., the possession develops predominantly in the opponent’s half, the total possession time is reported. Otherwise, a value of 0 is reported. This metric captures possession time in situations where the team strongly occupies the opponent’s territory. 4. Midfield play. If within a BPI it is observed that ¯x ≥ 40 and ¯x ≤ 60 ,i.e., the possession develops predominantly in the central area of the pitch, the total possession time is reported; otherwise, a value of 0 is reported. The purpose of this variable is to measure the time the team spends in the midfield zone. 5. Flow rate. For each BPI satisfying ¯x ≥ 50 , we compute the tempo-ral differences between all consecutive events and calculate their mean value, ¯dt . The metric is then defined as 1/ ¯dt . In this way, this metric provides a measure of how quickly the team circulates the ball in the opponent’s half. 6. Crossing. If a crossing event is observed within a BPI, a value of 1 is reported; otherwise, a value of 0 is reported. This metric is used to count attempts to reach the penalty area through aerial play. 7. Pressure point. For each BPI, we take the first event and extract its 
+
+x coordinate, i.e., the position at which the team starts its possession. This allows us to assess whether the team is recovering the ball in its own half, the midfield zone, or the opponent’s half. 8. Shots. If a “Shot” event is recorded within a BPI, a value of 1 is reported; otherwise, a value of 0 is reported. This metric allows us to count the number of shots on goal produced by each team. For our analysis, all BPIs with fewer than 3 events and with a total dura-tion shorter than 2 seconds were discarded. The rationale behind this choice is to exclude brief, transient recoveries and retain only consolidated posses-sions. It is important to emphasize that the selection of these eight metrics does not imply a claim of an exhaustive or universally optimal set for football tactical analysis. Instead, they represent a robust and theoretically validated selection of possession-based indicators that can be rigorously extracted from the available event-level data. Fundamentally, our objective is to evaluate whether these specific quantifiers contain sufficient structural information to derive a coherent competitive ranking. By doing so, we aim to develop a performance proxy capable of capturing underlying tactical nuances—such as possession structure and territory dominance—that traditional score-based 6outcomes, like goals or points, naturally overlook. Furthermore, the inherent flexibility of the proposed framework ensures that as more granular datasets become available, additional tactical dimensions can be seamlessly integrated into the model without altering its core mathematical structure. From the data collection process, a total of 215681 BPIs were obtained. Subsequently, we aggregated the information by match and by team, sum-ming the values obtained for each metric. In this way, for example, the feature Shots quantifies the total number of shots on goal taken by a team in a given match. Similarly, the feature Build up quantifies the net amount of time during which a team sustained an attacking possession against its opponent in that match. Finally, in a separate dataset we collected meta-data associated with each BPI, which are later used in the analysis: the team corresponding to each one, the league it belongs to, and the final position in the league table. 
+
+2.2. Representation as weighted fully connected networks 
+
+In what follows, we present our proposal to represent performance met-rics in terms of networks. We define M (i, j, g ) as the performance metric corresponding to team i when facing team j in match g. For example, this quantity may represent the number of shots on goal taken by FC Barcelona, represented by i, when playing against Real Madrid, represented by j, in the first encounter g of the Spanish league La Liga . In our dataset, all teams participated in a round-robin league format, facing each opponent twice: a first-leg match ( g1) and a second-leg match ( g2). Using the information from both encounters, we define an aggregated metric that summarizes the per-formance observed between the two teams over the course of the season: 
+
+M (i, j ) = X
+
+> g=g1,g 2
+
+M (i, j, g ). (1) In the previous example, M (i, j ) represents the total number of shots on goal taken by FC Barcelona against Real Madrid across both matches of the tournament. By computing M (i, j ) for each pair of teams in a league L, it is possible to represent these performance relationships by means of a directed and weighted graph G(L, M ), whose weights are defined as, 
+
+fij = M (j, i ) − M (i, j )
+
+ML
+
+= M ′(j, i ) − M ′(i, j ). (2) 7Here, ML is the average calculated over the ensemble of metric values ob-served in league L. Note that, in this representation, fij < 0 indicates that team i outperformed team j with respect to the metric under consideration, where the difference is scaled by the average value of the ensemble. Within this framework, we construct a total of 40 “performance” graphs, corresponding to 8 graphs per league, each one associated with a different performance metric. Note that since the studied leagues follow a round-robin tournament format, the constructed graphs are fully connected. 
+
+3. Theoretical Framework 
+
+In the previous section, we defined the performance graphs. The nodes in these graphs represent the teams of a particular league, the links express comparative relationships with respect to a given metric, and the weights quantify this comparison scaled by the ensemble’s average value. In this section, we demonstrate how to apply HodgeRank theory to extract a set of ratings from these graphs, thereby defining the hierarchy of each league within the context of each specific metric. To infer ratings wi from given comparison values fij , we seek to minimize the sum 
+
+χ(w) = X
+
+> ij
+
+aij |fij − (wj − wi)|2, (3) with respect to the vector w of components wi. Here, a denotes the adjacency matrix of the network of matches between teams. In the present work the network is fully connected, so aij = 1 for i̸ = j and aii = 0 .The edge weights are explicitly defined via the antisymmetric formu-lation fij = M ′(j, i ) − M ′(i, j ), where M ′(i, j ) represents the perfor-mance metric of team i relative to team j, scaled by the ensemble’s av-erage. From a discrete calculus perspective, this antisymmetric structure is a strict theoretical requirement of the HodgeRank method. The linear difference chosen here represents the most parsimonious operator to map edge flows to node potential differences, ensuring that the subsequent least-squares optimization is mathematically consistent and well-defined. It is worth noting that alternative non-linear formulations—such as applying log-transformations to handle heavy tails or utilizing local relative differences like (M (j, i ) − M (i, j )) /(M (j, i ) + M (i, j )) —were computationally tested. These alternative definitions yielded qualitatively identical rankings, proving the robustness of the framework. The global ensemble-average scaling was 8ultimately selected as it systematically minimized the network’s residual in-consistencies while preserving the straightforward physical interpretation of potential gradients. From a physical perspective, the ratings wi can be interpreted as po-tentials defined on the nodes, while the given weights fij play the role of forces acting along the links or edges. Under this interpretation, minimiz-ing χ corresponds to finding the potentials wi whose differences wj − wi
+
+reproduce the forces fij as closely as possible in the least-squares sense. This formulation effectively captures the relative competitive dynamics inherent to a round-robin tournament while preserving a clear physical analogy of potential gradients. To infer the ratings wi efficiently, Jiang et al. [28] introduced HodgeRank using the theory of discrete calculus on Higher Order Networks. This theory interprets f as a 1-cochain and finds w through the Hodge decomposition [32, 33, 34], 
+
+f = g ⊕ s ⊕ h, (4) where g, s, and h represent gradient, curl, and harmonic components re-spectively. In this setup, w is a 0-cochain and is related to the gradient by 
+
+g = d0w, where the coboundary operator d0 is the discrete gradient opera-tor. This decomposition can be efficiently found by solving a pair of singular linear systems [29]. 
+
+4. Results 
+
+4.1. Statistics of the true rating 
+
+Given that this work introduces a performance-based rating, it is essential to first analyze the statistics of the traditional system—namely, the ranking derived from accumulated points. Therefore, the purpose of this section is to define a statistical model for the probability distribution of the true rating, 
+
+RT , defined as the total number of points obtained by a team over the course of a league season. RT is a stochastic variable that depends on the number of matches won, drawn, and lost by teams in the league. In football leagues, a team is awarded 3 points for a win, 1 point for a draw, and 0 points for a loss. Within this framework, RT can be expressed in terms of the stochastic variables W and D, which represent the number of matches won and drawn, respectively, 
+
+RT = 3 W + D. (5) 9Let n denote the total number of matches in the season. We model W using a binomial distribution, 
+
+W ∼ Bin (n|pw), (6) where pw is the probability of winning a match. Conditional on the number of wins W = w, the number of draws follows, 
+
+D | W = w ∼ Bin 
+
+
+
+n − w pd
+
+1 − pw
+
+
+
+, (7) where pd is the probability of drawing a match. Since teams exhibit different competitive levels, each team is characterized by intrinsic probabilities pw
+
+and pd of winning and drawing, respectively. We model these probabilities using a hierarchical approach: each team is endowed with a pair of latent skills η = ( ηw, η d)T , corresponding to win and draw abilities, which follow a bivariate normal distribution, 
+
+η ∼ N (μ, Σ) , (8) where, 
+
+μ = ( μw, μ d)T , Σ =
+
+ σ2 
+
+> w
+
+ρσ wσd
+
+ρσ wσd σ2
+
+> d
+
+
+
+, (9) here, μ is the center of the distribution and Σ is the covariance matrix. In this framework, ρ represents the correlation between win and draw abilities. The probabilities are obtained through a softmax transformation, 
+
+pw = eηw
+
+1 + eηw + eηd
+
+,pd = eηd
+
+1 + eηw + eηd
+
+.
+
+(10) This transformation ensures that pw + pd ≤ 1 and that the model is identifi-able by implicitly fixing ηl = 0 for losses. With these elements, we can write the joint distribution of wins and draws by marginalizing over the random effects η,
+
+P (W = w, D = d) = 
+
+Z
+
+> R2
+
+Bin (n | pw(η)) 
+
+× Bin 
+
+
+
+n − w pd(η)1 − pw(η)
+
+
+
+× ϕ(η | μ, Σ) dη.
+
+(11) 10 Note that the integral in Eq. 11 does not admit a closed-form solution; there-fore, we evaluate it using Monte Carlo methods. With these ingredients, we can finally write the theoretical probability distribution of the true rating as 
+
+P (RT = rT ) = X
+
+> X
+
+P (W = w, D = d), (12) where the sum runs over the set of configurations X defined by the con-straints: 
+
+X = {(w, d ) ∈ N20 : 3 w + d = rT , w + d ≤ n}. (13) The degrees of freedom provided by the parameters μw, μd, σw, σd, and ρ
+
+allow the theoretical curve in Eq. 12 to be fitted to the empirical distribution. The fit was performed using the dataset associated with the English, French, Italian, and Spanish leagues. For this analysis, we chose not to include data from the German league, as its competition involves a smaller number of teams (18), which leads to a slightly different distribution of true rating val-ues compared to the other leagues, where a total of 20 teams participate. The fitting procedure was carried out using the Nelder–Mead algorithm, minimiz-ing the RMSE between the empirical and theoretical CDFs. Subsequently, using the optimal parameters, we performed parametric bootstrapping (1000 replicas) to estimate the mean values and uncertainties of the probabili-ties pw and pd. For the probability of winning, we obtained ¯pw = 0 .366 
+
+(SD = 0 .010 ) with a 95% confidence interval of [0 .3527 , 0.3798] . Notice, the mean value of a given metric is denoted by ¯x, and SD is the standard deviation. Similarly, for the probability of drawing, we obtained ¯pd = 0 .280 
+
+(SD = 0 .020 ) with a 95% confidence interval of [0 .2548 , 0.3074] . To contrast these results with empirical data, we computed for each team i the empir-ical probabilities of winning and drawing, qw and qd, using match outcome information. Defininig N im, N iw and N id as the number of matches, number of matches winned and number of matches draw of team i, then, 
+
+q(i) 
+
+> w
+
+= N (i)
+
+> w
+
+N (i)
+
+> m
+
+,q(i) 
+
+> d
+
+= N (i)
+
+> d
+
+N (i)
+
+> m
+
+.
+
+(14) By computing the mean value and standard deviation over the set of all teams, we obtained for the probability of winning ¯qw = 0 .379 (SD = 0 .168 )11 with a 95% confidence interval of [0 .1572 , 0.7638] , and for the probabil-ity of drawing ¯qd = 0.243 (SD = 0.081 ) with a 95% confidence inter-val of [0 .1046 , 0.3954] . From these results, we observe the following: (i) the mean values are similar ( 0.366 vs. 0.379 for wins, 0.280 vs. 0.243 for draws), which validates the center of the distribution; (ii) the empirical stan-dard deviations (0 .168 , 0.081) are substantially larger than those implied by the model (0 .01 , 0.02) , indicating that the model underestimates team-level heterogeneity. Regarding the correlation parameter, the parametric boot-strap yielded ¯ρ = −0.130 (SD = 0 .07 ) with a 95% confidence interval of 
+
+[−0.3040 , −0.0371] . This result indicates the presence of a weak negative structural correlation between teams’ win ability ηw and draw ability ηd.This suggests that teams with a higher propensity to win tend, on average, to exhibit a slightly lower propensity to draw. In Fig. 1 (a), we show the CDF of the true rating together with the fitted model. The proposed model accurately captures the behavior of the empirical curve across the entire sup-port. In Fig. 1 (b), we present a quantile–quantile plot comparing theoretical and empirical quantiles. For reference, we also include the relationship be-tween the data quantiles and those associated with a Gaussian distribution with mean and standard deviation equal to the sample values, ¯RT = 52 .45 
+
+(SD = 18 .56 ). First, we observe that the proposed model reproduces well the behavior in the central-left region and provides an acceptable description of the right tail. The comparison with the Gaussian model reveals that the empirical distribution exhibits lighter left tails and heavier right tails relative to a Gaussian distribution, thereby uncovering the presence of asymmetry. The downward concavity observed in the central region of the plot further indicates that the median of the data is shifted to the left. 
+
+4.2. Correlation between true and metric-based ratings 
+
+In this section, we characterize the differences between the true rating, as given by the league point system, and the rating obtained from the HodgeR-ank method, which we refer to as the metric rating. Since eight performance metrics are considered (see Section 2.1), for each team we compute eight dif-ferent metric rating values, which are then compared with the true rating. It is important to emphasize that the true rating and the metric rating are expressed on different scales. The former is measured in terms of total points obtained, whereas the latter is expressed as a standardized score. Neverthe-less, this does not prevent a meaningful comparison, as the relevant infor-mation conveyed by these quantities is not their absolute value, but rather 12 the relative differences between teams. For this reason, in order to compare the behavior of the true rating and the metric rating, we standardize both variables and work with their corresponding z-scores .In Fig. 2 (a), we show the CDF of the true rating computed over all teams and all leagues, together with the CDF of the metric rating computed over all teams, all leagues, and all eight metrics considered. For both curves, outlier values—defined as those above the quantile Q99 .7—were removed. We observe a remarkable agreement across most of the range, with some differ-ences appearing in the tails: the metric rating exhibits more extreme positive values relative to the mean, whereas the true rating shows slightly more ex-treme negative values. In Fig. 2 (b), we show the distribution of metric rating values for each league. For this purpose, within each league we aggregate the metric rating values associated with all metrics and standardize them using the z-score. As a reference, the CDF of a standard normal distribution is also shown as a black dashed line. It can be observed that the curves associated with different leagues differ slightly, indicating league-dependent behavior. Moreover, in all cases we observe an accumulation of probability mass in the central region. This is compensated by lighter left tails and heavier right tails relative to the standard normal distribution. On the other hand, in Fig. 2 (c) we plot the true rating and the metric rating as a function of the true ranking, for the case of the Pressure point metric in the English league. The purpose of this representation is to highlight team-by-team differences. First, we note that the true rating decreases as the ranking increases. This decrease is not strictly monotonic, as plateaus may occur, but it is non-increasing by construction: the first-ranked team has a true rating greater than or equal to that of the second-ranked team, the second greater than or equal to the third, and so on until the last position. For the metric rating curve, we also observe an overall decreasing trend, although not strictly. In qualitative terms, the metric rating follows the general trend of the true rating, while exhibiting small local deviations. In Fig. 2 (d), we show an analogous comparison for the Direct play metric in the Spanish league. In this case, the metric rating curve does not display a clear decreasing trend and shows a strong decorrela-tion with respect to the true rating values. These results indicate that, for a given league, the true rating may differ substantially or only marginally from the metric rating, depending on the specific metric used to infer the rating. Our next objective is to quantify the correlation between the true rating curve of a given league and the metric rating curves associated with each performance metric. Specifically, we aim to identify which metric yields a 13 metric rating that best follows the trend of the true rating, and whether this relationship depends on the league. To this end, we compute the Pearson correlation coefficient between the true rating of each league and the metric rating obtained from each metric. The results are shown in Fig. 3. Each panel corresponds to a different metric, and within each panel each bar represents a league. The panels are ordered from highest to lowest average correlation, and the bars within each panel are ordered from highest to lowest correlation value. Hatched bars indicate cases for which statistical significance cannot be established. First, we observe that the Italian and English leagues ex-hibit the highest correlations across all metrics. Second, we find that the French and German leagues alternate between third and fourth place among cases with intermediate correlation values for almost all metrics. Finally, we observe that the Spanish league presents the weakest results, showing the lowest correlation values in 7 out of the 8 metrics considered. Nevertheless, it still exhibits strong correlations ( ρ > 0.4) for the Flow rate , Shots and 
+
+Counterattack metrics. 
+
+4.3. Correlation between true and metric-based rankings 
+
+In this section, we complement the analysis presented in the previous section by studying the correlation between rankings. We define the true ranking of a team as its final position in the league standings. This ranking is obtained by ordering the teams in descending order according to the total number of points accumulated; in the event of a tie, the final ranking is deter-mined by the goal difference (goals scored minus goals conceded). Similarly, we define the metric ranking by ordering the teams in a league in descend-ing order according to the value of the metric rating . In this case, no ties were observed during the analysis. To quantify the correlation between the two rankings, we employ Kendall’s rank correlation coefficient [35], which is based on a nonparametric hypothesis test whose statistic, τ ∈ [−1, 1] , takes values close to one when the observations exhibit a similar ordering, and values close to zero when the orderings differ substantially. Fig. 4 presents the corresponding results. Analogously to Fig. 3, each panel corresponds to a metric, while each bar within a panel represents a league. The panels are ordered from highest to lowest according to the average Kendall coefficient, and the bars within each panel are ordered in decreasing order according to their individual values. Bars with hatching indicate cases for which statisti-cal significance cannot be ensured. First, we observe that the Italian league consistently leads all panels, exhibiting the highest values of Kendall’s coeffi-14 cient. The English league generally ranks second, although it is surpassed by the French league in two of the metrics. By contrast, the German and Span-ish leagues tend to occupy the lowest positions. This behavior is, in principle, consistent with the results previously observed for the ratings . Second, we find that Kendall’s coefficients are, in general, slightly lower than the cor-responding Pearson correlation coefficients. This difference arises from the nonparametric nature of Kendall’s coefficient. Importantly, this discrepancy does not imply a weak correlation, but rather reflects the increased sensitiv-ity of rank-based measures to small fluctuations in regions of the table where point differences between teams are minimal. While Pearson’s coefficient validates the global hierarchy of the league, Kendall’s coefficient highlights that the exact ordering of teams can be affected by small variations (noise), particularly in regions of the standings with a high density of points, that is, where multiple teams are tied or nearly tied. By last, we compare the rankings obtained from this technique with those generated by the Bradley-Terry ranking model [27], which represents a stan-dard approach in sports classification. In this work, we implement the vari-ant with weight assignment based on the margin of victory, thereby ensuring that both methods operate with the same amount of input information as the HodgeRank. Within this framework, we propose to treat the performance metrics as score lines. For any pair of competing teams, i and j, their perfor-mances in a given metric are evaluated as M ′(i, j ) and M ′(j, i ) (see Eq. 2). The team that generates the larger value of M wins the confrontation in that specific metric and is assigned a weight equal to the margin of victory, 
+
+|M ′(i, j ) − M ′(j, i )|, while the losing team receives a value of zero. Under this setup, the ranking is computed using the Bradley-Terry model for all metrics, and the Kendall-Tau correlation coefficient with respect to the true ranking ( τBT ) is obtained. These values are compared against those derived from the Hodge Rank method ( τHR ) in Table 1. At first glance, the results show that τBT exhibits values quite similar to τHR across all analyzed cases. To quantify these differences, we define 
+
+∆τ = τHR − τBT and calculate its mean value and standard error, ob-taining ∆τ = 0 .005 and SE = 0 .017 . As can be observed, the confidence interval contains zero, therefore, we cannot conclude that, in global terms, either method provides a ranking that correlates significantly better or worse with the true ranking. Nevertheless, by examining the extreme values of ∆τ ,several interesting cases emerge for analysis. The instances where the differ-ence exceeds the 90th percentile correspond to the metrics Flow rate , Midfield 
+
+15 play and Build up all in the English league ( τHR > τ BT ). Conversely, below the 10th percentile, we find the Counterattack in the Spanish league, Shots 
+
+in the English league, and Build up in the Italian league ( τBT > τ HR ). 
+
+4.4. Analysis of network inconsistencies via the curl component 
+
+Thus far, we have analyzed how the inferred rating and ranking corre-late with those obtained from the HodgeRank method. We observed that, depending on the analyzed league, the method captures the tournament structure better when using certain tactical performance metrics over oth-ers. Furthermore, we compared the HodgeRank method with the standard Bradley-Terry model and, using equivalent information, no statistically sig-nificant differences were detected in their macro-ordering capacity. However, the HodgeRank method possesses a fundamental advantage over other tradi-tional approaches: it allows for the isolation and quantification of local incon-sistencies in dominance relationships, such as intransitive cyclic relationships (for instance, the scenario where team A dominates B, B dominates C, and 
+
+C dominates A). In the Hodge decomposition (see Eq. 4), the information associated with this cyclic behavior is encoded within the solenoidal (rotor) and harmonic components of each edge. Given that our networks are fully defined based on a round-robin competition system, mathematical theory dictates that the harmonic component vanishes due to the topology of the underlying simplicial complex. In this manner, the total net flow fij on each edge is determined solely by the sum of two non-zero orthogonal components: 
+
+fij = gij + sij (15) where gij represents the gradient component, used to deduce the global rating 
+
+wi, and sij corresponds to the solenoidal component, which absorbs the local circular inconsistencies associated with the network’s triangles. To quan-tify the global inconsistency level of the network under a specific metric M ,we define the indicator I as the ratio between the energy of the solenoidal component and the energy of the system’s total flow: 
+
+I =
+
+P 
+
+> (i,j )
+
+|sij |2
+
+P 
+
+> (i,j )
+
+|fij |2 . (16) Under this formulation, the metric I is strictly bounded between 0 and 1 due to the global orthogonality of the decomposition. A value of I close to 16 zero indicates that the network flow is purely hierarchical and that the ana-lyzed metric exhibits low inconsistency relative to the global order induced by the ranking. For each studied metric and league, the global inconsistency indicator 
+
+I was computed. The results are presented in Fig. 5, where each panel groups the values corresponding to a specific tactical metric, and the bars represent the observed value of I for each league. In order to facilitate the visualization of hierarchical patterns, the bars within each panel are sorted in increasing order (from lowest to highest inconsistency), while the panels themselves are sorted according to the average value of I for each metric. When analyzing the global behavior of the leagues, it is observed that the English league presents the lowest inconsistency across all analyzed variables, reaching its minimum value in the Midfield play metric. In contrast, the French league exhibits the highest levels of circularity, positioning itself as the most inconsistent league in 5 out of the 8 studied metrics. For its part, the German league shows a marked inconsistency in the Counterattack and Shots 
+
+variables, where I > 0.6. Nonetheless, it records relatively low values in Flow rate and Pressure point . The Italian league, on the other hand, exhibits an intermediate and regular behavior, with its best performance in Flow rate and the greatest distortion in the Build up metric ( I > 0.5). Finally, the Spanish league shows considerable dispersion, exceeding the threshold of I > 0.5 in half of the analyzed cases and reporting its highest level of consistency in 
+
+Midfield play .In Fig. 6(a), the global inconsistency indicator I is contrasted against the Kendall τ coefficient for each metric and league, discarding those cases that are statistically non-significant ( p-value > 0.05 ). A least-squares linear fit on this scatter plot yielded a slope of β = −0.32 , quantitatively confirming the observed decreasing trend. Likewise, the Pearson correlation coefficient resulted in ρ = −0.36 , evidencing the presence of a moderate negative corre-lation. This behavior empirically confirms how the emergence of local cyclic dynamics systematically degrades the capacity of the topological gradient to reconstruct the macro order of the competition. Those tactical performance variables that present lower energy dissipation in the solenoidal component are the ones that effectively filter out the volatility of the game, resulting in classifications that are better aligned with the real ranking of the standings table. Lastly, Fig. 6(b) examines the relationship between the average inconsis-tency of each league and its corresponding standard deviation. As a reference, 17 the dashed lines indicate the center of the data distribution, allowing us to categorize the structure of the competitions into four conceptual quadrants, of which only three are occupied in our sample. In the low-inconsistency and low-dispersion quadrant, we find the English and Italian leagues. These competitions can be cataloged as highly hierarchical. The behavior of their teams is generally predictable, dominance relationships tend to respect the global ordering, and a low incidence of local tactical surprises is recorded. In the zone of high inconsistency and low dispersion, we find the German league. In this case, the tournament can be thought of as behaving like a generalized cyclic system where teams tend to defeat each other in closed loops. Here, inconsistency is not an isolated event, but rather appears to be an intrinsic and uniform property of the league’s ecosystem. Finally, in the high-inconsistency and high-dispersion quadrant, we find the French and Spanish leagues, which can be associated with a regime of localized chaos. In these tournaments, teams with extreme volatility seem to coexist with others of high predictability, which shifts the statistical estimators toward boundary values and widens the variance of the system. To conclude, it is important to remark that, beyond its impact on ranking precision, the quantification of global and local inconsistencies also offers an interesting diagnostic tool for sports analysis. In particular, this approach highlights the “competition style” of each league, allowing for the objective identification of whether a championship is dominated by a predictable hi-erarchy, a homogeneous parity where anyone can beat anyone, or isolated pockets of tactical volatility. This opens new avenues for evaluating collective behavior in professional football based on its intrinsic statistical properties. 
+
+4.5. Composite rating based on performance metrics 
+
+In this subsection, we develop a Composite Rating (CR) for each league, defined as a linear combination of the metric ratings obtained from perfor-mance metrics. The aim is to provide a more comprehensive and general assessment of team quality. Let n denote the number of teams in a league and m the number of performance metrics. We define Xn×m as the matrix whose rows contain the metric rating values obtained for each team. Simi-larly, we define Y n×1 as the vector containing the true ratings of each team in the league. Within this framework, our goal is to determine the weight vector ψm×1 = ( ψ1, . . . , ψ m)T and the intercept b such that 
+
+Xψ + b = Y . (17) 18 To solve this system by prioritizing both predictive power and parsimony, we chose to utilize a Lasso regression (Least Absolute Shrinkage and Selection Operator). This method incorporates a regularization term into the loss func-tion that penalizes model complexity or, in other words, favors parsimony. The algorithm seeks to minimize the following cost function: 
+
+min 
+
+> ω
+> n
+
+X
+
+> i=1
+
+(yi − ˆyi)2 + α
+
+> p
+
+X
+
+> j=1
+
+|ψj |
+
+!
+
+. (18) The first term in Eq. 18 corresponds to the Mean Squared Error (MSE), while the second term expresses the effect of L1 regularization. In this framework, if the control parameter α is equal to zero, we recover an ordinary linear regression. On the other hand, if this parameter tends toward infinity, the algorithm will force all coefficients to zero. In this extreme scenario, the independent variables play no role, and the model is governed solely by the intercept. With intermediate values of α, the algorithm nullifies the least explanatory variables, removing noise and favoring a simplified model that minimizes the generalization error. To rigorously tune the value of α, we employ the k-fold cross-validation technique with k = 5 . The algorithm evaluates a set of 100 candidate α values; for each, it randomly divides the dataset into 5 subsets (folds) of equal size. The model is trained using 4 of these subsets and validated with the remaining one. This procedure is repeated cyclically: in the first iteration, subset 1 acts as the validation set; in the second, subset 2 does so, and so on. For each of the 5 iterations, the MSE associated with the validation process is calculated. By averaging these values, we obtain the estimator M SE , which characterizes the model’s performance for a given value of α. This procedure is repeated for each of the 100 candidate values along the regularization path. The value that minimizes the estimation error, αmin , is chosen to define the corresponding model for each of the studied leagues. From the Lasso fit in each case, the regression coefficients ψi that min-imize the generalization error were obtained. It is important to note that since the variables were previously standardized, the obtained coefficients represent the relative “importance” of each tactical dimension in predicting the final league score. Table 2 presents the regression results, the analysis of which reveals critical areas for optimizing sporting performance. For the English league, the most relevant metrics in order of relative importance are 
+
+Flow rate , Pressure point , Build up , and, to a lesser but significant extent, 19 Crossing and Counterattack . Together, these descriptors explain nearly 90% 
+
+of the data variance ( R2 ≈ 0.88 ). The positive coefficient for Flow rate 
+
+(20 .24 ) suggests that teams increasing the speed of ball circulation signifi-cantly improve their chances of success. Conversely, the negative coefficient for Build up (−13 .92 ) indicates that teams reducing elaboration times in the final quarter of the pitch (see metric definition in Section 2.1) achieve better results. An increase in this metric penalizes the composite rating, suggest-ing a structural inefficiency in playing styles that are excessively elaborate for this particular league. Furthermore, the positive value for Pressure point 
+
+reinforces the importance of high pressing as a determining factor for perfor-mance. The cases of the French and German leagues are of particular interest, as in both systems just a few metrics are sufficient to explain more than 50% of the variance. In the French league, the Pressure point metric predominates over the others, underscoring that recovering the ball in the opponent’s half is the primary predictor of success. For the German league, it is observed that shots, direct play, and density in the center of the pitch are the best proxies for understanding performance. In the Italian league, the results suggest that success is associated with an increase in Pressure point , Flow rate , and Direct play , along with a decrease in Midfield play and Build up . This describes a successful team profile characterized by verticality and rapid movement, relegating prolonged control in the middle and attacking zones. Finally, in the Spanish league, positive performance is linked to a high transition speed from the midfield upward and effectiveness in counterattacks, while excessively crossing appears correlated with low performance. The obtained composite rating can be compared with the true rating observed in the actual league table. In Fig. 7, panels (a) through (e), we show this team-by-team comparison. In the case of the English league (Fig. 7 a), it is observed that for the top two teams, the true rating is higher than the composite rating. These teams exhibit statistical over-performance; that is, they obtained more points than their tactical indicators would predict, which could be attributed to external factors or favorable stochastic fluctuations (luck). Conversely, the team in third place shows under-performance: despite executing tactical metrics “correctly” according to the model, their real score is lower than expected, suggesting inefficiency in execution or a run of adverse results. In general terms, the composite rating curves faithfully capture the trend of the real data, with the English and Italian leagues standing out in particular. To conclude, Fig. 7 (f) presents a comparison of the Pearson 20 correlation coefficients ( ρ) and Kendall’s rank correlation ( τ ). In all cases, the obtained values are higher than those achieved through individual metrics (compare with Fig. 3 and Fig. 4), validating the multivariate approach. We highlight the significant improvements in the Spanish and German leagues, where the aggregated model captures the system’s complexity much more robustly than any isolated variable. 
+
+5. Discussion and Conclusions 
+
+In this work, we present a unified methodological framework that inte-grates advanced football performance metrics, graph theory, and a robust algebraic method (HodgeRank) to generate team ratings and rankings. As an initial step of the analysis, and with the aim of establishing a solid baseline for subsequent evaluation, we examined the statistical properties of the true ranking, defined by the total number of points obtained by teams in their respective leagues. To this end, we proposed a hierarchical model in which each team is characterized by three specific latent skill parameters: the abilities to win, draw, and lose. Analogously to rating systems such as the Elo method [36], these skills define a probability distribution over match out-comes (win, draw, loss). Through a standard numerical fitting procedure, we estimated the corresponding theoretical probabilities, which showed satisfac-tory agreement with the observed empirical frequencies, thereby validating the adequacy of the proposed model. For the generation of metric-based ratings, we collected eight performance metrics from an event-level database corresponding to the 2017–2018 season of the five major European leagues (England, France, Germany, Italy, and Spain). Based on these metrics, we constructed weighted undirected graphs, where nodes represent teams and edge weights encode relative performance information for a given metric. This procedure resulted in eight networks per league. The Hodge decom-position was then applied to each graph, using the gradient component as the mechanism to derive a rating for each team. In this way, eight ratings per league (one per metric) were obtained and subsequently compared with the true ranking. The relationship between these metric-based ratings and the true ranking was analyzed using Pearson’s correlation coefficient to assess global trends, complemented by Kendall’s rank correlation coefficient to eval-uate the similarity in team ordering. The results revealed clear and consistent patterns, highlighting a strong dependence on both the league and the metric considered. In particular, the English and Italian leagues exhibited the high-21 est levels of similarity between ratings derived from individual metrics and the true ranking, suggesting that, in these competitions, the selected metrics are individually effective predictors of overall performance. In contrast, the Spanish league showed the lowest levels of correspondence, with markedly weaker results across most metrics. This indicates that, for this league, the proposed metrics have limited predictive power and that alternative or com-plementary indicators may be required. These league-dependent differences further point to the existence of distinctive playing styles or competitive dy-namics, a phenomenon already documented in the literature [18]. We also extended our topological analysis to evaluate the consistency of the inferred rankings. By quantifying the ratio between the solenoidal and total flow energies, we empirically confirmed that the emergence of local cyclic dynam-ics systematically limits the gradient component’s capacity to reconstruct the macro-ordering of the competition, as evidenced by a moderate negative correlation with the true ranking. Crucially, our findings reveal that incon-sistency is not a homogeneous artifact of the model, but rather a structural feature that characterizes the competition style of each league. The proposed framework successfully mapped these ecosystems into distinct regimes, dis-tinguishing between highly hierarchical structures (such as the English and Italian leagues), homogeneous tactical parity defined by generalized loops (the German league), and pockets of localized chaos (the French and Span-ish leagues). These results position the quantification of local and global inconsistencies as a robust diagnostic tool for sports analytics. Finally, we defined for each league a composite rating, constructed as a weighted linear combination of the eight metric-based ratings. The weights were optimized through a fitting procedure designed to identify a parsimonious combination that best approximates the true ranking. This approach allowed us to ob-tain a more robust composite rating, significantly improving the predictive capability relative to individual metrics, with particularly notable improve-ments in the Spanish and German leagues. Moreover, this technique enabled us to quantify the relative importance of each metric within the context of each league, thereby providing an integrated view of team performance. By optimizing independent LASSO regularization paths via cross-validation for each competition, we demonstrated that cross-league heterogeneity is an intrinsic statistical feature rather than a modeling artifact. Selecting the specific regularization parameters ( α) that minimize the cross-validation er-ror ensures that the distinct subsets of selected metrics reflect robust, stable tactical fingerprints adapted to the specific competitive environment of each 22 country. For instance, performance dimensions that act as structural pillars in one league are systematically discarded in another, formalizing the sta-tistical quantification of different national playing cultures. It is important to emphasize that this work does not propose a replacement for the official league table, whose competitive value and sporting legitimacy are not being questioned. We acknowledge that the inherently stochastic and unpredictable nature of football, which is often reflected in the official standings, constitutes an essential part of the sport’s appeal. Rather, the objective of our work is to provide a complementary analytical tool that, by uncovering the underlying statistical patterns of performance, offers a richer and more objective per-spective on the competitive dynamics of a league. Such a tool could be used by coaching staffs to achieve a more comprehensive evaluation of teams’ true strength, beyond the contingencies of immediate match outcomes. Regarding direct applications, the proposed methodological framework is generalizable to any head-to-head sport and to any set of performance metrics, thereby overcoming a key limitation of traditional rating models that rely exclusively on match outcomes (wins, draws, losses). By focusing on indicators of overall performance during the competitive process, our approach provides a poten-tially more stable evaluation with greater medium-term predictive power, as it is less sensitive to the randomness of isolated results. Specifically, the pro-posed composite rating makes it possible to identify significant discrepancies between on-field performance and the points actually obtained. This capabil-ity is of substantial practical value: on the one hand, it can highlight teams with high ratings but low point totals, suggesting solid performance accom-panied by bad luck or inefficiency in decisive moments. On the other hand, it can detect teams with low ratings that nonetheless occupy high positions in the standings, indicating performance sustained by favorable random fac-tors. Identifying such statistically under- or over-performing teams provides coaches and analysts with valuable information to adjust strategies, manage expectations, and support technical decisions with a more solid quantitative basis. Several avenues for future research emerge from this work. First, it would be essential to further investigate the inter-league differences observed. Incorporating contextual variables—such as financial resources, home advan-tage, or prevailing tactical models—would allow the development of a robust explanatory model describing how different football cultures are reflected in performance data and, consequently, in the derived ratings. Such contextual analysis would not only help explain observed differences but also inform the development of more adaptive models. In this regard, a second priority 23 direction would be to refine the composite rating through the incorporation of machine learning techniques and nonlinear models. These methods could dynamically optimize metric weights as a function of the specific context of each league or season, thereby overcoming the limitations of fixed-weight ap-proaches. Furthermore, given the model’s demonstrated ability to identify teams whose statistical performance diverges from their actual point totals, a natural and practically relevant extension would be the development of an early warning system. By integrating real-time data, such a system could con-tinuously quantify a “luck factor” or efficiency in critical moments, providing coaching staffs with an analytical tool usable throughout the season. Third, it would be of great interest to validate and extend the proposed framework to other team sports with similar confrontation dynamics. Generalization to disciplines such as basketball or hockey, using their specific performance metrics, would test the robustness of the approach and enable comparative inter-sport studies. Finally, a significant methodological opportunity not yet explored in our analysis lies in fully exploiting the Hodge decomposition. Beyond the gradient and cyclic components used to generate the ratings, the harmonic component contain valuable structural information. This compo-nent, inherent to the topology of the graph, offers a complementary structural perspective. Although its contribution is null in a complete league graph, its analytical potential emerges when connectivity is redefined. For instance, if teams are connected not only through direct matchups but also through similarity in their metric profiles (forming a tactical similarity graph), the harmonic component could reveal natural groupings or communities of teams with similar playing styles. This would allow leagues to be characterized not merely as linear hierarchies, but as networks with possible tactical clusters, substantially enriching the description of competition beyond simple rank-ings. The quantitative analysis and integration of these components would significantly enhance the characterization of a competition, adding a deeper interpretative layer to traditional classifications. 
+
+Acknowledgement 
+
+This work was partially supported by CONICET under Grant No. PIP 112 20200 101100 and SeCyT-UNC (Argentina). This work used computa-tional resources from UNC Supercómputo (CCAD), which is part of SNCAD, Argentina. 24 References 
+
+[1] Marc Barthelemy. Fragility of chess positions: Measure, universality, and tipping points. Physical Review E, 111(1):014314, 2025. [2] A Clauset, M Kogan, and S Redner. Safe leads and lead changes in competitive team sports. Physical Review E, 91(6):062815, 2015. [3] Javier M Buldú, Javier Busquets, Ignacio Echegoyen, and F Seirul. lo. Defining a historic football team: Using network science to analyze guardiola’s fc barcelona. Scientific reports, 9(1):13602, 2019. [4] Haroldo V Ribeiro, Satyam Mukherjee, and Xiao Han T Zeng. Anoma-lous diffusion and long-range correlations in the score evolution of the game of cricket. Physical Review E, 86(2):022102, 2012. [5] Andrés Chacoma and Orlando V Billoni. Simple mechanism rules the dynamics of volleyball. Journal of Physics: Complexity, 3(3):035006, 2022. [6] Andrés Chacoma and Orlando V Billoni. Probabilistic model for padel games dynamics. Chaos, Solitons & Fractals, 174:113784, 2023. [7] Andrés Chacoma and Orlando V Billoni. Emergent complexity in the decision-making process of chess players. Scientific Reports, 15(1):23234, 2025. [8] Chiara Zappalá, Alessandro Pluchino, Andrea Rapisarda, Alessio Emanuele Biondo, and Pawel Sobkowicz. On the role of chance in fencing tournaments: An agent-based approach. Plos one, 17(5):e0267541, 2022. [9] Sergio J Ibáñez, Aitor Mazo, Juarez Nascimento, and Javier García-Rubio. The relative age effect in under-18 basketball: Effects on perfor-mance according to playing position. PloS one, 13(7):e0200408, 2018. [10] Javier Galeano, Miguel-Ángel Gómez, Fernando Rivas, and Javier M Buldú. Using markov chains to identify player’s performance in bad-minton. Chaos, Solitons & Fractals, 165:112828, 2022. 25 [11] Pedro Silva, Luís Vilar, Keith Davids, Duarte Araújo, and Júlio Gar-ganta. Sports teams as complex adaptive systems: manipulating player numbers shapes behaviours during football small-sided games. SpringerPlus, 5(1):191, 2016. [12] Michael Ashford, Andrew Abraham, and Jamie Poolton. Understanding a player’s decision-making process in team sports: a systematic review of empirical evidence. Sports, 9(5):65, 2021. [13] Johann H Martínez, David Garrido, José L Herrera-Diestra, Javier Bus-quets, Ricardo Sevilla-Escoboza, and Javier M Buldú. Spatial and tem-poral entropies in the spanish football league: A network science per-spective. Entropy, 22(2):172, 2020. [14] Xiaoxiang Cao, Xiaodong Zhao, Huan Tang, Nianchun Fan, and Fateh Zereg. Football players’ strength training method using image processing based on machine learning. Plos one, 18(6):e0287433, 2023. [15] Ken Yamamoto, Seiya Uezu, Keiichiro Kagawa, Yoshihiro Yamazaki, and Takuma Narizuka. Theory and data analysis of player and team ball possession time in football. Physical Review E, 109(1):014305, 2024. [16] A Chacoma, Nahuel Almeira, Juan Ignacio Perotti, and Orlando Vito Billoni. Modeling ball possession dynamics in the game of football. Physical Review E, 102(4):042120, 2020. [17] A Chacoma, N Almeira, JI Perotti, and OV Billoni. Stochastic model for football’s collective dynamics. Physical Review E, 104(2):024110, 2021. [18] Andres Chacoma and Orlando V Billoni. Data-driven approach to defining football styles in major leagues. Chaos, Solitons & Fractals, 200:116926, 2025. [19] Guy Amichay, Hugo Silva, João Brito, and Rui Marcelino. Charac-terizing the spatial structures of competing football teams. Scientific Reports, 15(1):35217, 2025. [20] Sergio Caicedo-Parada, Carlos Lago-Peñas, and Enrique Ortega-Toro. Passing networks and tactical action in football: A systematic review. 26 International Journal of Environmental Research and Public Health, 17(18):6649, 2020. [21] Genki Ichinose, Tomohiro Tsuchiya, and Shunsuke Watanabe. Robust-ness of football passing networks against continuous node and link re-movals. Chaos, Solitons & Fractals, 147:110973, 2021. [22] Bruno Gonçalves, Diogo Coutinho, Sara Santos, Carlos Lago-Penas, Ser-gio Jiménez, and Jaime Sampaio. Exploring team passing networks and player movement dynamics in youth association football. PloS one, 12(1):e0171156, 2017. [23] A Chacoma, OV Billoni, and MN Kuperman. Complexity emerges in measures of the marking dynamics in football games. Physical Review E, 106(4):044308, 2022. [24] Andrés Chacoma. Identification and optimization of high-performance passing networks in football. Physical Review E, 111(4):044313, 2025. [25] Ming-Xia Li, Li-Gong Xu, and Wei-Xing Zhou. Motif analysis and pass-ing behavior in football passing networks. Chaos, Solitons & Fractals, 190:115750, 2025. [26] Kate KY Yung, Paul PY Wu, Karen aus der Fünten, Anne Heckst-eden, and Tim Meyer. Using a bayesian network to classify time to return to sport based on football injury epidemiological data. PloS one, 20(3):e0314184, 2025. [27] RA Bradley and ME Terry. Rank analysis of incomplete block designs: I. The method of paired comparisons. Biometrika, 39(3/4):324–337, 1952. [28] Xiaoye Jiang, Lek-Heng Lim, Yuan Yao, and Yinyu Ye. Statistical ranking and combinatorial hodge theory. Mathematical Programming, 127(1):203–244, 2011. [29] Juan I. Perotti. Analysis of the inference of ratings and rankings in com-plex networks using discrete exterior calculus on higher-order networks. Phys. Rev. E, 111:034306, Mar 2025. [30] Luca Pappalardo, Paolo Cintia, Alessio Rossi, Emanuele Massucco, Paolo Ferragina, Dino Pedreschi, and Fosca Giannotti. A public data 27 set of spatio-temporal match events in soccer competitions. Scientific data, 6(1):236, 2019. [31] Javier Fernandez-Navarro, Luis Fradua, Asier Zubillaga, and Allistair P. McRobert. Influence of contextual variables on styles of play in soccer. International Journal of Performance Analysis in Sport, 18(3):423–436, 2018. [32] Leo J. Grady and Jonathan R. Polimeni. Discrete Calculus: Applied Analysis on Graphs for Computational Science. Springer, 2010. [33] Lek-Heng Lim. Hodge laplacians on graphs. SIAM Review, 62(3):685– 715, 2020. [34] Ginestra Bianconi. Higher-Order Networks. Elements in the Structure and Dynamics of Complex Networks. Cambridge University Press, 2021. [35] Maurice G Kendall. A new measure of rank correlation. Biometrika, 30(1-2):81–93, 1938. [36] Arpad E. Elo. The Rating of Chess Players, Past and Present. Arco Publishing, New York, 1978. 28 (a) (b) Figure 1: Statistics of the true rating. (a) Comparison between the cumulative distribution function (CDF) of the true rating values and the distribution obtained from the proposed model. (b) Relationship between the empirical quantiles and those obtained from the model. For reference, a comparison with a Gaussian distribution with mean and standard deviation equal to those of the data is also shown. Table 1: Kendall rank correlation values obtained by contrasting the true ranking with (i) the ranking derived from the HodgeRank method, τHR , and (ii) the ranking derived from the Bradley-Terry method, τBT . Results are shown for all metrics across all studied leagues. Values marked with an asterisk ( ∗) indicate that the correlation is not statistically significant ( p-value > 0.05 ). 
+
+Metric England France Germany Italy Spain 
+
+τHR τBT τHR τBT τHR τBT τHR τBT τHR τBT 
+
+Flow rate 0.53 0.43 0.54 0.51 0.32 ∗ 0.35 0.75 0.84 0.34 0.25 ∗
+
+Pressure point 0.51 0.42 0.56 0.49 0.35 0.29 ∗ 0.75 0.72 0.25 ∗ 0.29 ∗
+
+Direct play 0.55 0.49 0.48 0.45 0.37 0.29 ∗ 0.71 0.64 0.25 ∗ 0.25 ∗
+
+Counterattack 0.46 0.48 0.43 0.35 0.44 0.19 ∗ 0.56 0.57 0.44 0.55 Midfield play 0.55 0.44 0.45 0.49 0.35 0.24 ∗ 0.58 0.58 0.27 ∗ 0.31 ∗
+
+Shots 0.39 0.54 0.21 ∗ 0.16 ∗ 0.37 0.31 ∗ 0.53 0.58 0.35 0.32 ∗
+
+Build up 0.49 0.40 0.17 ∗ 0.12 ∗ 0.20 ∗ 0.25 ∗ 0.58 0.75 0.19 ∗ 0.21 ∗
+
+Crossing 0.38 0.33 0.14 ∗ 0.09 ∗ 0.28 ∗ 0.27 ∗ 0.68 0.72 0.03 ∗ -0.01 ∗
+
+29 (a) (b) (c) (d) Figure 2: Comparison between the true and metric-based rating. Since these quantities are expressed in different units, standardized values are used for comparison. (a) Comparison between the cumulative distribution functions associated with the true rating and the metric rating. (b) Cumulative distribution function of the metric rating by league. The black dashed line represents, for reference, the CDF of a standard normal distribution. (c) Comparison for the Pressure point metric in the English league. (d) Comparison for the 
+
+Direct play metric in the Spanish league. 
+
+30 ρρFigure 3: Pearson correlation coefficient, ρ, between the true rating and the metric-based rating. Each panel corresponds to a performance metric, and the bars show the value of 
+
+ρ obtained for each league. Within each panel, bars are ordered in increasing order of ρ.Panels are also ordered in increasing order according to the average correlation value for each metric, ρ. Bars with hatching indicate cases for which the p-value exceeds 0.05 . In these cases, no statistically significant correlation was found between the true rating and the metric rating. 
+
+31 Figure 4: Kendall rank correlation coefficient, τ , between the true rankings and the rank-ings derived from performance metrics. Each panel corresponds to a performance metric, and the bars show the value of τ obtained for each league. Within each panel, bars are ordered in decreasing order of τ . Panels are also ordered in decreasing order according to the average Kendall coefficient for each metric, τ . Bars with hatching indicate cases for which the p-value exceeds 0.05 . In these cases, the results do not provide sufficient evidence to assert the existence of a statistically significant association between the true ranking and the inferred ranking. 
+
+32 Figure 5: Inconsistency indicator, I. Each panel corresponds to a specific performance metric, with bars representing the I values obtained for each league. Within each panel, the bars are arranged in ascending order with respect to I. The panels are also ordered ascendingly based on the average value per metric, I.(a) (b) 
+
+Figure 6: (a) Relationship between the inconsistency coefficient, I, and the Kendall rank correlation coefficient, τ , across all studied metrics and leagues. The linear regression highlights how inconsistency impacts the correlation between the network-derived ranking and the true rating. (b) Relationship between the mean inconsistency per league, I, and its dispersion, quantified via the standard deviation, SD (I). The dashed lines indicate the center of the data distribution for reference. 
+
+33 (a) (b) (c) (d) (e) (f) Figure 7: Comparison between true and composite rating. In panels (a), (b), (c), (d), and (e), we compare the true rating with the composite rating for each team in the English, French, German, Italian, and Spanish leagues, respectively. Panel (f) shows the values of the Pearson correlation coefficient, ρ, and the Kendall rank correlation coefficient, τ ,obtained for each league. Note that, in each case, the left bar corresponds to the value of 
+
+ρ, while the right bar corresponds to the value of τ .
+
+34 Table 2: No–null components of the composite rating by league based on Lasso regression. 
+
+Metric ψ R2
+
+England 
+
+Flow rate 20.24 0.88 Pressure point 14.01 Build up -13.92 Crossing -2.52 Counterattack -1.75 
+
+France 
+
+Pressure point 11.35 0.62 Counterattack 1.13 
+
+Germany 
+
+Shots 3.71 0.53 Direct play 3.12 Midfield play 2.68 Crossing 0.26 
+
+Italy 
+
+Pressure point 11.64 0.90 Flow rate 9.74 Midfield play -8.95 Direct play 8.32 Build up -6.32 Crossing 3.13 Shots 0.49 
+
+Spain 
+
+Counterattack 6.19 0.46 Crossing -5.00 Shots 4.26 Flow rate 4.11 Midfield play -0.67 35

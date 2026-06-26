@@ -1,0 +1,580 @@
+Title: Tracking the Turn: Mamba-Powered Human Orientation Detection using UWB
+
+URL Source: https://arxiv.org/pdf/2606.26187v1
+
+Published Time: Fri, 26 Jun 2026 00:02:39 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+# Tracking the Turn: Mamba-Powered Human Orientation Detection using UWB 
+
+Mohammad Cheraghinia ∗, Adnan Shahid ∗, Jaron Fontaine ∗, Cedric De Cock †, David Plets †, Eli De Poorter ∗∗IDLab, Ghent University - imec , Ghent 9052, Belgium Email: {mohammad.cheraghinia, adnan.shahid, jaron.fontaine, eli.depoorter }@ugent.be 
+
+†WAVES, Ghent University - imec , Ghent 9052, Belgium Email: {cedric.decock, david.plets }@ugent.be 
+
+Abstract —User orientation is crucial for many context-aware applications, including interactive museum experiences, smart door access, and intuitive human–environment interaction. How-ever, most existing indoor localization systems focus on esti-mating position, while body orientation is typically assigned to secondary devices such as inertial measurement units. In this paper, we propose a purely Ultra-Wideband (UWB)-based ap-proach that predicts yaw orientation directly from UWB Channel Impulse Response (CIR) measurements recorded at fixed anchors as they receive transmissions from a single wearable tag. We use a bidirectional Mamba architecture that captures dependencies across the anchor observations through forward and backward recurrent scans. The model uses per-anchor CIR and a body-part conditioning module to adapt the representation to different tag placements on the body. Two different Kalman filters are used as post-processing stages to exploit temporal continuity: an orientation-based filter that smooths the neural network predic-tions, and a location-based filter that additionally incorporates position-derived heading corrections. We evaluated the model’s performance in different scenarios to ensure generalizability. The proposed Mamba model achieves a mean absolute error of 38 .6◦
+
+in its raw form, outperforming a rule-based baseline 49 .5◦. With the location-based Kalman filter, the error is further reduced to 
+
+18 .9◦, corresponding to a 51% reduction. 
+
+Index Terms —Ultra-Wideband, orientation estimation, chan-nel impulse response, Mamba, state space model, Kalman filter, indoor positioning 
+
+I. I NTRODUCTION 
+
+# INDOOR localization and tracking have attracted research attention over the past decade for applications in as-set management, robotics, and human-computer interaction. UWB offers a great solution for high-accuracy indoor po-sitioning due to its fine time resolution, robustness against multipath propagation, and ability to penetrate obstacles [1]. While UWB systems can achieve centimeter-level position accuracy, considering the importance for pedestrian navigation and safety-critical applications, the same UWB system is rarely used to estimate human body orientation (the direction a person is facing) simultaneously. 
+
+This research was partly funded by the imec ICON project NG-UWB (Agentschap Innoveren en Ondernemen project nr. HBC.2024.0882), the Fund for Scientific Research Flanders (FWO-Vlaanderen) under SB-PhD Fellowship with grant number 1S52025N and FWO research project PESSO with grant number G018522N. 
+
+Conventional studies on orientation estimation in UWB can be divided into three categories. The first category is geometric multi-tag methods , which attach two or more UWB tags to a body and compute orientation from the relative position vector between them. [2] demonstrated that a dual-tag setup with 
+
+30 –40 cm separation can achieve orientation errors below 3◦
+
+under stationary conditions. [3] proposed a cost-effective joint position and orientation estimator using Angle-of-Arrival and Two-Way Ranging with a three-antenna base station; however, the approach requires specialized hardware that is uncommon in wearable deployments. The second category relies on UWB–inertial fusion . [4] used IMU heading information to estimate orientation for mitigating human body shadowing in on-body UWB tracking, reducing localization errors under non-line-of-sight condi-tions. More recently, [5] presented ObjectTrack, a factor-graph-based 6-DoF tracker that fuses UWB ranging with IMU, achieving sub-10 cm position and sub-5◦orientation errors. [6] applied a similar sensor-fusion paradigm to unmanned aerial vehicles, attaining orientation RMSE of 1.93 ◦. [7] further extended the fusion concept by integrating UWB, IMU and visual-inertial odometry within a sliding-window factor graph, reducing position RMSE 67 .6% compared to standalone UWB. Finally, [8] achieved a median orientation error of 2.7◦ on consumer smartphones by fusing UWB angle-of-arrival changes with on-board gyroscope data for short-term drift correction. While these fusion methods are effective, they depend on additional sensors (accelerometers, gyroscopes, or cameras) that increase cost, power consump-tion, and complexity. The third category involves UWB-only orientation estima-tion . UWBOri [9], calculates device orientation from UWB angle and distance measurements. However, this approach re-lies heavily on multi-antenna, smartphone-grade UWB chips. In contrast, our method uses a single-antenna wearable tag that can be a cheaper solution. In parallel, deep learning techniques have been increasingly applied to localization tasks. Sequence modeling architectures such as LSTMs [10] and Transformers [11] face trade-offs between temporal modeling capacity and computational ef-ficiency: LSTMs suffer from limited long-range dependency 
+
+> arXiv:2606.26187v1 [eess.SP] 24 Jun 2026
+
+capture, while Transformers have quadratic attention complex-ity with respect to the sequence length. Recently, state space models (SSMs) have emerged as an efficient solution for sequence modeling. Mamba [12] extended this method with a selective scan mechanism that allows input-dependent state transitions with linear complex-ity, which makes it suited for processing UWB CIRs, which are sequential signals with multipath components. Unlike self-attention mechanisms that scale quadratically with sequence length, Mamba processes long CIR sequences efficiently, while its input-dependent nature makes the model focus on the most discriminative multipath components and suppress unin-formative noise taps. Bidirectional variants of Mamba [13] have demonstrated additional gains. In the UWB domain, LightMamba [14] applied a selective SSM to Non-Line-of-Sight (NLOS) identification from CIR data, achieving high accuracy. In this paper, we propose a bidirectional Mamba-based model for human orientation estimation that uses UWB CIR data from a single tag. Our method requires no additional sensors; unlike geometric methods, it uses a single tag with a single antenna. The model processes per-anchor CIR vectors and applies bidirectional Mamba across the anchor sequence and predicts yaw orientation. Two Kalman filter variants are introduced for temporal post-processing. Our main contribu-tions are as follows:  
+
+> •
+
+We propose a bidirectional Mamba architecture for UWB-based orientation estimation that captures direc-tional dependencies in the anchors’ CIR observations with linear computational complexity.  
+
+> •
+
+We design a multi-scale convolutional CIR embedding and a body-part conditioning module that adapts the model to different tag placements.  
+
+> •
+
+We introduce orientation-based and location-based Kalman filters as post-processing stages that exploit temporal continuity to smooth predictions.  
+
+> •
+
+We evaluate on walking trajectories from three subjects and demonstrate that the proposed method achieves mean absolute error (MAE) 18 .9◦.This paper is organized as follows. Section II formalizes the system model and problem statement. Section III describes the experimental setup and dataset. Section IV presents the pro-posed model and baselines. Section V reports the experimental results, and Section VI concludes the paper. II. S YSTEM MODEL 
+
+We consider an indoor UWB positioning environment con-sisting of Nmax fixed anchors deployed at known locations 
+
+{p(n)}Nmax  
+
+> n=1
+
+and a single mobile tag carried by a human subject. The tag periodically exchanges ranging messages with the anchors, producing a set of radio measurements at each discrete time step t.
+
+A. Measurement Model 
+
+Let At ⊆ { 1, . . . , N max } be the subset of anchors that successfully receive the tag’s transmission at time t. For each 400 200 0 200 400  
+
+> X [cm]
+> 400
+> 200
+> 0
+> 200
+> 400
+> Y [cm]
+> Anchor 1 Anchor 2
+> Anchor 3
+> Anchor 4 Anchor 5
+> 0°
+> 90°
+> ±180°
+> -90°
+
+(a) Training and validation sam-ples showing rotating in place. 400 200 0 200 400  
+
+> X [cm]
+> 400
+> 200
+> 0
+> 200
+> 400
+> Y [cm]
+> Anchor 1 Anchor 2
+> Anchor 3
+> Anchor 4 Anchor 5
+> 0°
+> 90°
+> ±180°
+> -90°
+
+(b) Testing samples showing walking in a specific trajectory. 
+
+Fig. 1: Data samples for one subject. Black dots are the five anchors, and orange dots show the motion capture (MoCap) locations. receiving anchor with index n ∈ A t, anchor n records a CIR vector c(n) 
+
+> t
+
+of the signal received from the tag, where C is the number of CIR taps, together with scalar signal-level features such as received signal power and first-path power. The per-anchor observation is denoted: 
+
+z(n) 
+
+> t
+
+= c(n)⊤ 
+
+> t
+
+, s (n)
+
+> t
+
+⊤, n ∈ A t, (1) where s(n) 
+
+> t
+
+aggregates the scalar features. Because not all anchors are receiving at every time step, a binary availability mask mt ∈ { 0, 1}Nmax is maintained, with m(n) 
+
+> t
+
+= 1 if 
+
+n ∈ A t and 0 otherwise. Observations from unavailable an-chors are zero-padded, maintaining a fixed-size multi-anchor measurement at time t:
+
+Zt = z(n) 
+
+> t
+
+· m(n) 
+
+> t
+> Nmax
+> n=1
+
+. (2) The CIR includes the information of the propagation chan-nel. When the subject rotates, the human body attenuates signals from anchors, resulting in orientation-based variations. 
+
+B. Problem Formulation 
+
+Over a measurement session of T time steps, the system produces a temporal observation sequence 
+
+X = (Zt, mt, b ) Tt=1 , (3) where b is a categorical variable indicating the body-part placement of the tag (e.g., chest, pocket, or arm). Let θt ∈ (−180 ◦, 180 ◦] denote the ground-truth yaw angle of the subject at time t. The goal is to learn a mapping 
+
+fΘ : X −→ { ˆθt}Tt=1 , (4) that estimates the yaw angle from the multi-anchor UWB observations, where Θ denotes the set of learnable param-eters. Because the yaw angle is a periodic quantity with the domain wrapping at ±180 ◦, we adopt a continuous angular representation by predicting (cos ˆθt, sin ˆθt) and recovering the angle via ˆθt = atan2(sin ˆθt, cos ˆθt), avoiding discontinuities at the boundary. The mapping fΘ is implemented by a deep sequence model that operates on the ordered anchor observations at each time step (Section IV), while Kalman-filter post-processing leverages temporal continuity across time steps. III. E XPERIMENTAL SETUP AND DATASET 
+
+A. Experimental Setup 
+
+Data collection was carried out in the IDLab Industrial IoT (IIoT) Lab at Ghent University [15], an indoor testbed equipped with UWB infrastructure and a high-precision Mo-Cap system. Five DW1000-based UWB anchors were de-ployed throughout the environment at known positions [16], as indicated by the black dots in Fig. 1. A single UWB tag, also based on the DW1000 transceiver, was carried by the subject and communicated with the anchors at an approximate rate of 
+
+2.2 Hz. At each time step (superframe), each visible anchor recorded a CIR vector of the signal received from the tag, along with the received signal power and first-path power. The MoCap system simultaneously captured the subject’s position and full 3 × 3 rotation matrix at each superframe, from which the ground-truth yaw angle was extracted. The MoCap positions are shown as orange dots in Fig. 1. 
+
+B. Dataset and Subjects 
+
+Three participants took part in the data collection, each wearing the UWB tag at three body locations: the chest, the pocket, and the arm. These placements are common wearable positions and exhibit distinct signal attenuation and CIR characteristics; for instance, chest-mounted tags produce a symmetric body-shadowing pattern, whereas arm-mounted tags introduce directional variation due to limb motion. The dataset includes two types of movement. For training and validation, performed in-place rotations at nine fixed locations (Fig. 1a), ensuring full 360 ◦ orientation coverage with diverse CIR patterns. An 80 /20 random split is used to separate the training and validation sets. For testing, sub-jects walked in predefined trajectories (Fig. 1b), to evaluate the models’ generalization from rotations to realistic motion where both position and orientation change simultaneously. IV. M ETHODOLOGY 
+
+In this section, we discuss our proposed solutions. 
+
+A. Proposed UWB Bidirectional Mamba Model 
+
+The proposed model takes as input the CIR samples col-lected from all available UWB anchors, a binary mask indicat-ing anchor availability, and an optional auxiliary input (e.g., a body-part placement indicator). The architecture, illustrated in Fig. 2, consists of two stages: (1) data processing and (2) a model followed by a regression head. The input at each time step follows the measurement model of Section II: per-anchor CIR vectors and the binary availability mask are provided as defined in Eqs. (1)–(2). Each per-anchor CIR vector is processed by a shared multi-scale convolutional feature extractor that maps the raw C-tap signal into a compact d-dimensional embedding. We treat CIR Embedding   
+
+> Broadcasting
+> Zero Masking CIR
+> Forward Backward Mamba Blocks
+> Attention Pooling
+> Regression Head
+> Outputs Data Processing Model
+> CIR Mask
+> Anchor 1
+> Anchor 5
+> Anchor 4
+> Anchor 3
+> Anchor 2
+> Placement indicator
+> Inputs
+> CIR Samples
+> Anchor 1 Anchor 3 Anchor 4 Anchor 5 Anchor 2
+
+Fig. 2: Architecture of the proposed Mamba-based solution. the CIR as a one-dimensional time series rather than a flat feature vector because the orientation-relevant information is encoded in the local shape of the multipath profile: the leading-edge slope, the first-path-to-peak spacing, and the relative attenuation of later taps all vary as the human body shadows the direct path. To capture multipath structure at several temporal scales simultaneously, we use four parallel branches with kernel sizes {3, 5, 7, 15 }. Narrow kernels resolve sharp, sample-level features such as the first-path onset, whereas wider kernels capture the broader delay-spread. The kernel sizes are derived from the CIR length so that the receptive fields scale with the signal resolution. Each branch consists of two convolutional layers, each followed by batch normalization and ReLU activation, producing the branch output f (i) 
+
+> n
+
+for i = 1 , . . . , 4.Stacking two layers enlarges the effective receptive field and adds non-linearity, while batch normalization stabilizes training across the wide dynamic range of CIR magnitudes ob-served at different anchor distances. Each branch is assigned 
+
+d/ 4 channels so that the four scales share the embedding budget equally and concatenate to exactly d channels. An adaptive average pooling layer then reduces each branch output to a fixed length, which decouples the embedding dimension from the CIR length and yields a representation of constant size regardless of C. We use average rather than max pooling because the body-shadowing cue manifests as a distributed reduction in tap energy, which average pooling preserves, rather than as a single dominant peak. The four pooled feature maps, each of dimension d/ 4 channels, are concatenated along the channel axis and linearly projected to yield the per-anchor embedding: 
+
+en = Wproj 4
+
+∥
+
+> i=1
+
+[AvgPool (f (i) 
+
+> n
+
+)] ∈ Rd, (5) where d is the embedding dimension and Wproj is a learnable projection matrix that fuses the multi-scale features into a single embedding. The same extractor weights are shared across all anchors, so the network learns one generic CIR-to-feature mapping rather than an anchor-specific one; this keeps the parameter count independent of Nmax and makes the embedding invariant to which anchors happen to be available at a given time step. The body-shadowing of a rotation depends strongly on where the tag is worn. To let a single model account for the differences, we provide the placement as an explicit conditioning signal instead of training a separate model per body part. The body-part placement indicator b from Eq. (3) is mapped to the embedding space via a two-layer conditioner: 
+
+g = W2GELU (LN (W1b)) ∈ Rd, (6) where W1, W2 are learnable parameters, and LN (·) de-notes layer normalization. The conditioning vector is added element-wise to every anchor embedding, a lightweight addi-tive (FiLM-style) scheme that shifts the shared representation into a placement-specific region of the embedding space without altering the downstream architecture or its parameter count. At the end, zero masking is applied element-wise to hide the embeddings from anchors that are unavailable. 
+
+˜en = ( en + g) · mn, n = 1 , . . . , N max . (7) The masked embedding sequence X = [˜ e1, . . . , ˜eNmax ] ∈
+
+RNmax ×d is processed by L bidirectional Mamba layers. A single Mamba block implements a selective SSM. Given an input sequence X, the block first projects it into two branches via a linear projection: 
+
+[X′, Z] = split (Win X), X′, Z ∈ RNmax ×din , (8) where din = α·d with expansion factor α and Win ∈ R2din ×d.The branch X′ is passed through a depthwise 1-D convolution, followed by a SiLU activation with an output of ˆX.Following the selective state space formulation of Mamba [12], the activated feature ˆX is used to generate input-dependent SSM parameters ∆t, Bt, and Ct at each time step via learned projections, where N denotes the SSM state dimension. These are discretized and applied through a recurrent scan: 
+
+ht = ¯At ⊙ ht−1 + ¯Bt ⊙ ˆx⊤ 
+
+> t
+
+, h0 = 0, (9) 
+
+yt = ht Ct + ˆ xt ⊙ D, (10) where ¯At and ¯Bt are the discretized state and input matrices, 
+
+D ∈ Rdin is a learnable skip-connection parameter, and ⊙
+
+denotes the Hadamard product. The SSM output is combined with the second branch via element-wise gating and projected back to the model dimension: 
+
+O = Wout 
+
+ Y ⊙ SiLU( Z), Wout ∈ Rd×din . (11) Each of the L layers applies a forward and a backward Mamba block with normalization and residual connections. The backward branch operates on the sequence-reversed input. The two directional outputs are concatenated and fused: 
+
+Xℓ = Wfuse concat X→ 
+
+> ℓ
+
+, X←
+
+> ℓ
+
+, Wfuse ∈ Rd×2d, (12) where ℓ = 1 , . . . , L . After fusion, the mask is re-applied to zero out unavailable anchors. A learnable query q aggregates the sequence via multi-head cross-attention with mask. The pooled vector is passed through a regression head with an ℓ2-normalized pair from which the yaw is recovered via atan2 .
+
+Algorithm 1 lookup table (LUT)-Based Yaw Prediction 
+
+Require: F = {(a, rxp , y )}, scenario s ∈ { 1, 2}, LUT T
+
+Ensure: Predicted yaw ˆy, actual yaw y 
+
+> 1:
+
+y ← Ground-truth yaw  
+
+> 2:
+
+rxp ← Received Power  
+
+> 3:
+
+a ← Anchor ID  
+
+> 4:
+
+Sort F by rxp descending  
+
+> 5:
+
+a1 ← Strongest rxp anchor ID  
+
+> 6:
+
+a2 ← Second strongest rxp anchor ID  
+
+> 7:
+
+(lo, hi ) ← T [a1, a 2] retrieval from LUT  
+
+> 8:
+
+return GetAngle (lo, hi, s ), y  
+
+> 9:
+
+function GET ANGLE (lo, hi, s ) 
+
+> 10:
+
+if s = 1 then  
+
+> 11:
+
+return U(lo, hi ) (Uniform random sample)  
+
+> 12:
+
+else if s = 2 then  
+
+> 13:
+
+return (lo + hi ) / 2 (Bin center)  
+
+> 14:
+
+end if  
+
+> 15:
+
+end function 
+
+TABLE I: Orientation Prediction Lookup Table (LUT)( T )                             
+
+> Strongest (a1)Second Strongest (a2)Range (lo, hi )
+> Anchor1 Anchor2 or 3 (−45 ◦,0◦)
+> Anchor1 Anchor5 (−90 ◦,−45 ◦)
+> Anchor2 or 3 Anchor1 (0 ◦,45 ◦)
+> Anchor2 or 3 Anchor4 (45 ◦,90 ◦)
+> Anchor4 Anchor2 or 3 (90 ◦,135 ◦)
+> Anchor4 Anchor5 (135 ◦,180 ◦)
+> Anchor5 Anchor1 (−135 ◦,−90 ◦)
+> Anchor5 Anchor4 (−180 ◦,−135 ◦)
+
+B. Kalman Filters 
+
+For human tracking, often frequent positioning updates are provided, allowing the use of temporal information in addition to the raw orientation estimation from Mamba. We apply Kalman filters as a post-processing stage to smooth the Mamba outputs over time. Both variants share a two-dimensional state xk = [θk, ˙θk]⊤ (yaw angle and yaw rate) with a constant yaw-rate transition model. In tracking literature this is also referred to as a random-walk model on the yaw rate, since the process noise on ˙θ allows the filter to progressively forget its prior yaw-rate estimate and adapt to changing turn dynamics [17]. The prediction step propagates the state and covariance as: 
+
+ˆxk|k−1 = Fk xk−1|k−1, Fk =
+
+1 ∆tk
+
+0 1
+
+
+
+, (13) 
+
+Pk|k−1 = Fk Pk−1|k−1 F⊤ 
+
+> k
+
++ Qk, (14) where ∆tk is the time step between measurements k−1 and 
+
+k, and ˆxk|k−1 denotes the predicted state. The time-dependent process noise covariance Qk is constructed from the yaw noise variance σ2 
+
+> θ
+
+and the yaw-rate noise variance σ2˙θ as: 
+
+Qk =
+
+σ2 
+
+> θ
+
+∆tk + 13 σ2˙θ ∆t3  
+
+> k12
+
+σ2˙θ ∆t2 
+
+> k
+> 12
+
+σ2˙θ ∆t2 
+
+> k
+
+σ2˙θ ∆tk
+
+
+
+, (15) Model Embedding 
+
+> CIR Mask
+> Anchor 1
+> Anchor 5
+> Anchor 4
+> Anchor 3
+> Anchor 2
+> Placement indicator
+> Inputs
+> CIR Samples
+> Anchor 1 Anchor 3 Anchor 4 Anchor 5 Anchor 2
+> CLS Token
+> Positional Encoding
+> Transformer Encoder
+> Transformer Encoder Transformer Encoder Transformer Encoder
+> Masks
+> Regression Head
+> Outputs
+
+Fig. 3: Architecture of the transformer-based baseline. which corresponds to a piecewise-constant white-noise jerk model integrated over ∆tk, plus an additive yaw diffusion term σ2 
+
+> θ
+
+. This formulation accounts for the variable time in-tervals produced by the UWB superframe schedule. Following standard Kalman filter notation, Pk|k−1 and Pk|k denote the predicted and updated error covariance matrices, Kk is the Kalman gain, and I2 is the 2×2 identity matrix. The operator 
+
+wrap( ·) maps angles to [−180 ◦, 180 ◦] and clip( x, a, b ) clamps 
+
+x to [a, b ].
+
+1) Orientation-based Kalman Filter: This filter uses only the neural network yaw prediction znn  
+
+> k
+
+as the measurement, making it suitable even in conditions where the current position is not known to the tag. The measurement model is H = [1 , 0] , and the standard Kalman update is applied with measurement noise variance Rnn :
+
+˜yk = wrap  znn  
+
+> k
+
+− ˆθk|k−1
+
+, (16) 
+
+Kk = Pk|k−1 H⊤ H P k|k−1 H⊤ + Rnn −1, (17) 
+
+xk|k = ˆ xk|k−1 + Kk ˜yk, Pk|k = ( I2 − Kk H) Pk|k−1.
+
+(18) 
+
+2) Location-based Kalman Filter: This filter extends the orientation-based variant by incorporating a heading measure-ment derived from the tag’s own movement between consec-utive time steps. After the neural network update (identical to above, yielding x(1)  
+
+> k
+
+, P(1)  
+
+> k
+
+), the Euclidean displacement of the tag dk = ∥pk − pk−1∥ is computed from two successive positions pk = ( xk, y k). When the tag has moved more than a minimum threshold dmin , the direction of that movement is used as a second orientation measurement: 
+
+zpos  
+
+> k
+
+= atan2(∆ yk, ∆xk), Rpos  
+
+> k
+
+= Rpos 0
+
+clip(10 dk, 1, 5) ,
+
+(19) where the noise variance is scaled inversely with displacement magnitude. A second Kalman update is then applied to x(1)  
+
+> k
+
+,
+
+P(1)  
+
+> k
+
+using zpos  
+
+> k
+
+and Rpos  
+
+> k
+
+. When dk ≤ dmin , the second update is skipped. In the current implementation, the positions pk are obtained from the high-accuracy MoCap system. This choice provides an upper bound on the location-based filter’s capability but these values can be replaced by UWB-derived locations. 
+
+C. Training Details 
+
+Mamba and Transformer models are trained to minimize the Mean Squared Error (MSE). We use the AdamW optimizer 0 20 40 60 80 100 120 140 160 180     
+
+> |Error| (°)
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> Cumulative %
+> 50 %
+> 90 %
+> Mamba (raw) (p50=22.5°, p90=114.4°)
+> Mamba + KF (location) (p50=9.4°, p90=45.0°)
+> Mamba + KF (orientation) (p50=23.7°, p90=84.0°)
+> Rule-based (p50=75.9°, p90=157.1°)
+
+Fig. 4: CDF of yaw errors across all test sequences for the Mamba model with Median (p50) and 90th percentile (p90). with a learning rate of 10 −4 and a batch size of 32 , training for 
+
+200 epochs. Each CIR vector consists of C = 150 samples. The embedding dimension is d = 64 , with L = 4 layers, 4
+
+attention heads, and a dropout rate of 0.165 . The Kalman filter parameters were tuned via Bayesian optimization. V. R ESULTS 
+
+We evaluate the proposed model against three baselines: (i) a rule-based Look-Up Table (LUT)-based yaw prediction method (summarized in Algorithm 1 and Table I); (ii) a MoCap-based heading (MoCap Hdg), computed from ground-truth position estimates as a reference that quantifies the achievable position-derived heading alone without knowing where the tag is attached ; and (iii) a Transformer-based deep learning model that captures dependencies via self-attention (Fig. 3). For our Transformer model, three output variants are reported: the raw network output, the orientation Kalman filter, and the location Kalman filter. The models are evaluated on walking test sequences collected from three subjects across three body-part placements (Chest, Pocket, Arm). The MAE is the metric of the error in range of [−180 ◦, 180 ◦].The architectural characteristics and corresponding MAE results for all methods are summarized in Table II. The rule-based approach, which operates without temporal state and requires only received signal power, can be a compute-constrained fallback; its angular binning limits accuracy to 
+
+49 .5◦ the best variant (S2). The raw Mamba, similarly is state-independent but processing per anchor CIR with body-part conditioning, achieves 38 .6◦, outperforming both the rule-based baselines and the Transformer ( 45 .2◦), without needing any position information, making it the most reliable so-lution for a single tag . Introducing temporal processing via orientation Kalman filters reduces Mamba’s error to 33 .4◦,using continuity between predictions, and remains the choice for orientation estimation when position is unavailable. Loca-tion Kalman filter mixes position-based heading corrections at a high update rate, achieving 18 .9◦ with a 51% reduction relative to the raw Mamba at the cost of requiring a position input. The MoCap Hdg, which relies solely on ground-truth positions without any knowledge of tag placement, yields 
+
+59 .6◦, demonstrating that position information alone is in-sufficient when placement context is absent. The Transformer TABLE II: Comparison of model architectures, including modality, temporal processing, location awareness, update rate, and corresponding MAE performance.                                                                                            
+
+> Method Modality Body-part Temporal process Location info Update rate MAE ( ◦)↓
+> Chest Pocket Arm TOTAL
+> Rule-based (S1) Power ×××Low 42.9 47.6 58.1 50.5 Rule-based (S2) Power ×××Low 41.3 47.3 57.2 49.5 MoCap Heading Optical ××✓High 88.2 77.5 27.2 59.6 Transformer (raw) CIR ✓××Low 50.3 46.1 40.8 45.2 Transformer + KF (orientation) CIR ✓✓×High 46.6 39.5 36.4 40.5 Transformer + KF (loc.-based) CIR ✓✓✓High 25.6 13.1 17.7 19.3 Mamba (raw) CIR ✓××Low 40.5 41.3 35.8 38.6 Mamba + KF (orientation) CIR ✓✓×High 37.9 32.0 30.7 33.4 Mamba + KF (location) CIR ✓✓✓High 24.1 13.0 17.9 18.9
+
+TABLE III: Computational comparison of the two architec-tures.              
+
+> Metric Bi-Mamba Transformer
+> Parameters 409 K1.14 MModel size 1.6MB 4.4MB Sequence complexity O(Nmax )O(N2max )
+
+with location Kalman filter ( 19 .3◦) is competitive, but Mamba maintains a clear advantage in any configuration. Examining the per-placement breakdown in Table II, the Arm placement yields the lowest raw MAE for both archi-tectures (Mamba: 35 .8◦, Transformer: 40 .8◦), because arm-mounted tags experience more directional CIR variations during walking, while chest-mounted tags are the most chal-lenging for the raw model. After applying Kalman filter, the pocket placement achieves the best overall results (Mamba: 
+
+13 .0◦, Transformer: 13 .1◦), attributable to the strong correla-tion between the walking direction captured by the position-derived heading and the orientation of a pocket-mounted tag. Table III compares the computational footprint of the two deep learning architectures. The bidirectional Mamba model contains 409 K trainable parameters and occupies 1.6 MB of storage, 2.8× fewer parameters and 2.7× smaller than the Transformer ( 1.14 M parameters, 4.4 MB). In terms of theoretical complexity, Mamba’s selective scan scales linearly with the sequence length Nmax as O(Nmax ), whereas the Transformer’s self-attention is O(N 2max ). This advantage is modest for the short anchor sequences used here ( Nmax = 5 ), but becomes significant in setups with denser anchor deploy-ments. Figure 4 shows the cumulative distribution of absolute yaw errors across all Mamba test sequences. Location Kalman filter achieves the lowest median error ( p50 = 9 .4◦) and compresses the tail of the distribution: the 90th-percentile error drops from 
+
+114 .4◦ for the raw model to 45 .0◦, which is critical for safety-relevant applications. Orientation Kalman filter improves the 90th percentile compared to the raw model ( 84 .0◦ vs. 114 .4◦)even though their medians are similar ( 23 .7◦ vs. 22 .4◦), showing that temporal smoothing eliminates large errors rather than shifting the bulk of the distribution. The rule-based method exhibits the poorest tail behavior ( p90 = 158 .6◦), consistent with its coarse angular quantization. Figure 5 provides a qualitative comparison on one represen-tative test sequence. The ground-truth arrows (a) are spatially consistent and tightly aligned with the walking direction throughout the trajectory. Location Kalman filter (b) closely tracks the ground truth, with smooth and well-oriented arrows at nearly every position. Orientation Kalman filter (c) is noticeably smoother than the Mamba raw (d) but shows more drift in regions of rapid orientation change. The rule-based output (e) is coarse and erratic, with large angular jumps that render it unsuitable for fine-grained orientation tracking. VI. C ONCLUSION 
+
+This work demonstrated that accurate human body orien-tation estimation can be achieved using only UWB chan-nel impulse response measurements from a single wearable tag, eliminating the need for inertial sensors or multi-tag configurations. Experimental results demonstrate that tempo-ral modeling of CIR data using a Mamba neural network enables robust orientation inference (MAE of 38 .6◦), while Kalman-based post-processing significantly improves accu-racy by exploiting motion continuity and position-derived heading cues (MAE of 18 .9◦). Compared to a rule-based baseline, the proposed approach reduces the mean absolute orientation error by more than 50%. Importantly, the proposed pipeline operates reliably at low update rates and relies solely on UWB hardware that is already present in many indoor localization systems, making it well suited for practical de-ployments such as interactive museums, smart access control, and context-aware indoor environments. REFERENCES [1] Abdulrahman Alarifi, AbdulMalik Al-Salman, Mansour Alsaleh, Ah-mad Alnafessah, Suheer Al-Hadhrami, Mai A. Al-Ammar, and Hend S. Al-Khalifa. Ultra Wideband Indoor Positioning Technologies: Analysis and Recent Advances. Sensors , 16(5), 2016. [2] Oscar Johansson and Lucas Wass´ enius. Estimation of orientation in a dual-tag ultra wideband indoor positioning system. Master’s thesis, Uppsala University, 2019. [3] Di Zhang, Hongbiao Xu, Li Zhan, Ye Li, Guangqiang Yin, and Xinzhong Wang. Accurate Joint Estimation of Position and Orientation Based on Angle of Arrival and Two-Way Ranging of Ultra-Wideband Technology. Electronics , 14(3), 2025. 100 0 100 200 
+
+> X (cm)
+> 300
+> 200
+> 100
+> 0
+> 100
+> 200
+> 300
+> Y (cm)
+> Start
+> End
+
+(a) Ground Truth 100 0 100 200  
+
+> X (cm)
+> 300
+> 200
+> 100
+> 0
+> 100
+> 200
+> 300
+> Y (cm)
+> Start
+> End
+
+(b) Location KF 100 0 100 200  
+
+> X (cm)
+> 300
+> 200
+> 100
+> 0
+> 100
+> 200
+> 300
+> Y (cm)
+> Start
+> End
+
+(c) Orientation KF 100 0 100 200  
+
+> X (cm)
+> 300
+> 200
+> 100
+> 0
+> 100
+> 200
+> 300
+> Y (cm)
+> Start
+> End
+
+(d) Mamba Raw 100 0 100 200  
+
+> X (cm)
+> 300
+> 200
+> 100
+> 0
+> 100
+> 200
+> 300
+> Y (cm)
+> Start
+> End
+
+(e) Rule-based 
+
+Fig. 5: Qualitative comparison of orientation estimation methods on one of the test sequences. Arrows indicate the predicted orientation direction at each position along the MoCap trajectory. 
+
+[4] Cedric De Cock, Emmeric Tanghe, Wout Joseph, and David Plets. Robust imu-based mitigation of human body shadowing in uwb indoor positioning. Sensors , 23(19), 2023. [5] Fan Jiang, Frank Dellaert, and Ashutosh Dhekne. ObjectTrack: 6DoF Object Tracking Through UWB-IMU Fusion. In 2025 International Conference on Indoor Positioning and Indoor Navigation (IPIN) , pages 1–6, 2025. [6] Michael Strohmeier, Thomas Walter, Julian Rothe, and Sergio Mon-tenegro. Ultra-Wideband Based Pose Estimation for Small Unmanned Aerial Vehicles. IEEE Access , 6:57526–57535, 2018. [7] Zhongliang Deng, Haiming Luo, Xiangchuan Gao, and Peijia Liu. Fusion-Based Localization System Integrating UWB, IMU, and Vision. 
+
+Applied Sciences , 15(12), 2025. [8] Hao Zhou, Kuang Yuan, Mahanth Gowda, Lili Qiu, and Jie Xiong. Rethinking Orientation Estimation with Smartphone-equipped Ultra-wideband Chips. In Proceedings of the 30th Annual International Conference on Mobile Computing and Networking , ACM MobiCom ’24, page 1045–1059, New York, NY, USA, 2024. Association for Computing Machinery. [9] Zhaoxin Chang, Fusang Zhang, Jie Xiong, Xinyu Xue, Zeyu Wang, Badii Jouaber, and Daqing Zhang. UWBOri: Enabling Accurate Orientation Estimation with Ultra-wideband Signals. In 2024 IEEE Smart World Congress (SWC) , pages 386–393, 2024. [10] Yalin Tian, Zengzeng Lian, Penghui Wang, Mengqi Wang, Zhe Yue, and Huabin Chai. Application of a long short-term memory neural network algorithm fused with kalman filter in UWB indoor positioning. Scientific Reports , 14(1):1925, jan 2024. [11] Guangyong Xi, Shuaiyang Hu, Jing Wang, and Dongyao Zou. Non-line-of-sight identification method for ultra-wide band based on dual-branch feature fusion transformer. Information , 16(12), 2025. [12] Albert Gu and Tri Dao. Mamba: Linear-time sequence modeling with selective state spaces, 2024. [13] Jingwei Zhang, Xi Han, Hong Qin, Mahdi S. Hosseini, and Dimitris Samaras. Lbmamba: Locally bi-directional mamba, 2025. [14] Tao Wang, Yuanming Shu, Lulu Qiao, Dong Ding, and Guangxue Li. Lightmamba: A resource-efficient deep-learning method for uwb nlos identification based on selective state-space modeling. IEEE Internet of Things Journal , 13(5):8735–8748, 2026. [15] IDLab. Industrial iot lab. https://idlab.ugent.be/resources/ industrial-iot-lab, 2026. [Accessed: April 8, 2026]. [16] Ben Van Herbruggen, Bart Jooris, Jen Rossey, Matteo Ridolfi, Nicola Macoir, Quinten Van den Brande, Sam Lemey, and Eli De Poorter. Wi-PoS: A Low-Cost, Open Source Ultra-Wideband (UWB) Hardware Platform with Long Range Sub-GHz Backbone. Sensors , 19(7), 2019. [17] Yaakov Bar-Shalom, X. Rong Li, and Thiagalingam Kirubarajan. Es-timation with Applications to Tracking and Navigation . John Wiley & Sons, New York, 2001.

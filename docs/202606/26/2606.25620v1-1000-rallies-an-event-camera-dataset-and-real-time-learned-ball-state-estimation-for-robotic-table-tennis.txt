@@ -1,0 +1,246 @@
+Title: 1000 Rallies: An Event-Camera Dataset and Real-Time Learned Ball-State Estimation for Robotic Table Tennis
+
+URL Source: https://arxiv.org/pdf/2606.25620v1
+
+Published Time: Thu, 25 Jun 2026 00:46:57 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# 1000 Rallies: An Event-Camera Dataset and Real-Time Learned Ball-State Estimation for Robotic Table Tennis 
+
+Raphaela Kreiser ∗, Asude Aydin ∗, Yin Bi, Claudio Fanconi †, Peter D¨ urr, Naoya Takahashi Sony AI, Zurich 
+
+Abstract — Robotic table tennis has emerged as a compelling benchmark for real-time robotic perception due to its fast ball dynamics and stringent timing requirements. Accurate, high-frequency, and low-latency ball state estimation is critical for reliable trajectory prediction and timely control. Traditional frame-based cameras face an inherent trade-off: low frame rates leave temporal blind spots that miss fast-moving objects and high frame rates raise data and computational cost. Event cameras instead offer microsecond temporal resolution and, under sufficient illumination, remain largely free of motion blur even at high ball speeds. However, the community lacks large-scale datasets to develop and benchmark event-based perception in realistic sports scenarios. We address this gap by introducing the first large-scale event-camera dataset for table tennis, comprising over 1000 rallies from a diverse group of players ranging from amateurs to elite-level athletes. Each recording captures the event stream alongside 14 synchronized high-speed frame-based cameras at 200 FPS, which we use to produce 1 kHz pseudo ground-truth labels for ball po-sition, velocity, and spin. Building on this dataset, we train a convolutional neural network robust to background player motion that jointly estimates the ball’s position and velocity in the image-plane from events. Treating the predicted velocity as an additional measurement in the Kalman filter reduces bounce-point prediction error by 36% relative to a position-only baseline. Finally, we close the perception–action loop by integrating the event-based system with a St¨ aubli robotic arm, enabling the first real-time human–robot table tennis rallies driven by event-based perception. 1
+
+I. INTRODUCTION Robotic table tennis has long been regarded as a chal-lenging benchmark for real-time perception and control, requiring accurate ball state estimation, reliable trajectory prediction, and high-speed motion planning under stringent latency constraints [1], [2], [3]. In professional play, ball velocities can reach up to 35 m/s [4], allowing the ball to traverse the table in less than 200 ms. Accurate and timely trajectory prediction for competitive returns therefore depends on low-latency sensing and precise, high-frequency ball state estimation, including its position, velocity, and spin. Recent advances have enabled robots to rally with amateur players under modified equipment and simplified rules [5], [6], [7], [8]. Only recently have D¨ urr et al. [9] demon-strated table tennis rallies with elite athletes, underscoring the growing appetite for high-speed visual sensing in dynamic robotics. The perception system used in that work achieves its speed through color-based segmentation of the orange 
+
+> ∗These authors contributed equally.
+> †This work was completed while Claudio Fanconi was an intern at Sony AI, Zurich.
+> 1The dataset and code will be made publicly available. Event
+> repr.
+> Motion blur
+> μs temporal resolution
+> CNN position + radius
+> CNN velocity estimate
+> Frame-based
+> Event-based
+> CNN
+> (x, y, r, v ₓ, v ᵧ)
+> Triangulate
+> (3D states)
+> EKF
+> (3D Trajectory)
+> Robot
+> (Action)
+> 400 Hz, x3 cameras
+> <1 px error
+
+Fig. 1: Three event cameras capture the playing area at high temporal resolution. Our CNN jointly predicts ball position and velocity from the event stream at 400 Hz, driving an EKF trajectory predictor that closes the perception–action loop and enables human–robot rallies. ball, tightly coupled to a specific visual signature. Event cameras offer a complementary route: by encoding motion rather than appearance, they enable high-speed perception without relying on any particular color. The Event-based Vision Sensor (EVS), a neuromor-phic sensing technology, asynchronously reports pixel-level brightness changes at microsecond resolution rather than capturing full images at fixed intervals [10]. Previous works have explored EVS-based ball tracking for table tennis to leverage such properties for accurate and low-latency state estimation, demonstrating that higher-frequency state updates directly reduce the trajectory prediction error [11], [12]. Alberico et al. [12] focus on an egocentric view, while Ziegler et al. [11] use fixed cameras; both approaches rely on conventional methods for ball detection, such as clus-tering or circle detection within a small Region of Interest (RoI). However, such methods often fail to generalize to practical scenarios due to their reliance on accurately defined RoIs, susceptibility to spurious background activity, and dependence on hyperparameters tailored to factors such as event rate, sensor bias settings, and environmental lighting conditions. In this work, we first introduce a comprehensive dataset of five hours of EVS table tennis rally recordings ( >1000 rallies, amateur to elite athletes with over ten years of competitive experience) collected from four different camera 
+
+> arXiv:2606.25620v1 [cs.RO] 24 Jun 2026
+
+views in two different lab environments, capturing realis-tic ball-game occlusions and dynamic player motions. We present a pipeline for generating 1 kHz ground-truth labels for the event cameras using Active Pixel Sensor (APS) camera measurements upsampled from 200 Hz, providing the ball’s position, size, and velocity in the image plane, as well as ball spin estimates obtained from the APS cameras using a dotted-ball pattern [13]. We envision that these recordings and the labeling pipeline address the community’s need for developing and benchmarking event camera-based perception in realistic sports scenarios involving fast-moving balls. Building on this dataset, we propose a Convolutional Neu-ral Network (CNN)-based approach for accurate and robust ball state estimation, enabling, to the best of our knowledge, human–robot table tennis rallies with event cameras for the first time. In addition to predicting the ball’s size and location on the image plane, as in standard circular object detectors, we also estimate its image plane velocity directly from the event representation in a single-shot manner. This enables faster and more accurate trajectory prediction, eliminating the need for longer sequences of ball detections. Concretely, supplying the predicted image-plane velocity as an additional Extended Kalman Filter (EKF) measurement reduces 100 ms bounce-prediction error by 36% (12.1 cm → 7.7 cm) over a position-only baseline. We develop a highly optimized C++ implementation that delivers real-time performance on commodity hardware. This implementation drives detections with three event cameras at 1280 ×720 resolution with update rates of 400 Hz. Leveraging the proposed CNN approach and the richness of the training dataset, our method achieves state-of-the-art accuracy in event-based table tennis ball detection. Fi-nally, we close the perception-action loop by integrating our event-based ball detector pipeline into a robotic framework through EKF trajectory predictions, as illustrated in Fig. 1. Our contributions are summarized as follows:  
+
+> •
+
+We introduce the first large-scale event-camera dataset for table tennis (over 1000 rallies from amateurs to elite-level athletes), together with a labeling pipeline that produces upsampled pseudo ground-truth labels at 1 kHz, including ball position, velocity, and spin 1. 
+
+> •
+
+We propose a data-driven CNN for event-based ball-state (position and velocity) estimation in the image plane, achieving state-of-the-art accuracy on EVS-based table tennis which can track professional-level high-speed shots and generalize to unseen environments.  
+
+> •
+
+To the best of our knowledge, we introduce the first event-based perception system fully integrated into a robotic setup, enabling sustained human–robot rallies through an optimized C++ implementation that runs three cameras at a 400 Hz detection rate. II. R ELATED WORK 
+
+A. Event-Based Ball Detection 
+
+Tracking a fast-moving, small object such as a table tennis ball poses significant challenges related to capture rate, exposure time, and its limited size within the field of view. Frame-based vision systems have achieved real-time ball trajectory prediction [14], [15], although detection rates are often limited either by camera throughput [3] or by the computational cost of processing high frame-rate data. In contrast, event cameras with their microsecond temporal res-olution and asynchronous operating principle [10], provide a compelling alternative by reducing redundant data and suffering less from motion blur compared to conventional APS cameras. Learning-based, event-driven general object trackers such as SpikeMOT [16], EV-Tracker [17], and Perez et al. [18] have demonstrated robust, motion-blur-resistant tracking in dynamic environments. However, these general-purpose trackers are not tailored to small, fast-moving objects such as balls and operate at update rates lower than 100 Hz. More targeted event-based ball detectors tailored to table tennis have pushed update rates considerably higher by com-bining RoI cropping with classical detection methods. Ziegler et al. [11] achieve ball detection rates of 4.14 ×10 3 Hz using a fixed RoI combined with Hough-based circle detection, and demonstrate that higher update rates improve the accuracy of downstream filter-based trajectory prediction. Similarly, Alberico et al. [12] achieve update rates of up to 200 Hz using a dynamically adjusted RoI guided by an eye-tracking module in an egocentric AR setup, where ball detection is performed via DBSCAN clustering [19] followed by circle fitting. While RoI-based classical detectors achieve high update rates, they are susceptible to failure under occlusion [11] or gaze disruption [12]. Moreover, as purely hand-crafted methods, they lack the ability to learn from data or adapt to new environments without manual re-tuning. Several recent works have applied neural networks to event-based ball detection in sports settings. Nakabayashi et al. [20] proposed the first deep-learning-based ball de-tector for event cameras, trained on synthetic events and demonstrated detection of balls invisible in conventional frames due to motion blur. EV-Catcher [21] combined a lightweight learned event representation with a neural net-work to predict the ball’s 1D horizontal impact location and time-to-collision for robotic catching at speeds up to 13 m/s. While these learning-based approaches advance event-based ball perception, they either target only 1D or 2D detections without velocity estimation or operate at limited update rates, posing difficulties for real-time applications with faster ball dynamics. 
+
+B. Event-based Robotic Applications 
+
+Several works have explored integrating event cameras into dynamic robotic tasks. Ball-catching systems such as Forrai et al. [22] and EV-Catcher [21] represent important steps toward event-driven robotic interception, but rely on a single camera and a cropped RoI for more constrained ball-catching scenarios. The closest to our application scenario is that of Ziegler et al. [11], which targets human–robot table tennis but has not yet been integrated into a complete robotic system. Complementary efforts have explored neuromorphic and spike-based sensing for table tennis robots. Ziegler et al. [23] benchmarked Spiking Neural Networks (SNNs) on neuromorphic edge devices for event-based ball detection, demonstrating real-time inference at a fraction of GPU power consumption, though at reduced accuracy compared to NN-based approaches. SpikePingpong [24] employed a 20 kHz spike camera—distinct from event cameras in its operating principle—with learned trajectory correction while relying on APS for ball detection. Both of these works integrate their respective perception pipelines into physical robotic systems, but are evaluated with ball launchers under con-trolled conditions. In our work, we demonstrate full pipeline integration, with perception driving a motion planner based on Ruckig [25] that generates jerk-constrained trajectories to enable rally play against human opponents. 
+
+C. Event Camera Datasets 
+
+Many event camera datasets have been proposed for object detection and tracking, for example in automotive scenarios [26] human actions and gestures [27], people detection [28], and general object categories [29]. However, these datasets are domain-specific and not suitable for high-speed ball tracking in sports. Recently, two concurrent works have introduced event-based table tennis data from an overhead camera setup; however, neither dataset is publicly available at the time of submission. Ziegler et al. [11] provide only four short ball trajectories in an otherwise static scene, with no background activity from players. In contrast, Wang et al. collect data across several controlled settings using two cameras, but report ball speeds only for simulated data (5–9 m/s), without providing velocity or player skill information for real-world recordings. Both works use a stereo camera setup to collect data; however, they rely on manual annotation to obtain 2D ball positions in the image plane. This limits the annotations to image-based positions only, without 3D trajectory, velocity, or spin information, and constrains the dataset scale due to the required labeling effort. In this work, we introduce a large-scale event camera dataset collected from competitive table tennis matches, featuring players ranging from amateur to elite level and ball speeds of up to 26 m/s. Our dataset comprises approximately 1,200 rallies captured by four synchronized event cameras distributed around the table for broader spatial coverage with 3D position, velocity, and spin annotations obtained from a calibrated multi-camera APS system of up to 14 cameras. III. D ATASET 
+
+To enable the data-driven approach for ball state estima-tion, we collect and curate a dataset of EVS recordings from real-world table tennis matches. 
+
+A. Data Collection 
+
+We recorded 5 h 10 min of table tennis data consisting of approximately 1200 rallies with 11 unique players ranging from amateur players to elite-level athletes (see Table I). 2
+
+> 2All table tennis players recorded in this dataset provided informed consent, and the data was collected in accordance with our organization’s privacy and ethical regulations.
+
+During recording sessions, players are paired and instructed to play competitive matches, actively attempting to outscore their opponent and vary their tactics as they would in real tournament conditions. This allowed us to cover a wide range of shots in terms of ball placement, speed, rally length, and play area. For conducting the recordings, four event cameras (Proph-esee EVK4 equipped with Sony IMX636 HD-resolution sensors) are mounted at the top corners of the inner cage, pointing downward toward the table. The event cameras are calibrated to 14 frame-based APS cameras with Sony IMX273 sensors operating at 200 Hz, which were placed around the inner and outer cages to cover the entire playing area, as seen in Figure 2. All recordings used the same lab and four-EVS / fourteen-APS configuration except for the amateur rallies (shaded row in Table I), which were collected in a different lab with three-EVS / six-APS cameras to eval-uate generalization. For all labs, camera calibration is done for overlapping camera clusters using the Kalibr calibration toolbox [30] and its event-based adaptation proposed by [31]. The APS and event cameras, as well as the robot’s actuators, are synchronized with a 200 Hz trigger signal. 
+
+B. Data Annotation 
+
+APS Ball Detection The multi-camera APS system acts as an external ball position measurement system for ground truth generation in the EVS image plane. Each APS camera captures Bayer-pattern images that are converted to BGR, Gaussian-blurred, and transformed to HSV space for illumination-robust segmentation. In particular we use orange table tennis balls for color-based masking. Additionally, a temporal motion filter suppresses stationary false positives by differencing grayscale frames and intersecting the resulting motion mask with the color mask. Connected components are then extracted, and contours are evaluated based on circularity. Valid detections are obtained by fitting minimum enclosing circles and retaining only those within a plausible range given the focal length and radius of the ball. 
+
+APS Spin Estimation 
+
+To estimate the ball’s spin, we employ a dotted-ball orientation estimation method adapted from SpinDOE [13]. In this approach, a known dot pattern is applied to the ball’s surface using a 3D-printed stencil. The dots are detected in the APS camera images, and their spatial configuration is matched to the reference pattern using geometric hashing. The ball’s orientation is then recovered via the Kabsch algorithm, which computes the optimal rotation between the detected and reference dot positions. By estimating the ball’s orientation from consecutive APS frames, the spin is computed as the angular velocity between successive orientations. The spin vector ω(t) is decomposed into its rotation axis and magnitude using a quaternion-based regression [32], providing spin estimates at the APS frame rate of 200 Hz, which are then used as measurements for the EKF. TABLE I: Statistics of the recorded data. The shaded row indicates data collected from a different lab.                             
+
+> Type Duration (min) # Cameras Mean Rate (Mev/s) Max Rate (Mev/s) # Players # Rallies Max Ball Speed (m/s) Elite 276.5 40.8 1.5 71167 25.9
+> Robot 29.0 40.6 0.9 235 6.5
+> Amateur 5.3 31.4 2227 6.5
+
+Label Generation Ball contact events - such as table hits, net hits, and racket contacts - are hand-labeled to segment free-flying trajectories. These labels are derived from triangulated 3D ball positions p3(t) ∈ R3, which have an average position error of 3 mm. The subdivided free-flight trajectories, each representing a continuous ob-servation period, are fitted to a third degree polynomial 
+
+k ∈ { x, y, z }. p3,k (t) ≈ Pdj=0 ck,j (t − t1)j , where the coef-ficients {ck,j }dj=0 minimize the least-squares error. We em-pirically evaluated different polynomial orders and found the third degree to offer the best trade-off between fit accuracy and smoothness, with higher orders overfitting triangulation noise and lower orders failing to capture aerodynamic drag. Since cross-axis coupling from drag and spin is negligible at this scale we fit the coefficients for each spatial dimension independently and validate that the per-axis fit residuals are below 1 mm in 3D, well within APS triangulation noise. Using the fitted polynomials, we upsample the positions to 1 kHz, allowing for filling temporal gaps due to miss-ing observations, as well as denser and smoother position and velocity estimates. Velocities are then computed using backward finite differences on the upsampled trajectories, 
+
+˜v3(ti) = (˜ p3(ti) − ˜p3(ti−1)) /∆t for i ≥ 2. In addition, ball spin is estimated from the APS images using the dotted-ball method described above at 200 Hz and included as part of the dataset annotations. Finally, processed 3D ball positions and velocities are back-projected into each event camera’s image plane, which serve as ground-truth labels for the event cameras. IV. M ETHODS 
+
+Robotic table tennis requires accurate, high-rate 3D ball-state estimation despite clutter, occlusions, and extreme speeds. Our pipeline pairs a CNN detector, predicting ball position and image-plane velocity from EVS data, with an EKF that fuses these through a physics-based motion model into 3D states and trajectory predictions for control. 
+
+A. EVS Ball Detection 
+
+We adapt the YOLO v4-tiny [33] model where the network takes in event representations and predicts ball location 
+
+(x, y ), radius (r), velocity (vx, v y ), and confidence. While standard YOLO models parameterize objects using bounding boxes (width and height), we instead represent the ball as a circle using a single radius parameter, which is more suitable for spherical objects and reduces the parameter search space while providing a tighter geometric fit. Crucially, unlike conventional object detectors that estimate only static ob-ject properties, our model jointly predicts both spatial and kinematic quantities by directly inferring 2D velocity vectors from the event representation. This leverages the temporal structure inherently encoded in the event stream, enabling accurate tracking of fast-moving objects without requiring multiple detection steps over time. 
+
+Architecture The base architecture consists of aCSPDarknet53-based backbone for feature extraction [33], followed by two detection heads operating at different scales with strides of 16 and 8. It uses anchor-based detection with two anchors per scale, corresponding to radii of 5, 10, and 20 pixels. Each detection head outputs 6 channels per anchor box; 5 channels for regression targets (x, y, r, v x, v y ) and 1 channel for the objectness score. 
+
+B. Trajectory Estimation with a Physics Model 
+
+We use an EKF to estimate the 3D ball state x(t) = [p(t) v(t) ω(t)] , where p(t) denotes position, v(t) the velocity, and ω(t) the spin. The nonlinear continuous-time dynamics are given by ˙x(t) = f (x(t)) , where f (·) encodes the ball motion model for ball aerodynamics and ball contact (table and racket contacts) as described in [34]. Sensor measurements fed into the EKF are the triangulated position and velocity predictions, as well as spin estimates obtained from the APS cameras (described in Section III-B). To accurately predict the course of the ball trajectory it is critical to compute an optimal initial state. We estimate the initial state using a batch nonlinear least squares fit over the first N
+
+measurements. For each measurement time ti, the predicted state is obtained by forward propagation from the initial state 
+
+x0 at time t0 as ˆxi(x0) = Φ( x0, t i − t0), with corresponding predicted measurement ˆzi(x0) = Hˆxi(x0). We define the weighted nonlinear least squares objective: 
+
+J(x0) =  
+
+> N−1
+
+X
+
+> i=0
+
+(zi − ˆzi(x0)) ⊤ R−1 
+
+> i
+
+(zi − ˆzi(x0)) . (1) where the optimal initial state is obtained from x⋆ 
+
+> 0
+
+=arg min x0 J(x0). This optimization problem is solved using the nonlinear least squares solver Levenberg–Marquardt. After computing x⋆
+
+> 0
+
+, the EKF is not started directly at the last measurement. Instead, the filter is initialized at time t0
+
+and the first N measurements are replayed using alternating prediction and update steps. This propagates the uncertainty through the nonlinear dynamics and leads to a consistent covariance matrix. V. R ESULTS 
+
+We evaluate our pipeline along three complementary axes that mirror the requirements of human-robot rallies: de-tection accuracy, trajectory prediction quality, and end-to-end behavior on the robot. We first quantify the 2D pixel accuracy of the CNN detector, benchmarking it against prior Fig. 2: 3D schematic of the multi-camera setup for table tennis data collection, featuring four event cameras (green) at the inner cage and distributed APS cameras (pink) around inner and outer cages for ground-truth collection. Camera viewing directions are roughly indicated by pyramid orientations with example visualizations of the event stream per EVS view. event- and frame-based methods on both our dataset and existing datasets to isolate the gains from learning over hand-crafted detection. We then turn to 3D trajectory prediction through the EKF, where the key finding is that supplying the CNN’s predicted image-plane velocity as an EKF mea-surement substantially reduces bounce-prediction error and timing variance compared to a position-only baseline; we further analyze how the detector update rate affects this accuracy. Finally, we close the loop by reporting return rates from robot experiments. 
+
+A. Experimental Setup 1) Neural Network Training: As input to the network, event representations are constructed by accumulating Sur-face of Active Events (SAE) [35] over a 5 ms window at the full sensor resolution of 1280 × 720. The resulting input consists of two channels, corresponding to the positive and negative event polarities. 
+
+Data Augmentation To improve model robustness and generalization, we employ a set of geometric augmentations that preserve the physical consistency of ball position, radius, and velocity under spatial transformations. Augmentations of translation, zoom, and flipping are applied independently and stochastically during training with probabilities of p = 0 .1.The augmentation strategy has been empirically validated to improve localization accuracy while reducing overfitting to specific camera viewpoints. 
+
+Loss Scheduling The training loss is a weighted linear combination of a binary cross-entropy term for objectness and MSE terms for position, radius, and velocity. We im-plement dynamic loss weight scheduling during training, allowing the network to initially focus on objectness and localization before emphasizing velocity prediction in later stages. This curriculum learning approach improves con-vergence and final performance, with weights interpolated linearly as wi(t) = wstart  
+
+> i
+
++ t−tstart  
+
+> tend −tstart
+
+(wend  
+
+> i
+
+− wstart  
+
+> i
+
+).TABLE II: Statistics of the training data. An event frame corresponds to 5 ms of accumulated event data.                
+
+> Split Elite Amateur Lab(s) Total Train 64.7k 35.1k A99.7k
+> Test 12.7k 48.8k A, B 61.5k
+> All 77.4k 83.9k 161.2k
+
+Optimization Training was conducted using the AdamW optimizer with a learning rate of 1 × 10 −4, momentum parameters (0 .9, 0.999) , and ϵ = 10 −8. We trained for up to 130k steps amounting to 30 epochs (approximately 12 hours) on a single NVIDIA GeForce RTX 4070 Ti GPU, with a batch size of 12 and two gradient accumulation steps. 
+
+Training Data We subsample a part of the recorded dataset for training, as seen in Table II. We split the dataset so that all recordings from a completely separate laboratory, featuring a different camera setup and lighting configuration, are reserved exclusively for the test set, enabling evaluation of generalization. In total, we use 13.5 minutes of data for training and validating our proposed model. 
+
+2) Real-Time Inference Pipeline: To achieve high-frequency updates in our multi-camera system, we implement a C++ pipeline for parallel inference using TensorRT. On an NVIDIA GeForce RTX 4090, the model achieves an inference rate of 550 Hz using four parallel CUDA streams (corresponding to four cameras) at FP32 precision. Switching to FP16 precision increases throughput to 1147 Hz without significant loss in accuracy. The input tensors are generated in parallel across separate threads for each camera. However, these threads contend for DRAM bandwidth when copying SAEs to CUDA host memory, leading to bandwidth satu-ration. By representing the input tensors directly in FP16 precision, we reduce memory bandwidth usage by 50% and data transfer time by approximately 1 ms. Overall, parallelizing the pipeline, distributing operations across multiple threads, and reducing precision enable the TABLE III: End-to-end latency breakdown of the perception pipeline (ms).          
+
+> USB Event frame generation GPU upload Inference Triang. Total
+> up to 6.0 1.9 2.0 1.8 0.8 up to 12.5
+
+full camera-to-3D state estimation pipeline to run at 300 Hz with four cameras or 400 Hz with three cameras. Empirically, we observe that comparable spatial coverage can be achieved with three cameras when the third camera is placed at the center-left or center-right of the table, rather than in a corner configuration. Based on this observation, we adopt a three-camera setup operating at 400 Hz, using a sliding window over 5 ms accumulated events to avoid restricting runtime performance. Table III provides a breakdown of the system latency from initial event generation at the sensor to successful triangulation. 
+
+3) Robot Platform: We integrate our event-based percep-tion system into a robotic platform consisting of a St¨ aubli TX2-60L robotic arm [36]. A motion planner based on Ruckig [25] then generates a trajectory to the predicted interception point. Ruckig computes time-optimal trajectories from arbitrary initial states under velocity, acceleration, and jerk constraints. The full pipeline from input processing to robot execution is illustrated in Figure 1. 
+
+B. 2D Ball Detection Accuracy 
+
+We benchmark our neural network against existing event-based methods for table tennis ball detection [11], [37], [12]. For methods with update rates above 1 kHz, errors are computed only at the maximum available label rate. Our method outperforms all prior approaches on the dataset introduced by Ziegler et al. [11], achieving a Mean Absolute Error (MAE) of 0.91 pixels and Intersection over Union (IoU) of 0.78 (see Tab. IV), without any fine-tuning of the network or alterations to the input events. Our dataset proves considerably more challenging: exist-ing model-based methods show a significant drop in accuracy relative to the results reported on the dataset of Ziegler et al., which contains just four trajectories and no scene activity beyond the ball. These results highlight the increased diversity of our dataset, which includes background activity from players and a wide range of ball trajectories with varying speed. We define the detection rate as the percentage of trajec-tories for which RoI initialization is successful for prior methods and report results only on successful RoI initial-izations to ensure a fair evaluation. For our method, the detection rate is defined as the percentage of detections whose confidence score exceeds an empirical threshold of 0.1. For the comparison with Alberico et al. [12], we set the RoI to the ground truth position instead of the gaze re-projection since gaze information is not applicable for our method. This gives their detection rate in IV a slight advantage. Initially, most of the clusters were rejected and we only achieved a detection rate of 8.2%; however, after tuning the DBSCAN parameters, the detection rate increased to 96.8%. When evaluated on the dataset of Ziegler et al., we could not successfully improve the detection rate of 9.8% by tuning the parameters and therefore left the parameters as they were set originally. The low detection rates of the median filter, particle filter, and Ziegler et al. (failing on 64% of trajectories) stem from the brittleness of their classical, model-based RoI initialization, which is sensitive to background motion from players and other scene clutter. We further note that the update rates of all prior event-based methods are reported per single camera on CPU, whereas our 400 Hz corresponds to running three cameras on GPU. Despite this, our update rate still exceeds the single-camera CPU rates of Alberico et al. (200 Hz) and the frame-based pipeline of Tebbe et al. [3] (149 Hz). The remaining event-based baselines reach higher per-camera rates only by trading off accuracy or robustness. In comparison to all previous approaches, including Tebbe et al. which uses a frame-based approach, our method reports the best MAE error of 0.75 px and 0.91 px reported on our dataset and the dataset of Ziegler et al., respectively. For reference, a 2D error of 0.75 px translates to an MAE of approximately 8 mm in 3D space. This is computed using the pinhole camera model e3D = epix  
+
+> f
+
+d2 with a focal length of 850 px and a 3 m distance to the ball. The model maintains comparable performance across both environments, with only negligible differences in mean local-ization and velocity estimation metrics (see Tab. V). These results indicate that the model generalizes well to unseen environments, although the higher variance suggests slight sensitivity to lab-specific factors. 
+
+C. 3D Trajectory Prediction Accuracy 
+
+We evaluate our pipeline in 3D through EKF-based tra-jectory prediction. Our elite-level test set contains roughly 100 segments with a ball bounce on the table. In all EKF experiments, spin estimates obtained from the APS cameras using the method described in Section III-B are used as additional measurements to initialize and update the spin component of the state vector. 
+
+1) Velocity as an EKF Measurement: Our central trajectory-prediction result is that treating the CNN’s pre-dicted image-plane velocity as an EKF measurement sub-stantially improves bounce prediction. Incorporating velocity reduces the mean bounce RMSE from 12.1 cm to 7.7 cm, a 4.4 cm (36%) relative improvement, and it also tightens the spread of the bounce-timing error from ±36 ms to ±23 .2 ms (see Tab. VI). For this ablation, we vary the initialization intervals from 6 ms to 20 ms and the time to bounce from 50 ms to 200 ms to enable a more comprehensive evaluation. The minimum initialization time of 6 ms ensures that at least two APS-based position estimates are available, enabling a non-zero velocity estimate during initialization. We compare our method against a baseline EKF that uses pseudo ground-truth states obtained from the APS pipeline; higher EKF prediction accuracy with APS measurements is expected, as TABLE IV: Comparative evaluation of existing methods on the dataset provided by Ziegler et al. [11] and on our newly collected dataset. Values are reported as mean ± std, and those highlighted in bold denote the best performance.                                                          
+
+> Ziegler et al. [11] Data Our Data Method Input Error (px) ↓IoU ↑Error (px) ↓IoU ↑Detection Rate ↑Update Rate (Hz) Tebbe et al. [3] Frame 1.43 ** ** ** ** 149
+> Median filter [11] Event 2.90 ± 1.60 *3.13 ± 2.84 *36.0 % †13750 ± 1196 Particle filter [37] Event 2.93 ± 1.13 0.55 ± 0.08 3.10 ± 2.78 0.63 ± 0.09 36.0 % †3493 ± 403
+> Ziegler et al. [11] Event 1.34 ± 0.79 0.78 ± 0.11 3.03 ± 2.54 0.64 ± 0.09 36.0 % †4136 ± 101
+> Alberico et al. [12] Event 2.54 ± 2.27 0.74 ± 0.26 4.31 ± 4.22 0.75 ± 0.19 98.2 % 200
+> Ours Event 0.91± 0.54 0.78 ± 0.09 0.75 ± 2.95 0.80 ± 0.09 96.8 % 400
+> *Computation is not applicable. ** Code is not available.
+> †The median filter and particle filter baselines share the same RoI initialization, which causes them to fail on the same trajectories. Ziegler et al. [11] instead bootstrap with their method at full sensor resolution; the matching 36.0% detection rate is therefore coincidental.
+
+TABLE V: Generalization of the detector to an unseen envi-ronment (mean ± std). Detection and image-plane velocity accuracy are compared on the in-distribution lab (A) and a held-out lab (B).                
+
+> Lab Localization MAE (px) ↓IoU ↑Velocity Mag. MAE (px) ↓
+> Velocity Ang. (°) ↓
+> A0.75 ± 1.21 0.79 ± 0.1 0.93 ± 0.81 12.37 ± 20.2
+> B0.76 ± 4.98 0.81 ± 0.09 0.95 ± 0.82 12.18 ±15.7
+
+TABLE VI: Impact of velocity initialization on EVS-based bounce prediction accuracy (mean ± std).                       
+
+> Method Bounce RMSE (cm) ↓Delta T (ms) ↓
+> EVS pos + vel 7.7±16 .5−3.3±23 .2
+> EVS pos only 12 .1±18 .7−2.4±36
+> Pseudo GT (lower bound) 1.8±4.32.6±9.4
+
+they are used as pseudo ground truth and define an empirical lower bound. 
+
+2) Effect of Detector Update Rate: We complement the velocity ablation by analyzing the effect of the EVS measure-ment update rate on EKF-based ball bounce prediction, sim-ulating different online update frequencies of the detection pipeline, ranging from 100 Hz to 1000 Hz. The prediction horizon (i.e., time to bounce) is fixed at 100 ms, with an initialization period of 10 ms to ensure a fair comparison, particularly for the 100 Hz case where at least two mea-surements are required. Prediction accuracy improves with increasing observation update rate; however, the gains in 
+
+Fig. 3: Effect of EVS update rate on EKF-based trajectory prediction, measured by bounce localization error (RMSE) and timing offset ( ∆T ). estimating both the bounce location and timing diminish beyond 400 Hz (see Fig. 3). This suggests that our achieved online update rate of 400 Hz is near-optimal for the EKF. 
+
+D. Robot Experiments 
+
+To validate the system described in Sec. V-A.3, we first use a ball cannon with fixed velocity and direction. In this setting, the robot achieves a return rate of 100% (35/35 successful returns). We further evaluate the system in human–robot rallies, achieving a return rate of 75%. Supporting videos for both experiments are provided in the supplementary video. VI. C ONCLUSIONS 
+
+In this work, we present the first fully integrated EVS-based perception system enabling human–robot table ten-nis rallies. For robust online state estimation at high fre-quency and accuracy, we train a CNN on our dataset and demonstrate that it outperforms previous methods in ball detection accuracy, thereby introducing the first learning-based approach for event-based ball position estimation in table tennis robotics. Training such a model is enabled by the first large-scale event-camera dataset for table tennis, which we release alongside this work: over 1000 rallies and 5 h 10 min of play, recorded across players ranging from amateurs to elite athletes. In addition, we exploit the high temporal resolution of event cameras to predict the ball’s velocity directly in the image plane using our CNN-based approach. We show that incorporating velocity as a sensor measurement enables an EKF to achieve significantly improved trajectory prediction compared to using position-only measurements, reducing 100 ms bounce-prediction error by 36% (12.1 cm → 7.7 cm) and tightening bounce-timing variance from ±36 ms to ±23 .2 ms. Overall, this work demonstrates the potential of event-based vision for high-speed sports scenarios and marks an important step toward event-based sensing in robotic sports applications. Looking ahead, an opportunity lies in fully exploiting the microsecond temporal resolution of event cameras. Our cur-rent implementation already delivers real-time performance on commodity GPUs, providing a strong reference point for the accuracy achievable with event-frame representations. Asynchronous, event-driven processing on neuromorphic hardware is a natural next step: as such platforms mature, they offer a promising path toward closing the gap between sensor-level and system-level latency. VII. A CKNOWLEDGMENTS 
+
+We thank Andreas Ziegler for sharing their dataset and code, and Valentin Monferrato and Adriano Patan` e for their support in dataset labeling. REFERENCES [1] M. Matsushima, T. Hashimoto, M. Takeuchi, and F. Miyazaki, “A learning approach to robotic table tennis,” IEEE Transactions on Robotics , vol. 21, no. 4, pp. 767–771, 2005. [2] D. B. D’Ambrosio, S. W. Abeyruwan, L. Graesser, A. Iscen, H. B. Amor, A. Bewley, B. Reed, K. Reymann, L. Takayama, Y. Tassa 
+
+et al. , “Achieving human level competitive robot table tennis,” in 
+
+7th Robot Learning Workshop: Towards Robots with Human-Level Abilities , 2024. [3] J. Tebbe, Y. Gao, M. Sastre-Rienietz, and A. Zell, “A table tennis robot system using an industrial kuka robot arm,” in Pattern Recognition: 40th German Conference, GCPR 2018, Stuttgart, Germany, October 9-12, 2018, Proceedings 40 . Springer, 2019, pp. 33–45. [4] H. Tang, “Speed and spin characteristics of the 40mm table tennis ball,” Table Tennis Sciences , vol. 4, pp. 278–284, 2002. [5] D. B. DAmbrosio, S. Abeyruwan, L. Graesser, A. Iscen, H. B. Amor, A. Bewley, B. J. Reed, K. Reymann, L. Takayama, Y. Tassa et al. ,“Achieving human level competitive robot table tennis,” in 2025 IEEE International Conference on Robotics and Automation (ICRA) . IEEE, 2025, pp. 74–82. [6] Z. Su, B. Zhang, N. Rahmanian, Y. Gao, Q. Liao, C. Regan, K. Sreenath, and S. S. Sastry, “Hitter: A humanoid table ten-nis robot via hierarchical planning and learning,” arXiv preprint arXiv:2508.21043 , 2025. [7] Y. Ma, A. Cramariuc, F. Farshidian, and M. Hutter, “Learning coor-dinated badminton skills for legged manipulators,” Science robotics ,vol. 10, no. 102, p. eadu3922, 2025. [8] H. Wang, Z. Shi, C. Zhu, Y. Qiao, C. Zhang, F. Yang, P. Ren, L. Lu, and D. Xuan, “Integrating learning-based manipulation and physics-based locomotion for whole-body badminton robot control,” in 2025 IEEE International Conference on Robotics and Automation (ICRA) .IEEE, 2025, pp. 15 114–15 120. [9] P. D¨ urr, M. E. Gheche, G. J. Maeda, N. Mukai, N. Takahashi, and et al., “Outplaying elite table tennis players with an autonomous robot,” 
+
+Nature , vol. 652, pp. 886–891, 2026. [10] G. Gallego, T. Delbr¨ uck, G. Orchard, C. Bartolozzi, B. Taba, A. Censi, S. Leutenegger, A. J. Davison, J. Conradt, K. Daniilidis et al. , “Event-based vision: A survey,” IEEE transactions on pattern analysis and machine intelligence , vol. 44, no. 1, pp. 154–180, 2020. [11] A. Ziegler, T. Gossard, A. Glover, and A. Zell, “An event-based perception pipeline for a table tennis robot,” arXiv preprint arXiv:2502.00749 , 2025. [12] I. Alberico, M. Cannici, G. Cioffi, and D. Scaramuzza, “Egocentric event-based vision for ping pong ball trajectory prediction,” in Pro-ceedings of the Computer Vision and Pattern Recognition Conference ,2025, pp. 5025–5034. [13] T. Gossard, J. Tebbe, A. Ziegler, and A. Zell, “Spindoe: A ball spin estimation method for table tennis robot,” arXiv preprint arXiv:2303.03879 , 2023. [14] R. Voeikov, N. Falaleev, and R. Baikulov, “Ttnet: Real-time temporal and spatial video analysis of table tennis,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops , 2020, pp. 884–885. [15] S. Gomez-Gonzalez, S. Prokudin, B. Sch¨ olkopf, and J. Peters, “Real time trajectory prediction using deep conditional generative models,” 
+
+IEEE Robotics and Automation Letters , vol. 5, no. 2, pp. 970–976, 2020. [16] S. Wang, Z. Wang, C. Li, X. Qi, and H. K.-H. So, “Spikemot: Event-based multi-object tracking with sparse motion features,” IEEE Access ,vol. 13, pp. 214–230, 2024. [17] S. Zhang, W. Wang, H. Li, and S. Zhang, “Evtracker: An event-driven spatiotemporal method for dynamic object tracking,” Sensors , vol. 22, no. 16, p. 6090, 2022. [18] I. Perez-Salesa, R. Aldana-L´ opez, and C. Sag¨ u´ es, “Event-based visual tracking in dynamic environments,” in Iberian Robotics conference .Springer, 2022, pp. 175–186. [19] M. Ester, H.-P. Kriegel, J. Sander, X. Xu et al. , “A density-based algorithm for discovering clusters in large spatial databases with noise,” in kdd , vol. 96, no. 34, 1996, pp. 226–231. [20] T. Nakabayashi, A. Kondo, K. Higa, A. Girbau, S. Satoh, and H. Saito, “Event-based high-speed ball detection in sports video,” in 
+
+Proceedings of the 6th International Workshop on Multimedia Content Analysis in Sports , 2023, pp. 55–62. [21] Z. Wang, F. Cladera, A. Bisulco, D. Lee, C. J. Taylor, K. Daniilidis, M. A. Hsieh, D. D. Lee, and V. Isler, “Ev-catcher: High-speed object catching using low-latency event-based neural networks,” IEEE Robotics and Automation Letters , vol. 7, no. 4, pp. 8737–8744, 2022. [22] B. Forrai, T. Miki, D. Gehrig, M. Hutter, and D. Scaramuzza, “Event-based agile object catching with a quadrupedal robot,” arXiv preprint arXiv:2303.17479 , 2023. [23] A. Ziegler, K. Vetter, T. Gossard, J. Tebbe, S. Otte, and A. Zell, “Detection of fast-moving objects with neuromorphic hardware,” in 
+
+2025 IEEE International Conference on Robotics and Automation (ICRA) . IEEE, 2025, pp. 8709–8717. [24] H. Wang, C. Hou, X. Li, Y. Fu, C. Li, N. Chen, G. Dai, J. Liu, T. Huang, and S. Zhang, “Spikepingpong: High-frequency spike vision-based robot learning for precise striking in table tennis game,” 
+
+arXiv preprint arXiv:2506.06690 , 2025. [25] L. Berscheid and T. Kr¨ oger, “Jerk-limited real-time trajectory genera-tion with arbitrary target states,” Robotics: Science and Systems XVII ,2021. [26] E. Perot, P. De Tournemire, D. Nitti, J. Masci, and A. Sironi, “Learning to detect objects with a 1 megapixel event camera,” Advances in Neural Information Processing Systems , vol. 33, pp. 16 639–16 652, 2020. [27] Y. Hu, H. Liu, M. Pfeiffer, and T. Delbruck, “Dvs benchmark datasets for object tracking, action recognition, and object recognition,” Fron-tiers in neuroscience , vol. 10, p. 405, 2016. [28] C. Boretti, P. Bich, F. Pareschi, L. Prono, R. Rovatti, and G. Setti, “Pedro: an event-based dataset for person detection in robotics,” in 
+
+Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2023, pp. 4065–4070. [29] X. Wang, S. Wang, C. Tang, L. Zhu, B. Jiang, Y. Tian, and J. Tang, “Event stream-based visual object tracking: A high-resolution bench-mark dataset and a novel baseline,” in Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition , 2024, pp. 19 248–19 257. [30] P. Furgale, J. Rehder, and R. Siegwart, “Unified temporal and spatial calibration for multi-sensor systems,” in 2013 IEEE/RSJ International Conference on Intelligent Robots and Systems . IEEE, 2013, pp. 1280– 1286. [31] M. Muglikar, M. Gehrig, D. Gehrig, and D. Scaramuzza, “How to calibrate your event camera,” in Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , 2021, pp. 1403–1409. [32] J. Tebbe, L. Klamt, Y. Gao, and A. Zell, “Spin detection in robotic table tennis,” in 2020 IEEE international conference on robotics and automation (ICRA) . IEEE, 2020, pp. 9694–9700. [33] A. Bochkovskiy, C.-Y. Wang, and H.-Y. M. Liao, “Yolov4: Op-timal speed and accuracy of object detection,” arXiv preprint arXiv:2004.10934 , 2020. [34] A. Nakashima, Y. Ogawa, C. Liu, and Y. Hayakawa, “Robotic table tennis based on physical models of aerodynamics and rebounds,” in 
+
+2011 IEEE International Conference on Robotics and Biomimetics .IEEE, 2011, pp. 2348–2354. [35] X. Lagorce, G. Orchard, F. Galluppi, B. E. Shi, and R. B. Benosman, “Hots: a hierarchy of event-based time-surfaces for pattern recogni-tion,” IEEE transactions on pattern analysis and machine intelligence ,vol. 39, no. 7, pp. 1346–1359, 2016. [36] St¨ aubli Robotics, “TX2-60L Industrial Robot,” https://www.staubli. com, accessed: 2026-02-12. [37] A. Glover and C. Bartolozzi, “Robust visual tracking with a freely-moving event camera. in 2017 ieee,” in RSJ International Conference on Intelligent Robots and Systems (IROS) , 2017, pp. 3769–3776.
