@@ -1,0 +1,1458 @@
+Title: Older adults amplify passive gait stability during obstacle crossing without weakening the stabilizing synergy
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.22.733751v1.full.pdf
+
+Number of Pages: 32
+
+Markdown Content:
+1
+
+## Older adults amplify passive gait stability during obstacle crossing 
+
+## without weakening the stabilizing synergy 
+
+Ashwini Kulkarni 1,3 , Chuyi Cui 2,3 , Shirley Rietdyk 3, Satyajit Ambike 3 
+
+> 1
+
+School of Rehabilitation Sciences, Old Dominion University, Norfolk, USA  
+
+> 2
+
+George W Woodruff School of Mechanical Engineering, Georgia Institute of Technology, 
+
+Atlanta, USA  
+
+> 3
+
+Department of Health and Kinesiology, Purdue University, West Lafayette, USA 
+
+Keywords: margin of stability, ageing, fall prevention, motor synergy, proactive gait control, 
+
+locomotion 
+
+Corresponding author: Satyajit Ambike, sambike@purdue.edu; ORCID:  0000 -0003 -0521 -
+
+860X 
+
+Co -authors: 
+
+Ashwini Kulkarni:  a1kulkar@odu.edu ; ORCID:  0000 -0002 -9578 -1828 
+
+Chuyi Cui:  chuyicui@gatech.edu ; ORCID: 0000 -0002 -0437 -323X 
+
+Shirley Rietdyk:  srietdyk@purdue.edu ; ORCID:  0000 -0002 -4990 -3943 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+2
+
+ABSTRACT 
+
+Older adults sustain disproportionately severe injuries from trip -induced falls during obstacle 
+
+crossing. Such falls depend partly on forward momentum when the foot crosses the obstacle. 
+
+MOS AP , an index of passive dynamic gait stability, reflects this momentum. We quantified 
+
+MOS AP and a synergy index from uncontrolled manifold analysis of step length and extrapolated 
+
+center of mass in 25 young (21.6 ± 3.5 yr) and 23 older adults (68 ± 4.3 yr) during unobstructed 
+
+and obstructed walking, to test whether MOS AP increases during obstacle crossing and whether it 
+
+is actively stabilized at each step. Both groups increased MOS AP progressively over two 
+
+approach steps by reducing forward momentum and shifting the center of mass posteriorly. Older 
+
+adults showed greater increases at the crossing steps. The synergy index was positive for all 
+
+steps, showing that deviations in step length and extrapolated cent er of mass covaried to stabilize 
+
+MOS AP at step -specific values. The synergy index was not influenced by age. We concl ude that 
+
+adults actively recruit passive body mechanics while approaching and crossing obstacles to 
+
+reduce the risk of a trip becoming a fall. Older adults amplify this strategy to compensate for 
+
+diminished neuromuscular corrective capabilities. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+3
+
+1. Introduction 
+
+Older individuals frequently use external aids to improve their movements and reduce risk of 
+
+falls and injuries. As age increases, individuals rely more on external support, initially gripping 
+
+the railing on stairs and pushing against armrests to rise from chairs, and eventually using 
+
+walkers for mobility. In addition to such overt adaptations there may be covert changes in how 
+
+older adults modulate and use their body mechanics to stay safe and mobile. Young adults 
+
+demonstrate such behaviors: while approach ing obstacles, they gradually shift their body 
+
+mechanics over several approach steps, creating a configuration that minimizes the likelihood of 
+
+tripping as well as fall risk should they trip [1, 2] . Here, we address whether older adults employ 
+
+the same proactive strategy, perhaps even more extensively given that age -related decline in 
+
+neuromuscular and sensory -motor capacity for corrective responses [3, 4] makes them more 
+
+vulnerable to trip -induced falls and subsequent injuries [5, 6] .
+
+We address this question by investigating the margin of stability in the anterior -posterior 
+
+direction (MOS AP ). MOS AP quantifies the instantaneous passive dynamic stability during 
+
+locomotion by measuring the relationship between the extrapolated center of mass (XcoM), a 
+
+projection of the center of mass that accounts for its velocity, and the base of support (BOS) 
+
+boundar y at heel contact [7] . While walking on a clear walk way, both younger and older adults 
+
+typically maintain MOS AP values indicating that the XcoM is ahead of the BOS, which signals 
+
+efficient forward progression with low muscular effort [8 -10] . This walking pattern requires less 
+
+energy [11, 12] but provides less stability against forward falls, a liability for locomotor tasks 
+
+imposing forward perturbations. In such scenarios, a safer approach would be to increase passive 
+
+stability and accept higher energy costs for those steps. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+4
+
+This is indeed observed in human locomotion in contexts such as obstacle crossing. 
+
+When stepping over an obstacle, young adults increase passive dynamic stability compared to 
+
+unobstructed walking [1] and older adults demonstrate higher passive stability than younger 
+
+adults [13] . Our previous work revealed two additional key observations: young adults adjust 
+
+MOS AP gradually over two approach steps rather than abruptly at the obstacle, and they stabilize 
+
+MOS AP at each of those steps through coordinated adjustments of body state and foot placement. 
+
+We emphasize a key operational distinction: MOS AP quantifies the passive dynamic 
+
+stability of gait that emerges solely from the physics of body motion. A systematic shift in that 
+
+stability ahead of a known hazard, in contrast, signals active neural control. Furthermore, we 
+
+used a synergy index derived fr om the uncontrolled manifold method [14] to ask whether MOS AP 
+
+is regulated around its selected value via covariation between step length and XcoM. By analogy, 
+
+MOS AP is a speeding bicycle’s natural stability arising from its momentum and structure. 
+
+Shifting MOS AP is like a rider slowing down before a turn. The covariation our synergy index 
+
+detects is like the rider’s steering corrections to remain upright. 
+
+We propose three hypotheses on how aging affects obstacle navigation. The first 
+
+hypothesis addresses passive dynamic stability, with the magnitude of MOS AP as the dependent 
+
+variable, whereas the other two address the stabilization of MOS AP itself, with the synergy index 
+
+as the dependent variable. 
+
+When navigating obstacles, MOS AP will be higher compared to a clear walkway, it will 
+
+change across two approach steps and the obstacle -crossing steps, with older adults 
+
+demonstrating greater increase and higher stability, resulting in a walkway × step × age 
+
+interaction (H1). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+5
+
+Second, based on our observations of robust synergies in young adults and greater 
+
+caution in older adults, we hypothesize that both groups will stabilize MOS AP through synergistic 
+
+coordination of XcoM and foot placement for each step on both walkways (H2). 
+
+Third, we expect this synergy to weaken during obstacle crossing compared to the clear 
+
+walkway, with a greater decline in older adults. Obstacle crossing demands greater limb 
+
+elevation, requiring increased muscle activations that introduce more signal -depe ndent noise 
+
+[15] . This mechanical challenge explains why locomotor synergies weaken during more difficult 
+
+tasks [1] . The effect is magnified by aging: while older adults maintain synergies on uneven 
+
+surfaces [16] , they show weaker synergies during the more demanding task of obstacle crossing 
+
+[17] .
+
+Previous research examining synergies during obstacle crossing has exclusively focused 
+
+on the crossing steps alone [17, 18] , and not the approach phase where adaptive control begins. 
+
+We examine behavior across both approach and crossing steps to show the evolution of control 
+
+that previous work has not captured. We hypothesize that the synergy stabilizing MOS AP will 
+
+weaken during obstacle crossing for both groups, with older adults showing greater synergy 
+
+decline. These effects will manifest across multiple approach and crossing steps, resulting in a 
+
+walkway × step × age interaction (H3). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+6
+
+2. Methods 
+
+2.1 Participants 
+
+Sixty healthy young and older adults participated in the study. We excluded five young adults 
+
+and seven older adults due to poor kinematic tracking . Therefore, data from 25 young (21.6 ± 3.5 
+
+years, 68.4 ± 13.3 kg, 1.68 ± 0.09 m, 15 women) and 23 older adults (68 ± 4.3 years, 83.6 ± 17.1 
+
+kg, 1.69 ± 0.09 m, 14 women) were included. All participants walked without aid, had no 
+
+orthopedic, neuromuscular, or dementia disorders, and were independent in daily activities. 
+
+Vision was normal or corrected -to -normal. Th e study was approved by the University’s 
+
+Institutional Review Board (Protocol: IRB -2021 -331), and data was collected from May 2021 to 
+
+May 2022. All participants provided written informed consent. 
+
+2.2 Equipment and Procedures 
+
+Participants walked at their self -selected speed along a 6.0 m walkway, either unobstructed or 
+
+with an obstacle to step over (Fig. 1A). The obstacle, made of black Masonite and designed to tip 
+
+if contacted, measured 100 cm wide by 0.4 cm deep, with its hei ght set to 25% of each 
+
+participant's leg length. We determined a starting position for each participant such that they took 
+
+five steps before reaching the obstacle, crossed it with their right leg first, and then took three to 
+
+four additional steps before stopping. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+7
+
+Figure 1 . Experimental setup. Panel A shows the walkway layout with foot placements (fp -4 to 
+
+fp +3 ) and steps (step -3 to step +2 ) before and after the obstacle. Panel B illustrates XcoM, step 
+
+length, MOS AP and their relationship. g
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint 8
+
+Participants completed two sets of 20 walking trials: first without an obstacle (clear 
+
+walkway) followed by another with an obstacle (obstructed walkway). We used Vicon Vero 
+
+motion capture system (Oxford, UK) to collect kinematic data at 100 Hz. Marker cl usters were 
+
+placed bilaterally on the lower back, thigh, shank, and foot. We digitized the joint centers and the 
+
+posterior aspect of heels to determine the position of heel relative to the marker clusters. 
+
+Additionally, we digitized the top edge of the obs tacle to track its position. 
+
+2.3 Analysis 
+
+We discarded some trials due to poor kinematic tracking and selected 15 trials with good 
+
+kinematic data for each participant and walkway to ensure consistent analysis across the 
+
+participants. All kinematic data were filtered using a zero -lag, 4th order, lo w-pass Butterworth 
+
+filter with a 7 Hz cut -off frequency. We identified seven foot placements (fp -4 to fp +3 ) using the 
+
+anteroposterior (AP) position of the heel [19] (Fig. 1A). 
+
+Center of mass position (CoM), center of mass velocity (V CoM ) and MOS AP at heel 
+
+contact were quantified at the seven foot placements (fp -4 to fp +3 ); step length was quantified at 
+
+six steps (step -3 to step +2 ), and the uncontrolled manifold (UCM) analysis was conducted for the 
+
+six steps. 
+
+Step length was determined as the distance between successive heel contacts. The CoM 
+
+position was estimated as the centroid of the triangle formed by the left and right anterior 
+
+superior iliac spines and the midpoint between the left and right posterior su perior iliac spine s
+
+[20] . CoM velocity was obtained by differentiating the CoM position. In the sagittal plane, the 
+
+extrapolated center of mass (XcoM) was computed as: 
+
+𝑋𝑐𝑜𝑀 = 𝐶𝑜𝑀 + 𝑉 𝐶𝑜𝑀 × √𝑙 /𝑔 ,
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+9
+
+where g is the gravitational acceleration, and is the participant's leg length defined as the 
+
+sagittal -plane distance between the CoM and the ankle of the limb that touched the ground (Fig. 
+
+1B), averaged over the same step across 15 trials [21] . MOS AP was computed at the instant of 
+
+leading heel contact, in a coordinate frame placed at the location of the rear heel contact (Fig. 
+
+1B): 
+
+𝑀𝑂𝑆 𝐴𝑃 = 𝑆𝑡𝑒𝑝 𝑙𝑒𝑛𝑔𝑡 ℎ − 𝑋𝑐𝑜𝑀 . (1)
+
+Thus, MOS AP is the distance from the leading heel (anterior boundary of the base of 
+
+support, BOS) to the XcoM. When MOS AP is negative, XcoM extends beyond the anterior 
+
+boundary of the BOS (Fig. 1B), and the body possesses sufficient momentum to rotate past 
+
+vertical and fall forward, assuming that energy loss at heel contact is recovered via an equivalent 
+
+energy input during push -off. In contrast, a positive MOS AP value indicates that the XcoM is 
+
+behind the anterior BOS boundary; the body will not rotate bey ond the vertical and will fall 
+
+backward. 
+
+MOS AP is a measure of anterior passive stability, appropriate for our purpose of studying 
+
+stability loss in the forward direction after tripping. Lower, more negative MOS AP (more anterior 
+
+XcoM) indicates reduced stability, as forward falls become more probable if a person trips. 
+
+Conversely, larger MOS AP values (more posterior XcoM) indicate enhanced anterior stability 
+
+[22, 23] . Additionally, MOS AP inversely relates to walking efficiency: lower MOS AP values 
+
+indicate greater passive forward motion, reducing the active propulsion needed for continued 
+
+progression, and vice versa. Thus, MOS AP effectively captures the balance between stability and 
+
+efficiency. 
+
+Note that our interpretation of MOS AP is opposite to that implied by Hof [7] . There, the 
+
+condition MOS AP < 0, when the XcoM projects ahead of the BOS, ensures forward progression. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+10 
+
+Conversely, when MOS AP > 0, the passive walker's forward progression ceases. Therefore, a 
+
+passive walker has stable gait if MOS AP < 0 [7] . We deviate from this result because we want to 
+
+identify how humans protect themselves against falling forward rather than how they maintain 
+
+forward progression. 
+
+2.4 The uncontrolled manifold (UCM) analysis 
+
+We used the uncontrolled manifold (UCM) analysis to determine whether step length and 
+
+XcoM co -vary to stabilize MOS AP at heel contact. The UCM framework quantifies how 
+
+variability in input variables is structured to maintain stability in a task -relevant output variable. 
+
+This method has been widely applied in gait research to assess synergy -based control strategies 
+
+[24, 25] .
+
+Briefly, the across -trial variability in the step length and the XcoM for a particular step 
+
+are partitioned into two subspaces, namely, the UCM and its orthogonal compl ement (ORT). The 
+
+UCM is the null space of the Jacobian that relates small changes in step length and XcoM to 
+
+changes in MOS AP . Jacobian (J) is obtained as the partial derivatives of Equation (1): J = [1 −1]. 
+
+The projection of the deviations in step length and XcoM from their corresponding across -trial 
+
+means onto the UCM does not affect MOS AP , whereas the projection onto the ORT does. 
+
+Variance in the projections, called V UCM and V ORT , respectively, are computed and then 
+
+combined into the synergy index: 
+
+∆𝑉 = 𝑉 𝑈𝐶𝑀 − 𝑉 𝑂𝑅𝑇 
+
+𝑉 𝑈𝐶𝑀 + 𝑉 𝑂𝑅𝑇 
+
+2
+
+(2)
+
+When V UCM > V ORT , ΔV > 0, indicating that the step length and XcoM co -vary to stabilize 
+
+MOS AP . Conversely, ΔV < 0 indicates that the inputs covary to change or destabilize MOS AP . ΔV
+
+= 0 indicates no task -specific co -variation, and that MOS AP is not a controlled variable. The 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+11 
+
+synergy index is bounded within the range of -2 to 2. Therefore, we z -transform ΔV to obtain 
+
+ΔVz for statistical comparisons [26] :
+
+∆𝑉𝑧 = 1
+
+2 × log [2 + ∆𝑉 
+
+2 − ∆𝑉 ].
+
+Since ΔV = 0 corresponds to ΔVz = 0, we report ΔVz values in the Results section and use them 
+
+for statistical inference [24] .
+
+2.5 Statistics 
+
+To assess whether the walkway, foot placement, and age affected MOS AP (H1), we 
+
+performed a three -way (walkway × step × age) mixed -model ANOVA with walkway and step as 
+
+repeated measures and age as a between -subjects factor. To identify the source of changes in the 
+
+MOS AP , we applied the same ANOVA separately to the CoM position, CoM velocity at heel 
+
+contact, and step length. 
+
+To assess the presence of synergies (H2), we conducted one -sample t -tests to determine if 
+
+ΔVz significantly differed from zero for each step on both walkways, for young and older adults. 
+
+To assess whether the walkway, foot placement, and age affected the synergy index (H3), 
+
+we performed a three way (walkway × step × age) mixed -model ANOVA with walkway and step 
+
+as repeated measures and age as a between -subjects factor. To identify the sourc e of changes in 
+
+the synergy index, we applied the same ANOVA separately to the variance components (V UCM ,
+
+VORT ). 
+
+For all ANOVA tests, we fitted a generalized linear model with random effects. Since the 
+
+UCM analysis yields a single value each for the synergy index, V UCM , and V ORT , participant was 
+
+the random effect for these ANOVAs. For all other variables, we used data from all 15 trials, 
+
+with trial number within each participant as the nested random effect. If no interactions were 
+
+detected, the significant main effects were follo wed by pairwise comparisons with Tukey -
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+12 
+
+Kramer adjustments. If interaction effects were present, planned pairwise comparisons with 
+
+Tukey -Kramer adjustments were conducted to test the hypotheses. 
+
+If a three -way interaction was observed, the dependent variable was compared across one 
+
+independent variable while holding the other two constant. For example, the dependent variable 
+
+was compared across age groups, with results examined separately for each foot placement and 
+
+each walkway. If a two -way interaction was observed, pairwise comparisons were planned with 
+
+the same principle. For example, if the walkway × step interaction was observed, then the 
+
+dependent variable was compared across walkway s at eac h step (or foot placement), and across -
+
+step (or foot placement) for each walkway. All analyses were conducted using the PROC 
+
+GLIMMIX procedure in SAS 9.4 (Cary, NC, USA) with significance set at 0.05. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+13 
+
+3. Results 
+
+All planned pairwise comparisons are provided in the Appendix. Of the planned pairwise 
+
+comparisons across foot placements steps, only neighboring pairs on the obstructed walkway are 
+
+described below and depicted in Figs. 2 and 3, since they address our hypotheses and keep this 
+
+section brief. 
+
+3.1 Margin of stability (MOS AP ) and its components 
+
+MOS AP 
+
+The across -step pattern of MOS AP was affected by the presence of the obstacle, and the 
+
+effect was different across the two age groups. This was reflected in a walkway × foot placement 
+
+× age interaction for MOS AP (F 6,10052 = 28.34, p < 0.001; ηp2 = 0.12; Fig. 2A). 
+
+Post hoc comparisons across age revealed that older adults had higher MOS AP compared 
+
+to younger adults at all foot placements (p < 0.04) with the following exceptions: (1) first and 
+
+last (fp -4 and fp +3 ) in the clear walkway and (2) first (fp -4) and the last two (fp +2 , fp +3 ) in the 
+
+obstructed walkway (p > 0.09). 
+
+Post hoc comparison across walkway revealed similar changes in both age groups. 
+
+MOS AP was higher in the obstructed walkway from fp -3 to fp +1 and reversed to a lower value 
+
+than the clear walkway at fp +2 (p < 0.03). Although this pattern was the same in both groups, the 
+
+estimated across -walkway mean difference was larger for the older adults at fp -1, fp +1 and fp +2 ,
+
+and similar in the two groups for other foot placements. 
+
+Post hoc comparisons across consecutive foot placements in the obstructed walkway 
+
+revealed that MOS AP evolved over multiple steps in both groups. Starting at fp -3, MOS AP at each 
+
+foot placement was different from the preceding one for all foot placements (p < 0.04) except fp - 
+
+> 2
+
+for young adults (p = 0.13). Although the pattern was the same in both groups, the estimated 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+14 
+
+across -step mean differences were larger in older adults for the two obstacle -crossing steps, 
+
+namely, transitions from fp -1 to fp +1 and fp +1 to fp +2 .
+
+CoM position re ative to rear hee 
+
+The across -step pattern of CoM position relative to rear heel was affected by the presence 
+
+of the obstacle, and the effect was different across the two age groups. This was reflected in 
+
+walkway × foot placement × age interaction (F 6,10052 = 13.04, p < 0.001; ηp2 = 0.08; Fig. 2B). 
+
+Post hoc comparisons across age revealed that older adults leaned further back (CoM 
+
+closer to rear heel) compared to younger adults at all foot placements (p < 0.04) except the last 
+
+(fp +3 ; p = 0.94) in the obstructed walkway. 
+
+Post hoc comparisons across walkways revealed that both younger and older adults 
+
+leaned further back ( CoM closer to the rear heel ) while approaching and crossing the obstacle 
+
+with the lead foot (fp -3 to fp +1 ) compared to the corresponding steps in the clear walkway (p < 
+
+0.01). However, the CoM was farther from the rear heel when the trailing heel contacted the 
+
+ground (fp +2 ) compared to the corresponding step in the clear walkway (p < 0.01). Although this 
+
+pattern was the same in both groups, the estimated ac ross -walkway mean difference was larger 
+
+for the older adults at fp -1, fp +1 and fp +2 , and similar in both groups for other foot placements. 
+
+Post hoc comparisons across consecutive foot placements in the obstructed walkway 
+
+revealed that CoM position evolved over multiple steps in both groups. Starting at fp -3, older 
+
+adults changed their CoM position for every foot placement (p < 0.01) except fp -2 (p = 0.62). 
+
+Young adults changed CoM position for every foot placement (p < 0.02) except fp -3 and fp -1 (p > 
+
+0.09). Both groups gradually leaned further back while approaching the obstacle; but the largest 
+
+changes occurred for the lead and trail crossing foot placements as both groups first rocked back 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+15 
+
+and then forward at fp +1 and fp +2 . Although the pattern was the same in both groups, the 
+
+estimated across -step mean differences were larger in older adults for the two obstacle -crossing 
+
+steps. 
+
+CoM ve ocity at hee contact 
+
+The across -step pattern of CoM velocity was affected by the presence of the obstacle, and 
+
+the effect was different across the two age groups. This was reflected in walkway × foot 
+
+placement × age interaction for CoM velocity at heel contact (F 6,10052 = 9.61, p < 0.001; ηp2 =
+
+0.07; Fig. 2C). 
+
+Post hoc comparisons across age revealed that older adults had lower CoM velocity 
+
+compared to younger adults at all foot placements (p < 0.01) except the first (fp -4) on the 
+
+obstructed walkway (p = 0.09). 
+
+Post hoc comparisons across walkways revealed that both young and older adults had 
+
+lower CoM velocity at all foot placements (p < 0.03) except the first and last (fp -4, fp +3 ; p > 0.41) 
+
+in the obstructed compared to the clear walkway. Although this pattern was the same in both 
+
+groups, the estimated across -walkway mean difference was larger for the older adults at all foot 
+
+placements that demonstrated an age effect. 
+
+Post hoc comparisons across consecutive foot placements on the obstructed walkway 
+
+revealed that CoM velocity evolved over multiple approach steps. Both groups increased 
+
+velocity from fp -4 to fp -3 (p < 0.01). However, the older adults initiated velocity reduction at fp -1,
+
+whereas young adults first reduced velocity at fp +1 (p < 0.01). The changes for the lead and trail 
+
+crossing foot placements were large, as both groups first slowed down and then sped up at fp +1 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+16 
+
+and fp +2 (p < 0.01). For the two obstacle -crossing steps, although the pattern was the same in 
+
+both groups, the estimated across -step mean differences were larger in older adults. 
+
+Step ength 
+
+The across -step pattern of step length was affected by the presence of the obstacle, and 
+
+the effect was different across the two age groups. This was reflected in walkway × foot 
+
+placement × age interaction for step length (F 6,8616 = 2.65, p = 0.02; ηp2 = 0.03; Fig. 2D). 
+
+Post hoc comparisons across age revealed that older adults had shorter step length 
+
+compared to younger adults at all steps for both walkways (p < 0.01). 
+
+Post hoc comparisons across walkways revealed that older adults took a longer step while 
+
+crossing the obstacle with the lead foot (step 0) but their steps during approach (step -3, step -2)
+
+were shorter compared to the corresponding steps in the clear walkway (p < 0.02). Young adults 
+
+also took longer steps while crossing (step 0, step +1 ; p < 0.01), but unlike the older adults, their 
+
+step length during approach was not different on the two walkways (p > 0.11). The estimated 
+
+across -walkway mean difference was sma ller for the older adults for the obstacle -crossing steps. 
+
+Post hoc comparisons across consecutive steps on the obstructed walkway revealed slight 
+
+increase in step length while approaching the obstacle for older adults. The major changes were 
+
+for the two crossing steps in both groups (step 0, step +1 ; p < 0.01). The magnitude of step length 
+
+changes was similar, but the pattern was different in the two groups. Lead step length (step 0) was 
+
+longer than preceding steps in both age groups. For older adults, trail step length (step +1 ) was not 
+
+different from approach steps. However, for younger adults, it was longer than approach steps, 
+
+but shorter than lead step length. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+17 
+
+Figure 2. Mean ± standard error for (A) M OSAP , (B) CoM position at heel contact, (C) CoM 
+
+velocity at heel contact, and (D) Step length. Younger adults: red lines; Older adults: black lines; 
+
+Clear walkway: dashed line; Obstructed walkway: solid line. Shaded box denotes significant age 
+
+effect, and asterisks indicate sig nificant walkway effect at each foot placement. Solid dashes 
+
+below each plot indicate significant differences across consecutive foot placements on the 
+
+obstructed walkway, with line width proportional to estimated mean difference. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+18 
+
+3.2 UCM variables 
+
+Synergy Index 
+
+Participants covaried their step length and XcoM to stabilize MOS AP for each step of 
+
+both walkways. This was reflected in positive synergy index ( Vz) for all steps regardless of age 
+
+(young adults : t 24 ≥ 8.96, p < 0.01, Cohen’s d ≥ 2.98; older adults : t 22 ≥ 7.00; p < 0.01; Cohen’s d 
+
+≥ 2.90; Fig. 3A). 
+
+The across -step pattern of the synergy index was affected by the obstacle, particularly at 
+
+the crossing step and the following step. This was reflected in a walkway × step interaction for 
+
+∆Vz (F 5,506 = 3.75, p = 0.002; ηp2 = 0.03; Fig. 3A). 
+
+Post hoc comparisons across walkways revealed that ∆Vz was lower on the obstructed 
+
+compared to the clear walkway for both the lead (step 0) and trail crossing steps (step +1 ). 
+
+Post hoc comparisons across consecutive steps on the obstructed walkway revealed that 
+
+∆Vz increased at one approach step (step -1), declined for the lead crossing step (step 0) and 
+
+recovered over the next two steps. 
+
+VUCM 
+
+The across -step pattern in V UCM was affected by the presence of the obstacle. This was 
+
+reflected in a walkway × step interaction for V UCM (F 5,506 = 8.77, p < 0.0001; ηp2 = 0.07; Fig. 
+
+3B). 
+
+Post hoc comparisons across walkways revealed that V UCM was higher on the obstructed 
+
+compared to the clear walkway at all steps except the first two (step -3 and step -2). 
+
+Post hoc comparisons across consecutive steps on the obstructed walkway revealed that 
+
+VUCM increased for the lead crossing step (ste p0). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+19 
+
+VORT 
+
+The across -step pattern in V ORT was affected by the presence of the obstacle. This was 
+
+reflected in a walkway × step interaction for V ORT (F 5, 506 = 25.31, p < 0.0001; ηp2 = 0.10; Fig. 
+
+3C). 
+
+Post hoc comparisons across walkways revealed that V ORT was higher on the obstructed 
+
+compared to the clear walkway at the lead (step 0) and trail (step +1 ) crossing steps. 
+
+Post hoc comparisons across consecutive steps on the obstructed walkway revealed that 
+
+VORT increased for the lead crossing step (step 0) and then recovered over the next two steps. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+20 
+
+Figure 3. Mean ± standard error for (A) Synergy index, (B) V UCM , and (C) V ORT . Younger adults: 
+
+red lines; Older adults: black lines; Clear walkway: dashed line; Obstructed walkway: solid line. 
+
+Asterisks indicate significant walkway effect at each step. Solid dashes below each plot indicate 
+
+significant differences across consecutive s teps on the obstructed walkway, with line width 
+
+proportional to estimated mean difference. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+21 
+
+4. DISCUSSION 
+
+We report two main findings: (1) humans actively recruit passive mechanics as an 
+
+insurance policy to protect against trips turning into falls, as reflected in increasing MOS AP and 
+
+positive synergy indices during obstacle crossing; and (2) aging affects MOS AP but does not alter 
+
+the synergy index. Recall the key distinction in this work: mean MOS AP captures the passive 
+
+dynamic stability of gait arising from the physics of body motion, whereas the synergy index 
+
+quantifies the active neural coordination of XcoM position and foot placement to stabilize 
+
+MOS AP at specific values. 
+
+As predicted in H1, both groups increased MOS AP from step -to -step on the obstructed 
+
+walkway, with older adults demonstrating greater stability in both walkways and greater increase 
+
+in MOS AP during obstacle crossing. As predicted in H2, both age groups corrected step length in 
+
+response to XcoM deviations, stabilizing MOS AP at a specific value at each heel contact. The 
+
+synergy index was consistently positive across all participants and conditions, demonstrating 
+
+active neural coordination of XcoM position and foot placement. Finally, hypothesis H3 was 
+
+partially supported. As expected, the synergy index was lower for the crossing steps than the 
+
+corresponding steps in unobstructed gait, but it did not weaken while approaching the obstacle. 
+
+Age did not influence t his pattern. 
+
+4.1 Active MOS AP Control 
+
+Control of obstructed gait in the AP direction is active, relying on supraspinal processes 
+
+that modulate motor action based on integrated sensory information, and manifests as control of 
+
+MOS AP . This idea has some precedent. Hof demonstrated that a consistent MOS AP yields stable 
+
+gait in a mathematical model and suggested that humans might employ this control strategy [7] .
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+22 
+
+The idea has since been implicitly invoked to explain deviations in step length and or speed in 
+
+response to perturbations. The deviations that arise when adults are forced to walk with shorter 
+
+steps or at higher speeds [23] and during corrective movements after transient mechanical 
+
+perturbations [27] yield systematic changes in MOS AP . These changes are interpreted as 
+
+adaptations to increase passive dynamic stability for reducing fall risk, with changes in foot 
+
+placements as the underlying mechanism. 
+
+We contribute here by providing direct evidence of active MOS AP control. Strong 
+
+evidence comes from the systematic increase in MOS AP during approach and crossing, 
+
+contrasting with the relatively uniform pattern observed during unobstructed walking. MOS AP 
+
+reaches its peak during the lead crossing step, when the risk of falling from a trip is greatest [28] .
+
+A higher MOS AP indicates a more posterior XcoM and reduced forward momentum at heel 
+
+contact, which suggests lower forward momentum at the preceding swing phase when the foot 
+
+crosses the obstacle. This reduced momentum lowers the risk that a trip will result in a fall. 
+
+Further support for this interpretation is that while both groups increased MOS AP for the 
+
+obstacle -crossing steps (fp -1, fp +1 ), older adults amplified the increase relative to younger adults. 
+
+Age related deficits in cognitive and sensory -motor capabilities [3] increase response times and 
+
+limit amplitudes of corrective neuromuscular responses after a trip [4] . Furthermore, falls carry 
+
+more severe consequences for older adults [29] . Older adults adapt by increasing their anterior 
+
+passive stability, relying more on passive dynamics for protection, thereby pointing to active 
+
+control of MOS AP .
+
+We next consider how this control is achieved. MOS AP rises when the Xc oM moves 
+
+backward either because the CoM moves backwards ( backward lean ) and or slows , or when step 
+
+length increases, moving the BOS boundary forward. During unobstructed walking, speed, step 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+23 
+
+length, and lower -limb joint powers are empirically coupled: faster walking is accompanied by 
+
+longer steps [30] and greater lower -limb joint power without redistribution of relative joint 
+
+contributions [31] . During approach ( i.e., fp -3 to fp -1, since CoM velocity was rising from fp -4 to 
+
+fp -3 from gait initiation ; Fig. 2C ), mean MOS AP rose mainly through CoM motion: backward 
+
+lean and lower speed, while mean step length stayed flat (Fig. 2D). At step 0, the step with the 
+
+greatest fall risk , the CoM slowed further and step length increased. This pattern violates the 
+
+empirical coupling evident during unobstructed walking and therefore cannot be interpreted as its 
+
+speed -scaled version . The pattern is consistent with task -specific regulation of foot placement 
+
+and reorganization of limb kinetics, including altered push -off and swing -phase kinetics [32] .
+
+This interpretation is supported by the UCM analysis, which independently identifie d step length 
+
+as the variable compensating for trial -to -trial deviations in XcoM, holding MOS AP near its mean 
+
+throughout approach and crossing (V UCM > V ORT ; positive synergy index ; Fig. 3). 
+
+4.2 Passive Stabilization vs. Supraspinal Control 
+
+The increase in mean MOS AP and the positive synergy index arise from three sources: 
+
+passive mechanics, spinal feedback, and supraspinal control. During unobstructed walking, t he 
+
+sagittal -plane gait cycle is passively stable: step length scales with walking speed, and deviations 
+
+in speed produce proportional step -length changes through the passive pendular motion of the 
+
+swinging leg, restoring the cycle to its mean. The process is assisted by spinal feedback, but 
+
+operates without supraspinal influence [12, 30, 33] . Most step -length variability on clear 
+
+walkways is attributable to slow, self -selected fluctuations in speed rather than corrective action 
+
+[34] . This passive process alone generates a positive correlation between CoM speed and step 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+24 
+
+length, and with it, a degree of covariation between XcoM and step length that stabilizes MOS AP 
+
+about whatever average it happens to take. 
+
+On obstructed walkways, however, supraspinal control intervenes. It modulates behavior 
+
+while approaching and navigating hazards. Humans direct their gaze to footholds two steps 
+
+ahead to update body state before each step [35] , change walking speed two steps before an 
+
+even -to -uneven surface transition [36] , and sample an obstacle's location and dimensions during 
+
+approach to plan foot placement and limb elevation [37] . Our work identifies preparatory 
+
+adjustments up to two steps before the obstacle , evident in MOS AP and its components (Fig. 2) .
+
+Processing visual information and issuing timed motor commands are supraspinal functions; 
+
+EEG recordings confirm that prefrontal activity rises during preparation for the crossing step and 
+
+adjusts spinal reflex gain in the stance limb beforehand [38] . Supraspinal control influences the 
+
+mean speed, body posture, and step length, and through them, sets the mean MOS AP that passive 
+
+dynamics and spinal feedback then stabilize about .
+
+The synergy index, therefore, captures the combined output of three processes: passive 
+
+covariation between CoM speed and step length, spinal feedback, and supraspinal tuning that 
+
+sets the gain and target for that feedback. It cannot partition their separat e contributions, a 
+
+property of synergies generally [39] . The cleaner signature of active control is therefore the 
+
+systematic, anticipatory change in mean MOS AP , a pattern with no passive explanation, whereas 
+
+the synergy analysis provides supporting evidence and helps identify the mechanisms involved. 
+
+4.3 Energetic Cost of Stability 
+
+The increased protection against falls provided by a high MOS AP comes at the cost of 
+
+efficiency: an energetic premium. This is clear for the lead crossing step (step 0) that pairs the 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+25 
+
+lowest CoM velocity with the longest step length across all steps, a combination that violates 
+
+well -known speed -step -length optimum. Humans vary step length systematically with walking 
+
+speed to minimize the combined cost of step -to -step collision work and leg swing [30] . Since the 
+
+step length for step 0 is longer than its speed warrants, the rate of negative work required to 
+
+redirect the CoM velocity during the step -to -step transition, which scales with the fourth power 
+
+of step length [40] , is disproportionately elevated, and the trailing limb must produce 
+
+disproportionally greater push -off work to compensate. Step 0 thus incurs a disproportionately 
+
+high collision -and -push -off penalty. 
+
+Apart from the crossing step, energetic expense is likely higher while approaching the 
+
+obstacle, but the evidence is less direct. During approach, MOS AP increased via a posterior shift 
+
+in CoM position. When the CoM sits further behind the stance ankle, the trailing leg must push 
+
+off harder to redirect the CoM over and past the stance ankle and sustain forward progression. 
+
+Backward trunk lean, which shifts the CoM posteriorly, has been shown to increase push -off 
+
+work and metabolic cost [41] , suggesting that a similar energetic penalty likely occurred during 
+
+the approach phase. 
+
+4.4 Selective Preservation of Synergies with Aging 
+
+We have reported three important age -related patterns. First, the obstacle has a n amplified 
+
+effect on MOS AP in older adults, which we interpreted as intelligent, adaptive deployment of the 
+
+body's mechanics to minimize fall risk . Second, age did not affect the synergy index. Third, older 
+
+adults initiated changes earlier on the obstructed walkway. 
+
+Aging should weaken synergies because it impacts two things that synergies require: 
+
+neural coupling among the body's abundant degrees of freedom (DOF; muscle fibers, joints, 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+26 
+
+segments, etc.), and reliable sensory information about body state and task variables [39] . During 
+
+development, humans learn to build task -specific couplings among DOF and recruit them 
+
+flexibly to stabilize important motor outcomes. Aging degrades the neural and sensory processes 
+
+that support these couplings [3] . The system should be less able to exploit the abundant DOF. 
+
+Control should become more element -based, with fewer compensatory covariations, lower V UCM ,
+
+higher V ORT , and weaker synergies [25] .
+
+This principled prediction is not supported by the data; healthy aging does not produce a 
+
+global weakening of locomotor synergies. Some studies report weaker synergies [17, 26, 42] ,
+
+others report preserved synergies [16, 43, 44] , and some even report stronger synergies in older 
+
+adults [45, 46] . Importantly, these studies quantify synergies stabilizing different kinematic and 
+
+kinetic locomotor variables . This suggests o ne explanation : healthy older adults reorganize 
+
+control to preserve synergies for variables most directly tied to balance , while tolerating weaker 
+
+stabilization of less critical gait variables. Across locomotor tasks, mediolateral swing -foot 
+
+trajectory, mediolateral CoM position, net ground reaction forces and moments, leading -limb toe 
+
+clearance, and, based on the present da ta, MOS AP , belong to the balance -critical class, since 
+
+synergies stabilizing these variables do not weaken with age . In contrast, trailing -limb toe height 
+
+and step length during obstacle crossing may be less critical to balance, since synergies 
+
+stabilizing these variables weaken with age. The increased variability in these quantities does not 
+
+immediately compromise dynamic equilibrium in older adults; it is easier to recover from a trail 
+
+trip [28] , and step length is subservient to a more important gait variable – MOS AP .
+
+As noted above, older adults initiated changes earlier on the obstructed walkway . MOS AP 
+
+rises and backward lean and CoM speed change one step earlier compared to young adults (Fig. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+27 
+
+2). This could be an adaptation to the general slowing with age, further highlighting intelligent 
+
+deployment of available resources. 
+
+4.5 Limitations 
+
+The main limitations of this study arise from the stability measure. MOS is a physicist’s 
+
+spherical cow, a deliberately simple model that captures some essential features of locomotion at 
+
+the cost of biological complexity. The underlying model is the passi ve inverted pendulum with 
+
+the body modeled as a point mass atop a rigid leg, which ignores neuromuscular control, trunk 
+
+angular momentum, compliant joints, etc. Three limitations follow from this simplification. 
+
+First, MOS AP quantifies only passive dynamic stability. This is a problem because gait 
+
+stability emerges from passive dynamics and active neuromuscular control, and MOS AP ignores 
+
+the latter. As explained earlier, positive MOS AP at heel strike, where XcoM is behind the anterior 
+
+BOS boundary, indicates that a passive walker does not have sufficient energy to rotate past 
+
+vertical and it will stall. However, a human could compensate by increasing push -off work from 
+
+the rear leg. Ind eed, positive MOS AP has been observed in stable human walking [9] , and both 
+
+positive and negative values appeared for both age groups in our data. MOS AP therefore does not 
+
+provide a threshold that classifies gait as stable or unstable, a limitation acknowledged for 
+
+several biomechanical stability measures [47] . Rather, it provides a graded, continuous index that 
+
+yields meaningful information only with appropriate context. 
+
+Second, MOS AP ignores the head, arms, and trunk. The foot placement estimator extends 
+
+the inverted pendulum logic to a model with a trunk possessing mass and moment of inertia and 
+
+provides a conceptually analogous but more complete stability measure [48] . We expect our core 
+
+findings to hold under this more complex model, but this remains to be tested. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+28 
+
+Third, we did not measure metabolic energy consumption directly. The stability -
+
+efficiency tradeoff was inferred from physics -based arguments and the data. Direct measurement 
+
+of metabolic cost during obstacle negotiation is a natural and important next step .
+
+5. Conclusion 
+
+Our data indicate that human adults actively recruit body mechanics, adjusting posture 
+
+and momentum so that the body’s passive response to a potential trip acts more in favor of 
+
+recovery than a forward fall. Persistent XcoM –step length covariation confirms that this 
+
+mechanical reorganization is active and continuous across approach and crossing steps. Older 
+
+adults amplify this strategy to compensate for diminished neuromuscular corrective capabilities ,
+
+a rather covert adjustment, unlike the overt use of ext ernal aids . This anticipatory mechanical 
+
+reorganization is not confined to skilled athletes; healthy walking adults across the lifespan show 
+
+it during routine movements. This is embodied natural intelligence. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+29 
+
+Funding : AK was funded by Bilsland Dissertation Fellowship, Purdue University 
+
+Competing Interests : The authors declare that they have no competing interests. 
+
+Data availability : Data and code are published by the Purdue University Research Repository 
+
+and are publicly available for download [49] .
+
+Authors’ contributions 
+
+A.K.: data curation, formal analysis, investigation, methodology, project administration, 
+
+resources, software, validation, visualization, writing -original draft, writing —review and editing; 
+
+C.C.: investigation, writing -review and editing; S.R.: Investigati on, project administration, 
+
+resources, writing -review and editing; S.A.: Conceptualization, investigation, methodology, 
+
+project administration, resources, writing -original draft, writing -review and editing. 
+
+All authors gave final approval for publication and agreed to be held accountable for the work 
+
+performed therein. 
+
+AI statement : AI was used solely to improve readability and language of this manuscript. 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+30 
+
+References 
+
+[1] Kulkarni, A., Cui, C., Rietdyk, S. & Ambike, S. 2023 Humans prioritize walking efficiency or 
+
+walking stability based on environmental risk. PLoS One 18 , e0284278. 
+
+(doi:10.1371/journal.pone.0284278). 
+
+[2] Kulkarni, A., Cui, C., Rietdyk, S. & Ambike, S. 2022 Between a Walk and a hard place: how 
+
+stepping patterns change while navigating environmental obstacles. Motor Control 27 , 20 -34. 
+
+(doi:10.1123/mc.2022 -0045). 
+
+[3] Seidler, R.D., Bernard, J.A., Burutolu, T.B., Fling, B.W., Gordon, M.T., Gwin, J.T., Kwak, Y. & Lipps, 
+
+D.B. 2010 Motor control and aging: links to age -related brain structural, functional, and 
+
+biochemical effects. Neurosci Biobehav Rev 34 , 721 -733. (doi:10.1016/j.neubiorev.2009.10.005). 
+
+[4] Hortobágyi, T., Mizelle, C., Beam, S. & DeVita, P. 2003 Old adults perform activities of daily living 
+
+near their maximal capabilities. The Journals of Gerontology Series A: Biological Sciences and 
+
+Medical Sciences 58 , M453 -M460. (doi:10.1093/gerona/58.5.M453). 
+
+[5] Timsina, L.R., Willetts, J.L., Brennan, M.J., Marucci -Wellman, H., Lombardi, D.A., Courtney, T.K. 
+
+& Verma, S.K. 2017 Circumstances of fall -related injuries by age and gender among community -
+
+dwelling adults in the United States. PLoS One 12 , e0176561. (doi:10.1371/journal.pone.0176561). 
+
+[6] Pijnappels, M., Bobbert, M.F. & van Dieën, J.H. 2005 Push -off reactions in recovery after tripping 
+
+discriminate young subjects, older non -fallers and older fallers. Gait & posture 21 , 388 -394. 
+
+(doi:10.1016/j.gaitpost.2004.04.009). 
+
+[7] Hof, A.L. 2008 The 'extrapolated center of mass' concept suggests a simple control of balance in 
+
+walking. Hum Mov Sci 27 , 112 -125. (doi:10.1016/j.humov.2007.08.003). 
+
+[8] Bierbaum, S., Peper, A., Karamanidis, K. & Arampatzis, A. 2010 Adaptational responses in 
+
+dynamic stability during disturbed walking in the elderly. J Biomech 43 , 2362 -2368. 
+
+(doi:10.1016/j.jbiomech.2010.04.025). 
+
+[9] Höhne, A., Stark, C., Brüggemann, G. -P. & Arampatzis, A. 2011 Effects of reduced plantar 
+
+cutaneous afferent feedback on locomotor adjustments in dynamic stability during perturbed 
+
+walking. Journal of biomechanics 44 , 2194 -2200. (doi:10.1016/j.jbiomech.2011.06.012). 
+
+[10] Watson, F., Fino, P.C., Thornton, M., Heracleous, C., Loureiro, R. & Leong, J.J.H. 2021 Use of the 
+
+margin of stability to quantify stability in pathologic gait –a qualitative systematic review. BMC 
+
+Musculoskelet Disord 22 , 597. (doi:10.1186/s12891 -021 -04466 -4). 
+
+[11] Kuo, A.D. & Donelan, J.M. 2010 Dynamic principles of gait and their clinical implications. Phys 
+
+Ther 90 , 157 -174. (doi:10.2522/ptj.20090125). 
+
+[12] Kuo, A.D., Donelan, J.M. & Ruina, A. 2005 Energetic consequences of walking like an inverted 
+
+pendulum: step -to -step transitions. Exerc Sport Sci Rev 33 , 88 -97. (doi:10.1097/00003677 -
+
+200504000 -00006). 
+
+[13] Hak, L., Hettinga, F.J., Duffy, K.R., Jackson, J., Sandercock, G.R. & Taylor, M.J. 2019 The concept 
+
+of margins of stability can be used to better understand a change in obstacle crossing strategy with 
+
+an increase in age. Journal of biomechanics 84 , 147 -152. (doi:10.1016/j.jbiomech.2018.12.037). 
+
+[14] Scholz, J.P. & Schöner, G. 1999 The uncontrolled manifold concept: identifying control 
+
+variables for a functional task. Experimental brain research 126 , 289 -306. 
+
+(doi:10.1007/s002210050738). 
+
+[15] Harris, C.M. & Wolpert, D.M. 1998 Signal -dependent noise determines motor planning. Nature 
+
+394 , 780 -784. (doi:10.1038/29528). 
+
+[16] Eckardt, N. & Rosenblatt, N.J. 2018 Healthy aging does not impair lower extremity motor 
+
+flexibility while walking across an uneven surface. Hum Mov Sci 62 , 67 -80. 
+
+(doi:10.1016/j.humov.2018.09.008). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+31 
+
+[17] Suda, Y., Kodama, K., Nakamura, T., Sakazaki, J. & Higuchi, T. 2024 Motor flexibility to stabilize 
+
+the toe position during obstacle crossing in older adults: an investigation using an uncontrolled 
+
+manifold analysis. Frontiers in Sports and Active Living 6, 1382194. 
+
+(doi:10.3389/fspor.2024.1382194). 
+
+[18] Yamagata, M., Tateuchi, H., Pataky, T., Shimizu, I. & Ichihashi, N. 2021 Relation between frontal 
+
+plane center of mass position stability and foot elevation during obstacle crossing. J Biomech 116 ,
+
+110219. (doi:10.1016/j.jbiomech.2020.110219). 
+
+[19] Desailly, E., Daniel, Y., Sardain, P. & Lacouture, P. 2009 Foot contact event detection using 
+
+kinematic data in cerebral palsy children and normal adults gait. Gait Posture 29 , 76 -80. 
+
+(doi:10.1016/j.gaitpost.2008.06.009). 
+
+[20] Whittle, M.W. 1997 Three -dimensional motion of the center of gravity of the body during 
+
+walking. Human Movement Science 16 , 347 -355. (doi:10.1016/S0167 -9457(96)00052 -8). 
+
+[21] McAndrew Young, P.M., Wilken, J.M. & Dingwell, J.B. 2012 Dynamic margins of stability during 
+
+human walking in destabilizing environments. Journal of biomechanics 45 , 1053 -1059. 
+
+(doi:10.1016/j.jbiomech.2011.12.027). 
+
+[22] Raffegeau, T.E., Brinkerhoff, S.A., Kellaher, G.K., Baudendistel, S., Terza, M.J., Roper, J.A. & 
+
+Hass, C.J. 2022 Changes to margins of stability from walking to obstacle crossing in older adults 
+
+while walking fast and with a dual -task. Exp Gerontol 161 , 111710. 
+
+(doi:10.1016/j.exger.2022.111710). 
+
+[23] Hak, L., Houdijk, H., Beek, P.J. & van Dieën, J.H. 2013 Steps to take to enhance gait stability: the 
+
+effect of stride frequency, stride length, and walking speed on local dynamic stability and margins 
+
+of stability. PloS one 8, e82842. (doi:10.1371/journal.pone.0082842). 
+
+[24] Vaz, D.V., Pinto, V.A., Junior, R.R., Mattos, D.J. & Mitra, S. 2019 Coordination in adults with 
+
+neurological impairment –A systematic review of uncontrolled manifold studies. Gait & posture 69 ,
+
+66 -78. (doi:10.1016/j.gaitpost.2019.01.003). 
+
+[25] Latash, M.L. & Huang, X. 2015 Neural control of movement stability: Lessons from studies of 
+
+neurological patients. Neuroscience 301 , 39 -48. (doi:10.1016/j.neuroscience.2015.05.075). 
+
+[26] Kulkarni, A., Cho, H., Rietdyk, S. & Ambike, S. 2021 Step length synergy is weaker in older adults 
+
+during obstacle crossing. J Biomech 118 , 110311. (doi:10.1016/j.jbiomech.2021.110311). 
+
+[27] Hak, L., Houdijk, H., Steenbrink, F., Mert, A., Van Der Wurff, P., Beek, P.J. & van Dieën, J.H. 2012 
+
+Speeding up or slowing down?: Gait adaptations to preserve gait stability in response to balance 
+
+perturbations. Gait & posture 36 , 260 -264. (doi:10.1016/j.gaitpost.2012.03.005). 
+
+[28] Eng, J.J., Winter, D.A. & Patla, A.E. 1994 Strategies for recovery from a trip in early and late 
+
+swing during human walking. Exp Brain Res 102 , 339 -349. (doi:10.1007/BF00227520). 
+
+[29] Sterling, D.A., O’connor, J.A. & Bonadies, J. 2001 Geriatric falls: injury severity is high and 
+
+disproportionate to mechanism. Journal of Trauma and Acute Care Surgery 50 , 116 -119. 
+
+(doi:10.1097/00005373 -200101000 -00021). 
+
+[30] Kuo, A.D. 2001 A simple model of bipedal walking predicts the preferred speed –step length 
+
+relationship. J. Biomech. Eng. 123 , 264 -269. (doi:10.1115/1.1372322). 
+
+[31] Farris, D.J. & Sawicki, G.S. 2012 The mechanics and energetics of human walking and running: 
+
+a joint level perspective. J R Soc Interface 9, 110 -118. (doi:10.1098/rsif.2011.0182). 
+
+[32] Niang, A.E. & McFadyen, B.J. 2004 Adaptations in bilateral mechanical power patterns during 
+
+obstacle avoidance reveal distinct control strategies for limb elevation versus limb progression. 
+
+Motor Control 8, 160 -173. (doi:10.1123/mcj.8.2.160). 
+
+[33] Bauby, C.E. & Kuo, A.D. 2000 Active control of lateral balance in human walking. J Biomech 33 ,
+
+1433 -1440. (doi:10.1016/s0021 -9290(00)00101 -9). 
+
+[34] Collins, S.H. & Kuo, A.D. 2013 Two independent contributions to step variability during over -
+
+ground human walking. PLoS One 8, e73597. (doi:10.1371/journal.pone.0073597). 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 24, 2026. ;https://doi.org/10.64898/2026.06.22.733751 doi: bioRxiv preprint
+
+32 
+
+[35] Matthis, J.S., Barton, S.L. & Fajen, B.R. 2017 The critical phase for visual control of human 
+
+walking over complex terrain.  Proc Natl Acad Sci U S A  114 , E6720 -E6729. 
+
+(doi:10.1073/pnas.1611699114). 
+
+[36] Darici, O. & Kuo, A.D. 2023 Humans plan for the near future to walk economically on uneven 
+
+terrain.  Proc Natl Acad Sci U S A  120 , e2211405120. (doi:10.1073/pnas.2211405120). 
+
+[37] Patla, A.E. & Greig, M. 2006 Any way you look at it, successful obstacle negotiation needs 
+
+visually guided on -line foot placement regulation during the approach phase. Neurosci Lett 397 ,
+
+110 -114. (doi:10.1016/j.neulet.2005.12.016). 
+
+[38] Haefeli, J., Vogeli, S., Michel, J. & Dietz, V. 2011 Preparation and performance of obstacle steps: 
+
+interaction between brain and spinal neuronal activity. Eur J Neurosci 33 , 338 -348. 
+
+(doi:10.1111/j.1460 -9568.2010.07494.x). 
+
+[39] Latash, M.L. 2021 One more time about motor (and non -motor) synergies. Exp Brain Res 239 ,
+
+2951 -2967. (doi:10.1007/s00221 -021 -06188 -4). 
+
+[40] Donelan, J.M., Kram, R. & Kuo, A.D. 2002 Mechanical work for step -to -step transitions is a 
+
+major determinant of the metabolic cost of human walking. J Exp Biol 205 , 3717 -3727. 
+
+(doi:10.1242/jeb.205.23.3717). 
+
+[41] Roembke, R.A., Hernández Hernández, S.B. & Adamczyk, P.G. 2025 Mechanical and metabolic 
+
+consequences of sagittal trunk lean angle in walking –a dynamic walking perspective. Journal of 
+
+Experimental Biology 228 , jeb250146. (doi:10.1242/jeb.250146). 
+
+[42] Verrel, J., Lövdén, M. & Lindenberger, U. 2012 Older adults show preserved equilibrium but 
+
+impaired step length control in motor -equivalent stabilization of gait. PLoS One 7, e52024. 
+
+(doi:doi.org/10.1371/journal.pone.0052024). 
+
+[43] Krishnan, V., Rosenblatt, N.J., Latash, M.L. & Grabiner, M.D. 2013 The effects of age on 
+
+stabilization of the mediolateral trajectory of the swing foot. Gait Posture 38 , 923 -928. 
+
+(doi:10.1016/j.gaitpost.2013.04.023). 
+
+[44] Cui, C., Kulkarni, A., Rietdyk, S., Barbieri, F.A. & Ambike, S. 2020 Synergies in the ground 
+
+reaction forces and moments during double support in curb negotiation in young and older adults. J
+
+Biomech 106 , 109837. (doi:10.1016/j.jbiomech.2020.109837). 
+
+[45] Yamagata, M., Tateuchi, H., Shimizu, I. & Ichihashi, N. 2022 Changes in kinematic synergy in 
+
+older adults during walking: A two -year follow -up study. Gait Posture 96 , 244 -250. 
+
+(doi:10.1016/j.gaitpost.2022.05.030). 
+
+[46] de Freitas, P.B., Freitas, S.M. & Dias, M.S. 2024 Synergic control of the minimum toe clearance 
+
+in young and older adults during foot swing on treadmill walking in different speeds. Gait & Posture 
+
+111 , 150 -155. (doi:10.1016/j.gaitpost.2024.04.025). 
+
+[47] Bruijn, S.M., Meijer, O.G., Beek, P.J. & van Dieen, J.H. 2013 Assessing the stability of human 
+
+locomotion: a review of current measures. J R Soc Interface 10 , 20120999. 
+
+(doi:10.1098/rsif.2012.0999). 
+
+[48] Wight, D.L., Kubica, E.G. & Wang, D.W. 2008 Introduction of the foot placement estimator: A 
+
+dynamic measure of balance for bipedal robotics. J. Comput. Nonlinear Dynam. 3, 011009. 
+
+(doi: https://doi.org/10.1115/1.2815334 ). 
+
+[49] Kulkarni, A., Cui, C., Rietdyk, S. & Ambike, S.S. 2025 Young and older adults prioritize walking 
+
+efficiency or walking stability based on environmental risk (Version 2.0). Purdue University 
+
+Research Repository Dataset and Code . (doi:10.4231/DTJT -KS98).

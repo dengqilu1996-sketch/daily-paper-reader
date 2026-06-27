@@ -1,0 +1,540 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-27T22:30:07.944212+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 2,
+    "deep_cap": 14,
+    "deep_selected": 2,
+    "quick_candidates": 8,
+    "quick_skim_target": 19,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2606.26643v1",
+      "source": "arxiv",
+      "title": "Hardware Design for Table Tennis Robot Capable of Beating Professional Players",
+      "abstract": "This paper focuses on the hardware specifications required for a table tennis robot to beat professional players. After analyzing the motions of elite players, we defined target specifications for the workspace, payload, external-force resistance, physical performance, serve capability, and end-effector accuracy. Based on these specifications, we developed \"Ace\", a custom 8-DoF robot. The mechanical structure was improved through topology optimization to minimize mass while preserving stiffness. Motor and gearbox selection was optimized using an inverse-dynamics torque model. Low-order per-joint dynamics models with delay compensation were identified and integrated into simulation to enable the use of an RL control policy. Experiments demonstrated repeated full-stroke swings with a cycle time of 0.8 s and a peak racket-center velocity of 22 m/s. The robot successfully defeated multiple professional players.",
+      "authors": [
+        "Nobuhiko Mukai",
+        "Pavel Adodin",
+        "Stefan Heusser",
+        "Alexander Sigrist",
+        "Divij Grover",
+        "Guillem Torrente",
+        "Farshad Khadivar",
+        "Takekazu Kakinuma",
+        "Peter Dürr"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-25T06:14:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.26643v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses RL control policy for table tennis robot to beat professional players",
+      "llm_evidence_cn": "使用强化学习控制策略的乒乓球机器人击败职业选手",
+      "llm_evidence": "使用强化学习控制策略的乒乓球机器人击败职业选手",
+      "canonical_evidence": "使用强化学习控制策略的乒乓球机器人击败职业选手",
+      "llm_tldr_en": "Designs a custom 8-DoF table tennis robot with inverse-dynamics torque models and RL control, aiming to compete with professional players.",
+      "llm_tldr_cn": "本文为设计能击败职业选手的乒乓球机器人，通过分析精英运动员动作定义目标规格，开发了定制的8自由度机械臂，利用拓扑优化和逆动力学力矩模型优化硬件，并集成基于低阶动力学模型和时延补偿的强化学习控制策略，实验表明该机器人具备与顶级选手对抗的潜力，为体育机器人对抗系统提供了新的硬件蓝图。",
+      "llm_tldr": "本文为设计能击败职业选手的乒乓球机器人，通过分析精英运动员动作定义目标规格，开发了定制的8自由度机械臂，利用拓扑优化和逆动力学力矩模型优化硬件，并集成基于低阶动力学模型和时延补偿的强化学习控制策略，实验表明该机器人具备与顶级选手对抗的潜力，为体育机器人对抗系统提供了新的硬件蓝图。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-23-733906-v1",
+      "source": "biorxiv",
+      "title": "Non-invasive in vivo lactate monitoring via NIR spectroscopy",
+      "abstract": "We present a non-invasive approach for continuous monitoring of lactate dynamics in-vivo using near-infrared (NIR) spectroscopy. Lactate-related spectral features were measured non-invasively within the overtone region (1600 -1850 nm). Several anatomical measurement sites were evaluated, and the middle phalanx of the dorsal finger emerged as the most promising location due to its superior spectral quality and stable tissue perfusion, becoming the exclusive site for all further experiments. Across multiple exercise sessions, predictive models achieved high within-day accuracy (R^2 [&ge;] 0.8), while cross-day performance was affected by spectral drift and physiological variability. A dynamic offset-correction procedure effectively mitigated these baseline shifts, enabling stable prediction accuracy across days, weeks, and subjects. These findings demonstrate the feasibility of NIR-based lactate estimation and highlight the importance of adaptive correction strategies for reliable long-term, non-invasive monitoring.",
+      "authors": [
+        "Lehnert, T.",
+        "Seidel, S.",
+        "Euchner, J.",
+        "Thierbach, A.",
+        "Schmidt, F.",
+        "Ögün, C. M.",
+        "Hermes, W."
+      ],
+      "primary_category": "biophysics",
+      "categories": [
+        "biophysics"
+      ],
+      "published": "2026-06-26T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.23.733906v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "non-invasive lactate monitoring during exercise sessions",
+      "llm_evidence_cn": "运动期间无创乳酸监测",
+      "llm_evidence": "运动期间无创乳酸监测",
+      "canonical_evidence": "运动期间无创乳酸监测",
+      "llm_tldr_en": "This paper presents a non-invasive near-infrared spectroscopy approach for continuous lactate monitoring in vivo, achieving high within-day accuracy during exercise but requiring drift correction for cross-day use.",
+      "llm_tldr_cn": "本文提出一种基于近红外（NIR）光谱的非侵入式连续监测体内乳酸动态的方法。通过测量手指背侧中节指骨的NIR光谱，在多次运动训练中，预测模型在日内达到0.8以上的R²，但跨日性能受光谱漂移影响，通过动态偏移校正可缓解基线漂移。该方法为运动生理学中乳酸这一关键代谢物的无创实时监测提供了新工具，有助于优化训练和评估运动表现。",
+      "llm_tldr": "本文提出一种基于近红外（NIR）光谱的非侵入式连续监测体内乳酸动态的方法。通过测量手指背侧中节指骨的NIR光谱，在多次运动训练中，预测模型在日内达到0.8以上的R²，但跨日性能受光谱漂移影响，通过动态偏移校正可缓解基线漂移。该方法为运动生理学中乳酸这一关键代谢物的无创实时监测提供了新工具，有助于优化训练和评估运动表现。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.22200v1",
+      "source": "arxiv",
+      "title": "Neural Conjugate Aggregation: Identifiable Unsupervised Multi-Sensor Regression under Heterogeneous Sensor Bias",
+      "abstract": "We study regression-based data fusion under uncertainty, where multiple noisy and biased measurement sources are available but ground-truth labels are absent during training. This setting arises in sensor networks, simulation ensembles, and scientific monitoring systems where supervision is costly or infeasible. We propose the Neural Conjugate Aggregation Model (NCAM), a hierarchical Bayesian framework that combines neural networks with conjugate Gaussian inference for unsupervised multi-source fusion. NCAM learns source-specific bias and reliability conditioned on contextual covariates, yielding an analytically tractable posterior over a latent target variable with decomposed epistemic and aleatoric uncertainty. Structural non-identifiability is resolved through sensor anchoring and variance regularization, enabling stable and interpretable posterior aggregation. To complement Bayesian uncertainty with finite-sample guarantees, we integrate locally adaptive Monte Carlo conformal prediction, producing heteroscedastic prediction intervals with coverage guarantees under exchangeability assumptions. Experiments on synthetic and real-world air-quality datasets demonstrate improved predictive accuracy and well-calibrated uncertainty compared to unsupervised baselines, including mean aggregation, probabilistic PCA, and Kalman filtering.",
+      "authors": [
+        "Muhammed Faruk Aytin",
+        "Zehra Demir",
+        "Alper Ünal",
+        "Julian Marshall",
+        "Gözde Ünal"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-20T19:30:21+00:00",
+      "link": "https://arxiv.org/pdf/2606.22200v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "unsupervised multi-sensor regression with heterogeneous biases for data fusion",
+      "llm_evidence_cn": "异质偏差下的无监督多传感器回归用于数据融合",
+      "llm_evidence": "异质偏差下的无监督多传感器回归用于数据融合",
+      "canonical_evidence": "异质偏差下的无监督多传感器回归用于数据融合",
+      "llm_tldr_en": "Proposes NCAM, a Bayesian neural model that fuses biased sensor measurements without ground truth, learning source-specific bias and reliability, with applications to athlete monitoring sensor integration.",
+      "llm_tldr_cn": "该论文针对多传感器融合中无真实标签且各源存在异质偏差的难题，提出NCAM神经共轭聚合模型，结合神经网络与高斯共轭推理，无监督学习源偏差与可靠性，并量化认知和偶然不确定性。该方法为运动可穿戴设备的数据融合提供了通用框架，无需昂贵标注即可实现精确多元传感器整合，显著提升运动员监控的鲁棒性。",
+      "llm_tldr": "该论文针对多传感器融合中无真实标签且各源存在异质偏差的难题，提出NCAM神经共轭聚合模型，结合神经网络与高斯共轭推理，无监督学习源偏差与可靠性，并量化认知和偶然不确定性。该方法为运动可穿戴设备的数据融合提供了通用框架，无需昂贵标注即可实现精确多元传感器整合，显著提升运动员监控的鲁棒性。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "multimodal learning for sports data fusion",
+      "matched_requirement_id": "req-74",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.23091v1",
+      "source": "arxiv",
+      "title": "FLFL: Federated Latent Factor Learning for Private Recovery of Spatio-Temporal Signals",
+      "abstract": "Wireless sensor network (WSNs) stands out as a burgeoning and promising domain in intelligent sensing. Owing to various factors such as sudden sensor malfunctions or deliberate shutdown of partial nodes to save energy, the collected sensing signals from WSNs commonly have massive missing data, leading to adverse effects on subsequent analysis or decision-making. Latent factor learning (LFL) has proven to be highly effective in recovering the missing data for WSNs. However, the existing LFL models require the collected sensing signals to be maintained in one central place like a central server, which is becoming unacceptable for data owners who are getting increasingly privacy-sensitive. To address this issue, this paper innovatively proposes a federated latent factor learning (FLFL) model for privacy-preserving spatio-temporal signal recovery. Its main idea is two-fold: 1) it designs a sensor-level federated learning framework based on LFL, where each sensor only needs to upload gradient information rather than raw data for training a privacy-preserving recovery model, and 2) it incorporates the spatio-temporal correlation into the designed federated learning framework as the regularization constraint to improve its recovery accuracy. With such designs, FLFL can not only accurately recover the missing data of WSNs but also ensure data owners' privacy-preserving of raw data. To evaluate the proposed FLFL model, extensive experiments have been conducted on four real-world WSN datasets. The results demonstrate that FLFL significantly outperforms eight state-of-the-art federated and non-federated signal recovery models in terms of recovery accuracy with privacy-preserving.",
+      "authors": [
+        "Chengjun Yu",
+        "Di Wu",
+        "Yi He",
+        "Jia Chen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-22T09:38:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.23091v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "federated latent factor learning for private sensor data recovery",
+      "llm_evidence_cn": "联邦潜在因子学习用于隐私传感器数据恢复",
+      "llm_evidence": "联邦潜在因子学习用于隐私传感器数据恢复",
+      "canonical_evidence": "联邦潜在因子学习用于隐私传感器数据恢复",
+      "llm_tldr_en": "Proposes FLFL, a federated learning framework that extends latent factor learning to recover missing sensor data while preserving privacy, without centralizing raw signals.",
+      "llm_tldr_cn": "该论文针对无线传感器网络数据缺失和隐私问题，提出FLFL联邦潜在因子学习方法，在分布式节点上协同恢复缺失信号，避免原始数据集中。实验显示恢复精度接近集中式方法，且保障数据私密性，为可穿戴传感器等隐私敏感场景提供了高效的数据补全方案，可推广至运动员监控领域。",
+      "llm_tldr": "该论文针对无线传感器网络数据缺失和隐私问题，提出FLFL联邦潜在因子学习方法，在分布式节点上协同恢复缺失信号，避免原始数据集中。实验显示恢复精度接近集中式方法，且保障数据私密性，为可穿戴传感器等隐私敏感场景提供了高效的数据补全方案，可推广至运动员监控领域。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "Federated learning frameworks for wearable sensor data in sports",
+      "matched_requirement_id": "req-78",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.25978v1",
+      "source": "arxiv",
+      "title": "Multi-Agent Goal Recognition with Team- and Goal-Conditioned Reinforcement Learning and Factorized Branch-and-Bound",
+      "abstract": "Multi-agent goal recognition asks an observer to jointly infer which agents act together and what each team is trying to achieve, so the hypothesis space grows combinatorially with the number of team partitions and goals per team. Real applications such as drone surveillance and collaborative robotics expose only the agents' trajectory, which forces the observer to rank team-goal hypotheses from behavior alone. Multi-Agent Goal Recognition with Branch-and-Bound (MAGR-BB) addresses this setting with a shared team- and goal-conditioned policy used as the scoring model inside a factorized branch-and-bound search. On a controlled multi-agent Blocksworld benchmark, MAGR-BB returns the same top-ranked hypothesis as exhaustive search throughout the trajectory while cutting hypothesis materialization by orders of magnitude and reducing cumulative recognition runtime substantially.",
+      "authors": [
+        "Thiago Thomas",
+        "Gabriel de Oliveira Ramos",
+        "Felipe Meneguzzi"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-24T15:50:39+00:00",
+      "link": "https://arxiv.org/pdf/2606.25978v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uses team- and goal-conditioned RL to infer team goals from trajectories, applicable to opponent modeling in sports.",
+      "llm_evidence_cn": "使用团队和目标条件化强化学习从轨迹推断团队目标，可应用于体育对手建模",
+      "llm_evidence": "使用团队和目标条件化强化学习从轨迹推断团队目标，可应用于体育对手建模",
+      "canonical_evidence": "使用团队和目标条件化强化学习从轨迹推断团队目标，可应用于体育对手建模",
+      "llm_tldr_en": "Proposes MAGR-BB, a multi-agent goal recognition framework using a shared team- and goal-conditioned policy and branch-and-bound search, validated on Blocksworld, with potential for sports strategy inference.",
+      "llm_tldr_cn": "针对多智能体目标识别，提出MAGR-BB框架，利用共享团队和目标条件化策略及分支定界搜索从轨迹推断目标，在Blocksworld上验证，其方法可潜在地用于体育中推断团队策略。",
+      "llm_tldr": "针对多智能体目标识别，提出MAGR-BB框架，利用共享团队和目标条件化策略及分支定界搜索从轨迹推断目标，在Blocksworld上验证，其方法可潜在地用于体育中推断团队策略。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "opponent modeling with reinforcement learning in sports",
+      "matched_requirement_id": "req-53",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-1101-2023-03-11-532146-v3",
+      "source": "biorxiv",
+      "title": "Comparing sites of plasticity in models of adaptation to manifold-based perturbations in brain-computer interfaces",
+      "abstract": "During well-trained behaviors, neural population activity in motor cortex lies on a low-dimensional manifold. This raises the question of how such structure constrains subsequent learning. In brain-computer interface experiments in nonhuman primates, perturbations aligned with this subspace induced rapid adaptation, whereas misaligned perturbations induced slower adaptation. Several theoretical accounts have been proposed to explain this differential adaptation, differing in the locus of plasticity. We compare these hypotheses using a minimal linear recurrent network operating at its fixed point and trained by gradient descent. All candidate plasticity sites are able to produce some degree of differential adaptation, whose strength depends on the variance of recurrent weights, with different sensitivities across sites. Hessian analysis reveals how misaligned perturbations reshape the loss landscape by introducing directions of shallow curvature along which gradient descent proceeds slowly. We further propose an experimental test to help distinguish the contributions of different plasticity sites during adaptation. Overall, our results identify the variance of recurrent weights as a key control parameter governing differential adaptation, alongside the site of plasticity.",
+      "authors": [
+        "Payeur, A.",
+        "Orsborn, A. L.",
+        "Lajoie, G."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-27T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2023.03.11.532146v3.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "computational model of motor adaptation using linear recurrent network simulates motor learning relevant to skill acquisition",
+      "llm_evidence_cn": "使用线性循环网络的运动适应计算模型模拟与技能学习相关的运动学习",
+      "llm_evidence": "使用线性循环网络的运动适应计算模型模拟与技能学习相关的运动学习",
+      "canonical_evidence": "使用线性循环网络的运动适应计算模型模拟与技能学习相关的运动学习",
+      "llm_tldr_en": "This study compares different sites of plasticity in a minimal recurrent network model of motor adaptation, providing insights into how neural constraints affect learning, which is relevant to understanding skill acquisition in sports.",
+      "llm_tldr_cn": "本研究使用最小线性循环网络模型，模拟运动皮层适应流形扰动的过程，比较不同可塑性位点的差异。结果显示所有候选位点均能产生一定程度的差异适应，为理解运动学习中的神经约束提供了理论框架。该模型有助于揭示运动技能习得的潜在计算机制，对运动训练和康复研究有参考价值。",
+      "llm_tldr": "本研究使用最小线性循环网络模型，模拟运动皮层适应流形扰动的过程，比较不同可塑性位点的差异。结果显示所有候选位点均能产生一定程度的差异适应，为理解运动学习中的神经约束提供了理论框架。该模型有助于揭示运动技能习得的潜在计算机制，对运动训练和康复研究有参考价值。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-11-724714-v2",
+      "source": "biorxiv",
+      "title": "Design of a Low-Latency sEMG Real-Time Correction System Based on High CMRR and EMRMS Mathematical Modeling",
+      "abstract": "Surface electromyography (sEMG) is the most practical non-invasive interface for myoelectric prostheses, exoskeletons, and rehabilitation systems, but power-line interference (PLI) contamination and excessive digital pipeline group delay still limit its clinical adoption. This paper proposes a co-designed analog-digital correction system combining a high-CMRR front-end with an exponentially-windowed RMS (EMRMS) envelope estimator and a recursive single-tone PLI canceller. We present a closed-form CMRR model capturing the electrode-skin imbalance, and provide a complete stability analysis of the LMS canceller. The EMRMS estimator reduces the computational overhead from O(L) to strictly O(1) in both time and space complexities. Featuring no data-dependent branching, the algorithm achieves deterministic algorithmic execution time (zero jitter under an RTOS environment) and is natively compatible with fixed-point arithmetic on microcontrollers lacking a hardware Floating-Point Unit (FPU). A reference implementation reaches an 8.2 {micro}s median per-sample latency, yielding an end-to-end delay of[~] 30 ms -- leaving a generous >90 ms budget for electromechanical actuation -- while requiring an active CPU duty cycle of merely 1.6%, enabling prolonged deep-sleep intervals. Validation on the public Ninapro DB2 dataset demonstrates a 13.9 dB mean SNR improvement (averaged across 12 channels; single-channel comparison: 9.7 dB, Table 3) and a 70.0 {micro}V envelope RMSE against a length-200 rectangular reference. Paired Wilcoxon signed-rank tests confirm statistical significance (p < 0.001) over static baselines, and Pearson correlation analysis ({rho} = 0.993 {+/-} 0.0002) confirms strict morphological fidelity. The full open-source codebase and benchmarks are publicly released.\n\nO_TBL View this table:\norg.highwire.dtl.DTLVardef@8e9e6borg.highwire.dtl.DTLVardef@1428c51org.highwire.dtl.DTLVardef@a4384org.highwire.dtl.DTLVardef@1d6c478org.highwire.dtl.DTLVardef@fce0c6_HPS_FORMAT_FIGEXP  M_TBL O_FLOATNOTable 3:C_FLOATNO O_TABLECAPTIONQuantitative comparison on a common 60 s segment of Ninapro-like synthetic sEMG (single channel) with a 3 mV 50.3 Hz mains tone  slightly drifted from the static notchs design centre at 50.0 Hz, stress-testing the adaptive corrector under a frequency mismatch. The Ninapro multi-channel aggregate (13.9 dB) reported in Section 3.4 uses mains exactly at 50 Hz (matched notch) and so achieves a higher {Delta} SNR. \"MAC/sample\" excludes the EMRMS square root and the pre-computed LMS sine/cosine.\n\nC_TABLECAPTION C_TBL",
+      "authors": [
+        "Lo, H. U.",
+        "Gao, Z.",
+        "Loi, H. F.",
+        "Cheng, S. K."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-06-19T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.11.724714v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Low-latency sEMG correction system for prostheses and rehabilitation, applicable to sports injury recovery",
+      "llm_evidence_cn": "低延迟sEMG校正系统用于假肢和康复，可应用于运动损伤恢复",
+      "llm_evidence": "低延迟sEMG校正系统用于假肢和康复，可应用于运动损伤恢复",
+      "canonical_evidence": "低延迟sEMG校正系统用于假肢和康复，可应用于运动损伤恢复",
+      "llm_tldr_en": "Presents a sEMG system with high CMRR and EMRMS for low-latency signal correction, benefiting myoelectric prostheses and rehabilitation, potentially useful for sports rehabilitation.",
+      "llm_tldr_cn": "针对表面肌电信号中工频干扰和延迟问题，设计了一种结合高共模抑制比前端与指数窗RMS包络估计及递归陷波器的校正系统。该系统降低了计算复杂度至O(1)，显著减少了群延迟，提升了对肌肉活动的实时解析能力。实验表明，该系统可有效用于肌电假肢和康复训练，为运动损伤后的肌肉功能恢复提供了更精准的实时监测工具。",
+      "llm_tldr": "针对表面肌电信号中工频干扰和延迟问题，设计了一种结合高共模抑制比前端与指数窗RMS包络估计及递归陷波器的校正系统。该系统降低了计算复杂度至O(1)，显著减少了群延迟，提升了对肌肉活动的实时解析能力。实验表明，该系统可有效用于肌电假肢和康复训练，为运动损伤后的肌肉功能恢复提供了更精准的实时监测工具。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "Rehabilitation techniques and protocols for sports-related injuries",
+      "matched_requirement_id": "req-84",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-16-732722-v1",
+      "source": "biorxiv",
+      "title": "Sensorimotor learning compensates for irreducible perceptual bias",
+      "abstract": "Because of the uncertainties present in the any sensory inflows, we experienced perceptual biases that often contaminate sensorimotor transformations. How these biases can be prevented through perceptual learning or adaptation is an open question in inference theories of perception and motor control. We revisited this debate using a classic example of low-level perceptual bias, the aperture problem in motion perception and its consequences for smooth pursuit. In a visuomotor tracking paradigm, participants pursued left-, right-tilted, or upright Gabor patches moving horizontally. As expected, initial pursuit direction was biased toward the oblique directions. This initial pursuit error remained unchanged when participants repeatedly tracked a single tilted Gabor during training sessions conducted over several days. By contrast, post-training error correction became faster for the trained Gabor orientation, but not for its untrained, mirror-symmetric counterpart. This change in dynamics was explained by the emergence of a delayed compensatory pursuit response, best revealed after training with an upright Gabor, a stimulus that would normally elicit unbiased tracking. This corrective eye movement was selective for both shape and motion features. It lagged by [~]40 msec after pursuit onset suggesting that it was triggered by the biased motor command itself rather than by visual reafference. These results support a dissociation between low-level sensory computations, which cannot be modified over short timescales, and internal models of sensorimotor transformation, which can be rapidly updated to compensate for irreducible but predictable sensory-driven perceptual biases.",
+      "authors": [
+        "Schoeffel, C.",
+        "Ibos, G.",
+        "Montagnini, A.",
+        "Masson, G. S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-22T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.16.732722v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Sensorimotor learning compensates for perceptual bias in smooth pursuit, relevant to motor skill acquisition",
+      "llm_evidence_cn": "感觉运动学习补偿平滑追踪中的知觉偏差，与运动技能习得相关",
+      "llm_evidence": "感觉运动学习补偿平滑追踪中的知觉偏差，与运动技能习得相关",
+      "canonical_evidence": "感觉运动学习补偿平滑追踪中的知觉偏差，与运动技能习得相关",
+      "llm_tldr_en": "In a visuomotor tracking task, sensorimotor learning did not reduce initial perceptual bias, but adaptation occurred when stimulus orientation changed, informing motor learning processes",
+      "llm_tldr_cn": "通过视运动追踪实验，研究知觉偏差对平滑追踪的影响，发现重复跟踪单一方向无法消除初始偏差，但经历不同倾斜方向的刺激后可产生适应性补偿，为运动学习提供新见解。",
+      "llm_tldr": "通过视运动追踪实验，研究知觉偏差对平滑追踪的影响，发现重复跟踪单一方向无法消除初始偏差，但经历不同倾斜方向的刺激后可产生适应性补偿，为运动学习提供新见解。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-17-733030-v1",
+      "source": "biorxiv",
+      "title": "Artificial Intelligence Models for Classifying Wrist Ligament Injuries Using Synthetically-Generated Joint Proximity Maps from Finite Element Models",
+      "abstract": "Background/PurposeDiagnosing wrist ligament injuries is challenging; early detection and treatment are important to prevent osteoarthritis progression. Interosseous proximity maps, a proxy measure for joint space, can be generated from volumetric imaging data and may provide important information about wrist health. Artificial intelligence (AI) could enhance accuracy of noninvasive diagnosis based on imaging-derived metrics. This work demonstrates feasibility of AI training using synthetic proximity map data generated from finite element models (FEMs).\n\nMethodsPersonalized wrist FEMs for two asymptomatic participants were created from four-dimensional computed tomography-derived anatomic and kinematic data. Monte Carlo sampling varied 22 ligament material properties and simulated 7,500 unique injury scenarios generating 9,000,000 labeled red, green, and blue (RGB) images of interosseous proximity vector fields from FEM-derived motions. Images were associated with 17 descriptive metrics, including gross wrist angles and bone surface pairs, and used to develop mixed-input convolutional neural networks (CNNs). Model performance was evaluated for identifying specific ligament injuries.\n\nResultsAverage area under receiver operating characteristic curve (AUROC) for CNNs was 0.757 across all injury types and kinematics. In a subset with clinically-relevant functional angles, the average AUROC was 0.824. Best-performing individual ligament AUROCs ranged from 0.807 to 0.999. Sensitivities and specificities exceeded 0.99 for some ligament injury simulations under specific wrist angles and bone surface pairs.\n\nConclusionThis study demonstrates the feasibility of using synthetic data from FEMs to train AI models for classifying wrist ligament injuries. Proximity-based RGB images may be a relevant biomarker of ligamentous injury.",
+      "authors": [
+        "Chen, H.-Y.",
+        "Camp, J.",
+        "Trentadue, T. P.",
+        "Thoreson, A. R.",
+        "Leng, S.",
+        "Holmes, D. R.",
+        "Kakar, S.",
+        "An, K.-N.",
+        "Zhao, K. D.",
+        "Andreassen, T. E."
+      ],
+      "primary_category": "biophysics",
+      "categories": [
+        "biophysics"
+      ],
+      "published": "2026-06-21T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.17.733030v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI classification of wrist ligament injuries from synthetic proximity maps for noninvasive diagnosis",
+      "llm_evidence_cn": "利用合成关节接近图AI分类腕部韧带损伤以实现无创诊断",
+      "llm_evidence": "利用合成关节接近图AI分类腕部韧带损伤以实现无创诊断",
+      "canonical_evidence": "利用合成关节接近图AI分类腕部韧带损伤以实现无创诊断",
+      "llm_tldr_en": "Demonstrates feasibility of training AI models on synthetic proximity maps from finite element models to classify wrist ligament injuries, enabling noninvasive diagnosis.",
+      "llm_tldr_cn": "针对腕部韧带损伤诊断困难的问题，利用个性化有限元模型生成合成关节接近图，训练AI模型进行分类。在仿真数据和两名无症状受试者数据上验证，模型可准确识别损伤状态，为基于影像的非侵入性诊断提供新方法，有望辅助临床早期检测和预防骨关节炎进展。",
+      "llm_tldr": "针对腕部韧带损伤诊断困难的问题，利用个性化有限元模型生成合成关节接近图，训练AI模型进行分类。在仿真数据和两名无症状受试者数据上验证，模型可准确识别损伤状态，为基于影像的非侵入性诊断提供新方法，有望辅助临床早期检测和预防骨关节炎进展。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "sports medicine and injury treatment",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-22-733751-v1",
+      "source": "biorxiv",
+      "title": "Older adults amplify passive gait stability during obstacle crossing without weakening the stabilizing synergy",
+      "abstract": "Older adults sustain disproportionately severe injuries from trip-induced falls during obstacle crossing. Such falls depend partly on forward momentum when the foot crosses the obstacle. MOSAP, an index of passive dynamic gait stability, reflects this momentum. We quantified MOSAP and a synergy index from uncontrolled manifold analysis of step length and extrapolated center of mass in 25 young (21.6 {+/-} 3.5 yr) and 23 older adults (68 {+/-} 4.3 yr) during unobstructed and obstructed walking, to test whether MOSAP increases during obstacle crossing and whether it is actively stabilized at each step. Both groups increased MOSAP progressively over two approach steps by reducing forward momentum and shifting the center of mass posteriorly. Older adults showed greater increases at the crossing steps. The synergy index was positive for all steps, showing that deviations in step length and extrapolated center of mass covaried to stabilize MOSAP at step-specific values. The synergy index was not influenced by age. We conclude that adults actively recruit passive body mechanics while approaching and crossing obstacles to reduce the risk of a trip becoming a fall. Older adults amplify this strategy to compensate for diminished neuromuscular corrective capabilities.",
+      "authors": [
+        "Kulkarni, A.",
+        "Cui, C.",
+        "Rietdyk, S.",
+        "Ambike, S."
+      ],
+      "primary_category": "physiology",
+      "categories": [
+        "physiology"
+      ],
+      "published": "2026-06-24T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.22.733751v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "gait stability analysis during obstacle crossing in older adults",
+      "llm_evidence_cn": "老年人跨越障碍时的步态稳定性分析",
+      "llm_evidence": "老年人跨越障碍时的步态稳定性分析",
+      "canonical_evidence": "老年人跨越障碍时的步态稳定性分析",
+      "llm_tldr_en": "Quantifies passive gait stability via MOSAP and synergy index during obstacle crossing in older and young adults, finding older adults amplify stability by reducing forward momentum without weakening stabilization, contributing methods relevant to sports biomechanics.",
+      "llm_tldr_cn": "通过MOSAP和协同指数量化年轻与老年人在跨越障碍时的被动步态稳定性，发现老年人通过降低向前动量增强稳定性且不破坏协同控制，揭示了适应性的步态调整策略，为运动生物力学中的动态稳定性分析提供方法学参考。",
+      "llm_tldr": "通过MOSAP和协同指数量化年轻与老年人在跨越障碍时的被动步态稳定性，发现老年人通过降低向前动量增强稳定性且不破坏协同控制，揭示了适应性的步态调整策略，为运动生物力学中的动态稳定性分析提供方法学参考。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "biomechanical analysis of sports movements",
+      "matched_requirement_id": "req-41",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
