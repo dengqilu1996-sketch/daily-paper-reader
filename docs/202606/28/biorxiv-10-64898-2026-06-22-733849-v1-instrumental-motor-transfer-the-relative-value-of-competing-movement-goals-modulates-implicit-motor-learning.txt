@@ -1,0 +1,3190 @@
+Title: Instrumental-Motor Transfer: The Relative Value of Competing Movement Goals Modulates Implicit Motor Learning
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.22.733849v1.full.pdf
+
+Number of Pages: 28
+
+Markdown Content:
+> Instrumental-Motor  Transfer:  The  Relative  Value  of  Competing
+
+1
+
+> Movement Goals Modulates Implicit Motor Learning
+
+2
+
+> Naser Al-Fawakhiri 1, Vikram Chib 2,3,4 , & Samuel D. McDougle 5,6
+
+3
+
+4
+
+> 1 – Dept of Neuroscience, Johns Hopkins School of Medicine, Baltimore, MD 21205
+
+5
+
+> 2 – Dept of Biomedical Engineering, Johns Hopkins School of Medicine, Baltimore, MD 21205
+
+6
+
+> 3 –Kennedy Krieger Institute, 707 North Broadway, Baltimore, MD 21205, USA
+
+7
+
+> 4 –Kavli Neuroscience Discovery Institute, Johns Hopkins University, Baltimore, MD 21205, USA
+
+8
+
+> 5 – Dept of Psychology, Yale University, New Haven, CT 06510
+
+9
+
+> 6 – Wu Tsai Institute, Yale University, New Haven, CT 06510
+
+10 
+
+11 
+
+> Abbreviated Title: Instrumental-Motor Transfer
+
+12 
+
+13 
+
+> Number of Pages: 27
+
+14 
+
+> Number of Figures: 4
+
+15 
+
+> Word Counts
+
+16 
+
+> Abstract: 248
+
+17 
+
+> Introduction: 649
+
+18 
+
+> Discussion: 1,339
+
+19 
+
+20 
+
+> Conflict of Interest: The authors declare no competing financial interests.
+
+21 
+
+22 
+
+> Correspondence:
+
+23 
+
+> Naser Al-Fawakhiri: aalfawa1@jh.edu
+
+24 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Abstract 25 
+
+> Multiple learning signals can shape motor output, including reward and punishment (via value-
+
+26 
+
+> based reinforcement learning) and sensorimotor error (via motor adaptation). However, it is
+
+27 
+
+> unclear if action values, learned via reinforcement learning, interact with error-based motor
+
+28 
+
+> learning. Here, we asked if the learned value of competing motor goals influences how the
+
+29 
+
+> motor system learns from sensorimotor errors linked to those goals. We designed a paradigm
+
+30 
+
+> that required participants (N = 85) to learn about the value associated with different movement
+
+31 
+
+> targets prior to undergoing implicit visuomotor adaptation at or nearby those same targets. We
+
+32 
+
+> observed two classes of related effects: repulsion and suppression. When adaptation brought
+
+33 
+
+> the limb toward targets associated with low-value, learning was attenuated compared to when
+
+34 
+
+> adaptation  brought  the  limb  away  from  targets  associated  with  low-value,  indicating  a
+
+35 
+
+> “repelling” effect of low-value actions. Moreover, adaptation was suppressed in all directions
+
+36 
+
+> when  low-value  targets  were  themselves  the  goal  of  movement.  These  findings  were
+
+37 
+
+> asymmetric with respect to valence: we did not observe comparable attraction effects when
+
+38 
+
+> adaptation brought the limb toward targets associated with high-value, nor did we see overall
+
+39 
+
+> enhancement of adaptation when targets associated with high-value acted as movement goals.
+
+40 
+
+> Additional analyses and experiments demonstrated that these effects did not reflect generic
+
+41 
+
+> biases and were driven by relative rather than absolute goal values. Repulsion and suppression
+
+42 
+
+> effects were tied to movement directions rather than the targets themselves. These results
+
+43 
+
+> point to a novel interaction between reinforcement learning and motor memory — a kind of
+
+44 
+
+> “instrumental-motor transfer.”
+
+45 
+
+46 
+
+> Significance Statement
+
+47 
+
+> In order to ensure our motor behavior yields our desired outcomes, we must not only learn
+
+48 
+
+> which actions lead to which outcomes (via reinforcement learning) but also how to precisely
+
+49 
+
+> execute those actions to achieve the desired outcome (by calibrating our actions via implicit
+
+50 
+
+> motor adaptation. While it is clear that reinforcement learning and motor adaptation operate at
+
+51 
+
+> different levels of an action selection hierarchy, it is unclear if they interact. Knowing if and how
+
+52 
+
+> these processes interact is critical for understanding the fundamental algorithms and various
+
+53 
+
+> neural circuits underlying real-world motor behavior. Here, we show a novel interaction between
+
+54 
+
+> the two processes where implicit adaptation is suppressed when adaptation would bring the
+
+55 
+
+> hand toward a previously punished movement goal.
+
+56 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Introduction
+
+57 
+
+> We move about the world in a complex landscape of movement goals, each with a different
+
+58 
+
+> learned or intrinsic value. For example, when wandering around the kitchen, moving your hand
+
+59 
+
+> towards a tasty snack is a much more valuable goal than moving it onto a hot stovetop. This
+
+60 
+
+> “affordance” landscape for action (Pezzulo and Cisek, 2016) is in part shaped by reinforcement
+
+61 
+
+> learning
+
+(Sutton and Barto, 1998) , where we learn the value of different actions via the rewards 62 
+
+> or  punishments  those  actions  tend  to  produce,  and  adjust  action  selection  accordingly
+
+63 (Trommershäuser et al., 2008) .64 
+
+65 
+
+> At a lower level, our motor system must learn how to physically accomplish our movement
+
+66 
+
+> goals by generating motor commands that produce desired sensory consequences. Performing
+
+67 
+
+> movements accurately requires unconsciously calibrating motor commands to reduce errors, a
+
+68 
+
+> process known as motor adaptation (Shadmehr et al., 2010; Krakauer et al., 2019). While it is
+
+69 
+
+> clear that these two forms of learning — reinforcement learning and motor adaptation — are
+
+70 
+
+> distinct and operate at different levels of an action selection hierarchy, it is unclear if they
+
+71 
+
+> interact.
+
+72 
+
+73 
+
+> Some evidence in the domain of visuomotor reach adaptation points to an interaction between
+
+74 
+
+> value-based learning signals (rewards and punishments) and motor adaptation. Galea et al.,
+
+75 
+
+> (2015) found that when people learned to counteract visuomotor perturbations to hit a target,
+
+76 
+
+> the addition of reward and punishment feedback significantly modulated motor learning. This
+
+77 
+
+> study and several more recent experiments (Kim et al., 2019; Khatib et al., 2023; Forano and
+
+78 
+
+> Franklin, 2024) are taken as evidence that the implicit motor adaptation system is sensitive not
+
+79 
+
+> only to sensory prediction errors (e.g., an unexpected sensory outcome of a movement to a
+
+80 
+
+> target) but also to motivational signals (e.g., earning $1 when hitting the target).
+
+81 
+
+82 
+
+> However, other results have complicated the interpretations of these findings. First, recent work
+
+83 
+
+> has suggested that true implicit motor adaptation may not be sensitive to reward feedback
+
+84 
+
+> (Butcher and Taylor, 2018; Chen et al., 2025); reward may instead act on other learning
+
+85 
+
+> processes that operate in parallel to motor adaptation, such as deliberate aiming strategies
+
+86 
+
+> (Taylor and Ivry, 2013; McDougle et al., 2017; Holland et al., 2018; Krakauer et al., 2019;
+
+87 
+
+> Schween et al., 2020; Tsay et al., 2024; Hillman et al., 2025). Moreover, purported effects of so-
+
+88 
+
+> called intrinsic reward (successfully contacting a goal target) on adaptation are susceptible to
+
+89 
+
+> subtle methodological changes and may be better explained through alternative processes (Al-
+
+90 
+
+> Fawakhiri et al., 2023). In our view, it is still unclear whether value-based learning modulates
+
+91 
+
+> implicit motor adaptation, or if it affects motor output in other ways, perhaps by reinforcing
+
+92 
+
+> deliberate strategies or explicit motor memories, or by otherwise biasing the selection of
+
+93 
+
+> rewarded or successful actions
+
+(Thorndike, 1911; Diedrichsen et al., 2010; Huang et al., 2011; 94 Holland et al., 2018; Sidarta et al., 2018; McDougle and Taylor, 2019; Hillman et al., 2024; 95 McDougle and Hillman, 2026) .96 
+
+97 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Here we took a different approach to this topic: Instead of grafting reward or punishment
+
+98 
+
+> feedback onto a motor adaptation task – which produces idiosyncratic effects – we had people
+
+99 
+
+> independently learn the value of competing movement goals prior to adaptation. That is, we
+
+100 
+
+> asked if the relative values of movement goals, learned via reinforcement learning, affect
+
+101 
+
+> subsequent adaptation to sensorimotor errors experienced at or around those movement goals.
+
+102 
+
+> To do this, we deployed a movement-based reinforcement learning task
+
+(McDougle et al., 2016, 103 2019) interleaved with an implicit motor adaptation task  (Morehead et al., 2017) , and measured 104 
+
+> the effect of the relative value of competing movement goals on adaptation. We hypothesized a
+
+105 
+
+> novel  interaction  between  reinforcement  learning  and  adaptation,  expecting  to  see  a
+
+106 
+
+> suppression of adaptation when it moved the effector toward lower-valued goals  and  a
+
+107 
+
+> facilitation of adaptation when it moved the effector toward higher-valued goals. Such results
+
+108 
+
+> would point to a computational link between the value landscape of our immediate environment
+
+109 
+
+> and the motor system’s automatic processes of sensorimotor learning.
+
+110 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Materials and Methods
+
+111 
+
+> Subjects
+
+112 
+
+> Experiment 1: 16 right-handed subjects (6M, 10F, aged 20-36, mean age: 26.8 ± 4.5) were
+
+113 
+
+> recruited from the Johns Hopkins community to participate in Experiment 1. Written consent
+
+114 
+
+> was obtained from all participants in accordance with procedures approved by the Johns
+
+115 
+
+> Hopkins School of Medicine Institutional Review Board (IRB00283000) and participants were
+
+116 
+
+> compensated with a show-up fee of $25 for the 1.5 hour study, with an additional $10 bonus or
+
+117 
+
+> $5 penalty for a randomly selected trial during the experiment to motivate them to attend
+
+118 
+
+> closely to the task ( see Experiment 1 Protocol ). Fifteen out of 16 subjects received the bonus.
+
+119 
+
+120 
+
+> Experiments 2 and 3 were crowd-sourced using the online platform Prolific. A total of 91
+
+121 
+
+> participants completed the experiments online (Exp. 2: 47, Exp. 1: 44). Consent was obtained
+
+122 
+
+> from all participants in accordance with the Yale University Institutional Review Board (Protocol
+
+123 
+
+> #2000027351). Recruitment was restricted to right-handed or ambidextrous individuals in the
+
+124 
+
+> United States between the ages of 18 and 35, who had at least 40 prior Prolific submissions.
+
+125 
+
+> However, 22 participants were excluded due to failure to comply with task instructions ( see Data
+
+126 
+
+> Analysis ; Exp. 2: 14; Exp. 3: 8). The final sample included 33 participants in Experiment 2 (14M,
+
+127 
+
+> 19F, aged 22-35, mean age: 29.9 ± 3.6) and 36 participants in Experiment 3 (10M, 26F, aged: 19-
+
+128 
+
+> 35,  mean  age:  30.0  ± 4.5).  Participants  were  compensated  at  a rate  of  $10/hr  for  the
+
+129 
+
+> experiments.
+
+130 
+
+131 
+
+> Apparatus
+
+132 
+
+> Participants recruited for Experiment 1 completed the task in a mock fMRI scanner (participants
+
+133 
+
+> were run in the mock scanner in preparation for future study follow-ups using functional
+
+134 
+
+> neuroimaging). Participants lay flat on a moveable platform. Their responses were recorded on
+
+135 
+
+> a wired USB computer trackpad (Perixx PERIPAD-506, active area: 5”x4”) connected to the task
+
+136 
+
+> computer. Task stimuli were displayed on a monitor in the mock scanner and reflected onto a
+
+137 
+
+> mirror positioned 18 inches away and directly over the participant’s head, angled so that the
+
+138 
+
+> stimuli on the monitor would be visible to the participant while laying down. Task stimuli and
+
+139 
+
+> movement recording were handled by custom written MATLAB scripts (MATLAB R2025a,
+
+140 
+
+> Psychtoolbox 3.0.16) and trackpad movements were recorded at a frequency of 120Hz.
+
+141 
+
+142 
+
+> General Task Procedure
+
+143 
+
+> Participants were instructed to make fast but accurate slicing motions using a trackpad (or
+
+144 
+
+> mouse, if online) toward one of two targets presented on the screen. Two targets (16mm or
+
+145 
+
+> 60px diameter; Exps. 1-2: pink and purple; Exp. 3: green and gray) were presented 80mm (in-lab)
+
+146 
+
+> or 300px (online) from the central starting position (6mm or 24px diameter), centered in the
+
+147 
+
+> middle of the screen. Initially, the goal target was indicated by the color of the central starting
+
+148 
+
+> location, presented on the screen for 500ms prior to the appearance of the two targets. After
+
+149 
+
+> learning the reward association to each of the targets (see below), participants were instructed
+
+150 
+
+> to always go to either the more rewarded (Exps. 1-2) or less rewarded (Exp. 3) target; on these
+
+151 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint trials, the central starting location would be colored a neutral light blue color so as to not
+
+152 
+
+> indicate any specific target.
+
+153 
+
+154 
+
+> Trials could provide one of three types of feedback. On veridical trials, participants controlled a
+
+155 
+
+> light blue cursor (4mm or 16px diameter) and veridical feedback was provided throughout the
+
+156 
+
+> entire reach and at endpoint. The cursor would freeze when the reach amplitude exceeded the
+
+157 
+
+> target radius (80mm or 300px). On “clamp” trials, the cursor was also displayed throughout the
+
+158 
+
+> entire reach and terminated at the target radius. However, the trajectory was constrained along
+
+159 
+
+> a fixed trajectory, 5.5˚ offset from the center of the goal target, such that the cursor would
+
+160 
+
+> straddle the edge of the target on every trial (Kim et al., 2019). Finally, on no-feedback trials, no
+
+161 
+
+> feedback was provided during movement and the trial ended after the participant’s reach
+
+162 
+
+> amplitude exceeded the target’s radial distance.
+
+163 
+
+164 
+
+> If a trial was rewarded (see below), numerical points were provided only if the displayed cursor
+
+165 
+
+> (veridical or clamp) landed within the target (i.e., points were provided on all clamp trials). Point
+
+166 
+
+> feedback was provided at the same angular position as the cursor feedback, at a radial
+
+167 
+
+> amplitude that exceeded the target distance by 20% so that the text would be visible beyond the
+
+168 
+
+> target. If the cursor missed the target or was not displayed (as in no-feedback trials), no points
+
+169 
+
+> were displayed.
+
+170 
+
+171 
+
+> Trials would begin with the presentation of the central starting location in the middle of the
+
+172 
+
+> screen for 500ms. Initially, the color of the starting location indicated which target was the
+
+173 
+
+> “goal” target. When the starting cue disappeared, it was replaced by the cursor, and the two
+
+174 
+
+> targets appeared. The pair of targets was presented either at [125˚ & 145˚] or [305˚ & 325˚],
+
+175 
+
+> separated by 20˚. Target locations alternated pseudorandomly such that targets could not
+
+176 
+
+> appear in the same quadrant for more than 4 trials in a row. Data from both quadrants was
+
+177 
+
+> rotated to a common reference frame and averaged for all analyses.
+
+178 
+
+179 
+
+> Upon the appearance of the targets, participants were instructed to make a quick but accurate
+
+180 
+
+> swiping motion through the middle of the goal target. If the displayed cursor landed on the
+
+181 
+
+> target and the trial was rewarded, point feedback was provided along with endpoint feedback.
+
+182 
+
+> Otherwise, only endpoint feedback was provided. If the participant’s reach was greater than 30˚
+
+183 
+
+> away from the goal target, the reach duration exceeded 300 ms, the reaction time (time from
+
+184 
+
+> target appearance to reach initiation) exceeded 1000ms, or if the reach trajectory was not
+
+185 
+
+> straight (median absolute angular deviation greater than 10˚), endpoint feedback was replaced
+
+186 
+
+> (Exps. 2 & 3) or followed by (Exp. 1) a warning screen for 1000ms telling participants what their
+
+187 
+
+> specific error was (e.g. “Please start the reach sooner” if reaction time exceeded 1000ms). A
+
+188 
+
+> short reach duration was emphasized to ensure straight ballistic reaches toward the target
+
+189 
+
+> without feedback corrections.
+
+190 
+
+> [Insert Figure 1 Here]
+
+191 
+
+192 
+
+> Experiment 1 Procedure
+
+193 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint All trials in Exp. 1 were constrained to last 3.6 seconds. The central starting location was
+
+194 
+
+> displayed on the screen for 500ms, and a fixed 800 ms intertrial interval was enforced. The
+
+195 
+
+> remainder of the 3.6 seconds was divided between reaction time, reach duration, and endpoint
+
+196 
+
+> feedback. For instance, if a participant had a 500ms reaction time, 100ms reach duration,
+
+197 
+
+> endpoint feedback was provided for 1700 ms and then the screen would go blank except for a
+
+198 
+
+> central fixation cross for a 800 ms intertrial interval.
+
+199 
+
+200 
+
+> The experiment began with a 96-trial baseline block where the goal target color and location
+
+201 
+
+> randomly varied ( Fig. 1A ). This phase was designed to help participants gain familiarity with the
+
+202 
+
+> center-out reaching task, and with moving to the target whose color matched the central
+
+203 
+
+> starting cue. Randomly interleaved throughout the block were 48 trials where both targets were
+
+204 
+
+> presented and 48 trials where only one target was presented (12 repetitions at each of the 4
+
+205 
+
+> possible target locations, 6 repetitions for each color). This was done to measure and control
+
+206 
+
+> for any baseline biases in reach direction caused by the presence of an alternative target
+
+207 
+
+> (Tipper et al., 1997). Target configurations and quadrants alternated pseudorandomly such that
+
+208 
+
+> no quadrant or configuration would appear more than 4 trials in a row. In total, participants
+
+209 
+
+> reached equally to each color and target location, reaching to the target whose color matched
+
+210 
+
+> the color of the central starting location presented at the start of the trial. Participants were
+
+211 
+
+> instructed to focus on reaching quickly but accurately through the middle of the goal target.
+
+212 
+
+213 
+
+> After the baseline phase, participants were informed that the cursor would now be “clamped” to
+
+214 
+
+> a single direction: it would follow a fixed trajectory terminating slightly off-center on the edge of
+
+215 
+
+> the target, no matter where they actually moved their hand. Participants were instructed to
+
+216 
+
+> ignore the cursor and focus on bringing their actual reach to the center of the target, even
+
+217 
+
+> though they would not receive veridical feedback. This fixed error-clamp task has been shown
+
+218 
+
+> to reliably induce implicit motor adaptation without inducing explicit re-aiming strategies
+
+219 
+
+> (Morehead et al., 2017; Avraham et al., 2021; Kim et al., 2022). We reasoned that by having the
+
+220 
+
+> cursor still visibly contact the target, participants would not explicitly interpret the movement as
+
+221 
+
+> a “miss”, though we still expected to see robust adaptation to the imposed subtle perturbation,
+
+222 
+
+> consistent with previous work (Kim et al., 2019; Al-Fawakhiri et al., 2023).
+
+223 
+
+224 
+
+> After baseline, participants then began Control Phase 1 ( Fig. 1A ). This consisted of two 48-trial
+
+225 
+
+> blocks of clamped feedback at one of the two targets, with each clamp block followed by a 48-
+
+226 
+
+> trial washout block that was designed to de-adapt movements back to baseline. During
+
+227 
+
+> washout blocks, the first 24 trials were no-feedback, followed by 24 trials of veridical feedback
+
+228 
+
+> to fully wash out implicit adaptation (Avraham et al., 2021). The two clamp blocks alternated the
+
+229 
+
+> sign (+/-) of the clamped cursor rotation such that adaptation would proceed either toward the
+
+230 
+
+> alternative target (TOWARD) or away from it (AWAY). Whether participants started with a
+
+231 
+
+> TOWARD or AWAY block was counterbalanced. Since Control Phase 1 always went to one
+
+232 
+
+> target, we counterbalanced the color and location of that target. We note that all adaptation in
+
+233 
+
+> the  Control  Phase  clamp  blocks  occurs  without  any  learning  about  the  “values”  of  the
+
+234 
+
+> competing goals, allowing us to compare later adaptation behavior to the Control Phase data.
+
+235 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+236 
+
+> After completing the four blocks of Control Phase 1, participants next completed the 48-trial
+
+237 
+
+> Reward Association Phase. Here the configuration of the targets swapped, such that if the red
+
+238 
+
+> target was placed clockwise relative to the green target in Control Phase 1, it would now be
+
+239 
+
+> counterclockwise (and vice versa). The Reward Association Phase used a forced-choice design,
+
+240 
+
+> where subjects were instructed to reach to a specific target on each trial. When the veridical
+
+241 
+
+> cursor feedback landed in the instructed target, participants would receive points. One of the
+
+242 
+
+> two targets was designated the “rewarded target”, which provided rewards (+10 points) on 80%
+
+243 
+
+> of trials and took away points (-5) on 20% of trials. The rewarded target was always the
+
+244 
+
+> opposite color as the target  participants reached to in Control Phase 1, to  ensure that
+
+245 
+
+> participants were paying attention to the task contingencies rather than adopting a simple
+
+246 
+
+> strategy of recalling the color of the target they most frequently reached to. The other target, the
+
+247 
+
+> “punished target”, subtracted points (-5) on 80% of trials and provided points (+10) on 20% of
+
+248 
+
+> trials. We emphasize that participants were instructed to always reach to the target that
+
+249 
+
+> matched the color of the central starting location, even if this involved going to the punished
+
+250 
+
+> target and likely losing points. They were further instructed to track which target provided more
+
+251 
+
+> points than the other, and were informed that they would be later asked to identify the more
+
+252 
+
+> favorable target at the end of the block. For the first 12 trials, participants went to one color
+
+253 
+
+> target. They then went to the other target for the next 12 trials. After these first 24 trials, the
+
+254 
+
+> target configuration switched again. Participants continued reaching to the same color target,
+
+255 
+
+> now in a different location, for 12 trials. Finally, for the last 12 trials, participants went to the
+
+256 
+
+> other color target. This ensured that participants received equal amounts of reward and
+
+257 
+
+> punishment history at each reach location and that the association was only to the color of the
+
+258 
+
+> target, and we counterbalanced whether participants started at the rewarded or punished target.
+
+259 
+
+> To ensure that at least 80% of trials were rewarded at the rewarded target and punished at the
+
+260 
+
+> punished target, we kept track of the percentage of reversed outcomes (e.g. punishment at the
+
+261 
+
+> rewarded  target)  and,  if  this  exceeded  20%  within  the  block,  the  random  outcome  was
+
+262 
+
+> overwritten. At the end of the Reward Association block, participants were asked to explicitly
+
+263 
+
+> identify the rewarded target. All participants correctly identified the rewarded target.
+
+264 
+
+265 
+
+> The final configuration of the targets in the Reward Association Phase was maintained for Test
+
+266 
+
+> Phase 1 (i.e. if the pink target was clockwise relative to the purple target at the end of the
+
+267 
+
+> Reward Association block, it would remain that way for Test Phase 1). Just like Control Phase 1,
+
+268 
+
+> this block consisted of two 48-trial error-clamp blocks, each followed by a 48-trial washout
+
+269 
+
+> block. Participants were now instructed to always go to the rewarded target, and this instruction
+
+270 
+
+> was persistently displayed in the upper right corner of the screen on every trial. The central
+
+271 
+
+> starting location was now colored a neutral light blue color that matched the cursor. The
+
+272 
+
+> clamped cursor error thus always straddled the edge of the rewarded target. Here again, due to
+
+273 
+
+> the alternating sign of the clamped cursor, one of the two blocks would adapt movements
+
+274 
+
+> toward the punished target (TOWARD) or away from it (AWAY). Next followed Test Phase 2,
+
+275 
+
+> which was identical to Test Phase 1 except that the target configurations switched again, such
+
+276 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint that the rewarded target was now in the location where the punished target was located
+
+277 
+
+> previously.
+
+278 
+
+279 
+
+> After Test Phase 2, participants completed Control Phase 2. This phase was identical to Control
+
+280 
+
+> Phase 1 except for two key differences: First, the reach location that participants went to was
+
+281 
+
+> the opposite of where they went in Control Phase 1 (i.e. if in Control Phase 1, participants
+
+282 
+
+> reached to the more clockwise target, they now reached to the more counterclockwise target).
+
+283 
+
+> Additionally, since the original colors now had rewards associated with them, we changed the
+
+284 
+
+> colors of the targets to orange and green. Control Phase 2 was presented at the end of the
+
+285 
+
+> experiment to control for any effect of fatigue or globally reduced learning (Avraham et al.,
+
+286 
+
+> 2021) that might degrade adaptation. Finally, at the end of the experiment, a random trial was
+
+287 
+
+> selected from one of the rewarded clamp blocks to determine participant bonuses. 15 out of 16
+
+288 
+
+> participants received the $10 bonus.
+
+289 
+
+290 
+
+> Experiment 2 Protocol
+
+291 
+
+> Experiment 2 was aimed at both replicating the results of Exp. 1 and testing if the suppression
+
+292 
+
+> of adaptation toward the punished target was object-referenced (due to punishment associated
+
+293 
+
+> with the color of the target) or movement-referenced (tied to the particular reach directions
+
+294 
+
+> associated with punishment in the later trials of the Reward Association Phase).
+
+295 
+
+296 
+
+> Experiment 2 began with the Reward Association Phase ( Fig. 1A , middle ). After learning the
+
+297 
+
+> reward association, participants completed Test Phase 1 as described above. Prior to Test
+
+298 
+
+> Phase 2, the Reward Association block was repeated, except with the target configurations now
+
+299 
+
+> swapped ( Fig. 1B ). Thus, the final configuration of the rewarded and punished targets was
+
+300 
+
+> maintained into Test Phase 2. This design choice was aimed at providing the most recent
+
+301 
+
+> punishment history at the  new  location of the punished target, rather than at its original location,
+
+302 
+
+> which was where the rewarded target would be placed in Test Phase 2. Importantly, the colors
+
+303 
+
+> of the rewarded and punished target remained the same as the original Reward Association
+
+304 
+
+> block. Participants then completed Test Phase 2 as in Experiment 1.
+
+305 
+
+306 
+
+> Experiment 3 Protocol
+
+307 
+
+> Experiment 3 was aimed to test if adaptation was enhanced toward previously  rewarded  reach
+
+308 
+
+> directions. Here, the values of the targets were modified such that the rewarded target always
+
+309 
+
+> provided +10 points and was colored green. The other target, the “neutral” target, always
+
+310 
+
+> provided +0 points and was shaded gray ( Fig. 1C ). Following the Reward Association Phase,
+
+311 
+
+> participants were then instructed to always reach to the neutral target for the rest of the
+
+312 
+
+> experiment. In Test Phase 1, participants went to the neutral target and the clamp blocks
+
+313 
+
+> alternated the sign of the rotation such that adaptation proceeded either toward the rewarded
+
+314 
+
+> target (TOWARD) or away from it (AWAY). In Test Phase 2, the target configuration swapped,
+
+315 
+
+> such that the neutral target was now positioned where the rewarded target was previously.
+
+316 
+
+317 
+
+> Data Analysis
+
+318 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint The  primary  dependent  measure  was  hand  angle  relative  to  the  current  goal  target.  In
+
+319 
+
+> Experiment 1, hand angle was measured as the angular deviation between the reach direction
+
+320 
+
+> and the goal target at peak movement velocity. Due to lower, less controlled sampling rates in
+
+321 
+
+> the crowd-sourced experiments (Exps. 2 and 3), reach direction at endpoint was used. (We note
+
+322 
+
+> that similar results were obtained in Experiment 1 when using endpoint hand angle).
+
+323 
+
+324 
+
+> Hand angles exceeding ±30˚ from the target were excluded. Trials where the participant
+
+325 
+
+> received any of the previously mentioned warnings (i.e., too slow, too late, non-straight reach,
+
+326 
+
+> reach to the wrong target) were also excluded. Participants for whom these criteria excluded
+
+327 
+
+> 20% or more of their trials were excluded from further analysis. And participants who went to
+
+328 
+
+> the wrong (i.e., non-cued) target for more than 10% of the rewarded washout trials with veridical
+
+329 
+
+> feedback were also excluded, due to failure to comply with the instructions. No subjects were
+
+330 
+
+> excluded from Experiment 1; 14 participants were excluded from Experiment 2, yielding a final
+
+331 
+
+> sample of 33 participants; and 8 participants were excluded from Experiment 3, yielding a final
+
+332 
+
+> sample of 36 participants. Overall, after excluding participants who failed to follow instructions,
+
+333 
+
+> 4.9% of trials for the remaining participants were excluded in Exp. 1, 4.8% of trials in Exp. 2, and
+
+334 
+
+> 4.8% of trials in Exp. 3.
+
+335 
+
+336 
+
+> To visualize adaptation learning curves, trials were binned in cycles of two trials, reflecting the
+
+337 
+
+> number of potential target pair locations. All learning curves were “baseline-corrected” such that
+
+338 
+
+> the average of the first two cycles was subtracted from all cycles in each block. This was
+
+339 
+
+> especially important, as competing target values could simply induce a fixed movement bias
+
+340 
+
+> instead of a modulation of adaptation. With this baseline correcting, learning within a block
+
+341 
+
+> would thus reflect changes in hand angle accumulated over the block – actual adaptation –
+
+342 
+
+> rather than reach angle drift that spanned across blocks or fixed biases.
+
+343 
+
+344 
+
+> Two methods were employed to quantify differences in adaptation between TOWARD versus
+
+345 
+
+> AWAY blocks. First, we averaged the last two cycles within each block to get a measure of how
+
+346 
+
+> much  total  (baseline-corrected)  adaptation  occurred  within  each  block/phase  for  each
+
+347 
+
+> participant. We then employed paired t-tests (or two-way ANOVAs) to quantify differences
+
+348 
+
+> between  adaptation  in  TOWARD  versus  AWAY  blocks.  We  also  performed  exploratory
+
+349 
+
+> nonparametric cluster permutation tests to visualize specific learning epochs where hand
+
+350 
+
+> angles significantly differed between TOWARD and AWAY blocks (Maris and Oostenveld, 2007;
+
+351 
+
+> Avraham and Ivry, 2025). To do this, we first performed a single paired one-tailed t-test on each
+
+352 
+
+> cycle of the learning curves between TOWARD and AWAY blocks. If the initial paired t-test of the
+
+353 
+
+> last two cycles showed significantly greater adaptation AWAY vs TOWARD in a given phase, this
+
+354 
+
+> was used as the prediction in the one-tailed t-test of each cycle of that phase. If the initial
+
+355 
+
+> comparison  happened  to  be  null, we  assumed  adaptation  AWAY  would  be  greater  than
+
+356 
+
+> TOWARD. A “cluster” was then defined as any string of adjacent significant cycles (p<0.05). For
+
+357 
+
+> each cluster, we summed the t-statistic for each cycle to obtain a “t-sum statistic” for the
+
+358 
+
+> cluster. We then computed a null distribution of t-sum statistics by randomly permuting the
+
+359 
+
+> AWAY and TOWARD labels for each cycle 10,000 times. For each permutation, we identified
+
+360 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint significant clusters and computed the t-sum statistic for each permutation (if multiple clusters
+
+361 
+
+> were identified, we used the one with the largest t-sum statistic). This generated a null
+
+362 
+
+> distribution of t-sum statistics that would be generated by chance. If the t-sum statistic of a
+
+363 
+
+> cluster in the original dataset was greater than the t-sum statistics of 95% of the permuted
+
+364 
+
+> datasets, it was considered to be significant, thus controlling for the multiple comparisons used
+
+365 
+
+> in this analysis.
+
+366 
+
+367 
+
+> Data & Code Accessibility
+
+368 
+
+> Data  files  and  analysis  code  for  all  experiments  is  available  at
+
+369 
+
+> https://osf.io/mvg97/overview?view_only=244c321be79a4d00bda87ed829ec268c
+
+370 
+
+371 
+
+372 
+
+373 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Results
+
+374 
+
+> Adaptation is suppressed in the vicinity of punished reach goals
+
+375 
+
+> In Experiment 1, we tested the hypothesis that implicit motor adaptation would be suppressed
+
+376 
+
+> when it brought the effector toward low-valued actions. Participants reached to one of two
+
+377 
+
+> visual goals (targets) while receiving visual error feedback designed to elicit implicit visuomotor
+
+378 
+
+> adaptation. In the Control Phases ( Fig. 1A ), participants reached to one of two neutral targets.
+
+379 
+
+> In the Test Phases, which occurred after a Reward Association Phase that established high-
+
+380 
+
+> versus  low-value  targets,  participants  reached  to  the  higher-value  target  and  underwent
+
+381 
+
+> adaptation to a visual perturbation. The high-value target was either placed in the location
+
+382 
+
+> where they had most recently (i.e., in the Reward Association Phase) received rewards (Test
+
+383 
+
+> Phase 1) or punishment (Test Phase 2). This allowed us to measure the degree of adaptation
+
+384 
+
+> when learning moved the hand toward a low-value target (TOWARD condition) versus away
+
+385 
+
+> from a low-value target (AWAY condition), and also measure if any differences between AWAY
+
+386 
+
+> and TOWARD conditions were related to specific movement locations or to more abstract
+
+387 
+
+> variables (i.e., target identities).
+
+388 
+
+389 
+
+> Overall, participants’ movement data exhibited significant motor learning in all adaptation
+
+390 
+
+> phases of Experiment 1 ( Fig. 2 ). Adaptation, quantified as the average baseline-corrected hand
+
+391 
+
+> angle in the last two cycles of the block, averaged 8.4 ± 1.2˚ and 7.8 ± 1.4˚ for AWAY and
+
+392 
+
+> TOWARD blocks, respectively (mean ± SEM) in both Control Phases ( Fig. 2A ). Averaged across
+
+393 
+
+> both Test Phases, adaptation reached 7.2 ± 1.7˚ and 2.4 ± 1.3˚ for AWAY and TOWARD blocks,
+
+394 
+
+> respectively ( Fig. 2B ). Crucially, there was a significant difference between adaptation AWAY
+
+395 
+
+> and TOWARD in the Test Phases (4.8˚, 95% CI [1.0˚, 8.6˚], t(15)=2.7, p=0.02, d z=0.67), but no
+
+396 
+
+> such difference  between AWAY and TOWARD in the  Control Phases  (t(15)=0.3,  p=0.76).
+
+397 
+
+> Moreover, the AWAY versus TOWARD differences were significantly larger in the Test Phases
+
+398 
+
+> versus the Control Phases (t(15)=-2.2, p=0.047, d=0.54). These data illustrate that implicit
+
+399 
+
+> adaptation was attenuated when it moved the hand toward a low-value goal, and this effect was
+
+400 
+
+> not a reflection of baseline motor biases nor due to the presence of multiple movement goals in
+
+401 
+
+> the visual field. Thus, low-value goals appeared to “repel” the effector during adaptation.
+
+402 
+
+403 
+
+> [Insert Figure 2 Here]
+
+404 
+
+405 
+
+> After observing that, on average, adaptation was significantly attenuated when it moved the
+
+406 
+
+> effector toward the low-value goal in the Test Phases, we next asked if this effect was present
+
+407 
+
+> in both Test Phases, or specific to only one phase. That is, if the effect was present in both
+
+408 
+
+> phases, it would suggest that adaptation is suppressed toward low-value targets regardless of
+
+409 
+
+> where they are presented in space (object-based effects). In contrast, if the effect was only
+
+410 
+
+> present in Test Phase 1, it would suggest that the effect is linked to specific movement
+
+411 
+
+> directions. A two-way ANOVA on adaptation over clamp direction (TOWARD vs AWAY) and Test
+
+412 
+
+> Phase (1 vs 2) revealed a significant interaction (F(1,59)=7.1, p=0.01), indicating that the effect
+
+413 
+
+> of clamp direction differed across phases ( Fig. 2C ). Specifically, adaptation was significantly
+
+414 
+
+> depressed toward  the punished target in Test Phase 1, showing a striking ~10.1˚ reduction in
+
+415 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint asymptotic adaptation in the TOWARD condition versus the AWAY condition (95% CI [3.9, 16.4],
+
+416 
+
+> t(15)=3.5, p=0.004, d z=0.86,  Fig. 2D ); in fact, adaptation toward the punished target in that
+
+417 
+
+> phase was not significantly different from zero (0.29˚, t(15)=0.15,  p=0.88). Using cluster
+
+418 
+
+> permutation tests, we found that the adaptation learning curves in Test Phase 1 significantly
+
+419 
+
+> diverged as early as cycle 7, and remained significantly different throughout the remainder of
+
+420 
+
+> the adaptation phase (t sum =50.0, p=0.004,  Fig. 2C  left ). Moreover, 13 out of 16 participants
+
+421 
+
+> showed significant reductions in adaptation in the TOWARD versus AWAY block. In contrast,
+
+422 
+
+> there was no difference in adaptation toward or away from the low-value target in Test Phase 2
+
+423 
+
+> (t(14)=-0.16, p=0.87, d z=-0.04;  no significant clusters,  Fig. 2C-D ). Finally, there was no difference
+
+424 
+
+> in the effect of TOWARD vs AWAY across the two Control Phases (interaction: F(1,60)=0.9,
+
+425 
+
+> p=0.3) and no clusters significantly diverged  between TOWARD and AWAY conditions in either
+
+426 
+
+> Control Phase 1 or 2. These Control Phase results support the conclusion that our observations
+
+427 
+
+> in the Test Phases were not driven by baseline motor biases or the mere visual presence of
+
+428 
+
+> competing reach goals.
+
+429 
+
+430 
+
+> It is important to emphasize that, in Test Phase 2, the rewarded target was now placed where
+
+431 
+
+> the punished target had been previously located, and thus where the participant most recently
+
+432 
+
+> experienced punishment ( Fig. 1A ). Because participants still only reached to the rewarded
+
+433 
+
+> target, all movements in Test Phase 2 (in both TOWARD and AWAY blocks) were therefore in
+
+434 
+
+> the vicinity of a previously punished reach direction. Strikingly, in Test Phase 2 adaptation both
+
+435 
+
+> TOWARD  and  AWAY from the now relocated punished target was suppressed. To quantify this
+
+436 
+
+> suppression effect, we compared adaptation in Test Phase 2 to the robust adaptation observed
+
+437 
+
+> in the AWAY block in Test Phase 1 (TOWARD: 6.0˚ suppression, 95% CI [-0.02, 12.0],  t(15)=2.1,
+
+438 
+
+> p=0.051, d z=0.53; AWAY: 7.6˚ suppression, 95% CI [1.7, 13.5], t(14)=2.8, p=0.02, d z=0.71, AVG:
+
+439 
+
+> 7.4˚ suppression, 95% CI [2.0, 12.9], t(14)=2.9, p=0.01, d z=0.76). These data suggest that in
+
+440 
+
+> addition to adaptation being attenuated when it moves the effector toward a low-value reach
+
+441 
+
+> target, adaptation may also in general be attenuated for reach directions similar to previously
+
+442 
+
+> punished actions.
+
+443 
+
+444 
+
+> Further analysis showed that movement durations and reaction times were not significantly
+
+445 
+
+> different  between  TOWARD  and  AWAY  blocks  in  the  Control  and  Test  Phases  (see
+
+446 
+
+> Supplemental Table S1). During the Reward Association block, there  were no significant
+
+447 
+
+> differences in movement duration (t(15)=1.1, p=0.29) or reaction time (t(15)= -1.34, p=0.20)
+
+448 
+
+> between rewarded and punished trials, nor on trials where participants reached to the rewarded
+
+449 
+
+> versus punished target (MT: t(15)=-0.69, p=0.5; RT: t(15)=1.42, p=0.18). Finally, in the baseline,
+
+450 
+
+> participants were not significantly biased toward or away from the distractor target when both
+
+451 
+
+> targets were presented simultaneously (t(15)=0.40, p=0.69); on trials where both targets were
+
+452 
+
+> presented, reaches deviated from the center of the target by an average of 0.32 ± 0.79˚ (mean ±
+
+453 
+
+> SEM), indicating that participants adhered to the instruction to aim for the middle of the cued
+
+454 
+
+> target.
+
+455 
+
+456 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Suppression of adaptation toward low-value goals is tied to reach direction and recent
+
+457 
+
+> reinforcement history
+
+458 
+
+> The  results  of  Experiment  1 demonstrated  that  implicit  adaptation  is  attenuated  when
+
+459 
+
+> adaptation brings the hand toward a low-valued (negatively-valued) goal, reflecting a kind of
+
+460 
+
+> “repelling” effect. This effect went away when the target locations were swapped: In Test Phase
+
+461 
+
+> 2 (where the rewarded target was placed in the location where participants were previously
+
+462 
+
+> punished), adaptation in both directions was universally attenuated. This finding suggests that
+
+463 
+
+> adaptation is suppressed in the vicinity of previously punished reach directions, whether or not
+
+464 
+
+> those directions reflect the current movement goal or are simply near the current goal. In other
+
+465 
+
+> words, a history of previously punished actions locally suppresses adaptation for nearby
+
+466 
+
+> movements.
+
+467 
+
+468 
+
+> To more directly test this idea, in Experiment 2 we added a second Reward Association “top-up”
+
+469 
+
+> block following Test Phase 1, with the target configurations switched such that the Reward
+
+470 
+
+> Association  top-up  block  ended  with  the  punished  and  rewarded  targets  in  the  same
+
+471 
+
+> configuration as they would be presented in Test Phase 2 ( Fig. 1B ). This manipulation ensured
+
+472 
+
+> that in Test Phase 2 participants had most recently experienced punishment at the  new  location
+
+473 
+
+> of the punished target and had most recently experienced reward at the new location of the
+
+474 
+
+> rewarded target. Thus, by undoing the learned association of punishment with the new location
+
+475 
+
+> of the rewarded target, and by establishing an aversive association with the new location of the
+
+476 
+
+> punished target, we expected to “rescue” the effect of clamp direction (TOWARD vs AWAY) that
+
+477 
+
+> we had observed in Test Phase 1 of Experiment 1.
+
+478 
+
+479 
+
+> Moreover, Test Phase 1 in Experiment 2 also served as a replication of the key results of Test
+
+480 
+
+> Phase  1 in  Experiment  1.  This  replication  was  successful:  Adaptation  was  significantly
+
+481 
+
+> suppressed in the TOWARD versus AWAY conditions, by an average of 7.1˚ (95% CI [2.5, 11.8],
+
+482 
+
+> t(31)=3.1, p=0.004, d z=0.55,  Fig. 3A,B ). Adaptation learning curves significantly diverged as
+
+483 
+
+> early as cycle 5 and remained significantly different throughout adaptation (largest cluster:
+
+484 
+
+> tsum =59.5, p=0.0003,  Fig. 3A  left ). As in Experiment 1, adaptation TOWARD in Test Phase 1 was
+
+485 
+
+> not significantly different from zero (mean: 2.3˚, 95% CI [-1.1, 5.7], t(31)=1.4, p=0.18).
+
+486 
+
+487 
+
+> The key question in Experiment 2 was if adaptation was significantly different across directions
+
+488 
+
+> (TOWARD vs AWAY) in Test Phase 2, which followed the new Reward Association “top-up”
+
+489 
+
+> block. Indeed, adaptation did significantly differ across conditions (TOWARD>AWAY, 3.9˚, 95%
+
+490 
+
+> CI [1.2, 6.7], t(31)=2.9, p=0.007, d z=0.51,  Fig. 3B ), though we note that the more conservative
+
+491 
+
+> exploratory cluster permutation tests across individual trial cycles failed to identify significant
+
+492 
+
+> epochs after correcting for multiple comparisons ( Fig. 3A  right ; see Discussion). These findings
+
+493 
+
+> show that recent reinforcement history drives the observed repulsion effect of punished
+
+494 
+
+> movements.
+
+495 
+
+496 
+
+> [Insert Figure 3 Here]
+
+497 
+
+498 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Adaptation is suppressed toward relatively low-value goals but not enhanced toward high-
+
+499 
+
+> value goals
+
+500 
+
+> Experiments 1 and 2 focused on how reinforcement history can attenuate adaptation in the
+
+501 
+
+> vicinity of previously punished reach directions, both when adaptation moves the hand toward
+
+502 
+
+> those targets even when they are not the current goal (repelling effects), and when the punished
+
+503 
+
+> movement direction is itself the current goal (suppression effects). Mirroring these effects, we
+
+504 
+
+> reasoned that  rewarding  particular reach directions could locally enhance adaptation. Given that
+
+505 
+
+> punishment of a particular reach direction was found to attenuate adaptation (Exp. 1 Test
+
+506 
+
+> Phase 2), in Experiment 3 we made the lower-valued target neutral (+0) so that no actions were
+
+507 
+
+> punished throughout the experiment.
+
+508 
+
+509 
+
+> Participants learned a modified reward association such that the rewarded target always
+
+510 
+
+> provided +10 points and the neutral target always provided +0 points ( Fig. 1C ). After learning
+
+511 
+
+> the  association,  participants  were  instructed  to  always  reach  to  the  neutral  target  and
+
+512 
+
+> adaptation was induced using clamped perturbation feedback, with an alternating sign such
+
+513 
+
+> that adaptation could bring participants’ reaches either TOWARD or AWAY from the  rewarded
+
+514 
+
+> target. Mirroring Experiment 1, In Test Phase 1 the target configuration matched the final
+
+515 
+
+> configuration of the Reward Association block; in Test Phase 2, the configuration swapped such
+
+516 
+
+> that the neutral target was placed where the rewarded target was located previously.
+
+517 
+
+518 
+
+> In Test Phase 1, there was no significant difference between adaptation TOWARD versus AWAY
+
+519 
+
+> from the rewarded target (t(33)=-0.17, p=0.87,  Fig. 3D ), nor were any significant divergences in
+
+520 
+
+> the learning curve identified via cluster permutation tests ( Fig. 3C , left ). Interestingly, both
+
+521 
+
+> adaptation directions exhibited suppressed adaptation relative to the Test Phase 2 AWAY block
+
+522 
+
+> (TOWARD:  2.9˚  suppression,  95%  CI  [0.4,  5.4],  t(33)=2.4,  p=0.02,  dz=0.40;  AWAY:  3.2˚
+
+523 
+
+> suppression,  95% CI [0.3, 6.1], t(32)=2.2, p=0.03, d z=0.38). These results suggest that, despite
+
+524 
+
+> the neutral value of the goal target, its relative devaluation compared to the rewarded target
+
+525 
+
+> may have locally suppressed adaptation in both directions, mirroring the Test Phase 2 results of
+
+526 
+
+> Experiment 1.
+
+527 
+
+528 
+
+> Moreover, adaptation was significantly different between clamp directions in Test Phase 2
+
+529 
+
+> when the neutral target (the goal target) was placed where the rewarded target had been
+
+530 
+
+> located previously. That is, adaptation was now significantly attenuated  toward the rewarded
+
+531 
+
+> target color (i.e., where the neutral target was previously located at the end of the Reward
+
+532 
+
+> Association block and through Test Phase 1) (6.1˚ reduction, 95% CI [2.5, 9.7], t(34)=3.5,
+
+533 
+
+> p=0.002, d z=0.58,  Fig. 3D ), with multiple epochs showing significant divergences in the learning
+
+534 
+
+> curve (largest cluster: t sum =31.7, p=0.002,  Fig. 3C  right ). A two-way ANOVA on adaptation over
+
+535 
+
+> clamp direction (TOWARD vs AWAY) and phase (1 vs 2) produced a significant interaction term
+
+536 
+
+> (F(1, 137)=85.4, p=0.02), indicating that the effect of clamp direction differed across Test
+
+537 
+
+> Phases.
+
+538 
+
+539 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint These results support a surprising and informative extension of Experiments 1 and 2: Motor
+
+540 
+
+> adaptation is suppressed when it brings the effector toward a  relatively  low-valued goal, not
+
+541 
+
+> merely a negatively-valued goal. In other words, modulation of adaptation in the presence of
+
+542 
+
+> competing movement goals appears to be sensitive to  relative  goal values rather than absolute
+
+543 
+
+> goal values.
+
+544 
+
+545 
+
+546 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint Discussion
+
+547 
+
+> Recent studies of human motor learning point to an interaction between value-based learning
+
+548 
+
+> and error-based implicit motor adaptation (Galea et al., 2015; Kim et al., 2019; Forano and
+
+549 
+
+> Franklin, 2024). However, the interpretation of these results has been complicated by various
+
+550 
+
+> alternative  explanations,  including  the  use  of  explicit  strategies  and  task  error  signals
+
+551 
+
+> associated with non-adaptation-based forms of motor learning (Butcher and Taylor, 2018; Al-
+
+552 
+
+> Fawakhiri et al., 2023; Chen et al., 2025). Here, we take a novel approach by first training
+
+553 
+
+> participants on  the relative values of two competing action goals in the environment, and then
+
+554 
+
+> asking if this learned association shapes implicit adaptation in the vicinity of these goals.
+
+555 
+
+> Across three experiments (N = 85), we demonstrate that implicit adaptation is suppressed
+
+556 
+
+> around low-value movement goals ( Figs. 2-3 ). These findings point to a close interaction
+
+557 
+
+> between value-based learning and implicit motor adaptation.
+
+558 
+
+559 
+
+> More  specifically,  in  Test  Phase  1 of  Experiment  1,  we  showed  that  participants  adapt
+
+560 
+
+> significantly less when adaptation brings the effector toward a low-value, punished movement
+
+561 
+
+> goal, in a manner that cannot be explained by baseline motor biases ( Fig. 2 ). In Test Phase 2,
+
+562 
+
+> where  the  previously  punished  movement  direction  now  acted  as  the  movement  goal,
+
+563 
+
+> adaptation was suppressed in both directions. We extended these findings in Experiment 2 by
+
+564 
+
+> showing that “reversing” the learned reward association to particular reach directions shifts the
+
+565 
+
+> movement directions where adaptation was suppressed ( Fig. 3 ). That is, after learning a
+
+566 
+
+> “swapped”  reward  association  (in  terms  of  reach  direction,  but  not  goal  identity/color),
+
+567 
+
+> participants exhibited suppressed adaptation toward the  new  location of the punished target.
+
+568 
+
+> While Experiments 1 and 2 showed that adaptation was suppressed around previously  punished
+
+569 
+
+> reach goals, Experiment 3 showed suppression of adaptation toward a neutral reach location
+
+570 
+
+> that was merely  relatively  devalued compared to an alternative reach goal. This suggests that
+
+571 
+
+> the suppression of adaptation to low-valued action goals is not determined by the absolute
+
+572 
+
+> reward value of the goal but rather by its relative value compared to alternative, competing
+
+573 
+
+> goals.
+
+574 
+
+575 
+
+> To our surprise, Experiment 3 failed to show significant reinforcement-attraction effects toward
+
+576 
+
+> previously rewarded reach directions. Numerically, adaptation in Test Phase 1 of Experiment 3
+
+577 
+
+> and Test Phase 2 of Experiment 1 pointed to a weak attraction effect but these effects were not
+
+578 
+
+> significant. Speculatively, this null finding may mirror asymmetric “loss aversion” effects seen in
+
+579 
+
+> many economic decision-making tasks (Sokol-Hessner and Rutledge, 2019); that is, the relative
+
+580 
+
+> saliency of the low-value target in our design may have been much higher than the high-value
+
+581 
+
+> target, making a potential high-value goal attractor effect difficult to detect. Prior work has
+
+582 
+
+> shown that loss aversion modulates the degree to which action values and incentives influence
+
+583 
+
+> motor behavior, an effect that is sensitive to contextual framing (Chib et al., 2012, 2014; Dunne
+
+584 
+
+> et al., 2019). Further, as will be discussed below, our effects suggest that information about the
+
+585 
+
+> value of a particular reach direction is shared across other similar reach directions. This “value-
+
+586 
+
+> generalization” may occur over a wider range of reach directions when an action is punished
+
+587 
+
+> than when that action is rewarded, mirroring results regarding the generalization of appetitive
+
+588 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint and aversive stimuli outside the motor domain (Schechtman et al., 2010; Reitich-Stolero et al.,
+
+589 
+
+> 2025). The current set of experiments did not vary the separation between the targets and thus
+
+590 
+
+> cannot assess differences in generalization curves around the rewarded versus punished
+
+591 
+
+> targets, although future experiments could certainly address this. Finally, it is of course possible
+
+592 
+
+> that a reinforcement-attraction effect may simply not exist; adaptation may be suppressed
+
+593 
+
+> toward previously punished actions but there may be no complementary mechanism to shape
+
+594 
+
+> adaptation toward rewarded actions.
+
+595 
+
+596 
+
+> Another  limitation  in  our  current  study  is  that  while  Experiment  2 revealed  significant
+
+597 
+
+> differences between overall adaptation toward and away from the punished target, exploratory
+
+598 
+
+> cluster permutation tests across learning cycles failed to identify significant differences after
+
+599 
+
+> correction ( Fig. 3A ); this change in effect reliability may be due to multiple factors: First, the
+
+600 
+
+> original learned association may have persisted, and there may not have been sufficient time to
+
+601 
+
+> fully unlearn the original association and instantiate a new association, leading to interference
+
+602 
+
+> that weakened the effects in Test Phase 2. This could be tested by lengthening the second
+
+603 
+
+> Reward Association block, or perhaps by inducing stronger value updates (i.e., by using larger
+
+604 
+
+> rewards/punishments). Second, the cluster permutation test approach (Maris and Oostenveld,
+
+605 
+
+> 2007) sets a quite high threshold for significance versus our  a priori  approach of simply testing
+
+606 
+
+> for significant differences in late adaptation. Finally, Experiment 1 was conducted in-person
+
+607 
+
+> while Experiment 2 was crowd-sourced, which could complicate direct comparison of the two
+
+608 
+
+> studies in multiple ways. Overall, we caution against overinterpreting the subtle differences in
+
+609 
+
+> results between Experiments 1 and 2.
+
+610 
+
+611 
+
+> Our findings point to an interaction between value-based reinforcement learning and error-
+
+612 
+
+> based implicit motor adaptation. How might this interaction play out computationally? We
+
+613 
+
+> propose that the relative values of competing reach goals creates a kind of adaptation capacity
+
+614 
+
+> gradient ( Fig. 4A ), which can lead to repulsion ( Fig. 4B ) or local suppression effects ( Fig. 4C )
+
+615 
+
+> depending on the current movement demands. This framework echoes recent work that has
+
+616 
+
+> highlighted the utility of “policy-gradient” models to explain motor behavior in a variety of
+
+617 
+
+> adaptation and de-novo motor skill learning contexts (Haith, 2025; Greenstreet et al., 2026). In
+
+618 
+
+> these models, the action space is parameterized across the relevant task dimensions; in our
+
+619 
+
+> case, this would involve parameterizing movements according to the associated reach angle
+
+620 
+
+> (though  more  complex  tasks  may  require  higher  dimensional  representations).  This
+
+621 
+
+> parameterized, continuous action space provides the basis for learning a value landscape
+
+622 
+
+> across movement goals ( Fig. 4A ). Importantly, learned values for any particular action should
+
+623 
+
+> “spread” to adjacent actions in this space, in line with observed generalization effects of motor
+
+624 
+
+> adaptation (Greenstreet et al., 2026).
+
+625 
+
+626 
+
+> [Insert Figure 4 Here]
+
+627 
+
+628 
+
+> Mechanistically, the interaction we observed could be manifested through diminished error
+
+629 
+
+> sensitivity, lower adaptation learning rates for low-valued reach directions, or a reduced total
+
+630 
+
+> asymptote of adaptation. Such a model could potentially explain the lack of reinforcement-
+
+631 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint attraction effects in Experiment 3 by producing either greater overall learning for punished
+
+632 
+
+> actions vs reinforced actions (e.g., via a loss-aversion parameter), greater generalization of
+
+633 
+
+> punishment to adjacent actions compared to rewarded ones (e.g., via different generalization
+
+634 
+
+> widths for reward and punishment), or by imposing a maximal learning rate (e.g., precluding an
+
+635 
+
+> enhancement of adaptation for high-value actions beyond that ceiling). Future investigations
+
+636 
+
+> could set the specific parameters of this model by testing various assumptions. For example,
+
+637 
+
+> does adaptation generalize differently around the rewarded and punished targets? And does
+
+638 
+
+> punishment reduce error sensitivity, the adaptation learning rate, or both, around lower-valued
+
+639 
+
+> actions?
+
+640 
+
+641 
+
+> At the neural level, the influence of value-based learning on implicit adaptation could in theory
+
+642 
+
+> be related to communication between the basal ganglia and cerebellum (Bostan and Strick,
+
+643 
+
+> 2010). Recent neuroimaging work in humans has suggested that reinforcement learning circuits
+
+644 
+
+> in the basal ganglia and error-based learning circuits of the cerebellum reciprocally inhibit each
+
+645 
+
+> other, such that reinforcement feedback can inhibit learning from errors (Lee et al., 2025) and
+
+646 
+
+> prior work has highlighted the crucial role of the striatum as the interface between reward and
+
+647 
+
+> motor performance (Galaro et al., 2019). Here, we highlight that punishment may similarly
+
+648 
+
+> locally suppress adaptation to motor errors. This proposed interaction of the basal ganglia and
+
+649 
+
+> cerebellum may serve to shape motor learning in a manner that ultimately avoids potentially
+
+650 
+
+> maladaptive actions. Moreover, the cerebellum itself has been shown to encode reward and
+
+651 
+
+> punishment feedback among other reinforcement learning signals like prediction error (Wagner
+
+652 
+
+> et al., 2017; Heffley and Hull, 2019; Kostadinov et al., 2019; Trach et al., 2026); thus, intra-
+
+653 
+
+> cerebellar processes may also underlie interactions between the value domain and motor
+
+654 
+
+> learning.  Further  investigations,  perhaps  using  neuroimaging,  could  help  elucidate  the
+
+655 
+
+> underlying  neural  mechanisms  of  the  suppression  of  adaptation  we  observed  here.  In
+
+656 
+
+> conclusion, our study provides novel behavioral evidence that implicit motor adaptation is
+
+657 
+
+> sensitive to value-based information about action goals in the environment. These findings
+
+658 
+
+> highlight  a potential  “Instrumental-Motor  Transfer”  between  reinforcement  learning
+
+659 
+
+> computations and motor memories.
+
+660 
+
+661 
+
+662 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint References
+
+663 
+
+> Al-Fawakhiri N, Ma A, Taylor JA, Kim OA (2023) Exploring the role of task success in
+
+664 
+
+> implicit motor adaptation. Journal of Neurophysiology 130:332–344.
+
+665 
+
+> Avraham  G,  Ivry  RB  (2025)  Interference  Underlies  Attenuation  upon  Relearning  in
+
+666 
+
+> Sensorimotor  Adaptation.  eNeuro  12  Available  at:
+
+667 
+
+> https://www.eneuro.org/content/12/6/ENEURO.0132-25.2025 [Accessed June 9, 2026].
+
+668 
+
+> Avraham G, Morehead JR, Kim HE, Ivry RB (2021) Reexposure to a  sensorimotor
+
+669 
+
+> perturbation produces opposite effects on explicit and implicit learning processes. PLOS
+
+670 
+
+> Biology 19:e3001147.
+
+671 
+
+> Bostan AC, Strick PL (2010) The Cerebellum and Basal Ganglia are Interconnected.
+
+672 
+
+> Neuropsychol Rev 20:261–270.
+
+673 
+
+> Butcher PA, Taylor JA (2018) Decomposition of a sensory prediction error signal for
+
+674 
+
+> visuomotor adaptation. Journal of Experimental Psychology: Human Perception and
+
+675 
+
+> Performance 44:176–194.
+
+676 
+
+> Chen Y, Abram S, Ivry RB, Tsay JS (2025) Indirect feedback hinders explicit sensorimotor
+
+677 
+
+> adaptation. Proc Biol Sci 292:20251407.
+
+678 
+
+> Chib VS, De Martino B, Shimojo S, O’Doherty JP (2012) Neural Mechanisms Underlying
+
+679 
+
+> Paradoxical Performance for Monetary Incentives Are Driven by Loss Aversion. Neuron
+
+680 
+
+> 74:582–594.
+
+681 
+
+> Chib  VS,  Shimojo  S,  O’Doherty  JP  (2014)  The  Effects  of  Incentive  Framing  on
+
+682 
+
+> Performance  Decrements  for  Large  Monetary  Outcomes:  Behavioral  and  Neural
+
+683 
+
+> Mechanisms. J Neurosci 34:14833–14844.
+
+684 
+
+> Diedrichsen J, White O, Newman D, Lally N (2010) Use-Dependent and Error-Based
+
+685 
+
+> Learning of Motor Behaviors. J Neurosci 30:5159–5166.
+
+686 
+
+> Dunne S, Chib VS, Berleant J, O’Doherty JP (2019) Reappraisal of incentives ameliorates
+
+687 
+
+> choking under pressure and is correlated with changes in the neural representations of
+
+688 
+
+> incentives. Soc Cogn Affect Neurosci 14:13–22.
+
+689 
+
+> Forano M, Franklin DW (2024) Reward actively engages both implicit and explicit
+
+690 
+
+> components in dual force field adaptation. Journal of Neurophysiology 132:1–22.
+
+691 
+
+> Galaro JK, Celnik P, Chib VS (2019) Motor Cortex Excitability Reflects the Subjective
+
+692 
+
+> Value of Reward  and  Mediates  Its  Effects on Incentive-Motivated  Performance. J
+
+693 
+
+> Neurosci 39:1236–1248.
+
+694 
+
+> Galea  JM,  Mallia  E,  Rothwell  J,  Diedrichsen  J (2015)  The  dissociable  effects  of
+
+695 
+
+> punishment and reward on motor learning. Nat Neurosci 18:597–602.
+
+696 
+
+> Greenstreet F, Geerts JP, Gallego JA, Clopath C (2026) Why motor learning involves
+
+697 
+
+> multiple  systems:  an  algorithmic  perspective.  :2025.12.19.695526  Available  at:
+
+698 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint https://www.biorxiv.org/content/10.64898/2025.12.19.695526v3  [Accessed  March  7,
+
+699 
+
+> 2026].
+
+700 
+
+> Haith  AM  (2025)  Policy-Gradient  Reinforcement  Learning  as  a General  Theory  of
+
+701 
+
+> Practice-Based  Motor  Skill  Learning.  :2025.10.17.682587  Available  at:
+
+702 
+
+> https://www.biorxiv.org/content/10.1101/2025.10.17.682587v1 [Accessed February 6,
+
+703 
+
+> 2026].
+
+704 
+
+> Heffley W, Hull C (2019) Classical conditioning drives learned reward prediction signals
+
+705 
+
+> in climbing fibers across the lateral cerebellum Calabrese RL, Raymond JL, Lerner T,
+
+706 
+
+> Llano I, Khodakhah K, eds. eLife 8:e46764.
+
+707 
+
+> Hillman H, Botthof T, Forrence AD, McDougle SD (2024) Dissociable Codes in Motor
+
+708 
+
+> Working Memory. Psychol Sci 35:150–161.
+
+709 
+
+> Hillman H, McClure TN, McDougle SD (2025) Linking motor working memory to explicit
+
+710 
+
+> and implicit motor learning. Journal of Neurophysiology 134:2036–2046.
+
+711 
+
+> Holland P, Codol O, Galea JM (2018) Contribution of explicit processes to reinforcement-
+
+712 
+
+> based motor learning. Journal of Neurophysiology 119:2241–2255.
+
+713 
+
+> Huang VS, Haith A, Mazzoni P, Krakauer JW (2011) Rethinking motor learning and
+
+714 
+
+> savings in adaptation paradigms: model-free memory for successful actions combines
+
+715 
+
+> with internal models. Neuron 70:787–801.
+
+716 
+
+> Khatib S, Chib VS, Mawase F (2023) Motivation upregulates the adaptive response in
+
+717 
+
+> sensorimotor learning. BioRxiv:2023–09.
+
+718 
+
+> Kim HE, Parvin DE, Ivry RB (2019) The influence of task outcome on implicit motor
+
+719 
+
+> learning Makin TR, Behrens TE, Makin TR, eds. eLife 8:e39882.
+
+720 
+
+> Kim  OA,  Forrence  AD,  McDougle  SD  (2022)  Motor  learning  without  movement.
+
+721 
+
+> Proceedings of the National Academy of Sciences 119:e2204379119.
+
+722 
+
+> Kostadinov D, Beau M, Blanco-Pozo M, Häusser M (2019) Predictive and reactive reward
+
+723 
+
+> signals  conveyed  by  climbing  fiber  inputs  to  cerebellar  Purkinje  cells.  Nature
+
+724 
+
+> Neuroscience 22:950–962.
+
+725 
+
+> Krakauer JW, Hadjiosif AM, Xu J, Wong AL, Haith AM (2019) Motor Learning. Compr
+
+726 
+
+> Physiol 9:613–663.
+
+727 
+
+> Lee  JL,  Casamento-Moran  A,  Bastian  AJ,  Cullen  KE,  Chib  VS  (2025)  Striatal  and
+
+728 
+
+> cerebellar interactions during reward-based motor performance. Proceedings of the
+
+729 
+
+> National Academy of Sciences 122:e2503373122.
+
+730 
+
+> Maris E, Oostenveld R (2007) Nonparametric statistical testing of EEG- and MEG-data.
+
+731 
+
+> Journal of Neuroscience Methods 164:177–190.
+
+732 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint McDougle SD, Boggess MJ, Crossley MJ, Parvin D, Ivry RB, Taylor JA (2016) Credit
+
+733 
+
+> assignment in movement-dependent reinforcement learning. Proc Natl Acad Sci USA
+
+734 
+
+> 113:6797–6802.
+
+735 
+
+> McDougle SD, Bond KM, Taylor JA (2017) Implications of plan-based generalization in
+
+736 
+
+> sensorimotor adaptation. Journal of Neurophysiology 118:383–393.
+
+737 
+
+> McDougle SD, Butcher PA, Parvin DE, Mushtaq F, Niv Y, Ivry RB, Taylor JA (2019) Neural
+
+738 
+
+> Signatures of Prediction Errors in a Decision-Making Task Are Modulated by Action
+
+739 
+
+> Execution Failures. Current Biology 29:1606-1613.e5.
+
+740 
+
+> McDougle SD, Hillman H (2026) Motor working memory. Trends in Cognitive Sciences
+
+741 
+
+> 30:216–225.
+
+742 
+
+> McDougle  SD,  Taylor  JA  (2019)  Dissociable  cognitive  strategies  for  sensorimotor
+
+743 
+
+> learning.  Nature  Communications  10  Available  at:
+
+744 
+
+> http://www.nature.com/articles/s41467-018-07941-0 [Accessed February 14, 2019].
+
+745 
+
+> Morehead  JR,  Taylor  JA,  Parvin  DE,  Ivry  RB  (2017)  Characteristics  of  Implicit
+
+746 
+
+> Sensorimotor  Adaptation  Revealed  by  Task-irrelevant  Clamped  Feedback.  J Cogn
+
+747 
+
+> Neurosci 29:1061–1074.
+
+748 
+
+> Pezzulo G, Cisek P (2016) Navigating the Affordance Landscape: Feedback Control as a
+
+749 
+
+> Process Model of Behavior and Cognition. Trends in Cognitive Sciences 20:414–424.
+
+750 
+
+> Reitich-Stolero T, Halperin D, Morris G, Goldstein L, Bergman L, Fahoum F, Strauss I, Paz
+
+751 
+
+> R (2025) Aversive generalization in human amygdala neurons. Current Biology 35:1137-
+
+752 
+
+> 1144.e3.
+
+753 
+
+> Schechtman E, Laufer O, Paz R (2010) Negative Valence Widens Generalization of
+
+754 
+
+> Learning. J Neurosci 30:10460–10464.
+
+755 
+
+> Schween R, McDougle SD, Hegele M, Taylor JA (2020) Assessing explicit strategies in
+
+756 
+
+> force field adaptation. Journal of Neurophysiology 123:1552–1565.
+
+757 
+
+> Shadmehr R, Smith MA, Krakauer JW (2010) Error correction, sensory prediction, and
+
+758 
+
+> adaptation in motor control. Annu Rev Neurosci 33:89–108.
+
+759 
+
+> Sidarta A, van Vugt FT, Ostry DJ (2018) Somatosensory working memory in human
+
+760 
+
+> reinforcement-based motor learning. Journal of Neurophysiology 120:3275–3286.
+
+761 
+
+> Sokol-Hessner P, Rutledge RB (2019) The Psychological and Neural Basis of Loss
+
+762 
+
+> Aversion. Curr Dir Psychol Sci 28:20–27.
+
+763 
+
+> Sutton RS, Barto AG (1998) Reinforcement learning: An introduction. Cambridge, MA:
+
+764 
+
+> MIT Press.
+
+765 
+
+> Taylor JA, Ivry RB (2013) Implicit and Explicit Processes in Motor Learning. In: Action
+
+766 
+
+> Science (Prinz W, Beisert M, Herwig A, eds), pp 63–88. The MIT Press. Available at:
+
+767 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint https://direct.mit.edu/books/book/4448/chapter/189905/Implicit-and-Explicit-
+
+768 
+
+> Processes-in-Motor-Learning [Accessed December 18, 2024].
+
+769 
+
+> Thorndike EL (1911) Animal Intelligence: Experimental Studies, 1st ed. Somerset: Taylor
+
+770 
+
+> and Francis.
+
+771 
+
+> Tipper SP, Howard LA, Jackson SR (1997) Selective Reaching to Grasp: Evidence for
+
+772 
+
+> Distractor Interference Effects. Visual Cognition 4:1–38.
+
+773 
+
+> Trach JE, Ou Y, McDougle SD (2026) The human cerebellum encodes temporally
+
+774 
+
+> sensitive  reinforcement  learning  signals.  J Neurosci  Available  at:
+
+775 
+
+> https://www.jneurosci.org/content/early/2026/05/26/JNEUROSCI.2313-25.2026
+
+776 
+
+> [Accessed June 9, 2026].
+
+777 
+
+> Trommershäuser J, Maloney LT, Landy MS (2008) Decision making, movement planning
+
+778 
+
+> and statistical decision theory. Trends Cogn Sci (Regul Ed) 12:291–297.
+
+779 
+
+> Tsay JS, Kim HE, McDougle SD, Taylor JA, Haith A, Avraham G, Krakauer JW, Collins AG,
+
+780 
+
+> Ivry RB (2024) Fundamental processes in sensorimotor learning: Reasoning, refinement,
+
+781 
+
+> and retrieval. eLife 13:e91839.
+
+782 
+
+> Wagner MJ, Kim TH, Savall J, Schnitzer MJ, Luo L (2017) Cerebellar granule cells encode
+
+783 
+
+> the expectation of reward. Nature 544:96–100.
+
+784 
+
+785 
+
+786 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+787 Figure 1.  Task Procedure.  A) In Experiment 1, participants completed a 96-trial baseline followed by one of two 788 
+
+> Control Phases, each consisting of one TOWARD and one AWAY block (48 trials of adaptation to a small 5.5 ˚ error
+
+789 
+
+> clamp perturbation, followed by 48 trials of no-feedback washout) ( not shown:  Control Phase 2 in Exp. 1 was
+
+790 
+
+> completed after Test Phase 2). In all experiments, participants completed a 48-trial Reward Association Phase to
+
+791 
+
+> learn the values of the two targets before then completing two Test Phases which involved adaptation at one of the
+
+792 
+
+> two targets (Exp. 1-2: the higher-valued target; Exp. 3: the lower-valued target). Each Test Phase consisted of one
+
+793 
+
+> TOWARD and one AWAY block (48 clamp trials followed by 48 washout trials), implemented by alternating across
+
+794 
+
+> blocks  the  sign of  the  error-clamp  perturbation (+/-5.5 ˚) . In Control Phase  2 and Test Phase  2, the  target
+
+795 
+
+> configuration swapped relative to the configuration shown in Phase 1 (specific Phase 1 versus Phase 2 target
+
+796 
+
+> locations were counterbalanced across participants).  B) In Experiment 2, the Reward-Association was “topped-up”
+
+797 
+
+> prior to Test Phase 2 by repeating the Reward Association block with target locations swapped. The target
+
+798 
+
+> configuration at the end of the “top-up” block was maintained into Test Phase 2.  C: In Experiment 3, the low-value
+
+799 
+
+> target became neutrally-valenced and always provided +0 points. Participants were instructed to move to the neutra
+
+800 
+
+> target for all trials during both Test Phases.
+
+801 
+
+802 
+
+> o
+> -soeestt”tel
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+803 Figure 2.  Punishment repels adaptation near low-valued goals.  A) Adaptation curves averaged over Control Phases 1 804 
+
+> and 2 for AWAY and TOWARD blocks.  B) Baseline-corrected adaptation averaged across Control Phases 1 & 2 and
+
+805 
+
+> Test Phases 1 & 2 for AWAY and TOWARD blocks.  C) Left : Adaptation curves for Test Phase 1. The black bar
+
+806 
+
+> indicates trial cycles with significant AWAY versus TOWARD effect clusters (p<0.05).  Right : Adaptation curves for
+
+807 
+
+> Test Phase 2.  D) Baseline-corrected adaptation for each direction in each Test Phase. Note that the effects in Test
+
+808 
+
+> Phase 1 suggest a repelling effect of the low-value target, and the blunted adaptation over both blocks of Test Phase
+
+809 
+
+> 2 suggest a general suppression of adaptation when the low-value reach direction (but not target identity) is the
+
+810 
+
+> current movement goal. Error bars and error shading reflect +/- standard error of the mean (SEM). * p < 0.05 ** p <
+
+811 
+
+> 0.01
+
+812 
+
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+813 Figure 3.  Adaptation is suppressed in the vicinity of recently-punished actions, and sensitive to relative, not absolute 814 
+
+> goal value.  A) Left : Adaptation curves for Test Phase 1 of Experiment 2. Black bars indicate significant effect clusters
+
+815 
+
+> (p<0.05).  Right : Adaptation curves for Test Phase 2 of Experiment 2.  B) Baseline corrected-adaptation for each Test
+
+816 
+
+> Phase in Experiment 2.  C) Left : Adaptation curves for Test Phase 1 of Experiment 3.  Right : Adaptation curves for Test
+
+817 
+
+> Phase 2 of Experiment 3.  D) Baseline-corrected adaptation for each direction and each Test Phase of Experiment 3
+
+818 
+
+> Note that the blunting of adaptation for both directions in Test Phase 1 reflects a suppression effect at the relatively
+
+819 
+
+> low-value goal. The effects in Test Phase 2 and the effects in both Test Phases of Experiment 2 (panel B) reflect the
+
+820 
+
+> repelling effect of the lower-value goal when reaching to the higher-value goal. Error bars and error shading reflect +/
+
+821 
+
+> standard error of the mean (SEM). * p < 0.05 ** p < 0.01
+
+822 
+
+823 
+
+824 
+
+825 
+
+> e,
+> s
+> tt.ye-
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+826 Figure 4.  Schematic of an hypothesized interaction between the learned values of actions and motor adaptation.  A827 
+
+> Recent reinforcement history creates a landscape of relatively low-value versus high-value actions. Adaptation
+
+828 
+
+> capacity around low-valued actions is thus significantly attenuated.  B: When adaptation is induced at a relatively
+
+829 
+
+> high-value goal, adaptation that moves the effector toward a relatively low-value goal is attenuated. The low-valued
+
+830 
+
+> action thus acts as a “repeller” buffering adaptation away from the low-valued goal, as seen in Test Phase 1 of Exps
+
+831 
+
+> 1 & 2 and Test Phase 2 of Exp. 3.  C: When a low-valued (e.g., previously punished) action is the current goal
+
+832 
+
+> adaptation capacity is suppressed for all adjacent directions, as was observed in Test Phase 2 of Experiment 1 and
+
+833 
+
+> Test Phase 1 of Experiment 3. TP = Test Phase.
+
+834 
+
+835 
+
+> A:nyd.l, d
+> .CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint
+
+836 
+
+.CC-BY-NC-ND 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 28, 2026. ;https://doi.org/10.64898/2026.06.22.733849 doi: bioRxiv preprint

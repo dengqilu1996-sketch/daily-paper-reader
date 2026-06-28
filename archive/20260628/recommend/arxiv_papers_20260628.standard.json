@@ -1,0 +1,445 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-28T23:22:26.125841+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 3,
+    "deep_cap": 14,
+    "deep_selected": 3,
+    "quick_candidates": 6,
+    "quick_skim_target": 19,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "biorxiv-10-64898-2026-06-25-734533-v1",
+      "source": "biorxiv",
+      "title": "Dissociating the behavioral and computational features of implicit motor learning and explicit perturbation detection",
+      "abstract": "The human sensorimotor system is remarkably effective at automatically parsing total movement error into its constituent parts, the error component due to a perturbation, or externally-generated error (EGE), versus the error component due to motor noise, or internally-generated error (IGE). Participants robustly, and implicitly, adapt to minuscule (2{degrees}) EGEs in the form of randomized visuomotor rotations while ignoring identically-sized errors caused by IGE. This error parsing, and its associated perceptual processes, directly contrasts previous work showing that humans must observe rotations that are >1.5x the standard deviations of their motor variability, or [&ge;]4{degrees}, before explicitly reporting their presence. While the combined results suggest a dissociation between perception for action---which allows for precise and automatic error parsing---and perception for conscious detection, this must be inferred across studies using different methodologies. Here, we combined a within-subjects study design and computational modeling to shed light on the principles underlying implicit adaptation to a perturbation and explicit perturbation detection. Neuro-typical adults participated in two experiments consisting of pseudo-randomized rotations during reaches to a single target, with one session requiring explicit reports after each reach of whether a perturbation was detected. Participants demonstrated a clear dissociation between implicit responses to a perturbation and explicit detection, with robust adaptation to 1{degrees} EGEs, but an inability to reliably report the presence of an EGE until it reached ~4{degrees}. For the adaptation task, a model that assumes the participant compares proprioceptive and visual cues to detect a perturbation and corrects for a proportion of this error best fit the data. For signal-detection, a Bayesian causal-inference model in which sensory cues are optimally integrated with a prior on their cause best fit those data. These results indicate that implicit adaptation is dissociated from explicit perturbation detection and the sensorimotor system applies distinct computational strategies to these behaviors.",
+      "authors": [
+        "Kim, H. E.",
+        "Darley, J. O.",
+        "Landy, M. S.",
+        "Chua, R.",
+        "Fox, D. J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-28T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.25.734533v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "studies implicit motor learning through error parsing in visuomotor rotation tasks, directly informing computational models of motor skill acquisition",
+      "llm_evidence_cn": "通过视觉运动旋转任务中的误差解析研究内隐运动学习，直接为运动技能获取的计算模型提供信息",
+      "llm_evidence": "通过视觉运动旋转任务中的误差解析研究内隐运动学习，直接为运动技能获取的计算模型提供信息",
+      "canonical_evidence": "通过视觉运动旋转任务中的误差解析研究内隐运动学习，直接为运动技能获取的计算模型提供信息",
+      "llm_tldr_en": "This study dissociates implicit motor adaptation from explicit detection in visuomotor rotation tasks, showing that the sensorimotor system can parse total error into externally- and internally-generated components and adapt implicitly to tiny perturbations, challenging previous thresholds for awareness.",
+      "llm_tldr_cn": "该研究在视觉运动旋转任务中分离了内隐运动适应与外显扰动检测。受试者能够自动将总运动误差解析为外部生成的扰动误差和内部运动噪音误差，并对小至2度的扰动产生隐式适应，而忽略同量级内部误差，这与以往必须超过4度才能被觉察的发现形成对比。这项工作揭示了感觉运动系统在解析误差和实现隐形学习方面的卓越能力，为运动技能获取的计算建模提供了重要行为学证据。",
+      "llm_tldr": "该研究在视觉运动旋转任务中分离了内隐运动适应与外显扰动检测。受试者能够自动将总运动误差解析为外部生成的扰动误差和内部运动噪音误差，并对小至2度的扰动产生隐式适应，而忽略同量级内部误差，这与以往必须超过4度才能被觉察的发现形成对比。这项工作揭示了感觉运动系统在解析误差和实现隐形学习方面的卓越能力，为运动技能获取的计算建模提供了重要行为学证据。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-22-733849-v1",
+      "source": "biorxiv",
+      "title": "Instrumental-Motor Transfer: The Relative Value of Competing Movement Goals Modulates Implicit Motor Learning",
+      "abstract": "Multiple learning signals can shape motor output, including reward and punishment (via value-based reinforcement learning) and sensorimotor error (via motor adaptation). However, it is unclear if action values, learned via reinforcement learning, interact with error-based motor learning. Here, we asked if the learned value of competing motor goals influences how the motor system learns from sensorimotor errors linked to those goals. We designed a paradigm that required participants (N = 85) to learn about the value associated with different movement targets prior to undergoing implicit visuomotor adaptation at or nearby those same targets. We observed two classes of related effects: repulsion and suppression. When adaptation brought the limb toward targets associated with low-value, learning was attenuated compared to when adaptation brought the limb away from targets associated with low-value, indicating a \"repelling\" effect of low-value actions. Moreover, adaptation was suppressed in all directions when low-value targets were themselves the goal of movement. These findings were asymmetric with respect to valence: we did not observe comparable attraction effects when adaptation brought the limb toward targets associated with high-value, nor did we see overall enhancement of adaptation when targets associated with high-value acted as movement goals. Additional analyses and experiments demonstrated that these effects did not reflect generic biases and were driven by relative rather than absolute goal values. Repulsion and suppression effects were tied to movement directions rather than the targets themselves. These results point to a novel interaction between reinforcement learning and motor memory - a kind of \"instrumental-motor transfer.\"",
+      "authors": [
+        "Al-Fawakhiri, N.",
+        "Chib, V. S.",
+        "McDougle, S."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-28T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.22.733849v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Reveals interaction between action value (reinforcement learning) and implicit visuomotor adaptation, a mechanism relevant to skill acquisition in sports",
+      "llm_evidence_cn": "揭示动作价值（强化学习）与内隐视觉运动适应的交互作用，与运动技能习得相关",
+      "llm_evidence": "揭示动作价值（强化学习）与内隐视觉运动适应的交互作用，与运动技能习得相关",
+      "canonical_evidence": "揭示动作价值（强化学习）与内隐视觉运动适应的交互作用，与运动技能习得相关",
+      "llm_tldr_en": "Shows that the relative value of competing movement goals modulates sensorimotor adaptation, with high-value targets causing repulsion and low-value ones causing suppression. This provides a computational bridge between value-based and error-based learning, informing how reward and punishment shape motor skill acquisition in sports.",
+      "llm_tldr_cn": "针对动作价值如何影响运动学习这一关键问题，本研究设计实验发现：与高价值动作目标相关的运动学习被抑制，而与低价值目标相关的学习则增强。这表明价值系统与适应系统存在交互，为理解体育训练中奖励与惩罚对技术改进的影响提供了新模型。",
+      "llm_tldr": "针对动作价值如何影响运动学习这一关键问题，本研究设计实验发现：与高价值动作目标相关的运动学习被抑制，而与低价值目标相关的学习则增强。这表明价值系统与适应系统存在交互，为理解体育训练中奖励与惩罚对技术改进的影响提供了新模型。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.24404v1",
+      "source": "arxiv",
+      "title": "Modality-Aware Out-of-Distribution Detection for Multi-Modal Action Recognition",
+      "abstract": "The incorporation of additional modalities into action recognition models increases their performance across a wide range of settings. However, how this additional information can contribute to making the models more robust remains underexplored, particularly for the case of multi-modal out-of-distribution (OOD) detection. While methods exist that regularize the multi-modal training process with OOD detection in mind, they still apply off-the-shelf OOD detectors designed for the uni-modal case during inference, discarding important information. Based on an interesting relationship we find between the multi-modal and uni-modal predictions, we propose to use this signal to build a post-hoc detector explicitly designed for the multi-modal scenario. We combine this new source of information with a feature-space score, which detects off-manifold samples in the multi-modal space, and normalize them by the multi-modal logits. In doing so, the proposed hybrid detector is compatible with existing training-time approaches and consistently improves performance. Experiments on a wide range of established datasets from the MultiOOD benchmark show that, on average, our approach outperforms the state of the art. Our results show the importance of explicitly considering the different modalities at inference time for multi-modal OOD detection.",
+      "authors": [
+        "Lars Doorenbos",
+        "Duc Manh Vu",
+        "Serdar Ozsoy",
+        "Juergen Gall"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T10:39:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.24404v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Multi-modal action recognition with OOD detection, directly applicable to sports video analysis.",
+      "llm_evidence_cn": "多模态动作识别与分布外检测，直接适用于体育视频分析。",
+      "llm_evidence": "多模态动作识别与分布外检测，直接适用于体育视频分析。",
+      "canonical_evidence": "多模态动作识别与分布外检测，直接适用于体育视频分析。",
+      "llm_tldr_en": "Proposes a post-hoc OOD detector for multi-modal action recognition that exploits discrepancies between uni-modal and multi-modal predictions, improving robustness without specialized training.",
+      "llm_tldr_cn": "针对多模态动作识别中分布外检测未充分利用额外模态信息的问题，通过分析单模态与多模态预测差异设计专用后验检测器，无需重新训练即可提升动作识别模型对陌生环境的鲁棒性，适用于体育视频中的动作分类与安全监测。",
+      "llm_tldr": "针对多模态动作识别中分布外检测未充分利用额外模态信息的问题，通过分析单模态与多模态预测差异设计专用后验检测器，无需重新训练即可提升动作识别模型对陌生环境的鲁棒性，适用于体育视频中的动作分类与安全监测。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Action recognition for sports activities",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.23604v2",
+      "source": "arxiv",
+      "title": "Polycepta: Object-Centric Appearance Estimation for Multi-Object Tracking",
+      "abstract": "The tracking-by-detection paradigm in multi-object tracking (MOT) typically relies on static appearance descriptors to complement motion estimation. However, these descriptors are frame-independent, limiting their robustness as visual cues. Since such descriptors are often obtained from computationally intensive pretrained backbones, real-time MOT systems frequently abandon appearance cues altogether and rely solely on motion prediction and geometric association. In this work, we introduce Polycepta, an object-centric appearance state estimation framework that reformulates appearance modeling as a recursive estimation problem rather than a frame-wise matching task. Polycepta constructs and continuously updates an independent appearance state for each tracked object, enabling future appearance representations to be estimated from accumulated observations. Polycepta is encouraged to learn the appearance-state construction of object-specific representations rather than memorize them through a proposed learning strategy, enabling appearance estimation for unseen classes. A key property of Polycepta is that the quality of appearance estimation improves as object states evolve during inference. While conventional appearance descriptors remain static or degrade over time, Polycepta progressively refines appearance estimates as additional observations are accumulated. Extensive experiments on KITTI, the Waymo Open Dataset, and MOT17 demonstrate consistent reductions in identity switches and improvements in tracking performance when integrated into the tracking-by-detection pipelines. Polycepta operates at 90.57 Hz and delivers state-of-the-art performance on the KITTI benchmark when integrated into the RobMOT framework, achieving a MOTA of 92.27\\%.",
+      "authors": [
+        "Mohamed Nagy",
+        "Naoufel Werghi",
+        "Jorge Dias",
+        "Majid Khonji"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-22T17:06:32+00:00",
+      "link": "https://arxiv.org/pdf/2606.23604v2",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "multi-object tracking framework with recursive appearance estimation, applicable to tracking players in sports videos",
+      "llm_evidence_cn": "多目标跟踪框架，具有递归外观估计，适用于体育视频中的运动员跟踪",
+      "llm_evidence": "多目标跟踪框架，具有递归外观估计，适用于体育视频中的运动员跟踪",
+      "canonical_evidence": "多目标跟踪框架，具有递归外观估计，适用于体育视频中的运动员跟踪",
+      "llm_tldr_en": "Proposes Polycepta, an object-centric appearance state estimation for MOT, treating appearance as a recursive estimation problem to improve robustness; this can enhance player tracking in sports analytics.",
+      "llm_tldr_cn": "针对多目标跟踪中静态外观描述子鲁棒性不足的问题，提出Polycepta框架，将外观建模转化为递归估计问题，通过连续更新对象外观状态提高跟踪稳定性。该方法可应用于体育视频中的运动员跟踪，提升运动分析中目标关联的准确性。",
+      "llm_tldr": "针对多目标跟踪中静态外观描述子鲁棒性不足的问题，提出Polycepta框架，将外观建模转化为递归估计问题，通过连续更新对象外观状态提高跟踪稳定性。该方法可应用于体育视频中的运动员跟踪，提升运动分析中目标关联的准确性。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26324v1",
+      "source": "arxiv",
+      "title": "A unified approach to outlier identification for mixed-type data",
+      "abstract": "We present an outlier identification method for mixed type data sets comprising continuous and ordinal variables. We define outliers based on using a multivariate Gaussian distribution as reference distribution for non-outliers, with a latent Gaussian assumed for ordinal variables. The proposed algorithm is based on the robust Minimum Covariance Determinant estimator for estimating the parameters of the multivariate Gaussian for the non-outliers. This is extended to account for the fact that the full Gaussian information underlying the ordinal variables is not observed. A breakdown theorem shows that replacing observations will noty stop extreme enough outliers from being identified. The effectiveness of our approach is demonstrated via simulations on synthetic data with various types of contamination, achieving high detection and low false positive rates. Practical relevance is illustrated through an application to Airbnb listing data containing both continuous and ordinal attributes.",
+      "authors": [
+        "Efthymios Costa",
+        "Christian Hennig"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-06-24T19:10:11+00:00",
+      "link": "https://arxiv.org/pdf/2606.26324v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:sport-tsa",
+        "query:sports-nlp"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "outlier identification for mixed data, directly applicable to anomaly detection in sports analytics",
+      "llm_evidence_cn": "针对混合数据的离群值识别方法，可直接用于体育数据异常检测",
+      "llm_evidence": "针对混合数据的离群值识别方法，可直接用于体育数据异常检测",
+      "canonical_evidence": "针对混合数据的离群值识别方法，可直接用于体育数据异常检测",
+      "llm_tldr_en": "Presents a robust outlier detection method for mixed continuous-ordinal data using Minimum Covariance Determinant with latent Gaussian model, validated on simulations.",
+      "llm_tldr_cn": "针对体育分析中常遇到的混合连续-有序变量数据，提出基于最小协方差行列式与潜高斯模型的统一离群值识别算法，理论证明其高崩溃点性质，模拟实验证实能有效捕获极端异常，为运动员监测、伤病风险筛查等提供可靠工具。",
+      "llm_tldr": "针对体育分析中常遇到的混合连续-有序变量数据，提出基于最小协方差行列式与潜高斯模型的统一离群值识别算法，理论证明其高崩溃点性质，模拟实验证实能有效捕获极端异常，为运动员监测、伤病风险筛查等提供可靠工具。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "anomaly detection in sports data",
+      "matched_requirement_id": "req-25",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.25769v1",
+      "source": "arxiv",
+      "title": "Deep Neural Networks with Ordinal Loss for Medical Applications",
+      "abstract": "In many prediction problems in medical applications, target labels exhibit an inherent ordinal structure, where class ordering reflects clinically meaningful severity levels. The cost associated with misclassification is often non-uniform and asymmetric, as errors between distant ordinal categories may have substantially more severe consequences than errors between adjacent ones, and overestimating disease severity may have different clinical implications than underestimating it. Traditional loss functions such as multi-class cross-entropy treat all misclassifications equally and fail to incorporate this ordering information. Recent advances in ordinal regression aim to address this limitation by integrating rank-based structures into deep learning models. In this work, we introduce the \\textbf{Ordinal Cross-Entropy (OCE)} framework, a general and architecture-independent approach for learning from ordinal data. The proposed method extends the standard cross-entropy formulation to account for misclassification severity through an ordinal cost matrix while preserving the probabilistic interpretation and optimization benefits of the conventional loss. We provide a theoretical analysis of the OCE gradient behavior and show that it yields smoother optimization dynamics and improved ordinal consistency. Experiments on benchmark datasets show that our method achieves lower prediction error costs and better calibration compared to existing state-of-the-art ordinal approaches, establishing OCE as a simple yet effective solution for ordinal regression in deep neural networks.",
+      "authors": [
+        "Tal Dvora",
+        "Rotem Haba",
+        "Gonen Singer"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-24T12:45:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.25769v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep learning with ordinal loss for medical prediction with ordered severity, applicable to injury risk",
+      "llm_evidence_cn": "带有序损失函数的深度学习用于有序严重程度预测，可用于运动损伤风险",
+      "llm_evidence": "带有序损失函数的深度学习用于有序严重程度预测，可用于运动损伤风险",
+      "canonical_evidence": "带有序损失函数的深度学习用于有序严重程度预测，可用于运动损伤风险",
+      "llm_tldr_en": "Proposes deep neural networks with ordinal loss functions that respect the inherent order and asymmetric misclassification costs in medical problems, which can be directly applied to sports injury risk prediction where severity levels are ordered.",
+      "llm_tldr_cn": "针对传统多分类交叉熵损失忽视类别有序性及不对称错误代价的问题，提出将有序回归损失函数集成到深度神经网络中。该方法适用于有序严重程度的医学预测任务，可移植至运动损伤风险分级预测，提升模型对严重差错判的敏感度，为运动员损伤预警提供了更合理的决策支持。",
+      "llm_tldr": "针对传统多分类交叉熵损失忽视类别有序性及不对称错误代价的问题，提出将有序回归损失函数集成到深度神经网络中。该方法适用于有序严重程度的医学预测任务，可移植至运动损伤风险分级预测，提升模型对严重差错判的敏感度，为运动员损伤预警提供了更合理的决策支持。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "injury risk prediction in sports using deep learning",
+      "matched_requirement_id": "req-24",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.26723v1",
+      "source": "arxiv",
+      "title": "State-Specific Respiratory Signatures for Affective and Stress Recognition: Interpretable Respiratory Markers, Autocorrelation Lags, and Compact CNN Models",
+      "abstract": "Respiratory activity is a direct and interpretable physiological channel for wearable stress and affective-state recognition, yet many studies emphasize classification accuracy without identifying which respiratory properties separate different states. This work reframes RESP-based recognition as a joint predictive and explanatory problem. Using the chest respiratory channel of the WESAD dataset, we analyze 60 s windows under leave-one-subject-out validation and combine two complementary branches: compact raw-signal one-dimensional convolutional neural networks (1D-CNNs) and physically grouped handcrafted respiratory signatures. The primary application task is binary stress versus non-stress detection, while baseline, stress, amusement, and meditation are additionally analyzed in a one-vs-rest setting to reveal state-specific respiratory markers. The feature space is organized into respiratory timing, breath-to-breath variability, waveform statistics, spectral/time-frequency descriptors, and autocorrelation/nonlinear predictability descriptors, with the raw 60 s signal treated as a sixth representation for the CNN branch. We introduce autocorrelation transition lags (Zpm/Zmp) as interpretable markers of respiratory correlation scale and separately evaluate exploratory FEG-Pro/Lyapunov-like descriptors. In the final CNN refit setting, the raw-signal model achieved the strongest stress-vs-rest performance, with accuracy 96.72 percent, macro-F1 95.30 percent, and MCC 90.61 percent. In contrast, compact feature models were stronger for baseline, with MCC 65.34 percent, amusement, with MCC 35.69 percent, and especially meditation, with MCC 88.65 percent. These results show that CNNs are most useful for the practical stress detector, whereas interpretable respiratory signatures provide stronger and more physiologically transparent state-specific markers for several non-stress conditions.",
+      "authors": [
+        "Andrei Velichko",
+        "Mehmet Tahir Huyut"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-06-25T08:01:36+00:00",
+      "link": "https://arxiv.org/pdf/2606.26723v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses wearable chest respiratory channel for stress and affective-state recognition",
+      "llm_evidence_cn": "使用可穿戴胸部呼吸通道进行压力和情感状态识别",
+      "llm_evidence": "使用可穿戴胸部呼吸通道进行压力和情感状态识别",
+      "canonical_evidence": "使用可穿戴胸部呼吸通道进行压力和情感状态识别",
+      "llm_tldr_en": "This paper introduces a method combining compact 1D-CNNs with handcrafted respiratory features for affective and stress recognition from wearable respiratory signals, achieving strong performance and interpretability on the WESAD dataset.",
+      "llm_tldr_cn": "针对现有穿戴式呼吸压力识别研究重视分类准确性而忽略可解释性问题，本工作重构成判预测与解释的双重任务。通过紧凑一维卷积神经网络与物理分组的手工呼吸特征相结合，在WESAD数据集的胸呼吸通道上实现了高性能的压力二分类，并识别出特定状态下的可解释呼吸标记和自相关滞后值。该工作为可穿戴设备上的可解释压力监测提供了有效方法，并有望迁移至运动员压力评估。",
+      "llm_tldr": "针对现有穿戴式呼吸压力识别研究重视分类准确性而忽略可解释性问题，本工作重构成判预测与解释的双重任务。通过紧凑一维卷积神经网络与物理分组的手工呼吸特征相结合，在WESAD数据集的胸呼吸通道上实现了高性能的压力二分类，并识别出特定状态下的可解释呼吸标记和自相关滞后值。该工作为可穿戴设备上的可解释压力监测提供了有效方法，并有望迁移至运动员压力评估。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-03-30-715335-v2",
+      "source": "biorxiv",
+      "title": "Predicting Drosophila Body Orientation from a Translational Trajectory using an Artificial Neural Network",
+      "abstract": "Body orientation is a key variable in the analysis of insect flight behavior, yet it remains difficult to measure across the full extent of a trajectory in most experimental settings. Although modern tracking systems reliably capture the position and velocity of the center of mass, resolving body yaw orientation typically requires dedicated hardware confined to a small, purpose-built volume, and is impractical for large-scale or long-duration studies. Here, we develop a data-driven estimator that predicts body yaw orientation directly from translational flight trajectory data. We trained a fully connected feedforward artificial neural network (ANN) on a dataset in which both flight trajectory and body orientation were recorded simultaneously in freely flying \\textit{Drosophila}, using a time-delay embedding of ground velocity, air velocity, and inferred thrust vectors as input features. Trained on 2,340 trajectories, the ANN predictor achieved a median absolute angular error of approximately 5$^{\\circ}$, with accurate heading recovery across the full $[-\\pi,\\pi)$ range. The estimator provides a practical tool for recovering body orientation information from existing trajectory datasets in which only center-of-mass motion was recorded, extending the behavioral and computational analysis of insect navigation to previously inaccessible data.",
+      "authors": [
+        "Mangat, N.",
+        "May, C. E.",
+        "van Breugel, F."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-06-26T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.03.30.715335v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Predicting body yaw orientation from translational trajectory data using ANN, akin to athlete orientation estimation from GPS tracks",
+      "llm_evidence_cn": "利用ANN从平动轨迹数据预测身体偏航方向，类似于从GPS轨迹估计运动员朝向",
+      "llm_evidence": "利用ANN从平动轨迹数据预测身体偏航方向，类似于从GPS轨迹估计运动员朝向",
+      "canonical_evidence": "利用ANN从平动轨迹数据预测身体偏航方向，类似于从GPS轨迹估计运动员朝向",
+      "llm_tldr_en": "Develops a data-driven ANN estimator that predicts body yaw orientation from translational trajectory, enabling orientation inference from positional data without dedicated hardware. Tested on fly flight trajectories, the method can be adapted to athlete monitoring systems using GPS or optical tracking.",
+      "llm_tldr_cn": "针对大规模跟踪研究中难以直接测量身体朝向的问题，本文提出一种前馈人工神经网络估计器，能够从平动轨迹数据直接预测偏航方向。该方法在果蝇飞行轨迹数据集上验证有效，表明仅利用位置与速度信息即可推断朝向，为大场地运动员监测提供了不依赖额外硬件的解决方案。",
+      "llm_tldr": "针对大规模跟踪研究中难以直接测量身体朝向的问题，本文提出一种前馈人工神经网络估计器，能够从平动轨迹数据直接预测偏航方向。该方法在果蝇飞行轨迹数据集上验证有效，表明仅利用位置与速度信息即可推断朝向，为大场地运动员监测提供了不依赖额外硬件的解决方案。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "GPS tracking systems for athlete position and movement monitoring",
+      "matched_requirement_id": "req-32",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-20-733501-v1",
+      "source": "biorxiv",
+      "title": "Value and spatial preferences guide habitual reaching and manual object selection in primates",
+      "abstract": "Habits are automatic actions shaped by prior experience, enabling efficient and fast responses in stable environments. While habitual gaze rapidly directs the eyes toward valuable objects, the mechanisms underlying habitual manual choice for reaching and grasping remain unclear. Here we show that macaque monkeys develop habitual manual choices toward previously rewarded objects through multi-day object-value learning, driven by learned value and spatial preferences. This reaching habit persisted without reward and showed shorter latencies than in value-deliberative tasks, consistent with automatic control. Regression analyses further revealed that manual choice was guided by learned object values, whereas visual salience had no effect, unlike gaze habits. Instead, intrinsic spatial preferences continued to bias reaching behavior even after long-term value learning. These findings demonstrate that habitual manual choice arises from the integration of spatial preferences and long-term value memory, defining a distinct mechanism of automatic behavior beyond habitual gaze.",
+      "authors": [
+        "Kim, Y.-H.",
+        "Park, J.",
+        "Kim, Y. G.",
+        "Lee, Y.",
+        "Kim, H. F."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-06-25T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.20.733501v1.full.pdf",
+      "tags": [
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "investigates habit formation in primate reaching guided by value and spatial preferences, relevant to motor learning and habit in sports training",
+      "llm_evidence_cn": "研究由价值和空间偏好引导的灵长类动物伸手习惯形成，与运动学习和训练中的习惯相关",
+      "llm_evidence": "研究由价值和空间偏好引导的灵长类动物伸手习惯形成，与运动学习和训练中的习惯相关",
+      "canonical_evidence": "研究由价值和空间偏好引导的灵长类动物伸手习惯形成，与运动学习和训练中的习惯相关",
+      "llm_tldr_en": "This study shows that macaque monkeys develop habitual reaching choices based on learned object value and spatial preferences, with shorter latencies and persistence without reward, demonstrating that habit formation in manual actions is driven by value and spatial learning.",
+      "llm_tldr_cn": "该研究通过多日物体价值学习任务，发现猕猴对手动选择形成基于先前奖励的习惯，表现为在没有奖励时持续选择和更短的反应潜伏期。回归分析揭示手动选择由学习到的物体价值引导，而视觉显著性无影响。这验证了灵长类动物习惯性伸手的自动控制，为理解体育技能中习惯的形成与价值驱动提供了行为学证据。",
+      "llm_tldr": "该研究通过多日物体价值学习任务，发现猕猴对手动选择形成基于先前奖励的习惯，表现为在没有奖励时持续选择和更短的反应潜伏期。回归分析揭示手动选择由学习到的物体价值引导，而视觉显著性无影响。这验证了灵长类动物习惯性伸手的自动控制，为理解体育技能中习惯的形成与价值驱动提供了行为学证据。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

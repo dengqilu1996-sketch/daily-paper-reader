@@ -1,0 +1,1934 @@
+Title: Value and spatial preferences guide habitual reaching and manual object selection in primates
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.20.733501v1.full.pdf
+
+Number of Pages: 42
+
+Markdown Content:
+# Value and spatial preferences guide habitual reaching and manual 1
+
+# object selection in primates 2
+
+3
+
+4
+
+5
+
+Yun-Hyuk Kim 1+ , Jun Park 1+ , Yu Gyeong Kim 2,3+ , Youngjeon Lee 2,3* , and Hyoung F. Kim 1* 
+
+6
+
+7
+
+> 1
+
+School of Biological Sciences, Seoul National University, Seoul 08826, Republic of Korea 8
+
+> 2
+
+National Primate Research Center, Korea Research Institute of Bioscience and Biotechnology 9
+
+(KRIBB), Cheongju, Republic of Korea 10 
+
+> 3
+
+Department of Functional Genomics, KRIBB School of Bioscience, Korea University of 11 
+
+Science and Technology (UST), Daejeon, Republic of Korea 12 
+
+13 
+
+> *
+
+Corresponding authors : Youngjeon Lee (neurosci@kribb.re.kr) and Hyoung F. Kim 14 
+
+(hfkim@snu.ac.kr) 15  
+
+> +
+
+These authors are equally contributed. 16 
+
+17 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Abstract 18 
+
+19 
+
+Habits are automatic actions shaped by prior experience, enabling efficient and fast responses 20 
+
+in stable environments. While habitual gaze rapidly directs the eyes toward valuable objects, 21 
+
+the mechanisms underlying habitual manual choice for reaching and grasping remain unclear. 22 
+
+Here we show that macaque monkeys develop habitual manual choices toward previously 23 
+
+rewarded objects through multi-day object–value learning, driven by learned value and spatial 24 
+
+preferences. This reaching habit persisted without reward and showed shorter latencies than in 25 
+
+value-deliberative tasks, consistent with automatic control. Regression analyses further 26 
+
+revealed that manual choice was guided by learned object values, whereas visual salience had 27 
+
+no effect, unlike gaze habits. Instead, intrinsic spatial preferences continued to bias reaching 28 
+
+behavior even after long-term value learning. These findings demonstrate that habitual manual 29 
+
+choice arises from the integration of spatial preferences and long-term value memory, defining 30 
+
+a distinct mechanism of automatic behavior beyond habitual gaze. 31 
+
+32 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Introduction 33 
+
+34 
+
+Through repeated experience, actions become automatic, forming habits that enable fast and 35 
+
+efficient behavior in stable environments 1–7 . For example, when a thirsty individual repeatedly 36 
+
+reaches for a nearby glass of water, the action gradually becomes automatic—executed rapidly 37 
+
+and without deliberation. This automatic choice allows faster and more efficient selection of 38 
+
+valuable objects than competitors in stable contexts. 39 
+
+40 
+
+Previous studies have mainly focused on habits formed through extensive repetition, where 41 
+
+repeated movements render an action automatic 8–12 . Yet repetition alone may not fully explain 42 
+
+why the thirsty individual so readily reaches for the glass. In this example, the motivational 43 
+
+value of water – not mere repetition of the reaching movement – drives the action. This 44 
+
+distinction highlights an alternative pathway for habit formation: value associations may 45 
+
+trigger automatic behaviors independently of motor repetition 13–15 .46 
+
+47 
+
+Value-based habits have been documented in the primate oculomotor system 7,16–23 . Once visual 48 
+
+objects are associated with reward, macaques and humans show persistent gaze biases toward 49 
+
+high-valued objects, even when value is no longer relevant and feedback is withheld 7,16,19,21,24 .50 
+
+This behavior, which persists without reinforcement and occurs with shorter latencies than 51 
+
+goal-directed saccades, has been taken as a hallmark of automatic control in visual habit 19,23 .52 
+
+Functionally, such a system provides a fast, low-cost way to orient toward valuable objects 53 
+
+without deliberation, thereby enhancing efficiency and survival 3,7,25,26 . Experimentally, visual 54 
+
+habit is typically studied by training primates across multiple days on object–reward 55 
+
+associations and then testing them in reward-neutral sessions. Animals continue to direct gaze 56 
+
+toward previously high-valued objects, demonstrating stable, automatic biases 16,19,21,23 . These 57 
+
+findings have been central to identifying basal ganglia mechanisms underlying visual habits. 58 
+
+59 
+
+However, in natural conditions, valuable objects cannot be obtained by gaze alone; they must 60 
+
+be physically reached for and grasped. This raises a critical question: if visual habit can emerge 61 
+
+from value-based learning, might manual choice behavior also become habitual through similar 62 
+
+mechanisms? Despite this, little is known about whether the value-based mechanisms that drive 63 
+
+habitual gaze extend to manual choice. In everyday life, acquiring reward depends not on 64 
+
+looking but on reaching and grasping, making the hand the effector most directly tied to 65 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+obtaining value. Yet prior studies of hand habits emphasized motor repetition, leaving 66 
+
+unanswered whether long-term value learning alone can induce automatic hand actions 8–10 .67 
+
+68 
+
+At the circuit level, value-based visual habits are thought to arise from long-term value signals 69 
+
+encoded in the striatum and conveyed through the substantia nigra pars reticulata (SNr) to 70 
+
+control saccades. Anatomical evidence indicates that the same striatal value signals also project 71 
+
+through the globus pallidus internal segment (GPi) to hand motor pathways 19,27–29 , providing 72 
+
+a plausible route by which value memories could shape habitual manual choice. However, eye 73 
+
+and hand effectors differ in their functional demands, raising the possibility that value-based 74 
+
+habits may exhibit effector-specific characteristics 30 . Since both SNr and GPi receive striatal 75 
+
+value signals, we hypothesized that long-term learning would induce habitual manual choice, 76 
+
+with effector-specific divergence emerging at the output level. 77 
+
+78 
+
+To address this, we tested whether long-term object-value learning can induce habitual manual 79 
+
+choice behavior in primates and whether the underlying mechanisms differ from those driving 80 
+
+visual habits. We developed a multi-phase behavioral paradigm in which monkeys learned 81 
+
+visual object–reward associations through manual choices across multiple days and were 82 
+
+subsequently tested in a value-neutral manual choice task without reward or feedback. This 83 
+
+allowed us to assess whether previously learned value alone could drive persistent, automatic 84 
+
+hand movements, and whether such behavior reflected long-term value memory by retesting 85 
+
+after a one-week retention period. As a hallmark of habit is automaticity – fast, efficient 86 
+
+responses that bypass deliberative evaluation 3,4,19,21 – we further compared response latencies 87 
+
+in the habitual task with those in a value-deliberative reversal learning task. Finally, to identify 88 
+
+the factors shaping habitual manual choices, we performed regression analyses with object 89 
+
+value, spatial preference, object preference, and visual salience as predictors. 90 
+
+91 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Results 92 
+
+> 93
+
+Formation of long-term value memory for visual objects via manual choice 94 
+
+> 95
+
+To investigate whether habitual manual choice behavior developed through stable object-value 96 
+
+associations, we implemented a structured task schedule consisting of Pre-learning, Learning, 97 
+
+and Retention phases (Fig. 1A). During the Pre-learning phase, we established a behavioral 98 
+
+baseline reflecting the monkeys’ innate manual choice preferences using a habitual choice task 99 
+
+conducted prior to value learning. In the Learning phase, monkeys learned the reward values 100 
+
+associated with visual fractal objects, forming the basis of value-based habitual choice behavior. 101 
+
+On the first day of this phase (Day 0), monkeys performed an object-value learning task in 102 
+
+which particular visual objects were paired with specific reward outcomes (Fig. 1A). On 103 
+
+subsequent days (Day 1-9), the habitual choice task was conducted before the object-value 104 
+
+learning task to assess the development of manual choice behavior based on long-term value 105 
+
+memory, independent of any immediate reward feedback. This daily sequence was repeated for 106 
+
+nine consecutive days. One day after the final value learning session (Day 10), we tested 107 
+
+whether the monkeys showed habitual choice behavior. To examine the persistence of the 108 
+
+learned habitual behavior, monkeys underwent a one-week retention period without exposure 109 
+
+to the trained objects, after which they were again tested with the habitual choice task. 110 
+
+> 111
+
+In the object-value learning task (Fig. 1B), monkeys performed a two-choice discrimination 112 
+
+paradigm using fractal images associated with different reward values. Each learning set 113 
+
+consisted of four fractals: two high-valued and two low-valued (Fig. 1C). In each trial, a pair 114 
+
+of fractal objects was presented simultaneously at pseudorandomly assigned locations among 115 
+
+4 possible screen positions, and monkeys were required to select one by touching it. Choosing 116 
+
+a high-valued object resulted in a water reward, whereas selecting a low-valued object yielded 117 
+
+no reward. This consistent reward structure enabled the monkeys to acquire stable value 118 
+
+representations of individual visual objects. 119 
+
+> 120
+
+Monkeys rapidly acquired object-value associations, with the proportion of high-valued object 121 
+
+choices increasing sharply on the first day of learning and quickly reaching a plateau (Figs. 1D 122 
+
+and S1A). A three-way ANOVA with value, day, and bin as factors revealed a significant main 123 
+
+effect of value (F(1, 560) = 169,328.54, p < 0.001), as well as significant interactions of value 124 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+× day (F(9, 560) = 59.80, p = 3.43 × 10⁻⁷⁶), value × bin (F(3, 560) = 8.02, p = 3.06 × 10⁻⁵), and 125 
+
+value × day × bin (F(27, 560) = 5.97, p = 4.67 × 10⁻¹⁸). Together, these results indicate that 126 
+
+monkeys learned the object-value associations over time, as reflected in their progressively 127 
+
+stronger preference for high-valued objects across days and within sessions. 128 
+
+> 129
+
+Furthermore, we obtained evidence of choice behavior based on long-term value memory by 130 
+
+examining the monkeys’ first choices in the initial trial of each learning session, as this was the 131 
+
+first time they encountered the object each day. On the first day of learning, monkeys did not 132 
+
+exhibit a significant preference between high- and low-valued objects in the initial trial (Day 0 133 
+
+in Fig. 1E). However, from the second day onward, a significant value bias was observed, with 134 
+
+monkeys increasingly selecting high-valued objects for the first choice (Figs. 1E and S1B). A 135 
+
+post hoc Bonferroni pairwise comparison confirmed a significant increase in high-valued 136 
+
+object selection between Day 0 and 1 (p=2.694 × 10⁻ 3), while no significant difference was 137 
+
+found between Day 1 and 2 (p=0.683), suggesting that the value bias rapidly stabilized after 138 
+
+the second day. This pattern indicates that object-value associations were consolidated across 139 
+
+sessions and retained over time. These findings confirm that the monkeys acquired stable value 140 
+
+representations of fractal objects through the learning task, forming the basis for examining 141 
+
+whether these value memories subsequently guide habitual manual choice behavior under more 142 
+
+naturalistic condition. 143 
+
+> 144
+> 145
+
+Long-term value memory influences habitual manual choice behavior 146 
+
+> 147
+
+To examine habitual manual choice behavior guided by long-term value memory, we used a 148 
+
+habitual choice task in which the four previously learned fractals were presented at 149 
+
+pseudorandomly selected positions among 4 of 8 possible touchscreen locations (Fig. 2A and 150 
+
+Movie S1). Monkeys erased each object by touching it, with trial progress indicated by a central 151 
+
+gauge bar that filled incrementally with each object removal. Once all four objects were erased, 152 
+
+the monkey obtained a liquid reward by touching the fully filled gauge bar (Figs. 2A and C). 153 
+
+Importantly, no reward was provided during the object choices themselves, and neither object 154 
+
+identity nor the sequence of selections influenced value reinforcement, thereby eliminating 155 
+
+direct feedback for individual choices. Thus, the optimal strategy was to select all four objects 156 
+
+as quickly and automatically as possible. Because habitual behaviors persist in the absence of 157 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+reward feedback, this paradigm allowed us to assess automatic, habitual choice behavior driven 158 
+
+by long-term value memory. 159 
+
+> 160
+
+We first examined the first choice of each trial to assess whether monkeys exhibited a bias 161 
+
+toward high-valued objects, reasoning that if their choices were guided automatically by long-162 
+
+term value memory, they would tend to select previously learned high-valued objects before 163 
+
+low-valued ones (Fig. 2B). Examination of test phases using the habitual choice task showed 164 
+
+that the bias to select high-valued objects emerged following an initial 3-day learning period 165 
+
+(Figs. 2D and S2A-B, left panel – Day 1-3), consistent with previous reports that primates 166 
+
+require several days to acquire value-based habitual behavior 20 . Notably, after 3 days of 167 
+
+learning in the habitual choice task, monkeys exhibited a significantly higher selection of 168 
+
+previously learned high-valued objects on their initial choice compared to baseline object 169 
+
+selections prior to learning (Fig. 2D, left panel – Day 4-7) (one-way ANOVA, p < 0.001 for 170 
+
+Pre-learning vs. Day 4-7). This preference persisted throughout the Learning phase (Fig. 2D, 171 
+
+left panel – Day 8-10) (one-way ANOVA, p < 0.001 for Pre-learning vs. Day 8-10). These 172 
+
+findings indicate that monkeys formed habitual preferences for previously learned high-valued 173 
+
+objects, independent of immediate reward feedback. 174 
+
+> 175
+
+To evaluate the persistence of this habitual choice behavior, monkeys were re-tested after a 176 
+
+one-week retention period without additional learning and object exposure. The proportion of 177 
+
+first choice toward high-valued objects remained comparable to that observed during the 178 
+
+Learning phase, even one week after the last learning (Fig. 2D, right panel) (one-way ANOVA, 179 
+
+p = 3.40 × 10 -2 for Pre-learning vs. Day 4-10; p = 3.31 × 10 -2 for Pre-learning vs. 1-week 180 
+
+retention). This indicates that habitual choice bias, driven by long-term value memory, was 181 
+
+sustained over the one-week period. 182 
+
+> 183
+
+To rule out performance fluctuations or task familiarity as alternative explanations, we included 184 
+
+a control object set that had not been associated with rewards. This control set was tested on 185 
+
+the same days as the learning object sets (Day 1-10). Monkeys did not exhibit any significant 186 
+
+first-choice bias to specific objects across sessions, confirming that the observed habitual 187 
+
+choice behavior was specific to the learned value associations (Figs. 2E and S2C-D). 188 
+
+> 189
+
+We further assessed the degree of habitual prioritization of high-valued objects by quantifying 190 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+the number of steps needed to select and remove all high-valued objects. This number 191 
+
+significantly decreased following object-value learning compared to baseline (Figs. 2F and 192 
+
+S2E-F). This reduction emerged during the three-day learning period and stabilized in 193 
+
+subsequent phases, supporting the notion that value-based habitual behavior became gradually 194 
+
+established over time (Fig. 2F, left panel) (one-way ANOVA, p = 3.55 × 10 -3 for Pre-learning 195 
+
+vs. Day 1-3; p < 0.001 for Pre-learning vs. Day 4-7; p < 0.001 for Pre-learning vs. Day 8-10). 196 
+
+Importantly, the reduction persisted after the one-week retention period, providing further 197 
+
+evidence that the behavior was driven by long-term memory (Fig. 2F, right panel) (one-way 198 
+
+ANOVA, p < 0.001 for Pre-learning vs. Day 4-10; p = 1.15 × 10 -2 for Pre-learning vs. 1-week 199 
+
+retention). The absence of such change in the control set (Figs. 2G and S2G-H) confirms that 200 
+
+the observed effect was specifically driven by learned value associations, rather than by general 201 
+
+task familiarity or familiarity with the objects themselves. The manual choice behavior 202 
+
+observed here, shaped by prior experience and independent of ongoing reward, is consistent 203 
+
+with the definition of habitual behavior. 204 
+
+> 205
+> 206
+
+Response latency indicates automaticity of habitual manual choice behavior 207 
+
+> 208
+
+Automatic, habitual behavior is generally characterized by fast actions executed through simple 209 
+
+sensory-to-action circuits, in contrast to more deliberative behaviors that rely on cognitive 210 
+
+flexibility and involve more complex brain circuits 3,4,7,27,29 . Thus, it is important not only to 211 
+
+examine whether actions based on previously learned values persist in the absence of reward 212 
+
+feedback, but also to assess how quickly these learned actions are executed. 213 
+
+> 214
+
+To differentiate the speed of habitual responses from deliberative goal-directed actions, 215 
+
+monkeys were tested in a value-reversal version of the object-value learning task, which 216 
+
+required flexible, short-term value-based decision-making (Reversal value-based manual 217 
+
+choice task) (Fig. 3A). In each trial of the reversal task, the two fractal objects were presented 218 
+
+simultaneously at 2 of 4 possible positions, and the monkeys selected one by touching the 219 
+
+display. Choosing the high-valued object resulted in a liquid reward, whereas selecting the low-220 
+
+valued object yielded no reward. Within a single session, object-value associations were 221 
+
+reversed twice, requiring cognitive flexibility to dynamically update object-value association 222 
+
+(Fig. 3A). We introduced this reversal component to establish a behavioral context that 223 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+demands flexible value updating, providing a contrast to the automatic response observed in 224 
+
+the habitual choice task. 225 
+
+> 226
+
+Progression to the next reversal block required the monkeys to select the high-valued object in 227 
+
+24 consecutive trials. The number of trials required to reach this reversal criterion did not 228 
+
+significantly differ across blocks in either monkey (Figs. 3B and S3A), indicating successful 229 
+
+acquisition of flexibly changing object-value association. 230 
+
+> 231
+
+We defined response latency as the time from object presentation to object selection and 232 
+
+compared latencies across three behavioral tasks: the object-value learning task, the reversal 233 
+
+value-based manual choice task, and the habitual choice task (Figs. 1B, 2A, and 3A). Because 234 
+
+the object-value learning and reversal tasks required deliberative discrimination of associated 235 
+
+value, we hypothesized that monkeys would exhibit longer response latencies in these tasks 236 
+
+compared to the habitual task, which does not require explicit value evaluation 21,31 . Consistent 237 
+
+with this prediction, monkeys exhibited significantly shorter response latencies during the 238 
+
+habitual choice task (741.15 ± 3.52 ms) compared to both the object-value learning task (749.57 239 
+
+± 3.27 ms) and the reversal task (760.11 ± 4.84 ms), indicating a more automated behavioral 240 
+
+response (one-way ANOVA, F(2, 44,478) = 6075.57, p < 0.001) (Figs. 3C and S3B-C). 241 
+
+> 242
+
+To further evaluate response automaticity, we compared latencies for touching the central dot 243 
+
+across tasks (Fig. 3D). Since the central dot touch is an instructed, non-value–dependent action, 244 
+
+it serves as a motor baseline for each task, against which object-touch latencies can be 245 
+
+interpreted. As expected, in the object–value learning and reversal tasks, central dot latencies 246 
+
+were shorter than object-touch latencies (one-way ANOVA, p < 0.001 for Central dot vs. 247 
+
+Learning; p < 0.001 for Central dot vs. Reversal) (Fig. 3D). In contrast, in the habitual choice 248 
+
+task, object-touch latencies were even shorter than central dot touch latency (one-way ANOVA, 249 
+
+p < 0.001 for Central dot vs. Habitual choice) (Fig. 3D), indicating that object-directed actions 250 
+
+in the habitual choice task were executed with highly automatic timing. 251 
+
+> 252
+
+Finally, we examined whether value influenced response latency within each task. In both the 253 
+
+object-value learning and reversal tasks, response latencies were significantly faster for high-254 
+
+valued objects compared to low-valued objects (Learning: 819.00 ± 1.87 ms for high-valued 255 
+
+objects; 931.36 ± 13.33 ms for low-valued objects; paired t-test, t(281) = -11.40, p = 5.19 × 10 -
+
+> 256
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 25
+
+) (Reversal: 849.20 ± 3.28 ms for high-valued objects; 872.19 ± 6.31 ms for low-valued 257 
+
+objects; paired t-test, t(1237) = -13.72, p = 5.46 × 10 -40 ) (Figs. 3E-F). These value-dependent 258 
+
+differences in response latency suggest that choices in these tasks were guided by deliberative 259 
+
+evaluation of object value. In contrast, no significant latency difference was observed between 260 
+
+high- and low-valued object selections in the habitual choice task (582.04 ± 3.80 ms for high-261 
+
+valued objects; 587.67 ± 4.49 ms for low-valued objects; paired t-test, t(1910) = 1.67, p = 0.09,), 262 
+
+suggesting that such conscious value-based deliberation did not take place (Fig. 3G). This 263 
+
+absence of value-dependent latency modulation further supports the conclusion that behavior 264 
+
+in the habitual task was guided by automatic processes rather than deliberative value evaluation. 265 
+
+> 266
+> 267
+
+Value and spatial preference shape value-based habitual manual choice behavior 268 
+
+> 269
+
+What are the key factors that drive habitual manual choice movements? Do such actions depend 270 
+
+on the visual salience of the target, the motivational value of the object, or internal biases such 271 
+
+as spatial or object preference? While habitual visual behavior is often guided by visual salience 272 
+
+and object-based value associations 7, it remains unclear whether these same drivers apply to 273 
+
+hand-based habits. Given that gaze and hand systems serve distinct computational roles—gaze 274 
+
+being object-centered and visually guided, and hand movements being spatially constrained 275 
+
+and biomechanically shaped 30 — we tested whether the behavioral drivers of value-based 276 
+
+habitual manual choices differ from those of habitual gaze behavior. 277 
+
+> 278
+
+To identify the key contributors to manual choice behavior, we performed trial-level regression 279 
+
+analyses using visual salience, innate object preference, innate spatial preference, and value as 280 
+
+predictors (Fig. 4A). Visual salience was computed using a graph-based visual saliency (GBVS) 281 
+
+algorithm 32 , with each object assigned a ranked saliency score per trial. Innate spatial 282 
+
+preference was assessed through a pre-learning movement test, where objects were presented 283 
+
+in all possible position configurations (4 objects ⅹ 8 positions, 1680 configurations). The 284 
+
+selection order for each position was used to compute preference scores for the eight spatial 285 
+
+locations (Fig. 4B). Notably, spatial preferences differed between subjects: monkey B exhibited 286 
+
+a leftward bias, while monkey M showed a rightward bias (Fig. 4B), suggesting that spatial 287 
+
+preference is individually variable and innate. Similarly, object preference was calculated from 288 
+
+pre-learning tests based on the selection order of each object (higher object preference score 289 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+for objects selected earlier during pre-learning movement tests) (Fig. S4A). Value was coded 290 
+
+as a binary variable, with high-valued objects coded as 1 and low-valued objects as 0 (Fig. 4A). 291 
+
+Regression results revealed distinct patterns across test phases. Visual salience did not 292 
+
+significantly influence choice behavior in any phase (95% CI: -0.19, 0.10; -0.14, 0.25; -0.59, 293 
+
+0.19 for Pre-learning, Learning, and Retention, respectively) (Fig. 4C). This finding contrasts 294 
+
+with previous studies reporting a strong influence of visual salience on habitual gaze behavior, 295 
+
+suggesting distinct mechanisms underlying hand-based habits 7,33 .296 
+
+> 297
+
+Interestingly, innate spatial preference was the most consistent and robust predictor across all 298 
+
+phases, indicating that spatial biases exert a strong and persistent influence on habitual manual 299 
+
+choice movements (95% CI: 1.24, 1.53; 1.01, 1.49; 0.82, 2.19 for Pre-learning, Learning, and 300 
+
+Retention, respectively) (Fig. 4C). This effect was further supported by response latency 301 
+
+analyses, which revealed that positions with stronger spatial preference were associated with 302 
+
+shorter latency in both the Pre-learning and Learning phases (Fig. S4B). In contrast, innate 303 
+
+object preference significantly predicted behavior before learning (95% CI: 0.14, 0.51) but lost 304 
+
+predictive power after learning (95% CI: -0.19, 0.34; -0.80, 0.97 for Learning and Retention, 305 
+
+respectively) (repeated measures ANOVA, p < 0.001 for Pre-learning vs. Learning; p < 0.001 306 
+
+for Pre-learning vs. Retention) (Fig. 4C). This suggests that object value learning suppressed 307 
+
+object biases but not spatial bias. 308 
+
+> 309
+
+Value emerged as a significant predictor following learning (Fig. 4C). In the Pre-learning phase, 310 
+
+value did not significantly influence behavior (95% CI: -0.38, 0.16), but it became a strong 311 
+
+predictor after learning (95% CI: 0.15, 1.30) and retained its influence during the Retention 312 
+
+phase after the last learning session (95% CI: 0.25, 2.60) (repeated measures ANOVA, p < 313 
+
+0.001 for Pre-learning vs. Learning; p < 0.001 for Pre-learning vs. Retention) (Fig. 4C). 314 
+
+Although individual variability in coefficient magnitude was observed, both monkeys 315 
+
+displayed a significant increase in value coefficients after learning (Figs. S4C-D). Further 316 
+
+analysis of value coefficients across learning stages revealed a marked increase after the initial 317 
+
+3-day learning period, consistent with behavioral transitions observed earlier (repeated 318 
+
+measures ANOVA, p < 0.001 for Pre-learning vs. Day 4-7; p < 0.001 for Pre-learning vs. Day 319 
+
+8-10) (Figs. 4D and S4E-F). In the late learning period (Day 4-10), the value coefficient 320 
+
+remained elevated relative to the early learning period (Day 1-3), indicating that once 321 
+
+established, value-based habits persisted (Fig. 4D). 322 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+323 
+
+Together, these findings demonstrate that value and spatial biases, but not visual salience, shape 324 
+
+habitual manual choice behavior—highlighting effector-specific mechanisms distinct from 325 
+
+those observed in gaze. Notably, visual salience did not contribute to habitual manual choice 326 
+
+behavior. These findings suggest that the mechanisms underlying habitual manual choice 327 
+
+behavior differ fundamentally from those reported for habitual gaze behavior 20 .328 
+
+329 
+
+330 
+
+331 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Discussion 332 
+
+333 
+
+In this study, we demonstrated that habitual hand choice behavior in primates emerges from 334 
+
+the combined influence of learned object values and stable spatial preferences, while visual 335 
+
+salience exerts no measurable effect. These habits persisted even when feedback was withheld 336 
+
+and were executed with reduced response latency, thereby meeting two canonical criteria of 337 
+
+habitual control: independence from immediate reinforcement and automaticity of execution. 338 
+
+By identifying value and spatial preference as the principal drivers of manual choice, our 339 
+
+findings reveal that the determinants of manual choice habits differ from those of oculomotor 340 
+
+habits, where both value and visual salience influence gaze. This dissociation suggests that 341 
+
+although long-term value memories form a common substrate across effectors, their behavioral 342 
+
+expression is shaped by effector-specific constraints—visual salience in gaze, spatial 343 
+
+preference in hand. In this way, our study extends the framework of value-based habits from 344 
+
+the oculomotor to the manual domain, providing a behavioral foundation for linking long-term 345 
+
+object value memories to effector-specific expressions of habit. 346 
+
+347 
+
+348 
+
+Functional significance of value-based habitual manual choice 349 
+
+350 
+
+Most prior studies of hand habits have emphasized motor repetition as the key driver of 351 
+
+automaticity (e.g. sequential finger movement) 34–36 , showing that actions repeated over time 352 
+
+can be expressed without conscious control 1,2,6,11 . Our findings demonstrate that long-term 353 
+
+object value, distinct from motor repetition-guided habits, can also establish stable manual 354 
+
+choice habits. 355 
+
+356 
+
+Two behavioral signatures confirmed this. First, monkeys’ choices did not depend on reward 357 
+
+contingencies but instead reflected the previously learned values of fractal objects. Both 358 
+
+monkeys preferentially selected previously high-valued objects on the first touch of a trial, 359 
+
+despite the absence of feedback, and this bias persisted after one-week retention period (Figs. 360 
+
+2D-G). These results indicate that, unlike simple motor habits formed through repetition, such 361 
+
+movements can become habitual through sensory–motor associations driven by long-term 362 
+
+value memory. 363 
+
+364 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Second, choices were automatic. Responses in the habitual task were faster than in value-365 
+
+deliberative tasks, and object-selection latencies in the habitual task were shorter even than 366 
+
+simple central dot-touch latencies, indicating streamlined sensorimotor execution (Figs. 3C-D). 367 
+
+Moreover, in value-deliberative tasks, choice latencies differed between high- and low-valued 368 
+
+options in both this and previous studies, whereas in the habitual task no such latency difference 369 
+
+was observed (Figs. 3E-G), consistent with execution that bypasses deliberative evaluation 37,38 .370 
+
+These properties, well established for gaze habits 20,23,29 , are now demonstrated for manual 371 
+
+choice, showing that long-term value memory can drive rapid, stimulus-guided hand actions 372 
+
+without immediate reinforcement. 373 
+
+> 374
+
+The adaptive advantages of such value-driven hand habit are clear in natural settings. Foraging 375 
+
+and tool use require fast, repeatable reaches toward objects with established utility or 376 
+
+nutritional value. Automating these selections reduces cognitive load, stabilizes performance, 377 
+
+and conserves energetic resources 12 . In our task, this efficiency was reflected not only in first-378 
+
+choice biases but also in fewer steps to clear high-valued objects (Fig. 2F), indicating 379 
+
+prioritized sequencing once the habit formed. Thus, value-based habitual control is not 380 
+
+restricted to gaze; it generalizes to manual choice actions, where it likely supports economical 381 
+
+interaction with valuable objects in familiar environments 1,2,6 .382 
+
+> 383
+> 384
+
+Behavioral drivers of habitual manual choice versus habitual gaze 385 
+
+> 386
+
+Regression analyses indicate a dissociation in the behavioral mechanisms underlying manual 387 
+
+choice and gaze habits. In the oculomotor domain, previous studies have shown that both 388 
+
+learned object value and visual salience strongly bias gaze behavior, even when feedback is 389 
+
+absent 7,39 . In contrast, in our manual choice task, visual salience exerted no significant 390 
+
+influence at any phase. Instead, two factors proved decisive: spatial preference, which was a 391 
+
+consistent predictor from Pre-learning through Retention, and learned object value, which 392 
+
+emerged as a predictor only after value learning. Innate object preference measured before 393 
+
+learning lost significance once value associations were established. Thus, the shared 394 
+
+component across effectors is a value signal that emerges after training and supports habit 395 
+
+expression without immediate reward; the dissociations are the absence of salience effects and 396 
+
+the dominant role of space in the hand domain. 397 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 398
+
+These results map onto the distinct computational demands of the two effector systems. For 399 
+
+gaze, selection operates in an object-centered frame where value and visual salience jointly 400 
+
+accelerate saccades toward previously rewarded objects 7,40 . For the hand, in contrast, 401 
+
+movement planning requires integration of spatial geometry and biomechanical costs such as 402 
+
+reach distance, posture, and energetic efficiency 30 . Consistent with this, our latency analyses 403 
+
+showed that positions with stronger spatial preference were selected faster, indicating that 404 
+
+motor costs and spatial ease of execution directly modulate the automaticity of habitual manual 405 
+
+choice actions. Under natural conditions where a valuable object consistently appears in the 406 
+
+same position (e.g. a ripe apple growing on the same branch of a tree each year), spatial 407 
+
+preference combined with value-guided choice may allow animal to reach the object more 408 
+
+quickly and with less energy. 409 
+
+> 410
+
+By showing that value-based habits extend from gaze to manual choice movements, our study 411 
+
+demonstrates that habits are not unitary but shaped by effector-specific constraints. Gaze habits 412 
+
+integrate value with visual salience to optimize rapid orienting, while hand habits combine 413 
+
+value with spatial preference to support efficient interaction with reachable objects. Linking 414 
+
+these behavioral dissociations to neural circuit mechanisms will be essential for understanding 415 
+
+how habits are implemented across effectors and how they support adaptive behavior in natural 416 
+
+contexts. 417 
+
+> 418
+
+Together, these findings suggest a simple principle: value is the shared driver of habit 419 
+
+expression across effectors, but the complementary factor is effector-specific – visual salience 420 
+
+for gaze and spatial constraints for manual choice. This principle yields testable predictions 421 
+
+such as that manipulations that change visual salience should bias selectively habitual gaze 422 
+
+without affecting habitual manual choice. Testing such dissociations will be essential for 423 
+
+linking behavioral differences to their underlying circuit implementations. 424 
+
+> 425
+> 426
+
+Plausible basal ganglia circuit mechanisms underlying habitual manual choice 427 
+
+> 428
+
+Our results raise important questions about how value information is stored and expressed in 429 
+
+neural circuits to guide reaching behavior. In the oculomotor system, value-based visual habits 430 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+have been linked to long-term representations in the striatum, which influence activity in the 431 
+
+SNr and downstream superior colliculus (SC) to guide saccades even in the absence of reward 432 
+
+feedback 14,16,21,29,41 . Likewise, habitual manual choices are likely mediated by striatal value 433 
+
+signals, as the striatum not only processes value information for reaching behavior in the 434 
+
+reversal value task but may also serve as the locus for long-term value memory 37,38 . However, 435 
+
+unlike the visual habit circuit, object value signal for manual choice may be transmitted through 436 
+
+the GPi to thalamo-cortical and motor pathways 28 . This circuit architecture suggests a 437 
+
+mechanism by which long-term value memory can guide reaching behavior without the need 438 
+
+for current reinforcement. 439 
+
+440 
+
+The reduced response latencies observed during habitual manual choice suggest that, once 441 
+
+value associations are consolidated, their expression is routed through relatively direct 442 
+
+sensorimotor circuit. Unlike deliberative goal-directed actions, which rely on prefrontal and 443 
+
+associative networks in the rostral basal ganglia circuits, visual habit is mediated by caudal 444 
+
+parts of thalamus and basal ganglia 29 . Anatomical studies have shown that these caudal 445 
+
+thalamus and basal ganglia structures receive inputs from visual areas, including the 446 
+
+inferotemporal cortex, and send outputs to motor areas such as the SNr 4,29,42–44 . Moreover, 447 
+
+long-term value memory processed within these caudal structures enable fast, automatic gaze 448 
+
+shifts toward valuable objects 27 , supporting the view that caudal thalamic and basal ganglia 449 
+
+mechanisms may also underlie habitual manual choice behavior. 450 
+
+451 
+
+While such sensorimotor circuits that encode long-term value memory for visual habit provide 452 
+
+a plausible mechanism for habitual manual choice behavior, neural response data and causal 453 
+
+manipulations are required to establish this. The primate behavioral paradigm developed here 454 
+
+provides a strong foundation for such studies, enabling test of whether striatal value signals are 455 
+
+transmitted through GPi–cortical pathways to drive habitual manual choices, and how these 456 
+
+pathways interact with SNr-mediated circuits for visual habit. 457 
+
+458 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Materials and methods 459 
+
+460 
+
+General procedures 461 
+
+Two adult monkeys ( Macaca fascicularis; 2.2 kg female monkey B, 8 years old; 3.3 kg female 462 
+
+monkey M, 17 years old) were used for the experiments. Animal care and experimental 463 
+
+procedures were approved by the Korea Research Institute of Bioscience and Biotechnology 464 
+
+(KRIBB) Institutional Animal Care and Use Committee (Approval No. KRIBB-AEC-22132), 465 
+
+and complied with national and institutional guidelines for the care and use of laboratory 466 
+
+animals. This study was designed and reported in accordance with the ARRIVE guidelines for 467 
+
+reporting animal research. 468 
+
+Behavioral tasks 469 
+
+The behavioral tasks were controlled by a MATLAB-based real-time experimentation data 470 
+
+acquisition system (NIMH MonkeyLogic, Laboratory of Neuropsychology, National Institute 471 
+
+of Mental Health, National Institutes of Health [LN/NIMH/NIH]). The monkey was seated in 472 
+
+a primate cage, facing a fronto-parallel screen in a sound-attenuated and electrically shielded 473 
+
+room. Visual stimuli were presented on an infrared touch monitor (IV-190IR, Iviewkorea, 474 
+
+Korea). A frontal opening in the cage allowed the monkey to reach out its arm and touch the 475 
+
+monitor. For all behavioral tasks, monkeys were trained to reach out their arm and touch the 476 
+
+monitor to select the visual stimulus (Movie S1). 477 
+
+478 
+
+Visual stimuli 479 
+
+We used fractal object images created using Fractal Geometry (https://github.com/ProfKimHF) 480 
+
+(Figs. 1C and 3A). The mean luminance was equalized across the images using the SHINE 481 
+
+toolbox written with MATLAB (www.mapageweb.umontreal.ca/gosselif/shine). The size of 482 
+
+each image was approximately 20˚ⅹ20˚ in size. 483 
+
+484 
+
+Object-value learning task procedure 485 
+
+Monkeys were trained to associate visual fractal objects with either high or low value in order 486 
+
+to establish long-term value memory of fractal objects. Each trial began with the appearance 487 
+
+of a white central dot (Fig. 1B). The monkey was required to touch the central dot within 5 488 
+
+seconds to initiate the trial. Following a 1 second blank delay, two fractal objects—one high-489 
+
+valued and one low-valued—were presented simultaneously at diagonally opposite positions 490 
+
+on the touchscreen. The positions were pseudorandomly selected from four possible locations 491 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+(right-top, right-bottom, left-top, left-bottom). Monkeys were required to choose one of the 492 
+
+objects within 2 seconds by touching it by hand. Selection of a high-valued object resulted in 493 
+
+immediate delivery of a liquid reward, whereas selection of a low-valued object produced no 494 
+
+reward. 495 
+
+> 496
+
+A fixed set of four fractal stimuli (two high-valued, two low-valued) was used per session, and 497 
+
+the same set was trained for 10 consecutive days to promote long-term learning. Each session 498 
+
+consisted of 48 trials, with 4 sessions per day for each set. Therefore, each fractal stimulus was 499 
+
+exposed 96 times each day, with a total of 960 associative learning trials for each stimulus 500 
+
+across the Learning phase. Across the experiment, each monkey was exposed to four sets of 501 
+
+four fractals, yielding 16 unique learned stimuli in total (Fig. 1C). 502 
+
+> 503
+
+Habitual choice task procedure 504 
+
+To assess habitual responses toward previously learned objects, monkeys performed a free 505 
+
+sequential manual choice task using fractal stimuli previously paired with either reward or no 506 
+
+reward. Each trial began with the presentation of a central white dot, which the monkey was 507 
+
+required to touch within 5 seconds to initiate the trial (Figs. 2A and C). A 1 second blank delay 508 
+
+followed, after which four fractal objects from a single set were presented simultaneously at 509 
+
+pseudorandomly chosen positions drawn from an array of eight possible screen locations 510 
+
+spaced at 45° intervals around the center. A vertical gauge bar with four empty segments was 511 
+
+displayed concurrently. Monkeys erased the objects by touching them sequentially in any order. 512 
+
+Each touch caused the selected object to disappear and filled one segment of the gauge bar, 513 
+
+providing visual feedback of task progress. Every object had to be selected within 2 seconds, 514 
+
+and after all objects were erased, the monkey was required to touch the fully filled gauge bar 515 
+
+within 2 seconds to receive a liquid reward. Importantly, reward delivery depended only on 516 
+
+completion of the trial and was not contingent on the identity or order of object selection, 517 
+
+thereby eliminating direct reinforcement of individual choices. 518 
+
+> 519
+
+The task was first administered in a baseline phase, before value learning, to measure 520 
+
+spontaneous object selection preferences. Each object set was tested across five consecutive 521 
+
+days, with 336 trials per session, allowing full coverage of all 1,680 possible object–location 522 
+
+configurations. After completion of value learning, monkeys were tested in the same task over 523 
+
+ten consecutive days, with 36 trials per session. To isolate habitual behavior from immediate 524 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+reward feedback, the habitual choice task was always conducted prior to the daily object–value 525 
+
+learning task. Each monkey completed the task with four learned object sets (16 fractals total) 526 
+
+and one control set of novel fractals that had not been paired with reward. 527 
+
+528 
+
+To assess memory retention, monkeys were tested one week after the final training session 529 
+
+using the same object–value learning task. During this retention test, no exposure to the trained 530 
+
+fractals occurred in the intervening week, and performance was measured to evaluate the 531 
+
+stability of the learned object–value associations. 532 
+
+533 
+
+Reversal manual choice task procedure 534 
+
+This task was designed to assess flexible manual choice behavior driven by short-term, flexible 535 
+
+value memory. The overall trial structure was identical to the object–value learning task, except 536 
+
+that object–value contingencies were reversed across blocks within each session (Fig. 3A). 537 
+
+538 
+
+Each session consisted of three consecutive blocks: an initial Acquisition block followed by 539 
+
+two reversals. At the start of the Acquisition block, two fractal objects were introduced, with 540 
+
+one designated as high-valued and the other as low-valued. Monkeys advanced to the next 541 
+
+block once they selected the high-valued object on 24 consecutive trials. In each subsequent 542 
+
+block, the reward contingencies for the two objects were reversed. Sessions ended when the 543 
+
+criterion was met in the final reversal block. 544 
+
+545 
+
+Each monkey performed the task with four distinct object pairs (eight fractals in total) (Fig. 546 
+
+S5). Each pair was tested once per day for ten consecutive days, with the initial value 547 
+
+assignment reversed on each subsequent day to enforce continuous updating of object–value 548 
+
+associations. 549 
+
+550 
+
+551 
+
+Data analysis 552 
+
+Behavioral analysis 553 
+
+To quantify habitual behavior in the habitual choice task, we analyzed the monkeys’ first object 554 
+
+choices. For each session, trials were divided into two halves, and within each half we 555 
+
+calculated the proportion of trials in which a high-valued object was selected first. This analysis 556 
+
+was performed separately for each learning set. For the control set, we computed the proportion 557 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+of first choices for each fractal object across trials. 558 
+
+559 
+
+To quantify selection order in the habitual choice task, we calculated the mean step at which 560 
+
+high-valued objects were chosen within each trial. For learning sets, the mean step was 561 
+
+computed per trial and averaged across sessions. For the control set, the mean selection step 562 
+
+for each fractal was computed across trials. 563 
+
+564 
+
+Response latencies for all behavioral tasks (object-value learning, reversal, and habitual manual 565 
+
+choice task) were defined as the interval between stimulus onset and the first touch. Specifically, 566 
+
+in the object–value learning and reversal tasks, response latency was measured as the time from 567 
+
+fractal presentation to selection. In the habitual choice task, response latency was defined as 568 
+
+the time from fractal presentation to the first fractal touch. 569 
+
+570 
+
+Statistical comparisons for first-choice proportions, mean selection steps, and response 571 
+
+latencies were conducted using one-way ANOVA. Post hoc pairwise comparisons were 572 
+
+performed with Bonferroni correction, and statistical significance was set at p < 0.05. 573 
+
+574 
+
+Ordinal logistic regression analysis. 575 
+
+To identify factors influencing the order of object selection after learning, we performed ordinal 576 
+
+logistic regression using the Proportional Odds Logistic Regression ( polr ) function from the 577 
+
+MASS package in R. Separate models were fit for each day and each subject, across four 578 
+
+learned object sets and one control set, by the following model: 579 
+
+logit Pr (Y ≤ j|.) = 1! − (3"45 + 3#78 + 3$58 + 3%49: ), j = 1,2,3.580 
+
+581 
+
+The dependent variable was the ordinal rank of touches within a trial (1st–4th), treated as an 582 
+
+ordered categorical outcome. Four predictors were included: visual salience (VS), object 583 
+
+preference (OP), spatial preference (SP), and object value (Val) (Fig. 4A). 584 
+
+585 
+
+Visual salience scores were computed using the Graph-Based Visual Saliency (GBVS) 586 
+
+algorithm 32 . For each trial, salience values were calculated for the four displayed fractals, 587 
+
+ranked from 1 (least salient) to 4 (most salient), and entered as an ordinal predictor. 588 
+
+589 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Spatial preference was derived from the Pre-learning baseline phase, in which monkeys 590 
+
+completed trials covering all possible object–location configurations (4 objects × 8 positions, 591 
+
+1680 trials). Selection order across these trials was used to assign preference scores to each 592 
+
+location. For regression, the four positions presented on a given trial were ranked (1–4) 593 
+
+according to this preference profile and entered as the predictor for spatial preference. 594 
+
+> 595
+
+Object preference was calculated in the same way as spatial preference but based on fractal 596 
+
+identity rather than location. These scores were ranked and entered as a separate predictor. 597 
+
+> 598
+
+Object value was entered as a binary categorical factor, coded 1 for high-valued and 0 for low-599 
+
+valued objects. 600 
+
+> 601
+
+To ensure stability of coefficient estimates, 25 trials were randomly sampled without 602 
+
+replacement from each session, and this sampling was repeated 100 times. Coefficients were 603 
+
+averaged across iterations, and runs with incomplete data or insufficient rows were excluded. 604 
+
+Statistical comparisons were conducted using repeated-measures ANOVA, and post hoc 605 
+
+pairwise comparisons were performed with Bonferroni correction, with statistical significance 606 
+
+set at p < 0.05. 607 
+
+> 608
+
+Animals and sample size justification 609 
+
+Two adult monkeys were used in this study. This sample size is consistent with established 610 
+
+practices in non-human primate cognitive neuroscience, where highly trained animals perform 611 
+
+a large number of repeated trials, enabling robust within-subject statistical analyses. 612 
+
+In accordance with the ARRIVE guidelines and the principle of reduction, the number of 613 
+
+animals was kept to the minimum necessary to achieve the scientific objectives while ensuring 614 
+
+reproducibility. Statistical analyses were performed across repeated trials and sessions within 615 
+
+each animal, rather than treating individual animals as the primary unit of analysis. 616 
+
+> 617
+
+Data availability 618 
+
+Due to ethical and regulatory restrictions, the dataset supporting this study cannot be publicly 619 
+
+archived. Access to the data requires prior approval from the Institutional Animal Care and Use 620 
+
+Committee of Seoul National University, Korea Research Institute of Bioscience and 621 
+
+Biotechnology (KRIBB), and National Research Foundation of Korea. Requests will be 622 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+reviewed within several months and, if approved, data will be made available for academic, 623 
+
+non-commercial use. Source data are provided with this paper. 624 
+
+625 
+
+Code availability 626 
+
+Custom code associated with this study is available at https://github.com/ProfKimHF. 627 
+
+628 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint Figure legends 629 
+
+> 630
+
+Fig. 1. Experimental design and long-term object–value learning in macaque monkeys. 631 
+
+a, Task schedule. Two monkeys learned object values through a Pre-learning session followed 632 
+
+by 10 days of Learning sessions, and these values were later tested in a 1-week retention phase. 633 
+
+The habitual choice task was conducted before object-value learning to assess monkeys’ innate 634 
+
+object and spatial preferences. During the Learning phase, the habitual choice task was 635 
+
+conducted before the object–value learning task each day to examine how habitual manual 636 
+
+choice behavior developed. The habitual choice task was conducted again 1 week after the last 637 
+
+testing session. b, Object–value learning task. Each trial began with touching a central dot 638 
+
+followed by a delay, after which two fractal objects (high- and low-valued) appeared at 639 
+
+pseudorandom locations. Selecting the high-valued object delivered a reward, whereas 640 
+
+selecting the low-valued objects yielded none. c, Stimuli sets. Each learning set contained four 641 
+
+fractals (two high- and two low-valued) that were learned across 10 days. An additional control 642 
+
+set of four fractals (Set 5) was not used for object-value learning. d, Object-value learning 643 
+
+curve. Choice of high-valued object increased rapidly and reached a plateau (three-way 644 
+
+ANOVA with value, day, and bin as factors, *** p = 3.43 × 10⁻⁷⁶ for value × day, *** p = 3.06 × 645 
+
+10⁻⁵ for value × bin, *** p = 4.67 × 10⁻¹⁸ for value × day × bin). Each bin corresponds to a single 646 
+
+behavioral session; four sessions (bins) were conducted per day for each object set. Choice 647 
+
+proportions were computed separately for each session and then averaged across sessions and 648 
+
+monkeys. Data are shown as mean ± SEM across sessions. e, Initial trial bias. Initial trial 649 
+
+choices on each learning day shifted toward high-valued objects from Day 1, and were 650 
+
+sustained thereafter, confirming long-term value memory (post hoc Bonferroni pairwise 651 
+
+comparison, *** p = 2.694 × 10⁻ 3 between Day 0 and 1, p = 0.683 for Day 1 and 2; one-sample 652 
+
+t-test). 653 
+
+> 654
+> 655
+
+Fig. 2. Habitual manual choice guided by long-term object-value memory. 656 
+
+a, Habitual choice task. Each trial began with a central dot touch followed by a delay, after 657 
+
+which four fractal objects from a learned set were presented at pseudorandom positions. 658 
+
+Monkeys sequentially removed all objects by touching; after the last object was removed, 659 
+
+touching the central gauge bar delivered a reward. No feedback was given during object choices, 660 
+
+and reward was provided at the end of each successful trial independent of object identity or 661 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+order. b, Example of performance before and after learning. Each stimuli configuration was 662 
+
+tested both before and after object-value learning. c, Example trial. An example trial showing 663 
+
+a monkey touching each visual fractal object with its right hand. d, Percentage of first choice 664 
+
+of high-valued object. Proportion of trials in which a high-valued object was chosen first across 665 
+
+Pre-learning, Day 1–3, Day 4–7, and Day 8–10 phases (left panel; n=80, post hoc Bonferroni 666 
+
+pairwise comparison, ** p <0.01, *** p <0.001), and across Pre-learning, Day 4-10, and the 1-667 
+
+week retention phases (right panel; n=56, post hoc Bonferroni pairwise comparison, *p<0.05). 668 
+
+Boxplots show medians (red line), interquartile ranges (boxes; 1st-3rd quartile), and whiskers 669 
+
+extending to the most extreme non-outlier values (‘+’). e, First choice distribution for control 670 
+
+set. Percentage of first choices by object identity (Objects #1–4) for the control set during Pre-671 
+
+learning and Day 1–10 phases (n=20, one-way ANOVA, p = 9.44 × 10 -1 ). Boxplot format as 672 
+
+in panel (d). f, Mean steps to remove high-valued objects. Average steps required to remove 673 
+
+all high-valued objects across Pre-learning, Day 1–3, Day 4–7, and Day 8–10 phases (left panel; 674 
+
+n=2880, post hoc Bonferroni pairwise comparison, *p <0.05, ** p <0.01, *** p <0.001), and across 675 
+
+Pre-learning, Day 4-10, and the 1-week retention phases (right panel; n=1440, post hoc 676 
+
+Bonferroni pairwise comparison, *p <0.05, *** p <0.001). Boxplot format as in panel (d). g, 677 
+
+Mean step distribution for control set. Mean selection step by object identity (Objects #1–4) 678 
+
+for the control set during Pre-learning and Day 1–10 phases (n=720, one-way ANOVA, p =679 
+
+5.64 × 10 -2 ). Boxplot format as in panel (d). 680 
+
+> 681
+> 682
+
+Fig. 3. Response latencies indicate automaticity of habitual manual choice. 683 
+
+a, Reversal value-based manual choice task. Monkeys initiated trials with central dot touch, 684 
+
+followed by a delay, after which two fractal objects (high- and low-valued) were presented at 685 
+
+pseudorandom locations. Selecting the high-valued object delivered a reward, whereas the low-686 
+
+valued object provided none. Object–value contingencies were reversed twice per session, 687 
+
+requiring flexible updating. b, Reversal task performance. The number of trials required to 688 
+
+reach reversal criterion (24 consecutive correct choices) did not differ significantly between 689 
+
+acquisition and reversal blocks. Boxplots show medians (red line), interquartile ranges (boxes; 690 
+
+1st-3rd quartile), and whiskers extending to the most extreme non-outlier values (‘+’). Data 691 
+
+represent mean ± SEM. c, Response latencies across tasks. Response latencies were 692 
+
+significantly shorter in the habitual choice task compared to object–value learning and reversal 693 
+
+tasks (n=45060, post hoc Bonferroni pairwise comparison, *** p <0.001). Boxplot format as in 694 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+panel (b). d, Response latencies comparison with central dot touch. Central-dot responses were 695 
+
+faster than object selections in object-value learning and reversal tasks, but habitual object 696 
+
+selections were faster than central-dot responses (post hoc Bonferroni pairwise comparison, 697 
+
+> ***
+
+p <0.001). Boxplot format as in (b). e, f, Response latencies to high- and low-valued objects 698 
+
+during reversal value and object value learning. Responses were faster for high-valued than 699 
+
+low-valued objects for both reversal (e) and object-value learning (f) task, indicating ongoing 700 
+
+value deliberation during task response (paired-sample t-test, *** p <0.001). Boxplot format as 701 
+
+in panel (b). g, Comparison of response latencies to high- and low-valued objects in the habitual 702 
+
+choice task. No response latency difference was observed between high- and low-valued first 703 
+
+choices, indicating non-deliberative responding during the habitual task (paired-sample t-test, 704 
+
+n.s., not significant). Boxplot format as in panel (b). 705 
+
+> 706
+> 707
+
+Fig. 4. Value and spatial preferences drive habitual manual choice. 708 
+
+a, Regression scheme. Ordinal logistic regression model predicting object selection order (1st– 709 
+
+4th) from four predictors: visual salience (VS), innate object preference (OP), innate spatial 710 
+
+preference (SP), and object value (Val). b, Innate spatial preference for each monkey. Pre-711 
+
+learning tests of the habitual choice task yielded position scores across eight screen locations 712 
+
+(top) for each monkey, revealing subject-specific spatial biases during object selection 713 
+
+(bottom). Monkey B was left-handed, whereas monkey M was right-handed. Data represent 714 
+
+mean ± SEM. c, Regression coefficients across test phases. Regression coefficients (n=200 715 
+
+iterations) for VS, OP, SP, and Val during the Pre-learning, Learning (Day 4–10), and 716 
+
+Retention phases. SP was a consistent predictor across all phases; Val became significant after 717 
+
+learning and persisted through retention; OP was predictive only before learning; and VS 718 
+
+showed no effect (post hoc Bonferroni pairwise comparison, *p <0.05, *** p <0.001). Violin 719 
+
+plots show coefficient distributions, with thick bars indicating the interquartile range (1st–3rd 720 
+
+quartiles), white circles the median, and colored points the coefficient from each iteration. 721 
+
+Coefficient panels show mean estimates ± 95% CI. d, Value coefficients across learning phases. 722 
+
+Value coefficients across finer learning bins (Pre-learning, Day 1–3, Day 4–7, Day 8–10), 723 
+
+demonstrated a progressive increase during the Learning phase (post hoc Bonferroni pairwise 724 
+
+comparison, *** p <0.001). Violin plot format as in panel (c). 725 
+
+> 726
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Acknowledgements 727 
+
+This work was supported by the Basic Science Research Program (RS-2024-00339355), 728 
+
+ASTRA Program (RS-2024-00436783), Bio&Medical Technology Development Program 729 
+
+(RS-2025-02263832), Global-LAMP Program (RS-2023-00301976) through the National 730 
+
+Research Foundation (NRF) of Korea, National Research Foundation of Korea (NRF) grant 731 
+
+funded by the Korea government (MSIT) (RS-2024-00460364), and the Korea Research 732 
+
+Institute of Bioscience and Biotechnology Research Initiative Program (KGM4562532). 733 
+
+734 
+
+The authors declare no competing financial interests. 735 
+
+736 
+
+Funding 737 
+
+H.F.K., YH. Kim, and J. Park were supported by grants RS-2024-00339355, RS-2024-738 
+
+00436783, RS-2025-02263832, and RS-2023-00301976 from the National Research 739 
+
+Foundation (NRF) of Korea. Y. Lee and Y. G. Kim were supported by grant RS-2024-740 
+
+00460364 from the NRF of Korea, and grant KGM4562532 from the Korea Research Institute 741 
+
+of Bioscience and Biotechnology (KRIBB). 742 
+
+743 
+
+Author Contributions 744 
+
+H.F.K. and Y. Lee supervised the entire project. J. Park and Y. G. Kim performed the behavior 745 
+
+experiment. YH. Kim and H.F.K. analyzed the data and prepared the figures. YH. Kim and 746 
+
+H.F.K wrote the first draft, and YH. Kim, Y. G. Kim, Y. Lee, and H.F.K. interpreted data and 747 
+
+wrote the final manuscript. 748 
+
+749 
+
+750 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+References 751 
+
+1. Graybiel, A. M. Habits, rituals, and the evaluative brain. Annual Review of Neuroscience 752 
+
+31, 359–387 (2008). 753 
+
+2. Dickinson, A. Actions and Habits: The Development of Behavioural Autonomy. Trans. 754 
+
+R. Soc. Lond. B 308, 67-78 (1985). 755 
+
+3. Kim, H. F. Brain substrates for automatic retrieval of value memory in the primate basal 756 
+
+ganglia. Molecular Brain 14, 168 (2021). 757 
+
+4. Lee, K., An, S. Y., Park, J., Lee, S. & Kim, H. F. Anatomical and Functional Comparison 758 
+
+of the Caudate Tail in Primates and the Tail of the Striatum in Rodents: Implications for 759 
+
+Sensory Information Processing and Habitual Behavior. Mol Cells 46, 461–469 (2023). 760 
+
+5. Yin, H. H. & Knowlton, B. J. The role of the basal ganglia in habit formation. Nature 761 
+
+Reviews Neuroscience 7, 464-476 (2006). 762 
+
+6. Wood, W. & Rünger, D. Psychology of habit. Annu Rev Psychol 67, 289–314 (2016). 763 
+
+7. Hwang, S. H., Ra, Y., Paeng, S. & Kim, H. F. Motivational salience drives habitual gazes 764 
+
+during value memory retention and facilitates relearning of forgotten value. iScience 25, 765 
+
+105104 (2022). 766 
+
+8. Du, Y., Krakauer, J. W. & Haith, A. M. The relationship between habits and motor skills 767 
+
+in humans. Trends in Cognitive Sciences 26, 371–387 (2022). 768 
+
+9. Hardwick, R. M., Forrence, A. D., Krakauer, J. W. & Haith, A. M. Time-dependent 769 
+
+competition between goal-directed and habitual response preparation. Nature Human 770 
+
+Behaviour 3, 1252–1262 (2019). 771 
+
+10. Norman, D. A. Categorization of Action Slips. Psychological Review 88, 1 (1981). 772 
+
+11. Smith, K. S. & Graybiel, A. M. A dual operator view of habitual behavior reflecting 773 
+
+cortical and striatal dynamics. Neuron 79, 361–374 (2013). 774 
+
+12. Packard, M. G. & Knowlton, B. J. Learning and memory functions of the basal ganglia. 775 
+
+Annual Review of Neuroscience 25, 563–593 (2002). 776 
+
+13. Adams, J. A. Historical review and appraisal of research on the learning, retention, and 777 
+
+transfer of human motor skills. Psychological Bulletin 101, 41 (1987). 778 
+
+14. Hikosaka, O., Yamamoto, S., Yasuda, M. & Kim, H. F. Why skill matters. Trends in 779 
+
+Cognitive Sciences 17, 434–441 (2013). 780 
+
+15. Gillian, C. M. et al. Disruption in the balance between goal-directed behavior and habit 781 
+
+learning in obsessive-compulsive disorder. American Journal of Psychiatry 172, 282– 782 
+
+290 (2015). 783 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+16. Yamamoto, S., Kim, H. F. & Hikosaka, O. Reward value-contingent changes of visual 784 
+
+responses in the primate caudate tail associated with a visuomotor skill. Journal of 785 
+
+Neuroscience 33, 11227–11238 (2013). 786 
+
+17. Peck, C. J., Jangraw, D. C., Suzuki, M., Efem, R. & Gottlieb, J. Reward modulates 787 
+
+attention independently of action value in posterior parietal cortex. Journal of 788 
+
+Neuroscience 29, 11182–11191 (2009). 789 
+
+18. Sato, M. & Hikosaka, O. Role of Primate Substantia Nigra Pars Reticulata in Reward-790 
+
+Oriented Saccadic Eye Movement. The Journal of Neuroscience 22, 2363-2373 (2002). 791 
+
+19. Hikosaka, O., Takikawa, Y. & Kawagoe, R. Role of the Basal Ganglia in the Control of 792 
+
+Purposive Saccadic Eye Movements. Physiol Rev 80, 953–978 (2000). 793 
+
+20. Kang, J. et al. Primate ventral striatum maintains neural representations of the value of 794 
+
+previously rewarded objects for habitual seeking. Nat Commun 12, 2100 (2021). 795 
+
+21. Kim, H. F. & Hikosaka, O. Distinct Basal Ganglia Circuits Controlling Behaviors 796 
+
+Guided by Flexible and Stable Values. Neuron 79, 1001–1010 (2013). 797 
+
+22. An, S. young, Hwang, S. H., Lee, K. & Kim, H. F. The primate putamen processes 798 
+
+cognitive flexibility alongside the caudate and ventral striatum with similar speeds of 799 
+
+updating values. Prog Neurobiol 243, 102651 (2024). 800 
+
+23. Kim, H. F., Ghazizadeh, A. & Hikosaka, O. Dopamine Neurons Encoding Long-Term 801 
+
+Memory of Object Value for Habitual Behavior. Cell 163, 1165–1175 (2015). 802 
+
+24. Fernandez-Ruiz, J., Wang, J., Aigner, T. G. & Mishkin, M. Visual habit formation in 803 
+
+monkeys with neurotoxic lesions of the ventrocaudal neostriatum. Proceedings of the 804 
+
+National Academy of Sciences 98, 4196–4201 (2001). 805 
+
+25. Mishkin, M., Malamut, B. & Bacheyalier, J. Memories and habits: Two neural systems. 806 
+
+Neurobiol Learn Mem 65–77 (1984). 807 
+
+26. Gottlieb, J. Attention, Learning, and the Value of Information. Neuron 76, 281–295 808 
+
+(2012). 809 
+
+27. Kim, H. F., Griggs, W. S. & Hikosaka, O. Long-Term Value Memory in the Primate 810 
+
+Posterior Thalamus for Fast Automatic Action. Current Biology 30, 2901-2911 (2020). 811 
+
+28. Haber, S. N. Corticostriatal circuitry. Dialogues Clin Neurosci 18, 7–21 (2016). 812 
+
+29. Kim, H. F. Principal axis of primate basal ganglia in processing cognitive flexibility and 813 
+
+habitual stability. Brain awaf299 (2025). 814 
+
+30. Johansson, R. S. & Flanagan, J. R. Coding and use of tactile signals from the fingertips 815 
+
+in object manipulation tasks. Nature Reviews Neuroscience 10, 345–359 (2009). 816 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+31. Takikawa, Y., Kawagoe, R., Itoh, H., Nakahara, H. & Hikosaka, O. Modulation of 817 
+
+saccadic eye movements by predicted reward outcome. Exp Brain Res 142, 284–291 818 
+
+(2002). 819 
+
+32. Harel, J., Koch, C. & Perona, P. Graph-Based Visual Saliency. Advances in neural 820 
+
+information processing systems 19 (2006). 821 
+
+33. Thompson, K. G. & Bichot, N. P. A visual salience map in the primate frontal eye field. 822 
+
+Progress in Brain Research 147, 249–262 (2005). 823 
+
+34. Ohbayashi, M. Inhibition of protein synthesis in M1 of monkeys disrupts performance 824 
+
+of sequential movements guided by memory. Elife 9, e53038 (2020). 825 
+
+35. Choi, Y., Yunha Shin, E. & Kim, S. Spatiotemporal dissociation of fMRI activity in the 826 
+
+caudate nucleus underlies human de novo motor skill learning. Proceedings of the 827 
+
+National Academy of Sciences 117, 23886–23897 (2020). 828 
+
+36. Alexander, G. E., Delong, M. R. & Strick, P. L. Parallel Organization of Functionally 829 
+
+Segregated Circuits Linking Basal Ganglia and Cortex, Annual review of neuroscience 830 
+
+9, 357-381 (1986). 831 
+
+37. Hwang, S. H., Park, D., Lee, J. W., Lee, S. H. & Kim, H. F. Convergent representation 832 
+
+of values from tactile and visual inputs for efficient goal-directed behavior in the primate 833 
+
+putamen. Nature Communications 15, 8954 (2024). 834 
+
+38. Hwang, S. H., Lee, J. W., Kim, S. P. & Kim, H. F. Efficient and dynamic neural geometry 835 
+
+of value and modality encoding in the primate putamen for value-guided behavior. 836 
+
+Nature Communications 16, 8266 (2025). 837 
+
+39. Anderson, B. A., Laurent, P. A. & Yantis, S. Value-driven attentional capture. Proc Natl 838 
+
+Acad Sci U S A 108, 10367–10371 (2011). 839 
+
+40. Anderson, B. A. The attention habit: How reward learning shapes attentional selection. 840 
+
+Ann N Y Acad Sci 1369, 24–39 (2016). 841 
+
+41. Graybiel, A. M. & Grafton, S. T. The striatum: Where skills and habits meet. Cold Spring 842 
+
+Harb Perspect Biol 7, a021691 (2015). 843 
+
+42. Jiang, H. & Kim, H. F. Anatomical inputs from the sensory and value structures to the 844 
+
+tail of the rat striatum. Front Neuroanat 12, 30 (2018). 845 
+
+43. Griggs, W. S. et al. Flexible and stable value coding areas in caudate head and tail receive 846 
+
+anatomically distinct cortical and subcortical inputs. Front Neuroanat 11, 106 (2017). 847 
+
+44. Kim, H. F., Ghazizadeh, A. & Hikosaka, O. Separate groups of dopamine neurons 848 
+
+innervate caudate head and tail encoding flexible and stable value memories. Front 849 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Neuroanat 8, 120 (2014). 850 
+
+851 
+
+852 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 853 
+
+854 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 855 
+
+856 
+
+857 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 859 
+
+860 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint 861 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint Supplemental information 
+
+# Value and spatial preferences guide habitual reaching and manual 
+
+# object selection in primates 
+
+Authors 
+
+Yun -Hyuk Kim 1+, Jun Park 1+, Yu Gyeong Kim 2,3 +, Youngjeon Lee 2,3* , and Hyoung F. Kim 1* 
+
+> 1
+
+School of Biological Sciences, Seoul National University, Seoul 08826, Republic of Korea 
+
+> 2
+
+National Primate Research Center, Korea Research Institute of Bioscience and Biotechnology 
+
+(KRIBB), Cheongju, Republic of Kor ea 
+
+> 3
+
+Department of Functional Genomics, KRIBB School of Bioscience, Korea University of 
+
+Science and Technology (UST), Daejeon, Republic of Korea 
+
+5 supplementary figures 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Supplementary Fig . 1. Individual monkey data for object –value learning and retention. 
+
+a, Object -value learning curves. Proportion of high - versus low -valued object choices during 
+
+the 10 -day Learning phase for each monkey. Choices of high -valued object increased rapidly 
+
+and reached a plateau for both monkeys . Error bars indicate ± SEM . b, Long -term memory 
+
+retention performance. Initial trial choices shifted toward high -valued objects from Day 1 and 
+
+were sustained across subsequent days , confirming long -term value memory in bo th monkeys. 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Supplement ary Fig . 2. Individual monkey data for habitual manual choice behavior. a, b, 
+
+Percentage of first choice of high -valued object. Proportion of trials in which a high -valued 
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint object was chosen first across Pre -learning, Day 1 –3, Day 4–7, and Day 8 –10 phases (left panel ;
+
+n=40, post hoc Bonferroni pairwise comparison , ** p <0.01, *** p <0.001 ), and across Pre -
+
+learning, Day 4 -10, and the 1 -week retention phases (right panel ; n=28, post hoc Bonferroni 
+
+pairwise comparison , *p<0.05, ** p <0.01, *** p <0.001 ) for monkey B (a) and monkey M (b). 
+
+Boxplots show medians (red line), interquartile ranges (boxes ; 1st -3rd quartile ), and whiskers 
+
+extending to the most extreme non -outlier values (‘+’). Data represent mean ± SEM. c, d, First -
+
+choice distribution for control set. Percentage of first choices by object identity (Objects #1 –4) 
+
+for the control set during Pre -learning and Day 1 –10 phases for monkey B (c) (n=10, one -way 
+
+ANOVA, p = 0.93 ) and monkey M (d) (n=10, one -way ANOVA, p = 0.61 ). Boxplot format as 
+
+in panel (a). e, f, Mean steps to remove high -valued objects. Average step s required to remove 
+
+all high -valued objects across Pre -learning, Day 1 –3, Day 4 –7, and Day 8 –10 phases (left panel ;
+
+n=1440, post hoc Bonferroni pairwise comparison , *p <0.05, *** p <0.001 ), and across Pre -
+
+learning, Day 4 -10, and the 1-week retention phases (right panel ; n= 720, post hoc Bonferroni 
+
+pairwise comparison , *p <0.05, ** p <0.01, *** p <0.001 ) for monkey B (e) and monkey M (f) .
+
+Boxplot format as in panel (a). g, h, Mean step distribution for control set. Mean selection step 
+
+by object identity (Objects #1 –4) for the control set during Pre -learning and Day 1–10 phases 
+
+for monkey B (g) ( n=360, one -way ANOVA, p = 7.38 × 10 -2) and monkey M (h) (n=360, one -
+
+way ANOVA, p = 5.99 × 10 -2). Boxplot format as in panel (a). 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Supplementary Fi g. 3. Monkey performance in the reversal task and response latencies. 
+
+a, Reversal learning performance. Total number of trials required to reach criterion (24 
+
+con secutive correct choices) across acquisition and reversal blocks for each training day . No
+
+significant difference s were observed across training days. b, c, Response latencies across tasks 
+
+for each monkey. Response latencies were significantly shorter in the habitual choice task 
+
+compared with the object –value learning and reversal tasks for both monkey B ( b) and monkey 
+
+M ( c) (n=22530, post hoc Bonferroni pairwise comparison, ** p <0.01, *** p <0.001). Boxplots 
+
+show medians (red line), interquartile ranges (boxes ; 1st -3rd quartile ), and whiskers extending 
+
+to the most extreme non -outlier values (‘+’). Data represent mean ± SEM. 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Supplementary Fig . 4. Individual regression results and spatial preference effects . a, 
+
+Innate object preference. Innate object preference scores for each monkey, computed from Pre -
+
+.CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint learning baseline tests. b, Response latency by position. Response latencies for first -object 
+
+choices plotted by object position for each monkey, showing faster responses at preferred 
+
+positions during both the Pre -learning (top) and the Learning phase (bottom). Boxplots show 
+
+medians (red line), interquartile ranges (boxes ; 1st -3rd quartile ), and whiskers extending to the 
+
+mo st extreme non -outlier values (‘+’). Data represent mean ± SEM . c, d, Regression 
+
+coefficients across test phases for each monkey. Regression coefficients ( n=100 iterations ) for 
+
+VS, OP, SP, and Val in Pre -learning, Learning (Day 4 –10), and Retention phases for monkey 
+
+B ( c) and monkey M ( d) (post hoc Bonferroni pairwise comparison , ** p <0.01, *** p <0.001 ).
+
+Violin plots show coefficient distributions, with thick bars indicating the interquartile range 
+
+(1st –3rd quartiles) , white circles the median, and colored points the coefficient from each 
+
+iteration. Coefficient panels show mean estimates ± 95% CI. e, f, Value coefficient across 
+
+learning phases for each monkey. Value coefficients across finer learning bins (Pre -learning, 
+
+Day 1 –3, Day 4 –7, Day 8 –10 ) for monke y B ( e) and monkey M ( f) (post hoc Bonferroni 
+
+pairwise comparison , *p <0.05, *** p <0.001 ). Violin plot format as in panel (c). 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 25, 2026. ;https://doi.org/10.64898/2026.06.20.733501 doi: bioRxiv preprint
+
+Supplementary Fig . 5. Fractal stimulus sets for the reversal manual choice task. Four 
+
+distinct pairs of fractal stimuli were used in the reversal task. Within each pair, one object was 
+
+initially assigned as high value and the other as low value . Object -value contingencies were 
+
+reversed across blocks and across days to enforce flexible updati ng.
