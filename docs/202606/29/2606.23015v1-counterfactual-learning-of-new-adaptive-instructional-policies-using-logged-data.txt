@@ -1,0 +1,378 @@
+Title: Counterfactual learning of new adaptive instructional policies using logged data
+
+URL Source: https://arxiv.org/pdf/2606.23015v1
+
+Published Time: Tue, 23 Jun 2026 05:49:28 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# Counterfactual Learning of New Adaptive Instructional Policies using Logged Data 
+
+Samuel Girard 1,2, Sein Minn 3, Amel Bouzeghoub 4, and Jill-Jênn Vie 1 
+
+> 1
+
+Soda Team, Inria Saclay, Palaiseau, France 
+
+{samuel.girard,jill-jenn.vie}@inria.fr  
+
+> 2
+
+Pix, Paris, France  
+
+> 3
+
+Asian Institute of Technology, Khlong Nueng, Thailand sein-minn@ait.asia  
+
+> 4
+
+SAMOVAR, Télécom SudParis, Institut Polytechnique de Paris, Palaiseau, France 
+
+amel.bouzeghoub@telecom-sudparis.eu 
+
+Abstract. Optimizing instructional policies in Intelligent Tutoring Sys-tems (ITS) typically requires costly online experimentation or student simulators that may fail to capture real-world dynamics. This paper in-troduces an offline contextual bandit framework that learns new adaptive policies directly from logged interaction data. By mapping student-item interactions onto a continuous latent proficiency-difficulty scale using a Rasch model, we cast the tutoring process as a continuous stochastic ban-dit problem. We propose a novel reward function designed to optimize “flow” by balancing task challenge with student success. Our approach includes a round-specific behavior policy estimation that serves as both a propensity model for off-policy evaluation and a diagnostic tool for ITS adaptivity. We demonstrate the efficacy of this framework across four large-scale real-world datasets, achieving consistent policy improve-ments over the logged behavior policy. The results show that effective instructional policies can be learned and visualized within seconds of computation, providing a scalable path for improving adaptive learning systems without further data collection. 
+
+# 1 Introduction 
+
+Adaptive learning aims to present each student with exercises that match their current ability. In intelligent tutoring systems (ITS), this means assigning tasks that are neither too easy, which can lead to disengagement, nor too difficult, which can cause failure and frustration [4,2]. Calibrating instructional difficulty is therefore central to maintaining engagement and supporting learning [6,12]. Counterfactual learning is a machine learning approach that uses hypothetical “what-if” scenarios (called counterfactuals ) to estimate the effect of interventions or actions that were not actually observed. This method is especially attractive in settings where online experimentations on students may be costly, or raise ethical issues [18,14,15,26]. Because ITS collect large logs of student–exercise interactions, they offer the possibility of improving tutoring policies directly from data. Still, policies optimized in simulation may overfit the student model  
+
+> arXiv:2606.23015v1 [cs.LG] 22 Jun 2026 2Girard et al.
+
+used to generate synthetic trajectories [9], so in this paper we are interested in model-free techniques such as inverse propensity scoring as well. In this paper, we study offline learning and evaluation of difficulty-assignment policies from logged tutoring data. Rather than modeling the full tutoring pro-cess, we adopt a reduced-form view in which each interaction is represented on a continuous latent proficiency–difficulty scale. Conceptually, the quantity of in-terest is a stochastic policy that maps latent student proficiency to a distribution over exercise difficulty. Since true proficiency is unobserved, we do not estimate this object directly; instead, we infer a one-dimensional Rasch proficiency proxy from the log and use it to approximate the corresponding reduced-form policy over difficulty [19]. This reduction yields an offline contextual bandit problem with continuous context and continuous action. It also allows us to estimate the reduced-form logging policy from the data. Importantly, this estimated policy is not the ITS’s internal decision rule; rather, it captures the effective allocation pattern observed in the log. As such, it is useful not only for propensity estima-tion in off-policy evaluation, but also as a practical diagnostic of whether the ITS behaves adaptively across students and rounds. We define a reward that favors successful responses to more difficult items, thereby operationalizing the idea of desirable difficulty and its connection to flow [8,4,2]. The reward is computed directly from logged outcomes and item difficulties, so it provides an observable proxy for a pedagogically desirable balance between challenge and attainability, rather than a direct measure of long-term learning gains. Our framework learns from tutoring logs through a continuous proficiency– difficulty representation, a reward based on flow computed from observed re-sponses, and round-specific reduced-form logging policies for off-policy evalua-tion. This enables policy evaluation and learning directly from historical data, without interaction with students or reliance on a student simulator [9,18]. Be-cause both the logging policy and the learned policies are defined on a continuous latent scale, they can also be visualized directly, which is useful for practitioners seeking both improved policies and a clearer picture of how difficulty is allocated in practice. Our three contributions are: (i) a reward inspired by flow and desirable dif-ficulty that incentivizes assigning the hardest exercise a student can still solve; (ii) a reduced-form behavior-policy estimation framework, based on continuous context and continuous actions, that reveals how difficulty allocation varies with student proficiency and evolves across rounds, providing an interpretable di-agnostic of ITS adaptivity; and (iii) an offline policy learning framework that combines this behavior model with several off-policy estimators to learn and compare instructional policies from purely logged data. 
+
+# 2 Related Work 
+
+Knowledge tracing and student modeling. A large body of work in educational data mining focuses on modeling student knowledge from interaction logs, includ-ing knowledge tracing [7], Bayesian Knowledge Tracing, Item Response Theory, Counterfactual Learning of Adaptive Policies using Logged Data 3
+
+and related latent-variable approaches. These models are typically used to pre-dict future performance or mastery, rather than to optimize exercise assignment directly. Our work uses this literature differently: instead of building a deep se-quential student model, we use a simple Rasch representation to place students and items on a common latent proficiency–difficulty scale, which serves as a reduced-form basis for offline policy evaluation and learning. 
+
+Counterfactual learning in education. Counterfactual evaluation is much less common in education than predictive modeling, because it requires reasoning about outcomes under interventions not observed in the data. Zhao and Heffer-nan study binary educational interventions, such as the effect of hints on course completion [28]. Doroudi et al. propose a robust framework for evaluating in-structional policies using student models [9]. Our setting differs from prior edu-cational work in two ways: we learn directly from logged tutoring data without relying on a student simulator, and we treat exercise assignment as a continuous difficulty-selection problem rather than as a small discrete intervention space. 
+
+Model-based versus model-free offline learning. Most of student modeling in ed-ucation is model-based: policies are optimized using a learned model of stu-dent evolution, such as HOT-DINA, BKT, multidimensional IRT, or other par-tially observable Markov decision processes [21,27,17,25]. While such approaches can capture richer dynamics, they depend heavily on the fidelity of the student model, and policies learned in simulation may fail to transfer to real students [9]. Our approach allows model-free learning. We do not attempt to model the full tutoring dynamics; instead, we formulate logged exercise assignment as an offline contextual bandit problem on a latent proficiency–difficulty scale, which enables direct off-policy evaluation and learning from observed data. 
+
+Behavior policy estimation and reward design. In most off-policy evaluation work, the logging policy is treated mainly as a technical object needed for impor-tance weighting [18]. In our setting, estimating the reduced-form logging policy also has independent practical value: it reveals how assigned difficulty varies with proficiency and across rounds, providing a diagnostic of the adaptivity expressed in the logged data. On the reward side, prior work has often relied on metrics based on the student model, or sparse long-term objectives such as post-test scores [21,3,23]. We instead focus on an immediate reward aligned with desir-able difficulty [4] and flow [8], which is directly computable from logged responses and therefore compatible with model-free off-policy evaluation. 
+
+Estimators for off-policy evaluation. Our estimators build on the off-policy eval-uation (OPE) literature for contextual bandits, which estimates the value a target policy would have obtained had it been deployed, using only data logged under a different behavior policy [5]. Inverse propensity scoring (IPS) is unbi-ased but high-variance; its self-normalized variant (SNIPS) trades a small bias for lower variance and underpins counterfactual risk minimization from logged feedback [22]. The doubly robust (DR) estimator combines a reward model with 4 Girard et al. 
+
+importance weighting and stays consistent if either is correct [10], while mixture importance sampling stabilizes weights across pooled logging policies via a shared denominator [1]. We adapt these estimators to a continuous proficiency–difficulty action space with round-specific logging policies, and use their agreement as a reliability diagnostic. 
+
+# 3 Method 
+
+Our framework operates in three steps: (i) project the tutoring log onto a contin-uous proficiency–difficulty scale, (ii) define a flow-aligned reward on that scale, and (iii) estimate a round-specific behavior policy that will serve as the propen-sity model for offline evaluation and learning. 
+
+3.1 Continuous latent representation 
+
+We assume that each student u has a fixed scalar proficiency zu ∈ R and each item i has a scalar difficulty di ∈ R. Correctness is governed by a response function q : R2 → [0 , 1] that maps a proficiency–difficulty pair to the probability of a correct answer, so that the observed binary correctness Y ∈ { 0, 1} satisfies 
+
+Pr( Y =1 | zu, d i) = q(zu, d i). Rather than defining the action as a discrete item identity, we lift it to the continuous difficulty level au,t := diu,t ∈ A ⊂ R.This continuous formulation is better suited to large item banks: it avoids a high-dimensional discrete action space and enables policies to generalize across different exercises with similar difficulty. This task can therefore be seen as a continuous contextual bandit problem. We estimate proficiencies via the 1PL Rasch model, q(z, d ) = σ(z − d), where 
+
+σ is the logistic function and each item is described by a single difficulty pa-rameter, so that the probability of a correct response depends only on the gap between ability and difficulty. Fitting this model by maximum likelihood yields estimates ˆzu. The context is then xu,t := ˆ zu for all t; a fixed proxy for latent proficiency rather than a dynamic knowledge state. Each student trace is thus recast as a sequence  xu,t , a u,t , y u,t 
+
+Tu 
+
+> t=1
+
+on a latent scale, where yu,t ∈ { 0, 1}
+
+records whether student u answered correctly at round t. This introduces two error sources: (i) a representation error , since true correctness may not reduce to a single scalar pair; and (ii) a model bias , since the Rasch form σ(z − d) may not match the true q.This reduction is well suited to our objective defined below: the flow-aligned reward is immediate by construction, so we do not need to perform long-horizon credit assignment, and a model-free bandit formulation avoids the dependence on a student simulator that can cause simulation-trained policies to fail on real students [9]. 
+
+3.2 Reward design 
+
+Our reward operationalizes desirable difficulty [4]: exercises should be challenging but attainable, steering students toward a state of flow [8]. Given an observed Counterfactual Learning of Adaptive Policies using Logged Data 5
+
+outcome yu,t ∈ { 0, 1}, we define 
+
+ru,t = yu,t (au,t − amin ), amin := min A. (1) This reward is zero for failures and grows with item difficulty for successes, so the agent is incentivized to assign the hardest item the student can still solve. Under the Rasch model the conditional expected reward is 
+
+¯r(x, a ) = ( a − amin ) σ(x − a), (2) Crucially, ru,t depends only on the observed outcome and the item’s recorded difficulty, not on the student’s proficiency, so it can be read off directly from the log without any additional modelling. Although the realized reward ru,t is zero whenever a student fails, the policy optimizes the expected reward ¯r(x, a ) in Eq. (2): ru,t is an unbiased single-sample estimate of ¯r, so an individual failure does not imply a poorly chosen action. A difficulty that is well calibrated to a student’s proficiency has high expected reward regardless of any realized outcome. Note also that ru,t is an internal optimization signal for selecting difficulty, never a score shown to or imposed on the student. What ¯r captures is thus expected calibrated success , i.e. placing students at their challenge frontier, rather than a direct measure of learning gains. 
+
+3.3 Adaptive behavior policy estimation 
+
+The reduced-form behavior policy πt(a | z) captures the distribution of difficulty actually assigned to a student of true proficiency z at time t. Crucially, this is 
+
+not the ITS’s internal decision rule: the ITS does not observe zu directly, so it cannot condition on it explicitly. Rather, πt(a | z) summarizes the conditional assignment pattern observed in the logs. This pattern may arise for two reasons. First, the ITS adapts based on observable proxies (e.g. recent performance) that correlate with zu. Second, students themselves may exercise agency in choosing or attempting problems—and unlike the ITS, students may have direct access to their own knowledge. Both mechanisms produce a distribution of assigned difficulties that is conditional to z, even though neither agent observes it directly. Estimating how πt(a | z) varies with z and evolves with t is therefore a core contribution of this work. In light of the reward defined above, a well-designed ITS should assign difficulty in a way that is both adaptive and appropriately calibrated to the student: more proficient students should receive harder items, less proficient students easier ones, and the overall level should shift upward as students progress through the sequence. Thus, πt(a | z) is informative not only about whether the system adapts, but also about whether it tends to assign items that are too easy, too difficult, or well matched to the student’s level under the desirable-difficulty objective. Con-versely, a flat, diffuse, or poorly aligned πt(a | z) suggests weak or miscalibrated adaptation. The estimated behavior policy therefore provides an interpretable 6 Girard et al. 
+
+Fig. 1: Estimated adaptive behavior policy πt(a | x) at different steps of the learning trace. Shaded areas represent the variance. diagnostic of how well the logged assignment rule aligns with the reward objec-tive, independently of any downstream policy learning. Since zu is unobserved, we estimate this reduced-form policy by conditioning on the proxy x = ˆ zu, yielding πt(a | x). This introduces two error sources: a 
+
+behavior-model error (the parametric family may misfit the true conditional) and a knowledge estimation error (we condition on ˆzu rather than zu). Once each interaction is represented as (xu,t , a u,t , r u,t , t ), the tutoring log can be interpreted as a sample from a continuous stochastic contextual bandit problem and a time-dependent logging policy, making propensity estimation the central prerequisite for all offline estimators in Section 4. For each round t, we retrieve context–action pairs from all students with 
+
+Tu ≥ t,
+
+D(t) := {(xu,t , a u,t ) : Tu ≥ t},
+
+and approximate πt(a | x) by a parametric family f (t) 
+
+> η
+
+(a | x), estimated by maximum likelihood on D(t) alone: 
+
+ˆηt ∈ arg max 
+
+> η
+
+X
+
+> (x,a )∈D (t)
+
+log f (t) 
+
+> η
+
+(a | x).
+
+The fitted propensities ˆpu,t := ˆ πt(au,t | xu,t ) are then used in all off-policy estimators, while Figure 1 illustrates the estimated policy at several rounds– directly visualizing how the collective assignment rule adapts to proficiency and shifts over time. Counterfactual Learning of Adaptive Policies using Logged Data 7
+
+# 4 Offline Contextual Bandit Framework 
+
+4.1 Logged dataset and context distribution shift 
+
+In our setup, context xu,t = ˆ zu is a proficiency estimate derived from the stu-dent’s complete interaction trace. Since round t only includes students with 
+
+Tu ≥ t, later rounds systematically contain students with longer traces, which produces two compounding sources of context shift. The first is a statistical estimation effect : longer traces yield more precise Rasch estimates that are less attracted toward the center of the proficiency distribution. With few observations, regularization pulls ˆzu toward zero; with many observations, the estimate is free to reflect the student’s true proficiency. As a result, pt(x) becomes progressively more dispersed at later rounds, with heavier tails and less mass near zero. The second is a survivorship effect : students who persist longer may not be a random subsample of the population. Depending on the system, more moti-vated or more proficient students may be over-represented in subsequent rounds, changing the mean of pt(x) and its spread. Both effects cause pt(x) to drift substantially across rounds, as illustrated in Figure 2. Let p⋆(x) denote a reference context distribution. We augment each logged interaction with the reweighting factor 
+
+ωu,t := p⋆(xu,t )
+
+pt(xu,t ) ,
+
+and the full logged dataset is 
+
+D = (xu,t , a u,t , r u,t , ˆpu,t , ω u,t , t ) u,t .
+
+4.2 Policy value 
+
+We evaluate a stochastic target policy πθ (a | x) whose value under the target context distribution is 
+
+V ⋆(πθ ) = 
+
+Z
+
+> X
+
+p⋆(x)
+
+Z
+
+> A
+
+πθ (a | x) E[r | x, a ] da dx. 
+
+Since E[r | x, a ] = ( a − amin ) q(x, a ), estimating this quantity directly requires a model for the correctness probability q. The two families of estimators below differ precisely in whether they commit to such a model. 
+
+4.3 Model-free estimators 
+
+Defining the combined importance weight wu,t (θ) := ωu,t πθ (au,t | xu,t )/ˆpu,t , the Importance Propensity Scoring (IPS), Self-Normalized-IPS (SNIPS), and Mix-ture Importance Sampling (MIS) estimators replace the unknown E[r | x, a ] with 8 Girard et al. 
+
+Fig. 2: Evolution of the context distribution pt(x) across rounds for RoboMission .At early rounds the distribution is narrow and centered near zero; at later rounds it broadens and shifts, reflecting both the improved precision of longer-trace Rasch estimates and survivorship bias among persisting students. the observed reward ru,t :
+
+bVIPS = 1
+
+> n
+
+P 
+
+> u,t
+
+wu,t ru,t , (3) 
+
+bVSNIPS = P 
+
+> u,t
+
+wu,t ru,t 
+
+ P  
+
+> u,t
+
+wu,t , (4) 
+
+bVMIS = 1
+
+> n
+
+P 
+
+> u,t
+
+ωu,t πθ (au,t |xu,t )¯π(au,t |xu,t ) ru,t , (5) where ¯π(a | x) = P 
+
+> t
+
+λt ˆπt(a | x) with λt = nt/n pools all rounds into a single denominator. Crucially, none of these estimators requires an explicit model for q: they are agnostic to the functional form of the correctness probability and rely only on the observed binary outcomes encoded in ru,t .
+
+4.4 Model-based and doubly robust estimators 
+
+A complementary strategy is to directly model E[r | x, a ], which in our reward formulation amounts to specifying q. A natural choice is the Rasch model, giving 
+
+ˆr(x, a ) := ( a − amin ) σ(x − a).
+
+The direct method (DM) estimator then averages this reward model under the target policy: 
+
+bVDM (πθ ) = 
+
+Z
+
+> X
+
+p⋆(x)
+
+Z
+
+> A
+
+πθ (a | x) ˆ r(x, a ) da dx. Counterfactual Learning of Adaptive Policies using Logged Data 9
+
+Under this model the optimal difficulty level for a student of proficiency x is 
+
+δ⋆(x) ∈ arg max  
+
+> a∈A
+
+(a − amin ) σ(x − a),
+
+which balances item difficulty against the probability of a correct response. The corresponding oracle policy is 
+
+π⋆
+
+> IRT
+
+(a | x) = N a; δ⋆(x), σ 2min 
+
+,
+
+where σ2min is a small fixed variance introduced to keep the policy stochastic—as required by importance sampling—while concentrating as much mass as possible around the optimal difficulty. It is the best policy achievable under the Rasch reward model, and any learned policy that approaches it under the DM estimator can be considered well-calibrated. DM has very low variance but is necessarily biased because the Rasch specification of q is always misspecified. The doubly robust estimator [10] combines both approaches: 
+
+bVDR = bVDM + 1
+
+> n
+
+P 
+
+> u,t
+
+wu,t 
+
+ ru,t − ˆr(xu,t , a u,t ), (6) and is consistent if either the behavior model or the reward model is correctly specified. 
+
+4.5 Policy learning 
+
+Given any estimator bV , the learned policy solves 
+
+ˆθ ∈ arg max 
+
+> θ∈Θ
+
+bV (πθ ),
+
+where πθ is a Gaussian (or truncated Gaussian) density over the continuous dif-ficulty space. Each estimator in Equations (3) to (6) induces a different learning objective, whose effects we compare in Section 5. 
+
+# 5 Experiments 
+
+We evaluate offline contextual bandit learning on four datasets. RoboMission 
+
+is a dataset of block-based programming problems [11]. Assistments2015 and 
+
+Assistments2009 are two datasets from the ASSISTments platform [13]. Pix is a dataset from an ITS that delivers problems linked to digital competencies [24]. To avoid collapsing a long tail of interactions into a single bucket, we truncate the horizon to 30 rounds for RoboMission and Pix , and to 50 rounds for both ASSISTments datasets. Table 1 summarizes the resulting dataset statistics. 
+
+Behavior and target policy class. Student proficiency is estimated by fitting a Rasch model on the full interaction data, and we use the resulting latent ability estimate as the context variable x. For each dataset and for each round, we fit 10 Girard et al. 
+
+Table 1: Dataset statistics. [δmin , δ max ] denotes the range of item difficulties on the latent scale estimated by the Rasch model. Assistments2009 is restricted to the 8,000 most frequently attempted items.                         
+
+> Dataset Students Interactions Horizon [δmin , δ max ]
+> RoboMission 20,556 258,670 30 [−3.700 ,2.571]
+> Assistments2015 14,567 473,582 50 [−1.756 ,0.709]
+> Assistments2009 4,066 97,571 50 [−1.292 ,1.307]
+> Pix 100,000 2,978,909 30 [−4.751 ,3.686]
+
+a behavior policy and learn a parametric target policy that recommends items based on student proficiency. The target policy follows a Gaussian distribution: 
+
+πθ (a | x) = N a; μθ (x), σ θ (x)2,
+
+where the mean is linear in proficiency, μθ (x) = βμ, 0 + βμ, 1 x, and the log stan-dard deviation is quadratic, log σθ (x) = βσ, 0 + βσ, 1 x + βσ, 2 x2, leading to five learnable parameters θ = ( βμ, 0, β μ, 1, β σ, 0, β σ, 1, β σ, 2). When the action space is bounded to [δmin , δ max ], we use the corresponding truncated Gaussian density and constrain μθ (x) to stay in range via a sigmoid reparameterization. We use the same family of distributions to fit the behavior policies fη in each round. We train one such policy per objective (IPS, SNIPS, DR, MIS), using the target context distribution p⋆ estimated from the first half of rounds. 
+
+Evaluation protocol. Students are split 80/20 into train and test sets (split by student). Round-specific behavior and target policies are fitted exclusively on train students. Learned policies are then evaluated on the held-out test set using the train-fitted behavior policy to estimate the propensities used in the estimator: for each learned policy πθ , we compute all five estimators (IPS, SNIPS, DR, MIS, DM) on the test set. The behavior policy never sees test students during training: it is learned from the train split and used to compute the propensities of context–actions tuples in the test split 5.
+
+ITS diagnostics and sanity checks. Before presenting policy-learning results, we report three dataset-level diagnostics. Table 2 summarizes the behavior policies fit quality: higher RMSE indicates less accurate propensity estimates and hence higher OPE variance. Table 3 reports two additional quantities: ITS adaptivity via ˆV (π0) and ˆV (πlast ), and held-out Rasch calibration gap, where lower is better. Behavior-model fit varies substantially across datasets, from 0.345 on Assist-ments2009 and 0.554 on Assistments2015 to 0.704 on Pix and 0.931 on RoboMis-sion . For RoboMission , rounds 5–7 were excluded because of degenerate fits (RMSE > 19 ), likely due to a bimodal difficulty distribution with a spike at 
+
+δmin . For Pix , round 0 was excluded (RMSE = 12 .34 ) because the ITS starts   
+
+> 5Code is available at: https://github.com/samgirr/counterfactual_learning_for_ITS Counterfactual Learning of Adaptive Policies using Logged Data 11
+
+Table 2: Behavior policy fit quality per dataset. RMSE measures the deviation of the predicted mean difficulty ˆμt(x) from the observed δ. Higher RMSE indicates a harder-to-fit action distribution, degrading propensity estimates and increasing OPE variance.                
+
+> Dataset RMSE (avg) RMSE ( ˆπlast )Excluded RoboMission 0.931 1.025 rounds 5–7 Assistments2015 0.554 0.552 none Assistments2009 0.345 0.352 none Pix 0.704 0.681 round 0
+
+Table 3: Dataset-level diagnostics used to contextualize the offline policy learning results.                  
+
+> (a) ITS adaptivity diagnostic. Larger gaps indicate stronger adaptation over the interaction horizon. Dataset ˆV(π0)ˆV(πlast )
+> Assistments2009 0.584 0.636 Assistments2015 0.669 0.863 RoboMission 1.619 1.877 Pix 1.064 1.981 (b) Calibration gap of the Rasch model on the test split. Lower is better. Dataset Calibration gap RoboMission 0.0212 Assistments2015 0.0324 Assistments2009 0.1112 Pix 0.0280
+
+with a deterministic assignment rule that concentrates all students on the same item. Taken together, these diagnostics provide context for the results that fol-low. Assistments2015 combines good fit with clear adaptation, Assistments2009 
+
+shows good behavior-model fit but limited adaptation and substantially worse Rasch calibration, and RoboMission and Pix exhibit stronger adaptation in a more challenging propensity-estimation setting. 
+
+Assistments2015 . This dataset represents the most favorable setting for offline contextual bandit learning: the behavior policy is adaptive horizon (see Ta-ble 3a), yet drift is moderate enough that overlap remains strong throughout. The behavior policy curves in Figure 3(a) show a consistent upward shift across rounds without abrupt changes. All learned policies improve substantially over the behavior baseline (Ta-ble 4). Among learned policies, Learned DR achieves the best SNIPS ( 1.093 , a 
+
+23 .8% improvement over the behavior policy), while the IRT oracle dominates the DR and DM columns as expected. The consistency across estimators gives high confidence that these gains are genuine. 12 Girard et al. 
+
+Table 4: Held-out test results on Assistments2015 .                                           
+
+> Policy Obj. IPS SNIPS DR MIS DM Behavior –0.881 0.882 0.877 0.883 0.883 IRT oracle –0.804 1.083 1.114 0.821 1.170
+> Learned IPS ips 1.270 1.080 1.076 1.268 1.080 Learned SNIPS snips 1.231 1.089 1.088 1.230 1.096 Learned DR dr 1.175 1.093 1.099 1.176 1.119 Learned MIS mis 1.270 1.080 1.076 1.268 1.081
+> (a) Behavior policy evolution. (b) Learned policy curves.
+
+Fig. 3: Assistments2015 . Left: consistent upward shift across rounds without strong drift, producing good overlap across the full interaction horizon. Right: all learned policies improve substantially over the behavior baseline, with strong agreement across estimators. 
+
+Assistments2009 . The behavior policy shows only modest adaptiveness: the con-text-weighted reward improves from 0.584 to 0.636 over the full horizon (Ta-ble 3a), and the behavior policy curves in Figure 4(a) are nearly flat across all rounds and proficiency levels. Overlap is good, but the difficulty lies in the lim-ited exploration: the system assigns a narrow range of difficulties regardless of student ability, leaving little support for learning a substantially different policy. An additional issue on this dataset is Rasch miscalibration. Table 3b shows that 
+
+Assistments2009 has the largest calibration gap ( 0.1112 ) among all datasets. This helps explain the mismatch between the IRT oracle’s SNIPS estimate ( 0.537 ), which is below the behavior policy ( 0.641 ), and its DM estimate ( 0.787 ), which is much higher: the Rasch model appears to predict gains from more difficult assignments that are not supported by the logged data. Learned SNIPS and Learned DR achieve modest gains over the behavior baseline (Table 5), while Learned IPS and Learned MIS fail to improve reliably. The learned policy curves confirm this pattern: all objectives remain close to the behavior baseline, with limited room to diverge (Figure 4(b)). 
+
+RoboMission . The ITS shows strong adaptation over the horizon: ˆV (π0) rises from 1.619 to ˆV (πlast ) = 1 .877 (Table 3a), and the behavior policy curves in Counterfactual Learning of Adaptive Policies using Logged Data 13 
+
+Table 5: Held-out test results on Assistments2009 .                                           
+
+> Policy Obj. IPS SNIPS DR MIS DM Behavior –0.653 0.641 0.641 0.648 0.651 IRT oracle –0.440 0.537 0.623 0.444 0.787
+> Learned IPS ips 0.652 0.627 0.623 0.655 0.696 Learned SNIPS snips 0.696 0.686 0.693 0.694 0.658 Learned DR dr 0.692 0.684 0.692 0.690 0.665 Learned MIS mis 0.646 0.620 0.615 0.652 0.709
+> (a) Behavior policy evolution. (b) Learned policy curves.
+
+Fig. 4: Assistments2009 . Left: near-flat behavior policy curves across rounds and proficiency levels, indicating poor adaptivity. Right: learned policies remain close to the behavior baseline, reflecting the limited support available for policy im-provement. Figure 5(a) shift upward across rounds, assigning harder items to more proficient students. At the same time, RoboMission has the highest average RMSE ( 0.931 ;Table 2), indicating that the behavior policy is harder to model accurately than in the other datasets. This poor fit helps explain the discrepancy between the reference value ˆV (πlast ) in Table 3a and the behavior-policy estimates in Table 6. All learned policies improve over the behavior baseline under SNIPS and DR (Table 6), with Learned MIS achieving the best results, a 22 .5% improvement in SNIPS over the behavior policy. 
+
+Pix . The behavior policy is the most strongly adaptive across all datasets: the context-weighted reward nearly doubles from 1.064 to 1.981 (Table 3a), the largest absolute gain observed. This strong drift is reflected in the behavior policy evolution shown in Figure 1. The behavior model RMSE is intermediate (Table 2), with all rounds after round 0 well fitted. All learned policies improve substantially over the behavior baseline (Ta-ble 7), with Learned DR achieving the best SNIPS and DR among all policies — a 38 .9% improvement in SNIPS, the largest gain across all datasets. The IRT oracle again dominates the DM column. 14 Girard et al. 
+
+Table 6: Held-out test results on RoboMission .                                           
+
+> Policy Obj. IPS SNIPS DR MIS DM Behavior –1.968 1.981 2.006 2.139 2.013 IRT oracle –1.694 2.370 2.408 2.563 2.443
+> Learned IPS ips 2.332 2.360 2.361 2.749 2.241 Learned SNIPS snips 2.347 2.409 2.408 2.858 2.274 Learned DR dr 2.315 2.425 2.431 2.875 2.305 Learned MIS mis 2.302 2.426 2.432 2.868 2.309
+> (a) Behavior policy evolution. (b) Learned policy curves.
+
+Fig. 5: RoboMission . Left: strong upward shift across rounds indicating high ITS adaptiveness, but also large round-to-round drift that degrades behavior model fit at certain rounds. Right: all learned policies improve over the behavior base-line, with SNIPS and DR being the most reliable metrics. Comparing the behavior-policy IPS and SNIPS estimates in Table 7 with the reference value ˆV (πlast ) = 1 .981 from Table 3a reveals an instructive asymmetry on this dataset: IPS underestimates the final-round policy value, whereas SNIPS overestimates it. This is a direct consequence of the strong behavior drift. The importance weights for evaluating the last-round policy ˆπ29 on data from an early round t are proportional to ˆπ29 (a | x)/ˆπt(a | x). At early rounds, the system assigned much easier items than at round 29, so ˆπ29 assigns them low probability and the weights are small. IPS divides by the total number of samples, so these low-weight early-round observations still occupy a large fraction of the denominator, pulling the estimate down. SNIPS normalises by the sum of weights instead, effectively concentrating mass on late rounds where weights are close to 1 and rewards are high, which inflates the estimate. The more adaptive the behavior policy, the larger this divergence between IPS and SNIPS — a pattern that is mild on the ASSISTments datasets and most pronounced here. 
+
+# 6 Conclusion 
+
+We presented an offline contextual bandit framework for learning instructional policies directly from logged educational data, without interaction with students Counterfactual Learning of Adaptive Policies using Logged Data 15 
+
+Table 7: Held-out test results on Pix .                                          
+
+> Policy Obj. IPS SNIPS DR MIS DM Behavior –1.781 2.171 2.136 2.132 2.151 IRT oracle –2.227 2.860 2.886 2.642 2.734
+> Learned IPS ips 2.793 2.995 2.979 3.085 2.657 Learned SNIPS snips 2.678 3.012 2.990 2.956 2.690 Learned DR dr 2.731 3.016 2.999 3.006 2.695 Learned MIS mis 2.678 2.907 2.887 3.125 2.629
+
+or reliance on a student simulator. Experiments on four real-world datasets show that learned policies consistently improve over the behavior baseline out of sam-ple, with SNIPS and DR emerging as the most reliable objectives across datasets and estimators. Our behavior-policy diagnostic also reveals meaningful differ-ences in ITS adaptiveness across systems. More broadly, we show that Rasch model calibration directly affects the reliability of offline evaluation, and should therefore be reported alongside any such analysis. 
+
+Deployment and cold start. Our evaluation conditions on xu,t = ˆ zu estimated from each student’s complete trace, which suits offline analysis but is unavailable when serving a new student. At deployment, a student with no history is initial-ized at the population average ( ˆz ≈ 0); as they answer items, ˆzu is re-estimated online from the growing prefix and the policy is replayed on the updated context. The learned policy is thus only as good as this running estimate, which is least precise in the earliest rounds—where regularization pulls ˆzu toward zero and sharpens as evidence accumulates. This online protocol bridges our full-trace evaluation context and a realizable deployment loop, at the cost of degraded estimates during a student’s first interactions. 
+
+Limitations and future work. Our bandit formulation optimizes immediate re-wards rather than long-term learning gains. Extending the framework to sequen-tial decision-making would allow richer policies, but at substantially greater data and computational cost [9]. In addition, our behavior-policy estimation currently relies on simple parametric families. A promising direction is to consider more flexible models, such as mixture distributions, which could better capture com-plex assignment patterns in the logs. This is especially relevant at later rounds, where the behavior policy may become multimodal, for example if the ITS sep-arates students into distinct difficulty tracks. More expressive behavior models could therefore improve both interpretability and the stability of downstream off-policy evaluation. When the target policy departs far from the behavior pol-icy, estimators disagree and effective sample size drops; we advocate for logging policies that include deliberate exploration and for releasing behavior-policy de-scriptions alongside datasets [20]. Finally, visualizing both behavior and learned policies as functions of proficiency opens the door to fairness analyses [16] and 16 Girard et al. 
+
+may also help identify new knowledge-tracing models from the structure of the learned policies themselves. 
+
+Acknowledgments. This study was funded by Île-de-France, Paris Region PhD. 
+
+Disclosure of Interests. Samuel Girard has received a research grant from public group interest Pix. 
+
+Use of Generative AI. Generative AI tools were used for coding assistance, language refinement, and grammatical editing. All intellectual content, including research design, analysis, and interpretation, was performed by the authors. 
+
+Ethics and Societal Aspects. The research conducted in this paper is solely made on offline pseudonymized data in order to benefit human learning. The purpose of off-policy learning is precisely to learn promising strategies to ask questions to humans while avoiding to rely on actual online experimentations on humans. 
+
+# References 
+
+1. Agarwal, A., Basu, S., Schnabel, T., Joachims, T.: Effective evaluation using logged bandit feedback from multiple loggers. In: Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. p. 687–696. KDD ’17, ACM (Aug 2017). https://doi.org/10.1145/3097983.3098155, http://dx. doi.org/10.1145/3097983.3098155 2. Basawapatna, A.R., Repenning, A., Koh, K.H., Nickerson, H.: The zones of prox-imal flow: guiding students through a space of computational thinking skills and challenges. In: Proceedings of the Ninth Annual International ACM Conference on International Computing Education Research. p. 67–74. ICER ’13, Association for Computing Machinery, New York, NY, USA (2013). https://doi.org/10.1145/ 2493394.2493404, https://doi.org/10.1145/2493394.2493404 3. Bassen, J., Balaji, B., Schaarschmidt, M., Thille, C., Painter, J., Zimmaro, D., Games, A., Fast, E., Mitchell, J.C.: Reinforcement learning for the adaptive scheduling of educational activities. In: Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems. pp. 1–12 (2020) 4. Bjork, E.L., Bjork, R.A., et al.: Making things hard on yourself, but in a good way: Creating desirable difficulties to enhance learning. Psychology and the real world: Essays illustrating fundamental contributions to society 2(59-68) (2011) 5. Bottou, L., Peters, J., Quiñonero-Candela, J., Charles, D.X., Chickering, D.M., Portugaly, E., Ray, D., Simard, P., Snelson, E.: Counterfactual reasoning and learning systems: The example of computational advertising. Journal of Machine Learning Research 14 (11) (2013) 6. Clément, B., Roy, D., Oudeyer, P.Y., Lopes, M.: Multi-armed bandits for intelligent tutoring systems. Journal of Educational Data Mining 7(2), 20–48 (2015) 7. Corbett, A.T., Anderson, J.R.: Knowledge tracing: Modeling the acquisition of pro-cedural knowledge. User modeling and user-adapted interaction 4, 253–278 (1994) 8. Csikszentmihalyi, M., Csikszentmihalyi, I.S.: Optimal experience: Psychological studies of flow in consciousness. Cambridge University Press (1988) Counterfactual Learning of Adaptive Policies using Logged Data 17 9. Doroudi, S., Aleven, V., Brunskill, E.: Robust evaluation matrix: Towards a more principled offline exploration of instructional policies. In: Proceedings of the Fourth (2017) ACM Conference on Learning at Scale. pp. 3–12 (2017) 10. Dudík, M., Langford, J., Li, L.: Doubly robust policy evaluation and learning. In: Proceedings of the 28th International Conference on International Conference on Machine Learning. pp. 1097–1104 (2011) 11. Effenberger, T., Pelánek, R.: Towards making block-based programming activities adaptive. In: Proceedings of the Fifth Annual ACM Conference on Learning at Scale. pp. 1–4 (2018) 12. Fang, Y., Ren, Z., Hu, X., Graesser, A.C.: A meta-analysis of the effectiveness of aleks on learning. Educational Psychology 39 (10), 1278–1292 (2019) 13. Feng, M., Heffernan, N., Koedinger, K.: Addressing the assessment challenge with an online system that tutors as it assesses. User Modeling and User-Adapted In-teraction 19 (3), 243–266 (2009) 14. Gao, G., Ju, S., Chi, M.: Hope: Human-centric off-policy evaluation for e-learning and healthcare. In: In the 22nd International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2023). Springer Science+ Business Media (2023) 15. Gao, G., Gao, Q., Yang, X., Ju, S., Pajic, M., Chi, M.: On trajectory augmentations for off-policy evaluation. In: The Twelfth International Conference on Learning Representations (2024), https://openreview.net/forum?id=eMNN0wIyVw 16. Gardner, J., Brooks, C., Baker, R.: Evaluating the fairness of predictive student models through slicing analysis. In: Proceedings of the 9th international conference on learning analytics & knowledge. pp. 225–234 (2019) 17. Lan, A.S., Baraniuk, R.G.: A contextual bandits framework for personalized learn-ing action selection. In: EDM. pp. 424–429 (2016) 18. Levine, S., Kumar, A., Tucker, G., Fu, J.: Offline reinforcement learning: Tutorial, review, and perspectives on open problems (2020), https://arxiv.org/abs/2005. 01643 19. Rasch, G.: Studies in mathematical psychology: I. Probabilistic models for some intelligence and attainment tests. Nielsen & Lydiche (1960) 20. Saito, Y., Aihara, S., Matsutani, M., Narita, Y.: Open bandit dataset and pipeline: Towards realistic and reproducible off-policy evaluation. In: Thirty-fifth Confer-ence on Neural Information Processing Systems Datasets and Benchmarks Track (Round 2) (2021) 21. Subramanian, J., Mostow, J.: Deep reinforcement learning to simulate, train, and evaluate instructional sequencing policies (2021), spotlight presentation at Rein-forcement Learning for Education workshop at Educational Data Mining 2021 conference 22. Swaminathan, A., Joachims, T.: Counterfactual risk minimization: Learning from logged bandit feedback. In: Bach, F., Blei, D. (eds.) Proceedings of the 32nd International Conference on Machine Learning. Proceedings of Machine Learn-ing Research, vol. 37, pp. 814–823. PMLR, Lille, France (07–09 Jul 2015), https: //proceedings.mlr.press/v37/swaminathan15.html 23. Vassoyan, J., Vie, J.J., Lemberger, P.: Towards scalable adaptive learning with graph neural networks and reinforcement learning. In: Feng, M., Käser, T., Taluk-dar, P. (eds.) Proceedings of the 16th International Conference on Educational Data Mining. pp. 351–361. International Educational Data Mining Society, Ben-galuru, India (July 2023). https://doi.org/10.5281/zenodo.8115663 24. Vie, J.J., Popineau, F., Tort, F., Marteau, B., Denos, N.: A heuristic method for large-scale cognitive-diagnostic computerized adaptive testing. In: Proceedings of the Fourth (2017) ACM Conference on Learning at Scale. pp. 323–326 (2017) 18 Girard et al. 25. Whitehill, J., Movellan, J.: Approximately optimal teaching of approximately op-timal learners. IEEE Transactions on Learning Technologies 11 (2), 152–164 (2017) 26. Yang, X., Islam, M.M., Gao, G., Chi, M.: Themes: An offline apprenticeship learn-ing framework for evolving reward functions. In: Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V. 2. pp. 3565– 3576 (2025) 27. Yessad, A.: Personalizing the sequencing of learning activities by using the q-learning and the bayesian knowledge tracing. In: European Conference on Tech-nology Enhanced Learning. pp. 638–644. Springer (2022) 28. Zhao, S., Heffernan, N.: Estimating individual treatment effect from educational studies with residual counterfactual networks. In: International Educational Data Mining Society. ERIC (2017)

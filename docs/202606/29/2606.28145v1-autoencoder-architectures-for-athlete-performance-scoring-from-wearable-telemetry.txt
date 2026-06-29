@@ -1,0 +1,142 @@
+Title: Autoencoder Architectures for Athlete Performance Scoring from Wearable Telemetry
+
+URL Source: https://arxiv.org/pdf/2606.28145v1
+
+Published Time: Mon, 29 Jun 2026 01:04:47 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# Autoencoder Architectures for Athlete Performance Scoring from Wearable Telemetry 
+
+Mateusz Kubita 
+
+Student of Warsaw University of Technology 
+
+Warsaw, Poland mateusz.kubita.stud@pw.edu.pl 
+
+Jan Zubalewicz 
+
+Student of Warsaw University of Technology 
+
+Warsaw, Poland jan.zubalewicz.stud@pw.edu.pl 
+
+Krzysztof Siwek 
+
+Warsaw University of Technology 
+
+Warsaw, Poland krzysztof.siwek@pw.edu.pl 
+
+Abstract —Wearable devices produce large, high dimensional training logs for everyday runners, and interpretation rather than data collection is now the limiting step. This paper evaluates five dimensionality reduction models, three autoencoder variants, PCA, and a Variational Autoencoder, on their ability to compress nine sensor runner profiles into a single scalar performance indicator, the latent score. Because the setting is fully unsu-pervised, model quality is assessed along two complementary axes: reconstruction error (Mean Squared Error) and latent score interpretability, measured via Spearman and Kendall rank correlations, Mutual Information, and Permutation Importance. These are combined into a composite selection criterion that prevents selecting models on reconstruction accuracy alone. Feature rankings from the four metrics are aggregated via a modified Borda count, and their stability is confirmed by bootstrap validation. A two feature linear baseline is included to anchor the comparison. Deep autoencoder achieved the lowest reconstruction error and the highest composite score. Once the PCA hidden layers were widened, the deeper variants became closely competitive with Deep AE on the composite criterion, indicating that the limiting factor was hidden layer capacity rather than the one dimensional bottleneck. Running pace, aerobic decoupling, and average heart rate emerged as the dominant latent score drivers across all models and resampling runs, consistent with established physiology. 
+
+Index Terms —Autoencoders, Dimensionality Reduction, Sports Analytics, Machine Learning, Performance Assessment, Explain-able AI 
+
+I. I NTRODUCTION 
+
+Monitoring physical activity through IoT systems produces dense datasets combining kinematic, physiological, and en-vironmental variables [1]. A single session recorded by a smartwatch and chest strap can generate dozens of overlapping signals, and continuous heart rate monitoring, GPS pacing, and ground contact time measurement are now standard even outside elite sport [10]. The practical challenge has shifted from data collection to synthesis. Coaches need a compact indicator that reflects performance without requiring manual inspection of multiple plots. During marathon preparation each athlete accumulates thousands of data points. In practice coaches review these through hand crafted summaries and fixed weights, an approach that is easy to apply but that can obscure nonlinear interactions between workload, fatigue, and cardiovascular response [6]. Uphill running, for example, low-ers pace while raising heart rate simultaneously, a pattern that reflects terrain rather than reduced fitness. Simple weighted averages cannot capture this kind of context reliably. Dimensionality reduction techniques such as PCA are widely used in sports analytics, but their ability to represent complex physiological dynamics is constrained by linearity [18]. Existing unsupervised approaches typically optimize reconstruction accuracy alone, without checking whether the derived score is interpretable or stable across data splits. No widely accepted framework simultaneously compresses multi sensor telemetry into a single interpretable score, pre-serves nonlinear physiological relationships, and provides sta-ble rankings. This work addresses that gap with a unified evaluation framework for unsupervised athlete ranking. The specific contributions are: reduction of each athlete profile to a one dimensional latent score, model selection based on a composite criterion combining reconstruction accuracy and ranking interpretability, feature level interpretation using four complementary Explainable AI metrics aggregated by a modified Borda count; and bootstrap based ranking stability assessment with confidence intervals. II. R ELATED WORK 
+
+Autoencoders have been used for nonlinear dimensionality reduction since Hinton and Salakhutdinov showed that adeep network can compress data more effectively than PCA when the underlying structure is nonlinear [3]. Variational autoencoders extended this idea with a probabilistic latent space [4], which makes them attractive for noisy sensor data. In sport and health, wearable telemetry has been modeled with both classical and deep methods [6], [10]. Most of the applications either keep the latent space high dimensional or use it only for clustering, not for a single interpretable ranking score. Machine learning is now widely applied to sport specific tasks, from movement recognition to injury forecasting [1], [17]. Reviews of the area note that model performance is often reported without much attention to interpretability [17]. Explainability methods such as permutation importance and additive feature attribution [5], [9], [12] have been used to open up supervised models, yet they are rarely combined into a con-sensus procedure for an unsupervised score. Rank aggregation offers a principled way to merge several importance measures [2], and bootstrap resampling provides stability estimates [14]. 
+
+> arXiv:2606.28145v1 [cs.LG] 26 Jun 2026
+
+The framework in this paper brings these threads together. It compresses telemetry to one dimension, ranks the drivers of that dimension with four metrics, and tests their stability across resamples. III. D ATA AND PROCESSING PIPELINE 
+
+A. Dataset Characteristics 
+
+The dataset originates from exports of the Golden Chee-tah platform and is included in the project repository as 
+
+data/activities.csv . It was obtained from a publicly available export and no restricted identifiers were used; all records were analyzed in anonymized form. Because the data were publicly accessible and anonymized at the time of download, no institutional review board approval was required. Real sessions include dropped GPS samples, tem-porary heart rate disconnects, and recording artifacts such as watches left running after training, so a dedicated preprocess-ing stage was required. The cleaning process covered removing records with missing values, handling extreme tracking errors, and applying outlier filtration. After preprocessing the final dataset comprised 45,836 observations . A formal 80/10/10 train, validation, and test split was created during prepro-cessing and applied consistently throughout the experiments. Each profile was described by nine features extracted from the raw activity files: pace (pace_min_km ), average heart rate ( average_hr ), elevation gain ( elevation_gain ), total dis-tance ( total_distance ), cadence ( final_cadence ), aerobic de-coupling ( aerobic_decoupling ), age ( age ), body weight ( ath-lete_weight ), and a binary sex indicator ( is_male ). The binary treatment of sex does not account for hormonal or anatom-ical variation within the population and is an acknowledged simplification. Aerobic decoupling quantifies the drift in the pace to heart rate ratio between the first and second halves of a session [11]. High values indicate fatigue, dehydration, or insufficient aerobic conditioning, making it an informative marker for session quality and longitudinal fitness trends. All variables were scaled with Min Max normalization on the training split. 
+
+B. Compared Model Architectures 
+
+Five architectures were evaluated, each reducing the nine dimensional input to a one dimensional bottleneck. The Sim-ple AE applies a direct single layer mapping and serves as a baseline for neural compression. The Medium AE adds one hidden layer on each side of the bottleneck, implementing the topology Input → 16 → 1 → 16 → Output [7]. The Deep AE 
+
+is a multilayer structure with topology Input → 32 → 8 → 1
+
+→ 8 → 32 → Output [3]. A deliberate design choice separates the compression target from the representational capacity. The bottleneck is fixed at one dimension because the downstream task is a single scalar ranking score, so the latent representation must be one dimensional to be interpretable as a performance ordering. The surrounding hidden layers, by contrast, are kept generous (16, 32, then 8) so that the encoder has enough capacity to learn a useful nonlinear mapping before it reaches the bottleneck. Narrow hidden layers would compress the input too early and starve the model, which is what limited earlier deterministic variants. With about 36,000 training samples for nine features and early stopping in place, these wider layers do not raise a meaningful overfitting risk. For context, the first principal component explains approximately 46.4% of the variance, indicating that one linear dimension captures a substantial but incomplete fraction of the dataset structure. A systematic comparison of k = 1 , 2, 3 bottleneck dimension-alities is left for future work. PCA provides a strictly linear baseline [18]. The VAE uses a probabilistic encoder with an intermediate dimension of 32, regularizing the latent space by jointly optimizing reconstruction loss and Kullback-Leibler divergence [4], which encourages similar athlete profiles to cluster in the latent space. IV. E XPERIMENTAL PROTOCOL 
+
+Hyperparameters for all neural architectures were tuned on the validation set. Early stopping was applied based on validation loss with a patience of ten epochs. Each neural model was trained five times with different random seeds, and the reported metrics are averages across those runs to reduce sensitivity to initialization variance. PCA does not require stochastic training and was fitted once on the training split. Model selection used a composite criterion that incorporates both reconstruction accuracy and latent score interpretability, Score sel = α · (1 − MSE norm ) + (1 − α) · Q (1) where MSE norm is the min-max normalized reconstruction error across candidate models, Q is the Latent Score Quality defined in Section V, and α = 0 .5 assigns equal weight to both criteria. This formulation avoids selecting models purely on reconstruction accuracy, which would favor linear projections. All evaluation metrics in Section VI was computed on the held out test set after hyperparameter tuning. Table I shows the intermediate values used to compute the composite selection score in Equation (1). The observed minimum and maximum test set MSE values are min( MSE ) = 0 .001781 (Deep AE) and max( MSE ) = 0 .169234 (Simple AE). The composite criterion uses an equal weighting ( α = 0 .5)by convention, so we report how model selection responds to that choice. Table II lists the composite score of every model at α = 0 .3, 0.5, and 0.7. Deep AE ranks first across all three settings, and the ordering of the leading models is stable. This indicates that the conclusion does not hinge on the exact weight. V. F EATURE INTERPRETATION METHODOLOGY 
+
+Explaining unsupervised latent representations is a recog-nized research challenge [5]. In coaching contexts, a lower latent score should be traceable to a specific variable, such as elevated heart rate at a given pace or a cadence shift consistent with fatigue, rather than emerging from an opaque combination of inputs. To reduce over interpretation from any single statistical perspective this study adopts a multimetric consensus procedure. Table I DERIVATION OF THE COMPOSITE SELECTION SCORE . F OR EACH MODEL WE SHOW THE TEST MSE, THE MIN -MAX NORMALIZED MSE, THE COMPLEMENT 1 − MSE NORM , THE LATENT SCORE QUALITY Q, AND THE FINAL SCORE SEL WITH α = 0 .5.                                                      
+
+> Model MSE MSE norm 1−MSE norm QScore sel
+> Simple AE 0.169234 1.000000 0.000000 0.814000 0.407000 Medium AE 0.006123 0.025930 0.974070 0.810000 0.892035
+> Deep AE 0.001781 0.008563 0.999882 0.943000 0.971500
+> PCA 0.002354 0.003422 0.996578 0.858000 0.927289 VAE 0.004352 0.015354 0.984646 0.845000 0.914823 Table II COMPOSITE SCORE BY WEIGHTING α.
+> Model α= 0 .3α= 0 .5α= 0 .7
+> Simple AE 0.570 0.407 0.244 Medium AE 0.859 0.892 0.925
+> Deep AE 0.960 0.972 0.983
+> PCA 0.900 0.927 0.955 VAE 0.887 0.915 0.943
+
+A. Separate Analysis and Consensus 
+
+Feature rankings were computed with four independent metrics, each capturing a different facet of the variable score relationship. Spearman rank correlation captures monotonic relationships. Kendall rank correlation ( τ ) is more resistant to outliers, which is valuable for wearable derived features. Mutual Information identifies nonlinear dependencies that cor-relations may miss. Permutation Importance, computed using a Random Forest Regressor with 80 estimators, evaluates how much shuffling a feature degrades predictive accuracy [9], pro-viding a model based complement to the statistical measures. Individual rankings were integrated using a modified Borda count [2]. The normalized score for feature f under metric m
+
+is 
+
+sm,f = 1 − rm,f − 1
+
+p − 1 (2) where rm,f is the rank of feature f under metric m and p
+
+is the total number of features. The final Combined Impact Score is 
+
+Sf = X
+
+> m
+
+wmsm,f , where X
+
+> m
+
+wm = 1 (3) Default weights were 0.25 for Spearman, 0.20 for Kendall, 0.25 for Mutual Information, and 0.30 for Permutation Im-portance. The upweighting of Permutation Importance reflects its direct connection to predictive degradation. Sensitivity to this weight assignment was assessed by sampling 1,000 weight vectors from a Dirichlet distribution. The reference top three set {pace, average heart rate, aerobic decoupling} was preserved in 639 of 1,000 samples (63.9%) when order was ignored, and in 68 samples (6.8%) when exact ordering was required. This indicates moderate robustness: the dominant features do not depend on the specific default weights, but neither are they completely insensitive to moderate perturba-tions. Table III summarizes these results.         
+
+> Table III DIRICHLET SENSITIVITY SUMMARY (1,000 WEIGHT SAMPLES ).
+> Measure Count Percent (%)
+> Top 3 preserved (order agnostic) 639 63.9 Exact top 3 ordering preserved 68 6.8
+
+The Latent Score Quality Q in Equation (1) is the mean normalized Combined Impact Score of the top ranked feature, averaged across the four metrics. Higher values indicate that the top feature receives consistently high rankings, reflecting a more interpretable and stable latent representation. Figure 1 shows how often each feature appears in the top three across the four metrics.  
+
+> Figure 1. Top 3 feature inclusion frequency across the four importance metrics. Stacked bars show how consistently each feature appears among the three most important variables under Spearman, Kendall, Mutual Information, and Permutation Importance.
+
+B. Stability and Bootstrap Validation 
+
+To determine whether the identified key features reflect genuine physiological signal rather than artifacts of a particular data split, bootstrap validation with replacement was applied [14]. For each feature the analysis reports the top 3 inclusion probability, the median rank, and the 95% confidence interval of the rank distribution across resamples. A probability of 1.000 with a zero width confidence interval indicates that the feature appeared in the top three in every resample, representing the strongest evidence of stability within this framework. VI. R ESULTS 
+
+A. Model Comparison and Reconstruction Quality 
+
+Table IV summarizes the test results for all five architec-tures. Deep AE achieved the lowest MSE (0.001781) and the highest composite score (0.972). Once the autoencoder hidden layers were widened, the Medium AE reached test MSE values of 0.006123, close to the VAE at 0.004352 and far below the narrow Simple AE at 0.169234. PCA was at a good level, with a value of 0.002354. This is the expected outcome given the architecture change, and it confirms the reasoning from the design section: capacity, not the bottleneck width, was the binding constraint.                                     
+
+> Table IV TEST RECONSTRUCTION ERROR , L ATENT SCORE QUALITY ,AND THE HIGHEST RANKED FEATURE FOR EACH MODEL . C OMPOSITE SELECTION
+> SCORE USES EQUATION (1) WITH α= 0 .5.
+> Model MSE Composite Latent Score Top 1 Score Quality Feature
+> Simple AE 0.169234 0.407 0.814 pace_min_km Medium AE 0.006123 0.892 0.810 pace_min_km
+> Deep AE 0.001781 0.972 0.943 average_hr
+> PCA 0.002354 0.927 0.858 average_hr VAE 0.004352 0.915 0.845 final_cadence
+> Figure 2. Reconstruction MSE across the five models on the held out test set.
+
+The composite ranking is: Deep AE (0.972), PCA (0.927), VAE (0.915), Medium AE (0.892), and Simple AE (0.407). These results show that MSE alone is an insufficient crite-rion for unsupervised physiological modeling. PCA preserves linear variance and reconstructs inputs accurately, while the nonlinear autoencoders expose latent structure that may differ in physiological interpretation even when their reconstruction error is comparable [3]. To check whether the small composite score gap between PCA and the best autoencoder is robust... Consensus analysis and bootstrap validation consistently identified the same three dominant features. Running pace, aerobic decoupling, and average heart rate each reached a top 3 inclusion probability of 1.000 in both correlation based and perturbation based rankings. This makes it unlikely to be a  
+
+> Figure 3. Spearman correlation matrix of latent scores produced by the five evaluated models.
+
+split specific artifact, and the same trio appeared under both PCA and the autoencoders, suggesting these variables define the dominant variance structure of the dataset regardless of the compression mechanism. 
+
+B. Comparison with a Linear Baseline 
+
+To quantify the contribution of nonlinear compression, the Deep AE latent score was compared against a simple linear baseline, Score base = w1 · pace + w2 · HR (4) where pace and HR are standardized pace and average heart rate, and w1 = w2 = 0.5. This represents the simplest plausible manual combination a coach might apply. The Deep AE latent score was strongly and inversely related to this baseline (Spearman ρ = −0.850 , Kendall τ = −0.681 ), meaning the two scores are not interchangeable. The baseline prioritizes average heart rate, pace, and cadence, while the Deep AE prioritizes average heart rate, pace, and aerobic decoupling, indicating that the nonlinear model preserves decoupling information that the linear combination misses. 
+
+C. Physiological Validation 
+
+Representative model athlete profiles show a clear physio-logical separation between high ranked and low ranked groups. Leading athletes typically exhibit a pace in the range of 2.2 to 2.6 min/km, near zero aerobic decoupling, and average heart rates around 125 to 134 bpm. Lower ranked athletes frequently show substantially slower paces (12 to 15 min/km) and, in some cases, pronounced aerobic decoupling (one session reached approximately 46.9%), consistent with marked cardiovascular drift. These contrasts support the latent score’s ability to rank athlete profiles along meaningful physiological axes. D. Practical Implementation 
+
+Both the Deep AE and PCA support deployment in a backend that processes raw FIT files and assigns athletes to contextual performance bands. Scores below 20 indicate early stage profiles; scores above 80 indicate strong profiles, giving coaches a concise summary without requiring manual inspec-tion of telemetry tables. The latent score framework can help separate biomechanical output from temporary cardiovascular strain during heavy training blocks [11], supporting tapering decisions before competition. The same workflow could extend to mobile tools for amateur runners and may facilitate early identification of overreaching before performance declines become clinically significant [15]. VII. D ISCUSSION 
+
+Deep AE achieves the highest composite score. The orig-inal Medium AE, with a single hidden layer of four units, reconstructed poorly. Widening it to sixteen units and giving the encoder brings both models close to PCA and the VAE. The VAE and PCA compresses to a single latent dimension, yet it reconstructs well, shows that the one dimensional bottleneck is not the binding constraint. The results match domain physiology findings [13], obtained without any labeled performance outcomes or assigned by expert weights. This is meaningful for practical use, since the framework requires no domain knowledge at initialization yet recovers results that match domain knowledge when evaluated. The strong negative latent score correlation between Simple AE and PCA (ρ = −0.65 ) is a practical warning. Two models that both optimize reconstruction on the same dataset can still rank athletes in almost opposite orders. Without the agreement matrix, a practitioner selecting between them on MSE alone would not detect this problem. VIII. L IMITATIONS 
+
+Several limitations bound the interpretation of these results. First, the dataset originates from a single training platform, which constrains external validity with respect to populations using different devices, training cultures, or geographic con-ditions. Establishing external validity would require rerunning the full pipeline on exports from a second device ecosystem, such as Garmin or Polar files, and confirming that pace, aero-bic decoupling, and average heart rate remain the dominant features. Second, the absence of ground truth labels such as VO 2max measurements or verified race results means the latent score can be validated only against physiological face validity, not against a criterion standard. Third, the equal composite weight ( α = 0 .5) was chosen by convention; the sensitivity analysis in Table II shows that Deep AE ranks first across α ∈ { 0.3, 0.5, 0.7}, so the conclusion is not strongly sensitive to this choice. IX. C ONCLUSIONS 
+
+This paper described an unsupervised framework for com-pressing nine dimensional runner telemetry into a single interpretable performance score. Five dimensionality reduction models were evaluated on a composite criterion that combines reconstruction accuracy and latent score interpretability. Deep AE achieved the highest composite score and the lowest reconstruction error. This framework can be generalized to any unsupervised setting that requires a compact representation to be both accurate and interpretable. Bootstrap validation confirmed that pace, aerobic decoupling, and average heart rate are the dominant latent score drivers, and their stability is very high. Each reached a top 3 inclusion probability of 1.000 across all resamples. This result is consistent with established sports physiology [13] and was obtained without any domain knowledge at initialization. Future work will include supervised validation against race results or labora-tory physiological parameters, cross platform generalization analysis, and temporal modeling with sequential architectures such as LSTM networks [16] or Transformers to capture within session fatigue dynamics that session aggregate features cannot represent. REFERENCES [1] A. Rossi, L. Pappalardo, P. Cintia, F. M. Iaia, J. Fernández, and D. Medina, “Effective injury forecasting in soccer with GPS training data and machine learning,” PLOS ONE , vol. 13, no. 7, p. e0201264, 2018. DOI: https://doi.org/10.1371/journal.pone.0201264 [2] C. Dwork, R. Kumar, M. Naor, and D. Sivakumar, “Rank aggregation methods for the web,” in Proc. 10th Int. Conf. World Wide Web , 2001, pp. 613–622. DOI: https://doi.org/10.1145/371920.372165 [3] G. E. Hinton and R. R. Salakhutdinov, “Reducing the dimensionality of data with neural networks,” Science , vol. 313, no. 5786, pp. 504–507, 2006. DOI: https://doi.org/10.1126/science.1127647 [4] D. P. Kingma and M. Welling, “Auto-encoding variational Bayes,” in                         
+
+> Proc. Int. Conf. Learn. Representations (ICLR) , 2014. arXiv: https:// arxiv.org/abs/1312.6114 [5] S. M. Lundberg and S.-I. Lee, “A unified approach to interpreting model predictions,” in Advances in Neural Information Processing Systems 30 ,2017, pp. 4765–4774. [6] M. Buchheit and P. B. Laursen, “High-intensity interval training, solu-tions to the programming puzzle: Part II: anaerobic energy, neuromus-cular load and practical applications,” Sports Medicine , vol. 43, no. 10, pp. 927–954, 2013. DOI: https://doi.org/10.1007/s40279-013-0066-5 [7] P. Baldi, “Autoencoders, unsupervised learning, and deep architectures,”
+> Proc. ICML Workshop on Unsupervised and Transfer Learning , 2012, pp. 37–49. [8] L. Breiman, “Random forests,” Machine Learning , vol. 45, no. 1, pp. 5– 32, 2001. DOI: https://doi.org/10.1023/A:1010933404324 [9] A. Altmann, L. Tolo¸ si, O. Sander, and T. Lengauer, “Permutation importance: a corrected feature importance measure,” Bioinformatics ,vol. 26, no. 10, pp. 1340–1347, 2010. DOI: https://doi.org/10.1093/ bioinformatics/btq134 [10] J. Alemany et al., “Smartwatch telemetry validation for physiological assessment in ambulatory environments,” IEEE Sensors Journal , vol. 21, no. 14, pp. 15890–15901, 2021. DOI: https://doi.org/10.1109/JSEN. 2021.3072114 [11] M. Buchheit, “Monitoring training status with heart rate measures: do all roads lead to Rome?” Frontiers in Physiology , vol. 5, p. 73, 2014. DOI: https://doi.org/10.3389/fphys.2014.00073 [12] C. Molnar, Interpretable Machine Learning: A Guide for Making Black Box Models Explainable , 2nd ed., 2022. URL: https://christophm.github. io/interpretable-ml-book/ [13] D. J. Plews, P. B. Laursen, A. E. Kilding, and M. Buchheit, “Heart rate variability in elite triathletes: is variation in variability the key to effective training? A case comparison,” European Journal of Applied Physiology , vol. 112, no. 11, pp. 3729–3741, 2012. DOI: https://doi. org/10.1007/s00421-011-2317-6 [14] B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap . New York, NY: Chapman and Hall/CRC, 1993. DOI: https://doi.org/10.1201/ 9780429246593
+
+[15] T. J. Gabbett, “The training-injury prevention paradox: should athletes be training smarter and harder?” British Journal of Sports Medicine ,vol. 50, no. 5, pp. 273–280, 2016. DOI: https://doi.org/10.1136/ bjsports-2015-095788 [16] S. Hochreiter and J. Schmidhuber, “Long short-term memory,” Neural Computation , vol. 9, no. 8, pp. 1735–1780, 1997. DOI: https://doi.org/ 10.1162/neco.1997.9.8.1735 [17] E. E. Cust, A. J. Sweeting, K. Ball, and S. Robertson, “Machine and deep learning for sport-specific movement recognition: a systematic review of model development and performance,” Journal of Sports Sciences , vol. 37, no. 5, pp. 568–600, 2019. DOI: https://doi.org/10. 1080/02640414.2018.1521769 [18] T. Hastie, R. Tibshirani, and J. Friedman, The Elements of Statistical Learning: Data Mining, Inference, and Prediction , 2nd ed. New York, NY: Springer, 2009. DOI: https://doi.org/10.1007/978-0-387-84858-7
