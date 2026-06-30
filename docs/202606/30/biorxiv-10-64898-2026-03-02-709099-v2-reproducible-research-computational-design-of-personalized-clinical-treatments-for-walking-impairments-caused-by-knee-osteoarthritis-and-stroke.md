@@ -1,0 +1,23 @@
+---
+title: "Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke"
+title_zh: 可重复性研究：膝骨关节炎与脑卒中所致行走障碍的个性化临床治疗计算设计
+authors: "Salati, R. M., Li, G., Williams, S. T., Fregly, B. J."
+date: 2026-06-30
+pdf: "https://www.biorxiv.org/content/10.64898/2026.03.02.709099v2.full.pdf"
+tags: ["query:sb"]
+score: 6.0
+evidence: 个性化神经肌肉骨骼模型用于行走障碍治疗优化可迁移至运动生物力学
+tldr: 个性化神经肌肉骨骼模型可优化膝骨关节炎和卒中等所致行走障碍的治疗设计，但现有工具编程要求高，缺少覆盖个性化建模到治疗优化的全程可复现教程。为此，本研究开发了基于NMSM Pipeline的两套详细教程，分别针对：1）双侧内侧膝骨关节炎患者，设计步态修正与高位胫骨截骨术以降低双膝内收力矩峰值；2）卒中后患者，设计协同功能性电刺激处方以平衡双腿的推进与制动冲量。教程通过患者步行数据创建个性化模型，经动态一致跟踪优化准确再现实验关节运动和力矩，随后治疗优化成功使膝内收力矩降至目标值、双腿冲量平衡。该教程首次向新手完整展示从模型构建到个性化治疗设计的全流程，显著降低学习曲线，并促进计算生物力学研究的可复现性。
+source: biorxiv
+selection_source: fresh_fetch
+motivation: 神经肌肉骨骼模型可优化运动障碍治疗，但现有工具使用门槛高，且缺少覆盖个性化建模到治疗优化的系统教程。
+method: 利用NMSM Pipeline，基于患者步行数据个性化建模，经动态一致跟踪优化后，分别设计步态/手术和电刺激治疗方案。
+result: 动态一致跟踪优化精确再现患者实验数据，设计优化成功将膝内收力矩峰值降至目标值，并使双腿冲量对称。
+conclusion: 首次提供从建模到治疗优化的完整教程，大幅降低新手学习曲线，有力推动可复现计算生物力学研究。
+---
+
+## 摘要
+背景：个性化的计算神经肌肉骨骼模型在优化运动障碍临床治疗设计方面具有巨大潜力。尽管许多软件工具针对模型个性化与治疗优化过程的特定部分，但它们通常需要大量的编程经验才能使用，且未能涵盖这两个过程的全部范围。此外，已发表的神经肌肉骨骼建模研究通常不提供他人重现工作所需的所有方法学细节。因此，寻求在模型个性化与治疗优化过程中发展技能的研究人员面临着陡峭的学习曲线，因为缺乏详细的培训材料，能够演示使用真实受试者运动数据解决真实临床问题的这两个过程。方法：本文提供了详细的培训教程，针对模型个性化与治疗优化过程，使用两个真实的临床问题和神经肌肉骨骼建模（NMSM）流水线。第一个临床问题涉及为一名双侧内侧膝骨关节炎患者设计个性化步态调整和高位胫骨截骨术，目标是将双膝的峰值内收力矩降低到指定的目标水平。第二个临床问题涉及为一名脑卒中后行走功能受损的患者设计基于协同的功能性电刺激处方，目标是使双腿的推进与制动冲量相等。两个教程均作为课程项目，提供给一门本科生/研究生合上的机械工程课程中的新手用户。结果：两个教程均生成了个性化的神经肌肉骨骼模型和相关的动态一致跟踪优化，这些优化紧密再现了行走过程中测量的受试者特异性实验关节角度、关节力矩、地面反作用力与力矩，以及（如适用）肌肉激活。随后的设计优化预测了个性化治疗方案，实现了峰值膝内收力矩或推进与制动冲量的目标值。结论：本文提供的详细逐步教程首次引导用户完成创建个性化神经肌肉骨骼模型的整个过程，然后使用它们为两名患有不同临床问题的受试者设计个性化治疗方案。这些教程可用于向新用户介绍NMSM流水线，并作为神经肌肉骨骼建模课程中的项目。
+
+## Abstract
+Background: Personalized computational neuromusculoskeletal models have great potential for optimizing the design of clinical treatments for movement impairments. While many software tools address specific parts of the model personalization and treatment optimization processes, they typically require significant programming experience to use and do not cover the full breadth of these two processes. Furthermore, published neuromusculoskeletal modeling studies typically do not provide all the methodological details needed for others to reproduce the work. Consequently, researchers seeking to develop skills in the model personalization and treatment optimization processes face a steep learning curve due to the lack of detailed training materials that demonstrate both processes for real-life clinical problems using real-life subject movement data. Methods: This article presents detailed training tutorials for the model personalization and treatment optimization processes using two real-life clinical problems and the Neuromusculoskeletal Modeling (NMSM) Pipeline. The first clinical problem involves the design of personalized gait modifications and high tibial osteotomy surgery for an individual with bilateral medial knee osteoarthritis, where the goal is to reduce the peak adduction moment in both knees to a specified target level. The second clinical problem involves the design of a synergy-based functional electrical stimulation prescription for an individual post-stroke with impaired walking function, where the goal is to equalize the propulsive and braking impulses between the two legs. Both tutorials were implemented as course projects given to novice users in a combined undergraduate/graduate mechanical engineering course. Results: Both tutorials produced personalized neuromusculoskeletal models and associated dynamically consistent tracking optimizations that closely reproduced subject-specific experimental joint angles, joint moments, ground reaction forces and moments, and (if applicable) muscle activations measured during walking. Subsequent design optimizations predicted personalized treatments that achieved target values of peak knee adduction moments or propulsive and braking impulses. Conclusions: The detailed step-by-step tutorials presented with this article are the first to walk users through the entire process of creating personalized neuromusculoskeletal models and then using them to design personalized treatments for two subjects with two different clinical problems. These tutorials can be used to introduce new users to the NMSM Pipeline and as projects in neuromusculoskeletal modeling courses.

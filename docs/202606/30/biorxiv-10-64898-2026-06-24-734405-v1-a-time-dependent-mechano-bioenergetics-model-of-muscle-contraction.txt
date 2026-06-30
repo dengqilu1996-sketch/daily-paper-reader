@@ -1,0 +1,1131 @@
+Title: A time-dependent mechano-bioenergetics model of muscle contraction
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.24.734405v1.full.pdf
+
+Number of Pages: 19
+
+Markdown Content:
+# A time-dependent mechano-bioenergetics model of muscle contraction 1
+
+## Konno, R. N. 1,* , Lichtwark, G. A. 2,3 , and Dick, T. J. M. 1
+
+> 2
+> 1
+
+School of Biomedical Sciences, The University of Queensland, Australia 3
+
+> 2
+
+School of Exercise & Nutrition Sciences, Queensland University of Technology, Australia 4
+
+> 3
+
+School of Human Movement & Nutrition Sciences, The University of Queensland, Australia 5
+
+> *
+
+Corresponding author: r.konno@uq.edu.au 6
+
+Abstract 7
+
+Predictions of skeletal muscle energy consumption under a diverse range of muscle contractile conditions 8
+
+are critical for improving our understanding of locomotion. Existing mathematical models, while capturing 9
+
+the mechanical dependence of energy consuming processes, neglect the time-dependent behaviour and recov-10 
+
+ery costs associated with regenerating ATP. This time-dependence is important for predicting the energetic 11 
+
+response of muscles during repetitive or cyclical tasks like locomotion, where muscle undergoes many con-12 
+
+traction cycles. This study presents a novel model to predict energetic rates based on physiological processes: 13 
+
+Ca 2+ transport costs, cross-bridge cycling costs, and ATP regeneration. Previous mathematical models in-14 
+
+clude the dependence on Ca 2+ transport and cross-bridge cycling, but neglect the time-dependent response 15 
+
+and the subsequent recovery of ATP following the contraction. Model parameters were obtained from exist-16 
+
+ing data on isolated muscle preparations, and predicted energetic rates were validated on separate datasets 17 
+
+across a range of contractile conditions including dynamic, sub-maximal, and twitch contractions. The time-18 
+
+dependent model was able to capture the influence of contraction frequency on peak energetic rates and the 19 
+
+time-course of energetic recovery observed experimentally. The model captures key physiological processes 20 
+
+while maintaining a minimal number of free parameters and low computational cost. This enables generalis-21 
+
+ability across muscles and species, and implementation into larger scale musculoskeletal models. 22 23 
+
+Keywords: Biomechanics, Calcium, Mathematical modelling, Metabolic cost, Muscle mechanics 24 
+
+1
+
+.CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint 1 Introduction 25 
+
+Estimates of skeletal muscle energy consumption over the course of a contraction cycle are critical for understand-26 
+
+ing a muscle’s function during any locomotor task and for predicting the energetic costs of movement. While it 27 
+
+is possible to experimentally obtain direct measures of energy use in vivo (averaged over many seconds (Haeufle 28 
+
+et al., 2020) or minutes of steady-state conditions (Cavagna et al., 1977)), isolated ex vivo muscle preparations 29 
+
+are required to obtain the precise time-dependent energetic responses of muscle (Woledge et al., 1985). In many 30 
+
+movements, such as walking or running, muscles undergo repeated cyclical contractions, meaning that aver-31 
+
+aged values are not capable of giving us insight into the relationship between muscle mechanical state (muscle 32 
+
+strain, strain rate, and activation level) and energy use; thus, mathematical models are required to estimate 33 
+
+these relationships. However, existing models (e.g., Konno et al. (2025) and Lichtwark and Wilson (2005)) rely 34 
+
+predominantly on the mechanical state, and neglect the muscle history and recovery processes that are also key 35 
+
+determinants of muscle energy use (Barclay & Curtin, 2023; Lichtwark et al., 2025). 36 
+
+Energy, in the form of ATP, is consumed during a muscle contraction to transport Ca 2+ into the sarcoplasmic 37 
+
+reticulum and to cycle the actin-myosin cross-bridges. Both of these processes are dependent on the mechanical 38 
+
+state of the muscle (Woledge et al., 1985), and as muscle shortens at faster rates it produces more heat (Fenn, 39 
+
+1923). Existing energy models account for these contributors (Umberger et al., 2003), but critically, are not mod-40 
+
+elled based on the true energy consuming processes. Instead, the activation heat associated with Ca 2+ transport is 41 
+
+typically calculated as proportional to the level of activation and not to the rate of Ca 2+ transport (Konno et al., 42 
+
+2025). Further, given that the rate of Ca 2+ transport depends on the concentration of Ca 2+ within the cytoplasm 43 
+
+of muscle fibres, current models cannot account for the history dependence on the rate of Ca 2+ transport. 44 
+
+As ATP is the fuel consumed during the muscle contraction, its supply needs to be regenerated through either 45 
+
+aerobic or anaerobic processes. These regeneration mechanisms are not completely efficient, and heat is released 46 
+
+during the conversion of the energy stored in substrates (i.e., glucose or palmitate) to ATP (Barclay, 2019). 47 
+
+These energy costs are of similar magnitude to the initial costs of generating force (Barclay, 2019), and are thus 48 
+
+likely an important contributor to total in vivo energy use, particularly during repeated contractions or longer 49 
+
+durations. While existing models captured the time-course of ATP regeneration (Kushmerick, 1998), they have 50 
+
+not been coupled with models that capture the initial consumption of ATP, nor the inefficiencies in this process, 51 
+
+limiting their ability to capture whole muscle energy use. 52 
+
+In this study, we present and validate a novel mechano-bioenergetics model accounting for the time-dependent 53 
+
+processes governing the energetics of muscle contraction, including both the initial mechanisms capturing ATP 54 
+
+consumption and the subsequent regeneration of ATP. The initial contractile energetics model is based on Konno 55 
+
+et al. (2025), accounting for the mechanical dependence of muscle energetic rates, with modifications to directly 56 
+
+model Ca 2+ transport costs. To capture the time-course of ATP recovery, we implemented a bioenergetics model 57 
+
+based on Kushmerick (1998) with an additional component accounting for the inefficiencies of the regeneration 58 
+
+process. The model parameters are informed using data from isolated mouse muscle preparations (Barclay et 59 
+
+al., 2010; Barclay et al., 1995), and validated on separate datasets across a range of contractile conditions and 60 
+
+stimulation intensities (Barclay, 2012; Barclay & Weber, 2004; Lewis & Barclay, 2014; Mast & Elzinga, 1987, 61 
+
+1988). 62 
+
+# 2 Methods 63 
+
+## 2.1 Mathematical model 64 
+
+The modelling framework consists of a combination of individual models capturing the process of muscle con-65 
+
+traction (Fig. 1): i) the excitation-activation model captures the flow of Ca 2+ upon stimulus and the subsequent 66 
+
+binding of Ca 2+ to troponin, ii) the mechanical Hill-type model simulates the muscle mechanical state (strain, 67 
+
+strain rate, and force), iii) the initial energetics model captures the energetic cost associated with Ca 2+ pumping 68 
+
+into the sarcoplasmic reticulum and cross-bridge cycling, and iv) the bioenergetics model captures the recovery 69 
+
+processes including the ATP-PCr dynamics and the corresponding energetic rate. 70 
+
+2
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Figure 1: Model workflow. The mathematical model takes as input a stimulus, either a motor unit firing or external stimulation. From the stimulus, the excitation-activation model computes the Ca 2+ concentrations and the activation state ( ∝ [CaT n ]). The activation state is used by the mechanical model to solve for the muscle strain, strain rate, and force. The outputs from these two models are then used by the initial energetics model to determine the energy used during the contraction, which gives the ATP consumed by ATPases. The initial energetics model computes the heat lost as inefficiencies to Ca 2+ transport (parameter rcat ), cross-bridge cycling (parameter rcxb ), and additional heat lost to inefficiencies during shortening (parameter rshort ). The regeneration of ATP consumed is determined using a bioenergetics ATP-PCr model, which solves for the ATP and PCr levels within the muscle. The rate of regeneration of ATP is calculated as a function of the ADP within the muscle. Here we assume oxidative recovery, and the heat released during regeneration of ATP is proportional (parameter rrec ) to the rate of regeneration of ATP. CE: contractile element, PEE: parallel elastic element, SEE: series elastic element, SR: sarcoplasmic reticulum, CsQ: calsequestrin, Tn: troponin, PCr: phosphocreatine, Cr: creatine, ATP: adenosine triphosphate, ADP adenosine diphosphate, Pi: inorganic phosphate. 
+
+2.1.1 Excitation-activation model 71 
+
+Upon a stimulus, Ca 2+ is released from the sarcoplasmic reticulum into the cytoplasm. Here, we use a simplified 72 
+
+model to limit the unknown parameters required to capture in vivo muscle contraction (Fig. 1). We account 73 
+
+for the troponin bound Ca 2+ , which is proportional to cross-bridge cycling and force production; thus, the 74 
+
+Ca 2+ -troponin complex gives a measure of muscle activation. After stimulus, ATP is required to pump the 75 
+
+Ca 2+ against the concentration gradient back into the sarcoplasmic reticulum. We capture the flow of Ca 2+ ions 76 
+
+throughout the membrane based on an existing model (Mayfield et al., 2023) 77 
+
+˙cca =
+
+ 
+
+> 1−cca
+> τact
+
+, if t ∈ T ,
+
+− cca  
+
+> τdeact
+
+, otherwise, (1) where ˙ x denotes the time derivative of a given quantity x, t is the time, cca is the free Ca 2+ concentration within 78 
+
+the cytoplasm, and τact and τdeact are the activation (release of Ca 2+ ) and deactivation (uptake of Ca 2+ ) time 79 
+
+constants, respectively. T denotes the time period where the muscle is stimulated. The concentration of bound 80 
+
+Ca 2+ to troponin is calculated as 81 
+
+ccatn = cnca 
+
+cnca + cnca, 50 
+
+, (2) where n is the Hill constant and cca, 50 is the concentration of calcium at half of the maximal cross-bridge 82 
+
+activation. 83 
+
+3
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+2.1.2 Mechanical model 84 
+
+As we follow the formulation of the muscle mechanical model presented elsewhere (Dick et al., 2017; Konno 85 
+
+et al., 2025), the details are contained in the Supplementary Material. The Hill-type model was used to compute 86 
+
+estimates of muscle strain, strain rate, and force based on the activation level predicted by the excitation-87 
+
+activation model (Fig. 1). We assume that muscle activation is proportional to the Ca 2+ bound to troponin, and 88 
+
+since we compute a normalised ccatn , ˆ a ≈ ccatn . Normalised muscle force was calculated based on a Hill-type 89 
+
+model 90 
+
+ˆFm = ˆ a ˆFce,l (ϵce ) ˆFce,v ( ˙ ϵce ) + ˆFpe,l (ϵce ). (3) Here, ˆFce,l (ϵce ) is the strain dependence of active force production, ˆFce,v ( ˙ ϵce ) is the strain rate dependence of 91 
+
+the active force production, and ˆFpe,l (ϵce ) is the passive response. ϵce is the strain in the contractile element 92 
+
+computed as ϵce = ( l − l0)/l 0, where l is the current length of the contractile element and l0 is optimal length. 93 
+
+2.1.3 Initial energetics model 94 
+
+Energetic cost from the initial phase of the contraction (Ca 2+ transport and cross-bridge cycling), was modelled 95 
+
+following existing models (Konno et al., 2025; Lichtwark & Wilson, 2005), but adapted to capture the energetic 96 
+
+cost associated directly with Ca 2+ transport and binding based on the Ca 2+ model. We start by defining the 97 
+
+isometric cross-bridge heat rate as 98 
+
+˙qcxb, 0 = rcxb cscxb 
+
+> catn
+
+, (4) where rcxb gives the energetic constant of cross-bridge cycling and scxb is a scale factor to account for the 99 
+
+Ca 2+ dependence of the cross-bridge energetic rates (Lewis & Barclay, 2014). To account for the length depen-100 
+
+dence of the maintenance heat rate, we scale the the isometric rate by the force-length relationship (Homsher 101 
+
+et al., 1972) giving us 102 
+
+˙qcxb = ˙ qcxb, 0 ˆFce,l (ϵ). (5) The energy consumed due to Ca 2+ transport is proportional to the rate of Ca 2+ pumping into the sarcoplasmic 103 
+
+reticulum. Note, we assume negligible Ca 2+ transport heat during the stimulation period as the duration of the 104 
+
+stimulus is small. The Ca 2+ transport heat rate is given as 105 
+
+˙qcat =
+
+
+
+−rcat ˙cca , if ˙ cca < 0,
+
+0, otherwise. (6) 
+
+rcat is the energetic constant associated with Ca 2+ transport. 106 
+
+We account for the dependence of muscle heat rate on the muscle mechanical state through the shortening 107 
+
+and lengthening heat rates, which are characterised in Konno et al. (2025). We define the mechanical heat rate 108 
+
+dependence as 109 
+
+˙qmech =
+
+
+
+−rshort ccatn ˆFce,l (ϵce ) ˙ ϵce , if ˙ ϵce ≤ 0,
+
+− ˆFm ˙ϵce , otherwise. (7) 
+
+rshort is the energetic constant of shortening. Note that if lengthening ( ˙ ϵce > 0), we assume any work done on 110 
+
+the muscle is eventually released as heat (Linari et al., 2003). The work rate performed by the muscle is defined 111 
+
+as 112 
+
+˙w = ˆFm ˙ϵce . (8) The total initial energetic rate is then assumed to be a combination of the above rates 113 
+
+˙Einit = ˙ qcxb + ˙ qcat + ˙ qmech + ˙ w. (9) The total initial energy predicted here must be recovered through the ATP recovery processes, thus, these energy 114 
+
+rates are used as input to the bioenergetics model. 115 
+
+4
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+2.1.4 Bioenergetics model 116 
+
+The amount of ATP consumed through the initial phase of muscle contraction needs to be regenerated through 117 
+
+metabolic pathways. Here we assume the relationship between ATP flux, ϕAT P , and the initial energy consumed 118 
+
+to be given by 119 
+
+ϕAT P = ˙Einit 
+
+∆GAT P 
+
++ krest catp , (10) where ∆ GAT P = 60 ×10 3J mol −1 is the free energy available during hydrolysis of ATP (Barclay, 2019). krest catp 120 
+
+accounts for resting state ATP consumption. 121 
+
+This bioenergetics model presented here is based on an existing formulation (Kushmerick, 1998; Vicini & 122 
+
+Kushmerick, 2000). The concentration of ATP, catp , and PCr, cpcr , can be written in terms of the flux of ATP 123 
+
+consumed, ϕAT P , and ATP regeneration by aerobic pathways ( ϕox ) and creatine kinase ( ϕCK ). The system of 124 
+
+differential equations along with initial conditions is 125 
+
+˙catp = ϕAT P + ϕox + ϕCK , (11a) ˙cpcr = −ϕCK , (11b) 
+
+catp (0) = catp, 0, (11c) 
+
+cpcr (0) = cpcr, 0. (11d) To ensure a balance of adenosine and creatine, we enforce 126 
+
+ca = catp + cadp , (12) 
+
+cc = cpcr + ccr , (13) where ca is the total concentration of adenosine, cadp is the concentration of ADP, cc is the total concentration 127 
+
+of creatine, and ccr is the concentration of free creatine. 128 
+
+We assume the regeneration of ATP is largely due to oxidative phosphorylation and neglect the role of 129 
+
+glycolysis in influencing muscle pH and the associated consequences (Lambeth & Kushmerick, 2002). While 130 
+
+numerous models have been developed to capture the oxidative phosphorylation response as a function of either 131 
+
+PCr or ADP (Kushmerick, 1998), we follow Vicini and Kushmerick (2000) and utilise a dependence on ADP as 132 
+
+this sufficiently captures work-relaxation relationships (Kushmerick, 1998). Thus, ϕox is given by 133 
+
+ϕox = ϕox,max cadp nox 
+
+Knox  
+
+> adp
+
++ cadp nox , (14) where ϕox,max is the maximum rate of oxidative phosphorylation, Kadp is the concentration of ADP at a rate of 134 
+
+half of ϕox,max , and nox is the Hill coefficient. 135 
+
+The creatine kinase term accounts for the flux between PCr and Cr, and is modelled as 136 
+
+ϕCK =  
+
+> Vfck
+> KbKia
+
+
+
+cadp cpcr − ccr catp 
+
+> Keq
+
+
+
+1 + cadp  
+
+> Kia
+
++ catp  
+
+> Kiq
+
++ cpcr  
+
+> Kib
+
++ cadp cpcr   
+
+> KbKia
+
++ ccr catp  
+
+> Kiq Kp
+
+. (15) The constants kb, Kai , Kbi , Kiq , Kp are the rate constants (Vicini & Kushmerick, 2000), while Keq is the equi-137 
+
+librium constant (Lawson & Veech, 1979). V fck is the forward rate creatine kinase. This relationship is obtained 138 
+
+from Vicini and Kushmerick (2000), equation 5, assuming that reverse rate of creatine kinase is proportional to 139 
+
+the forward rate 140 
+
+V rCK = V fck 
+
+Keq 
+
+Kiq Kp
+
+Kia Kb
+
+. (16) To determine initial concentrations of ADP and the resting rate coefficient, we use the steady-state equations 141 
+
+5
+
+.CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint by setting ϕCK = 0 and ϕatp = ϕox . This gives 142 
+
+cadp, 0 = catp, 0 cc − cpcr, 0 catp, 0
+
+Keq cpcr 0
+
+, (17) and 143 
+
+krest =
+
+ϕox,max 
+
+ cadp 
+
+> Kadp
+
+nox 
+
+catp, 0
+
+
+
+1 + 
+
+ cadp 
+
+> Kadp
+
+nox  . (18) By solving equations Eqs.(11a)-(11d) we obtain the rate of oxidative phosphorylation, which, if the efficiency 144 
+
+of the recovery process is known, we can compute the energetic rate of the recovery processes 145 
+
+˙qrec = rrec (ϕox − ϕrest ), (19) where rrec is the recovery heat constant. As we are interested in only the energy consumed as a result of the 146 
+
+contraction process, we subtract of the ATP flux due to resting processes, ϕrest = krest catp, 0. A summary of the 147 
+
+all parameters (values constant within the model) and variables (values changing with time) used in the models 148 
+
+are provided in Table 1 and Table 2. 149 
+
+6
+
+.CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint Table 1: Parameters included in the mechano-bioenergetics model, along with their source if available. If no units are given then the parameter is either normalised with normalisation values given or a unitless parameter. 
+
+Parameter Value (Units) Description/source Excitation-activation model Slow-type Fast-type 
+
+τact 0.038 0.011 ( s) Ca 2+ time constant during stimulus (Close, 1967) 
+
+τdeact 0.051 0.011 ( s) Ca 2+ time constant after stimulus (Close, 1967) 
+
+n 1.99 2.89 Hill constant (Lynch et al., 1991) 
+
+cca, 50 0.25 0.45 [Ca 2+ ] at 50% activation, based on twitch:tetanus ratio (Lewis & Barclay, 2014) Mechanical model Slow-type Fast-type 
+
+F0 Simulation dependent ( N ) Maximum isometric force 
+
+l0 Simulation dependent ( m) Optimal fascicle length ˙ϵce,max 6 11 ( l0 s−1) Maximum shortening rate (Barclay et al., 2010; Kissane & Askew, 2024) Energetics model 
+
+rcxb Optimised ( F0 l0 s−1) Cross-bridge heat rate constant 
+
+rcat Optimised ( F0 l0 ) Ca 2+ transport heat rate constant 
+
+rshort Optimised ( F0 l0 ) Shortening heat rate constant 
+
+scxb Optimised Cross-bridge scaling constant Bioenergetics model ∆GAT P 60 ×10 3 (J mol −1) Free energy of ATP (Barclay, 2019) 
+
+krest Eq. 18 ( s−1) Resting rate of ATP consumption 
+
+ca Eq. 12 ( mM ) Total amount of adenosine 
+
+cadp, 0 Eq. 17 ( mM ) Initial ADP concentration 
+
+catp, 0 5.3 ( mM ) Initial ATP concentration (Kushmerick et al., 1992) 
+
+cpcr, 0 21.1 ( mM ) Initial PCr concentration (Kushmerick et al., 1992) 
+
+cc, 0 29.5 ( mM ) Total Cr Concentration (Kushmerick et al., 1992) 
+
+ϕox,max Optimised ( mM s −1) Maximum oxidative phosphorylation rate 
+
+Kadp 0.058 ( mM ) [ADP] at half maximum oxidative phosphorylation (Vicini & Kushmerick, 2000) 
+
+nox Optimised ( mM ) Hill constant 
+
+V fck 100 ( mM s −1) Forward Creatine-Kinase rate (Kushmerick, 1998) 
+
+V rck Eq. 16 ( mM s −1) Reverse Creatine-Kinase rate (Kushmerick, 1998) 
+
+Kb 1.11 ( mM ) Creatine kinase constant (McFarland et al., 1994) 
+
+Kai 0.135 ( mM ) Creatine kinase constant (McFarland et al., 1994) 
+
+Kbi 3.9 ( mM ) Creatine kinase constant (McFarland et al., 1994) 
+
+Kiq 3.5 ( mM ) Creatine kinase constant (McFarland et al., 1994) 
+
+Kp 3.8 ( mM ) Creatine kinase constant (McFarland et al., 1994) 
+
+Keq 1.77 ×10 2 Equilibrium constant (Lawson & Veech, 1979) 
+
+rrec Optimised ( J mol −1) Recovery heat rate constant 7
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Table 2: Variables and functions included in the bioenergetics model along with units and description. 
+
+Variable Units Description Ca 2+ model 
+
+t s Time 
+
+cca Normalised Ca 2+ concentration 
+
+ccatn Normalised CaTn concentration Mechanical model ˆa Normalised Activation 
+
+ϵce l0 Strain ˙ϵce s−1 Strain rate ˆFm F0 Muscle force Initial energetics model ˙qcxb s−1 Cross-bridge heat rate ˙qcat s−1 Ca 2+ transport heat rate ˙qmech s−1 Shortening-lengthening heat rate ˙w s−1 Work rate ˙Einit s−1 Initial heat rate Bioenergetics model 
+
+catp mM Concentration of ATP 
+
+cadp mM Concentration of ADP 
+
+cpcr mM Concentration of PCr 
+
+ccr mM Concentration of Cr 
+
+ϕatp mM s −1 ATPase flux 
+
+ϕox mM s −1 Oxidative phosphorylation ATP flux 
+
+ϕCK mM s −1 Creatine-kinase ATP flux 8
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+## 2.2 Model Parameters 150 
+
+The excitation-activation model parameters were chosen based on experimental data from isolated muscle ex-151 
+
+periments (see Table 1). The parameters of the Hill-type model have been described previously (Dick et al., 152 
+
+2017) with adjustments made for ˙ ϵce,max for mouse muscle fibres (Barclay et al., 2010; Kissane & Askew, 2024). 153 
+
+The initial energetics parameters ( rcxb , rcat , rshort , and scxb ) were determined through an optimisation to the 154 
+
+dataset from Barclay et al. (2010). The recovery energetic rate, rrec , and the bioenergetic recovery model pa-155 
+
+rameters, nox and ϕox,max , were optimised to match the experimental time-course of recovery (Barclay et al., 156 
+
+1995) and subsequently corrected to match the magnitude of the recovery rates with changes to temperature 157 
+
+(Barclay, 2019; Barclay & Weber, 2004). A detailed description of the experimental protocols are within the 158 
+
+Supplementary Material. 159 
+
+Initial energetics parameters. The initial energetics model parameters were obtained based on data in the 160 
+
+mouse soleus and extensor digitorum longus (EDL) from Barclay et al. (2010), consisting of energetic rates 161 
+
+measured at shortening velocities from isometric to maximum strain rates (5.2 s−1 for soleus and 8.9 s−1 for the 162 
+
+EDL). We assumed that the relative contributions from isometric heat production are split such that 60% is due 163 
+
+to cross-bridge cycling and 40% is due to Ca 2+ transport (Ca 2+ transport contributions typically vary between 164 
+
+25 to 45% (Barclay & Curtin, 2023)). The increase in energetic cost with faster shortening rates (Fenn, 1923) 165 
+
+is given by the shortening heat component. To obtain scxb , we enforced that the ratio between cross-bridge 166 
+
+cycling and Ca 2+ transport heat was maintained across stimulation frequencies (Lewis & Barclay, 2014). Thus, 167 
+
+we minimised the objective function 168 
+
+L = Lcxb + Lcat + Lshort + Lratio , (20) where Lcxb and Lcat enforce the cross-bridge and Ca 2+ transport heat components, respectively. Lshort enforces 169 
+
+the mechanical dependence on the shortening rate. Lratio enforces the ratio in Ca 2+ transport heat to total initial 170 
+
+heat across stimulation frequencies. Objective function details are contained within the Supplementary Material. 171 
+
+Bioenergetics model parameters. The bioenergetics model parameters {rrec , n ox , ϕ ox,max } were optimised to 172 
+
+the experimental data set from (Barclay et al., 1995), where muscle underwent repeated cyclical contractions 173 
+
+with a contraction and rest phase. The experimentally determined initial heat rates were used as input to the 174 
+
+bioenergetics model, which makes this model independent of the parameters determined in the initial energetics 175 
+
+model. The experimental force traces for the EDL demonstrated fatigue, potentially leading to greater ineffi-176 
+
+ciencies in the recovery process not representative of aerobic recovery; thus, we only optimised the parameters to 177 
+
+the soleus dataset and applied these parameters to the EDL. The parameters were obtained through minimising 178 
+
+the difference between the experimental recovery heat per cycle, ˙qrec,cycle,exp , and the recovery heat per cycle 179 
+
+predicted by the model, ˙ qrec,cycle,model ,180 
+
+Lrec = || ˙qrec,cycle,model − ˙qrec,cycle,exp || 2. (21) 
+
+## 2.3 Validation 181 
+
+To validate the model predictions under independent contractile conditions to those in which we developed our 182 
+
+model (Barclay et al., 2010; Barclay & Weber, 2004), we compared model outputs to experimental data from 183 
+
+across a range of contractile conditions and stimulation frequencies (twitch to tetanus) from Barclay and Weber 184 
+
+(2004), Barclay (2012), Lewis and Barclay (2014), Mast and Elzinga (1987), and Mast and Elzinga (1988). To 185 
+
+assess both the initial and bioenergetic models, we compared to experimental data for repeated dynamic contrac-186 
+
+tions where the time-course of recovery was measured (Barclay & Weber, 2004). These conditions consisted of 187 
+
+repeated contractions at contraction frequencies from 0.5 to 4 Hz with an overlapping stimulation and shortening 188 
+
+phase with the shortening rate chosen to optimise muscle work. Another validation was performed to ensure the 189 
+
+time-course captured the energetics when measured using oxygen measures (rather than heat measures). This 190 
+
+was done by comparing the time-course of recovery with the experimentally measured time-course following con-191 
+
+secutive twitches (Mast & Elzinga, 1987). To assess model performance during sub-maximal contractions (more 192 
+
+9
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+representative of in vivo muscle behaviour), we compared the energy expenditure across a range of stimulation 193 
+
+frequencies (Lewis & Barclay, 2014) and consecutive twitches (Mast & Elzinga, 1988), as well as doublet twitches 194 
+
+at varying frequencies (Barclay, 2012). A detailed description of the experimental protocols are within the Sup-195 
+
+plementary Material and all codes are available at https://github.com/ryankonno/TimeDependentEnergetics. 196 
+
+# 3 Results 197 
+
+## 3.1 Parameter estimates 198 
+
+The optimised parameters for the initial energetics and bioenergetics models are given in Table 3 and Table 4, 199 
+
+respectively. While the data used to inform the initial energetics model parameters were determined at 30 ◦C, the 200 
+
+bioenergetics data was measured at 20 ◦C. Thus, as the maximum rate of oxidative phosphorylation scales with 201 
+
+temperature (Davies & Tribe, 1969), after the optimisation of the recovery rates (Fig. 2), ϕox,max was scaled by 202 
+
+a factor of 2 to give similar time constants to those observed in Barclay and Weber (2004) (Table 4). The ratio 203 
+
+of recovery to initial heat was double the values observed in numerous other studies (Barclay, 2019), so we scaled 204 
+
+rrec by half to a value of 0.0825 J μmol −1.205 
+
+Table 3: Optimal parameters for the initial energetics model of the muscle. rcxb , rcat , rshort are the cross-bridge, Ca 2+ transport, and shortening heat rate coefficients, respectively. scxb is an exponent used to account for the Ca 2+ dependence of the cross-bridge heat rate. EDL: extensor digitorum longus. 
+
+Fibre-type rcxb (W (F0 l0)−1) rcat (J(F0 l0)−1) rshort (J(F0 l0)−1) scxb 
+
+Slow-type (Mouse soleus) 0.247 0.0295 0.126 0.567 Fast-type (Mouse EDL) 0.763 0.0199 0.105 0.257 
+
+Table 4: Optimised and corrected parameter values based on soleus muscle data from Barclay et al. (1995). The EDL and soleus parameters were chosen to be equivalent. The corrected parameters were obtained through scaling the optimised parameters to account for typical recovery heat rates observed across a range of studies (Barclay, 2019) and to account for the temperature dependence of the maximum rate of oxidative phosphorylation (Davies & Tribe, 1969) to achieve reasonable energetic rates (Barclay & Weber, 2004). 
+
+rrec (Jμmol −1) nox ϕox,max (mmol s −1)Optimised parameters 0.165 0.742 2.0255 Corrected parameters 0.0825 0.742 4.051 
+
+## 3.2 Validation 206 
+
+For an isometric contraction followed by a shortening phase (Fig. 3A,B), the model reproduced the time-course 207 
+
+of energy consumption observed experimentally (Barclay & Weber, 2004) including both the temporal behaviour 208 
+
+and magnitudes of the energetic rates (Fig. 3C,D, c.f. Barclay and Weber (2004) Figure 2B). The model achieved 209 
+
+similar time constants of recovery, ≈ 11 .5s for both soleus and EDL, to those observed experimentally Table 5, 210 
+
+within 5% for soleus and 8% for EDL. The trend in model efficiencies showed higher initial efficiencies in the 211 
+
+soleus compared to the EDL ( ≈ 0.11), which follows the experimental trend of an ≈ 0.07 difference between the 212 
+
+soleus and EDL (Table 5). Meanwhile, the total efficiencies (accounting for the initial energy and recovery costs) 213 
+
+were within 0.05 between soleus in EDL, which was higher than the ≈ 0.009 observed experimentally (Table 5). 214 
+
+The ratio of recovery to initial heat was also similar across muscles with R = 1 .400 ± 0.003 for the soleus and 215 
+
+R = 1 .405 ± 0.008 for the EDL (Table 5)). The individual heat components demonstrated larger relative work 216 
+
+and recovery heat contributions in the soleus compared to the EDL (Fig. 3E,F). 217 
+
+The model parameter corrections (Table 4) were made based on time-constants observed in Barclay and 218 
+
+Weber (2004), which no longer makes this an independent dataset to validate the time-constants obtained by 219 
+
+the model. Thus, we compared with Mast and Elzinga (1987), which is independent and used a different 220 
+
+10 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Figure 2: Optimisation of the bioenergetic parameters to the data from Barclay et al. (1995) for the soleus. The simulation protocol consisted of repeated contraction cycles of 5 s with 800 ms of tetanus contraction and 4.2 s of rest. The initial energetic rates during the tetanus were computed from Barclay et al. (1995) Figure 3. A: Optimised model recovery heat rate ( ˙qr ) compared to the experimental data. Blue line is the time-varying recovery heat rate, orange dashed line is the interpolated recovery heat rate from the experimental data points (red dots). The model was fit to the experimental data by minimising the error between the interpolated experimental recovery heat rates and the cycle averaged model predicted energetic rates (green square). B: Energy use predicted by the model for the 1st (red), 5th (light red hue), and 15th (lightest red hue) contraction cycles. The initial energy (solid lines) given as input to the model and the corresponding predicted recovery heat (dotted line). C: The energy use predicted over the entire simulation of 30 contraction cycles and recovery period with total energy shown by the red solid line, the recovery heat shown by the transparent red dotted line, and the initial energy used as input given by the transparent solid line. 
+
+Table 5: Comparison of time constants of recovery, efficiency values, and recovery-initial heat ratio between the model and experimental results from Barclay and Weber (2004), Mast and Elzinga (1987), and Mast and Elzinga (1988). τr is the time constant of the recovery processes obtained through fitting an exponential to the decay in recovery heat following muscle contractions. The efficiency values from Barclay and Weber (2004) are chosen for 35 ◦C. εinit represents the efficiency of the initial processes (not accounting for the recovery heat rates). εtot is the total efficiency accounting for both the initial and recovery processes. R is the ratio of recovery heat to the initial energy. Experimental and model values (when applicable) are Mean ± SEM. Slow-type muscle properties are used for the comparisons to rabbit papillary muscles used in Mast and Elzinga (1987) and Mast and Elzinga (1988). EDL: extensor digitorum longus. 
+
+Experiment (Barclay & Weber, 2004) (35 ◦C) Mouse soleus Mouse EDL Experiment Model Experiment Model 
+
+τr (s) 11.1 ± 0.8 11.6 ± 0.008 10.8 ± 1.2 11.5 ± 0.01 
+
+εinit = wEinit 0.3 ± 0.01 0.346 ± 0.001 0.23 ± 0.01 0.233 ± 0.0003 
+
+εtot = wEinit +qrec 0.126 ±0.007 0.144 ± 0.001 0.117 ± 0.005 0.097 ± 0.0003 
+
+R = qrec  
+
+> Einit
+
+1.3 ± 0.1 1.400 ± 0.003 1.00 ± 0.07 1.405 ± 0.008 Experiment (Mast & Elzinga, 1987) (20 ◦C) Rabbit papillary (soleus parameters used) Experiment Model 
+
+τr (s) 19.1 ±3.6 23.74 Experiment (Mast & Elzinga, 1988) (20 ◦C) Rabbit papillary (soleus parameters used) Experiment Model 
+
+τr (s) 25.2 ±1.6 23.71 
+
+R = qrec  
+
+> Einit
+
+1.14 ±0.09 1.21 11 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Figure 3: The mechano-bioenergetics model behaviour under experimental conditions from Barclay and Weber (2004) . A,B: The experimental protocol for one contraction cycle including the stimulation range with force output (A) and muscle strain (B). C,D: Total energy consumed over the course of the simulation for various contraction frequencies for the soleus (C) and EDL (D). The total energy is given by the solid lines with each colour representing a different frequency. The transparent dotted lines give the recovery heat, while the transparent solid lines give the initial energy use. E,F: Relative components of the energetic rates for a single contraction cycle at 0.5 Hz for the soleus (E) and EDL (F). qcat : Ca 2+ transport heat, qcxb : cross-bridge heat, 
+
+qmech : shortening/lengthening contribution, w: work, qrec : recovery heat, SOL: soleus, EDL: extensor digitorum longus. 
+
+measurement technique ( O2 consumption) at 20 ◦C (this allowed us to use the optimised time-constants directly 221 
+
+as opposed to the corrected values Table 4). We observed a model time constant of 23.7 s, which is within 20% 222 
+
+of the experimental time constant of oxygen decay of 19.1 ±9.6 s (Table 5). When we compared the normalised 223 
+
+energetic rates at sub-maximal activation levels (stimulation frequencies between 40 Hz and 160 Hz ), we observe 224 
+
+12 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+similar behaviour to the experimental energetic rates with normalised (to the mean value) root mean square 225 
+
+error enrmse = 10 .20% for soleus and enrmse = 3 .62% for EDL (Fig. 4). With consecutive twitches, we observe 226 
+
+a decrease in Ca 2+ transport heat that matches the trends from the experimental data set (Barclay, 2012) with 227 
+
+enrmse = 18 .66% and enrmse = 19 .90% for soleus and EDL, respectively (Fig. 5). To ensure the proportion of 228 
+
+recovery heat to initial heat was conserved at low stimulation frequencies, we compare to Mast and Elzinga (1988) 229 
+
+and observe a ratio of initial to recovery heat of 1 .21 which is within 6% of the experimental values of 1 .14 ± 0.09 230 
+
+(Table 5). The time-course of energy consumption for the Mast and Elzinga (1987, 1988) are contained within 231 
+
+Supplementary Material Figure S1. 232 
+
+Figure 4: The mechano-bioenergetics model reproduces muscle energy rates across a ranges of stimulation frequencies. A: Example force produced over one contraction cycle with varying stimulation frequencies for the soleus. B: Example energy use over the whole simulation across different frequencies for the soleus. The solid lines correspond to total energy consumed, transparent solid lines represent initial energy use, and transparent dotted lines represent recovery energy. C: The normalised (to energy consumed at 160 Hz ) total energy consumed by the SOL and EDL across varying stimulation frequencies compared to experimental results from Lewis and Barclay (2014) (dashed lines). Note that errors in the magnitudes of the total energy consumed is expected given the difficulty in reproducing the precise experimental protocol; however the model is able to reproduce the dependence on stimulation frequency. SOL: soleus, EDL: extensor digitorum longus. 
+
+13 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Figure 5: The mechano-bioenergetics model reproduces the dependence of Ca 2+ transport heat on the frequency of stimulation. A,B: The Ca 2+ released during two consecutive twitches at varying stimulation frequencies for the soleus (A) and the EDL (B). C: The Ca 2+ transport heat of the second twitch as a percentage of the first twitch. Ca 2+ transport heat rate followed the decrease with stimulation frequency observed in Barclay (2012) (dashed lines) in both the soleus and EDL. SOL: soleus, EDL: extensor digitorum longus. 
+
+14 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+# 4 Discussion 233 
+
+With parameters informed and validated on separate datasets, we found that the mechano-bioenergetics model 234 
+
+predicted a similar time-course and magnitude of energetic rates to those observed experimentally (Barclay, 235 
+
+2012; Barclay & Weber, 2004; Lewis & Barclay, 2014; Mast & Elzinga, 1987, 1988). Further, it captured the 236 
+
+time-dependence and recovery process not included in existing models. While the model did not necessarily 237 
+
+capture the precise energy rates as in the validation studies, this was expected given the difficulty in reproducing 238 
+
+experimental protocols as well as possible errors in the absolute heat measurements owing to challenges in 239 
+
+calibration procedures (Woledge et al., 1985) and normalisation methods. We illustrated the performance of the 240 
+
+mechano-bioenergetics model across a range of varied muscle fibre-types, contractile conditions, and stimulation 241 
+
+intensities. 242 
+
+Energetic behaviour varies substantially across muscle fibre-types (Barclay, 1996), and capturing these differ-243 
+
+ences is important, as fibre-types, which vary within muscles, individuals, species, and across the lifespan (Dick 244 
+
+et al., 2026; Queeno et al., 2023), are closely related to muscle function (Goldspink, 1977). Across fibre-types, 245 
+
+the model reproduced lower initial efficiencies in fast-type fibres compared to slow-type fibres (Barclay & We-246 
+
+ber, 2004), which is expected given higher energetic demands of cross-bridge cycling in fast-type fibres (Barclay, 247 
+
+2019). While Barclay and Weber (2004) did not detect a difference in total efficiencies, we observed lower total 248 
+
+efficiencies in the EDL - possibly a consequence of the same recovery parameters across fibres types. However, 249 
+
+smaller changes in the total efficiency compared to initial efficiency across fibre-types were observed. The recovery 250 
+
+time-constants were consistent across fibre-types, which is in agreement with Barclay and Weber (2004). The 251 
+
+predicted recovery heat rates were comparable to experimental values, but likely overestimated as R > 1 in many 252 
+
+simulations (Table 5); given the consistency of this overestimation, a scaling of rrec to obtain an R ≈ 1 could be 253 
+
+made. The model demonstrated similar magnitudes of energetic rates between the fibre-types across contraction 254 
+
+protocols (high shortening rate, low stimulation time for EDL and slow shortening rate, high stimulation time 255 
+
+for soleus), which is consistent with experimental observations (Lewis & Barclay, 2014). Through capturing the 256 
+
+the differences in fibre-type properties, we provide a model capable of making in vivo energy cost predictions, 257 
+
+where fibre-type substantially influences energy use across a range of locomotor tasks (Swinnen et al., 2024). 258 
+
+Muscle contractions in vivo are often cyclical during locomotor tasks with contraction frequencies dependent 259 
+
+on the speed of locomotion (Alexander, 1983). While obtaining muscle-level energetic rates in vivo is critical 260 
+
+for accurately predicting energetics (Lichtwark et al., 2025), existing mathematical models (e.g., Lichtwark and 261 
+
+Wilson (2005) and Umberger et al. (2003)) do not account for the time-dependent behaviour of muscle contraction 262 
+
+and few models capture the recovery processes (Konno et al., 2025; Tsianos & MacFadden, 2016). These factors 263 
+
+are particularly important for predicting the energetics of non-steady locomotion where the number, frequency, 264 
+
+and intensity of the contractions vary. As observed in Fig. 3C,D, following a series of 10 contractions at slow 265 
+
+frequencies, most of the recovery process takes place during the contractions, while at faster frequencies the 266 
+
+recovery process occurs following the contraction. Thus, not accounting for recovery processes neglects these 267 
+
+energetic rates completely, and without the time-dependent components of the energetics model its not possible 268 
+
+to capture the dependence on contraction frequency. 269 
+
+This model was designed to be implemented at both the whole muscle level and, through validation of the 270 
+
+model behaviour at low stimulation frequencies, the motor unit level. While we have informed the recovery model 271 
+
+based on data from the mouse soleus (Barclay et al., 1995), the model would benefit from data on EDL recovery 272 
+
+processes (to obtain fast-type muscle fibre properties) along with muscle energetic rates in the moderate frequency 273 
+
+range of 5 Hz to 40 Hz (typical of in vivo motor unit firing rates (Enoka, 1995)). Here, we capture decreases in 274 
+
+Ca 2+ transport heat with decreases in simulation frequency, which is important for modelling the variable in vivo 275 
+
+firing rates and is not captured with existing models. For example, with the increase in stimulation frequency from 276 
+
+2Hz to 256 Hz in the soleus we saw a decrease in energy from 96% to 39% of the second twitch with this model 277 
+
+(Fig. 5C), while the Konno et al. (2025) model predicted an increase in energetic rates (Supplementary Material 278 
+
+Figure S2) - a consequence of only using information on the activation of the muscle and not the Ca 2+ flow. 279 
+
+While the model parameters presented here were informed by mouse data, the parameters in the bioenergetics 280 
+
+15 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+model have been determined for human muscle (Vicini & Kushmerick, 2000) and could be used within this 281 
+
+framework. Through accounting for physiological processes, the mechano-bioenergetics model is generalisable 282 
+
+across muscles and contraction-types with the capability of implementation into whole-body musculoskeletal 283 
+
+models and simulations of movement. 284 
+
+# 5 Author contributions 285 
+
+Conceptualisation: R.N.K., G.A.L., T.J.M.D.; Data curation: R.N.K.; Formal analysis: R.N.K.; Funding acqui-286 
+
+sition: G.A.L., T.J.M.D.; Investigation: R.N.K.; Methodology: R.N.K., G.A.L., T.J.M.D.; Software: R.N.K.; 287 
+
+Supervision: G.A.L., T.J.M.D.; Validation: R.N.K.; Visualization: R.N.K.; Writing – original draft: R.N.K.; 288 
+
+Writing review & editing: R.N.K., G.A.L., T.J.M.D. 289 
+
+# 6 Acknowledgments 290 
+
+This work is supported by an Australian Research Council Discovery Project Grant (DP230101886) to T.J.M.D. 291 
+
+G.A.L. is supported by an Australian Research Council Future Fellowship (FT190100129). R.N.K. is supported 292 
+
+by a Natural Science and Engineering Research Council of Canada Postgraduate Scholarship and by the Com-293 
+
+monwealth through an Australian Government Research Training Program Scholarship DOI: 294 
+
+https://doi.org/10.82133/C42F-K220. 295 
+
+16 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+# References 296 
+
+Alexander, R. M. (1983). Animal mechanics (2. ed). Blackwell Science Publishers. 297 
+
+Barclay, C. J. (1996). Mechanical efficiency and fatigue of fast and slow muscles of the mouse. The Journal of 298 
+
+Physiology , 781–794. https://doi.org/10.1113/jphysiol.1996.sp021809 299 
+
+Barclay, C. J. (2012). Quantifying Ca 2+ release and inactivation of Ca 2+ release in fast- and slow-twitch muscles. 300 
+
+The Journal of Physiology , 590 (23), 6199–6212. https://doi.org/10.1113/jphysiol.2012.242073 301 
+
+Barclay, C. J., Woledge, R. C., & Curtin, N. A. (2010). Is the efficiency of mammalian (mouse) skeletal muscle 302 
+
+temperature dependent? The Journal of Physiology , 588 (19), 3819–3831. https : / / doi . org / 10 . 1113 / 303 
+
+JPHYSIOL.2010.192799 304 
+
+Barclay, C. J. (2019). Efficiency of Skeletal Muscle. In Muscle and Exercise Physiology (pp. 111–127). Elsevier. 305 
+
+https://doi.org/10.1016/B978-0-12-814593-7.00006-2 306 
+
+Barclay, C. J., Arnold, P. D., & Gibbs, C. L. (1995). Fatigue and heat production in repeated contractions of 307 
+
+mouse skeletal muscle. The Journal of Physiology , 488 (3), 741–752. https://doi.org/10.1113/JPHYSIOL. 308 
+
+1995.SP021005 309 
+
+Barclay, C. J., & Curtin, N. (2023). Advances in understanding the energetics of muscle contraction. Journal of 310 
+
+Biomechanics , 156 , 111669. https://doi.org/10.1016/j.jbiomech.2023.111669 311 
+
+Barclay, C. J., & Weber, C. L. (2004). Slow skeletal muscles of the mouse have greater initial efficiency than fast 312 
+
+muscles but the same net efficiency. The Journal of Physiology , 559 (2), 519–533. https://doi.org/10. 313 
+
+1113/jphysiol.2004.069096 314 
+
+Cavagna, G. A., Heglund, N. C., & Taylor, C. R. (1977). Mechanical work in terrestrial locomotion: Two basic 315 
+
+mechanisms for minimizing energy expenditure. American Journal of Physiology - Regulatory Integrative 316 
+
+and Comparative Physiology , 2 (3). https://doi.org/10.1152/ajpregu.1977.233.5.r243 317 
+
+Close, R. (1967). Properties of motor units in fast and slow skeletal muscles of the rat. The Journal of Physiology ,318 
+
+193 (1), 45–55. https://doi.org/10.1113/jphysiol.1967.sp008342 319 
+
+Davies, P. S., & Tribe, M. A. (1969). Temperature Dependence of Metabolic Rate in Animals. Nature , 224 (5220), 320 
+
+723–724. https://doi.org/10.1038/224723b0 321 
+
+Dick, T. J. M., Bird, C. S., Lindemann, I., Williamson, J. L., & Konno, R. N. (2026). Ageing muscle across 322 
+
+structural and species scales: Implications for locomotor performance. Journal of Experimental Biology ,323 
+
+229 (7), jeb251614. https://doi.org/10.1242/jeb.251614 324 
+
+Dick, T. J., Biewener, A. A., & Wakeling, J. M. (2017). Comparison of human gastrocnemius forces predicted 325 
+
+by Hill-type muscle models and estimated from ultrasound images. Journal of Experimental Biology ,326 
+
+220 (9), 1643–1653. https://doi.org/10.1242/jeb.154807 327 
+
+Enoka, R. M. (1995). Morphological features and activation patterns of motor units. Journal of Clinical Neuro-328 
+
+physiology , 12 (6), 538–559. https://doi.org/10.1097/00004691-199511000-00002 329 
+
+Fenn, W. O. (1923). A quantitative comparison between the energy liberated and the work performed by the 330 
+
+isolated sartorius muscle of the frog. The Journal of Physiology , 58 (2-3), 175–203. https://doi.org/10. 331 
+
+1113/jphysiol.1923.sp002115 332 
+
+Goldspink, G. (1977). Mechanics and energetics of muscle in animals of different sizes, with particular reference 333 
+
+to the muscle fiber composition of vertebrate muscle. In Scale effect in animal locomotion of vertebrate 334 
+
+muscle (pp. 37–55). Academic Press. 335 
+
+Haeufle, D. F., Siegel, J., Hochstein, S., Gussew, A., Schmitt, S., Siebert, T., Rzanny, R., Reichenbach, J. R., 336 
+
+& Stutzig, N. (2020). Energy Expenditure of Dynamic Submaximal Human Plantarflexion Movements: 337 
+
+Model Prediction and Validation by in-vivo Magnetic Resonance Spectroscopy. Frontiers in Bioengineer-338 
+
+ing and Biotechnology , 8. https://doi.org/10.3389/FBIOE.2020.00622/FULL 339 
+
+Homsher, E., Mommaerts, W. F., Ricchiuti, N. V., & Wallner, A. (1972). Activation heat, activation metabolism 340 
+
+and tension-related heat in frog semitendinosus muscles. The Journal of Physiology , 220 (3), 601–625. 341 
+
+https://doi.org/10.1113/JPHYSIOL.1972.SP009725 342 
+
+17 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Kissane, R. W. P., & Askew, G. N. (2024). Conserved mammalian muscle mechanics during eccentric contractions. 343 
+
+The Journal of Physiology , 602 (6), 1105–1126. https://doi.org/10.1113/JP285549 344 
+
+Konno, R. N., Lichtwark, G. A., & Dick, T. J. M. (2025). Using physiologically based models to predict in vivo 345 
+
+skeletal muscle energetics. Journal of Experimental Biology , 228 (7), jeb249966. https://doi.org/10.1242/ 346 
+
+jeb.249966 347 
+
+Kushmerick, M. J., Moerland, T. S., & Wiseman, R. W. (1992). Mammalian skeletal muscle fibers distinguished 348 
+
+by contents of phosphocreatine, ATP, and Pi. Proceedings of the National Academy of Sciences of the 349 
+
+United States of America , 89 (16), 7521–7525. https://doi.org/10.1073/pnas.89.16.7521 350 
+
+Kushmerick, M. J. (1998). Energy balance in muscle activity: Simulations of ATPase coupled to oxidative phos-351 
+
+phorylation and to creatine kinase. Comparative Biochemistry and Physiology Part B: Biochemistry and 352 
+
+Molecular Biology , 120 (1), 109–123. https://doi.org/10.1016/S0305-0491(98)00026-1 353 
+
+Lambeth, M. J., & Kushmerick, M. J. (2002). A computational model for glycogenolysis in skeletal muscle. 354 
+
+Annals of Biomedical Engineering , 30 (6), 808–827. https://doi.org/10.1114/1.1492813/METRICS 355 
+
+Lawson, J. W., & Veech, R. L. (1979). Effects of pH and free Mg2+ on the Keq of the creatine kinase reaction and 356 
+
+other phosphate hydrolyses and phosphate transfer reactions. Journal of Biological Chemistry , 254 (14), 357 
+
+6528–6537. https://doi.org/10.1016/S0021-9258(18)50400-2 358 
+
+Lewis, D. B., & Barclay, C. J. (2014). Efficiency and cross-bridge work output of skeletal muscle is decreased 359 
+
+at low levels of activation. Pfl¨ ugers Archiv European Journal of Physiology , 466 (3), 599–609. https : 360 
+
+//doi.org/10.1007/S00424-013-1344-7/FIGURES/7 361 
+
+Lichtwark, G. A., & Wilson, A. M. (2005). A modified Hill muscle model that predicts muscle power output 362 
+
+and efficiency during sinusoidal length changes. Journal of Experimental Biology , 208 (15), 2831–2843. 363 
+
+https://doi.org/10.1242/jeb.01709 364 
+
+Lichtwark, G. A., Jessup, L. N., Konno, R. N., Riveros-Matthey, C. D., & Dick, T. J. M. (2025). Integrating 365 
+
+muscle energetics into biomechanical models to understand variance in the cost of movement. Journal of 366 
+
+Experimental Biology , 228 (Suppl 1), JEB248022. https://doi.org/10.1242/jeb.248022 367 
+
+Linari, M., Woledge, R. C., & Curtin, N. A. (2003). Energy storage during stretch of active single fibres from 368 
+
+frog skeletal muscle. The Journal of Physiology , 548 (Pt 2), 461. https://doi.org/10.1113/JPHYSIOL. 369 
+
+2002.032185 370 
+
+Lynch, G. S., Stephenson, D., & Williams, D. A. (1991). Endurance exercise effects on the contractile properties 371 
+
+of single, skinned skeletal muscle fibres of young rats. Pfl¨ ugers Archiv European Journal of Physiology ,372 
+
+418 (1-2), 161–167. https://doi.org/10.1007/BF00370466 373 
+
+Mast, F., & Elzinga, G. (1987). Heat production and oxygen consumption following contraction of isolated rabbit 374 
+
+papillary muscle at 20 degrees C. Basic Research in Cardiology , 82 Suppl 2 , 85–92. https://doi.org/10. 375 
+
+1007/978-3-662-11289-2 8 376 
+
+Mast, F., & Elzinga, G. (1988). Recovery heat production of isolated rabbit papillary muscle at 20 °C. Pfl¨ ugers 377 
+
+Archiv European Journal of Physiology , 411 (6), 600–605. https://doi.org/10.1007/BF00580854 378 
+
+Mayfield, D. L., Cronin, N. J., & Lichtwark, G. A. (2023). Understanding altered contractile properties in 379 
+
+advanced age: Insights from a systematic muscle modelling approach. Biomechanics and Modeling in 380 
+
+Mechanobiology , 22 , 309–337. https://doi.org/10.1007/s10237-022-01651-9 381 
+
+McFarland, E. W., Kushmerick, M. J., & Moerland, T. S. (1994). Activity of creatine kinase in a contracting 382 
+
+mammalian muscle of uniform fiber type. Biophysical Journal , 67 (5), 1912–1924. https://doi.org/10. 383 
+
+1016/S0006-3495(94)80674-5 384 
+
+Queeno, S. R., Sterner, K. N., & O’Neill, M. C. (2023). Meta-analysis data of skeletal muscle slow fiber content 385 
+
+across mammalian species. Data in Brief , 50 , 109520. https://doi.org/10.1016/j.dib.2023.109520 386 
+
+Swinnen, W., Lievens, E., Hoogkamer, W., De Groote, F., Derave, W., & Vanwanseele, B. (2024). Inter-Individual 387 
+
+Variability in Muscle Fiber–Type Distribution Affects Running Economy but Not Running Gait at 388 
+
+Submaximal Running Speeds. Scandinavian Medicine Science Sports , 34 (11), e14748. https://doi.org/ 389 
+
+10.1111/sms.14748 390 
+
+18 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.24.734405 doi: bioRxiv preprint
+
+Tsianos, G. A., & MacFadden, L. N. (2016). Validated Predictions of Metabolic Energy Consumption for Sub-391 
+
+maximal Effort Movement. PLOS Computational Biology , 12 (6), e1004911. https://doi.org/10.1371/ 392 
+
+JOURNAL.PCBI.1004911 393 
+
+Umberger, B. R., Gerritsen, K. G., & Martin, P. E. (2003). A Model of Human Muscle Energy Expenditure. 394 
+
+Computer Methods in Biomechanics and Biomedical Engineering , 6 (2), 99–111. https : / / doi . org / 10 . 395 
+
+1080/1025584031000091678 396 
+
+Vicini, P., & Kushmerick, M. J. (2000). Cellular energetics analysis by a mathematical model of energy balance: 397 
+
+Estimation of parameters in human skeletal muscle. American Journal of Physiology-Cell Physiology ,398 
+
+279 (1), C213–C224. https://doi.org/10.1152/ajpcell.2000.279.1.C213 399 
+
+Woledge, R. C., Curtin, N. A., & Homsher, E. (1985). Energetic aspects of muscle contraction. Monographs of 400 
+
+the Physiological Society , 41 , 1–357. https://doi.org/10.1152/jappl.1986.60.3.1098 401 
+
+19

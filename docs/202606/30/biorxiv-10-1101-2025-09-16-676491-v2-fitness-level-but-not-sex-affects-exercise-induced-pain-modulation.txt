@@ -1,0 +1,1998 @@
+Title: Fitness Level, but not Sex, affects Exercise-Induced Pain Modulation
+
+URL Source: https://www.biorxiv.org/content/10.1101/2025.09.16.676491v2.full.pdf
+
+Number of Pages: 31
+
+Markdown Content:
+1
+
+Fitness  Level,  but not Sex , affects  Exercise -Induced  Pain Modulation 1
+
+2
+
+Janne I. Nold 1* , Tahmine Fadai 2, Zora  P.  Gerbers 1, Christian Büchel 1
+
+3
+
+4
+
+> 1
+
+Department of Systems Neuroscience, University Medical Centre Hamburg -Eppendorf, 5
+
+Martinistr. 52, 20246 Hamburg, Germany. 6
+
+> 2
+
+Department of Psychiatry and Psychotherapy,  University Medical Centre Hamburg -7
+
+Eppendorf, Martinistr. 52, 20246 Hamburg, Germany. 8
+
+9
+
+*Lead contact and corresponding author. 10 
+
+11 
+
+Correspondence:  Janne Nold 12 
+
+Department of Systems Neuroscience 13 
+
+University Medical Centre Hamburg -Eppendorf 14 
+
+20246 Hamburg, Germany 15 
+
+Phone: +49 40 7410  - 59962 16 
+
+E-Mail: j.nold@uke.de 17 
+
+18 
+
+Research  Advance  to  the  original  study  by  Nold et al. (2025)  published in  eLife 19 
+
+(10.7554/eLife.102392.3 )20 
+
+21 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+2
+
+Abstract :22 
+
+In a previous study  by our group  (Nold et al., 2025) , we  investigated  exercise -induced pain 23 
+
+modulation after high -intensity com pared to low -intensity exercise  in a heterogeneous sample 24 
+
+of diverse fitness levels . Exploratory  analyses suggested an interaction of  sex, fit ness level, and 25 
+
+drug treatment , indicating that m ales showed increasing hypoalgesia after  high - compared to 26 
+
+low -intensity  exercise with increasing fitness levels , which was diminished  when naloxone was 27 
+
+administered . In contrast,  these  effects were not evident in females. These exploratory findings 28 
+
+warranted further investigation to d etermin e if and to what extent  exercise -induced pain 29 
+
+modulation  depend s on fitness level and /or  sex.  In this current study , we investigated an all -30 
+
+female sample  (N = 21)  of high fitness levels using a similar paradigm as in the previous study ,31 
+
+comparing heat and pressure  pain ratings after high -intensity and low -intensity exercise.  Our 32 
+
+data  show an interaction of exercise intensity and stimulus intensity  in  heat pain, with greater 33 
+
+pain relief following  high -intensity exercise,  especially at the highest stimulus intensity. 34 
+
+Despite results for pressure pain not reaching significance, a similar trend was evident.  These 35 
+
+results suggest that  females  at a high  fitness level  also  show  exercise -induced pain modulation 36 
+
+for  high -intensity compared to low -intensity exercise . Furthermore, we pooled the data of the 37 
+
+current and previous study , providing  evidence for fitness level but not sex  to moderate 38 
+
+exercise -induced pain modulation  in heat pain. These  findings suggest that  exercise -induced 39 
+
+pain modulation  depend s on fitness level but not on sex. 40 
+
+41 
+
+Keywords:  Exercise, Pain, Hypoalgesia , Sex, Fitness Level, Females 42 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+3
+
+Introduction 43 
+
+In a previous study  (Nold et al., 2025) , we investigated the effect of high -intensity  (HI) and 44 
+
+low -intensity (LI) aerobic exercise on pain perception in a heterogeneous sample of both sexes 45 
+
+and diverse fitness levels  (N = 39, 21 females) , where e xploratory analyses revealed a three -46 
+
+way interaction of sex, fit ness level, and drug treatment . Males showed  greater  hypoalgesia 47 
+
+after HI compared to LI exercise with increasing fitness levels . This effect  was  reduced  when 48 
+
+the μ -opioid antagonist  naloxone was administered. These effects were not evident in females. 49 
+
+Taken together, these  results  point to  the  nuanced  interplay of individual factors  such as fitness 50 
+
+level and sex  underlying exercise -induced hypoalgesia. 51 
+
+Repeated  aerobic exercise has been shown to be associated with the activation of endogenous 52 
+
+neuromodulatory systems  implicated in pain modulation  (for review see  Gajic et al., 2026) ,53 
+
+such as  the  endogenous opioid  system  (Koltyn et al., 2014; Saanijoki et al., 2022)  and 54 
+
+endocannabinoid  system  (Matei et al., 2023) . Correspondingly , p revious research  in humans 55 
+
+(Geva and Defrin, 2013; Schmitt et al., 2020; Sluka et al., 2018)  suggests  that fitness level  play s56 
+
+a crucial role  in  exercise -induced pain modulation , where  subjects  with  higher  fitness  levels 57 
+
+show ed  increased  hypoalgesia following exercise  compared to subjects with lower fitness levels 58 
+
+(Schmitt et al., 2020) . Correspondingly , higher  self -reported fitness levels  were  shown to be 59 
+
+associated with  reduced  pain ratings  (Geva and Defrin, 2013) , reduced  temporal summation 60 
+
+(Naugle and Riley, 2014) , and  greater opioid release  in the  orbitofrontal  cortex and insula 61 
+
+(Saanijoki et al., 2022) . Crucially,  most  of these studies  (Saanijoki et al., 2022; Schmitt et al., 62 
+
+2020)  have  been conducted in  healthy all -male  samples , limiting the  translation  to  females, 63 
+
+where  the  association  of  physical  fitness and pain  perception  after exercise  remains  less clear 64 
+
+(de Bruijn et al., 2011) .65 
+
+Despite  the majority of chronic pain patients  being  female  (Fillingim et al., 2009; Mogil, 2012; 66 
+
+Rice et al., 2019) , evidence  on  potential sex differences in exercise -induced pain modulation  is 67 
+
+surprisingly limited  (Koltyn et al., 2014) . Of those studies that have considered potentia l sex 68 
+
+differences in exercise -induced  pain modulation,  some  (Brellenthin et al., 2017; Koltyn et al., 69 
+
+2014; Niwa et al., 2022; Smith, 2004)  could show that there are no  sex  differences , whereas 70 
+
+others  (Koltyn, 2000; Sternberg et al., 2001; Vaegter et al., 2014)  suggest  that hypoalgesia 71 
+
+following exercise is more  pronounced  in females,  potentially due to  sex differences in the 72 
+
+descending antinociceptive circuit s (Fullerton et al., 2018; Mogil, 2012) , but overall results 73 
+
+remain inconclusive  (Rice et al., 2019) .74 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+4
+
+This  current  behavioural  study aims to build on our previous findings  (Nold et al., 2025)  by 75 
+
+investigating exercise -induced pain modulation in an independent all -female sample ( N = 21) 76 
+
+with a  high  fitness level using the same paradigm as in the previous study , without a 77 
+
+pharmacological intervention.  Importantly, fitness levels  (quantified by the weight -corrected 78 
+
+functional threshold power (FTP) ) in the previous study  (Nold et al., 2025)  differed 79 
+
+significantly  (P =  0.003)  between females ( M = 1.58,  SD  = 0.44 ) and  males  (M = 2.03,  SD  =80 
+
+0.40 ), t hus,  warranting  further investigation  into  whether exercise -induced hypoalgesia after  HI 81 
+
+compared  to LI  aerobic  exercise  can also be observed  in females  with a  higher fitness .82 
+
+Disentangling if and to what extent exercise -induced hypoalgesia depend s on fitness level and 83 
+
+sex is a crucial step to  determine  exercise -based  interventions for (chronic) pain  populations. 84 
+
+85 
+
+Results 86 
+
+The final sample included  N = 21 healthy female participants  with  high er  fitness (weight -87 
+
+corrected FTP:  M = 2.25  W/kg , SD  = 0.41;  Training volume:  M = 13.10 , SD  = 12.28 ).  The 88 
+
+distribution of menstrual cycle phases (based on self -report and divided into three phases: 89 
+
+follicular, ovulatory, and luteal as well as hormonal contraceptives)  was equal across  (χ2(3) = 90 
+
+1.66,  P =  0.65) as well as within days (Day 1: χ2(3) = 2.26,  P =  0.52; Day 2: χ2(3) =  0.40,  P = 91 
+
+0.94; Supplement al  Fig.  S1 A).  Furthermore, the expectation of  how  acute exercise  affects 92 
+
+different  pain  domains  was assessed  (Lindheimer et al., 2020)  and yielded no significant effect s93 
+
+overall  (joint pain : t(20) =  -1.78,  P =  0.09 , muscle pain : t(20) = 0.15,  P =  0.88). However, 94 
+
+participants indicated that they expect acute aerobic exercise to reduce whole -body pain ( t(20) 95 
+
+= -2.83,  P =  0.01; Supplement al  Fig.  S1 B). Finally, mood ratings were assessed using the 96 
+
+Profile of Mood States (POMS) questionnaire  (Curran et al., 1995)  before the experiment 97 
+
+commenced (pre) and after it  was completed (post). There were no significant differences in 98 
+
+pre - and post -levels of fatigue ( t(20) =  -0.50,  P =  0.62), discontent ( t(20) = 1.84,  P =  0.08), and 99 
+
+drive ( t(20) = 0.58,  P =  0.57). However, participants rated significantly reduced dejection post 100 
+
+compared to pre  experimental testing  (t(20) = 3.61,  P =  0.002; Supplement al  Fig.  S1 C). 101 
+
+102 
+
+Successful p ain calibration and exercise intervention 103 
+
+We calibrated pain intensity levels  corresponding to 30, 50, and 70 on a  Visual Analog ue  Scale 104 
+
+(VAS ), where VAS 0 marks  the pain threshold (Supplemental  Fig. S2A–B).  On the 105 
+
+experimental day , we introduced  an  online rating scale  (real -time ratings while  the  stimulus is 106 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+5
+
+ongoing)  where the pain threshold  now  corresponded  to VAS 50  (Supplemental  Fig.  S2C–D)107 
+
+to more  accurately track the temporal dynamics of pain perception through  continuous  ratings 108 
+
+and incorporate non -painful sensation s. Participants  perceived  the  stimulus intensities  as 109 
+
+significantly different  for pressure  (β = 1.13,  SE  = 0.07,  t(553.13) = 16.84,  P < 2×10 -16 ;110 
+
+Supplemental  Table S 7) and heat pain  (β = 1.75 , SE  = 0.08 , t(532.61 ) =  21.46 , P < 2×10 -16 ;111 
+
+Supplemental Table S 9). The anticipated intensities of VAS 50 and VAS 70 were rated above 112 
+
+the pain threshold on the online scale,  indicating that they were perceived as painful 113 
+
+(Supplemental Fig. S 8), d espite the ratings  being  lower than the anticipated  intensities ,114 
+
+potentially due to habituation effects between  days  (Ellerbrock et al., 2015; May et al., 2012) .115 
+
+We achieved a  significant difference  betwe en HI and LI exercise conditions  in absolute power 116 
+
+(t(20) = 19.34,  P =  2.043e -14,  d = 0.97; Fig.  1A), relative power (%FTP;  t(20) = 42.35,  P <117 
+
+2.2e -16,  d = 7.97; Fig.  1B),  heart rate  (HR;  t(13) = 20.98,  P =  2.073e -11,  d = 3.45; Fig.  1C), 118 
+
+and  rating of  perceived exertion  (RPE;  t(20) = 17.17,  P =  1.942e -13,  d = 4.61; Fig.  1D) . This 119 
+
+confirms  that  the exercise intensity protocols  (55% FTP at LI ex ercise and 100% at HI exercise) 120 
+
+elicited  a different  power  output, relative power, physiological demand (HR), and perceived 121 
+
+demand (RPE) and, overall,  successful  implementation of the exercise intervention .122 
+
+123 
+
+Figure  1. Implementation  of high -intensity  (HI) and low -intensity (LI) exercise. ( A) Absolute power  (Watts), ( B)124 
+
+Relative power (%FTP), ( C) heart rate in beats per minute (bpm), and ( D) rating of perceived exertion (RPE; 125 
+
+BORG scale) during LI (green) and HI (purple) cycling were all significantly different.  P-values were calculated 126 
+
+using  paired  t-tests  (two -tailed, (absolute/relative) power:  N = 21, heart rate:  N = 14, BORG  rating : N = 21). n.s. = 127 
+
+not significant, *  P < 0.05, **  P < 0.01, ***  P < 0.001. 128 
+
+129 
+
+Greater pain r elief after  high -intensity e xercise  at h igher  stimulus  intensities 130 
+
+In the current study, participants provided online ratings throughout the stimulus duration.  We131 
+
+calculated the maximum pain rating s (in the following referred to as pain ratings)  across the 132 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+6
+
+whole  stimulus duration (0  –17 seconds) , which c losely correspond to the pain ratings provided 133 
+
+in the previous study  (Nold et al., 2025) , where  participants were asked to rate the most painful 134 
+
+sensation  after the  stimulus concluded . To statistically test the  effect of  exercise intensity  (HI 135 
+
+and LI ) on pain ratings, we calculated  separate  Linear Mixed Effect  models  (LMER ) with the 136 
+
+dependent variables overall pain ratings, pressure pain ratings , and heat pain ratings ,137 
+
+respectively . All models included  exercise intensity  or  the  interaction  of  exercise intensity and 138 
+
+stimulus intensity , as well as trial and block  as fixed effect s, and  subject  as  a random effect. 139 
+
+There was no  main effect of exercise intensity on overall pain ratings ( β = -3.29 , SE  = 2.1 5,140 
+
+t(11 33.64 ) =  -1. 53 , P =  0.1 4) as well as no  main effect of exercise intensity on pressure pain 141 
+
+ratings ( β = -3.05 , SE  = 2.15,  t(570.11 ) = -1. 42 , P =  0.1 6; BF 10  = 0. 46 ; Fig.  2A, top ) or heat 142 
+
+pain ratings ( β = -4.13 , SE  = 2.9 3, t(5 38.69 ) =  -1. 41 , P =  0.1 6; Fig.  2A, bottom ).  Bayesian 143 
+
+model  comparison showed that the model including exercise intensity was not better supported 144 
+
+than the null model for the model across modalities ( BF 10  =0.62) , as well as in  pressure  pain 145 
+
+(BF 10  = 0.64 ) or  heat  pain ( BF 10  = 0. 78 ) only. This indicates only  anecdotal evidence in favour 146 
+
+of the null model, suggesting that the data were largely  insensitive to distinguish between 147 
+
+models with and without exercise intensity. 148 
+
+However, an interac tion of exercise intensity and stimulus intensity on overall pain  ratings was 149 
+
+evident ( β = -0.22,  SE  = 0.10,  t(111 9.88 ) =  -2.2 2, P =  0.03). This interaction was driven by  the 150 
+
+interaction of exercise intensity and stimulus intensity  during  heat pain ( β = -0.3 6, SE  = 0.11, 151 
+
+t(529.95 ) =  -3. 32 , P =  0.00 1; Fig . 2B–C). Post –hoc  t-tests revealed that th e effect  was especially 152 
+
+evident at th e highest stimulus intensity ( P =  0.00 02 ; Fig.  2B–C). For pressure pain , this 153 
+
+interaction  of exercise intensity and stimulus  intensity  was not significant ( β = -0. 09 , SE  = 0.09, 154 
+
+t(564.99 ) =  -0.97 , P =  0. 33 ; Fig.  2B–C) but a similar trend was evident when considering the 155 
+
+post -hoc  t-tests ( Fig . 2B–C), where pain relief following HI  compared to LI  was greater at  the 156 
+
+highe st  stimulus intensit y ( P =  0.0 5).  Bayesian model  comparisons indicated evidence against 157 
+
+an interaction between exercise intensity and stimulus intensity across  modalities . For the 158 
+
+combined dataset, the interaction model was less supported than the main -effects model (BF₁₀ 159 
+
+= 0.22), indicating that the data were approximately 4.5 times more likely under the additive 160 
+
+model. This pattern was consistent for both heat (BF₁₀ = 0.33) and pressure pain (BF₁₀ = 0.19), 161 
+
+suggesting moderate evidence in favo ur of additive effects over interactive modulation.  The 162 
+
+full model outputs  and post -hoc  t-tests  can be found in Supplemental  Tables  S1 –S10 .163 
+
+164 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+7
+
+Figure  2. The effect of  exercise inten sity and stimulus intensity  on pain ratings. ( A) Pressure  (top;  P =  0.1 6) and 165 
+
+heat  pain ratings  (bottom ; P =  0.1 6) for  LI  (green) and  HI  (purp le) exercise.  (B) A significant intera ction between 166 
+
+exercise intensity and stimulus intensity  was  observed  in  heat ( P =  0.00 1) but not pressure pain ( P =  0. 33 ).  Post -167 
+
+hoc  t-test s revealed that this interaction in heat pain was driven by the highest stimulus intensity (VAS 70;  P = 168 
+
+0.00 02 ).  (C) Differences  between HI and LI exercise (LI  – HI)  for  pressure (top ) and  heat (bottom)  pain ratings 169 
+
+visualised at each stimulus intensity . Dots depict subject -specific pain ratings averaged across trials.  P-values were 170 
+
+calculated using  post -hoc  t-tests for the respective  LMER model s. Error bars depict the SEM ( pressure:  N = 21, 171 
+
+heat:  N = 20). 172 
+
+173 
+
+Sample differences in exercise -induced hypoalgesia 174 
+
+We compared the weight -corrected FTP values of the current sample with those of the previous 175 
+
+sample  (Nold et al., 2025)  (N = 39, 21 females) for males and females separately using two -176 
+
+sample  t-tests. The females employed in the current study ( Fig. 3A; dark blue) had a 177 
+
+significantly higher FTP compared to the females of the previous study (light blue) ( t(40) =  -178 
+
+5.00,  P =  1.23×10 -5; Fig.  3A). There was no significant difference in the FTP between the 179 
+
+females in this study (dark blue) and males in the previous study (red) ( t(36) = 1.65,  P = 0.11; 180 
+
+Fig.  3A). The self -reported training volume was significantly higher in the females of the 181 
+
+current study (dark blue) compared to the females (light blue) ( t(22) = 3.45,  P = 0.003, Fig.  3B) 182 
+
+and males (red ) (t(24) = 2.82,  P = 0.009; Fig.  3B) of  the previous study. Further, analyses 183 
+
+comparing the females of the previous study and the females of the current study concerning 184 
+
+height, weight, and BMI revealed no significant differences but a significant age differenc e185 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+8
+
+(t(32.98) = 3.27,  P = 0.003 ) (Supplemental Fig . S 3). Overall, this suggests that this  current 186 
+
+study included females of overall higher fitness levels compared to the previous study.  In the 187 
+
+following, females from the current study will be referred to as females  with higher fitness 188 
+
+levels  due to the significantly higher FTP values than females from the previous study , as well 189 
+
+as significantly higher training volume compared to the males and females from the previous 190 
+
+study.  These labels  should be interpreted relative to the samples included in the current and 191 
+
+previous studies rather than as absolute classifications .192 
+
+193 
+
+Figur e 3. Comparing participant characteristics of the females of the current study ( N = 21; dark blue) with the 194 
+
+females ( N = 21; light blue) and the males ( N = 18; red) of the previous study  (Nold et al., 2025) . ( A) Weight -195 
+
+corrected Functional Threshold Power (FTP  Watts divided by kilograms ) differed significantly between the 196 
+
+females in the current study and the  females in the previous study ( P = 1.23×10 -5) but not between the  females in 197 
+
+the current study and males in the previous study ( P = 0.11). ( B) Training volume (hours per week) differed 198 
+
+significantly between the  females in the current study and the females ( P = 0.003) and males ( P = 0.009) of the 199 
+
+previous study . n.s. = not significant,  * P < 0.05, **  P < 0.01, ***  P < 0.001 .200 
+
+201 
+
+Consistent with the previous study (Nold et al ., 2025 ), the effects  in  the current study were more 202 
+
+prominent in heat pain. Therefore,  all  subsequent analyses for heat pain are reported in the main 203 
+
+manuscript and for pressure pain in  the  supplements ( Fig . S4  - S5 ). To allow for better 204 
+
+comparability between the previous and current study , we rescaled the maximum pain ratings 205 
+
+of the current study to a common scale of 0  – 100 to correspond with the previous study. 206 
+
+To determine  whether  the effect of exercise intensity  differ s between the participant  groups 207 
+
+contributing to the pooled dataset, we examined  the interaction of exercise intensity and  sub -208 
+
+group  (males from the previous study, females from the previous study, and females from the 209 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+9
+
+current study ). Frequentist LMER s were fitted across all stimulus intensities (VAS 30, 50, 70) 210 
+
+and  separately for VAS 70 only, as  previous analyses suggested the exercise effect to be  most 211 
+
+pronounced at  the  highest  stimulus  intensity.  To complement these analyses, we performed 212 
+
+Bayesian model comparisons to quantify the relative evidence for models including exercise 213 
+
+intensities and subgroup effects compared with simpler alternative models. 214 
+
+For the model across all stimulus intensities, there was no significant interaction of exercise 215 
+
+intensity and subgroup ( β = -1.63,  SE  = 1.68,  t(1897) =  -0.97,  P =  0.33; Fig. 4A), with overall 216 
+
+low absolute mean difference pain ratings between LI and HI exercise (Fig. 4B; males 217 
+
+(previous):  -0.54; females (previous):  -1.74; females (current): 2.26). However, as the previous 218 
+
+analyses revealed the effect to be most pronounced a t the highest stimulus intensity , the model 219 
+
+for VAS 70 heat pain revealed a significant interaction of exercise intensity and subgroup ( β =220 
+
+-5.96,  SE  = 1.53,  t(562) =  -3.89,  P <  0.001; Fig. 4C), where the females of the current study 221 
+
+showed a reduced pain perception after high compare to low intensity exercise (absolute mean 222 
+
+difference: 6.70; Fig 4D) compared to the males (absolute mean difference:  -4.71; Fig 4D) and 223 
+
+females of the previous study (absolute mean difference:  -1.11; Fig 4D).  The full  LMER  model 224 
+
+outputs  and post -hoc  t-tests  can be found  in  the supplements (Tables  S11  – S1 8). 225 
+
+Bayes model comparison for the models across all stimulus intensities indicated evidence 226 
+
+against a model including exercise  intensity alone relative to the null model ( BF 10  = 0.24). 227 
+
+However, adding subgroup information substantially improved the model fit relative to  the 228 
+
+exercise intensity only model ( BF 10  = 1239) as well as relative to the null model ( BF 10  = 321) ,229 
+
+indicating strong evidence for an interaction between exercise intensity and subgroup. Bayes 230 
+
+model comparison for the models including only heat pain ratings at VAS 70 mirrored these 231 
+
+results, with evidence against the model including exercise intensity alone relative to the null 232 
+
+model ( BF 10  = 0.22) but a substantially improved model fit when including  the  subgroup 233 
+
+relative to the exercise intensity alone model ( BF 10  = 4497) and the null model ( BF 10  = 1038). 234 
+
+235 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+10 
+
+Figure 4.  The effect of exercise inten sity and subgroup (males from  the  previous study, females from  the  previous 236 
+
+study and females from  the  current study) on heat pain ratings. ( A) Heat pain ratings averaged across all stimulus 237 
+
+intensities (VAS 30, 50, and 70) in each subgroup  for LI (green) and HI (purp le) exercise. There was no significant 238 
+
+interaction of exercise intensity and subgroup on heat pain ratings ( P =  0.33). ( B) Differences  between HI and LI 239 
+
+exercise (LI  – HI) of pain ratings across all stimulus intensities  are  visualised for each subgroup.  (C) Heat pain 240 
+
+ratings at VAS 70 in each subgroup  for LI (green) and HI (purp le) exercise. There was a significant interaction of 241 
+
+exercise intensity and subgroup on heat pain ratings ( P <  0.001). ( D) Differences  between HI and LI exercise (LI 242 
+
+– HI) of pain ratings at VAS 70  are  visualised for each subgroup. Dots depict subject -specific pain ratings averaged 243 
+
+across trials and blocks.  P-values were calculated using post -hoc  t-tests for the respective LMER models. Error 244 
+
+bars depict the SEM ( N = 59). 245 
+
+246 
+
+Fitness level, but not sex,  affects  exercise -induced  pain modulation  in  the  pooled sample 247 
+
+To investigate the effects of fitness level  (indicated by weight -corrected FTP)  and sex on 248 
+
+exercise -induced pain modulation , we pooled participants across studies and first conducted 249 
+
+frequentist linear regression analyses corresponding to those used in the previous study. These 250 
+
+analyses used participant -level difference scores (pain following low -intensity exercise minus 251 
+
+pain following high -intensity exercise) as the outcome variable.  We  then performed Bayesian 252 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+11 
+
+model  comparison  and  Bayesian regression analyses on the pooled heat pain ratings to estimate 253 
+
+the effects of exercise intensity, fitness, sex, and their interactions. Unlike the frequentist 254 
+
+analyses, which focused on differen ce  pain  scores, the Bayesian models estimated posterior 255 
+
+distributions of the regression parameters directly, yielding posterior  mean  estimates, 95% 256 
+
+credible intervals (CrIs), and probabilities of effect direction without reliance on null -257 
+
+hypothesis significance testing  (Kruschke, 2021) .258 
+
+The  linear  model including fitness level  indicated a significant effect of fitness level on 259 
+
+difference pain scores ( β = 4.99,  SE  = 2.05 , t(56 ) = 2. 43 , P = 0.02 ; Fig. 5A) corresponding to  a260 
+
+correlation of  r = 0.28 , P = 0.03 ). The model including fitness level and sex also indicated a 261 
+
+significant interaction ( β = 11.12 , SE  = 4.69 , t(56 ) =  2.37 , P = 0.0 2; Fig. 5B) with a correlation 262 
+
+of  r = 0.57,  P = 0.01 for males from the previous study (Fig. 5B, red line): and a non -significant 263 
+
+correlation for females pooled across the previous study and current study (Fig. 5B, pink line) 264 
+
+of  r = 0.17,  P = 0.28 . The model including fitness level and subgroup also revealed a significant 265 
+
+interaction ( β = -7.99,  SE  = 2.76 , t(56) =  -2.89,  P = 0.005 ; Fig. 5C), with weak and non -266 
+
+significant correlations for females from the previous ( r = 0.08,  P = 0.72; Fig. 5C, light blue 267 
+
+li ne) and current study ( r = -0.15,  P = 0.54; Fig. 5C, dark blue line) . The full LMER model 268 
+
+outputs can be found in the supplements (Tables S19  – S21).  Corresponding analyses using 269 
+
+training  volu me  as  a measure for fitness leve l hav e been included in  the supplements (Fig.  S6).270 
+
+For the Bayesian hierarchical models, model comparison indicated evidence against a model 271 
+
+containing exercise intensity  only  relative to the null model (BF 10  = 0.24). Adding fitness (BF 10 272 
+
+= 1.61) or sex (BF 10  = 1.48) provided only anecdotal improvements over the model , including 273 
+
+exercise intensity only. The inclusion of study  (“previous”, “current”)  substantially improved 274 
+
+the model fit (BF 10  = 2454). Finally, the full model was strongly favoured over both the exercise 275 
+
+intensity only model (BF 10  = 644) and the null model (BF 10  = 158). 276 
+
+For the exercise intensity effect , posterior  mean  estimates indicated substantial uncertainty 277 
+
+regarding the influence on heat pain ratings  (β = 1.50, 95% CrI [ -5.88, 8.76]; Fig. 5D –E) and a 278 
+
+posterior probability of a negative effect of  Pr(β < 0)  = 0.34 (Fig. 5F).  The posterior distribution 279 
+
+for the interaction of exercise intensity  × fitness  level  was predominantly negative ( β = -2.41, 280 
+
+95% CrI  [-5.79, 1.00]; Fig. 5D –E) with a posterior probability of 92%  (Pr(β < 0)  = 0.92)  of a 281 
+
+negative effect (Fig. 5F).  Although the credible interval included zero, the posterior distribution 282 
+
+suggested a probable  negative  moderation effect of fitness on the relationship between exercise 283 
+
+intensity and fitness level on heat pain ratings.  The tendency toward a negative exercise 284 
+
+intensity × fitness  level  interaction is compatible with the frequentist analyses showing that 285 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+12 
+
+higher fitness was associated with greater exercise -induced analgesia  (Fig. 5A) , although the 286 
+
+two analyses address different model parameters and should not be int erpreted as directly 287 
+
+equivalent.  Finally, the posterior estimates for the exercise intensity × sex interaction provided 288 
+
+no  meaningful evidence for an effect ( β = 0.13, 95% CrI [ -4.91, 5.06]; Fig. 5D –E), with a 289 
+
+posterior probability of  Pr(β < 0)  = 0.48 (Fig. 5F), indicating equal support for positive and 290 
+
+negative effects. 291 
+
+292 
+
+Figure 5 . Frequentist and Bayesian analyses of  exercise intensity, fitness level and sex on heat pain across pooled 293 
+
+study samples. ( A) Subject -specific differences in heat pain ratings (dots) between low -intensity (LI) and high -294 
+
+intensity (HI) exercise conditions (LI  – HI exercise pain ratings) and corresponding regression line pooled across 295 
+
+all stimulus intensities. Fitness level (measured as functional threshold power; FTP) showed a significant main 296 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+13 
+
+effect on difference pain ratings ( P = 0.02) and a positive relation to heat pain ratings ( r = 0.28,  P = 0.03). ( B) A 297 
+
+significant interaction of fitness level  × sex on difference pain ratings ( P = 0.02) with a significant relation in males 298 
+
+(red line;  r = 0.57,  P = 0.01) but not in females (pink line; pooled across current and previous study;  r = 0.17,  P =299 
+
+0.28). ( C) Significant interaction fitness level  × subgroup ( P = 0.005) with non -significant correlations for females 300 
+
+from the previous (r = 0.08, P = 0.72; light blue line) and current study ( r = -0.15,  P = 0.54; dark blue line). ( D)301 
+
+Posterior density distribution, ( E) posterior  mean  estimate s and 95% Credible Interval s (CrI) and ( F) posterior 302 
+
+probability for the effect of exercise intensity ( β = 1.50, 95% CrI [ -5.88, 8.76] , Pr(β < 0)  = 0.34 ), fitness  level 303 
+
+moderation ( β = -2.41, 95% CrI  [-5.79, 1.00] , Pr(β < 0)  = 0.92 ) and sex moderation ( β = 0.13, 95% CrI [ -4.91, 304 
+
+5.06] , Pr(β < 0)  = 0.48 ) on  heat  pain ratings.  The dashed vertical line indicates the null effect ( β = 0), corresponding 305 
+
+to no association between the predictor and pain ratings. 306 
+
+307 
+
+Discussion 308 
+
+In this  study , we investigated  exercise -induced pain modulation between high -intensity  (HI) 309 
+
+and  low -intensity  (LI)  exercise in a sample of females  (N = 21)  of  relatively  higher fitness 310 
+
+level s. In a previous study by our group  (Nold et al., 2025) , exploratory analyses suggested  a311 
+
+three -way interaction  of  fitness levels, sex , and  drug treatment , where males showed 312 
+
+hypoalgesia after HI compared to LI exercise with increasing fitness levels , which was 313 
+
+diminished when naloxone was administered. These effects were not evident in females.  In  this 314 
+
+current study , we  aimed to explore whether exercise -induced pain modulation is also evident in 315 
+
+females of higher fitness levels and whether this is moderated by fitness level or sex. We  could 316 
+
+show that , for heat pain , females  from the current study  showed  pain relief after HI compared 317 
+
+to LI exercise , especially for  highly  painful stimuli . A similar trend was  observed for  pressure 318 
+
+pain.  To place these findings in the context of our earlier observations, we pooled data from the 319 
+
+current and previous studies and examined the influence of fitness and sex on exercise -induced 320 
+
+pain modulation . Across the combined sample, both frequentist and Bayesian analyses 321 
+
+indicated that fitness was associated with  exercise -induced hypoalgesia , whereas there was little 322 
+
+evidence for sex -dependent effects. Together, these findings provide support for a role of fitness 323 
+
+level  in explaining variability in  exercise -induced pain modulation , while offering little 324 
+
+evidence that  exercise -induced pain modulation  differ s systematically between males and 325 
+
+females. 326 
+
+327 
+
+Effect of exercise  and stimulus intensity on pain  in  the  current sample 328 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+14 
+
+Cor responding  to  our  previous study  (Nold et al., 2025) , there was no overall effect of exercise 329 
+
+intensity on heat or pressure pain  in the current study . However , we  identified an interaction of 330 
+
+stimulus intensity and exercise intensity that was driven by heat pain , with  greater pain relief 331 
+
+after HI compared to LI exercise  at  high  stimulus intensity  (VAS 70 ). A similar trend was 332 
+
+evident in pressure pain , but  it  did not reach significance.  These findings align with  the  results 333 
+
+of  our  previous study  (Nold et al., 2025) , where  exercise -induced pain modulation after HI 334 
+
+compare d to LI  exercise was more p rominent in heat than pressure  pain .335 
+
+336 
+
+Pooled analyses of  the  current and  previous study  sample  (Nold et al., 2025) 337 
+
+We confirmed that the females of the current sample showed significantly higher fitness level 338 
+
+(as measured in weight -corrected FTP) than the females of the previous study  (Nold et al., 339 
+
+2025) . Furthermore, the absolute training volume was significantly higher compared to the 340 
+
+males and  females of the previous study, suggesting overall higher fitness levels of the females 341 
+
+of the current study. Interestingly, although the training volume of the females of the current 342 
+
+study was significantly higher compared to the males of the previous study, the FTP did not 343 
+
+significantly differ , which suggests the FTP to be a more sensitive measure for fitness level 344 
+
+compared to self -reported training volume . Previous research has shown that the FTP and 345 
+
+FTP20 tests are reliable and convenient methods to estimate  approximate measures of VO 2max 346 
+
+(Denham et al., 2020)  and that the FTP test is a useful test for performance prediction in 347 
+
+moderately trained cyclists  (Sørensen et al., 2019) . Furthermore, as pain is a dynamic 348 
+
+experience, we utilised real -time pain ratings in the current study as opposed to static post -349 
+
+stimulus pain ratings  (Nold et al., 2025)  to better capture the temporal dynamics of pain. 350 
+
+Previous research  (Koyama et al., 2004)  has shown that, in heat pain, real -time ratings account 351 
+
+for  R2 = 0.89 of the variability of post -stimulus rating, where much of the variability for the 352 
+
+post -stimulus intensity pain rating is accounted for by the peak response during the online 353 
+
+ratings (adj.  R2 = 0.3  – 0.4), suggesting good comparability of both pain measures.  Since results 354 
+
+were more pronounced in heat pain in the previous and current study, our analyses in the main 355 
+
+manuscript focused on heat pain , but results for pressure pain are reported in the supplements. 356 
+
+357 
+
+Evidence  for fitness  level,  but not sex , effects on  exercise -induced hypoalgesia 358 
+
+To identify whether exercise intensity affects  pain ratings differently in the samples , we 359 
+
+analysed the  interaction of exercise intensity and subgroup  (males from  the  previous study, 360 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+15 
+
+females from  the  previous study, and female s from  the  current study). W e could show  that 361 
+
+females  from  the  current study  showed a significant difference between HI and LI  exercise  heat 362 
+
+pain ratings at the highest pain intensity , but this was not evident in the males or females from 363 
+
+the  previous  sample.  To further evaluate the  moderating  roles of fitness  level  and sex in 364 
+
+exercise -induced  pain modulation , we  examined these factors across the  pooled  sample. Both 365 
+
+frequentist and Bayesian analyses converged in suggesting that fitness level is associated with 366 
+
+variability in  exercise -induced pain modulation , whereas evidence for sex -dependent effects 367 
+
+was limited. Specifically, individuals with higher fitness levels tended to show greater 368 
+
+hypoalgesia following  HI  compared with  LI  exercise, while sex did not meaningfully contribute 369 
+
+to explaining differences in  exercise -induced pain modulation . These findings extend our 370 
+
+previous exploratory observations and suggest that fitness level may be a more important 371 
+
+determinant of  exercise -induced pain modulation  than sex.  Given the remaining uncertainty 372 
+
+surrounding the magnitude of the fitness -related effects,  some  uncertainty regarding the 373 
+
+magnitude of this effect remains. 374 
+
+A multitude  of findings  on  exercise -induced hypoalgesia  have been derived from  earlier studies 375 
+
+with  male -dominated  samples  with  higher fitness levels  (Geisler et al., 2019; Haier et al., 1981a; 376 
+
+Janal et al., 1984; Scheef et al., 2012) , and  results on sex dependent effects in exercise -induced 377 
+
+hypoalgesia  are still  equivocal  (Rice et al., 2019) . Generally, (repeated) aerobic exercise has 378 
+
+been shown to be associated with the activation of endogenous neuromodulatory systems  (Gajic 379 
+
+et al., 2026)  such as endogenous opioid  (Koltyn et al., 2014; Saanijoki et al., 2022) ,380 
+
+endocannabinoid  (Matei et al., 2023) , serotonergic and noradrenergic pathways  (Anderson and 381 
+
+Shivakumar, 2013; Beserra et al., 2018) . Concerning the serotonergic and noradrenergic 382 
+
+pathways, repeated aerobic exercise induce s regulatory adaptations in glucocorticoid receptors 383 
+
+in the hippocampus, prefrontal cortex and thalamus that potentially contribute to more efficient 384 
+
+hypothalamic -pituitary -adrenal (HPA) axis regulation and reduced cortisol reactivity  (Beserra 385 
+
+et al., 2018) . Likewise, positron emission tomography (PET) studies suggest that  a higher 386 
+
+aerobic fitness level is associated with reduced MOR binding in cortical (ACC, insula) and 387 
+
+subcortical (ventral striatum) areas that are part of the descending pain modulatory system 388 
+
+(DPMS) as well, suggesting that trained individuals show greater endogenous opioid release 389 
+
+after aerobic exercise  (Saanijoki et al., 2022) . Overall , repeated aerobic exercise , resulting in a 390 
+
+higher fitness level , might contribute to shaping (i.e. by increasing receptor density) or more 391 
+
+strongly engaging already existing endogenous neuromodulatory systems and, thus, altering 392 
+
+pain perception  (Gajic et al., 2026; Song et al., 2022) .393 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+16 
+
+Concerning the mechanisms of sex potentially influencing  exercise -induced pain modulation ,394 
+
+the  literature remains scarce and rather inconclusive. Since exercise has been linked to the 395 
+
+release of endogenous opioids  (Haier et al., 1981b; Janal et al., 1984)  and, more recen tly, 396 
+
+endocannabinoids  (Crombie et al., 2018; Siebers et al., 2022, 2021) , sex differences in these 397 
+
+neuromodulatory  systems might also contribute to the different expressions of  exercise -induced 398 
+
+pain modulation  between the sexes.  In terms of endogenous opioid signalling, previous studies 399 
+
+indicate that men show  larger mu -opioid receptor  (MOR)  activation in pain -related regions th an 400 
+
+women during sustained pain  (Zubieta et al., 2002) . Furthermore, sex differences in opioid 401 
+
+analgesia remain controversial  (Fullerton et al., 2018) , pointing towards sex differences in the 402 
+
+descending antinociceptive circuit. Specifically in the PAG, male rats showed higher MOR 403 
+
+expression and bin ding compared with female rats  (Loyd et al., 2008) . Interestingly, increasing 404 
+
+evidence in rodents also points towards sex differences in the expression and function of the 405 
+
+endocanna binoid system in pain  (Blanton et al., 2021) , such as lower CB1 receptor density  in 406 
+
+the prefrontal cortex and amygdala  (Castelli et al., 2014)  or lower 2 -AG concentration in the 407 
+
+PAG  (Levine et al., 2021)  of female than male rodents. These  regions  are critical parts of the 408 
+
+DPMS  (Bingel and Tracey, 2008; Borras et al., 2004; Eippert et al., 2009; Petrovic et al., 2002) 409 
+
+and  are  also involved in mediating  exercise -induced pain modulation  (Geisler et al., 2019; Nold 410 
+
+et al., 2025; Scheef et al., 2012) .411 
+
+Of those studies tha t have included  both sexes in their sample s (Naugle et al., 2014; Niwa et 412 
+
+al., 2022) , a dose -response  relationship  of aerobic  exercise  intensity and the ana lgesic response 413 
+
+could be shown in the overall sample , where  high -intensity  (70%  heart rate reserve (HRR) )414 
+
+aerobic exercise produced larger  hypoalgesic  effect s compared to moderate -intensity  (50% 415 
+
+HRR) exercise  (Naugle et al., 2014; Niwa et al., 2022)  and  low -intensity (30% HRR)  exercise 416 
+
+(Niwa et al., 2022) . Importantly, despite including  both sexes , these studies did not  include  sex 417 
+
+as a factor in their  analyse s,  potentially  confounding the observed  effects  (Tesarz et al., 2012) .418 
+
+Of those studies that  have explicitly  accounted for  sex as a moderating variable in  exercise -419 
+
+induced  hypoalgesia , some studies  could  show  a hypoalgesic  response  from exercise  in both 420 
+
+sexes  (Koltyn et al., 2014, 2001) , whereas other s (Gajsar et al.,  2017; Lemley et al., 2016)  found 421 
+
+a stronger hypoalgesic response in females.  When  administering  an  aerobic  exercise  protocol ,422 
+
+one study found the  hypo algesic response  following exercise to  be  more prono unce d in females 423 
+
+compared to males  (Vaegter et al., 2014) .424 
+
+Despite  some  studies showing comparable or greater hypoalgesic effects in  females , these 425 
+
+studies  rarely  account for fitness levels or athletic status  (Tesarz et al., 2012) . Generally, it has 426 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+17 
+
+been shown that athletes exhibit increased pain tolerance and decreased pain intensity compared 427 
+
+to non -athletic controls  (Geva and Defrin, 2013; Tesarz et al., 2012) . Among the few studies 428 
+
+that have explicitly considered both  fitness levels  and sex in the  hypoalgesic  response to 429 
+
+exercise,  one study  (Sternberg et al., 2001)  found that treadmill running induced  hypoalgesia  in 430 
+
+the cold pressor test  in  females , regardless of athletic status, but not in  males . Notably, both 431 
+
+male and female  athletes  showed a significant decrease in  forearm  withdrawal latency from a 432 
+
+radiant heat device  after treadmill exercise  (Sternberg et al., 2001) . Further c orroborating this ,433 
+
+female athletes experienced more pronounced hypoalgesia following aerobic exercise, 434 
+
+especially during cold pressor and thermal pain tests  (Smith, 2004) . For isometric exercise,  one 435 
+
+study  (Black et al., 2017)  found that  females  demonstrated analgesic responses regardless of 436 
+
+their physical activity levels , which is in contrast to our previous findings  (Nold et al., 2025) ,437 
+
+where females did not show an analgesic response after aerobic exercise.  Thus , the extent of 438 
+
+sex differences  might  also  vary  depending on the type of  exercise,  the  pain stimulus 439 
+
+administered , and the measurement method employed  (Tesarz et al., 2012) , emphasis ing the 440 
+
+complexity of sex -specific pain modulation mechanisms.  Overall, female athletes tend to report 441 
+
+pain similarly to their male counterparts  (Tesarz et al., 2012) , suggesting that athletic training 442 
+
+may mitigate typical sex differences in  the  hypoalgesic response after exercise  and potentially 443 
+
+reduce disparities observed in the general population.  Our results  advance  this  by showing  that 444 
+
+fitness level, but not sex, moderates the hypoalgesic  response to heat pain , even after short bouts 445 
+
+of aerobic exerci se .446 
+
+447 
+
+Limitations 448 
+
+On the experimental day,  heat stimuli with a target  intensity  of  VAS 30  were  rated below the 449 
+
+pain threshold. T he anticipated intensities of VAS 50 and VAS 70 were rated  above the pain 450 
+
+thre shold , suggesting  that  they were perceived as painful.  However , the lower pain ratings on 451 
+
+the experimental day as opposed to the calibration day are likely due to habituation effects 452 
+
+between days  (Ellerbrock et al., 2015; May et al., 2012) . Furthermore, despite assessing 453 
+
+exercise -related expectations  and identifying participants to expect decreased whole -body pain 454 
+
+following exercise,  we did  not experimentally  manipulate those expectations , precluding causal 455 
+
+conclusions regarding their  relative  contribution to the observed effects. Although expectations 456 
+
+can modulate pain perception  (Colloca et al., 2018; Jones et al., 2017) , p ositive exercise -related 457 
+
+expectations alone do not appear to augment exercise -induced hypoalgesia  (Vaegter et al., 458 
+
+2020) , suggesting that exercise -related expectations do not account for our findings . Moreover ,459 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+18 
+
+as  we compare d HI  and  LI  exercise but no  sedentary rest  condition,  we  cannot  draw conclusions 460 
+
+on the overall effect of exercise as opposed to no exercise  on pain . Thus,  it could be possible 461 
+
+that even  LI  exercise  suffices to  evoke  a hypoalgesic response  (Niwa et al., 2022)  or that 462 
+
+individuals with higher fitness  levels can show a distinction in the analgesic response based on 463 
+
+the exercise intensity . However, previous research has suggested that HI exercise produces 464 
+
+greater hypoalgesia compared to LI exercise  (Jones et al., 2019; Naugle et al., 2014; Niwa et 465 
+
+al., 2022; Smith, 2004; Vaegter et al., 2014, p. 201) . Therefore, we chose  the  LI  exercise as the 466 
+
+control condition instead of rest to contribute to the understanding of the dose -response 467 
+
+relatio nship between exercise intensities  and hypoalgesic effects.  Future research should 468 
+
+investigate  whether  LI exercise suffices to induce an analgesic response. 469 
+
+470 
+
+Conclusion 471 
+
+In this study , we could show that  participants with  relatively  higher fitness level s (as measure d472 
+
+by weight -corrected FTP)  experience  greater  pain relief following high -intensity compared to 473 
+
+low -intensity exercise,  especially  at high pain intensities.  Together with our previous findings, 474 
+
+these results suggest that fitness level may play a more  central  role than sex in explaining 475 
+
+variability in exercise -induced pain modulation. 476 
+
+477 
+
+Methods 478 
+
+Participants 479 
+
+Overall,  N = 22 female participants were recruited for this study  from local cycling clubs and 480 
+
+by  (online)  advertisements . Participants were required to be aged between 18  and  50 years  and 481 
+
+have a body mass index (BMI) ranging  from  18  to  30 , and to  regularly participate in structured 482 
+
+cycling training sessions per week . One  participant was excluded due  to  a technical failure  on 483 
+
+the experimental day , resulting in incomplete data . For one participant, heat pain calibration 484 
+
+failed, resulting in  N = 20 participant s for heat pain data and  N = 21 part icipants for pressure 485 
+
+pain data (for participant characteristics , see Table 1).  It is crucial to note that the  N = 21 females 486 
+
+included in the current study did not par ticipate in the previous study  (Nold et al., 2025) .487 
+
+488 
+
+Table  1. Participant characteristics from  the  previous  (Nold et al., 2025)  and current study. 489 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+19 
+
+490 
+
+Experimental Paradigm 491 
+
+The experimental paradigm was similar to that of the original study  (Nold et al., 2025) , using 492 
+
+the same study setup and equipment (CPAR and TSA 2 and Wahoo KICKR bike).  More 493 
+
+precisely, participants completed four cycling blocks in total, two HI and two LI exercise 494 
+
+blocks, presented in a pseudo -randomised order.  Furthermore, the same calibration procedures 495 
+
+were used to calibrate heat and pressure pain as well as the functional threshold power using 496 
+
+the FTP 20  test  (Allen and Coggan, 2012, 2006)  as implemented and validated in previous studies 497 
+
+(Borszcz et al., 2018; McGrath et al., 2019; Nold et al., 2025) . However, participants in the 498 
+
+current study did not receive a pharmacological  intervention and did not undergo fMRI scans ;499 
+
+therefore,  they received  the painful stimuli outside the MR scanner whilst lying in a supine 500 
+
+position.  To monitor the painful stimuli more closely, participants provided online  (continuous) 501 
+
+ratings whilst the pain stimulus was ongoing on a VAS scale ranging from “no sensation” (0) 502 
+
+to “al most unbearably painful” (150) , with  VAS 50 mark ing  “minimally painful” (pain 503 
+
+threshold) . Furthermore, we administered the same questionnaires as described in the previous 504 
+
+study.  For a detailed description of the study procedures and experimental paradigm , please 505 
+
+refer to  Nold et al. ( 2025) . Overall , the current study consisted of one calibration day (Day 1) 506 
+
+and one experimental day (Day 2). 507 
+
+508 
+
+Behavioural Data Acquisition 509 
+
+During  cycling, heart rate (HR), maintained power (in watts) , and cadence  (in revolutions per 510 
+
+minute (RPM))  were  acquired continuously. In  N = 7 participants, HR data  were  not recorded 511 
+
+Previous Study  (Nold et al., 2025)  Current Study 
+
+Overall 
+
+(M±SD )
+
+Females 
+
+(M±SD )
+
+Males 
+
+(M±SD )
+
+Females 
+
+(M±SD )
+
+N 39  21  18  21 
+
+Age (years)  26.03 (4.83)  25.33 (5.10)  26.83 (4.35)  32.29 (7.64) 
+
+Weight (kg)  70.95 (12.14)  63.33 (7.53)  79.83 (10.38)  63.6 (8.09) 
+
+Height (cm)  177.10 (9.08)  170.52  (6.35)  184.78 (4.58)  170 (5.95) 
+
+BMI  22.51 (2.64)  21.80 (2.59)  23.33 (2.53)  21 (1.93) 
+
+FTP (Watts/kg)  1.79 (0.48)  1.58 (0.44)  2.03 (0.40)  2.25 (0.41) 
+
+Training Volume (h/w)  4.44 (3.24)  3.88 (2.63)  5.08 (3.81)  13.10 (12.28) 
+
+M = Mean;  SD  = Standard deviation; kg = kilogram; cm = centimetre; FTP = Functional Threshold Power. 
+
+h/w = hours per week. 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+20 
+
+due to a technical failure , but w ere  monitored throughout the cycling. The rating of perceived 512 
+
+exertion (RPE) on the  BORG scale  (Borg, 1998) , ranging from  “no exertion ” (6 ) to “maximal 513 
+
+exertion” (20) , was provided after each cycling block. Furthermore, the elapsed t ime between 514 
+
+each  cycling and pain  within each block was  five minutes  to  correspond with th e mean time 515 
+
+required  in the previous study.  Following the cycling , participants received a total of 18 pain 516 
+
+stimuli , with 9 heat and 9 pressure stimuli applied in an alternating fashion and with their 517 
+
+respective intensities (30, 50, 70 VAS) applied in a randomised order. Whilst the pain was 518 
+
+ongoing, participants were asked to rate their currently perceived pain/non -painful sensation 519 
+
+using the left and right buttons of a button box (Logitech). When their perception did not 520 
+
+change , the cursor shou ld remain at the same position . The online rating  time  exceeded the 521 
+
+stimulus length by 2 seconds to capture  changes in pe rception when the stimulus ramped  down. 522 
+
+The online ratings were sampled at 70  – 75 samples per second and interpolated at 0.9 seconds. 523 
+
+524 
+
+Statistical Analyses 525 
+
+The behavioural statistical ana lyses were performed in MATLAB  and RStudio (Version 526 
+
+2021.09.1). We used the  lmer  and  emmeans  function s from the  lme4  package (Version 1.1 -527 
+
+35.1) to conduct linear mixed effect (LMER)  (Bates et al., 2014; Hox et al., 2010)  and post -hoc 528 
+
+t-tests in R, respectively. Furthermore, the  rstatix  package  (Kassambara, 2019)  was used  to 529 
+
+conduct one and two -sample  t-tests.  For the Bayesian  approach , all an aly ses were p er formed in 530 
+
+R usin g the package  brms  and  rstan  that implements Bayesian multilevel regression models via 531 
+
+Hamilton Monte Carlo sampling in  Stan  (Stan Development Team, 2024) .532 
+
+To investigate whether the distribution of menstrual cycle phases  as well as hormonal 533 
+
+contraceptives  differed  within and between days,  χ2 -test s were calculated.  Furthermore, we 534 
+
+evaluated  whether the re was a significant effect of  expectation  about  acute aerobic exercise on 535 
+
+different  pain dimension s and  calculated  one -sample  t-test s (two -tailed) . Furthermore, we 536 
+
+conducted p aired samples  t-tests comparing pre - and post -mood ratings on the dimensions  of 537 
+
+dejection, fatigue,  discontent , and drive.  To compare the FTP, self -reported fitness levels, 538 
+
+training volume,  age, weight, height , and BMI between the previous sample (males and 539 
+
+females) and the current sample , we calculated two -sample  t-tests. To evaluate the  exercise 540 
+
+parameters  within the current study , watts and HR  were  averaged across time and blocks for 541 
+
+each participant and  for  both exercise intensities. The  RPE  was also averaged across blocks for 542 
+
+participants and exercise intensity . We calculated one -sample  t-test s comparing  the respective 543 
+
+measure s between  HI  and  LI  exercise. 544 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+21 
+
+Linear Models 545 
+
+For visualisation purposes, we  displayed  the online ratings  (averaged  across subjects, blocks, 546 
+
+trials , and  stimulus intensities) and the SEM  following  HI and LI  exercise  for  heat and pressure 547 
+
+pain separately  (Supplemental Fig . S 7). For a more comprehensive understanding, the averaged 548 
+
+online rating s at each stimulus intensity were visualised in the  Supplemental Fig . S 8. To 549 
+
+statistically evalu ate the online pain ratings and  improve consistency  with the post -stimulus 550 
+
+pain  ratings reported in the previous study  (Nold et al., 2025) , we calculated  the  maximum 551 
+
+rating  by averaging the online rating across the  whole stimulus duration  (0  – 17 seconds)  and 552 
+
+extracting the peak rating . The  peak  pain ratings across the whole stimulus duration  would most 553 
+
+closely correspond to the  post -stimulus pain  ratings  provided  in the previous study , where 554 
+
+participants were asked to rate the most painful sensation throughout the stimulus duration.  We555 
+
+calculated  separate  LMER  models  with  the dependent variables  overall pain ratings, heat  pain 556 
+
+ratings,  and pressure  pain ratings , respectively . All LMER models included trial and block  as 557 
+
+fixed effects and  subject  as  a random effect.  In a first LMER model , we included exercise 558 
+
+intensity as  a fixed effect ; in a second LMER model , the stimulus intensity and exercise 559 
+
+intensity , as well as their interaction , served as fixed effects.  Finally, we conducted post -hoc  t-560 
+
+tests and applied a Tukey adjustment to correct for multiple comparisons. 561 
+
+To gain a better understanding of the overall effect of exercise intensity, fitness level and sex 562 
+
+across the current and previous study (Nold et al., 2025), we pooled the datasets. From the 563 
+
+previous study, only data from the control (saline) condition were included in the current 564 
+
+analyses.  To  allow for comparability of  the previous and current study , as well as the subgroups 565 
+
+(males of the previous study, females of the previous study and females of the current study ), 566 
+
+we rescaled the maximum pain ratings of the current study to a common scale of 0  – 100 to 567 
+
+correspond with the previous study.  To investigate the effect of exercise intensity and subgroup 568 
+
+on pain ratings across all stimulus intensities, as well as at VAS 70 only, we conducted a n569 
+
+LMER model. The interaction of exercise intensity and subgroup was used to assess whether 570 
+
+the magnitude of exercise -induced pain modulation differed between the subgroups. To 571 
+
+investigate the effect of fitness level, sex, and subgroup on exercise -induced pain modulation, 572 
+
+we calculated  participant -level difference  score s (pain ratings  following low -intensity exercise 573 
+
+minus pain following high -intensity exercise ), such that larger values reflected greater 574 
+
+hypoalgesia following high -intensity exercise . Fitness level, fitness level  × sex, and fitness level 575 
+
+× subgroup were, respectively, included in three different linear models as predictors. The 576 
+
+treatment order was included as a fixed effect in each model. Furthermore, we calculated the 577 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+22 
+
+correlation coefficient using Pearson 's product -moment correlation for each of the respective 578 
+
+models. These analyses correspond to the analyses conducted in Nold et al. (2025). 579 
+
+Bayesian  analyses 580 
+
+We conducted Bayesian analyses  to complement and extend  frequentist analyses  by quantifying 581 
+
+evidence for  competing  hierarchical models and estimating posterior  distribution s of regression 582 
+
+coefficients ( β) in the pooled samples model.  All analyses modelled pain ratings as the 583 
+
+dependent variable using Gaussian linear  mixed -effects models. To account for repeated 584 
+
+measurements within participa nt s, all models included subject –specific  intercepts .585 
+
+Furthermore, trial and block were included as fixed effects in all models. Models were 586 
+
+organised in a hierarchical  comparison  framework consisting of a null model (including only 587 
+
+nuisance covariates), main effects models  (exercise intensity/VAS intensity)  and interaction 588 
+
+models  (interaction terms). Overall, weakly informative priors were specified for all models 589 
+
+(Table 2) . Prior specification s were identical across models , with the only difference in 590 
+
+intercepts depending on the ratings scale used (current study: 0 -150; pooled dataset: 0 -100) ( for 591 
+
+details , see Table 2).  All models were estimated using four Markov chain Monte Carlo 592 
+
+(MCMC)  chains with  4000 iterations per chain ( 2000 warm -up) . For more  complex  interaction 593 
+
+models , adapt_delta was increased (up to 0.995) , and maximum tree depth was increased (up 594 
+
+to 15) to ensure stable sampling.  Convergence was assessed using the poten tia l scale reduction 595 
+
+statistic  (Ȓ ≈ 1.00), trace plots, and effective sample sizes. 596 
+
+597 
+
+Table  2. Prior specification for Bayesian mixed -effects models .598 
+
+Parameter type  Parameter  Prior distribution  Rationale 
+
+Fixed effects (main 
+
+models) 
+
+Regression 
+
+coefficients (β)  Normal(0, 8)  Weakly informative, allowing 
+
+broad plausible effects 
+
+Fixed effects (interaction 
+
+models) 
+
+Regression 
+
+coefficients (β)  Normal(0, 5)  Stronger shrinkage to reduce 
+
+overfitting in higher -order terms 
+
+Intercept (current  study)/ 
+
+Intercept (pooled dataset)  Intercept  Normal(75,30)/ 
+
+Normal(50, 20) 
+
+Midpoint  matches  the  observed 
+
+scale of outcomes in each 
+
+dataset 
+
+Random effects SD  Subject -level SD  Student -t(3, 0, 10) 
+
+Weakly informative, allows 
+
+heterogeneity across 
+
+participants 
+
+Residual SD  σ Student -t(3, 0, 10)  Weakly informative, constrains 
+
+extreme variance 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+23 
+
+599 
+
+Bayesian model comparison 600 
+
+Bayesian  model comparison was conducted  using  the  Bayes Factor ( BF 10 ) estimated via bridge 601 
+
+sampl ing  for all  frequentist  linear model  analy ses. The  Bayes  Factor quantifies the  relative 602 
+
+evidence  provided  by the data for one model over another by comparing their marginal 603 
+
+likelihoods.  Specifically , BF 10  expresses the evidence for the more complex model relative  to604 
+
+a simpler model. Generally,  BF 10  > 1 indicates support for the more complex model o ver  the 605 
+
+simpler model and vice versa for  BF 10  < 1. According to the conventional evidence thresholds 606 
+
+(Lovric, 2025) , a 1 < BF 10  < 3  indicates  anecdotal/weak evidence, 3 <  BF 10  < 10 moderate 607 
+
+evidence , and  BF 10  > 10 strong evidence in favour of the complex model.  BF 10  close to 1 608 
+
+indicates insensitive or inconclusive evidence for the complex over the simpler model. We 609 
+
+computed the Bayes factor for the main effects model vs  the  null model,  the  interaction model 610 
+
+vs. main effect model, and  the  full model vs. null model. 611 
+
+612 
+
+Posterior inference 613 
+
+For the final analysis  investigating the effect of exercise intensity, fitness  level  and sex in the 614 
+
+pooled dataset , posterior inference was  conducted. The model included pain ratings as the 615 
+
+dependent variable wit h exercise intensity , fitness  level,  and sex , as well as subgroup as fixed 616 
+
+effects , along  with their interactions with exercise intensity. Again, trial and block were 617 
+
+included as fixed effects along with subject -specific  intercepts.  Importantly , this model  did not 618 
+
+rely on the difference  in  pain ratings as in the  frequentist  analyses but on raw pain ratings. 619 
+
+Therefore , this should be treated not as confirmatory but  as  complementary analyses.  All 620 
+
+posterior summaries were based on four MCMC chains with satisfactory convergence (Ȓ ≈ 621 
+
+1.00) and sufficient effective sample sizes across parameters.  Unlike  frequentist  statistics, 622 
+
+Bayesian inference does not  rely  on point estimates and p -values but  rather  a full  posterior 623 
+
+distribution of each  model  parameter , allowing for direct probability statement s about effec t624 
+
+size and  direction of  effects.  Posterior summaries focused on the fixed -effect regression 625 
+
+coefficients ( β), specifically: (i) the  main effect of exercise intensity, (ii) its moderation by 626 
+
+fitness level, (iii) sex, and (iv) subgroup (males  from  the  previous study, females  from  the 627 
+
+β = regression coefficient;  SD  = standard deviation;  σ = residual standard deviation. Normal( μ, σ) indicates a 
+
+normal prior with mean μ and standard deviation σ;  Student -t(ν, μ, σ) indicates a Student -t prior with degrees 
+
+of freedom ( ν), location ( μ), and scale ( σ). Subject -level  SD  represents between -participant variability 
+
+captured by random effects. Priors were weakly informative unless otherwise noted. 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+24 
+
+previous study, females  from  the  current study).  Posterior  samples  were extracted and reported 628 
+
+from the fitted model and used to compute and visualise  in three complementary ways. First, 629 
+
+the posterior p oint estimate s were computed as the posterior mean of  each fixed -effect 630 
+
+regression coefficient  (β) representing the expected regression  coefficient  under the posterior 631 
+
+distribution . Second, uncertainty was  summarised  using 95% credible Intervals , defined as 632 
+
+2.5% and 97.5% quantiles of the posterior distribution. These intervals indicate the range 633 
+
+containing 95% of the posterior probability for the regression coefficient. Third, the posterior 634 
+
+probabilities of direction were  computed  for  the fixed effect regression coefficients  (β) by 635 
+
+calculating the proportion of posterior samples below  (Pr(β < 0) ) for the main effect of exercise 636 
+
+intensity, and its interaction terms with fitness level, sex and subgroup. The posterior 637 
+
+probabilities provide a direct probability statement about the direction of each effect. 638 
+
+639 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+25 
+
+Acknowledgments 640 
+
+We thank the participants for taking part in the study . Further, w e thank Alexandra Tinnermann 641 
+
+for her hel pful comments. 642 
+
+643 
+
+Funding 644 
+
+C.B. and J.N. are supported by ERC -AdG -883892 -PainPersist. C.B. is supported by DFG SFB 645 
+
+289 Project A02 (Project -ID 422744262 –TRR 289). 646 
+
+647 
+
+Author  Contributions 648 
+
+Conceptualisation, C.B. and J.N.; Methodology, C.B. and J.N.; Investigation, C.B., J.N., T.F., 649 
+
+and Z.G.; Visualisation, J.N.; Writing  – Original Draft, C.B. , J.N. , and Z.G. ; Funding 650 
+
+Acquisition, C.B.; Resources, C.B.; Supervision, C.B. 651 
+
+652 
+
+Declaration of Interests 653 
+
+C.B.: Senior editor,  eLife . The other authors declare no  other  competing interests. 654 
+
+655 
+
+Ethics 656 
+
+Human subjects: All participants gave informed written consent. The study was approved by 657 
+
+the Ethics Board of the Hamburg Medical Association ( PV7456/2020 -10144 -BO -ff ). We 658 
+
+support inclusive, diverse, and equitable conduct of research. 659 
+
+660 
+
+Additional Files 661 
+
+Supplemental Information:  Supplemental  Figures S1 –S8 and Supplemental Tables S1 -S30 .662 
+
+663 
+
+Data availability 664 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+26 
+
+The dataset  for the raw behavioural data generated in the current study  is  available from the 665 
+
+corresponding author on reasonable request and after publication. All necessary data to evaluate 666 
+
+the results of the study are included in the manuscript and supplementary materials. 667 
+
+668 
+
+Code availability 669 
+
+This study was programmed using MATLAB 2021b and Psychophysics Toolbox (Version 670 
+
+3.0.19). For data visualisation, we used RStudio (Version  2026.05.0 ). The custom behavioural 671 
+
+analys is pipelines are available on the public repository 672 
+
+https://github.com/jannenold/hotspin_analyses_behavioural.git  after publication. 673 
+
+674 
+
+675 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+27 
+
+References 676 
+
+Allen H, Coggan A. 2012. Training and Racing with a Power Meter, 2nd Ed. VeloPress. 677 
+
+Allen H, Coggan A. 2006. Racing and training with a power meter. VeloPress. 678 
+
+Anderson EH, Shivakumar G. 2013. Effects of Exercise and Physical Activity on Anxiety. 679 
+
+Frontiers in Psychiatry  4. DOI: https://doi.org/10.3389/fpsyt.2013.00027 680 
+
+Bates D, Mächler M, Bolker B, Walker S. 2014. Fitting Linear Mixed -Effects Models using 681 
+
+lme4. 682 
+
+Beserra AHN, Kameda P, Deslandes AC, Schuch FB, Laks J, Moraes HS de. 2018.  Can 683 
+
+physical exercise modulate cortisol level in subjects with depression? A systematic 684 
+
+review and meta -analysis. Trends in Psychiatry and Psychotherapy  40 :360 –368. DOI: 685 
+
+https://doi.org/https://doi.org/10.1590/2237 -6089 -2017 -0155 686 
+
+Bingel U, Tracey I. 2008. Imaging CNS Modulation of Pain in Humans. Physiology  23 :371 –687 
+
+380. DOI: https://doi.org/10.1152/physiol.00024.2008 688 
+
+Black CD, Huber JK, Ellingson LD, Ade CJ, Taylor EL, Griffeth EM, Janzen NR, Sutterfield 689 
+
+SL. 2017. Exercise -Induced Hypoalgesia Is Not Influenced by Physical Activity Type 690 
+
+and Amount. Medicine & Science in Sports & Exercise  49 :975. DOI: 691 
+
+https://doi.org/10.1249/MSS.0000000000001186 692 
+
+Blanton HL, Barnes RC, McHann MC, Bilbrey JA, Wilkerson JL, Guindon J. 2021. Sex 693 
+
+differences and the endocannabinoid system in pain. Pharmacology Biochemistry and 694 
+
+Behavior  202 :173107. DOI: https://doi.org/10.1016/j.pbb.2021.173107 695 
+
+Borg G. 1998. Borg’s perceived exertion and pain scales. Borg’s perceived exertion and pain 696 
+
+scalesHuman Kinetics. 697 
+
+Borras MC, Becerra L, Ploghaus A, Gostic JM, DaSilva A, Gonzalez RG, Borsook D. 2004. 698 
+
+FMRI Measurement of CNS Responses to Naloxone Infusion and Subsequent Mild 699 
+
+Noxious Thermal Stimuli in Healthy Volunteers. Journal of Neurophysiology 700 
+
+91 :2723 –2733. DOI: https://doi.org/10.1152/jn.00249.2003 701 
+
+Borszcz FK, Tramontin AF, Bossi AH, Carminatti LJ, Costa VP. 2018. Functional Threshold 702 
+
+Power in Cyclists: Validity of the Concept and Physiological Responses. International 703 
+
+Journal of Sports Medicine  39 :737 –742. DOI: https://doi.org/10.1055/s -0044 -101546 704 
+
+Brellenthin AG, Crombie KM, Cook DB, Sehgal N, Koltyn KF. 2017.  Psychosocial 705 
+
+Influences on Exercise -Induced Hypoalgesia. Pain Medicine  18 :538 –550. DOI: 706 
+
+https://doi.org/10.1093/pm/pnw275 707 
+
+Castelli M, Fadda P, Casu A, Spano M, Casti A, Fratta W, Fattore L. 2014. Male and Female 708 
+
+Rats Differ in Brain Cannabinoid CB1 Receptor Density and Function and in 709 
+
+Behavioural Traits Predisposing to Drug Addiction: Effect of Ovarian Hormones. 710 
+
+Current Pharmaceutical Design  20 :2100 –2113. DOI: 711 
+
+https://doi.org/10.2174/13816128113199990430 712 
+
+Colloca L, Corsi N, Fiorio M. 2018. The interplay of exercise, placebo and nocebo effects on 713 
+
+experimental pain. Scientific Reports  8:1 –11. DOI: https://doi.org/10.1038/s41598 -714 
+
+018 -32974 -2, PMID: 30283022 715 
+
+Crombie KM, Brellenthin AG, Hillard CJ, Koltyn KF. 2018. Endocannabinoid and Opioid 716 
+
+System Interactions in Exercise -Induced Hypoalgesia. Pain Medicine  19 :118 –123. 717 
+
+DOI: https://doi.org/10.1093/pm/pnx058 718 
+
+Curran SL, Andrykowski MA, Studts JL. 1995. Short Form of the Profile of Mood States 719 
+
+(POMS -SF): Psychometric information. Psychological Assessment  7:80 –83. DOI: 720 
+
+https://doi.org/10.1037/1040 -3590.7.1.80 721 
+
+de Bruijn ST, van Wijck AJM, Geenen R, Snijders TJ, van der Meulen WJTM, Jacobs JWG, 722 
+
+Veldhuijzen DS. 2011. Relevance of physical fitness levels and exercise -related 723 
+
+beliefs for self -reported and experimental pain in fibromyalgia: an explorative study. 724 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+28 
+
+Journal of clinical rheumatology  17 :295 –301. DOI: 725 
+
+https://doi.org/10.1097/rhu.0b013e31822c5196, PMID: 21869713 726 
+
+Denham J, Scott -Hamilton J, Hagstrom AD, Gray AJ. 2020. Cycling Power Outputs Predict 727 
+
+Functional Threshold Power and Maximum Oxygen Uptake. The Journal of Strength 728 
+
+& Conditioning Research  34 :3489 –3497. DOI: 729 
+
+https://doi.org/10.1519/JSC.0000000000002253 730 
+
+Eippert F, Bingel U, Schoell ED, Yacubian J, Klinger R, Lorenz J, Büchel C. 2009. 731 
+
+Activation of the Opioidergic Descending Pain Control System Underlies Placebo 732 
+
+Analgesia. Neuron  63 :533 –543. DOI: https://doi.org/10.1016/j.neuron.2009.07.014 733 
+
+Ellerbrock I, Wiehler A, Arndt M, May A. 2015. Nocebo context modulates long -term 734 
+
+habituation to heat pain and influences functional connectivity of the operculum. 735 
+
+PAIN  156 :2222. DOI: https://doi.org/10.1097/j.pain.0000000000000297 736 
+
+Fillingim RB, King CD, Ribeiro -Dasilva MC, Rahim -Williams B, Riley JL. 2009. Sex, 737 
+
+Gender, and Pain: A Review of Recent Clinical and Experimental Findings. The 738 
+
+Journal of Pain  10 :447 –485. DOI: https://doi.org/10.1016/j.jpain.2008.12.001 739 
+
+Fullerton EF, Doyle HH, Murphy AZ. 2018. Impact of sex on pain and opioid analgesia: a 740 
+
+review. Current Opinion in Behavioral Sciences  23 :183 –190. DOI: 741 
+
+https://doi.org/10.1016/j.cobeha.2018.08.001 742 
+
+Gajic P, Kovac I, Lubinsky G, Knezevic NN. 2026. Exercise -Induced Hypoalgesia: Cellular 743 
+
+and Molecular Mechanisms Linking Pain Modulation and Stress Regulation —A744 
+
+Narrative Review.  Cells 15 :858. DOI: https://doi.org/10.3390/cells15100858 745 
+
+Gajsar H, Titze C, Hasenbring MI, Vaegter HB. 2017.  Isometric Back Exercise Has Different 746 
+
+Effect on Pressure Pain Thresholds in Healthy Men and Women. Pain Medicine 747 
+
+(Malden, Mass.)  18 :917 –923. DOI: https://doi.org/10.1093/pm/pnw176, PMID: 748 
+
+27473635 749 
+
+Geisler M, Eichelkraut L, Miltner WHR, Weiss T. 2019.  An fMRI study on runner’s high and 750 
+
+exercise -induced hypoalgesia after a 2 -h-run in trained non -elite male athletes. Sport 751 
+
+Sciences for Health. DOI: https://doi.org/10.1007/s11332 -019 -00592 -8752 
+
+Geva N, Defrin R. 2013. Enhanced pain modulation among triathletes: A possible explanation 753 
+
+for their exceptional capabilities. PAIN®  154 :2317 –2323. DOI: 754 
+
+https://doi.org/10.1016/j.pain.2013.06.031 755 
+
+Haier RJ, Quaid K, Mills JSC. 1981a. Naloxone Alters Pain Perception After Jogging. 756 
+
+Psychiatry Research  5:231 –232. DOI: https://doi.org/10.1016/0165 -1781(81)90052 -4757 
+
+Haier RJ, Quaid K, Mills JSC. 1981b. Naloxone alters pain perception after jogging. 758 
+
+Psychiatry Research  5:231 –232. DOI: https://doi.org/10.1016/0165 -1781(81)90052 -4759 
+
+Hox JJ, Moerbeek M, Schoot R van de. 2010. Multilevel Analysis: Techniques and 760 
+
+Applications, Second Edition, 2nd ed. Routledge. 761 
+
+Janal MN, Colt EWD, Crawford W, Glusman M. 1984. Pain Sensitivity, Mood and Plasma 762 
+
+Endocrine Levels in Man Following Long -Distance Running: Effects of Naloxone. 763 
+
+Pain  19 :13 –25. DOI: https://doi.org/10.1016/0304 -3959(84)90061 -7764 
+
+Jones MD, Nuzzo JL, Taylor JL, Barry BK. 2019. Aerobic Exercise Reduces Pressure More 765 
+
+Than Heat Pain Sensitivity in Healthy Adults. Pain Medicine  20 :1534 –1546. DOI: 766 
+
+https://doi.org/10.1093/pm/pny289 767 
+
+Jones MD, Valenzuela T, Booth J, Taylor JL, Barry BK. 2017. Explicit Education About 768 
+
+Exercise -Induced Hypoalgesia Influences Pain Responses to Acute Exercise in 769 
+
+Healthy Adults: A Randomized Controlled Trial. Journal of Pain  18 :1409 –1416. DOI: 770 
+
+https://doi.org/10.1016/j.jpain.2017.07.006 771 
+
+Kassambara A. 2019. rstatix: Pipe -Friendly Framework for Basic Statistical Tests. DOI: 772 
+
+https://doi.org/10.32614/CRAN.package.rstatix 773 
+
+Koltyn KF. 2000. Analgesia Following Exercise. Sports Medicine  29 :85 –98. DOI: 774 
+
+https://doi.org/10.2165/00007256 -200029020 -00002 775 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+29 
+
+Koltyn KF, Brellenthin AG, Cook DB, Sehgal N, Hillard C. 2014. Mechanisms of exercise -776 
+
+induced hypoalgesia. Journal of Pain  15 :1294 –1304. DOI: 777 
+
+https://doi.org/10.1016/j.jpain.2014.09.006, PMID: 25261342 778 
+
+Koltyn KF, Trine MR, Stegner AJ, Tobar DA. 2001. Effect of isometric exercise on pain 779 
+
+perception and blood pressure in men and women. Medicine and Science in Sports and 780 
+
+Exercise  33 :282 –290. DOI: https://doi.org/10.1097/00005768 -200102000 -00018 781 
+
+Koyama Y, Koyama T, Kroncke AP, Coghill RC. 2004. Effects of stimulus duration on heat 782 
+
+induced pain: the relationship between real -time and post -stimulus pain ratings. PAIN 783 
+
+107 :256. DOI: https://doi.org/10.1016/j.pain.2003.11.007 784 
+
+Kruschke JK. 2021. Bayesian Analysis Reporting Guidelines. Nature Human Behaviour 785 
+
+5:1282 –1291. DOI: https://doi.org/10.1038/s41562 -021 -01177 -7786 
+
+Lemley KJ, Senefeld J, Hunter SK, Hoeger Bement M. 2016.  Only women report increase in 787 
+
+pain threshold following fatiguing contractions of the upper extremity. European 788 
+
+Journal of Applied Physiology  116 :1379 –1385. DOI: https://doi.org/10.1007/s00421 -789 
+
+016 -3389 -8790 
+
+Levine A, Liktor -Busa E, Lipinski AA, Couture S, Balasubramanian S, Aicher SA, Langlais 791 
+
+PR, Vanderah TW, Largent -Milnes TM. 2021. Sex differences in the expression of the 792 
+
+endocannabinoid system within V1M cortex and PAG of Sprague Dawley rats. 793 
+
+Biology of Sex Differences  12 :60. DOI: https://doi.org/10.1186/s13293 -021 -00402 -2794 
+
+Lindheimer JB, Szabo A, Raglin JS, Beedie C, Carmichael KE, O’Connor PJ. 2020. 795 
+
+Reconceptualizing the measurement of expectations to better understand placebo and 796 
+
+nocebo effects in psychological responses to exercise. European Journal of Sport 797 
+
+Science  20 :338 –346. DOI: https://doi.org/10.1080/17461391.2019.1674926, PMID: 798 
+
+31566508 799 
+
+Lovric M (Ed). 2025. International Encyclopedia of Statistical Science.  Springer Berlin 800 
+
+Heidelberg. DOI: https://doi.org/10.1007/978 -3-662 -69359 -9801 
+
+Loyd DR, Wang X, Murphy AZ. 2008.  Sex Differences in μ -Opioid Receptor Expression in 802 
+
+the Rat Midbrain Periaqueductal Gray Are Essential for Eliciting Sex Differences in 803 
+
+Morphine Analgesia. Journal of Neuroscience  28 :14007 –14017. DOI: 804 
+
+https://doi.org/10.1523/JNEUROSCI.4123 -08.2008, PMID: 19109484 805 
+
+Matei D, Trofin D, Iordan DA, Onu I, Condurache I, Ionite C, Buculei I. 2023. The 806 
+
+Endocannabinoid System and Physical Exercise. International Journal of Molecular 807 
+
+Sciences  24 :1989.  DOI: https://doi.org/10.3390/ijms24031989 808 
+
+May A, Rodriguez -Raecke R, Schulte A, Ihle K, Breimhorst M, Birklein F, Jürgens T p. 2012. 809 
+
+Within -session sensitization and between -session habituation: A robust physiological 810 
+
+response to repetitive painful heat stimulation. European Journal of Pain  16 :401 –409. 811 
+
+DOI: https://doi.org/10.1002/j.1532 -2149.2011.00023.x 812 
+
+McGrath E, Mahony N, Fleming N, Donne B. 2019. Is the FTP Test a Reliable, Reproducible 813 
+
+and Functional Assessment Tool in Highly -Trained Athletes? International Journal of 814 
+
+Exercise Science  12 :1334 –1345. PMID: 31839854 815 
+
+Mogil JS. 2012. Sex differences in pain and pain inhibition: multiple explanations of a 816 
+
+controversial phenomenon. Nature Reviews Neuroscience  13 :859 –866. DOI: 817 
+
+https://doi.org/10.1038/nrn3360 818 
+
+Naugle KM, Naugle KE, Fillingim RB, Samuels B, Riley JLI. 2014. Intensity Thresholds for 819 
+
+Aerobic Exercise -Induced Hypoalgesia. Medicine & Science in Sports & Exercise 820 
+
+46 :817 –825. DOI: https://doi.org/10.1249/MSS.0000000000000143 821 
+
+Naugle KM, Riley JL. 2014. Self -reported Physical Activity Predicts Pain Inhibitory and 822 
+
+Facilitatory Function. Medicine and science in sports and exercise  46 :622 –629. DOI: 823 
+
+https://doi.org/10.1249/MSS.0b013e3182a69cf1, PMID: 23899890 824 
+
+Niwa Y, Shimo K, Ohga S, Tokiwa Y, Hattori T, Matsubara T. 2022. Effects of Exercise -825 
+
+Induced Hypoalgesia at Different Aerobic Exercise Intensities in Healthy Young 826 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+30 
+
+Adults. Journal of Pain Research  15 :3615 –3624. DOI: 827 
+
+https://doi.org/10.2147/JPR.S384306, PMID: 36419538 828 
+
+Nold JI, Fadai T, Büchel C. 2025.  Acute aerobic exercise does not modulate pain potentially 829 
+
+due to differences in fitness levels and sex effects  – results from a pharmacological 830 
+
+fMRI study. eLife  14 . DOI: https://doi.org/10.7554/eLife.102392.1 831 
+
+Petrovic P, Kalso E, Petersson KM, Ingvar M. 2002.  Placebo and Opioid Analgesia -- Imaging 832 
+
+a Shared Neuronal Network.  Science 295 :1737 –1740. DOI: 833 
+
+https://doi.org/10.1126/science.1067176 834 
+
+Rice D, Nijs J, Kosek E, Wideman T, Hasenbring MI, Koltyn K, Graven -Nielsen T, Polli A. 835 
+
+2019.  Exercise -Induced Hypoalgesia in Pain -Free and Chronic Pain Populations: State 836 
+
+of the Art and Future Directions. The Journal of Pain  20 :1249 –1266. DOI: 837 
+
+https://doi.org/10.1016/j.jpain.2019.03.005 838 
+
+Saanijoki T, Kantonen T, Pekkarinen L, Kalliokoski K, Hirvonen J, Malén T, Tuominen L, 839 
+
+Tuulari JJ, Arponen E, Nuutila P, Nummenmaa L. 2022.  Aerobic Fitness is Associated 840 
+
+with Cerebral mu -Opioid Receptor Activation in Healthy Humans. Medicine & 841 
+
+Science in Sports & Exercise. DOI: https://doi.org/10.1249/MSS.0000000000002895 842 
+
+Scheef L, Jankowski J, Daamen M, Weyer G, Klingenberg M, Renner J, Mueckter S, 843 
+
+Schürmann B, Musshoff F, Wagner M, Schild HH, Zimmer A, Boecker H. 2012.  An 844 
+
+fMRI study on the acute effects of exercise on pain processing in trained athletes.  Pain 845 
+
+153 :1702 –1714. DOI: https://doi.org/10.1016/j.pain.2012.05.008 846 
+
+Schmitt A, Wallat D, Stangier C, Martin JA, Schlesinger -Irsch U, Boecker H. 2020.  Effects of 847 
+
+fitness level and exercise intensity on pain and mood responses. European Journal of 848 
+
+Pain  24 :568 –579. DOI: https://doi.org/10.1002/ejp.1508 849 
+
+Siebers M, Biedermann SV, Bindila L, Lutz B, Fuss J. 2021. Exercise -induced euphoria and 850 
+
+anxiolysis do not depend on endogenous opioids in humans. 851 
+
+Psychoneuroendocrinology 126 :105173. DOI: 852 
+
+https://doi.org/10.1016/j.psyneuen.2021.105173 853 
+
+Siebers M, Biedermann SV, Fuss J. 2022.  Do Endocannabinoids Cause the Runner’s High? 854 
+
+Evidence and Open Questions. The Neuroscientist 10738584211069981. DOI: 855 
+
+https://doi.org/10.1177/10738584211069981 856 
+
+Sluka KA, Frey -Law L, Hoeger Bement M. 2018. Exercise -induced pain and analgesia? 857 
+
+Underlying mechanisms and clinical translation. Pain  159 :S91 –S97. DOI: 858 
+
+https://doi.org/10.1097/j.pain.0000000000001235 859 
+
+Smith LD. 2004. The effects of competition and exercise on pain perception. 860 
+
+Song JS, Yamada Y, Kataoka R, Wong V, Spitz RW, Bell ZW, Loenneke JP. 2022. Training -861 
+
+induced hypoalgesia and its potential underlying mechanisms. Neuroscience & 862 
+
+Biobehavioral Reviews  141 :104858. DOI: 863 
+
+https://doi.org/10.1016/j.neubiorev.2022.104858 864 
+
+Sørensen A, Aune TK, Rangul V, Dalen T. 2019. The Validity of Functional Threshold Power 865 
+
+and Maximal Oxygen Uptake for Cycling Performance in Moderately Trained 866 
+
+Cyclists. Sports  7:217. DOI: https://doi.org/10.3390/sports7100217 867 
+
+Stan Development Team. 2024. RStan: the R interface to Stan.  R package version 2.32.7, 868 
+
+https://mc -stan.org/ (2024).  Stan . https://mc -stan.org/ 869 
+
+Sternberg WF, Boka C, Kas L, Alboyadjia A, Gracely RH. 2001. Sex -Dependent Components 870 
+
+of the Analgesia Produced by Athletic Competition. The Journal of Pain  2:65 –74. 871 
+
+DOI: https://doi.org/10.1054/jpai.2001.18236 872 
+
+Tesarz J, Schuster AK, Hartmann M, Gerhardt A, Eich W. 2012. Pain perception in athletes 873 
+
+compared to normally active controls: a systematic review with meta -analysis. Pain 874 
+
+153 :1253 –1262. DOI: https://doi.org/10.1016/j.pain.2012.03.005, PMID: 22607985 875 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.1101/2025.09.16.676491 doi: bioRxiv preprint
+
+31 
+
+Vaegter HB, Handberg G, Graven -Nielsen T. 2014. Similarities between exercise -induced 876 
+
+hypoalgesia and conditioned pain modulation in humans. Pain  155 :158 –167. DOI: 877 
+
+https://doi.org/10.1016/j.pain.2013.09.023 878 
+
+Vaegter HB, Thinggaard P, Madsen CH, Hasenbring M, Thorlund JB. 2020. Power of Words: 879 
+
+Influence of Preexercise Information on Hypoalgesia after Exercise -Randomized 880 
+
+Controlled Trial. Medicine and Science in Sports and Exercise  52 :2373 –2379. DOI: 881 
+
+https://doi.org/10.1249/MSS.0000000000002396, PMID: 32366799 882 
+
+Zubieta J -K, Smith YR, Bueller JA, Xu Y, Kilbourn MR, Jewett DM, Meyer CR, Koeppe 883 
+
+RA, Stohler CS. 2002. μ -Opioid Receptor -Mediated Antinociceptive Responses Differ 884 
+
+in Men and Women. The Journal of Neuroscience  22 :5100 –5107. DOI: 885 
+
+https://doi.org/10.1523/JNEUROSCI.22 -12 -05100.2002, PMID: 12077205 886 
+
+887

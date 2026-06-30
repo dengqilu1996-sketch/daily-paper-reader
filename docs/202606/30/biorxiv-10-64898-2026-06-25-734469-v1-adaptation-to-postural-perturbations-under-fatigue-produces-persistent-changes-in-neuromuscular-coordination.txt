@@ -1,0 +1,2126 @@
+Title: 3703938
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.25.734469v1.full.pdf
+
+Number of Pages: 38
+
+Markdown Content:
+Adaptation to postural perturbations under fatigue produces persistent changes 
+
+in neuromuscular coordination 
+
+Mauro Nardon 1, Cristiano Alessandro 2, Tarkeshwar Singh 3,4 #, Matteo Bertucco 1#* 
+
+> 1
+
+Department of Neurosciences, Biomedicine and Movement Sciences, University of 
+
+Verona, Via Casorati, 43, Verona, 37131, Italy  
+
+> 2
+
+School of Medicine and Surgery , University of Milan o-Bicocca , Milan , Italy 
+
+> 3
+
+Department of Kinesiology, The Pennsylvania State University, University Park, PA -
+
+16802, USA 
+
+> 4
+
+Neuroscience Institute, The Pennsylvania State University, University Park, PA -
+
+16802, USA 
+
+# These authors share senior authorship. 
+
+* Corresponding author. 
+
+Running Head (max 60 chr): 
+
+Postural adaptation under neuromuscular fatigue 
+
+* Corresponding author: 
+
+Dr. Matteo Bertucco 
+
+Department of Neurosciences, Biomedicine and Movement Sciences, University of 
+
+Verona, Via Casorati, 43, Verona, 37131, Italy 
+
+Email: matteo.bertucco@univr.it 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+ABSTRACT 
+
+Postural control depends on the ability to adapt motor responses to changing 
+
+environmental and physiological conditions. Neuromuscular fatigue (NMF) is known to 
+
+alter balance and muscle activation patterns, yet its effects on motor adaptation during 
+
+whole -body postural tasks and on the persistence of learned strategies remain 
+
+unclear. This study investigated whether localized NMF of the ankle dorsiflexors 
+
+influences adaptation to a novel postural perturbation task and whether learning under 
+
+fatigue induces persistent changes during subsequent re -exposure. 
+
+Twenty -five healthy young adults were assigned to either a fatigue (FAT) or no -fatigue 
+
+(NoFAT) group and completed two experimental sessions separated by 48 –72 h 
+
+allowing recovery from acute fatigue for fatigued group . Participants adapted to 
+
+repeated mechanical perturbations while standing upright, while ground reaction 
+
+forces and electromyographic activity of lower -limb muscles were recorded. 
+
+NMF did not impair overall adaptation performance, as both groups exhibited similar 
+
+reductions in performance error across practice. However, participants exposed to 
+
+fatigue exhibited altered postural recovery dynamics, characterized by a reduced 
+
+return to ward the initial posture following perturbation release. These differences 
+
+persisted during re -exposure on the subsequent day, despite the absence of acute 
+
+fatigue. In parallel, NMF modified muscle activation and coactivation patterns involving 
+
+both fatigu ed and non -fatigued muscles, several of which were retained during re -
+
+exposure. 
+
+These findings indicate that the central nervous system preserves successful 
+
+adaptation to postural perturbations under fatigue by reorganizing neuromuscular 
+
+coordination and stabilization strategies. Learning under fatigue therefore influences 
+
+not only im mediate motor execution, but also shapes the longer -term representation 
+
+of postural control strategies. 
+
+New & Noteworthy 
+
+Motor adaptation during whole -body postural control can occur despite neuromuscular 
+
+fatigue, but through altered stabilization strategies. Participants exposed to fatigue 
+
+preserved overall performance while exhibiting persistent changes in postural 
+
+recover y and muscle coordination that remained during re -exposure without fatigue. 
+
+These findings demonstrate that fatigue influences not only immediate motor 
+
+execution, but also the long -term representation of learned motor solutions, with 
+
+potential implications for rehabilitation, athletic training, and motor skill acquisition 
+
+performed under physiologically demanding conditions. 
+
+Keywords : motor adaptation; motor learning; muscle fatigue; posture; postural 
+
+control. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+# INTRODUCTION 
+
+Maintaining a standing posture is a non -trivial task that requires continuous active 
+
+control of postural muscles (1) . The central nervous system (CNS) employs different 
+
+strategies to maintain balance depending on environmental conditions, the presence 
+
+and magnitude of external perturbations, and task -related expectations (2 –4) . When 
+
+posture is challenged, postural stability is primarily preserved through the coordinated 
+
+action of anticipatory postural adjustments (APAs) and compensatory postural 
+
+adjustments (CPAs). APAs reflect the pre ‑emptive activation of postural muscles 
+
+based on predictions about an upcoming disturbance , whereas CPAs represent the 
+
+reactive responses that counteract the perturbation and restore equilibrium once it has 
+
+occurred (5 –7) . The flexibility and plasticity of these mechanisms enable the motor 
+
+system to rapidly adapt to changes in task demands or environmental constraints, 
+
+ensuring efficient and robust postural control (8 –10) .
+
+Several studies observed that p ostural control mechanisms and movement execution 
+
+parameters are impacted by the presence of neuromuscular fatigue (NMF; (11 –15) ),
+
+with physiological and behavioral effects ranging from very short (<1min) to long -
+
+lasting time span s (>1 hour) depending on the exercise duration and modality (11, 16) .
+
+A recent study observed that the organization and the strength of APA and CPA 
+
+strategies and their mutual relationship is directly impacted by neuromuscular fatigue 
+
+(14) . In detail, alterations in muscle activation (both APA and CPA) were more 
+
+pronounced and prolonged following a localized fatiguing protocol compared to a 
+
+generalized fatiguing protocol , suggesting a major role in proprioceptive feedback 
+
+disruption (17) . Despite the observed alterations in muscle activation strategies, 
+
+participants managed to maintain balance following disturbances, even in presence of 
+
+acute NMF (14) . In the afore -mentioned study, however, participants had been already 
+
+exposed to and familiarized with the perturbation , limiting the generalization of the 
+
+results in context where the task ex ecution needs to be rapidly adjusted to a novel 
+
+context , such as in motor learning and motor adaptation processes (18) .
+
+Interestingly , evidence from a motor adaptation scenario suggest that the CNS 
+
+effectively cope s with a physiological perturbation such as NMF and prioritize s
+
+postur al stability over reaching performance (19) . In fact, reaching performance during 
+
+a force -field adaptation paradigm worsened for participants exposed to NMF , with 
+
+muscle activation follow ing differ ential patterns throughout the adaptation phase in the 
+
+control and fatigued group . Despite the higher errors in the fatigue group, adaptation 
+
+curve profiles were maintained, suggesting a delayed – but not totally impaired –
+
+adaptation process due to NMF exposure (19) . Similarly, it has been observed that 
+
+practicing in presence of NMF influences internal models’ formation , as suggested by 
+
+the aftereffects during the re -exposure to the task (20) .
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Most of the current research on the effects of NMF on motor adaptation and learning 
+
+has focused on short -term outcomes (19, 20) , leaving us with limited understanding of 
+
+whether NMF influences these processes over longer timescales, particularly in cases 
+
+where initial exposur e to a novel task happens in presence of fatigue . To our 
+
+knowledge, only one study has examined long -term consequences of NMF on 
+
+subsequent re -exposure, showing that learning under fatigue can have detrimental 
+
+effects that persist even when participants return to practice on the task the following 
+
+day , without being exposed to NMF (21) . This study, however, consisted in a very 
+
+controlled and non -redundant design , where the fatigued muscle was the major 
+
+contributor to the task . To evaluate whether th ese result s generaliz e to more complex, 
+
+ecological conte xt s, in this study we chose to fatigue the tibialis anterior muscle, which 
+
+is an important muscle for the control of posture, but is not the sole effector. This 
+
+allowed us to investigate how the CNS coordinates redundant muscles during 
+
+adaptation under a fatiguing condition and during re -exposure . Our previous study (19) 
+
+showed that NMF causes an uncoupling between reaching performance and postural 
+
+stability, with the central nervous system prioritizing stability over reaching accuracy. 
+
+To prevent such compensatory strategies from masking fatigue effects, we developed 
+
+a no vel task in which postural control is directly tied to task performance, so the two 
+
+canno t be dissociated. 
+
+Therefore, the aims of th e study were two -fold: 1) to assess how the CNS 
+
+compensates for NMF during adaptation to a postural perturbation ; 2) to evaluate the 
+
+aftereffects of learning under fatigue on re -exposure to the task on a subsequent day 
+
+separated by 48 -72 hours . We predicted that: I) in a redundant, multi -joint task such 
+
+as the control of standing posture , the exposure to NMF would have detrimental effects 
+
+on the performance , but not on the overall ability to adapt to the perturbation ; II ) at 
+
+short term ( acute NMF exposure on Day 1 ), p articipants in the Fatigue group would 
+
+exhibit differing muscle activation patterns (i.e. lower agonist -antagonist coactivation 
+
+and greater compensatory activity) both in fatigued and non -fatigued muscles ; and III )
+
+during the re -exposure to the task in absence of fatigue (Day 2, 48 -72 hours after Day 
+
+1), differing patterns of EMG activity would persist between group s, as well as a
+
+difference in performance .
+
+# MATERIALS AND METHODS 
+
+Participants 
+
+Twenty -five healthy young participants (1 2 males; 13 females) were randomly 
+
+assigned to either a Fatigue (FAT) or No -Fatigue (NoFAT ) group. Participants had no 
+
+history of neurological , musculoskeletal disorders, cardiovascular disease s, and did 
+
+not present conditions or take medications affecting balance. The study protocol was 
+
+approved by the ethical committee of the University of Verona and conformed to the 
+
+most recent principles of the Declaration of Helsinki . Participants received detailed 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+information about the study before participation and provided written informed 
+
+consent. Participants' demographics are reported in Table 1 .
+
+Table 1. Participants’ demographics. 
+
+Group (F/M)  Age (years)  Weight (kg)  Height (cm) 
+
+Fatigue ( 5/8) 21.8 ± 1.6 71 .4 ± 1 2.1 17 5.5 ± 9.4 
+
+No -Fatigue (8/4) 22.8 ± 2.7 64.4 ± 11 .3 16 8.6 ± 9.0
+
+> Values are reported as mean ± SD. F: Females, M: Males.
+
+Experimental Design and Set Up 
+
+Participants visited the laboratory on two separate occasions (Day1 , Day2 ; 48 -72 
+
+hours apart ), where they were exposed to a paradigm of mechanical perturbation to 
+
+the standing posture (illustrated in Figure 1 and detailed in Experimental protocol ).
+
+Sessions were scheduled either in the morning or in the afternoon and the schedule 
+
+across sessions was kept the same for each participant. Experiments were carried out 
+
+in the local biomechanics laboratory, equipped with a floor -embedded force plate 
+
+(model OR -5, AMTI, USA; size: 90 x 90 cm) for the recording of the three components 
+
+of the ground reaction forces (GRFs). 
+
+Surface electromy ography ( EMG ) was recorded from 4 postural muscles : rectus 
+
+femoris (RF), biceps femoris (BF), tibialis anterior (TA) and gastrocnemius medialis 
+
+(GM) on the participants’ dominant side using a wireless system (Zerowire, Aurion, 
+
+Italy). Participants’ s kin was proper ly shav ed and cleans ed prior to the appliance of 
+
+Ag/AgCl electrodes (PG10C; Fiab, Vicchio, Italy) with a 20 -mm interelectrode distance 
+
+following recommendations (22) . Electrode placement was confirmed by asking the 
+
+participants to perform a set of isometric contractions and related free movements 
+
+while observing the resulting EMG patterns (23) . An Arduino One microcontroller 
+
+(Arduino, Turin, Italy) was used to control power supply of two cylindrical 
+
+electromagnets keeping two loaded boxes hanging in equilibrium ( Figure 1 , Panel A) ,
+
+one in front - and one in the back of the participant) . A button -shaped switch released 
+
+the box in front of the partic ipant when pressed . The switch was secured to a custom -
+
+built aluminum handlebar and positioned in a comfortable position to be pressed with 
+
+the index of the dominant hand. On the switch activation, a square -like signal 
+
+generated by the Arduino board was also used to trigger the data acquisition system 
+
+(hardware: MX Control, VICON, Oxfordshire, UK) and align the signals. Data capture 
+
+was synchronized in Vicon Nexus software (Nexus 2, version 2.12, Vicon Motion 
+
+Systems Ltd , UK) and set to record 4 seconds: 2 before and 2 after the trigger pulse .
+
+GRF s and EMG data were sampled at 1000 Hz and synchronized using a hardware 
+
+device (MX Control, VICON, Oxfordshire, UK). Data were later exported to Matlab 
+
+software (R2023a, version 9.14.0, MathWorks, Natick, MA, USA) for offline analysis. 
+
+A customized frame equipped with a uniaxial strain -gauge force sensor (Model S -AL -
+
+A, Deltatech, Sogliano al Rubicone, Italy) was used to perform the localized isometric 
+
+exercise (see dedicated paragraph). Force data were collected using a computer -
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+based data acquisition and analysis system (hardware: PowerLab 16/30; ML880, 
+
+ADInstruments, Colorado Springs, CO and software: LabChart 8, ADInstruments, 
+
+Colorado Springs, CO) at 1000 Hz sampling rate. 
+
+Experimental protocol 
+
+During the first visit (Day1 ), participants received instructions about the aim of the 
+
+postural task: “minimize the displacement of y our CoP” . i.e. “try not to be destabilized 
+
+by the release of the load” . Furthermore, based on pilot tests and due to the novelty 
+
+of the task, 30 familiarization trials were granted before starting the first session to 
+
+experience the postural perturbation and stabilize their performance . Entire 
+
+experimental sessions lasted ~3 hours each . Visits were scheduled 48 –72 -hour apart 
+
+to avoid accumulation and/or long -lasting effects of fatigue between sessions .
+
+Postural Task 
+
+Participants were asked to stand barefoot at the center of the force plate with their 
+
+knees slightly bent and feet in parallel at hip width. Feet position was checked and 
+
+marked on the surface of the force plate to ensure consistency across experimental 
+
+blocks . A 22 -inch monitor positioned ~1.8 m in front of the participants was used to 
+
+provide visual feedback. Participants held the horizontal handlebar at mid -chest level, 
+
+with their elbows fully extended. The handle was connected to an adjustable system 
+
+consisting of iron cables and pulleys, with the cylindrical electromagnets connected on 
+
+both ends that ensured the attachment of two mechanical loads: one in front of the 
+
+participant and one behind the participant’s body ( Figure 1, Panel A). Load plates 
+
+were “blinded” to the participants by a tissue cover , masking the inner volume and 
+
+prevent ing from the visualization of the contained load plate s. Partici pants , by pressing 
+
+on the switch button positioned on the handlebar , turned off the electromagnet in front 
+
+of the m, causing the release of the load and leading to a mechanical perturbation in 
+
+the opposite direction (i.e., the handlebar was pulled backwards). Both loads were 
+
+equivalent in weight, having no effects on posture when the system was in balance. 
+
+Height of the structure was adjusted to each participant’s height to have the pulley 
+
+system acting at mid -chest level and to have the feedback monitor at participant’s eye 
+
+level. The mechanical perturbation paradigm was developed based on a modified 
+
+version of the setup used in a recent study (24) .
+
+A calibration trial was conducted at the very beginning of each session to determine 
+
+the average C oP position in the anteroposterior direction (C oPAP ) during natural 
+
+standing. Participants were asked to stand and fixate a point on the screen; hands 
+
+were positioned on the handle with arms fully extended and parallel to the ground. 
+
+CoPAP position was recorded for 5 seconds, visually inspected offline to exclude 
+
+abnormal spikes in CoP position and then averaged for the entire time window. This 
+
+value was then saved and used 1) to set the zero target (CoP Target ) for the online visual 
+
+feedback in the successiv e postural task (Figure 2 ) and 2) to normalize C oP position 
+
+data during offline analysis of the trials. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+During the postural task, participants were initially prompted by the experimenter to 
+
+assume the starting position (hands on the handle, arms fully extended, knees slightly 
+
+bent ; Figure 1 , Panel A ). C oPTarget was projected on the screen as a thin white 
+
+horizontal line enclosed by a ±2 cm green -shaded area. Real -time C oPAP position was 
+
+automatically computed by a customized script in MATLAB (R2018a, version 9.4; 
+
+MathWorks Inc., MA, Natick, USA) which was developed to access real -time data 
+
+through Nexus SDK files and was superimposed on the screen by means of a thick, 
+
+horizontal blue line. Participants were instructed to maintain their C oPAP within the 
+
+green -shaded area. After a “ready” cue, the feedback was turned off following a 
+
+random delay and participants were required to press as fast as possible the switch 
+
+that released the load. Visual represent ation of participant’s C oPAP displacement from 
+
+CoPTarget was provided right after the trial termination (C oPfeedback ) through an arrow 
+
+superimposed on the CoP Target and its relative value in cm and sign (positive if 
+
+backward, negative if forward respect to the CoP Target ). If the error was within the 
+
+tolerance (COP Target ±2 cm ; green -shaded area ), the arrow and its value were shown 
+
+in black color, otherwise the color was in red. Recorded d ata encompassed a 4-s
+
+window , centrally aligned on the instant the switch was pressed ( t0; i.e., 2 seconds 
+
+before/after pressing the button). Once the trial ended and the file was saved, offline 
+
+CoPAP displacement computation was performed (C oPfeedback = C oPAP – CoPTarget ). 
+
+Average trial duration was ~10 seconds. 
+
+During familiarization , baseline and washout trials the load plates in the box es were 
+
+set to match (to the nearest 50 grams) the 4% of participant’s body weight (BW). 
+
+Following the baseline block, each successive block was preceded by a bout of 
+
+sustained isometric exercise (details in Fatiguing Task ). During the trials in the five 
+
+successive blocks ( adaptation ), another set of boxes, prepared with an 8% BW load, 
+
+were used . Participants were not aware of th is change. During the final two blocks 
+
+(washout ) the boxes were switched back to the initial load (4% BW). The choice of 
+
+loads in percentage to BW was done to control the amount of perturbation and scale 
+
+it to anthropometric differences among participants. Percentage values are chosen to 
+
+produce a consistent, yet controllable perturbation, based on pilot tests where multiple 
+
+combinations were tested. Sessions were identical in structure, except for 
+
+familiarization, which was p erformed only at Day1. An outline of the experimental 
+
+protocol is shown in Figure 1 (Panel C). 
+
+Fatiguing Task 
+
+Participants were seated in front of a screen ( ~1.5 meters away) with their feet 
+
+fastened to a customized metal frame through two inextensible straps, placed 
+
+proximally to the metatarsophalangeal joints ( Figure 1 ; Panel B). Knee and ankle joint 
+
+angles were maintained at approximately 90° and 110°, respectively and the position 
+
+did not change throughout the entire experimental session. The fatiguing protocol was 
+
+modulated by previously recorded maximum voluntary contraction (MVC; 3 repetitions 
+
+of sustained 5 s contractions), and consisted in performing 40s sustained isometric 
+
+contractions, duty -cycle of 75% and intensity of 65 ± 5% MVC ( No -Fatigue: 7.5 ± 5% 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+MVC ). In previous studies this protocol produce d a significant sustained reduc tion in 
+
+partic ipants ’ MVC force , lasting more than 10 minutes. A detailed description of the 
+
+fatiguing protocol has been reported elsewhere (19, 25) .
+
+Exercise time for each bout of isometric tasks of the FAT group was averaged across 
+
+subjects and rounded up to the nearest cycle (40s). These exercise times were later 
+
+used to stop participants in the NoFAT group (exercising around 7.5% MVC). This was 
+
+done to ensure a similar time duration in both groups and required the FAT group to 
+
+be tested before No FAT . Participants in both groups were stopped by the 
+
+experimenter and were blind to exercise intensity (%MVC), termination criteria and 
+
+exercise bouts duratio n. The setup for the fatiguing task was positioned ~ 3 meters 
+
+away from the force plate to ensure a rapid transition between the tasks. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Figure 1 
+
+Schematic representation of the experimental setup. A: experimental setup for the postural 
+
+task. The two b oxes in front and at the back of the subject were filled with load plates to match 
+
+4% and 8% of participants’ bodyweight to the nearest 50g . Boxes were kept in position by 
+
+means of electromagnets (shown in light blue) and controlled by an Arduino One board 
+
+through a button -like switch positioned on the handle . Participants were provided with visual 
+
+feedback through a monitor screen in front of them . B: illustration of the fatiguing task 
+
+(isometric ankle dorsiflexion exercise ). Knee and ankle joint angles were kept ~90° and 110° 
+
+throughout the exercise. Real -time visual feedback of the force was provided by a monitor 
+
+screen , which also displayed a green -shaded area corresponding to the required force target 
+
+(NoFAT= 7.5 ± 5%; FAT= 65 ± 5% MVC). C: schematic outline of the experimental phases: 
+
+baseline phase consisted in 30 trials with mechanical load set at 4% BW , learning phase 
+
+consisted of 15 0 perturbed trials (8% BW) divided into 5 blocks of 30 trials and washout phase 
+
+consisted in 2 blocks of 30 trials again at 4% BW . Arrows and isometric setup -like symbols at 
+
+the bottom indicate the fatiguing exercise bouts (see Fatiguing Task in the text). Experimental 
+
+phases considered for the analyses are highlighted in red. LB: late baseline, EA: early 
+
+adaptation, LA start : late adaptation – start, LA end : late adaptation – final block, EW: early 
+
+washout, LW: late washout. 
+
+Data analysis 
+
+Data was exported from Nexus software and pre -processed offline in MATLAB (Math -
+
+Works Inc., Natick, MA, USA, R202 5b). GRF s signals (and CoP) were filtered with a 
+
+15 Hz low -pass, 6 th order, zero -phase digital Butterworth filter. EMG signals were 
+
+detrended, band -pass filtered with a 20 –450 Hz, 4th order, zero -phase digital 
+
+Butterworth filter and rectified, then a 47–53 Hz, band -stop, 4 th order filter was applied 
+
+to remove electrical power line noise. Trigger signal from Arduino One was notch 
+
+filtered (47 –53 Hz, band -stop, 4 th order Butterworth) and low -pass filtered (10 Hz, 2 nd 
+
+order Butterworth) to offline confirm alignment of the data to the instant the button was 
+
+pressed (i.e. the re lease of the load ; t0). Aligned and pre -processed datasets were 
+
+stored in matrices for further analysis .
+
+CoP variables 
+
+Performance error ( PE) was computed from CoP AP signal – similarly to the online 
+
+feedback provided to the participants at the end of each task – as the peak backward 
+
+(i.e. positive) displacement of the CoP from the target position ( CoP Target ) over a 1s -
+
+time window after t0 (Figure 2, first p anel ). Postural recovery following perturbation 
+
+(CoP REC ) was computed as the average position of the CoP during a 500 -ms window 
+
+(+1 to +1.5s after t0 ), relative to CoP Target . This measure reflects the effective recovery 
+
+of the postural stability following the postural perturbation, not to be confused with the 
+
+PE, which might be higher, in case of a compensatory forward movement following 
+
+the absorption of the perturbation. To evaluate anticipatory movement s by the CoP ,
+
+we computed the integral (i.e. function trapz in MATLAB) over the positive signal of 
+
+antero -posterior GRF (Impulse AP ) in the time window preceding t0 (Figure 2 , second 
+
+panel from top). 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+EMG variables 
+
+Linear envelopes of pre -processed EMG signals were computed by applying a 50 Hz 
+
+low -pass, 4th order, zero -phase digital Butterworth filter. EMG data were then 
+
+normalized participant -wise by dividing each value by the mean late baseline (LB) 
+
+activity for each muscle (26) , taken as the root -mean -square value of filtered EMG 
+
+activity over a 900ms window around t0 (t0-450: t0+450ms ). Muscle activity was 
+
+quantified as the root -mean -square (RMS) value of normalized EMG over two 
+
+separate fixed time -windows: anticipatory phase (AP : from -450 ms to + 50 ms respect 
+
+to t0) and c ompensatory phase (CP; from +50 ms to + 450 ms respect to t0), as 
+
+highlighted in Figure 2 . Time -windows were chosen based on estimated onset in CoP 
+
+movement during pilot tests .
+
+Coactivation was quantified for each agonist -antagonist pair (e.g., TA vs. SOL ) as the 
+
+minimum value of normalized EMG (for each sampling point i, coactivation trace CC
+
+Index TA -SOL is computed from the individual muscle activity traces TA and SOL such 
+
+that CC Index TA -SOL (i) = min[ TAi, SOL i]). The resulting time -varying signal represents 
+
+the magnitude of normalized EMG that is matched by the two opposing muscles (26 –
+
+28) . The representative coactivation value for each trial was calculated as the RMS 
+
+value of the time -varying coactivation signal during AP and CP time -windows. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Figure 2 
+
+Aligned signals for a representative participant during a typical trial. The v ertical dotted black 
+
+line (t0) corresponds to the onset of the perturbation (i.e. button press) . The top panel displays 
+
+the profile of CoP in the antero -posterior direction and the windows used for variable 
+
+calculation in the analysis. Performance error (PE) was computed as the peak backward (+) 
+
+displacement of the CoP from the target position (horizontal black dotted line at y=0) during a 
+
+1s -window after t0 (PE window, magenta -shaded area). Recovery of CoP position (CoP REC ;
+
+thick black line ) was computed as the average position of the CoP during a 500 -ms window 
+
+(+1 to 1.5s after t0; light -blue shaded area ). The second panel displays GRF signal in the 
+
+antero -posterior direction . Highlighted in green is the Impulse AP , computed as the net (positive) 
+
+integral of the signal before t0. 3rd and 4 th panels display the EMG signal of ventral muscles in 
+
+the leg (tibialis anterior; TA) and thigh (rectus femoris; RF) . Highlighted in light -green and light -
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+red are the anticipatory (AP: t0 -450:t0+50ms) and compensatory (CP : t0+50:t0+450 ) time -
+
+windows used for the analysis, respectively. 
+
+Statistical analysis 
+
+Jamovi statistical software (29) was used for statistical analyses. All data in the text, 
+
+Tables, and Figures – unless otherwise stated – are presented as mean ± 1 standard 
+
+deviation (SD). For all comparisons, statistical significance was set at an α of 0.05. 
+
+Data distribution (skewness and kurtosis) was assessed, the normality of the data was 
+
+assessed by the Shapiro –Wilk test and confirmed by the inspection of density and Q –
+
+Q plots. 
+
+Performance error, CoP REC and Impulse AP , were analyzed with three -way repeated -
+
+measures ANOVAs, with Phase and Session (Day 1 , Day 2 ) as within -subject factor s
+
+and Group as a between -subjects factor. Considering the normalization method used 
+
+and the possible variability in electrode placement across sessions, EMG and co -
+
+activation data were analyzed separately for each session ( Day 1 & Day 2) with a two -
+
+way repeated -measures ANOVAs, with Phase as within -subject factors and Group as 
+
+a between -subjects factor . Assumptions of sphericity were explored using Mauchly’s 
+
+test and controlled for using the Greenhouse –Geisser adjustment in instances where 
+
+Mauchly’s test was significa nt (α <0.05). To test for adaptation, in the event of a 
+
+significant interaction or main Phase effect, we made planned comparisons on the 
+
+within -subject results for each group between the late baseline (LB) , early adaptation 
+
+(EA) , late adaptation – start (LA start ) and late adaptation – final block (LA end ) phases. 
+
+To compare the adaptation process between groups, we made planned comparison s
+
+between groups at LB, EA, LA start and LA end phases , for each day separately . Similarly, 
+
+to test the effects of fatigue on the washout process, a 3 -way repeated -measures 
+
+ANOVA ( Phase and Session as repeated measure factor s) was used to assess 
+
+differences in performance and postural variables across three experimental phases 
+
+(LB, EW, LW). We used paired t tests for within -subject planned comparisons 
+
+between phases and independent two -sample t tests for planned comparisons 
+
+between groups . Statistic results were then corrected for multiple comparisons using 
+
+Bonferroni adjustment. Whe n normality assumption was violated, ANOVAs were run 
+
+on log -transformed data . Non -parametric independent samples t -test (Welch -test) was 
+
+used for pairwise comparisons between groups if Levene’s test revealed unequal 
+
+variance .
+
+# RESULTS 
+
+Isometric fatiguing exercise duration on Day 1 was on average 4: 45 ± 0:5 3 min:s 
+
+(number of cycles: 7.1 ± 1.3), with a time reduction trend across bouts ( bout1: 5:58 ± 
+
+1:47 min:s, bout2: 5:07 ± 1:52 min:s, bout3: 5:40 ± 2:51 min:s, bout4: 4:43 ± 2:45 
+
+min:s, bout5: 3:50 ± 1:39 min:s, bout6: 4:13 ± 2:55 min:s, bout7: 3:40 ± 1:49 min:s ). 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+MVC isometric force pre -exercise did not differ between groups ( FAT: 250.8 ± 83.7 N, 
+
+NoFAT : 251.9 ± 91.6 N; p> 0.05 ). 
+
+Figure 3. 
+
+Group -averaged adaptation curves for performance error (PE) , separated by day . A: PE 
+
+throughout the experimental phases (baseline, adaptation, washout; separated by vertical 
+
+dotted lines) . Data are averaged in batches of n=3 trials and reported as mean (thick lines) ± 
+
+1 Standard Error (SE; shaded areas). Positive values represent a backward displacement. B: 
+
+fitting curves (thick lines) and confidence intervals (CI) of the fittings (shaded areas) for PE 
+
+group -averaged values (circles) during the first block of adaptation (30 trials ). C: Box plots for 
+
+PE across the considered experimenta l phases. Boxes depict data from 1st to 3 rd quartile; 
+
+whiskers represent minimum and maximum data points. Median is shown by the thick 
+
+horizontal line and individual data points as black dots. * Significant effects (P < 0.05) are 
+
+represented only in case of between -groups differences or within -group effects differing from 
+
+the behavior of the other group . EA, early adaptation; EW, early washout; LAend, late 
+
+adaptation final block; LAstart , late adaptation —start; LB, late baseline; LW, late washout. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Postural p erformance 
+
+Participants in both groups successfully reduced their performance error (PE) with 
+
+practice ( Figure 3 ). We observed a significant main effect for Phase (F(1. 13, 25 .91 ) =
+
+214 .73 , p < 0.001 , η2p = 0.903 ) and Session (F (1, 2 3) = 43 .7 0, p < 0.001 , η2p = 0.655 )
+
+and a significant Phase *Session interaction (F (1.1 6, 2 6.63 ) = 13 .26 , p < 0.001, η2p =
+
+0. 366 ). Planned comparisons in the adaptation phase confirmed that PE increased 
+
+during EA and LA start (p < 0.001 ) in both groups both at Day1 and Day2 , when 
+
+compared with baseline (LB) values . Similarly, PE values during EA were significantly 
+
+higher compared to all the successive adaptation time windows (LA start , LA end ; p <
+
+0.001 ) for both groups on both days. Finally, on Day 1 PE reduced significan tly from 
+
+LA start to LA end in both groups ( p = 0.001 ; d = 0.998 [0.509 –1.47] ). O n Day 2, the 
+
+decrease in PE values from LA start to LA end was significant only for the FAT group (p =
+
+0.04 2; d = 0.796 [0. 156–1.4 1; Figure 3, Panel C ). Planned comparisons between 
+
+groups did not reach significan ce in any of the time windows considered (p >0.05) .
+
+Washout phase exhibited – as expected – an opposite trend , with a significant main 
+
+effect for Phase (F (1.1 5, 25.91) = 16 .3 2, p < 0.001, η2p = 0. 415) and Session (F (1, 23) =
+
+10 .87, p = 0.00 3, η2p = 0.655) . Pairwise comparisons revealed a significant increase 
+
+in PE for both grou ps during EW (p = 0.006) and LW (p < 0 .001) , and a significant 
+
+difference between EW and LW (p = 0. 041) on Day 1 . On Day 2, the increase in PE 
+
+during EW was significant only for the FAT group (p = 0.033) . Comparison s between 
+
+groups were not significant. 
+
+Other postural variables 
+
+Additional variables were computed from CoP data, to capture the appreciable 
+
+changes in the CoP profile throughout the adaptation process (Figure 4 ). Postural 
+
+recovery following perturbation (CoP REC ) across the adaptation phase shows an 
+
+appreciable reduction across time windows ( Figure 5, upper panel ). The ANOVA 
+
+confirmed a significant main effect for Phase (F (3, 69) = 2 44. 43, p < 0.001, η2p = 0.9 14 ),
+
+Session (F (1, 23) = 58 .00 , p < 0.001, η2p = 0. 716 ) and Group (F (1, 23) = 12 .90, p = 0.00 2,
+
+η2p = 0. 359 ). Additionally, the ANOVA revealed a significant Phase*Group (F(3, 69) =
+
+2.79, p = 0.047, η2p = 0.108 ), Session*Group (F (1, 23 ) = 4.85 , p = 0.0 38 , η2p = 0.1 74 )
+
+and Phase*Session (F (3, 69 ) = 1 2.41 , p < 0.001, η2p = 0.3 51 ) interaction s.
+
+Planned comparisons in the adaptation phase revealed an increase of CoP REC from 
+
+LB to EA in both groups at both Day1 and Day2 (p < 0.001). The increase from LB to 
+
+LA start was significant only for FAT group, both on Day 1 ( p < 0.001 ; d = 2.02 [1.037 –
+
+2.965 ]) and on Day 2 (p = 0.0 39 ; d = 0. 80 9 [0. 166 –1.4 28 ]). Differences between EA 
+
+and LA start and LA end were significant for both groups on both days (p < 0.001). On Day 
+
+1, CoP REC decreased in both groups from LA start to LA end (p < 0.00 1; d = -1. 263 [-0. 727–
+
+1.785 ]) , while on Day2 the decrease was significant only in FAT group (p = 0.0 48 ; d = 
+
+-0.763 [-0. 13 –1.373 ]). 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Planned comparisons between groups revealed higher val ues of CoP REC for the FAT 
+
+group at LA start (p = 0.00 6; d = 1.459 [0.55 7–2. 33 6]) and LA end (p = 0.0 4; d = 1.123
+
+[0.264 –1.96 1]) on Day 1. 
+
+Figure 4.
+
+Group -averaged CoP x trajectory aligned at perturbation onset (t0) across the adaptation 
+
+phases on Day 1 (left column) and Day 2 (right column). Thick lines represent means and 
+
+shaded areas depict ± 1 Standard Deviation (SD). Vertical dashed lines are aligned at t0. 
+
+Positive and negative values represent forward and backward displacement, respectively. EA: 
+
+early adaptation, LA end : late adaptation – final block, LA start : late adaptation – start, LB: late 
+
+baseline. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+During the washout phase we observed a significant main effect for Phase (F (1. 39 , 2 9.24 )
+
+= 68 .57 , p < 0.001, η2p = 0. 766 ), Session (F (1, 2 1) = 1 7.62 , p < 0.00 1 η2p = 0. 456 ) and a 
+
+Phase*Session *Group (F (1.6 1, 33 .75 ) = 4.365 , p = 0.0 27 , η2p = 0. 172) interaction . Pairwise 
+
+comparisons on Day 1 revealed a significant reduction of CoP REC during EW for both 
+
+NoFAT (p < 0.00 1) and FAT group (p = 0.042). Values of CoP REC during LB differed 
+
+from LW only for NoFAT group (p < 0.001), and a significant difference between EW 
+
+and LW (p < 0.0 01) was present only for NoFAT . On Day 2, a similar de crease in 
+
+CoP REC was observed at EW for both group s (p < 0. 001) and a significant difference 
+
+between EW and LW was present in both NoFAT and FAT group (p = 003 and p < 
+
+0.001 , respectively ). Comparison s between groups were not significant 
+
+(Supplementary Material S1 ).
+
+Anticipatory movements by the body ’s center of pressure , as estimated from Impulse AP 
+
+increased across the adaptation phase (Figure 5, bottom panel ). The ANOVA 
+
+confirmed a significant main effect for Phase (F (2. 37, 54.41 ) = 157 .19 , p < 0.001, η2p =
+
+0. 872 ) and Session (F (1, 23) = 33 .22 , p < 0.001, η2p = 0. 591 ).
+
+Planned comparisons in the adaptation phase revealed a similar increase of Impulse AP 
+
+in both groups from LB to LA start and LA end (both with p < 0.001), and from EA to LA start 
+
+and LA end (both with p < 0.001) at both Day1 and Day2 . Similarly, we observed an 
+
+increase of Impulse AP from LA start to LA end on Day 1 (p = 0.0 29) and on Day 2 (p = 
+
+0.0 15) . Planned comparisons between groups were not run in absence of a main 
+
+Group effect or significant interactions. 
+
+During the washout phase we observed a significant main effect for Phase (F (1. 46 , 33 .62 )
+
+= 28 .2 04 , p < 0.001, η2p = 0. 551 ), Session (F (1, 23) = 10. 375 , p = 0.00 4, η2p = 0. 311 )
+
+and a Phase*Session (F (1.96 , 45.1 ) = 30 .4 9, p = < 0.001, η2p = 0. 57 ) interaction . Pairwise 
+
+comparisons revealed a significant increase in Impulse AP for both groups during EW 
+
+(p < 0.00 1) and LW (p < 0.001), and a significant difference between EW and LW (p =
+
+0.0 31) on Day 1. On Day 2, pairwise comparisons did not reach statistical significance 
+
+(Supplementary Material S1 ). Planned comparisons between groups were not run in 
+
+absence of a main Group effect or significant interactions. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Figure 5.
+
+Box plots for CoP REC and Impulse AP across the learning phases on each day. Boxes depict 
+
+data from 1 st to 3 rd quartile; whiskers represent minimum and maximum data points. Median 
+
+is shown by the thick horizontal line and individual data points as black dots. * Significant 
+
+between/within group effects (p < 0.05). EA: early adaptation, LA end : late adaptation – final 
+
+block, LA start : late adaptation – start, LB: late baseline. 
+
+EMG activity 
+
+Tibialis anterior 
+
+Anticipatory phase for t ibialis anterior muscle activity (TA AP ) during Day 1 showed an 
+
+appreciable modulation across time windows (Figure 6, top left ). The ANOVA 
+
+confirmed a significant main effect of Phase (F (1.87 , 41.14 ) = 7.64 , p = 0.00 2, η2p = 0. 258 ).
+
+Planned comparisons revealed significant differences between LB and LA start and 
+
+LA end (p < 0.001; d = 0.998 [0.49 9–1.483 ] and d = 1.369 [0. 8–1. 92 3] , respectively) ,
+
+while differences between EA and LA start and LA end did not reach statistical significance 
+
+(p = 0.0 58 ; d = 0. 514 [0. 082 –0.935 ] and p = 0.052; d = 0.524 [0. 091 –0.9 46 ], 
+
+respectively). Similarly, during Day 2 we observed a significant main effect for Phase 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+(F (1. 93 , 4 4.28 ) = 3.94, p = 0.02 8, η2p = 0. 146 ). Planned comparisons revealed significant 
+
+differences between LB and LA start (p < 0.001; d = 1.035 [0. 539 –1. 516 ]), and between 
+
+EA and LA start (p = 0.0 42 ; d = 0. 53 [0. 105 –0.944 ]). 
+
+Compensatory phase for tibialis anterior muscle activity (TA CP ) during Day 1 showed 
+
+an appreciable modulation across time windows , where t he ANOVA confirmed a 
+
+significant main effect for Phase (F (3, 66 ) = 39 .4 1, p < 0.00 1, η2p = 0. 642 ) and a 
+
+Phase*Group (F (3, 66 ) = 2.9 1, p = 0.0 41, η2p = 0. 11 7) interaction . Planned comparisons 
+
+revealed significant differences between LB and all the other phases (EA, LA start and 
+
+LA end ; p < 0.001 , d = 2.084 [1.357 –2.797 ]; p < 0.001 , d = 1. 831 [1.163 –2.484 ]; and p
+
+= 0.035 d = 0.559 [0. 123 –0.9 85 ], respectively), and across the adaptation process 
+
+between EA and LA end (p < 0.0 01 ; d = -1.071 [ -0. 559 – -1.569 ] and between LA start and 
+
+LA end (p < 0.001 ; d = -1.079 [ -0.5 66 – -1.5 78 ]) . Planned comparisons between groups 
+
+revealed a significant difference at EA (p = 0.036; d = 1.122 [0. 243 –1. 979 ]. Similarly, 
+
+during Day 2 we observed a significant main effect for Phase (F (1.93 , 44.49 ) = 17 .27, p <
+
+0.0 01 , η2p = 0. 429 ), Group (F (1, 23 ) = 5.00 , p = 0.0 35 , η2p = 0. 179 ) and a Phase*Group 
+
+(F (1.93 , 44.49 ) = 4.08 , p = 0.0 01, η2p = 0.1 51 ) interaction . Planned comparisons revealed 
+
+significant differences between LB and all the other phases (EA, LA start and LA end ; p < 
+
+0.001, d = 1.08 9 [0.584 –1.579]; p < 0.001, d = 1. 17 [0.6 51 –1.675 ]; and p = 0.0 46 d = 
+
+0.5 22 [0. 099 –0.9 36 ], respectively), and across the adaptation process between EA 
+
+and LA end (p = 0.00 9; d = -0.659 [-0. 219 – -1. 087 ] and between LA start and LA end (p =
+
+0.00 7; d = -0.679 [-0. 237 – -1. 109 ]). Planned comparisons between groups revealed a 
+
+significant difference at EA (p = 0.0 29; d = 1.1 79 [0.2 95 –2.0 ]).
+
+Statistics results and boxplots of TA EMG during the washout phase are reported in 
+
+the supplementary material (S2) .
+
+Soleus 
+
+EMG activity in the soleus muscle showed an appreciable modulation across the 
+
+adaptation phase , with some evident between -group differences, especially during 
+
+Day 1 ( Figure 6 , second row ). Considering the anticipatory phase of soleus ( SOL AP )
+
+during Day 1, t he ANOVA confirmed a significant main effect for Phase (F (2.15 , 4 7.26 ) =
+
+10 .7, p < 0.00 1, η2p = 0. 327 ), Group (F (1, 2 2) = 5. 18 , p = 0.03 3, η2p = 0.19 1) and a 
+
+Phase*Group (F (2.15, 47.26 ) = 2.99 , p = 0.0 37 , η2p = 0.1 2) interaction . Planned 
+
+comparisons revealed significant differences between LB and EA (p = 0.0 04 ; d = 1.162 
+
+[0.4 37 –1.8 6]) , between EA and LA start (p = 0.0 05 ; d = -1.112 [-0. 399 – -1. 798 ]) and 
+
+between EA and LA end (p = 0.0 31; d = -0.8 43 [-0. 193 – -1.4 68]), in the FAT group only. 
+
+Planned comparisons between groups revealed a significant difference at EA (p = 
+
+0.02 4; d = 1.19 2 [0. 305 –2.0 57 ]). On Day 2 , we did not observe significant main effect s, 
+
+nor interaction, thus pairwise comparison s were not made .
+
+Compensatory phase for sole us muscle ( SO ACP ) during Day 1 showed an appreciable 
+
+modulation across time windows, where the ANOVA confirmed a significant main 
+
+effect for Phase (F (2.14 , 47.07 ) = 3.37 , p = 0.0 24 , η2p = 0. 133 ), Group (F (1, 22) = 11 .3, p = 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+0.0 03, η2p = 0. 34 ) and a Phase*Group (F (2.14, 47.07 ) = 3.34 , p = 0.041, η2p = 0. 132 )
+
+interaction . Planned comparisons revealed significant differences between LB and all 
+
+the other phases (EA, LA start and LA end ; p = 0.0 30 , d = 0.958 [0.221 –1.664 ]; p = 0.01 2,
+
+d = 1.1 22 [0.342 –1.8 71 ]; and p = 0.0 06 d = 1.242 [0. 427 –2.023 ], respectively) in the 
+
+NoFAT group only. Planned comparisons between groups revealed significant 
+
+differences at LA start (p = 0.03 8; d = 1. 06 [0. 188 –1.9 1]), and LA end (p = 0.0 11 ; d = 1.1 11 
+
+[0.23 4–1.97] ), while did not reach significance at EA (p = 0.051 d = 0.2 35 [-0. 573 –
+
+1. 04 ]) . On Day 2 , we only observed a significant main effect for Group (F (1, 23 ) = 5.7 9,
+
+p = 0.0 24 , η2p = 0. 201 ). Planned comparisons between groups revealed a significant 
+
+difference at LA end (p = 0.0 16 ; d = 1. 237 [0.29 4–2. 14 ]). 
+
+Statistics results and boxplots of SOL EMG during the washout phase are reported in 
+
+the supplementary material (S2) .
+
+Muscle c o-activation TA -SOL 
+
+Co -activation between tibialis anterior and soleus muscle (CC Index TA -SOL ) showed an 
+
+appreciable modulation across the adaptation phase, with some evident between -
+
+group differences (Figure 6 , 3rd row ). Considering the anticipatory phase during Day 
+
+1, the ANOVA confirmed a significant main effect for Phase (F (1.95 , 38 .97 ) = 17 .34 , p < 
+
+0.001, η2p = 0. 464 ) and Group (F (1, 2 0) = 4.71, p = 0.0 42 , η2p = 0.19) . Planned 
+
+comparisons revealed significant differences between LB and LA start (p < 0.00 1; d = 
+
+1. 232 [0. 678 –1. 77 ]) , and between EA and LA start (p < 0.00 1; d = 1.1 72 [0. 617 –1.7 1]) 
+
+in both groups . Difference between LB and LA end (p = 0.0 03; d = 1.391 [0. 531 –2.217 ]) 
+
+was significant in the NoFAT group only. Planned comparisons between groups 
+
+revealed significant difference s at LA start (p = 0.0 39 ; d = 1.1 19 [0. 165 –1.93]) and LA end 
+
+(p = 0.024; d = 1.1 81 [0. 282 –2.0 3]). On Day 2, we observe d a significant main effect 
+
+for Phase (F (1. 59, 3 6.49 ) = 5.81 , p = 0.001, η2p = 0. 202 ). Planned comparisons revealed 
+
+significant differences between LB and LA start (p < 0.001; d = 1. 083 [0. 58 –1. 573]), and 
+
+between EA and LA start (p = 0.00 3; d = 0.741 [0. 291 –1. 179]) . Planned comparisons 
+
+between groups were not run in absence of a main Group effect or significant 
+
+interactions. 
+
+Results for c ompensatory phase on Day 1 showed an appreciable modulation across 
+
+time windows, where the ANOVA confirmed a significant main effect for Phase (F (2.14,  
+
+> 44.99 )
+
+= 22 .42 , p < 0.0 01 , η2p = 0. 516 ) and Group (F (1, 2 1) = 4.57 , p = 0.0 44 , η2p = 0. 179 ). 
+
+Planned comparisons revealed significant differences between LB and all the other 
+
+phases (EA, LA start and LA end ; p < 0. 001, d = 1.075 [0. 55 1–1. 583 ]; p < 0.0 01, d = 1. 381 
+
+[0. 81 –1. 93 7]; and p = 0.0 35 d = 0.559 [0. 123–0.985 ], respectively) , and across the 
+
+adaptation process between EA and LA end (p < 0.00 1; d = -0. 961 [-0. 457 – -1. 45 ] and 
+
+between LA start and LA end (p < 0.00 1; d = -1.318 [-0. 759 – -1. 861 ]) . On Day 2, we 
+
+observed a significant main effect for Phase (F (2.1 5, 4 9.5) = 12 .95 , p < 0.001, η2p = 0. 36 )
+
+and Group (F (1, 23) = 5. 28 , p = 0.0 31 , η2p = 0. 187 ). Planned comparisons revealed 
+
+significant differences between LB and EA (p < 0.001, d = 0.905 [0. 431 –1. 366 ]) , and 
+
+between LB and LA start (p < 0.001, d = 1. 292 [0. 75 –1. 819 ]) in both groups. Differences 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+between LB and and LA end (p = 0.0 22 ; d = 0.948 [0. 245 –1.6 21]) were significant in the 
+
+NoFAT group only. Across the adaptation process , differences between EA and LA end 
+
+(p = 0.00 2; d = -0. 773 [-0. 318 – -1. 215 ] and between LA start and LA end (p = 0.01 8; d = -
+
+0.603 [-0. 17 – -1. 024 ]) were significant in the FAT group only . Planned comparisons 
+
+between groups revealed a significant difference at LA end (p = 0.0 46 ; d = 1. 048 [0. 198 –
+
+1.878 ]). 
+
+Statistics results and boxplots of CC Index TA -SOL during the washout phase are 
+
+reported in the supplementary material (S2) .
+
+Figure 6. 
+
+Box plots with EMG activity of tibialis anterior (1 st row) , soleus (2 nd row) and their co -activation 
+
+index (3 rd row) across the adaptation phase . The thick vertical line separates results by session 
+
+(Day 1, Day2), while pre -determined time window (anticipatory (AP) and compensatory (CP) 
+
+phases) are shown side by side for each day. Boxes depict data from 1 st to 3 rd quartile; 
+
+whiskers represent minimum and maximum data points. Median is shown by the thick 
+
+horizontal line and individual data points as black dots. * Significant between/within group 
+
+effects (p < 0.05). CC Index : co -activation index for tibialis anterior -soleus muscle pair , EA: 
+
+early adaptation, LA end : late adaptation – final block, LA start : late adaptation – start, LB: late 
+
+baseline , SOL: soleus , TA: tibialis anterior .
+
+Rectus femoris 
+
+Anticipatory phase for rectus femoris muscle activity ( RF AP ) during Day 1 showed an 
+
+appreciable modulation across time windows (Figure 7, top left ). The ANOVA 
+
+confirmed a significant main effect for Phase (F (1. 73 , 36 .36 ) = 3.84, p = 0.0 36 , η2p = 0. 155 ). 
+
+Planned comparisons revealed significant differences between LB and LA start (p = 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+0.009; d = 0. 582 [0. 143 –1. 01 ]) in the FAT group only, and between LB and LA end (p < 
+
+0.001; d = 1.209 [0. 671 –1. 731 ]) in both group s. Similarly, during Day 2 we observed 
+
+a significant main effect for Phase (F (2.16 , 4 9.65 ) = 4.61 , p = 0.0 13 , η2p = 0.16 7). Planned 
+
+comparisons revealed significant differences between LB and LA start (p < 0.001; d = 
+
+0.913 [0. 438 –1. 375 ]), and between LB and LA end (p = 0.0 17 ; d = 0. 607 [0.1 74 –1.375 ]) 
+
+in the FAT group only .
+
+Compensatory phase for rectus femoris muscle activity (RF CP ) during Day 1 showed 
+
+an appreciable modulation across time windows, where the ANOVA confirmed a 
+
+significant main effect for Phase (F (3, 66) = 8.65 , p < 0.001, η2p = 0. 282 ). Planned 
+
+comparisons revealed significant differences between LB and EA (p < 0.001; d = 1.08 
+
+[0. 566 –1. 578 ]) , between LB and LA start (p = 0.01 9; d = 0. 614 [0. 171 –1. 045 ]) , and 
+
+between LB and LA end (p = 0.0 38 ; d = 0. 552 [0. 116 –0.977 ]). Across the adaptation 
+
+process, differences between EA and LA end (p = 0.0 17 ; d = -0. 93 [-0. 261 – -1. 574 ] were 
+
+significant in the FAT group only. Similarly, during Day 2 we observed a significant 
+
+main effect for Phase (F (1. 82 , 4 1.76 ) = 9.04 , p < 0.001, η2p = 0. 282 ). Planned comparisons 
+
+revealed significant differences between LB and all the other phases (EA, LA start and 
+
+LA end ; p < 0.001, d = 0.8 1 [0. 35 –1. 257 ]; p < 0.001, d = 1. 249 [0. 715–1. 768 ]; and p = 
+
+0.0 14 d = 0. 626 [0. 191 –1.05 ], respectively), and across the adaptation process 
+
+between EA and LA start (p = 0.0 23 ; d = -0. 937 [-0. 237 – -1.607 ] and between EA and 
+
+LA end (p = 0.0 19 ; d = -0. 968 [-0.2 61 – -1. 646 ]) in the NoFAT group only .
+
+Statistics results and boxplots of RF EMG during the washout phase are reported in 
+
+the supplementary material (S3) .
+
+Biceps femoris 
+
+Anticipatory phase for biceps femoris muscle activity ( BFAP ) during Day 1 showed 
+
+appreciable modulation across time windows mainly for FAT group (Figure 7 , left –
+
+2nd row). The ANOVA result ed in a significant Phase*Group interaction (F (2. 51, 55.2) =
+
+3. 88 , p = 0.0 19 , η2p = 0.1 5), with no main effects for factors. Planned comparisons 
+
+revealed significant differences between LB and EA (p = 0.00 8; d = -1.04 3 [-0.3 47 – -
+
+1. 712]), between EA and LA end (p = 0.01 9; d = 0.915 [0. 249 –1. 556 ]) , and between 
+
+LA start and LA end (p = 0.0 4; d = 0.803 [0. 161 –1. 421 ]) in the FAT group only . Planned 
+
+comparisons between groups revealed a significant difference at EA (p = 0.0 22 ; d = 
+
+1. 213 [0. 323 –2.08 ]). On Day 2, we did not observe significant main effects, nor 
+
+interaction, thus pairwise comparisons were not made. 
+
+Compensatory phase for biceps femoris muscle activity ( BFCP ) during Day 1 showed 
+
+an appreciable difference between groups , where the ANOVA confirmed a significant 
+
+main effect for Group (F (1, 21 ) = 7.38 , p = 0.01 3, η2p = 0.2 6). Planned comparisons 
+
+between groups revealed significant differences at EA (p = 0.0 34 ; d = 1. 161 [0. 193 –
+
+2. 09 ]) and LA start (p = 0.0 35 ; d = 1.1 51 [0. 186 –2.0 78]). On Day 2 , we observed a 
+
+significant main effect for Group (F (1, 23 ) = 5.12 , p = 0.0 33 , η2p = 0. 182 ) and a 
+
+Phase*Group interaction (F (2. 22 , 51.14 ) = 3. 35 , p = 0.0 38 , η2p = 0.1 27 ). Planned 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+comparisons revealed significant differences between LB and EA (p = 0.0 28 ; d = -
+
+0.857 [-0. 204 – -1. 485 ]) and between EA and LA end (p = 0.0 04 ; d = -1.168 [-0. 44 – -
+
+1. 867 ]) in the NoFAT group only. Planned comparisons between groups revealed a
+
+significant difference at EA (p = 0.028; d = 1.1 39 [0. 278 –1.979 ]). 
+
+Statistics results and boxplots of BF EMG during the washout phase are reported in 
+
+the supplementary material (S3) .
+
+Muscle co -activation RF -BF 
+
+Co -activation between rectus femoris and biceps femoris muscle ( CC Index RF -BF )
+
+trends across the adaptation phase are reported in Figure 7 (3rd row). Considering the 
+
+anticipatory phase during both Day 1 and Day 2 , the ANOVA did not reveal significant 
+
+main effect s, nor interactions between factors, thus pairwise comparisons were not 
+
+run. 
+
+Results for compensatory phase on Day 1 showed an appreciable modulation across 
+
+time windows, where the ANOVA confirmed a significant main effect for Phase (F (2. 08 , 
+
+> 41.56 )
+
+= 6.13 , p = 0.00 4, η2p = 0. 235 ) and Group (F (1, 2 0) = 4. 92 , p = 0.0 38 , η2p = 0.19 8). 
+
+Planned comparisons revealed significant differences between LB and EA (p = 0.008; 
+
+d = 0.731 [0. 252 –1. 197 ]), between LB and LA start (p = 0.0 44 ; d = 0. 539 [0. 105 –0.963 ]), 
+
+and between EA and LA end (p = 0.0 32 ; d = -0. 597 [0. 136 –1. 046 ]) . On Day 2, we 
+
+observed a significant main effect for Phase (F (1.64 , 37 .74 = 3.62 , p = 0.0 44 , η2p = 0. 136) 
+
+and a Phase*Group interaction (F (1.64, 37.74 ) = 6.64 , p = 0.0 05 , η2p = 0. 224). Planned 
+
+comparisons revealed significant differences between LB and EA (p = 0.01 6, d = 1.0 01
+
+[0. 286 –1. 687 ]), between EA and LA start (p = 0.01 6, d = -1. 003 [-0. 287 – -1. 689 ]) , and 
+
+between EA and LA end (p = 0. 018 , d = -0.98 [-0. 27– -1. 661 ]) in in the NoFAT group 
+
+only . Planned comparisons between groups revealed a significant difference at EA (p 
+
+= 0.0 13 ; d = 1. 261 [0. 385 –2.114 ]). 
+
+Statistics results and boxplots of CC Index RF -BF during the washout phase are reported 
+
+in the supplementary material (S3) .
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Figure 7. 
+
+Box plots with EMG activity of rectus femoris (1 st row), biceps femoris (2 nd row) and their co -
+
+activation index (3 rd row) across the adaptation phase. The thick vertical line separates results 
+
+by session (Day 1, Day2), while pre -determined time window (anticipatory (AP) and 
+
+compensatory (CP) phases) are shown side by side for each day. Boxes depict data from 1 st 
+
+to 3 rd quartile; whiskers represent minimum and maximum data points. Median is shown by 
+
+the thick horizontal line and individual data points as bla ck dots. * Significant between/within 
+
+group effects (p < 0.05). C C Index : co -activation index for rectus femoris -biceps femoris 
+
+muscle pair, BF: biceps femoris, EA: early adaptation, LA end : late adaptation – final block, 
+
+LA start : late adaptation – start, LB: late baseline, RF: rectus femoris. 
+
+# DISCUSSION 
+
+The present study investigated how neuromuscular fatigue (NMF) of a postural muscle 
+
+influences motor adaptation during a novel , whole -body postural control paradigm , and 
+
+whether learning under fatigue produces persistent aftereffects during re -exposure to 
+
+the perturbation (in the absence of neuromuscular fatigue) . Our findi ngs revealed that 
+
+performance in the postural task was not impacted by NMF , neither in short - nor in the 
+
+long term . However , we observed that participants exposed to fatigue did not return to 
+
+the initial posture following the p ostural perturbation throughout the adaptation phases. 
+
+On the subsequent re -exposure to the task on a separate day – without being fatigue d
+
+– participants in the FAT group showed similar aftereffects and it took longer for them 
+
+to return to baseline values. As expected, EMG patterns were altered by the presence 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+of NMF , both in fatigue d and non -fatigued muscles . Interestingly, these alterations 
+
+persisted even in the subsequent re -exposure to the task, in absence of fatigue. 
+
+Short -term effects on postural control 
+
+Contrary to our initial prediction , localized NMF did not significantly impair overall task 
+
+performance, as reflected by the absence of between -group differences in 
+
+performance error (PE) during adaptation. Both groups showed an expected increase 
+
+in error at the introduction of the perturbation followed by a progressive reduction 
+
+across practice, consistent with classical adaptation processes driven by sensory 
+
+prediction errors and iterative updating of internal models (18, 30) . These findings 
+
+indicate that participants exposed to NMF retained the capacity to adapt to the 
+
+perturbation despite the altered neuromuscular state. 
+
+Nevertheless, a more detailed analysis of postural control variables revealed 
+
+meaningful differences in the way participants exposed to fatigue managed the 
+
+perturbation. Specifically, CoP REC remained higher in the FAT group during the late 
+
+stages of adaptation on Day 1, indicating a less complete restoration of the initial 
+
+postural configuration after the perturbation. Importantly, this occurred despite 
+
+comparable PE values between groups, su ggesting that participants in the FAT group 
+
+adopted alternative st abilization strategies that preserved task success while 
+
+modifying whole -body postural behavior. These findings support the idea that motor 
+
+adaptation under fatigue does not necessarily deteriorate, but rather relies on a 
+
+reorganization of motor solutions to compensate for the altered neuromuscular state. 
+
+The absence of major deficits in PE may reflect the redundancy of the postural system. 
+
+Unlike single -joint reaching paradigms where the fatigued muscle directly contributes 
+
+to task execution, upright posture allows redistribution of motor commands across 
+
+multiple joints and muscle groups (31 –33) . In the present study, although the tibialis 
+
+anterior was selectively fatigued, participants could compensate through modified 
+
+activation of proximal muscles and altered intermuscular coordination. Such 
+
+compensatory behavior is consistent with previous evidence showing that the central 
+
+nervous system exploits motor redundancy to preserve task -level goals under 
+
+changing physiological constraints (19, 33 –35) .
+
+Interestingly, adaptation of anticipatory behavior appeared largely preserved under 
+
+fatigue. Impulse AP progressively increased across adaptation in both groups, 
+
+indicating that participants learned to generate anticipatory shifts in the center of 
+
+pressure before the perturbation. This pattern resembles the progressive emergence 
+
+of anticipatory postural adj ustments observed during repeated predictable 
+
+perturbations (6, 7, 24) . The preservation of this adaptation process suggests that 
+
+NMF did not disrupt the ability to predict perturbation and generate feedforward 
+
+responses. Rather, fatigue mainly affected the efficiency with which the perturbation 
+
+was subsequently absorbed and stabilized. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+These findings align with previous work showing dissociations between postural 
+
+stability and task performance during fatigue. Nardon et al. (19) observed that 
+
+participants exposed to lower -limb fatigue during an upper -limb force -field adaptation 
+
+task maintained overall postural stability despite larger reaching errors, suggesting 
+
+prioritization of balance -related control. In the present study, whe re postural control 
+
+itself represented the task outcome, participants similarly maintained overall 
+
+performance b ut displayed altered recovery dynamics, indicating that stabilization was 
+
+achieved through different motor solutions. Together, these findings support the notion 
+
+that the CNS flexibly reallocates control strategies under fatigue to preserve 
+
+successful interaction with the env ironment. 
+
+Another possible explanation for the altered recovery behavior observed in the FAT 
+
+group relates to changes in proprioceptive acuity induced by fatigue. Localized fatigue 
+
+of ankle musculature has been shown to impair force sense and joint position sense 
+
+(17, 36) , potentially reducing the accuracy of sensory feedback available for online 
+
+corrections. Since postural stabilization following perturbation relies heavily on 
+
+integration of proprioceptive information from the ankle joint (37, 38) , degraded 
+
+sensory feedback may have contributed to the persistent backward displacement 
+
+observed after perturbation release. Participants may therefore have relied more 
+
+strongly on conservative stabilization strategies aimed at minimizing instability rather 
+
+than restoring t he exact pre -perturbation posture. 
+
+Long -term effects on postural control 
+
+One of the aims of this study was to determine whether learning under fatigue 
+
+produces persistent aftereffects during re -exposure to the perturbation . Although 
+
+between -group differences in PE were again absent on Day 2, the FAT group 
+
+continued to exhibit altered postural recovery dynamics, with CoP REC remaining 
+
+elevated during adaptation compared with baseline. These findings suggest that the 
+
+motor solution acquired under fatigue partially persisted even after recovery from the 
+
+physiological effects of fati gue itself. 
+
+This observation is particularly relevant in the context of motor memory formation. 
+
+Previous studies have shown that fatigue can influence the acquisition and retention 
+
+of internal models (20, 39) . Takahashi et al. (20) demonstrated that adaptation 
+
+performed under muscle fatigue modified aftereffects during subsequent testing, 
+
+suggesting that the nervous system incorporated the fatigued state into the learned 
+
+motor representation. Similarly, Branscheidt et al. (21) demonstrated that learning 
+
+under fatigue can produce persistent detrimental effects on subsequent motor -skill 
+
+acquisition, even after recovery from the acute physiological effects of fatigue. Our 
+
+findings extend this concept to a more ecological whole -body postu ral task, suggesting 
+
+that fatigue -related motor solutions can persist even in highly redundant systems. 
+
+Importantly, the persistence of altered CoP REC despite recovery from acute fatigue 
+
+suggests that participants did not simply revert to their original strategy on Day 2. 
+
+Instead, they appeared to recall and reuse motor solutions established during Day 1 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+in a fatigued condition. From a motor learning perspective, this may indicate that the 
+
+CNS encoded not only the external perturbation but also the sensorimotor context in 
+
+which adaptation occurred. State -dependent learning mechanisms have previously 
+
+been propos ed in locomotor and reaching paradigms, where internal models are 
+
+partially linked to the physiological state experienced during practice (40, 41) .
+
+Interestingly, the persistence of altered stabilization strategies occurred despite largely 
+
+similar anticipatory behavior between groups on Day 2. Impulse AP adaptation followed 
+
+comparable trajectories in both groups, indicating that predictive aspects of the task 
+
+were retained similarly. The divergence therefore appears more related to post -
+
+perturbation stabilization and sensorimotor integration than to feedf orward prediction 
+
+itself. This interpretation is further supported by the EMG findings, which reveal ed 
+
+persistent differences in compensatory muscle activity and coactivation patterns 
+
+during re -exposure. 
+
+Fatigue -Induced effects on EMG Activation and Coactivation Patterns 
+
+The EMG results support the idea that adaptation under fatigue relied on substantial 
+
+reorganization of neuromuscular control. The most evident effects involved both the 
+
+fatigued tibialis anterior muscle and muscles not directly exposed to the fatiguing 
+
+pro tocol, indicating that fatigue -related adaptations extended beyond the local 
+
+muscular level. 
+
+During Day 1, the FAT group exhibited altered activation patterns in both anticipatory 
+
+and compensatory phases, particularly involving TA, soleus, and biceps femoris 
+
+muscles. In the compensatory phase, TA activity was significantly greater in the FAT 
+
+group during early adaptation on both days, suggesting an increased neural drive to 
+
+the fatigued muscle to compensate for reduced force -generating capacity. Similar 
+
+increases in EMG amplitude following fatigue have been widely reported and are 
+
+generally interpr eted as evidence of compensatory recruitment strategies aimed at 
+
+preserving force output despite reduced contractile efficiency (16, 42 –44) .
+
+At the same time, soleus activity and TA -SOL coactivation patterns differed between 
+
+groups, particularly during Day 1. Participants in the NoFAT group progressively 
+
+increased coactivation across adaptation, whereas the FAT group showed reduced 
+
+coactivation levels during late adaptation. Coactivation is often interpreted as a 
+
+strategy to increase joint stiffness and reduce movement variability when adapting to 
+
+unstable or uncertain conditions (26 –28, 45, 46) . Reduced coactivation in the FAT 
+
+group may therefo re reflect an inability or unwillingness to further increase ankle 
+
+stiffness due to the altered physiological state of the dorsiflexor muscles. Similar 
+
+fatigue -induced reduction in muscle co -activation has been already documented (14) .
+
+Furthermore, results are in line with findings from a recent study (19) , where 
+
+participants exposed to fatigue during motor adaptation in a standing reaching task 
+
+with the arm showed decreased agonist -antagonist muscle co -contraction. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+Instead, participants exposed to fatigue appeared to redistribute stabilization demands 
+
+toward proximal musculature. This interpretation is supported by the modulation 
+
+observed in rectus femoris and biceps femoris activity. Such proximal redistribution 
+
+res embles the “hip strategy” commonly described during challenging balance 
+
+conditions or reduced ankle reliability (47, 48) . Since ankle proprioception and force 
+
+production were likely compromised by fatigue, greater reliance on proximal muscles 
+
+may have repr esented a compensatory mechanism to maintain overall task success. 
+
+Importantly, several of these EMG differences persisted during Day 2 despite the 
+
+absence of acute fatigue. The persistence of altered TA activity, BF activation, and 
+
+coactivation patterns suggests that participants retained aspects of the neuromuscular 
+
+str ategy acquired during the fatigued condition. This finding reinforces the idea that 
+
+adaptation under fatigue involves learning of a modified motor solution rather than only 
+
+transient physiological compensation. 
+
+The persistence of altered coactivation patterns is particularly interesting from a motor 
+
+control perspective. Previous work has shown that coactivation can decrease as 
+
+internal models become more accurate and movement uncertainty declines (27, 28) ,
+
+while other studies suggest that muscle coactivation might be linked to inherent 
+
+characteristics of the task (46, 49) . In the present study, however, the FAT group 
+
+maintained different coactivation behavior respect to the N oFAT group, even after re -
+
+exposure, sug gesting that the nervous system may have continued to treat the task 
+
+as requiring a more conservative stabilization strategy. Such persistence may reflect 
+
+altered estimates of sensorimotor reliability resulting from the initial fatigued 
+
+experience. Interestingly, similar aftereffects on consolidated motor strategies during 
+
+re -exposure to the task have been recently observed in participants who initially 
+
+learned in presence of pain (35) .
+
+Together, the EMG findings indicate that NMF influenced both local muscle activation 
+
+and whole -body coordination strategies. Rather than preventing adaptation, fatigue 
+
+altered the neuromuscular pathways through which adaptation was achieved. These 
+
+results highlight the flexibility of the motor system in reorganizing control strategies 
+
+under altered physiological constraints while preserving behavioral performance. 
+
+Methodological considerations 
+
+Some limitations should be considered when interpreting the present findings. First ,
+
+only a subset of postural muscles was monitored through surface EMG. Inclusion of 
+
+trunk and hip musculature could provide a more comprehensive understanding of 
+
+compensatory strategies during adaptation under fatigue. Second , while the present 
+
+task was intentionally designed to increase ecological validity compared with single -
+
+joint paradigms, its laboratory -based nature still differs from real -world balance tasks 
+
+involving locomotion or multidirectional perturbations. 
+
+In addition, although sessions were separated by 48 –72 hours to minimize residual 
+
+fatigue, we cannot completely exclude subtle carry -over effects related to 
+
+consolidation or contextual learning. Future studies should investigate whether the 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+persistence of fatigue -related motor solutions extends over longer timescales and 
+
+whether similar effects emerge in older adults or clinical populations with impaired 
+
+postural control. 
+
+Conclusions 
+
+Localized neuromuscular fatigue of the ankle dorsiflexors did not impair the overall 
+
+ability to adapt to a novel postural perturbation task, but altered the motor strategies 
+
+used to achieve stabilization. Participants exposed to fatigue showed persistent 
+
+changes in postural recovery dynamics and neuromuscular coordination, 
+
+characterized by altered activation and coactivation patterns involving both fatigued 
+
+and non -fatigued muscles. Importantly, several of these adaptations persisted during 
+
+re -exposure to t he task in the absence of fatigue, suggesting that learning under 
+
+fatigue shapes the motor solutions retained by the nervous system. 
+
+These findings support the view that the CNS flexibly reorganizes motor control under 
+
+altered physiological conditions by exploiting redundancy across the postural system. 
+
+Fatigue therefore appears to influence not only immediate motor execution, but also 
+
+the long -term representation of movement strategies. 
+
+From an applied perspective, these findings may have implications for rehabilitation 
+
+and athletic training contexts. In many real -world scenarios, motor learning occurs 
+
+while individuals are exposed to varying degrees of fatigue. If fatigue -related motor 
+
+solutions are retained over time, the conditions under which practice occurs may 
+
+influence not only immediate performance but also the long -term organization of 
+
+movement strategies. While such adaptations may be beneficial in contexts requiring 
+
+robustness u nder fatigue, they could also promote less efficient or overly conservative 
+
+movement patterns when transferred to non -fatigued conditions. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+# SUPPLEMENTAL MATERIAL 
+
+Availab le at OSF:  https://doi.org/10.17605/OSF.IO/A2XV4 
+
+S1 – Washout r esults for CoP REC and Impulse AP 
+
+S2 – Washout r esults for EMGs of shank muscles (TA , SOL , CC Index TA -SOL )
+
+S3 – Washout r esults for EMGs of thigh muscles (RA, BF, CC Index RF -BF )
+
+# DISCLOSURES 
+
+No conflicts of interest, financial or otherwise, are declared by the authors. 
+
+# AUTHOR CONTRIBUTIONS 
+
+M.N., M.B., and T.S. conceived and designed research; M.N. and M.B. performed 
+
+experiments; M.N., M.B., and T.S. analyzed data; M.N., C.A., M.B., and T.S. 
+
+interpreted results of experiments; M.N. and M.B. prepared figures; M.N., M.B., and 
+
+T.S. drafted manuscript; M.N., C.A., M.B., and T.S. edited and revised manuscript; 
+
+M.N., C. A., M.B., and T.S. approved final version of manuscript. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+# References 
+
+1. Ivanenko Y, Gurfinkel VS . Human Postural Control [Online]. Frontiers in 
+
+Neuroscience 12, 2018. 
+
+https://www.frontiersin.org/articles/10.3389/fnins.2018.00171 [2 Oct. 2023]. 
+
+2. Belen’kiĭ VE , Gurfinkel’ VS , Pal’tsev EI . [Control elements of voluntary 
+
+movements]. Biofizika 12: 135 –141, 1967. 
+
+3. Bouisset S , Do M -C. Posture, dynamic stability, and voluntary movement. 
+
+Neurophysiol Clin 38: 345 –362, 2008. doi: 10.1016/j.neucli.2008.10.001. 
+
+4. Nardon M, Pascucci F, Cesari P, Bertucco M, Latash ML . Synergies 
+
+Stabilizing Vertical Posture in Spaces of Control Variables. Neuroscience 500: 
+
+79 –94, 2022. doi: 10.1016/j.neuroscience.2022.08.006. 
+
+5. Bouisset S , Zattara M . Biomechanical study of the programming of anticipatory 
+
+postural adjustments associated with voluntary movement. J Biomech 20: 735 –
+
+742, 1987. doi: 10.1016/0021 -9290(87)90052 -2. 
+
+6. Santos MJ , Kanekar N , Aruin AS . The role of anticipatory postural adjustments 
+
+in compensatory control of posture: 1. Electromyographic analysis. J
+
+Electromyogr Kinesiol 20: 388 –397, 2010. doi: 10.1016/j.jelekin.2009.06.006. 
+
+7. Cesari P , Piscitelli F , Pascucci F , Bertucco M . Postural Threat Influences the 
+
+Coupling Between Anticipatory and Compensatory Postural Adjustments in 
+
+Response to an External Perturbation. Neuroscience 490: 25 –35, 2022. doi: 
+
+10.1016/j.neuroscience.2022.03.005. 
+
+8. Bertucco M , Cesari P . Does movement planning follow Fitts’ law? Scaling 
+
+anticipatory postural adjustments with movement speed and accuracy. 
+
+Neuroscience 171: 205 –213, 2010. doi: 10.1016/j.neuroscience.2010.08.023. 
+
+9.  Bertucco M , Cesari P , Latash ML . Fitts’ Law in Early Postural Adjustments. 
+
+Neuroscience  231: 61 –69, 2013. doi: 10.1016/j.neuroscience.2012.11.043. 
+
+10.  Bertucco M , Nardello F , Magris R , Cesari P , Latash ML . Postural Adjustments 
+
+during Interactions with an Active Partner. Neuroscience 463: 14 –29, 2021. doi: 
+
+10.1016/j.neuroscience.2021.03.020. 
+
+11. Paillard T . Effects of general and local fatigue on postural control: A review. 
+
+Neuroscience and Biobehavioral Reviews 36: 162 –176, 2012. doi: 
+
+10.1016/j.neubiorev.2011.05.009. 
+
+12. Lyu H , Fan Y , Hao Z , Wang J . Effect of local and general fatiguing exercises on 
+
+disturbed and static postural control. Journal of Electromyography and 
+
+Kinesiology 56: 102487, 2021. doi: 10.1016/j.jelekin.2020.102487. 
+
+13. Lyu H , Fan Y , Hua A , Cao X , Gao Y , Wang J . Effects of unilateral and bilateral 
+
+lower extremity fatiguing exercises on postural control during quiet stance and 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+self -initiated perturbation. Human Movement Science 81: 102911, 2022. doi: 
+
+10.1016/j.humov.2021.102911. 
+
+14. Nardon M , Piscitelli F , Alessandro C , Tam E , Bertucco M . Effects of localized 
+
+and general fatigue on postural adjustments coupling during predictable external 
+
+perturbations. Eur J Appl Physiol 125: 2539 –2561, 2025. doi: 10.1007/s00421 -
+
+025 -05760 -y. 
+
+15. Nardon M , Ferri U , Caffi G , Bartesaghi M , Perin C , Zaza A , Alessandro C .
+
+Kinematics but not kinetics alterations to single -leg drop jump movements 
+
+following a subject -tailored fatiguing protocol suggest an increased risk of ACL 
+
+injury. Front Sports Act Living 6: 1418598, 2024. doi: 
+
+10.3389/fspor.2024.1418598. 
+
+16. Carroll TJ , Taylor JL , Gandevia SC . Recovery of central and peripheral 
+
+neuromuscular fatigue after exercise. Journal of Applied Physiology 122: 1068 –
+
+1076, 2017. doi: 10.1152/japplphysiol.00775.2016. 
+
+17. Vuillerme N , Boisgontier M . Muscle fatigue degrades force sense at the ankle 
+
+joint. Gait & Posture 28: 521 –524, 2008. doi: 10.1016/j.gaitpost.2008.03.005. 
+
+18. Krakauer JW , Hadjiosif AM , Xu J , Wong AL , Haith AM . Motor learning. 
+
+Comprehensive Physiology 9: 613 –663, 2019. doi: 10.1002/cphy.c170043. 
+
+19. Nardon M , Sinha O , Kpankpa J , Albenze E , Bonnet CT , Bertucco M , Singh 
+
+T. Prioritized adjustments in posture stabilization and adaptive reaching during 
+
+neuromuscular fatigue of lower -limb muscles. J Appl Physiol (1985) 137: 629 –
+
+645, 2024. doi: 10.1152/japplphysiol.00252.2024. 
+
+20. Takahashi CD , Nemet D, Rose -Gottron CM , Larson JK , Cooper DM ,
+
+Reinkensmeyer DJ . Effect of muscle fatigue on internal model formation and 
+
+retention during reaching with the arm. Journal of Applied Physiology 100: 695 –
+
+706, 2006. doi: 10.1152/japplphysiol.00140.2005. 
+
+21. Branscheidt M , Kassavetis P , Anaya M , Rogers D , Huang HD , Lindquist MA ,
+
+Celnik P. Fatigue induces long -lasting detrimental changes in motor -skill 
+
+learning. eLife 8: e40578, 2019. doi: 10.7554/eLife.40578. 
+
+22. Hermens HJ , Freriks B, Disselhorst -Klug C, Rau G. Development of 
+
+recommendations for SEMG sensors and sensor placement procedures. J
+
+Electromyogr Kinesiol 10: 361 –374, 2000. doi: 10.1016/s1050 -6411(00)00027 -4. 
+
+23. Kendall FP . Muscles: Testing and Function with Posture and Pain . Lippincott 
+
+Williams & Wilkins, 2005. 
+
+24. Piscitelli D , Falaki A , Solnik S , Latash ML . Anticipatory postural adjustments 
+
+and anticipatory synergy adjustments: Preparing to a postural perturbation with 
+
+predictable and unpredictable direction. Exp Brain Res 235: 713 –730, 2017. doi: 
+
+10.1007/s00221 -016 -4835 -x. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+25. Ricotta JM , De SD , Nardon M , Benamati A , Latash ML . Effects of fatigue on 
+
+intramuscle force -stabilizing synergies. J Appl Physiol (1985) 135: 1023 –1035, 
+
+2023. doi: 10.1152/japplphysiol.00419.2023. 
+
+26. Pienciak -Siewert A , Horan DP , Ahmed AA . Role of muscle coactivation in 
+
+adaptation of standing posture during arm reaching. Journal of Neurophysiology 
+
+123: 529 –547, 2020. doi: 10.1152/jn.00939.2017. 
+
+27. Gribble PL , Mullin LI , Cothros N , Mattar A . Role of Cocontraction in Arm 
+
+Movement Accuracy. Journal of Neurophysiology 89: 2396 –2405, 2003. doi: 
+
+10.1152/jn.01020.2002. 
+
+28. Thoroughman KA , Shadmehr R . Electromyographic Correlates of Learning an 
+
+Internal Model of Reaching Movements. J Neurosci 19: 8573 –8588, 1999. doi: 
+
+10.1523/JNEUROSCI.19 -19 -08573.1999. 
+
+29. The jamovi project (2025) . jamovi (Version 2.6). [Computer Software]. Retrieved 
+
+from https://www.jamovi.org. 
+
+30. Shadmehr R , Smith MA , Krakauer JW . Error correction, sensory prediction, and 
+
+adaptation in motor control. Annu Rev Neurosci 33: 89 –108, 2010. doi: 
+
+10.1146/annurev -neuro -060909 -153135. 
+
+31. Bernstein N . The coordination and regulation of movements . Pergamon Press, 
+
+1967. 
+
+32. Latash ML . Motor Synergies and the Equilibrium -Point Hypothesis. Motor Control 
+
+14: 294 –322, 2010. doi: 10.1123/mcj.14.3.294. 
+
+33. Singh T , Latash ML . Effects of muscle fatigue on multi -muscle synergies. Exp 
+
+Brain Res 214: 335 –350, 2011. doi: 10.1007/s00221 -011 -2831 -8. 
+
+34. Singh T , Skm V , Zatsiorsky VM , Latash ML . Fatigue and Motor Redundancy: 
+
+Adaptive Increase in Finger Force Variance in Multi -Finger Tasks. Journal of 
+
+Neurophysiology 103: 2990 –3000, 2010. doi: 10.1152/jn.00077.2010. 
+
+35. Salomoni SE , Marinovic W , Carroll TJ , Hodges PW . Motor Strategies Learned 
+
+during Pain Are Sustained upon Pain -free Reexposure to Task. Medicine & 
+
+Science in Sports & Exercise 51: 2334, 2019. doi: 
+
+10.1249/MSS.0000000000002059. 
+
+36. Forestier N , Teasdale N , Nougier V . Alteration of the position sense at the ankle 
+
+induced by muscular fatigue in humans. Med Sci Sports Exerc 34: 117 –122, 
+
+2002. doi: 10.1097/00005768 -200201000 -00018. 
+
+37. Peterka RJ . Sensorimotor Integration in Human Postural Control. Journal of 
+
+Neurophysiology 88: 1097 –1118, 2002. doi: 10.1152/jn.2002.88.3.1097. 
+
+38. Mohapatra S , Krishnan V , Aruin AS . Postural control in response to an external 
+
+perturbation: effect of altered proprioceptive information. Exp Brain Res 217: 
+
+197 –208, 2012. doi: 10.1007/s00221 -011 -2986 -3. 
+
+> .CC-BY-NC-ND 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.25.734469 doi: bioRxiv preprint
+
+39. Huang VS , Haith A , Mazzoni P , Krakauer JW . Rethinking Motor Learning and 
+
+Savings in Adaptation Paradigms: Model -Free Memory for Successful Actions 
+
+Combines with Internal Models. Neuron 70: 787 –801, 2011. doi: 
+
+10.1016/j.neuron.2011.04.012. 
+
+40. Bock O, Schneider S, Bloomberg J. Conditions for interference versus 
+
+facilitation during sequential sensorimotor adaptation. Exp Brain Res 138: 359 –
+
+365, 2001. doi: 10.1007/s002210100704. 
+
+41. Torres -Oviedo G , Bastian AJ . Natural error patterns enable transfer of motor 
+
+learning to novel contexts. J Neurophysiol 107: 346 –356, 2012. doi: 
+
+10.1152/jn.00570.2011. 
+
+42. Taylor JL , Butler JE , Gandevia SC . Changes in muscle afferents, motoneurons 
+
+and motor drive during muscle fatigue. European Journal of Applied Physiology 
+
+83: 106 –115, 2000. doi: 10.1007/s004210000269. 
+
+43. Enoka RM , Duchateau J . Muscle fatigue: what, why and how it influences 
+
+muscle function: Muscle fatigue. The Journal of Physiology 586: 11 –23, 2008. 
+
+doi: 10.1113/jphysiol.2007.139477. 
+
+44. Enoka RM , Baudry S , Rudroff T , Farina D , Klass M , Duchateau J . Unraveling 
+
+the neurophysiology of muscle fatigue. Journal of Electromyography and 
+
+Kinesiology 21: 208 –219, 2011. doi: 10.1016/j.jelekin.2010.10.006. 
+
+45. Osu R , Franklin DW , Kato H , Gomi H , Domen K , Yoshioka T , Kawato M .
+
+Short - and Long -Term Changes in Joint Co -Contraction Associated With Motor 
+
+Learning as Revealed From Surface EMG. Journal of Neurophysiology 88: 991 –
+
+1004, 2002. doi: 10.1152/jn.2002.88.2.991. 
+
+46. Martino G , Beck ON , Ting LH . Voluntary muscle coactivation in quiet standing 
+
+elicits reciprocal rather than coactive agonist -antagonist control of reactive 
+
+balance. Journal of Neurophysiology 129: 1378 –1388, 2023. doi: 
+
+10.1152/jn.00458.2022. 
+
+47. Horak FB , Nashner LM . Central programming of postural movements: 
+
+adaptation to altered support -surface configurations. J Neurophysiol 55: 1369 –
+
+1381, 1986. doi: 10.1152/jn.1986.55.6.1369. 
+
+48. Winter DA , Patla AE , Prince F , Ishac M , Gielo -Perczak K . Stiffness control of 
+
+balance in quiet standing. J Neurophysiol 80: 1211 –1221, 1998. doi: 
+
+10.1152/jn.1998.80.3.1211. 
+
+49. Darainy M , Ostry DJ . Muscle cocontraction following dynamics learning. Exp 
+
+Brain Res 190: 153 –163, 2008. doi: 10.1007/s00221 -008 -1457 -y.

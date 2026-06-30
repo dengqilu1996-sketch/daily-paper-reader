@@ -1,0 +1,588 @@
+Title: AnimalTA: A simple yet flexible tool for video tracking and manual corrections.
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.27.733780v1.full.pdf
+
+Number of Pages: 11
+
+Markdown Content:
+AnimalTA: A simple yet flexible tool for video tracking and manual 1
+
+# corrections. 2
+
+V. Chiara 1, †,* , A. Buatois 2, †, S. -Y. Kim 3.3
+
+> 1
+
+Museum and Institute of Zoology, PAS, Warsaw, Poland 4
+
+> 2
+
+Swiss Federal Institute of Aquatic Science and Technology, Dübendorf, Switzerland 5
+
+> 3
+
+Grupo Ecoloxía Animal, Centro de Investigación Mariña, University of Vigo, Vigo, Spain 6
+
+† Joint first authorship 7
+
+* Corresponding author 8
+
+9
+
+Abstract 10 
+
+1.  Video -tracking programs have now become an essential tool for researchers measuring animal 11 
+
+behavior across biological fields. The panel of available programs is growing rapidly, providing 12 
+
+researchers with numerous specific tools that will match their precise needs. However, their 13 
+
+proliferation may complicate post -tracking data processing, and some programs do not even 14 
+
+provide tools for correcting tracking errors or analysing tracking data. In the case of commercial 15 
+
+software, the loss of access to a program due to budget limitations or researchers' mobility from 16 
+
+one institution to another could prevent them from accessing and visualizing their tracking data. 17 
+
+2.  There is therefore a growing need for an accessible and flexible tool to handle post -tracking 18 
+
+processes such as the correction and analysis of tracking data obtained across different video -19 
+
+tracking programs. 20 
+
+3.  We present here the latest update of the video tracking and analysis program AnimalTA. With this 21 
+
+new release, we propose to solve the above -mentioned problems by providing the scientific 22 
+
+community with a program that will allow for data importation from other video -tracking programs. 23 
+
+Like in its previous versions, AnimalTA remains a free, open -source, and highly user -friendly 24 
+
+program, ensuring that it will always be accessible without restriction. Now, with this new 25 
+
+importation option, users who performed their tracking with other programs can benefit from 26 
+
+AnimalTA’s complete toolset of data visualization, correction, and analysis. 27 
+
+4.  Finally, this article gives an overview of the other main improvements associated with this new 28 
+
+release. The program is now faster in both video importation and  tracking, proposes  an amplified 29 
+
+toolset for data  visualization  and correction, and features new options for data analysis. 30 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+# Introduction 31 
+
+The quantitative study of animal behaviour is becoming increasingly reliant on automated tracking 32 
+
+technologies that can extract high -resolution movement data from large, complex datasets (Dell et al., 33 
+
+2014). Over the past decade, video -based tracking has become a key methodology in behavioural ecology, 34 
+
+ethology, and applied animal science. It enables researchers to capture behavioural phenotypes with a level 35 
+
+of precision and efficiency that manual observation cannot match. This methodological shift has been 36 
+
+accompanied by a growing demand for transparency, reproducibility, and long -term data accessibility  —37 
+
+values that are now central to open science frameworks in the biological sciences (Bell et al., 2009; Wilson 38 
+
+et al., 2023). In this context, software tools used for collecting, processing, and analysing behavioural data 39 
+
+are foundational components of scientific infrastructure, not merely technical conveniences. 40 
+
+In recent years, the landscape of animal tracking software has diversified considerably, reflecting the range 41 
+
+of research questions and experimental systems investigated by behavioural scientists. General -purpose 42 
+
+tracking tools, such as AnimalTA, ToxTrack and idTracker, offer robust solutions for tracking multiple 43 
+
+individuals under controlled conditions (Chiara & Kim, 2023; Rodriguez et al., 2018; Pérez -Escudero et 44 
+
+al., 2014; Torrents et al., 2026). Meanwhile, machine -learning -based pose estimation platforms, such as 45 
+
+DeepLabCut (Nath et al., 2019) and SLEAP (Pereira et al., 2022), have transformed our ability to track 46 
+
+fine -scale movements of body parts across a wide range of species and contexts. More specialised tools, 47 
+
+such as Loopy ( http://loopb.io , Loopbio Gmbh, Vienna, Austria), address specific experimental designs or 48 
+
+taxa. Despite this diversity, a persistent challenge remains: the output formats, data structures, and 49 
+
+downstream analytical workflows associated with these tools are rarely interoperable, limiting the adaptive 50 
+
+and flexible use of tracking, correction, and analysis functions of different programs within a given 51 
+
+research. Although some programs provide integrated trajectory correction modules, to our knowledge, no 52 
+
+tools currently allow manual correction of trajectories independently of their original tracking pipelines, 53 
+
+making it difficult to obtain fully verified, functional datasets.  Researchers working across platforms or 54 
+
+seeking to correct and reanalyse existing datasets often encounter significant barriers to data integration 55 
+
+and reuse. 56 
+
+Open -source, freely available software plays a critical role in overcoming these barriers, particularly for 57 
+
+researchers working outside well -resourced institutional environments. A recurring practical challenge in 58 
+
+this area concerns early -career researchers and students who conduct data collection within a host 59 
+
+laboratory, but then lose access to proprietary or institutionally licensed tracking software when they change 60 
+
+position or affiliation. This means that previously obtained raw tracking data cannot be curated, corrected ,61 
+
+or reanalysed without incurring the cost of accessing the original software environment, posing a significant 62 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+obstacle to research continuity and reproducibility. Free, open -access tools with broad compatibility 63 
+
+therefore serve not only scientific purposes but also promote equity within the scientific community, 64 
+
+ensuring that analytical capacity is not contingent on institutional affiliation or grant availability. 65 
+
+AnimalTA was developed in response to these needs, providing a free, user -friendly, open -source platform 66 
+
+for tracking and analysing the movement and behaviour of individual or grouped animals (Chiara & Kim, 67 
+
+2023). AnimalTA can track the movement of one or multiple individuals across one or multiple arenas, 68 
+
+visualize and correct the resulting trajectories, and analyze these trajectories to extract parameters such as 69 
+
+total distance traveled, average speed, path meander, explored area, time spent in a selected area, and 70 
+
+average inter -individual distance over time and across time sequences. Since its initial publication, the 71 
+
+software has been widely adopted within the animal science community, with over 7,140 downloads and 72 
+
+56 citations reflecting a genuine demand for accessible, well -performing analytical tools. The original 73 
+
+version of AnimalTA was primarily designed to work with data generated by its own tracking engine. 74 
+
+However, user feedback and evolving community practices have highlighted the need to extend its 75 
+
+compatibility to data produced by other widely used tracking platforms and enhance the interactive data 76 
+
+curation and error correction tools available. 77 
+
+Here, we present a substantial update to AnimalTA that directly addresses these needs. The updated 78 
+
+software can now import and process tracking outputs from both general -purpose and machine -learning -79 
+
+based tracking tools, such as ToxTrack, DeepLabCut, SLEAP, and Loopy. It has also been designed to be 80 
+
+extensible, so that it can accommodate additional formats as the needs of the community evolve. New 81 
+
+interactive functionalities have been implemented for tracking data correction and curation, providing real -82 
+
+time visual feedback that facilitates the rapid identification and repair of tracking errors. These features are 83 
+
+particularly valuable in teaching and training contexts. These developments position AnimalTA as a 84 
+
+powerful, shared analytical environment that bridges tracking platforms, reduces pipeline fragmentation, 85 
+
+and supports the reproducibility and accessibility of behavioural research, regardless of the upstream tools 86 
+
+used. 87 
+
+88 
+
+# Presentation of the new features of AnimalTA 89 
+
+## 1.  General presentation 90 
+
+AnimalTA is an open -source, Python -developed video -tracking program released for the first time in 2023 91 
+
+(Chiara & Kim, 2023). It uses various libraries, including tkinter for the Graphical User Interface (GUI), 92 
+
+OpenCV for image processing, ffmpeg, and decord for video conversion and reading. AnimalTA uses a 93 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+user -friendly Windows OS installer built using Inno Setup (https://jrsoftware.org/isinfo.php) and can be 94 
+
+downloaded along with a user manual and tutorial videos at: http://vchiara.eu/index.php/animalta. 95 
+
+The previous version of AnimalTA was already a fully functional program, whose characteristics have been 96 
+
+described in Chiara & Kim (2023). Below are the main new features and improvements of the program to 97 
+
+import, curate, correct, and analyse animal tracking data originating from other tools. 98 
+
+99 
+
+## 2.  Loading trajectory data from other video -tracking programs 100 
+
+With this update, AnimalTA now supports researchers who obtain tracking data using tools other than 101 
+
+AnimalTA but seek a faster and more efficient way to visualize, correct, and analyze their data. It is also 102 
+
+useful for those who no longer have access to the initial tools, which were accessible thanks to an 103 
+
+institutional licence. The updated program includes a new “Import Data” panel, which allows users to 104 
+
+combine previously imported videos with individual and group trajectory data from external sources. 105 
+
+Prior to importing trajectory data, users must first upload their videos into the program using the “Add 106 
+
+Video” option. AnimalTA then automatically converts the videos, allowing any format to be used without 107 
+
+requiring external conversion tools. This process is now handled by the ffmpeg package (replacing OpenCV 108 
+
+used in earlier versions), providing faster and more robust conversion with reduced sensitivity to corrupted 109 
+
+frames. In addition, a multiprocessing system enables multiple videos to be converted simultaneously, 110 
+
+significantly reducing overall processing time. 111 
+
+Once the videos are imported into AnimalTA, users can define a scale for each video and set “arenas” (i.e., 112 
+
+regions of interest) within which animals are expected to appear and move. These parameters will later be 113 
+
+used by the program during data analysis. Finally, trajectory data from external sources can be imported 114 
+
+via the “Import Data” panel. 115 
+
+To facilitate data import, the current version of AnimalTA already supports data formats from several 116 
+
+widely used video -tracking programs, including SLEAP (Pereira et al., 2022), DeepLabCut (Nath et al., 117 
+
+2019), and ToxTrac (Rodriguez et al., 2018). For coordinate data from these programs, users simply need 118 
+
+to specify the file location of the tracking data to be automatically imported into the program. Data from 119 
+
+other sources can also be imported, as long as they are stored as a single “.csv” file. In such cases, users 120 
+
+must describe the structure of the coordinate data file through an adapted and user -friendly interface (see 121 
+
+Figure 1). 122 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+Once the data structure is defined for the first video, it is automatically saved and reused by the program 123 
+
+for subsequent videos, so users do not need to repeat this step as long as the external trajectory data follow 124 
+
+the same format. AnimalTA relies on the pandas and numpy packages to load, process, and save coordinate 125 
+
+data. These final coordinate data files are stored as semicolon -delimited “.csv” files, ensuring a widely 126 
+
+accessible and standardized format. 127 
+
+Figure 1.  AnimalTA’s  data import panel. In this panel, users can specify the structure of their original dataset using 128 
+
+the interface at the top. The left table displays the original data, while the right table shows the converted output after 129 
+
+configuration. Once validated, the imported data are directly integrated into the program and can be visualized, 130 
+
+corrected, and analyzed in the same way as native AnimalTA data. 131 
+
+132 
+
+## 3.  Improved tracking performances 133 
+
+In addition, AnimalTA tracking performances have been improved with the modernization of the tracking 134 
+
+module, which now relies on a multiprocessing system (multiprocessing package, see Figure 2A for details). 135 
+
+This update significantly enhances tracking speed, particularly for high -resolution videos or 136 
+
+computationally intensive image processing tasks (Figure 2B –F). 137 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+138 
+
+Figure 2. A)  Workflow of the tracking process in AnimalTA. The tracking pipeline is divided into two main stages: 139 
+
+image processing and contour processing. The image processing stage is the most computationally intensive part of 140 
+
+the program. It includes extracting frames from the video, applying preprocessing steps (e.g., adjustments), and 141 
+
+performing segmentation. Because each frame (or chunk of frames) can be processed independently, this stage can be 142 
+
+executed in parallel and in any order. The output of this step is a set of contours (OpenCV objects), which represent 143 
+
+the external boundaries of detected blobs (i.e., potential targets). The contour processing stage is responsible for 144 
+
+assigning identities to these detected blobs and tracking them over time. Although this step is less computationally 145 
+
+demanding, it must be performed sequentially and in the correct frame order, since identifying a target at frame i 146 
+
+depends on its position at frame i –1. To optimize performance, the program uses multiprocessing. Multiple processes 147 
+
+are dedicated to image processing, each handling different chunks of frames and pushing their results into a shared 148 
+
+contours queue, where the frames’ data are not ordered. A separate process is dedicated to contour processing. This 149 
+
+contour -processing process continuously monitors the queue. To reorder the frames, when specific frame data 150 
+
+becomes available in the queue, they are retrieved and checked to determine whether they belong to the next missing 151 
+
+frame data. If it matches, the data are processed immediately; otherwise, they are temporarily stored in an ordered 152 
+
+buffer until the missing intermediate data arrives. Once the expected data are available, the process resumes sequential 153 
+
+execution, emptying the buffer as much as possible before returning to the queue. This design allows the program to 154 
+
+maximize parallel efficiency during heavy computations while preserving strict temporal order, which is required for 155 
+
+accurate tracking.  B)  Video used to compare the efficiency of old and new versions of AnimalTA, which shows 6 156 
+
+female cockroaches ( Blatta lateralis ).  C to F)  Time required by the old version (light pink) and new version (purple) 157 
+
+of AnimalTA to track the video (shown in panel B) using a computer with the following specificities: 4 cores, 8 logical 158 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+processors, CPU: AMD Ryzen 5 7520U, CPU GHz: 2.8. We used the same video with different levels of resolution 159 
+
+(4K=3840x2160px, Full HD=1920x1080px, HD=1280x720px, SD=720x480px), duration (1, 2, 4, 6, 8, and 10 min) 160 
+
+and image processing complexity (simple=greyscale background subtraction; intermediate 1=colored background 161 
+
+subtraction; intermediate 2=colored background subtraction and light correction; complex=colored background 162 
+
+subtraction, light correction and stabilization). The new version is either faster or as fast as the previous version in 163 
+
+speed, and its performance advantage grows with higher video resolution and greater task complexity. A similar 164 
+
+comparison was repeated using a computer with different characteristics and resulted in similar findings (see 165 
+
+Supplementary material S1). 166 
+
+167 
+
+## 4.  Visualization and correction of trajectories 168 
+
+While the video tracking programs are becoming increasingly powerful and efficient, they are not yet 169 
+
+perfect, and tracking inaccuracies remain common (Figure 3). In the new version of AnimalTA, special 170 
+
+care has been taken to make data correction as fast and intuitive as possible. 171 
+
+172 
+
+Figure 3.  Illustration of AI -tracked groups of 3 Drosophila (left panel) and the same dataset after manual correction 173 
+
+using AnimalTA (right panel). Tracking points were the 6 leg and 2 wing extremities, the two eyes, the thorax, and 174 
+
+the posterior part of the abdomen for each individual. The image was provided by Aijuan Liao and Ebi Antony George, 175 
+
+and obtained from experiments conducted in the Kawecki group at the Department of Ecology and Evolution, 176 
+
+University of Lausanne. 177 
+
+AnimalTA allows for a rapid and efficient visualization of tracking data by superimposing tracked 178 
+
+coordinates onto the original video (see Figure 3). Users can play the video at variable speeds, navigate 179 
+
+directly to specific frames or timestamps, and zoom in or out as needed. The new version also introduces a 180 
+
+“Lock View” option, which allows users to zoom in while the display automatically follows the target’s 181 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+movement. This feature enhances the observation of fine details in moving individuals without requiring 182 
+
+constant manual adjustment of the zoom window. To facilitate the detection of tracking errors, two 183 
+
+additional features have been implemented: one allows users to jump directly to frames with missing 184 
+
+coordinates, and the other highlights suspicious trajectories that exhibit abnormally high speeds relative to 185 
+
+an individual’s typical movement patterns. 186 
+
+The program offers numerous tools to facilitate data correction, including the ability to fix isolated errors, 187 
+
+interpolate across sequences of frames, perform rapid frame -by -frame corrections, and resolve identity 188 
+
+swaps. The new version further extends these capabilities by allowing users to merge trajectories from 189 
+
+different targets, batch -delete individuals or coordinates, and remove all coordinates within a defined spatial 190 
+
+region of the video. It also introduces new options for easier navigation within the coordinate data frame. 191 
+
+These new features enable researchers to flexibly adapt their use of AnimalTA to specific experimental 192 
+
+designs and the objectives of behavioural tests. 193 
+
+194 
+
+## 5.  Extension of the analysis toolset 195 
+
+With this update, the program introduces new analysis methods, enhancing AnimalTA’s versatility in data 196 
+
+processing and result visualization. For example, it now allows the creation of combined heatmaps by 197 
+
+superimposing trajectories from different arenas, as well as heatmaps based on segmented images extracted 198 
+
+from the video. These features produce clear, informative, and visually appealing outputs (Figure 4). 199 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+200 
+
+Figure 4.  Different representations of the movement of 10 grouped termites in a 47 -second video.  A)  Frame extracted 201 
+
+from the video with all termite trajectories overlaid.  B)  Combined exploration grid derived from the same trajectories. 202 
+
+The arena is divided into equal -sized cells, with cell color indicating the proportion of time spent by individuals within 203 
+
+each cell (time spent by all individuals in a cell / [total video duration × number of individuals]).  C)  Individual -204 
+
+centered method in which termites are considered to be exploring in a circular area centered on their body position 205 
+
+across frames.  D)  Heatmap generated from segmented video frames rather than trajectory data. All representations are 206 
+
+exported directly from AnimalTA. 207 
+
+The analysis options have also been expanded with new modules, including the ability to split a video into 208 
+
+distinct time segments, referred to as “sequences.” This feature enables users to obtain separate results for 209 
+
+different time periods, such as the initial minutes of a recording versus the remainder, or to compare data 210 
+
+collected before and after an individual enters a specific arena, among a wide range of possible applications. 211 
+
+Another new option has also been introduced to calculate the duration of stops and movements performed 212 
+
+by a target during the video. The program can either compute average values of the data or return a list of 213 
+
+all stop and movement events observed. Such data are commonly used in survival analysis or for modelling 214 
+
+animal locomotory behavior (Jeanson et al., 2005; Chiara et al., 2022). The last new feature is the ability to 215 
+
+generate personalized, detailed data files containing frame -by -frame variables selected by the user. The 216 
+
+parameters that can be extracted for each frame include distance traveled, speed, movement state (stopped 217 
+
+or moving), corrected movement state, acceleration, orientation, change in orientation angle, angular speed, 218 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+meander, distance to elements of interest, distance to other individuals, and position within the exploration 219 
+
+grid (see Figure 4B). 220 
+
+221 
+
+# Conclusion 222 
+
+Since its first launch in 2023, AnimalTA has rapidly gained an increasing number of users, most of whom 223 
+
+are animal scientists who frequently and repeatedly use this free tool to track and analyse animal movement 224 
+
+and behaviour. Thanks to their enthusiastic support and feedback, we have been able to make an important 225 
+
+update to AnimalTA, which greatly enhances the tool's utility for many more users. Many existing general -226 
+
+purpose tracking tools and machine -learning -based tools have their own strengths in tracking ability, 227 
+
+enabling researchers to adaptively choose the most efficient tool for their research topic, species, and 228 
+
+experimental design. Now, with the updated AnimalTA, which allows importing and processing tracking 229 
+
+outputs from other tracking tools, their users can also benefit from the most distinctive post -tracking 230 
+
+functions of AnimalTA, such as rapid correction of tracking errors, versatile data analysis, and effective 231 
+
+result visualisation. 232 
+
+233 
+
+# References 234 
+
+Bell, A. M., Hankison, S. J., & Laskowski, K. L. (2009). The repeatability of behaviour: A meta -analysis. 235 
+
+Animal Behaviour , 77 (4), 771 –783.  https://doi.org/10.1016/j.anbehav.2008.12.022 236 
+
+Chiara, V., & Kim, S. -Y. (2023). AnimalTA: A highly flexible and easy -to -use program for tracking and 237 
+
+analysing animal movement in different environments.  Methods in Ecology and Evolution , 14 (7), 1699 –238 
+
+1707.  https://doi.org/10.1111/2041 -210X.14115 239 
+
+Chiara, V., Arrufat, P., & Jeanson, R. (2022). A variable refractory period increases collective performance 240 
+
+in noisy environments.  Proceedings of the National Academy of Sciences, 119(12) , e2115103119. 241 
+
+https://doi.org/10.1073/pnas.2115103119 242 
+
+Dell, A. I., Bender, J. A., Branson, K., Couzin, I. D., de Polavieja, G. G., Noldus, L. P. J. J., Pérez -Escudero, 243 
+
+A., Perona, P., Straw, A. D., Wikelski, M., & Brose, U. (2014).  Automated image -based tracking and its 244 
+
+application in ecology.  Trends in Ecology & Evolution , 29 (7), 417 –428. 245 
+
+https://doi.org/10.1016/j.tree.2014.05.004 246 
+
+Jeanson, R., Rivault, C., Deneubourg, J. L., Blanco, S., Fournier, R., Jost, C., & Theraulaz, G. (2005). Self -247 
+
+organized aggregation in cockroaches.  Animal behaviour, 69 (1), 169 -180. 248 
+
+https://doi.org/10.1016/j.anbehav.2004.02.009 249 
+
+> .CC-BY-NC 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.06.27.733780 doi: bioRxiv preprint
+
+Nath, T., Mathis, A., Chen, A. C., Patel, A., Bethge, M., & Mathis, M. W. (2019). Using DeepLabCut for 250 
+
+3D markerless pose estimation across species and behaviors.  Nature Protocols , 14 (7), 2152 –2176. 251 
+
+https://doi.org/10.1038/s41596 -019 -0176 -0252 
+
+Pereira, T. D., Tabris, N., Matsliah, A., Turner, D. M., Li, J., Ravindranath, S., Papadoyannis, E. S., 253 
+
+Normand, E., Deutsch, D. S., Wang, Z. Y., McKenzie -Smith, G. C., Mitelut, C. C., Castro, M. D., D’Uva, 254 
+
+J., Kislin, M., Sanes, D. H., Kocher, S. D., Wang, S. S. -H., Falkner, A. L., … Murthy, M. (2022). SLEAP: 255 
+
+A deep learning system for multi -animal pose tracking.  Nature Methods , 19 (4), 486 –495. 256 
+
+https://doi.org/10.1038/s41592 -022 -01426 -1257 
+
+Pérez -Escudero, A., Vicente -Page, J., Hinz, R. C., Arganda, S., & De Polavieja, G. G. (2014). idTracker: 258 
+
+tracking individuals in a group by automatic identification of unmarked animals.  Nature Methods , 11(7), 259 
+
+743 -748. 260 
+
+Rodriguez, A., Zhang, H., Klaminder, J., Brodin, T., Andersson, P. L., & Andersson, M. (2018).  ToxTrac :261 
+
+A fast and robust software for tracking organisms.  Methods in Ecology and Evolution , 9(3), 460 –464. 262 
+
+https://doi.org/10.1111/2041 -210X.12874 263 
+
+Torrents, J., Costa, T., de Polavieja, G. (2026) New idtracker.ai rethinks multi -animal tracking as a 264 
+
+representation learning problem to increase accuracy and reduce tracking time.  eLife,  14:RP107602. 265 
+
+https://doi.org/10.7554/eLife.107602.4 266 
+
+Wilson, E., Ramage, F. J., Wever, K. E., Sena, E. S., Macleod, M. R., & Currie, G. L. (2023). Designing, 267 
+
+conducting, and reporting reproducible animal experiments.  Journal of Endocrinology , 258 (1), e220330. 268 
+
+https://doi.org/10.1530/JOE -22 -0330 269 
+
+270 
+
+# Acknowledgments 271 
+
+We are grateful to Iago Sanmartín Villar, Tristan Robineau, Srikrishna Narasimhan, Emma Chereskin, and 272 
+
+Martin Dessart for their help with testing AnimalTA and translating program information. We also thank 273 
+
+Ebi Antony George, Aijuan Liao, and the Kawecki group at the Department of Ecology and Evolution, 274 
+
+University of Lausanne, for sharing their videos and tracking data on Drosophila. Finally, we thank all the 275 
+
+people, too numerous to be cited individually, who used AnimalTA and took the time to provide feedback, 276 
+
+which helped us improve the program. This work was supported by the research grant SONATA: 277 
+
+2022/47/D/NZ8/01758 funded by the National Science Center of Poland (Narodowe Centrum Nauki). 278

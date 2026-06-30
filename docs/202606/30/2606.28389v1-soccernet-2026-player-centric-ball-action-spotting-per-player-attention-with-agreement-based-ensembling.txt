@@ -1,0 +1,118 @@
+Title: SoccerNet 2026 Player-Centric Ball Action Spotting: Per-Player Attention with Agreement-Based Ensembling
+
+URL Source: https://arxiv.org/pdf/2606.28389v1
+
+Published Time: Tue, 30 Jun 2026 00:02:48 GMT
+
+Number of Pages: 2
+
+Markdown Content:
+# SoccerNet 2026 Player-Centric Ball Action Spotting: Per-Player Attention with Agreement-Based Ensembling 
+
+Faisal Altawijri, Ismail Mathkour TAHAKOM 
+
+faltawijri@tahakom.com, imathkour@tahakom.com 
+
+## 1. System Overview 
+
+Our system follows the two-stage pipeline provided by the or-ganizers [1]: (1) a Track-Aware Action Detector (TAAD) [2] processes video to produce per-player action logits, and (2) a Denoising Sequence Transduction (DST) [3] autoregressive transformer converts game-state features and TAAD logits into structured event sequences. We contribute improvements to both stages and introduce an agreement-based ensemble strat-egy. Our final submission achieves 58.94 Macro-F1 on the challenge set. 
+
+## 2. Stage 1: TAAD Improvements 
+
+2.1 Architecture: Temporal Transformer 
+
+We extend the baseline X3D [4]-based TAAD with a tempo-ral transformer. After ROI-aligned features are extracted per player per frame, we project them to d=256 dimensions and apply L=4 transformer encoder layers with 8 attention heads, feedforward dimension 1024, GELU activation, and pre-norm ordering. Learnable positional embeddings (up to 50 frames) provide temporal context. The transformer output is projected to 512 dimensions before the 9-class classification head. This allows the model to reason about temporal patterns across frames rather than classifying each frame independently. 
+
+2.2 Training Modifications 
+
+We identified and fixed a warmup scheduler bug where the learning rate stopped updating prematurely and remained at its warmup value for the remainder of training. Additional train-ing changes: (a) cosine annealing LR scheduler for all layers except X3D, while X3D uses a fixed LR of 5 × 10 −5 after warmup; (b) both learning rates divided by √8; (c) warmup set to 100 steps with no gradient accumulation; (d) background class weight reduced to 0.05; (e) tracklet count increased from 4 to 6 at epoch 16. The resulting TAAD logits are used as frozen input to all DST experiments. 
+
+## 3. Stage 2: DST Improvements 
+
+3.1 Per-Player Attention 
+
+The baseline encoder treats the 26-role feature vector as a flat input per frame. We introduce a two-stage per-player atten-tion mechanism before the main transformer encoder. Player features (5 game-state channels + 9 TAAD logit channels per role) are reshaped to per-player representations and processed through two stages. 
+
+Stage 1 (Spatial): Cross-player spatial attention at each frame. Features are reshaped so that all 26 players at each timestep attend to each other via a transformer encoder layer (dp=64 , 4 heads), capturing spatial relationships between players at every moment. 
+
+Stage 2 (Temporal): Per-player temporal self-attention across frames. Each player’s representation from Stage 1 is processed independently across the time dimension with sinusoidal po-sitional encoding, processed by another transformer encoder layer, capturing how individual player states evolve over time. 
+
+> Game State + TAAD Logits
+
+6
+
+> Reshape to per-player
+
+6
+
+> Stage 1 : Spatial Attn across 26 players
+
+6
+
+> Stage 2 : Temporal Attn per player over time
+
+6
+
+> Pool + Concat logits
+
+6
+
+> Frame One-Hot Encoding
+
+6  
+
+> Transformer Encoder (6 layers, d=512 , 8 heads)
+
+Figure 1: DST encoder with spatial-first per-player attention. The decoder (not shown) autoregressively generates (frame, action, role) tuples. The attended features are mean-pooled across players and con-catenated with the game-state logits per frame, then projected and added to the main encoder input. We found that using only game-state features (positions, velocities, visibility) for the per-player attention, excluding TAAD logits, outperforms using all channels. 
+
+3.2 Spatial-First Attention Order 
+
+We found that processing spatial attention first, then tempo-ral, yields a significant improvement (+1.87% Macro-F1 on validation, from 0.549 to 0.567). The intuition is that under-standing spatial player configurations at each frame provides richer context for subsequent temporal reasoning than the re-verse order. 1
+
+> arXiv:2606.28389v1 [cs.CV] 23 Jun 2026
+
+3.3 Architectural Diversity 
+
+To enable effective ensembling, we train four DST models with different hyperparameters, all using the spatial-first per-player attention mechanism: 
+
+Model A (base): hidden dim 512, 1 player attention layer, 
+
+dp=64 (0.567 val F1) 
+
+Model B : hidden dim increased to 768 (0.571 val F1) 
+
+Model C : 2 player attention layers with dp=128 (0.572 val F1) 
+
+Model D : parallel attention, where temporal and spatial branches process the raw input independently and their out-puts are summed rather than sequentially (0.569 val F1) All models use 6 encoder/decoder layers, 8 attention heads, dropout 0.1, learning rate 2.5 × 10 −4 with exponential decay (factor 0.1 at epochs 3, 6, 8), and are trained for 10 epochs. A checkpoint sweep selects the best-performing epoch per model. 
+
+3.4 Inference: Tau Correction 
+
+During development, we found that selecting the logit adjust-ment temperature τ based on per-class optimized Macro-F1 on validation rather than default (raw threshold) Macro-F1 led to suboptimal challenge performance, as per-class thresholds overfit to the 6 validation games (48.0 vs. 48.6 on challenge). Using τ =0 with default thresholds consistently performs best, and we adopt this for all final predictions. 
+
+## 4. Ensemble Strategy 
+
+4.1 Weighted Event Fusion with Agreement Filtering 
+
+Given N models producing event predictions per game, we ensemble using Weighted Event Fusion: (1) Group all predic-tions by (team, shirt number, action class). (2) Cluster predic-tions within ±12 frames via greedy assignment to the nearest cluster center, sorted by score descending. (3) For each cluster with n contributing models: compute the average score across contributing models, multiplied by (n/N )0.5 as an agreement boost. (4) Apply min models =2 : discard events predicted by fewer than 2 models. Agreement filtering is the key mechanism: it suppresses false positives (hallucinations from single models) while reinforc-ing true positives that multiple models agree on. We systemat-ically evaluated NMS, score averaging, max score, and fusion across all model combinations, and fusion with min models =2 
+
+consistently outperforms all alternatives. 
+
+4.2 Solo Tackle Exception 
+
+Tackle events are extremely rare (26 occurrences across 96 training games) with the lowest per-model F1 ( ∼0.05–0.15). The agreement filter aggressively removes correct tackle pre-dictions where only one model detects them. We add an ex-ception: tackle predictions bypass the agreement filter and are kept even with single-model support. This preserves recall on the rarest class without affecting other classes. 
+
+## 5. Results           
+
+> Configuration Val F1 Challenge F1 DST with improved TAAD 0.541 48.6 + per-player attention 0.549 –+ spatial-first order 0.567 55.1 4-model ensemble 0.609 58.9
+
+Table 1: Progressive improvement. Final ensemble uses Mod-els A–D with fusion, min models=2, and solo tackle excep-tion.                                                
+
+> dri pas crs thr sho hea tac blk Model A .803 .819 .717 .802 .622 .403 .049 .323 Model B .804 .811 .749 .802 .630 .384 .154 .238 Model C .821 .824 .728 .788 .629 .378 .054 .351 Model D .808 .819 .738 .784 .634 .405 .100 .260 Ensemble .839 .840 .764 .828 .677 .450 .123 .354
+
+Table 2: Per-class F1 on validation. Bold = best, underline = second best. The ensemble outperforms all individual models on every class except tackle, where Model B is the strongest. The ensemble benefits common-to-medium frequency classes (drive through header), where agreement filtering suppresses false positives while preserving recall. The validation-to-challenge gap narrows from ∼6 points (single model) to ∼2points (ensemble), indicating improved generalization. 
+
+## References       
+
+> [1] J. Ochin, R. Chekroun, B. Stanciulescu, and S. Manitsaris, “Foot-pass: A multi-modal multi-agent tactical context dataset for play-by-play action spotting in soccer broadcast videos,” Computer Vision and Image Understanding , vol. 269, p. 104790, 2026. [2] G. Singh, V. Choutas, S. Saha, F. Yu, and L. Van Gool, “Spatio-temporal action detection under large motion,” in Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) , pp. 6009–6018, January 2023. [3] J. Ochin, R. Chekroun, B. Stanciulescu, and S. Manitsaris, “Beyond pixels: Leveraging the language of soccer to im-prove spatio-temporal action detection in broadcast videos,” in Advanced Concepts for Intelligent Vision Systems (ACIVS) ,pp. 552–563, Springer, 2025. [4] C. Feichtenhofer, “X3d: Expanding architectures for efficient video recognition,” in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) , pp. 200–210, 2020.
+
+2

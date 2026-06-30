@@ -1,0 +1,2182 @@
+Title: Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.03.02.709099v2.full.pdf
+
+Number of Pages: 58
+
+Markdown Content:
+1
+
+# Reproducible Research: Computational Design of 1
+
+# Personalized Clinical Treatments for Walking Impairments 2
+
+# Caused by Knee Osteoarthritis and Stroke 3
+
+Robert M. Salati 1, Geng Li 1, Spencer Williams 1, Benjamin J. Fregly 1* 
+
+4
+
+> 1
+
+Rice Computational Neuromechanics Lab, Department of Mechanical Engineering, Rice 5
+
+University, Houston, TX, United States 6
+
+# Abstract 7
+
+Background: Personalized computational neuromusculoskeletal models have great 8
+
+potential for optimizing the design of clinical treatments for movement impairments. While 9
+
+many software tools address specific parts of the model personalization and treatment 10 
+
+optimization processes, they typically require significant programming experience to use 11 
+
+and do not cover the full breadth of these two processes. Furthermore, published 12 
+
+neuromusculoskeletal modeling studies typically do not provide all the methodological 13 
+
+details needed for others to reproduce the work. Consequently, researchers seeking to 14 
+
+develop skills in the model personalization and treatment optimization processes face a 15 
+
+steep learning curve due to the lack of detailed training materials that demonstrate both 16 
+
+processes for real-life clinical problems using real-life subject movement data. 17 
+
+Methods: This article presents detailed training tutorials for the model personalization 18 
+
+and treatment optimization processes using two real-life clinical problems and the 19 
+
+Neuromusculoskeletal Modeling (NMSM) Pipeline. The first clinical problem involves the 20 
+
+design of personalized gait modifications and high tibial osteotomy surgery for an 21 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+2
+
+individual with bilateral medial knee osteoarthritis, where the goal is to reduce the peak 22 
+
+adduction moment in both knees to a specified target level. The second clinical problem 23 
+
+involves the design of a synergy-based functional electrical stimulation prescription for an 24 
+
+individual post-stroke with impaired walking function, where the goal is to equalize the 25 
+
+propulsive and braking impulses between the two legs. Both tutorials were implemented 26 
+
+as course projects given to novice users in a combined undergraduate/graduate 27 
+
+mechanical engineering course. 28 
+
+Results: Both tutorials produced personalized neuromusculoskeletal models and 29 
+
+associated dynamically consistent tracking optimizations that closely reproduced subject-30 
+
+specific experimental joint angles, joint moments, ground reaction forces and moments, 31 
+
+and (if applicable) muscle activations measured during walking. Subsequent design 32 
+
+optimizations predicted personalized treatments that achieved target values of peak knee 33 
+
+adduction moments or propulsive and braking impulses. 34 
+
+Conclusions: The detailed step-by-step tutorials presented with this article are the first 35 
+
+to walk users through the entire process of creating personalized neuromusculoskeletal 36 
+
+models and then using them to design personalized treatments for two subjects with two 37 
+
+different clinical problems. These tutorials can be used to introduce new users to the 38 
+
+NMSM Pipeline and as projects in neuromusculoskeletal modeling courses. 39 
+
+# Keywords 40 
+
+Neuromusculoskeletal modeling 41 
+
+Musculoskeletal modeling 42 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+3
+
+Predictive simulation 43 
+
+EMG-Driven Modeling 44 
+
+Computational Treatment Design 45 
+
+Muscle synergies 46 
+
+# Introduction 47 
+
+Neuromusculoskeletal (NMS) modeling has great potential for informing the clinical 48 
+
+treatment design process. For NMS models to be used effectively to design treatments 49 
+
+for movement impairments, they need to be personalized to each individual, where the 50 
+
+aspects of an individual’s model that require personalization will depend on the clinical 51 
+
+problem being addressed (1). For some clinical problems, personalized skeletal geometry 52 
+
+developed from the individual’s imaging data may be necessary (2–11). Several software 53 
+
+tools exist that can personalize skeletal geometry either with the use of imaging data (e.g., 54 
+
+NMS Builder (12), The MAP Client (13–15), OpenSim Creator (16), Bone Deformation 55 
+
+Tool (17), STAPLE (18), the workflow presented in (19)) and without the use of imaging 56 
+
+data (e.g., The MAP Client (13), Torsion Tool (20)). For other clinical problems, 57 
+
+personalized joint structure, muscle-tendon, neural control, and foot-ground contact 58 
+
+model components calibrated using the individual’s movement, force, and 59 
+
+electromyographic (EMG) data may be necessary (3,21–28). Several tools exist that can 60 
+
+personalize some, but not all, of these model components (e.g., AddBiomechanics (29), 61 
+
+CEINMS (30), CEINMS-RT (31), SimCP (32)). Consequently, creation of a personalized 62 
+
+neuromusculoskeletal model possessing these personalized model components is either 63 
+
+not possible or challenging due to the need to use a combination of tools. 64 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+4
+
+Once individual-specific NMS models are available, they can be used to predict 65 
+
+computationally how the individual will function following a planned clinical intervention 66 
+
+(3,21,23,33). This computational process, termed “predictive simulation,” is itself 67 
+
+challenging, historically requiring specific skills in computational simulation and numerical 68 
+
+methods to perform. To date, most predictive simulations of gait using NMS models have 69 
+
+been performed using in-house software (21,34–42), but such tools are difficult for other 70 
+
+researchers to use for their own research purposes. Consequently, several research 71 
+
+groups have recently developed software tools that make the predictive simulation 72 
+
+process easier to learn, facilitating replication of research performed by others. OpenSim 73 
+
+Moco (43–45) has made predictive simulation much more accessible within the OpenSim 74 
+
+simulation environment, while other software tools facilitate generation of predictive 75 
+
+simulations either partially or completely outside of the OpenSim environment (e.g., 76 
+
+BioMAC-Sim-Toolbox (46), SCONE (47), OpenSim-MATLAB Optimal Control (48), 77 
+
+MyoSuite (49), GaitDynamics (50)). Each of these tools can be used to generate complex 78 
+
+simulations that predict the functional outcome of a planned treatment, but none of them 79 
+
+were designed to interface directly with model personalization software. For this reason, 80 
+
+nearly all published predictive simulations of human movement have utilized scaled 81 
+
+generic models that predict generic movements rather than personalized models that 82 
+
+predict individual subject movements. 83 
+
+For model personalization and predictive simulation alike, training new researchers to 84 
+
+use these valuable software tools poses a significant challenge. If a new researcher wants 85 
+
+to generate predictive simulations of an individual’s post-treatment movement function 86 
+
+using a personalized NMS model of the individual (henceforth called “treatment 87 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+5
+
+optimization”), they will need to learn a combination of tools and write code that interfaces 88 
+
+the tools with each other. Most tools mentioned thus far have well-developed introductory 89 
+
+tutorials that teach new users about basic and some advanced functionality (51–56). 90 
+
+However, most of these tutorials are not “real world” but rather work through smaller 91 
+
+problems designed to teach specific isolated functionality. The tutorials also never work 92 
+
+through the entire clinical treatment design process starting with model personalization 93 
+
+and ending with treatment optimization. Due to their reduced scope, tutorials typically fail 94 
+
+to communicate the nuances of tool use, which are critical for determining if and how a 95 
+
+particular tool could be used to address a particular research goal. 96 
+
+To learn how to apply these tools to real-life clinical problems, researchers need to 97 
+
+study published research articles. Unfortunately, reproducing published research is often 98 
+
+challenging. On the one hand, there has been significant community effort to share 99 
+
+models and data through web-based repositories such as SimTK (57) or 100 
+
+AddBiomechanics (58). On the other hand, published articles do not include all 101 
+
+implementation details needed for readers to go from initial models and data to final 102 
+
+models and results, thereby preventing other researchers from reproducing and 103 
+
+expanding upon the work. This state of affairs is understandable given the challenges of 104 
+
+recording all steps and implementation details so that other researchers can reproduce 105 
+
+them. This situation has resulted in a “reproducibility crisis” that significantly hinders 106 
+
+progress of the field (59). If new researchers want to learn how to use existing software 107 
+
+tools to create personalized predictive simulations that can be used for clinical treatment 108 
+
+design, they must be resourceful, tenacious, and technically adept to assemble the 109 
+
+necessary knowledge. 110 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+6
+
+A major reason for this lack of “real-life” training materials for model personalization 111 
+
+and treatment optimization is that existing software tools do not cover the entire process, 112 
+
+so at best, tool developers can create tutorials that cover only isolated areas. To create 113 
+
+real-life training materials that teach users the entire model personalization and treatment 114 
+
+optimization process, we need a toolset that covers the full spectrum of these two 115 
+
+processes. This problem has been addressed by the recently published 116 
+
+Neuromusculoskeletal Modeling (NMSM) Pipeline (60). The NMSM Pipeline is a117 
+
+MATLAB-based open-source software package with integrated Model Personalization 118 
+
+and Treatment Optimization toolsets for OpenSim (44,45). All tools within each toolset 119 
+
+were designed to be used sequentially, with Model Personalization tools naturally 120 
+
+interfacing with Treatment Optimization tools with minimal effort from the user. The inputs 121 
+
+to the NMSM Pipeline are a scaled generic OpenSim model with or without personalized 122 
+
+skeletal geometry (as appropriate) and individual subject movement data. Users can then 123 
+
+personalize relevant joint structure, muscle-tendon, neural control, and foot-ground 124 
+
+contact (as appropriate) model components for an individual subject and then use the 125 
+
+subject’s personalized model in the treatment optimization process. Users can perform 126 
+
+the entire model personalization and treatment optimization process without writing a 127 
+
+single line of code. Instead, they create all necessary tasks using Extensible Markup 128 
+
+Language (XML) settings files, created either in an OpenSim graphical user interface or 129 
+
+by manual editing of XML files, which significantly lowers the barrier to entry for these 130 
+
+high-end NMS modeling and simulation capabilities. This low barrier to entry can 131 
+
+significantly increase the number of potential users who can explore computational 132 
+
+treatment design using personalized NMS models. 133 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+7
+
+Although the NMSM Pipeline makes treatment design with predictive simulations 134 
+
+easier than it was previously, the tools still require significant training to learn. Basic 135 
+
+tutorials for the NMSM Pipeline have already been made available (61), but like other 136 
+
+musculoskeletal modeling software packages, these tutorials do not capture the nuances 137 
+
+and details that should be understood to use the tools effectively for addressing real-life 138 
+
+clinical problems. There is still a need for detailed tutorials that work through the entire 139 
+
+model personalization to treatment optimization process for real-life clinical problems. 140 
+
+Because the NMSM Pipeline makes model personalization and treatment optimization 141 
+
+accessible and connected by a single workflow, it is now possible to design such in-depth 142 
+
+tutorials. These tutorials can focus not only on what users are doing and why they are 143 
+
+doing it, but also on how the final results are obtained. 144 
+
+This paper presents in-depth training tutorials for the NMSM Pipeline that guide users 145 
+
+through real-life research to design treatments for two clinical conditions that impair 146 
+
+walking function. These tutorials are the first to take users through the entire 147 
+
+computational treatment design process, starting with model personalization and ending 148 
+
+with treatment optimization using the personalized model. The first tutorial explores 149 
+
+personalized joint and foot-ground contact modeling for a single subject with bilateral 150 
+
+medial knee osteoarthritis (OA). The tutorial guides users through the model 151 
+
+personalization and treatment optimization processes without muscles or neural control 152 
+
+to design either a walking modification or high tibial osteotomy (HTO) surgery to reduce 153 
+
+the peak adduction moment in both knees. The second tutorial explores personalized 154 
+
+muscle-tendon and neural control modeling for a single subject with stroke. The tutorial 155 
+
+guides users through the model personalization and treatment optimization processes 156 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+8
+
+including muscles and neural control to design a synergy-based functional electrical 157 
+
+stimulation (FES) prescription to correct gait propulsion asymmetries. The two tutorials 158 
+
+serve as complementary guides to using the NMSM Pipeline for research and give extra 159 
+
+focus to the minute details that often affect the quality of predictive simulation results. The 160 
+
+tutorials were deployed as two projects in a combined undergraduate/graduate course to 161 
+
+demonstrate their effectiveness at teaching personalized neuromusculoskeletal modeling 162 
+
+and treatment optimization to novice users. The NMSM Pipeline has potential applicability 163 
+
+to a subset of clinical problems and patients, and ideally these tutorials will help 164 
+
+researchers decide if the NMSM Pipeline might be applicable to their research problems. 165 
+
+Both tutorial documents are available as supplemental materials to this article (see 166 
+
+Additional File 1.pdf and Additional File 2.pdf) and are also available at 167 
+
+https://nmsm.rice.edu. Readers are encouraged to download the tutorial documents and 168 
+
+read them in parallel with this article. 169 
+
+# Methods 170 
+
+# 1. Tutorial Overviews 171 
+
+The tutorials presented in this paper walk users through the model personalization and 172 
+
+treatment optimization processes to design personalized treatments for two clinical 173 
+
+conditions using the NMSM Pipeline and OpenSim (44,45). Each tutorial focuses on 174 
+
+designing a clinical treatment for a single subject with gait dysfunction. The first tutorial 175 
+
+explores skeletal modeling for one subject with bilateral medial knee osteoarthritis (OA) 176 
+
+(male, age 47 years, height 1.7 m, mass 72.8 kg), while the second tutorial explores 177 
+
+neuromusculoskeletal modeling for one subject who suffered a stroke (male, age 79 178 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+9
+
+years, height 1.7 m, mass 80.5 kg; right sided hemiparesis, LE Fugl-Meyer Motor 179 
+
+Assessment 32/34 pts). 180 
+
+The experimental walking data used to develop both tutorials were collected from the 181 
+
+two subjects under similar conditions. Ground reaction data were collected using a split-182 
+
+belt instrumented treadmill (Bertec Corp., Columbus, OH, USA) while the subjects walked 183 
+
+at a self-selected speed (1.2 m/s for the subject with knee OA) or fastest comfortable 184 
+
+speed (0.8 m/s for the subject with a stroke). Surface marker motion data were collected 185 
+
+using a video-based motion capture system (Vicon Corp., Oxford, UK) with a full-body 186 
+
+marker set that included three markers on the pelvis and each thigh, shank, and foot. In 187 
+
+addition, for the subject who had a stroke, 16 channels of surface and fine wire EMG data 188 
+
+were collected from each leg using two EMG systems (Motion Lab Systems, Baton 189 
+
+Rouge, LA, USA). Informed consent was obtained from both subjects, and experimental 190 
+
+data collection with subsequent modeling was approved by the institutional review board 191 
+
+of the University of Florida. Gait data collected from these two subjects has been 192 
+
+described in previous publications (23,60,62,63) 193 
+
+a. Clinical Problems 194 
+
+The first tutorial involves designing a walking modification or HTO surgical plan to treat 195 
+
+an individual with bilateral medial knee OA. The peak knee adduction moment (KAM) 196 
+
+during stance phase has been proposed as a surrogate measure for medial knee contact 197 
+
+force, with a value less than 2.5% BW x HT corresponding to the best long-term outcome 198 
+
+for individuals with medial knee OA (64–66). For this subject, the target value for the peak 199 
+
+KAM is 30.3 Nm. The peak KAM is derived entirely from external forces and skeletal 200 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+10 
+
+kinematics and thus is a convenient measure for physics-based predictive simulations 201 
+
+that do not calculate internal knee contact forces. 202 
+
+Two potential treatments for medial knee OA that can reduce the peak KAM are high 203 
+
+tibial osteotomy (HTO) surgery and medial thrust gait (MTG) modifications (64,66). For 204 
+
+the first treatment, an optimal HTO surgery is designed. This surgery involves cutting the 205 
+
+subject’s proximal tibia and angling the distal end outward to turn a varus (bow-legged) 206 
+
+knee into a valgus (knock-kneed) knee. The surgery is approximated in the OpenSim 207 
+
+model by changing the knee adduction angle without altering the knee functional axis. 208 
+
+The effect of the surgery on the resulting knee adduction moment during walking is 209 
+
+estimated by performing a predictive simulation with the altered OpenSim model. The 210 
+
+cost function minimizes changes relative to a baseline in the lower body joint moments 211 
+
+controlling the motion. For the second treatment, optimal MTG modifications similar to 212 
+
+(21) are designed. These gait modifications involve alterations to pelvic obliquity and 213 
+
+lower body joint angles such that the knee moves closer to the midline of the body. No 214 
+
+changes to the subject’s OpenSim model are required. The effect of the gait modifications 215 
+
+on the resulting knee adduction moment during walking is estimated by performing a 216 
+
+predictive simulation with the original OpenSim model. The cost function minimizes the 217 
+
+knee adduction moment and changes relative to a baseline in the lower body joint 218 
+
+moments controlling the motion, while path constraints maintain the same foot motion 219 
+
+with respect to ground. For both potential treatments, all unlocked coordinates in the 220 
+
+OpenSim model are treated as states that are changeable by the predictive simulations, 221 
+
+and the treatments are designed for both knees since the subject has bilateral knee OA. 222 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+11 
+
+The second tutorial involves designing a synergy-based FES prescription to treat a 223 
+
+person with right-sided hemiparesis caused by a stroke. The subject is high functioning 224 
+
+but has an asymmetry in his propulsive and braking impulses between his legs, which 225 
+
+leads to an inefficient gait pattern. Synergy-based FES is a novel treatment for stroke that 226 
+
+electrically stimulates muscles based on the subject’s neural control characteristics (67– 227 
+
+69). Muscle synergies can be calculated that decompose a subject’s muscle EMG data 228 
+
+into a lower dimensional set of time-varying synergy activations (representing activation 229 
+
+timing) and time-invariant synergy vector weights (representing activation coordination) 230 
+
+(70–73). By comparing a subject’s synergy activations and vectors with those obtained 231 
+
+from healthy subjects, researchers have identified a subject’s “impaired” synergies and 232 
+
+then stimulated the subject’s paretic leg muscles with patterns consistent with 233 
+
+corresponding healthy subject synergies (67,68). 234 
+
+For the subject in this tutorial, the calculated muscle synergies shared synergy vectors 235 
+
+between the two legs while also making the subject’s personalized model walk the same 236 
+
+way the subject did. Calculating bilateral muscle synergies in this unique way allowed 237 
+
+direct comparison between the subject’s right and left leg synergy activations. This 238 
+
+comparison revealed asymmetries in the subject’s synergy activation amplitudes but not 239 
+
+shapes, allowing corresponding paretic/non-paretic pairs of synergy activations to be 240 
+
+placed into one of three categories based on relative amplitudes: healthy (paretic ≈ non-241 
+
+paretic), impaired-compensatory (paretic/impaired < non-paretic/compensatory), and 242 
+
+compensatory (paretic > non-paretic). We hypothesize that correcting the asymmetry in 243 
+
+synergy activations will also correct the asymmetry in propulsive and braking impulses. 244 
+
+The second tutorial will model a synergy-based FES protocol by scaling paired synergy 245 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+12 
+
+activations so that they have equal amplitudes between legs. Cost terms will be used to 246 
+
+adjust the propulsive and braking impulses so that these quantities are symmetrical as 247 
+
+well. 248 
+
+b. Tool Descriptions 249 
+
+The primary software tools used in the tutorials are the NMSM Pipeline’s Model 250 
+
+Personalization and Treatment Optimization toolsets (60). The NMSM Pipeline is 251 
+
+MATLAB-based software that uses OpenSim models through OpenSim’s MATLAB 252 
+
+application programming interface (API). The tutorials use software that is either open-253 
+
+source, widely available in an academic setting, or proprietary but inexpensive. MATLAB’s 254 
+
+optimization toolbox, parallel computing toolbox, statistics and machine learning toolbox, 255 
+
+curve fitting toolbox, symbolic math toolbox, and signal processing toolbox are required 256 
+
+to use the NMSM Pipeline. The NMSM Pipeline’s Treatment Optimization toolset requires 257 
+
+the proprietary GPOPS-II direct collocation optimal control solver (74). GPOPS-II 258 
+
+currently costs $165 per year for a single user academic license and $825 per year for a 259 
+
+department-wide academic license. The tutorials and results presented in this manuscript 260 
+
+were obtained using the NMSM Pipeline Version 1.4.0 and OpenSim Version 4.5. 261 
+
+The NMSM Pipeline’s Model Personalization toolset consists of four tools: Joint Model 262 
+
+Personalization, Ground Contact Model Personalization, Muscle-tendon Model 263 
+
+Personalization, and Neural Control Model Personalization. All Model Personalization 264 
+
+tools personalize the model by adjusting relevant parameters to track experimental data. 265 
+
+Joint Model Personalization finds subject-specific joint parameter values (joint 266 
+
+positions/orientations in body segments, body scale factors, marker locations on body 267 
+
+segments) that allow the personalized model to reproduce experimental marker motions 268 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+13 
+
+as closely as possible. Joint Model Personalization is important for obtaining accurate 269 
+
+inverse dynamics joint loads, which can have large down-stream effects for predictive 270 
+
+simulations (75–79). Ground Contact Model Personalization finds subject-specific foot-271 
+
+ground contact model parameter values (stiffness, damping, and friction parameters) that 272 
+
+allow the personalized model to reproduce experimental ground reaction forces and 273 
+
+moments as closely as possible. A personalized contact model is important to accurately 274 
+
+predict ground reactions when a predictive simulation significantly changes foot 275 
+
+kinematics (80). Muscle-tendon Model Personalization finds subject-specific EMG-driven 276 
+
+model parameter values (EMG scale factors, activation dynamics parameters, Hill-type 277 
+
+muscle-tendon model parameters) that allow the personalized model to reproduce 278 
+
+experimental inverse dynamics joint moments as closely as possible (3,22,23). It can also 279 
+
+estimate missing EMG signals using synergy extrapolation (63). Muscle-tendon Model 280 
+
+Personalization has been shown to yield accurate amplitude and shape estimates for 281 
+
+muscle activations, yielding more accurate muscle force estimates (22,81–87). Neural 282 
+
+Control Model Personalization finds subject-specific muscle synergy controls that 283 
+
+simultaneously reproduce muscle activations from Muscle-tendon Model Personalization 284 
+
+and experimental inverse dynamics joint moments as closely as possible (88). Neural 285 
+
+Control Model Personalization fits “functional” synergies that are able to reproduce the 286 
+
+desired joint moments, which cannot be done by matching only muscle activations 287 
+
+(33,88,89). 288 
+
+The NMSM Pipeline’s Treatment Optimization toolset consists of three tools: Tracking 289 
+
+Optimization, Verification Optimization, and Design Optimization. Tracking Optimization 290 
+
+generates a “starting point” dynamic simulation that closely reproduces all pre-treatment 291 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+14 
+
+movement data available from the subject and is dynamically consistent. Achieving a 292 
+
+dynamically consistent solution is an important step towards ensuring that the simulated 293 
+
+treatment is physically realistic for the subject. Verification Optimization generates a 294 
+
+“sanity check” predictive simulation that accurately reproduces the motion and external 295 
+
+forces found by Tracking Optimization without tracking them explicitly, where the cost 296 
+
+function closely tracks the controls found by Tracking Optimization. Verification 297 
+
+Optimization is an important troubleshooting step because it isolates issues with optimal 298 
+
+control problem formulation that may hinder Design Optimization. Design Optimization 299 
+
+generates a predictive simulation of the patient’s post-treatment movement function when 300 
+
+either a) a pre-defined treatment design is to be evaluated based on how well it achieves 301 
+
+a specified treatment goal, or b) an optimal treatment design is to be found that achieves 302 
+
+a specified treatment goal. Design Optimization adjusts the model controls and states 303 
+
+produced by Verification Optimization and is the final step in the computational treatment 304 
+
+design process. For more detail regarding NMSM Pipeline tools, readers are encouraged 305 
+
+to read “The Neuromusculoskeletal Modeling Pipeline: MATLAB-based model 306 
+
+personalization and treatment optimization functionality for OpenSim” by Hammond et al. 307 
+
+(60). 308 
+
+# 2. Tutorial Descriptions 309 
+
+The knee OA tutorial focuses on skeletal modeling, and the stroke tutorial introduces 310 
+
+muscles and neural control into the models. Each tutorial has four modules that focus on 311 
+
+a different tool in the NMSM Pipeline and includes instructions on the relevant OpenSim 312 
+
+tools (Table 1). The first two modules of each tutorial focus on the Model Personalization 313 
+
+toolset, and the last two modules focus on the Treatment Optimization toolset. OpenSim 314 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+15 
+
+tools are used throughout the tutorials as relevant to the tutorial material. Each module is 315 
+
+designed to take approximately one week to complete, and so some steps are pre-done 316 
+
+for users in the tutorial distribution to lower workload and focus on the primary tasks of 317 
+
+each tutorial. Detailed instructions are given that are designed to “hold the user’s hand” 318 
+
+through the entire modeling process to facilitate active learning and focus on the primary 319 
+
+learning objectives of each tutorial. At the end of each module, users are prompted to 320 
+
+gather deliverables that are designed to guide them through critical evaluation of their 321 
+
+results. These deliverables include presentation of raw results, analysis and interpretation 322 
+
+of the results, and explanation of the tools being used. 323 
+
+324 
+
+Table 1: List of NMSM Pipeline and OpenSim tools that are used in each tutorial. For 325 
+
+tools labeled Performed, users specifically work through that tool in the tutorial. For tools 326 
+
+labeled Provided, pre-generated results are provided to users. 327 
+
+Toolset Tool Tutorial 1 Tutorial 2 
+
+NMSM Pipeline Model Personalization 
+
+Joint Model Personalization Performed Provided 
+
+Ground Contact Model Personalization Performed Provided 
+
+Muscle-tendon Model Personalization N/A Performed 
+
+Neural Control Model Personalization N/A Performed 
+
+NMSM Pipeline Treatment Optimization 
+
+Tracking Optimization Performed Performed 
+
+Verification Optimization Performed Performed 
+
+Design Optimization Performed Performed 
+
+OpenSim 
+
+Scale Model Performed Provided 
+
+Inverse Kinematics Performed Provided 
+
+Inverse Dynamics Performed Provided 
+
+Muscle Analysis N/A Performed 
+
+328 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+16 
+
+a. Tutorial 1 Layout 329 
+
+The first tutorial guides users through using the NMSM Pipeline computational treatment 330 
+
+design process for a situation where modeling of muscles and neural control may not be 331 
+
+needed and skeletal modeling is sufficient. The tutorial uses the NMSM Pipeline’s Joint 332 
+
+Model Personalization, Ground Contact Model Personalization, and torque-driven 333 
+
+Treatment Optimization tools, as well as OpenSim’s Scale Model and Inverse Kinematics 334 
+
+tools to design a walking modification or HTO surgery for a single subject with bilateral 335 
+
+knee OA. The tutorial consists of four modules, with two Model Personalization modules 336 
+
+and two Treatment Optimization modules. The inputs and outputs of all modules are 337 
+
+presented in Figure 1. The tutorial document can be found in Additional File 1.pdf 338 
+
+(Supplementary Material A - Tutorial 1). 339 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+17 
+
+340 
+
+Figure 1: Flowchart showing the inputs and outputs of each module in Tutorial 1. Green 341 
+
+elements indicate data files, red elements indicate OpenSim models, blue elements 342 
+
+indicate NMSM Pipeline models, and purple elements indicate NMSM Pipeline settings 343 
+
+files. 344 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint 18 
+
+The first module teaches users how to perform the Joint Model Personalization 345 
+
+process. This process involves using the NMSM Pipeline’s Joint Model Personalization 346 
+
+tool, and OpenSim’s Scale Model and Inverse Kinematics tools. The first task of the 347 
+
+module guides users through a unique model scaling process that ensures that the foot 348 
+
+markers are placed correctly on the feet to help with the subsequent Ground Contact 349 
+
+Model Personalization runs. The second task of the module guides users through using 350 
+
+the Joint Model Personalization tool to personalize lower extremity functional axes both 351 
+
+sequentially in multiple optimizations (i.e., personalize one joint at a time) and 352 
+
+simultaneously in one optimization (i.e., personalize all joints at once). The deliverables 353 
+
+for this task include an analysis of inverse kinematics marker errors for both Joint Model 354 
+
+Personalization problem formulations and an analysis of which Joint Model 355 
+
+Personalization problem formulation is optimal for this subject. 356 
+
+The second module teaches users how to perform the Ground Contact Model 357 
+
+Personalization process. This process involves calibrating the subject’s foot-ground 358 
+
+contact model using the NMSM Pipeline’s Ground Contact Model Personalization tool 359 
+
+and OpenSim’s Inverse Kinematics tool. The first task of the module guides users through 360 
+
+using the Inverse Kinematics tool to calculate joint angles, and then the joint angles are 361 
+
+filtered in preparation for Ground Contact Model Personalization. The second task of the 362 
+
+module guides users through using the Ground Contact Model Personalization tool to 363 
+
+create a personalized foot-ground contact model that closely reproduces experimental 364 
+
+ground reaction forces and moments. Users explore two different friction models for the 365 
+
+foot-ground contact model: Coulomb friction and viscous friction. The deliverables for this 366 
+
+module include an analysis of the experimental data tracking errors for both ground 367 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+19 
+
+contact models, and a brief explanation of which friction model worked best for this 368 
+
+subject. 369 
+
+The third module teaches users how to perform the Tracking Optimization process 370 
+
+with joint torque controls. This process involves creating dynamically consistent joint 371 
+
+torque-driven walking predictions using the NMSM Pipeline’s Tracking Optimization tool 372 
+
+and OpenSim’s Inverse Dynamics tool. The first task of the module guides users through 373 
+
+using the Inverse Dynamics tool to calculate joint loads with their previously calculated 374 
+
+and filtered Inverse Kinematics joint angles and experimental ground reaction data. The 375 
+
+second task of the module guides users through predicting a dynamically consistent 376 
+
+torque-driven walking motion using the Tracking Optimization tool. The deliverables for 377 
+
+this module include an analysis of the tracking quality for all experimental quantities 378 
+
+included in the Tracking Optimization run, and a brief explanation of which quantities have 379 
+
+the worst error and how potentially to improve that error. 380 
+
+The fourth module teaches users how to design treatments for walking impairments 381 
+
+using the Design Optimization tool with joint torque controls. This process involves using 382 
+
+the NMSM Pipeline’s Verification Optimization and Design Optimization tools to design 383 
+
+either a new MTG walking motion or an HTO surgical intervention that achieves a target 384 
+
+value for the subject’s peak KAM in both knees. The first task of the module guides users 385 
+
+through using the Verification Optimization tool to verify that the joint torque controls found 386 
+
+by Tracking Optimization are able to produce the same motion, joint loads, and ground 387 
+
+reactions without tracking these quantities explicitly. The second task of the module 388 
+
+guides users through using the Design Optimization tool to design a treatment that 389 
+
+achieves a target value for the subject’s peak KAM. 390 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+20 
+
+This module gives users freedom to design either an HTO surgery or an MTG motion, 391 
+
+or both, with the goal of reducing the subject’s peak KAM to the target value of 2.5% 392 
+
+BWxHT for both knees. The design element for the HTO Design Optimization is a fixed 393 
+
+offset for the knee adduction angle in each knee of the model. No extra cost or constraint 394 
+
+terms are added for this problem. The design element for the MTG Design Optimization 395 
+
+is a knee adduction moment minimization cost term for both legs that penalizes moment 396 
+
+values greater than a specified value (termed “max allowable error” for all NMSM Pipeline 397 
+
+cost terms). For this problem, cost tracking and constraint deviation terms are added for 398 
+
+foot marker position, foot orientation, and torso orientation to better replicate the results 399 
+
+of (21). These cost and constraint terms are added in Verification Optimization without 400 
+
+any design elements to verify that they are consistent with the overall problem 401 
+
+formulation. For both Design Optimizations, the value of the design element is iterated 402 
+
+over three Design Optimization runs to find the value for each knee that achieves the 403 
+
+target peak KAM of 2.5% BWxHT. The design variables for both optimizations are the 404 
+
+joint positions, velocities, and accelerations for unlocked coordinates in the OpenSim 405 
+
+model along with all lower body joint torque controls, while the cost function for both 406 
+
+optimizations also minimizes changes in lower body joint torque controls and upper body 407 
+
+joint angles to predict a dynamically consistent walking motion. The deliverables for this 408 
+
+module include an analysis of the peak KAM produced by the designed treatment and a 409 
+
+brief discussion on the limitations of the predictive simulation to achieve the desired 410 
+
+clinical goal. 411 
+
+b. Tutorial 2 Layout 412 
+
+The second tutorial guides users through using the NMSM Pipeline computational 413 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+21 
+
+treatment design process for a situation where modeling of muscles and neural control is 414 
+
+clearly needed. The tutorial uses the NMSM Pipeline’s Muscle-tendon Model 415 
+
+Personalization, Neural Control Model Personalization, and muscle synergy-driven 416 
+
+Treatment Optimization tools and OpenSim’s Muscle Analysis tool to design a synergy-417 
+
+based FES prescription for a single subject with stroke. The tutorial also consists of four 418 
+
+modules, with two Model Personalization modules and two Treatment Optimization 419 
+
+modules. The tools used in this tutorial generally take longer to run compared to the first 420 
+
+tutorial, and so for some modules, users work through smaller runs on the tools and are 421 
+
+given pre-generated results for bigger problems to facilitate data analysis. The inputs and 422 
+
+outputs of all modules are presented in Figure 2. The tutorial document can be found in 423 
+
+Additional File 2.pdf (Supplementary Material B - Tutorial 2). 424 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+22 
+
+425 
+
+Figure 2: Flowchart showing the inputs and outputs of each module in Tutorial 2. The 426 
+
+legend can be found in Figure 1. Green elements indicate data files, red elements indicate 427 
+
+OpenSim models, blue elements indicate NMSM Pipeline models, and purple elements 428 
+
+.CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint 23 
+
+indicate NMSM Pipeline settings files. Joint angles, joint loads, ground reactions, EMG 429 
+
+data, and a post-JMP model are provided at the beginning of module 1. 430 
+
+The first module teaches users how to perform the Muscle-tendon Model 431 
+
+Personalization process. This process involves predicting muscle forces for the subject 432 
+
+using the NMSM Pipeline’s Muscle-tendon Model Personalization tool and Data 433 
+
+Preprocessing utility and OpenSim’s Muscle Analysis tool. The first task of this module 434 
+
+focuses on using OpenSim’s Muscle Analysis tool to calculate muscle-tendon lengths and 435 
+
+moment arms that will be used by Muscle-tendon Model Personalization. The second task 436 
+
+of this module has users employ the NMSM Pipeline’s Data Preprocessing utility to crop, 437 
+
+filter, and resample data in preparation for Muscle-tendon Model Personalization. The 438 
+
+third task of this module has users use the NMSM Pipeline’s Muscle-tendon Model 439 
+
+Personalization tool to personalize muscle-tendon parameters to best predict muscle 440 
+
+forces, guiding them through an iterative process to obtain the best Muscle-tendon Model 441 
+
+Personalization result. The deliverables for this module include a brief explanation of how 442 
+
+the Muscle-tendon Model Personalization tool works, an analysis of the four iterations 443 
+
+students perform, and a brief discussion of why Muscle-tendon Model Personalization is 444 
+
+important for muscle-driven predictive simulations. 445 
+
+The second module teaches users how to perform the Neural Control Model 446 
+
+Personalization process. This process involves creating and analyzing a muscle synergy 447 
+
+neural control model for the subject using the NMSM Pipeline’s Neural Control Model 448 
+
+Personalization tool. The first task of this module briefly shows users how to format their 449 
+
+Neural Control Model Personalization input data directory after running Muscle-tendon 450 
+
+Model Personalization. The second task of this module guides users through choosing 451 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+24 
+
+the appropriate number of muscle synergies to use in their Neural Control Model 452 
+
+Personalization run by analyzing the variance accounted for (VAF) of the EMG data as 453 
+
+the number of synergies increases. The third task for this module guides users through 454 
+
+creating and running an initial Neural Control Model Personalization problem. After users 455 
+
+run their Neural Control Model Personalization problem, they are given premade results 456 
+
+for data analysis with five synergies and bilaterally symmetric synergy vectors between 457 
+
+legs. The deliverables for this module are extensive and guide users through the full data 458 
+
+analysis and diagnosis of the subject’s neural impairment. Users are instructed to analyze 459 
+
+the shape of the synergy activations when bilaterally symmetric synergy vectors are 460 
+
+specified, identify which synergies are healthy, impaired, or compensatory, and identify 461 
+
+the function of each of the synergies. After completing the deliverables, users should have 462 
+
+a strong grasp on how use Neural Control Model Personalization to gain insight into a 463 
+
+subject’s neural control impairment. 464 
+
+The third module teaches users how to perform the Tracking Optimization process 465 
+
+with muscle-synergy controls. This process involves creating a dynamically consistent 466 
+
+muscle synergy-driven walking motion using the NMSM Pipeline’s Tracking Optimization 467 
+
+tool and Surrogate Muscle Model utility. The first task of this module guides students 468 
+
+through creating a surrogate muscle model using the NMSM Pipeline and OpenSim’s 469 
+
+Muscle Analysis tool. The second task of this module guides students through creating 470 
+
+and running a synergy-driven Tracking Optimization settings file. Synergy-driven Tracking 471 
+
+Optimizations are often difficult to get to converge to a good solution, and so extra 472 
+
+attention is given toward analyzing the convergence of the optimization and how to 473 
+
+troubleshoot potential issues. Because synergy-driven Tracking Optimization runs are 474 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+25 
+
+computationally expensive, users were instructed to run only one Tracking Optimization 475 
+
+problem, and premade results were used for further data analysis. The deliverables for 476 
+
+this module guides users through analysis of their Tracking Optimization results and the 477 
+
+premade Tracking Optimization results with a mix of quantitative analysis of experimental 478 
+
+tracking results and qualitative analysis of the gait motion produced by Tracking 479 
+
+Optimization. 480 
+
+The fourth module teaches users how to design treatments for walking impairments 481 
+
+using the Design Optimization tool with muscle-synergy controls. This process involves 482 
+
+using the NMSM Pipeline’s Verification Optimization and Design Optimization tools to 483 
+
+design a synergy-based FES prescription to improve walking symmetry for a person with 484 
+
+stroke. The first task of this module guides users through using the Verification 485 
+
+Optimization tool to verify that the synergy controls produced by Tracking Optimization 486 
+
+are able to produce the same motion, joint loads, muscle activations, and ground 487 
+
+reactions without tracking these quantities explicitly. The second task of this module 488 
+
+prompts users to plan their FES prescription. The goal for this task is to choose a set of 489 
+
+scale factors to apply to the synergy activations such that the amplitude of each synergy 490 
+
+activation is equal between legs. The third task of this module guides users through 491 
+
+implementing their FES prescription in Design Optimization to equalize the propulsive and 492 
+
+braking impulses between the subject’s feet. The target propulsive and braking impulses 493 
+
+are calculated by averaging the experimental propulsive and breaking impulses, and cost 494 
+
+terms are used to achieve this target value. Additional cost terms are added that track a 495 
+
+scaled version of the synergy activations such that their shape stays nearly the same but 496 
+
+their amplitudes can increase or decrease. It is assumed that users are stimulating only 497 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+26 
+
+the impaired synergies and that the subject will be capable of self-correcting any 498 
+
+compensatory synergies in response to the stimulation. Next, users analyze their Design 499 
+
+Optimization results, explain their rationale for the scale factors they chose, and present 500 
+
+the potential limitations of implementing their FES prescription to a clinical setting. 501 
+
+# Results 502 
+
+Simulation results for both tutorials are presented in this section. For simulations that 503 
+
+tracked experimental quantities, root mean squared error (RMSE) values are reported. 504 
+
+Iteration counts and computation times for each module are reported for runs performed 505 
+
+using a Windows 11 PC workstation possessing an AMD Ryzen 9 7950x 16-core 506 
+
+processor with 32 GB of DDR5 RAM. 507 
+
+a. Tutorial 1 Results 508 
+
+The Joint Model Personalization module yielded substantially lower marker errors for both 509 
+
+the sequential and simultaneous runs. Prior to Joint Model Personalization, Inverse 510 
+
+Kinematics marker tracking errors during gait were an average of 0.92 cm with a 511 
+
+maximum error of 2.1 cm. The sequential Joint Model Personalization run reduced the 512 
+
+average marker tracking error for gait to 0.65 cm and the maximum error to 1.6 cm. The 513 
+
+simultaneous Joint Model Personalization run reduced the average marker tracking error 514 
+
+for gait to 0.57 cm and the maximum error to 1.6 cm (Figure 3). The maximum marker 515 
+
+tracking errors for both the simultaneous and sequential run were larger than the errors 516 
+
+presented in prevous studies using the same personalization method, but the average 517 
+
+marker tracking errors were of similar magnitude to those studies (60,79). For an analysis 518 
+
+of marker tracking errors produced by a scaled generic OpenSim model, refer to 519 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+27 
+
+Additional File 3.pdf (Supplementary Material C - Scaled Generic Model Comparison). 520 
+
+The simultaneous Joint Model Personalization run produced the lowest marker tracking 521 
+
+errors and so was used for the remainder of the tutorial. This Joint Model Personalization 522 
+
+run terminated after 6 iterations and 0.37 hours of wall clock time. 523 
+
+524 
+
+Figure 3: Right leg inverse kinematics marker tracking errors before Joint Model 525 
+
+Personalization (blue) and after Joint Model Personalization (red). The x-axis represents 526 
+
+percent gait cycle from right heel-strike to right heel-strike [0-100%], and the y-axis 527 
+
+represents marker distance errors [cm]. Joint Model Personalization greatly reduced 528 
+
+average and maximum marker tracking errors for all lower limb markers included in the 529 
+
+optimization. 530 
+
+The Ground Contact Model Personalization module calibrated a foot-ground contact 531 
+
+model for each foot that could accurately reproduce experimental ground reaction forces 532 
+
+and moments with minimal changes in foot kinematics. The Ground Contact Model 533 
+
+Personalization model with viscous friction achieved an average ground reaction force 534 
+
+tracking RMSE of 5.9 N and an average ground reaction moment tracking RMSE of 0.81 535 
+
+Nm with average RMSEs for calcaneus orientation and translation tracking and toes angle 536 
+
+tracking of 1.3 degrees, 0.38 cm, and 1.1 degrees, respectively. The Ground Contact 537 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+28 
+
+Model Personalization model with Coulomb friction achieved an average ground reaction 538 
+
+force tracking RMSE of 4.9 N and an average ground reaction moment tracking RMSE of 539 
+
+0.77 Nm with average RMSEs for calcaneus orientation and translation tracking and toes 540 
+
+angle tracking of 1.2 degrees, 0.37 cm, and 1.1 degrees, respectively (Figure 4). All 541 
+
+ground reaction and foot kinematic RMSE values were comparable to results published 542 
+
+in a previous study that used a similar ground contact model (60) and better than results 543 
+
+published in studies that used a different ground contact model (3). The Ground Contact 544 
+
+Model Personalization model with Coulomb friction produced the lowest tracking errors 545 
+
+and so was used for the subsequent Treatment Optimization. This Ground Contact Model 546 
+
+Personalization run is terminated after 87 iterations and 0.19 hours of wall clock time. 547 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+29 
+
+548 
+
+Figure 4: (A) Ground reaction forces and moments and (B) kinematic tracking quality 549 
+
+from Ground Contact Model Personalization using Coulomb friction. The x-axis 550 
+
+represents percent gait cycle from right heel-strike to right heel-strike [0-100%]. For 551 
+
+subfigure A, the y-axis represents forces [N] or moments [Nm]. For subfigure B, the y-axis 552 
+
+represents coordinate angle [deg] or foot translation [m]. Ground reactions produced by 553 
+
+Ground Contact Model Personalization (red) closely tracked experimental ground 554 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+30 
+
+reactions (blue) with minimal changes in experimental foot kinematics, indicating 555 
+
+excellent Ground Contact Model Personalization results. 556 
+
+The Tracking Optimization module produced a dynamically consistent walking motion 557 
+
+that closely tracked all joint angles, joint loads, and ground reactions. All joint rotations 558 
+
+were tracked to within 1.8 degrees RMSE, and all joint translations were tracked to within 559 
+
+0.29 cm RMSE. All lower limb joint moments were tracked to within 2.0 Nm. (Figure 5) 560 
+
+The peak KAM for the right and left legs was -44.3 Nm and -43.15 Nm, respectively 561 
+
+(Figure 6). Ground reaction forces were all tracked to within 9 N RMSE and ground 562 
+
+reaction moments to within 2.1 Nm RMSE. The torque-driven Tracking Optimization 563 
+
+tracking results were of comparable quality to those produced in a similar three-564 
+
+dimensional predictive simulation study that tracked actual subject experimental data 565 
+
+(33). This Tracking Optimization run converges in 95 iterations and 0.19 hours of wall 566 
+
+clock time. 567 
+
+The Verification Optimization results closely tracked the Tracking Optimization 568 
+
+solution with negligible RMSE across all quantities, thus verifying that the Tracking 569 
+
+Optimization problem was well-formulated and ready for Design Optimization. The HTO 570 
+
+Verification Optimization run converges in 3 iterations and 0.02 hours of wall clock time 571 
+
+and the MTG Verification Optimization run converges in 4 iterations and 0.02 hours of 572 
+
+wall clock time. 573 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+31 
+
+574 
+
+Figure 5: Torque-driven Tracking Optimization (TO) results for (A) joint angles and (B) 575 
+
+joint moments. The x-axis represents percent gait cycle from right heel-strike to right heel-576 
+
+strike [0-100%]. For subfigure A, the y-axis represents joint angles [deg]. For subfigure B, 577 
+
+the y-axis represents joint moments [Nm]. The Tracking Optimization results (red) closely 578 
+
+reproduced all lower limb experimental joint angles and moments (blue) while achieving 579 
+
+dynamic consistency. 580 
+
+The HTO and MTG Design Optimization runs were both able to reduce the peak KAM 581 
+
+to below the desired value of 30.3 Nm (Figure 6). For the HTO problem, corrections of 3 582 
+
+degrees, 6 degrees, and 9 degrees were tested, and ~6 degrees was found to be the 583 
+
+optimal correction for this subject. For the MTG problem, maximum allowable errors of 10 584 
+
+Nm, 15 Nm, and 20 Nm for the KAM were tested, and ~15 Nm was found to be the optimal 585 
+
+value for this subject. The final HTO Design Optimization run converged in 60 iterations 586 
+
+and 0.12 hours of wall clock time, while the final MTG Design Optimization run converged 587 
+
+in 181 iterations and 0.38 hours of wall clock time. 588 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+32 
+
+589 
+
+Figure 6: Left and right knee adduction moment (KAM) plots for the experimental (blue), 590 
+
+high tibial osteotomy (HTO) (red), and medial thrust gait (MTG) (green) motions. The 591 
+
+dashed black line represents the target value for the peak knee adduction moment, which 592 
+
+was 30.3 Nm. The x-axis represents percent gait cycle from right heel-strike to right heel-593 
+
+strike [0-100%]. The y-axis represents the knee adduction moment [Nm]. Both the HTO 594 
+
+and MTG predictive simulations produced a peak KAM at or slightly below the target 595 
+
+value. 596 
+
+b. Tutorial 2 Results 597 
+
+The Muscle-tendon Model Personalization and Neural Control Model Personalization 598 
+
+modules yielded accurate joint moment matching results for the final runs that were used 599 
+
+in Tracking Optimization. The final Muscle-tendon Model Personalization problem 600 
+
+formulation produced personalized muscle-tendon models that matched experimental 601 
+
+joint moments to within 5.1 Nm RMSE with maximum absolute errors within 4.5 Nm 602 
+
+(Figure 7). The Muscle-tendon Model Personalization moment tracking quality was at 603 
+
+least as good as previous studies that used an EMG-driven modeling procedure to 604 
+
+calibrate muscles spanning the hip, knee, and ankle simultaneously (22,60,63). The final 605 
+
+Muscle-tendon Model Personalization run converged in 508 iterations and 0.08 hours of 606 
+
+wall clock time. 607 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+33 
+
+The Neural Control Model Personalization tool produced a muscle synergy model with 608 
+
+identical synergy vectors for both legs and that matched joint moments to within 3.2 Nm 609 
+
+RMSE and muscle activations from Muscle-tendon Model Personalization with a total 610 
+
+percent VAF of 91% and a worse individual muscle RMSE of 0.092. The Neural Control 611 
+
+Model Personalization moment tracking results were very similar to those reported in a 612 
+
+similar study using this computational method (60). This Neural Control Model 613 
+
+Personalization run converged in 641 iterations and 0.55 hours of wall clock time. 614 
+
+615 
+
+Figure 7: Muscle-tendon Model Personalization (MTP) (red) and Neural Control Model 616 
+
+Personalization (NCP) (green) tracking quality for experimental joint moments (blue). The 617 
+
+x-axis represents percent gait cycle from right heel-strike to right heel-strike [0-100%]. 618 
+
+The y-axis represents joint moments [Nm]. Both Muscle-tendon Model Personalization 619 
+
+and Neural Control model Personalization closely reproduced the experimental joint 620 
+
+moments, while Neural Control Model Personalization created a smoothing effect on the 621 
+
+joint moments that produced better experimental moment tracking. 622 
+
+The Tracking Optimization module produced a dynamically consistent synergy-driven 623 
+
+walking motion that closely tracked all joint angles, joint loads, ground reactions, and 624 
+
+muscle activations. All lower limb joint rotations were tracked to within 3.2 degrees RMSE 625 
+
+and all joint translations were tracked to within 0.57 cm RMSE. All lower limb joint loads 626 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+34 
+
+were tracked to within 6.0 Nm (Figure 8). Horizontal ground reaction forces were all 627 
+
+tracked to within 8.2 N RMSE, with vertical ground reaction forces being tracked to within 628 
+
+27 N RMSE, while all ground reaction moments were tracked to within 2.6 Nm RMSE. All 629 
+
+muscle activations wre tracked to within 0.075 RMSE. All of these quantities were similar 630 
+
+to values reported in other published synergy-driven predictive simulation studies that 631 
+
+used actual subject walking data (23,33,60). The synergy activations produced by 632 
+
+Tracking Optimization and their corresponding synergy vectors are provided in Figures 9 633 
+
+and 10, respectively. The cosine similarities between the non-paretic and paretic leg 634 
+
+synergy vectors were 0.99, 0.99, 0.97, 0.99, and 0.98 for synergies 1 through 5 635 
+
+respectively (Figure 10). This Tracking Optimization run converges in 270 iterations and 636 
+
+6.25 hours of wall clock time. 637 
+
+The Verification Optimization results closely tracked the Tracking Optimization 638 
+
+solution with negligible RMSE across all quantities, thus verifying that the Tracking 639 
+
+Optimization solution was valid and ready for Design Optimization. This Verification 640 
+
+Optimization run converges in 55 iterations and 0.28 hours of wall clock time. 641 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+35 
+
+642 
+
+Figure 8: Synergy-driven Tracking Optimization results for (A) joint angles and (B) joint 643 
+
+moments. The x-axis represents percent gait cycle from right heel-strike to right heel-644 
+
+strike [0-100%]. For subfigure A, the y-axis represents the joint angles [deg]. For subfigure 645 
+
+B, the y-axis represents the joint moments [Nm]. The Tracking Optimization results (red) 646 
+
+closely reproduced all lower limb experimental joint angles and moments (blue). 647 
+
+The synergy-driven Design Optimization run with cost terms for synergy activation 648 
+
+scaling and propulsive and braking impulse targets successfully equalized the propulsive 649 
+
+and braking impulses to within 5% error of each other (Table 2). The presented results 650 
+
+used a synergy activation scaling strategy where the right and left leg synergy activations 651 
+
+were scaled up or down to their average amplitude found by Tracking Optimization (Figure 652 
+
+9). Corresponding synergy vectors are shown in Figure 10 and were unchanged from 653 
+
+Tracking Optimization. Symmetry indices for predicted propulsive and braking impulses 654 
+
+were also calculated using the equation 655 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+36 
+
+𝑆𝑦𝑚𝑚𝑒𝑡𝑟𝑦 𝐼𝑛𝑑𝑒𝑥 = - |𝑞 ! − 𝑞 "|0.5 ⋅ (𝑞 ! + 𝑞 ")8 ⋅ 100% 656 
+
+where 𝑞 ! and 𝑞 " are discrete positive values used for quantifying symmetry. Design 657 
+
+Optimization improved all symmetry indices within each leg and between the two legs 658 
+
+(Table 3) from an average of 100.3% (highly asymmetric) to 0.9% (almost perfectly 659 
+
+symmetric). The Design Optimization run converged in 229 iterations and 1.10 hours of 660 
+
+wall clock time. 661 
+
+662 
+
+Figure 9: Tracking Optimization (TO) (blue) and Design Optimization (DO) (red) synergy 663 
+
+activations throughout the gait cycle. The x-axis represents percent gait cycle from right 664 
+
+heel-strike to right heel-strike [0-100%]. The y-axis represents synergy activation 665 
+
+amplitude [unitless, 0-1]. The stance phases for each leg are shaded. The associated 666 
+
+synergy vectors produced by Tracking Optimization are shown in Figure 10. 667 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+37 
+
+668 
+
+Figure 10: Left (non-paretic, blue) and right (paretic, red) synergy vectors produced by 669 
+
+Tracking Optimization. The x-axis contains one muscle per pair of bars, and the y-axis 670 
+
+represents the value of the synergy vectors (unitless). By design, the synergy vectors 671 
+
+were nearly symmetric. Neural Control Model Personalization constrained the synergy 672 
+
+vectors to be the same between the two legs, and Tracking Optimization was allowed to 673 
+
+make small changes to them to facilitate achieving dynamic consistency. Synergy vectors 674 
+
+were not changed in Design Optimization. 675 
+
+676 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+38 
+
+Table 2: Propulsive and braking impulses after Tracking Optimization (TO) and after 677 
+
+Design Optimization (DO). The Design Optimization problem could equalize the 678 
+
+propulsive and braking impulses to within 0.8 Ns of the target value of 10.77 Ns. 679 
+
+Propulsive 
+
+Impulse 
+
+Braking 
+
+Impulse 
+
+TO Results Right Leg 5. 92 15. 64 
+
+Left Leg 18.42 5.35 
+
+DO Results 
+
+Right Leg 10. 77 10. 80 
+
+Left Leg 10.84 10.69 
+
+680 
+
+Table 3: Symmetry indices for propulsive and braking impulses after Tracking 681 
+
+Optimization (TO) and after Design Optimization (DO). Symmetry indices are reported for 682 
+
+1) propulsive impulses between the right and left leg, 2) braking impulses between the 683 
+
+right and left leg, 3) propulsive and braking impulses on the right leg, and 4) propulsive 684 
+
+and braking impulses on the left leg. 685 
+
+Symmetry Pair Symmetry 
+
+Index (%)
+
+TO Results 
+
+Right -Left Propulsive 102.7 
+
+Right-Left Braking 98.1 
+
+Right Leg Propulsive -Braking 90. 2
+
+Left Leg Propulsive-Braking 110.0 
+
+DO Results 
+
+Right -Left Propulsive 0. 7
+
+Right-Left Braking 1.0 
+
+Right Leg Propulsive -Braking 0.3 
+
+Left Leg Propulsive-Braking 1.4 
+
+686 
+
+# Discussion 687 
+
+This paper presented a pair of neuromusculoskeletal modeling tutorials using the NMSM 688 
+
+Pipeline and OpenSim that provide extensive details on how to approach the 689 
+
+computational treatment design process. Extra attention is given to “small” details that 690 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+39 
+
+significantly influence optimization convergence and results quality, yet these details are 691 
+
+rarely presented in journal publications. Currently, most researchers can learn how to use 692 
+
+tools such as OpenSim through a set of tutorials that explore the main tool functionality 693 
+
+but lack explanation of the finer details that are critical for research tutorials. While 694 
+
+extensive details are useful, including them makes tutorial development much harder and 695 
+
+time consuming. Development of the in-depth tutorials presented here took three 696 
+
+individuals a year and a half, which is not realistic for every software tutorial. These 697 
+
+tutorials are based on real research first, and then the instructions were written after 698 
+
+results were obtained. This process required working through the simulation pipeline 699 
+
+numerous times to verify that the instructions work as intended and to test different 700 
+
+scenarios that could impact optimization convergence. The result is a pair of 701 
+
+comprehensive tutorial instructions for how to approach computational treatment design 702 
+
+and how to use the NMSM Pipeline for this purpose. 703 
+
+The knee OA tutorial walks users through successfully reproducing the validated 704 
+
+results in (21) or predicting the functional outcome of an HTO surgery. Reproducing the 705 
+
+results of (21) required a specific problem formulation in which foot position and 706 
+
+orientation were constrained. The original paper did not use a ground contact model but 707 
+
+rather prescribed the motion of the feet with respect to ground and applied slightly variable 708 
+
+ground reactions to them. The HTO solution is not validated, but the optimal correction of 709 
+
+6 degrees falls within the typical range of correction for HTO surgery (90). 710 
+
+The two knee OA treatment predictions have limitations that may affect their prediction 711 
+
+accuracy. First, the HTO surgery was simulated by simply changing the knee adduction 712 
+
+angle. However, the actual surgery adjusts the angle of the tibia below the knee joint. This 713 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+40 
+
+limitation could be addressed by adding a specific HTO joint to the tibia that anatomically 714 
+
+represents the surgery. Next, the surgery simulation did not use muscles, which could 715 
+
+result in the predictive simulation producing a motion that the subject’s neural control 716 
+
+cannot achieve. While the predicted medial thrust gait motion has been experimentally 717 
+
+validated for a single subject (21), there is no guarantee that other subjects will be able 718 
+
+to achieve it. For both treatment problems, it is possible that including personalized 719 
+
+muscle-tendon models and a personalized neural control model could yield more 720 
+
+accurate predictions. Nevertheless, both the HTO and MTG simulations as performed in 721 
+
+the tutorials produced physiologically realistic results. 722 
+
+The stroke tutorial successfully walks users through designing a synergy-based FES 723 
+
+intervention to correct gait propulsive force asymmetry. The treatment design in the 724 
+
+tutorial relies on two key assumptions that are not common in the literature. First, we 725 
+
+assumed that synergy vectors are nearly identical between the two legs. This assumption 726 
+
+relies on the hypothesis that synergy activations are sourced from the brain while synergy 727 
+
+vectors reside in the spinal cord (91,92). Previous studies have reported that when 728 
+
+muscle synergies are calculated from EMG data for walking, synergy vectors are 729 
+
+“remarkably similar” between paretic legs of stroke survivors, non-paretic legs of stroke 730 
+
+survivors, and legs of healthy subjects when analyzed using the same number of 731 
+
+synergies (93,94). As stated in Clark et al. (2010), “Indeed, when the data for all post-732 
+
+stroke participants were analyzed using four modules (even when our VAF criteria could 733 
+
+be met with fewer modules), we found that the module muscle weightings were 734 
+
+remarkably similar between the healthy and post-stroke groups.” Thus, the primary 735 
+
+differences between these three groups may occur in the corresponding time-varying 736 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+41 
+
+synergy activations. From this perspective, while “merged” synergies may be a more 737 
+
+compact representation of some post-stroke walking EMG patterns (95), “merging” may 738 
+
+actually be “mathematically masking” remaining potential within the post-stroke central 739 
+
+nervous system. These observations suggest that it is at least reasonable to explore 740 
+
+computational treatment design to improve walking post-stroke using similar synergy 741 
+
+vectors between the two legs. 742 
+
+Second, we assumed that synergy activation pairs (i.e., corresponding synergy 743 
+
+activations in the two legs) can be classified as either impaired-compensatory, 744 
+
+compensatory, or healthy based only on their relative amplitudes between the two legs 745 
+
+(67,68). An impaired-compensatory synergy pair possesses a lower amplitude synergy 746 
+
+activation on the paretic side and a higher amplitude synergy activation on the non-paretic 747 
+
+side. The lower amplitude synergy activation on the paretic side is assumed to be 748 
+
+impaired by the stroke and the higher amplitude synergy activation on the non-paretic 749 
+
+side is assumed to be compensating for the corresponding impaired synergy activation. 750 
+
+In contrast, a compensatory synergy activation pair possesses a higher amplitude 751 
+
+synergy activation on the paretic side and a lower amplitude synergy activation on the 752 
+
+non-paretic side. The higher amplitude synergy activation on the paretic side is assumed 753 
+
+to be compensating for impaired synergy activations on the paretic side, while the lower 754 
+
+amplitude synergy activation on the non-paretic side is assumed to be compensating as 755 
+
+well. A healthy synergy activation pair possesses comparable amplitude synergy 756 
+
+activations on the paretic and non-paretic side. These definitions emerge from the 757 
+
+decision to use nearly identical synergy vectors for the two legs. Based on these 758 
+
+definitions, when the subject’s impaired synergies (Right Leg 2, Right Leg 3, Right Leg 4) 759 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+42 
+
+were “stimulated” in the predictive simulation, we assumed that the subject a) would be 760 
+
+able to self-correct his compensatory synergy activations (Right Leg 1, Left Leg 1, Left 761 
+
+Leg 2, Left Leg 3, Left Leg 4) back to healthy bilateral symmetry in response to the 762 
+
+stimulation, which might not be possible depending on the severity of the subject’s neural 763 
+
+control impairment, and b) would not alter his healthy synergy activations (Right Leg 5, 764 
+
+Left Leg 5) substantially. 765 
+
+Another limitation with our method for simulating FES is that most research 766 
+
+laboratories can stimulate only up to eight muscles per leg (67,68,96), which makes 767 
+
+stimulating an entire synergy as done in this tutorial unrealistic. In a clinical setting, the 768 
+
+primary muscles in the impaired synergies would need to be identified and stimulated. 769 
+
+These limitations are significant and highlight that the synergy-based FES treatments 770 
+
+designed with this computational method need to be evaluated experimentally. 771 
+
+The stroke tutorial works through the model personalization and treatment 772 
+
+optimization processes using the same dataset as in the NMSM Pipeline article but with 773 
+
+substantial differences (60). Firstly, the OpenSim model used in the present tutorial was 774 
+
+updated from the original article, featuring an updated subtalar joint, knee joint kinematics, 775 
+
+knee muscle geometry paths, initial model muscle-tendon model parameter values (97), 776 
+
+and muscle moment arms for hip adductor muscles (98). The Joint Model Personalization 777 
+
+tool for this article personalized the knee, ankle, and subtalar joints simultaneously using 778 
+
+functional joint trials and a gait trial, as opposed to (60) which personalized only the knee 779 
+
+and ankle joints using a single gait trial. The Ground Contact Model Personalization tool 780 
+
+was re-run using a Coulomb friction model and corrected the electrical center of the force 781 
+
+plates relative to the laboratory coordinate system, neither of which were done in the 782 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+43 
+
+original article. The Muscle-tendon Model Personalization tool was re-run with the new 783 
+
+Joint Model Personalization results and new OpenSim model. The iterative process to 784 
+
+achieve good Muscle-tendon Model Personalization results was documented as well, 785 
+
+providing more insight than did the NMSM Pipeline article into how to achieve the best 786 
+
+Muscle-tendon Model Personalization results. The Neural Control Model Personalization 787 
+
+tool was re-run with 5 muscle synergies per leg instead of 6 as in the NMSM Pipeline 788 
+
+article. Finally, the Design Optimization process was formulated significantly differently. 789 
+
+The NMSM Pipeline article used the Desigin Optimization tool to achieve a target value 790 
+
+of metabolic cost and equalized muscle synergies using a complex user defined cost 791 
+
+term. The present tutorial aimed to equalize the propulsive and braking impulses between 792 
+
+the subject’s feet to achieve improved propulsion by simply scaling synergy activation 793 
+
+amplitudes to the average value between legs. When users work through the tutorial, they 794 
+
+are also given freedom for how to scale the synergies so that they can compare the 795 
+
+differences between equalization methods. 796 
+
+The methods in these tutorials are formulated to work for these specific clinical 797 
+
+problems with these specific subjects. They are not guaranteed to work for every clinical 798 
+
+problem, or even for every subject having the clinical problems presented in this article. 799 
+
+Rather, the goal of the tutorials is to teach users how to utilize the full breadth of NMSM 800 
+
+Pipeline functionality for advanced problems encountered in actual research. Attention is 801 
+
+given to how settings files are created, with details explaining each selected setting, and 802 
+
+why settings file options are used so that users can extrapolate the reasoning to their 803 
+
+problems. However, how each NMSM Pipeline tool run is formulated remains subjective 804 
+
+and will be informed by the unique characteristics of the subject and clinical condition 805 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+44 
+
+being modeled. These tutorials give examples of using personalized neuromusculo-806 
+
+skeletal models to diagnose impairments and design treatments, but as with most clinical 807 
+
+problems, subjective decision making is still an important part of the treatment design 808 
+
+process. Responsibility falls on individual researchers to determine if the NMSM Pipeline 809 
+
+can be used to address their research or clinical problems. 810 
+
+An important question for this study is the extent to which the presented research is 811 
+
+truly reproducible. If a user starts with the provided generic OpenSim model and the 812 
+
+provided experimental data, reads the tutorial instructions, uses the provided NMSM 813 
+
+Pipeline and OpenSim XML settings files created by the authors, and runs each NMSM 814 
+
+Pipeline and OpenSim tool in the correct order, the presented research will be 100% 815 
+
+reproducible. To our knowledge, no previously published neuromusculoskeletal modeling 816 
+
+study has demonstrated 100% reproducibility, providing readers with everything needed 817 
+
+to go from initial model and data to final model and results. In contrast, if a user starts 818 
+
+with the same model and data, reads the tutorial instructions, creates their own XML 819 
+
+settings files based on the tutorial instructions, and runs each NMSM Pipeline and 820 
+
+OpenSim tool in the correct order, the presented research will be less than 100% 821 
+
+reproducible due to flexibility or ambiguity in some tutorial instructions or 822 
+
+misunderstanding of some tutorial instructions. To assess how much less, we evaluated 823 
+
+the tutorial assignments submitted by students in the combined undergraduate/graduate 824 
+
+mechanical engineering course (see Additional File 4.pdf, Supplementary Material D: 825 
+
+Reproducibility Evaluation). We found that for each module in both tutorials, between 64% 826 
+
+and 95% of students were able to completely or closely reproduce the results generated 827 
+
+by the authors, thereby demonstrating strong reproducibility. For further discussion on the 828 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+45 
+
+reproducibility of our research results, please refer to the reproducibility information 829 
+
+provided in Additional File 4.pdf. 830 
+
+# Conclusions 831 
+
+The detailed tutorials presented in this study serve as an introduction to developing and 832 
+
+using personalized predictive simulations to design subject-specific treatments for 833 
+
+walking impairments using the NMSM Pipeline. The NMSM Pipeline has made predictive 834 
+
+simulations and computational treatment design using personalized neuromusculo-835 
+
+skeletal models more accessible than was previously possible, enabling these tutorials to 836 
+
+be developed. The key learning outcome from these tutorials is a working knowledge of 837 
+
+personalized neuromusculoskeletal modeling techniques within the NMSM Pipeline and 838 
+
+OpenSim so that researchers can apply this knowledge to their own problems. These 839 
+
+tutorials are accessible to beginning users of the NMSM Pipeline and do not require any 840 
+
+coding knowledge, making them valuable for both clinicians and newcomers to the 841 
+
+biomechanics field. We hope that by working through these tutorials, users will develop 842 
+
+an enhanced understanding of the NMSM Pipeline and will be able to apply the NMSM 843 
+
+Pipeline’s tools to their own research and clinical problems. The tutorial documents can 844 
+
+be found in the supplementary materials of this publication (Additional File 1.pdf and 845 
+
+Additional File 2.pdf) and on the NMSM Pipeline website https://nmsm.rice.edu. Tutorial 846 
+
+materials on the website will be updated periodically to keep up with new functionality as 847 
+
+new features for the NMSM Pipeline are released. 848 
+
+849 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+46 
+
+# List of abbreviations 850 
+
+NMSM Neuromusculoskeletal modeling 851 
+
+NMS Neuromusculoskeletal 852 
+
+OA Osteoarthritis 853 
+
+HTO High Tibial Osteotomy 854 
+
+MTG Medial Thrust Gait 855 
+
+KAM Knee Adduction Moment 856 
+
+EMG Electromyography 857 
+
+FES Functional Electrical Stimulation 858 
+
+API Application Programming Interface 859 
+
+VAF Variance Accounted For 860 
+
+RMSE Root Mean Squared Error 861 
+
+862 
+
+# Supplementary Information 863 
+
+The most recent version of all tutorials described in this article can be found at 864 
+
+https://nmsm.rice.edu. All supplementary materials are described below: 865 
+
+866 
+
+File name: Additional File 1.pdf 867 
+
+File format: .pdf 868 
+
+Title: Supplementary Material A - Tutorial 1 869 
+
+Description: The document containing all steps for the first tutorial. 870 
+
+871 
+
+File name: Additional File 2.pdf 872 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+47 
+
+File format: .pdf 873 
+
+Title: Supplementary Material B - Tutorial 2 874 
+
+Description: The document containing all steps for the second tutorial. 875 
+
+876 
+
+File name: Additional file 3.pdf 877 
+
+File format: .pdf 878 
+
+Title: Supplementary Material C - Scaled Generic Model Comparison 879 
+
+Description: A document comparing how well scaled generic OpenSim models and 880 
+
+NMSM Pipeline personalized models can reproduce experimental walking data. 881 
+
+882 
+
+File name: Additional File 4.pdf 883 
+
+File format: .pdf 884 
+
+Title: Supplementary Material D - Reproducibility Evaluation 885 
+
+Description: A document containing an analysis of how well tutorial results could be 886 
+
+reproduced by undergraduate and graduate students at Rice University. 887 
+
+888 
+
+# Declarations 889 
+
+Ethical approval and consent to participate 890 
+
+The de-identified experimental walking data used in this study were collected and 891 
+
+disseminated as part of previously published studies (23,62). Student feedback on the 892 
+
+tutorials was collected via a survey that was exempted by the Rice University institutional 893 
+
+review board. 894 
+
+895 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+48 
+
+Consent for publication 896 
+
+Not applicable 897 
+
+898 
+
+Availability of data and materials 899 
+
+The NMSM Pipeline software, along with the tutorial documents, data, models, and 900 
+
+settings files described in this article, are available from the “Neuromusculoskeletal 901 
+
+Modeling (NMSM) Pipeline” project on SimTK.org (https://simtk.org/projects/nmsm). 902 
+
+Users are welcome to ask questions, share feedback, and request new functionality 903 
+
+through this project’s forum. Documentation including implementation details, examples, 904 
+
+and tutorials is available at https://nmsm.rice.edu. 905 
+
+906 
+
+Competing interests 907 
+
+The authors declare no competing interests 908 
+
+909 
+
+Funding 910 
+
+This work was funded by the National Institutes of Health under grant R01 EB030520. 911 
+
+912 
+
+Authors contributions 913 
+
+R.S. and B.F. wrote the manuscript text; G.L. and S.W. provided extensive feedback on 914 
+
+the manuscript text; B.F. wrote the knee OA tutorial and designed the simulations used in 915 
+
+the tutorial; R.S. wrote the stroke tutorial; R.S. and G.L. prepared the simulations used in 916 
+
+the stroke tutorial; R.S. prepared manuscript figures; S.W. wrote much of the code used 917 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+49 
+
+for the tutorials; R.S., G.L, S.W., and B.F. provided input on the tutorial design; B.F. 918 
+
+oversaw the research projects on which the tutorials were based. 919 
+
+920 
+
+Acknowledgements 921 
+
+The authors would like to thank the students of MECH497/597 at Rice University during 922 
+
+the fall semester 2025 for their valuable input toward refining the tutorials presented in 923 
+
+this article. 924 
+
+925 
+
+# References 926 
+
+1. Fregly BJ. A Conceptual Blueprint for Making Neuromusculoskeletal Models Clinically 927 Useful. Appl Sci. 2021 Jan;11(5):5. doi:10.3390/app11052037 928 2. Blemker SS, Asakawa DS, Gold GE, Delp SL. Image-based musculoskeletal modeling: 929 Applications, advances, and future opportunities. J Magn Reson Imaging. 930 2007;25(2):441–51. doi:10.1002/jmri.20805 931 3. Falisse A, Pitto L, Kainz H, Hoang H, Wesseling M, Van Rossom S, et al. Physics-Based 932 Simulations to Predict the Diaerential Eaects of Motor Control and Musculoskeletal 933 Deficits on Gait Dysfunction in Cerebral Palsy: A Retrospective Case Study. Front Hum 934 Neurosci. 2020 Feb 18;14. doi:10.3389/fnhum.2020.00040 935 4. Belvedere C, Gill H, Ortolani M, Sileoni N, Zaaagnini S, Norvillo F, et al. Instrumental Gait 936 Analysis and Tibial Plateau Modelling to Support Pre- and Post-Operative Evaluations in 937 Personalized High Tibial Osteotomy. Appl Sci. 2023 Nov 17;13:12425. 938 doi:10.3390/app132212425 939 5. Carman L, Besier TF, Rooks NB, Choisne J. An articulated shape model to predict 940 paediatric lower limb bone geometry using sparse landmarks. J Biomech. 2024 Jul 941 1;172:112211. doi:10.1016/j.jbiomech.2024.112211 942 6. Moissenet F, Modenese L, Dumas R. Alterations of musculoskeletal models for a more 943 accurate estimation of lower limb joint contact forces during normal gait: A systematic 944 review. J Biomech. 2017 Oct 3;63:8–20. doi:10.1016/j.jbiomech.2017.08.025 945 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+50 
+
+7. Ding Z, Nolte D, Kit Tsang C, Cleather DJ, Kedgley AE, Bull AMJ. In Vivo Knee Contact Force 946 Prediction Using Patient-Specific Musculoskeletal Geometry in a Segment-Based 947 Computational Model. J Biomech Eng. 2016 Jan 27;138(021018). doi:10.1115/1.4032412 948 8. Guggenberger B, Kainz H, Svehlik M. Femoral derotation osteotomy leads to more 949 medializing patellofemoral force in most individuals with patellofemoral instability. Gait 950 Posture. 2025 Mar 1;GAMMA Congress 2025 (26 – 29 March 2025, St Gallen 951 Switzerland)117:S14–5. doi:10.1016/j.gaitpost.2025.01.054 952 9. Kainz H, Killen BA, Wesseling M, Perez-Boerema F, Pitto L, Aznar JMG, et al. A multi-scale 953 modelling framework combining musculoskeletal rigid-body simulations with adaptive 954 finite element analyses, to evaluate the impact of femoral geometry on hip joint contact 955 forces and femoral bone growth. PLOS ONE. 2020 Jul 23;15(7):e0235966. 956 doi:10.1371/journal.pone.0235966 957 10. Taddei F, Martelli S, Valente G, Leardini A, Benedetti MG, Manfrini M, et al. Femoral loads 958 during gait in a patient with massive skeletal reconstruction. Clin Biomech. 2012 Mar 959 1;27(3):273–80. doi:10.1016/j.clinbiomech.2011.09.006 960 11. Gould SL, Davico G, Cosentino M, Cristofolini L, Viceconti M. Generation of severely 961 scoliotic subject-specific musculoskeletal models. PLOS ONE. 2025 Dec 962 1;20(12):e0336211. doi:10.1371/journal.pone.0336211 963 12. Valente G, Crimi G, Vanella N, Schileo E, Taddei F. nmsBuilder: Freeware to create 964 subject-specific musculoskeletal models for OpenSim. Comput Methods Programs 965 Biomed. 2017 Dec 1;152:85–92. doi:10.1016/j.cmpb.2017.09.012 966 13. Zhang J, Sorby H, Clement J, Thomas CDL, Hunter P, Nielsen P, et al. The MAP Client: 967 User-Friendly Musculoskeletal Modelling Workflows. In: Bello F, Cotin S, editors. 968 Biomedical Simulation. Cham: Springer International Publishing; 2014. p. 182–92. 969 doi:10.1007/978-3-319-12057-7_21 970 14. Suwarganda EK, Diamond LE, Lloyd DG, Besier TF, Zhang J, Killen BA, et al. Minimal 971 medical imaging can accurately reconstruct geometric bone models for 972 musculoskeletal models. PLOS ONE. 2019 Feb 11;14(2):e0205628. 973 doi:10.1371/journal.pone.0205628 974 15. Bahl JS, Zhang J, Killen BA, Taylor M, Solomon LB, Arnold JB, et al. Statistical shape 975 modelling versus linear scaling: Eaects on predictions of hip joint centre location and 976 muscle moment arms in people with hip osteoarthritis. J Biomech. 2019 Mar 6;85:164– 977 72. doi:10.1016/j.jbiomech.2019.01.031 978 16. Kewley A, Beesel J van, Seth A. OpenSim Creator: An Interactive User Interface for 979 Building OpenSim Musculoskeletal Models. J Open Source Softw. 2026 Jan 980 9;11(117):8284. doi:10.21105/joss.08284 981 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+51 
+
+17. Modenese L, Barzan M, Carty CP. Dependency of lower limb joint reaction forces on 982 femoral version. Gait Posture. 2021 Jul 1;88:318–21. doi:10.1016/j.gaitpost.2021.06.014 983 18. Modenese L, Renault JB. Automatic generation of personalised skeletal models of the 984 lower limb from three-dimensional bone geometries. J Biomech. 2021 Feb 985 12;116:110186. doi:10.1016/j.jbiomech.2020.110186 986 19. Stansfield E, Koller W, Gonçalves B, Kainz H. A Workflow to Create Personalised 987 Musculoskeletal Models Based on Magnetic Resonance Images [Internet]. bioRxiv; 2025 988 [cited 2026 Feb 27]. p. 2025.07.23.666289. Available from: 989 https://www.biorxiv.org/content/10.1101/2025.07.23.666289v1 990 doi:10.1101/2025.07.23.666289 991 20. Veerkamp K, Kainz H, Killen BA, Jónasdóttir H, van der Krogt MM. Torsion Tool: An 992 automated tool for personalising femoral and tibial geometries in OpenSim 993 musculoskeletal models. J Biomech. 2021 Aug 26;125:110589. 994 doi:10.1016/j.jbiomech.2021.110589 995 21. Fregly BJ, Reinbolt JA, Rooney KL, Mitchell KH, Chmielewski TL. Design of patient-996 specific gait modifications for knee osteoarthritis rehabilitation. IEEE Trans Biomed Eng. 997 2007 Sep;54(9):1687–95. doi:10.1109/TBME.2007.891934 998 22. Meyer AJ, Patten C, Fregly BJ. Lower extremity EMG-driven modeling of walking with 999 automated adjustment of musculoskeletal geometry. Ren L, editor. PLOS ONE. 2017 Jul 1000 11;12(7):e0179698. doi:10.1371/journal.pone.0179698 1001 23. Vega MM, Li G, Shourijeh MS, Ao D, Weinschenk RC, Patten C, et al. Computational 1002 evaluation of psoas muscle influence on walking function following internal 1003 hemipelvectomy with reconstruction. Front Bioeng Biotechnol. 2022;10:855870. 1004 doi:10.3389/fbioe.2022.855870 PubMed PMID: 36246391; PubMed Central PMCID: 1005 PMC9559731. 1006 24. Maier JN, Bianco NA, Ong CF, Muccini J, Kuhl E, Delp SL. Personalizing the shoulder 1007 rhythm in a computational upper body model improves kinematic tracking in high range-1008 of-motion arm movements. J Biomech. 2024 Nov 1;176:112365. 1009 doi:10.1016/j.jbiomech.2024.112365 1010 25. Sartori M, Llyod DG, Farina D. Neural Data-Driven Musculoskeletal Modeling for 1011 Personalized Neurorehabilitation Technologies. IEEE Trans Biomed Eng. 2016 1012 May;63(5):879–93. doi:10.1109/TBME.2016.2538296 1013 26. van den Bogert AJ, Smith GD, Nigg BM. In vivo determination of the anatomical axes of 1014 the ankle joint complex: An optimization approach. J Biomech. 1994 Dec 1;27(12):1477– 1015 88. doi:10.1016/0021-9290(94)90197-X 1016 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+52 
+
+27. Shourijeh MS, McPhee J. Foot–ground contact modeling within human gait simulations: 1017 from Kelvin–Voigt to hyper-volumetric models. Multibody Syst Dyn. 2015 Dec 1018 1;35(4):393–407. doi:10.1007/s11044-015-9467-6 1019 28. Allen JL, Kautz SA, Neptune RR. The influence of merged muscle excitation modules on 1020 post-stroke hemiparetic walking performance. Clin Biomech. 2013 Jul 1;28(6):697–704. 1021 doi:10.1016/j.clinbiomech.2013.06.003 1022 29. Werling K, Bianco NA, Raitor M, Stingel J, Hicks JL, Collins SH, et al. AddBiomechanics: 1023 Automating model scaling, inverse kinematics, and inverse dynamics from human 1024 motion data through sequential optimization. PLOS ONE. 2023 Nov 30;18(11):e0295152. 1025 doi:10.1371/journal.pone.0295152 1026 30. Pizzolato C, Lloyd DG, Sartori M, Ceseracciu E, Besier TF, Fregly BJ, et al. CEINMS: A 1027 toolbox to investigate the influence of diaerent neural control solutions on the prediction 1028 of muscle excitation and joint moments during dynamic motor tasks. J Biomech. 2015 1029 Nov 5;48(14):3929–36. doi:10.1016/j.jbiomech.2015.09.021 1030 31. Sartori M, Refai MI, Gaudio LA, Cop CP, Simonetti D, Damonte F, et al. CEINMS-RT: An 1031 Open-Source Framework for the Continuous Neuro-Mechanical Model-Based Control of 1032 Wearable Robots. IEEE Trans Med Robot Bionics. 2025;1–1. 1033 doi:10.1109/TMRB.2025.3643986 1034 32. Pitto L, Kainz H, Falisse A, Wesseling M, Van Rossom S, Hoang H, et al. SimCP: A 1035 Simulation Platform to Predict Gait Performance Following Orthopedic Intervention in 1036 Children With Cerebral Palsy. Front Neurorobotics. 2019;13:54. 1037 doi:10.3389/fnbot.2019.00054 PubMed PMID: 31379550; PubMed Central PMCID: 1038 PMC6650580. 1039 33. Meyer AJ, Eskinazi I, Jackson JN, Rao AV, Patten C, Fregly BJ. Muscle Synergies Facilitate 1040 Computational Prediction of Subject-Specific Walking Motions. Front Bioeng 1041 Biotechnol. 2016 Oct 13;4. doi:10.3389/fbioe.2016.00077 1042 34. Falisse A, Serrancolí G, Dembia CL, Gillis J, Jonkers I, De Groote F. Rapid predictive 1043 simulations with complex musculoskeletal models suggest that diverse healthy and 1044 pathological human gaits can emerge from similar control strategies. J R Soc Interface. 1045 2019 Aug 21;16(157):20190402. doi:10.1098/rsif.2019.0402 1046 35. Pandy MG, Zajac FE, Sim E, Levine WS. An optimal control model for maximum-height 1047 human jumping. J Biomech. 1990;23(12):1185–98. doi:10.1016/0021-9290(90)90376-e 1048 PubMed PMID: 2292598. 1049 36. Taga G. A model of the neuro-musculo-skeletal system for human locomotion. Biol 1050 Cybern. 1995 Jul 1;73(2):97–111. doi:10.1007/BF00204048 1051 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+53 
+
+37. Anderson FC, Pandy MG. Dynamic Optimization of Human Walking. J Biomech Eng. 2001 1052 May 16;123(5):381–90. doi:10.1115/1.1392310 1053 38. Ogihara N, Yamazaki N. Generation of human bipedal locomotion by a bio-mimetic 1054 neuro-musculo-skeletal model. Biol Cybern. 2001 Jan 1;84(1):1–11. 1055 doi:10.1007/PL00007977 1056 39. Geyer H, Herr H. A muscle-reflex model that encodes principles of legged mechanics 1057 produces human walking dynamics and muscle activities. IEEE Trans Neural Syst 1058 Rehabil Eng Publ IEEE Eng Med Biol Soc. 2010 Jun;18(3):263–73. 1059 doi:10.1109/TNSRE.2010.2047592 PubMed PMID: 20378480. 1060 40. Dzeladini F, van den Kieboom J, Ijspeert A. The contribution of a central pattern generator 1061 in a reflex-based neuromuscular model. Front Hum Neurosci. 2014 Jun 26;8. 1062 doi:10.3389/fnhum.2014.00371 1063 41. Kidziński Ł, Mohanty SP, Ong C, Huang Z, Zhou S, Pechenko A, et al. Learning to Run 1064 challenge solutions: Adapting reinforcement learning methods for 1065 neuromusculoskeletal environments [Internet]. arXiv; 2018 [cited 2026 Feb 20]. 1066 Available from: http://arxiv.org/abs/1804.00361 doi:10.48550/arXiv.1804.00361 1067 42. Falisse A, Serrancolí G, Dembia CL, Gillis J, Groote FD. Algorithmic diaerentiation 1068 improves the computational eaiciency of OpenSim-based trajectory optimization of 1069 human movement. PLOS ONE. 2019 Oct 17;14(10):e0217730. 1070 doi:10.1371/journal.pone.0217730 1071 43. Dembia CL, Bianco NA, Falisse A, Hicks JL, Delp SL. OpenSim Moco: Musculoskeletal 1072 optimal control. PLOS Comput Biol. 2020 Dec 28;16(12):e1008493. 1073 doi:10.1371/journal.pcbi.1008493 1074 44. Delp SL, Anderson FC, Arnold AS, Loan P, Habib A, John CT, et al. OpenSim: Open-Source 1075 Software to Create and Analyze Dynamic Simulations of Movement. IEEE Trans Biomed 1076 Eng. 2007 Nov;54(11):1940–50. doi:10.1109/TBME.2007.901024 1077 45. Seth A, Hicks JL, Uchida TK, Habib A, Dembia CL, Dunne JJ, et al. OpenSim: Simulating 1078 musculoskeletal dynamics and neuromuscular control to study human and animal 1079 movement. Schneidman D, editor. PLOS Comput Biol. 2018 Jul 26;14(7):e1006223. 1080 doi:10.1371/journal.pcbi.1006223 1081 46. Koelewijn AD, Nitschke M, Dorschky E, Gambietz M, Weiss A, Eskofier BM, et al. BioMAC-1082 Sim-Toolbox: A MATLAB toolbox for biomechanical motion analysis and creation through 1083 simulation. J Open Source Softw. 2025 Nov 16;10(115):7945. doi:10.21105/joss.07945 1084 47. Geijtenbeek T. SCONE: Open Source Software for Predictive Simulation of Biological 1085 Motion. J Open Source Softw. 2019 Jun 14;4(38):1421. doi:10.21105/joss.01421 1086 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+54 
+
+48. Lee LF, Umberger BR. Generating optimal control simulations of musculoskeletal 1087 movement using OpenSim and MATLAB. PeerJ. 2016;4:e1638. doi:10.7717/peerj.1638 1088 PubMed PMID: 26835184; PubMed Central PMCID: PMC4734202. 1089 49. Caggiano V, Wang H, Durandau G, Sartori M, Kumar V. MyoSuite -- A contact-rich 1090 simulation suite for musculoskeletal motor control [Internet]. arXiv; 2022 [cited 2026 Feb 1091 24]. Available from: http://arxiv.org/abs/2205.13600 doi:10.48550/arXiv.2205.13600 1092 50. Tan T, Van Wouwe T, Werling KF, Liu CK, Delp SL, Hicks JL, et al. GaitDynamics: a 1093 generative foundation model for analyzing human walking and running. Nat Biomed Eng. 1094 2026 Jan 5;1–13. doi:10.1038/s41551-025-01565-8 1095 51. AddBiomechanics [Internet]. [cited 2026 Feb 20]. Available from: 1096 https://addbiomechanics.org/ 1097 52. SimTK: Calibrated EMG-Informed Neuromusculoskeletal Modelling Toolbox (CEINMS): 1098 Project Home [Internet]. [cited 2026 Feb 20]. Available from: 1099 https://simtk.org/projects/ceinms 1100 53. Welcome — CEINMS-RT 1.1 documentation [Internet]. [cited 2026 Feb 20]. Available 1101 from: https://ceinms-docs.readthedocs.io/en/latest/ 1102 54. SimTK: SimCP: a platform to simulate gait performance after intervention in CP children: 1103 Project Home [Internet]. [cited 2026 Feb 20]. Available from: 1104 https://simtk.org/projects/simcp 1105 55. mad-lab-fau/BioMAC-Sim-Toolbox: The biomechanical motion analysis and creation 1106 (BioMAC) simulation toolbox can be used to analyse human movement, with a focus on 1107 gait simulations [Internet]. [cited 2026 Feb 20]. Available from: https://github.com/mad-1108 lab-fau/BioMAC-Sim-Toolbox/tree/main 1109 56. Documentation [SCONE] [Internet]. [cited 2026 Feb 20]. Available from: 1110 https://scone.software/doku.php?id=doc:start 1111 57. SimTK: Welcome [Internet]. [cited 2026 May 19]. Available from: https://simtk.org/ 1112 58. AddBiomechanics [Internet]. [cited 2026 May 19]. Available from: 1113 https://addbiomechanics.org/ 1114 59. Baker M. 1,500 scientists lift the lid on reproducibility. Nature. 2016 May 1115 1;533(7604):452–4. doi:10.1038/533452a 1116 60. Hammond CV, Williams ST, Vega MM, Ao D, Li G, Salati RM, et al. The 1117 Neuromusculoskeletal Modeling Pipeline: MATLAB-based model personalization and 1118 treatment optimization functionality for OpenSim. J NeuroEngineering Rehabil. 2025 1119 May 19;22(1):112. doi:10.1186/s12984-025-01629-5 1120 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+55 
+
+61. Neuromusculoskeletal Modeling Pipeline | Neuromusculoskeletal Modeling (NMSM) 1121 Pipeline [Internet]. [cited 2026 Feb 20]. Available from: https://nmsm.rice.edu/ 1122 62. Li G, Shourijeh MS, Ao D, Patten C, Fregly BJ. How Well Do Commonly Used Co-1123 contraction Indices Approximate Lower Limb Joint Stianess Trends During Gait for 1124 Individuals Post-stroke? Front Bioeng Biotechnol. 2020;8:588908. 1125 doi:10.3389/fbioe.2020.588908 PubMed PMID: 33490046; PubMed Central PMCID: 1126 PMC7817819. 1127 63. Ao D, Vega MM, Shourijeh MS, Patten C, Fregly BJ. EMG-driven musculoskeletal model 1128 calibration with estimation of unmeasured muscle excitations via synergy extrapolation. 1129 Front Bioeng Biotechnol. 2022 Sep 7;10:962959. doi:10.3389/fbioe.2022.962959 1130 64. Zhao D, Banks SA, Mitchell KH, D’Lima DD, Colwell CW, Fregly BJ. Correlation between 1131 the knee adduction torque and medial contact force for a variety of gait patterns. J 1132 Orthop Res. 2007 Jun;25(6):789–97. doi:10.1002/jor.20379 1133 65. Sharma L, Hurwitz DE, Thonar EJ, Sum JA, Lenz ME, Dunlop DD, et al. Knee adduction 1134 moment, serum hyaluronan level, and disease severity in medial tibiofemoral 1135 osteoarthritis. Arthritis Rheum. 1998 Jul;41(7):1233–40. doi:10.1002/1529-1136 0131(199807)41:7<1233::AID-ART14>3.0.CO;2-L PubMed PMID: 9663481. 1137 66. Prodromos CC, Andriacchi TP, Galante JO. A relationship between gait and clinical 1138 changes following high tibial osteotomy. JBJS. 1985 Oct;67(8):1188–94. 1139 67. Cheung VCK, Niu CM, Li S, Xie Q, Lan N. A Novel FES Strategy for Poststroke 1140 Rehabilitation Based on the Natural Organization of Neuromuscular Control. IEEE Rev 1141 Biomed Eng. 2019;12:154–67. doi:10.1109/RBME.2018.2874132 1142 68. Levine JT, Yu XS, Muñoz R, Fiorenza A, Smith T, Djuraskovic I, et al. Synergy-based 1143 functional electrical stimulation for gait rehabilitation in chronic stroke: a pilot study 1144 [Internet]. medRxiv; 2025 [cited 2026 Feb 23]. p. 2025.05.21.25328035. Available from: 1145 https://www.medrxiv.org/content/10.1101/2025.05.21.25328035v3 1146 doi:10.1101/2025.05.21.25328035 1147 69. Ferrante S, Chia Bejarano N, Ambrosini E, Nardone A, Turcato AM, Monticone M, et al. A 1148 Personalized Multi-Channel FES Controller Based on Muscle Synergies to Support Gait 1149 Rehabilitation after Stroke. Front Neurosci. 2016 Sep 16;10. 1150 doi:10.3389/fnins.2016.00425 1151 70. Lee WA. Neuromotor synergies as a basis for coordinated intentional action. J Mot 1152 Behav. 1984 Jun;16(2):135–70. doi:10.1080/00222895.1984.10735316 PubMed PMID: 1153 14713663. 1154 71. Tresch MC, Saltiel P, Bizzi E. The construction of movement by the spinal cord. Nat 1155 Neurosci. 1999 Feb;2(2):162–7. doi:10.1038/5721 1156 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+56 
+
+72. Clark DJ, Ting LH, Zajac FE, Neptune RR, Kautz SA. Merging of Healthy Motor Modules 1157 Predicts Reduced Locomotor Performance and Muscle Coordination Complexity Post-1158 Stroke. J Neurophysiol. 2010 Feb;103(2):844–57. doi:10.1152/jn.00825.2009 PubMed 1159 PMID: 20007501; PubMed Central PMCID: PMC2822696. 1160 73. Cheung VCK, Turolla A, Agostini M, Silvoni S, Bennis C, Kasi P, et al. Muscle synergy 1161 patterns as physiological markers of motor cortical damage. Proc Natl Acad Sci U S A. 1162 2012 Sep 4;109(36):14652–6. doi:10.1073/pnas.1212056109 PubMed PMID: 22908288; 1163 PubMed Central PMCID: PMC3437897. 1164 74. Patterson MA, Rao AV. GPOPS-II: A MATLAB Software for Solving Multiple-Phase Optimal 1165 Control Problems Using hp-Adaptive Gaussian Quadrature Collocation Methods and 1166 Sparse Nonlinear Programming. ACM Trans Math Softw. 2014 Oct 27;41(1):1–37. 1167 doi:10.1145/2558904 1168 75. van den Bogert AJ, Smith GD, Nigg BM. In vivo determination of the anatomical axes of 1169 the ankle joint complex: An optimization approach. J Biomech. 1994 Dec 1;27(12):1477– 1170 88. doi:10.1016/0021-9290(94)90197-X 1171 76. Reinbolt JA, Haftka RT, Chmielewski TL, Fregly BJ. Are Patient-Specific Joint and Inertial 1172 Parameters Necessary for Accurate Inverse Dynamics Analyses of Gait? IEEE Trans 1173 Biomed Eng. 2007 May;54(5):782–93. doi:10.1109/TBME.2006.889187 PubMed PMID: 1174 17518274; PubMed Central PMCID: PMC3608472. 1175 77. Bell AL, Pedersen DR, Brand RA. A comparison of the accuracy of several hip center 1176 location prediction methods. J Biomech. 1990 Jan 1;23(6):617–21. doi:10.1016/0021-1177 9290(90)90054-7 1178 78. Charlton IW, Tate P, Smyth P, Roren L. Repeatability of an optimised lower body model. 1179 Gait Posture. 2004 Oct 1;20(2):213–21. doi:10.1016/j.gaitpost.2003.09.004 1180 79. Reinbolt JA, Schutte JF, Fregly BJ, Koh BI, Haftka RT, George AD, et al. Determination of 1181 patient-specific multi-joint kinematic models through two-level optimization. J1182 Biomech. 2005 Mar;38(3):621–6. doi:10.1016/j.jbiomech.2004.03.031 1183 80. Jackson JN, Hass CJ, Fregly BJ. Development of a Subject-Specific Foot-Ground Contact 1184 Model for Walking. J Biomech Eng. 2016 Sep 1;138(9):091002. doi:10.1115/1.4034060 1185 81. Ao D, Fregly BJ. Comparison of synergy extrapolation and static optimization for 1186 estimating multiple unmeasured muscle activations during walking. J NeuroEngineering 1187 Rehabil. 2024 Nov 1;21(1):194. doi:10.1186/s12984-024-01490-y 1188 82. Lloyd DG, Besier TF. An EMG-driven musculoskeletal model to estimate muscle forces 1189 and knee joint moments in vivo. J Biomech. 2003 Jun 1;36(6):765–76. doi:10.1016/S0021-1190 9290(03)00010-1 1191 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+57 
+
+83. Amarantini D, Martin L. A method to combine numerical optimization and EMG data for 1192 the estimation of joint moments under dynamic conditions. J Biomech. 2004 Sep 1193 1;37(9):1393–404. doi:10.1016/j.jbiomech.2003.12.020 1194 84. Buchanan TS, Lloyd DG, Manal K, Besier TF. Estimation of Muscle Forces and Joint 1195 Moments Using a Forward-Inverse Dynamics Model. Med Sci Sports Exerc. 2005 1196 Nov;37(11):1911. doi:10.1249/01.mss.0000176684.24008.6f 1197 85. Doorenbosch CAM, Harlaar J. A clinically applicable EMG–force model to quantify active 1198 stabilization of the knee after a lesion of the anterior cruciate ligament. Clin Biomech. 1199 2003 Feb 1;18(2):142–9. doi:10.1016/S0268-0033(02)00183-3 1200 86. Sartori M, Reggiani M, Farina D, Lloyd DG. EMG-Driven Forward-Dynamic Estimation of 1201 Muscle Force and Joint Moment about Multiple Degrees of Freedom in the Human Lower 1202 Extremity. PLOS ONE. 2012 Dec 26;7(12):e52618. doi:10.1371/journal.pone.0052618 1203 87. Kumar D, Rudolph KS, Manal KT. EMG-driven modeling approach to muscle force and 1204 joint load estimations: Case study in knee osteoarthritis. J Orthop Res. 2012;30(3):377– 1205 83. doi:10.1002/jor.21544 1206 88. Shourijeh MS, Fregly BJ. Muscle Synergies Modify Optimization Estimates of Joint 1207 Stianess During Walking. J Biomech Eng. 2020 Jan 1;142(1):011011. 1208 doi:10.1115/1.4044310 1209 89. Alessandro C, Delis I, Nori F, Panzeri S, Berret B. Muscle synergies in neuroscience and 1210 robotics: from input-space to task-space perspectives. Front Comput Neurosci. 2013 1211 Apr 19;7. doi:10.3389/fncom.2013.00043 1212 90. Liu X, Chen Z, Gao Y, zhang J, Jin Z. High Tibial Osteotomy: Review of Techniques and 1213 Biomechanics. J Healthc Eng. 2019 May 2;2019:8363128. doi:10.1155/2019/8363128 1214 PubMed PMID: 31191853; PubMed Central PMCID: PMC6525872. 1215 91. Ting LH, Chiel HJ, Trumbower RD, Allen JL, McKay JL, Hackney ME, et al. 1216 Neuromechanical principles underlying movement modularity and their implications for 1217 rehabilitation. Neuron. 2015 Apr 8;86(1):38–54. doi:10.1016/j.neuron.2015.02.042 1218 PubMed PMID: 25856485; PubMed Central PMCID: PMC4392340. 1219 92. Roh J, Cheung VCK, Bizzi E. Modules in the brain stem and spinal cord underlying motor 1220 behaviors. J Neurophysiol. 2011 Sep;106(3):1363–78. doi:10.1152/jn.00842.2010 1221 PubMed PMID: 21653716; PubMed Central PMCID: PMC3174810. 1222 93. Clark DJ, Ting LH, Zajac FE, Neptune RR, Kautz SA. Merging of Healthy Motor Modules 1223 Predicts Reduced Locomotor Performance and Muscle Coordination Complexity Post-1224 Stroke. J Neurophysiol. 2010 Feb;103(2):844–57. doi:10.1152/jn.00825.2009 1225 
+
+> .CC-BY 4.0 International license available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint this version posted June 30, 2026. ;https://doi.org/10.64898/2026.03.02.709099 doi: bioRxiv preprint
+
+58 
+
+94. Komaris DS, Tsaopoulos D, Risvas K, Nikolopoulos S, Baltzopoulos V, Maganaris C, et al. 1226 Comparative analysis of muscle synergies in gait of stroke patients and healthy controls. 1227 Front Hum Neurosci. 2025 Jul 16;19. doi:10.3389/fnhum.2025.1601147 1228 95. Portilla-Jiménez M, Hong YNG, Kukkar KK, Park HS, Li S, Roh J. Generalizability of 1229 neuromuscular coordination in the human upper extremity after stroke and its 1230 implications in neurorehabilitation. J NeuroEngineering Rehabil. 2025 Oct 14;22(1):213. 1231 doi:10.1186/s12984-025-01755-0 1232 96. Mulcahey MJ, Betz RR, Kozin SH, Smith BT, Hutchinson D, Lutz C. Implantation of the 1233 Freehand System® during initial rehabilitation using minimally invasive techniques. 1234 Spinal Cord. 2004 Mar;42(3):146–55. doi:10.1038/sj.sc.3101573 1235 97. Lai AKM, Arnold AS, Wakeling JM. Why are Antagonist Muscles Co-activated in My 1236 Simulation? A Musculoskeletal Model for Analysing Human Locomotor Tasks. Ann 1237 Biomed Eng. 2017 Dec;45(12):2762–74. doi:10.1007/s10439-017-1920-7 PubMed PMID: 1238 28900782; PubMed Central PMCID: PMC5989715. 1239 98. Uhlrich SD, Jackson RW, Seth A, Kolesar JA, Delp SL. Muscle coordination retraining 1240 inspired by musculoskeletal simulations reduces knee contact force. Sci Rep. 2022 Jul 1241 7;12(1):9842. doi:10.1038/s41598-022-13386-9 1242 
+
+1243

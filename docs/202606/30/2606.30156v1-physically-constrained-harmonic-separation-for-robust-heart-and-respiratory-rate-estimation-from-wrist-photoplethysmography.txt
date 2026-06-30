@@ -1,0 +1,342 @@
+Title: Physically-Constrained Harmonic Separation for Robust Heart and Respiratory Rate Estimation from Wrist Photoplethysmography
+
+URL Source: https://arxiv.org/pdf/2606.30156v1
+
+Published Time: Tue, 30 Jun 2026 02:33:12 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# Physically-Constrained Harmonic Separation for Robust Heart and Respiratory Rate Estimation from Wrist Photoplethysmography 
+
+Nouhaila Fraihi 1, Ouassim Karrakchou 1, and Mounir Ghogho 2,3 
+
+> 1
+
+TICLab, International University of Rabat, Morocco 
+
+> 2
+
+College of Computing, Mohammed VI Polytechnic University, Morocco 
+
+> 3
+
+Faculty of Engineering, University of Leeds, UK Emails: {nouhaila.fraihi, ouassim.karrakchou }@uir.ac.ma, mounir.ghogho@um6p.ma 
+
+Abstract —Wrist-worn photoplethysmography (PPG) enables continuous monitoring of cardiopulmonary physiology, but re-liable heart rate (HR) and respiratory rate (RR) estimation in free-living conditions remains challenging due to non-stationary motion artifacts that spectrally overlap with physiological dy-namics. Existing signal-processing methods degrade under strong motion, while unconstrained deep learning approaches often lack physiological interpretability and identifiable structure. We propose a Physically-Constrained Harmonic Separation (PCHS) framework that formulates HR and RR estimation from wrist PPG as an analysis-by-synthesis problem, where accelerometer measurements condition artifact separation rather than directly regressing vital signs. A physics-guided harmonic generator decomposes the observed signal into quasi-periodic physiological components and a motion-related residual, enabling HR recov-ery from the fundamental frequency and RR prediction from respiratory-driven modulations of the harmonic parameters. Robust reconstruction objectives, separation constraints, and uncertainty-aware weighting stabilize the decomposition under motion. Experiments on the motion-intensive PPG-DaLiA dataset demonstrate that PCHS outperforms state-of-the-art methods while yielding interpretable signal decompositions that effectively disentangle physiological activity from motion artifacts. 
+
+Index Terms —Photoplethysmography, motion artifacts, har-monic decomposition, analysis-by-synthesis. 
+
+I. INTRODUCTION Photoplethysmography (PPG), widely used in wrist-worn wearables, enables continuous monitoring of cardiovascular and respiratory activity; however, reliable heart-rate (HR) and respiratory-rate (RR) estimation in free-living conditions remains challenging due to motion artifacts that obscure phys-iological information [2], [3]. The wrist PPG signal consists of a pulsatile cardiac com-ponent, slow respiratory-driven baseline variations, and cou-pled amplitude and frequency modulations [13]. In free-living conditions, motion artifacts are typically additive, highly non-stationary, and spectrally overlapping with both cardiac ( ≈
+
+0.5–4 Hz) and respiratory ( < 0.5 Hz) dynamics [12], rendering fixed filtering and simple noise suppression ineffective. 
+
+This research was partially funded by Mohammed VI Polytechnic Univer-sity through the i-Respire research project. © 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in other works. 
+
+To mitigate motion corruption, prior work has relied on signal-processing pipelines that use inertial measure-ments as motion references for artifact suppression, fol-lowed by spectral rate estimation. Representative methods employ accelerometer-guided sparse spectral reconstruction or adaptive time–frequency filtering to attenuate motion-related components before extracting HR from dominant spectral peaks [4], [5], [7]. Respiratory rate (RR) estimation typically exploits respiration-induced amplitude, baseline, or frequency modulations of the PPG waveform, sometimes combined with inertial sensing to suppress motion-correlated energy in the respiratory band [14], [15]. While effective under controlled conditions, these approaches assume separability between motion and physiological dynamics, an assumption that breaks down in free-living settings due to non-stationary and spectrally overlapping motion artifacts. More recently, deep learning (DL) approaches have been proposed to jointly perform artifact suppression and vital-sign estimation from PPG within unified frameworks. Some DL methods primarily operate on raw PPG signals, formulating HR and RR estimation as end-to-end regression tasks [9], [17], [18]. Building on these PPG-only formulations, subsequent DL frameworks incorporate inertial measurements to explic-itly account for motion effects. These approaches fuse PPG and acceleration signals in a supervised manner to improve robustness under movement [1], [8], [16]. Despite recent accuracy gains, most deep learning–based approaches still formulate vital-sign estimation from PPG as a black-box regression problem. Even when incorporating accelerometer signals through supervised fusion, such models offer limited physiological interpretability and may rely on spurious correlations between motion patterns (e.g., activity type, movement intensity, or periodic arm swing) and HR or RR. This does not guarantee recovery of underlying phys-iological dynamics and can promote shortcut learning from motion cues [6]. These limitations have motivated knowledge-informed learning approaches that integrate physiological con-straints to improve robustness and interpretability. Recent methods, such as KID-PPG, incorporate explicit motion-aware processing and probabilistic inference to enhance heart-rate estimation under motion [10]. Such formulations typically adopt simplified coupling assumptions between inertial signals 
+
+> arXiv:2606.30156v1 [physics.med-ph] 29 Jun 2026
+
+and photoplethysmography. While effective in many scenarios, ensuring fully identifiable and physiologically disentangled representations remains challenging in the presence of non-stationary and spectrally overlapping motion artifacts. These limitations motivate approaches that treat motion as an explanatory source of corruption rather than a predictive shortcut, and that enforce identifiable, physiology-driven mod-eling. Motivated by this perspective, we propose a Physically-Constrained Harmonic Separation (PCHS) framework for robust HR and RR estimation from wrist PPG under mo-tion. PCHS formulates denoising as an analysis-by-synthesis problem in which a deep learning model, conditioned on accelerometer data, predicts time-varying physiological param-eters, such as the cardiac fundamental frequency and harmonic amplitudes, that synthesize a pulse-synchronous PPG com-ponent, while remaining content, including motion artifacts and unmodeled distortions, is captured by an additive residual and a time-varying reliability estimate. This formulation yields interpretable cardiac and respiratory representations. The main contributions of this work are:  
+
+> •
+
+Cross-modal motion-conditioning encoder: We introduce a motion-aware dual-stream encoder in which accelerometer measurements condition PPG representations via feature-wise linear modulation (FiLM), enabling motion-informed artifact attribution without directly regressing vital signs.  
+
+> •
+
+Physically constrained analysis-by-synthesis with ro-bust objectives: We formulate PPG decomposition as an analysis-by-synthesis problem that predicts time-varying physiological parameters and synthesizes a pulse-synchronous PPG component using a harmonic model. Robust reconstruction and separation objectives stabilize the decomposition under motion while isolating non-physiological content in an additive residual.  
+
+> •
+
+Uncertainty-aware vital-sign inference: We estimate HR from the recovered cardiac fundamental frequency and RR from physiologically meaningful low-frequency mod-ulations, using a learned time-varying reliability signal to downweight motion-corrupted intervals during inference. The remainder of this paper is organized as follows. Sec-tion II presents the proposed framework, detailing the model architecture, physiological decomposition, and training objec-tive. Section III describes the experimental protocol, including the dataset, ablation studies, and comparative results. Finally, Section IV concludes the paper and outlines directions for future work. II. M ETHODS 
+
+A. Overview and Design Principles 
+
+We propose a Physically-Constrained Harmonic Separation 
+
+(PCHS) framework for robust HR and RR estimation from wrist-worn photoplethysmography (PPG) under motion. As illustrated in Fig. 1, PCHS comprises three components: (i) a 
+
+cross-modal motion-conditioning encoder , in which a compact PPG encoder extracts multiscale, morphology-aware temporal features while a lightweight accelerometer (ACC) encoder captures motion; ACC features modulate PPG representations via feature-wise linear modulation (FiLM) [11] at multiple stages to enable motion-adaptive feature extraction; (ii) a 
+
+physically constrained harmonic decoder , which maps motion-conditioned features to time-varying physiological parameters, including cardiac fundamental frequency, harmonic ampli-tudes, gain, and baseline, synthesizing a pulse-synchronous physiological waveform via a harmonic model, while a resid-ual branch captures non-harmonic, motion-consistent arti-facts and an uncertainty head predicts local signal relia-bility; and (iii) an outputs and inference module , which performs reliability-aware vital-sign estimation, inferring HR from the recovered fundamental frequency and predicting RR from physiologically meaningful parameter modulations, with uncertainty used to downweight motion-corrupted intervals. Overall, PCHS formulates signal decomposition and vital-sign estimation as an analysis-by-synthesis problem, in which physiological structure is enforced by construction through a harmonic generative model, improving identifiability, inter-pretability, and robustness in free-living conditions. 
+
+B. Problem Formulation 
+
+Let x(t) ∈ R denote a wrist-worn PPG measurement at time t/f s, with fs being the sampling frequency, and let 
+
+u(t) ∈ R3 denote the synchronized tri-axial ACC signal. To obtain a rotation-invariant motion representation, we compute the accelerometer magnitude 
+
+u(t) = ∥u(t)∥2. (1) Following prior wrist-PPG formulations that model motion artifacts as non-stationary additive components [10], [15], we express the observed signal as 
+
+x(t) = μphys (t) + r(t) + ϵ(t), t = 1 , · · · , T (2) where μphys (t) denotes the clean, quasi-periodic physiological component dominated by cardiac and respiratory activity, r(t)
+
+represents motion-induced artifacts, ϵ(t) accounts for sensor noise and unmodeled disturbances, and T is the number of samples in the observation window. Given paired inputs 
+
+{x(t), u (t)}, the objective is to decompose the observation into physiologically interpretable and motion-related compo-nents while robustly estimating HR and RR. To this end, we adopt an encoder–decoder architecture in which a motion-conditioned encoder extracts separation-aware representations and a physically constrained decoder reconstructs a structured physiological signal decomposition from these representations. 
+
+C. Cross-Modal Conditioning Encoder 
+
+The encoder extracts separation-relevant representations from wrist PPG by jointly processing optical and inertial signals in a dual-stream architecture. This cross-modal condi-tioning enables adaptive feature modulation across temporal scales and reduces spurious coupling between motion and physiological dynamics. Fig. 1. Overview of PCHS. A cross-modal encoder uses FiLM for motion adaptation, while a physics-constrained decoder synthesizes physiological parameters and residuals for reliability-aware inference. 
+
+1) PPG Encoder: The PPG stream is processed by alightweight residual network tailored for 1D biosignals. The design prioritizes parameter efficiency while preserving mor-phological detail critical for respiratory analysis. It consists of a stem layer (kernel size 7, stride 2) followed by three residual stages, each comprising two Basic Residual Blocks with 1D convolutions, Batch Normalization, and SiLU activa-tions. Dilated convolutions ( d ∈ { 1, 2, 3, 4}) are employed to capture multiscale temporal features without increasing model complexity, preserving the temporal resolution required to model subtle respiratory modulations. 
+
+2) Motion-Aware Conditioning via FiLM: The accelerome-ter signal u(t) is processed by a lightweight 1D CNN compris-ing three convolutional blocks with kernel sizes k ∈ { 7, 5, 3}
+
+and strided pooling, progressively increasing the channel di-mension to Cacc = 64 . Global average pooling produces multi-scale motion embeddings {zearly , zmid , zlate }, which condition the corresponding stages of the PPG encoder via Feature-wise Linear Modulation (FiLM) [11]. Given a PPG feature map H and a motion embedding vector 
+
+z, FiLM applies an affine modulation: 
+
+FiLM( H | z) = γ(z) ⊙ H + β(z), (3) where γ(z) and β(z) are channel-wise scaling and shifting vectors predicted by learned linear projection heads. This con-ditioning enables motion-adaptive feature modulation without explicitly subtracting motion-related waveforms. The resulting motion-conditioned representations serve as inputs to a physically constrained decoder that reconstructs a structured physiological signal through harmonic synthesis. 
+
+D. Physically-Constrained Harmonic Decoder 
+
+We employ a physics-informed harmonic decoder inspired by Differentiable Digital Signal Processing [22] and classical models of PPG signal composition [12]. The decoder is built around an explicit generative model of the physiological PPG signal, enforcing quasi-periodic structure by construction and enabling identifiable signal decomposition. 
+
+1) Harmonic synthesis: The clean physiological component is modeled as a harmonic signal with time-varying parame-ters. Given an instantaneous fundamental frequency trajectory 
+
+f0(t), the phase is computed as 
+
+θ(t) = 2 π
+
+> t
+
+X 
+
+> τ=0
+
+f0(τ )
+
+fs
+
+. (4) The physiological signal is synthesized as 
+
+μphys (t) = (1 + g(t)) 
+
+> K
+
+X
+
+> k=1
+
+Ak(t)
+
+k sin( kθ (t)) + b(t), (5) where Ak(t) are the harmonic amplitudes controlling pulse morphology, the gain g(t) models slow amplitude modulation, and the baseline b(t) captures low-frequency variations due to respiration and sensor drift. 
+
+2) Multi-head parameter prediction: Motion-conditioned features from the encoder are processed by a shared refinement block consisting of two 1D convolutional layers ( C = 256 ,kernel size k = 3) with Batch Normalization and SiLU activation. The refined representation is then routed to multiple parallel heads that predict the parameters of the harmonic synthesis model, along with a residual artifact term and a time-varying uncertainty estimate. All convolutional layers use stride 1 with appropriate padding, ensuring that all predicted trajectories preserve the temporal resolution T of the input PPG signal. 
+
+a) Fundamental frequency: The cardiac fundamental fre-quency f0(t) ∈ [0 .5, 3.0] Hz is predicted using a pointwise 1D convolution and bounded with a sigmoid activation. This con-straint stabilizes phase integration and improves identifiability. 
+
+b) Harmonic amplitudes: Time-varying harmonic ampli-tudes Ak(t) ∈ R+ for k = 1, 2, 3 are predicted using a pointwise 1D convolution. Using three harmonics captures the dominant pulse morphology while limiting overfitting to high-frequency noise. 
+
+c) Global gain and baseline: The global gain g(t) ∈
+
+[0 , 1] and baseline term b(t) ∈ R are predicted using pointwise 1D convolutional heads. The gain models slow pulse amplitude variations due to contact changes and hemodynamic effects, while the baseline captures low-frequency respiratory effects and sensor drift. A fixed moving-average filter is applied to the baseline to enforce spectral separation from cardiac content. 
+
+d) Residual artifact: To capture signal components not explained by the harmonic model, a residual artifact r(t) is predicted using a three-layer convolutional head with channel dimensions {64 , 32 , 1} and kernel size k = 3 . This branch models non-harmonic, motion-induced distortions. 
+
+e) Uncertainty: The predicted uncertainty reflects local signal unreliability due to irrecoverable motion. A time-varying uncertainty estimate σ2(t) is predicted as the log-variance log σ2(t) by a two-layer convolutional head. Higher variance indicates segments corrupted by unrecoverable mo-tion and is used to downweight unreliable intervals during reconstruction and inference. The final reconstructed signal is given by 
+
+s(t) = μphys (t) + r(t), (6) where μphys (t) and r(t) now denote the predicted physio-logical component, obtained from the harmonic synthesis in Eq. (5), and the residual produced by the decoder, respec-tively. The decoded harmonic parameters are physiologically interpretable: the recovered fundamental frequency directly enables HR estimation, while slower temporal modulations of the amplitudes and frequency encode respiratory dynamics. HR and RR estimation are learned jointly through a multi-objective training formulation that balances reconstruction fidelity, physiological separation, and rate estimation accuracy. 
+
+E. Multi-Objective Optimization 
+
+Training employs a composite objective that enforces recon-struction fidelity, identifiable physiological–motion separation, temporal smoothness of decoded parameters, and accurate vital-sign estimation. 
+
+a) Reconstruction and spectral consistency: Waveform morphology and frequency content are constrained using a negative Pearson correlation loss [23] and a multi-resolution spectral loss [24]: 
+
+Lρ = 1 − Cov( x, s )
+
+σxσs
+
+, (7) 
+
+Lspec = Em[∥log |STFT m(x)| − log |STFT m(s)|∥ 1] , (8) where x ∈ RT is the observed PPG signal, s ∈ RT is its reconstruction, σx and σs denote the corresponding standard deviations, and STFT m(·) is computed with window sizes 
+
+m ∈ { 32 , 64 , 128 , 256 , 512 }. The reconstruction loss is 
+
+Lrec = Lρ + Lspec . (9) 
+
+b) Push–pull separation constraints: Physiological– motion disentanglement is enforced via 
+
+Lsep = Lpull + λorth Lorth + Lnoise . (10) 
+
+Physiology pull: To prevent collapse of the physiological component, we enforce sufficient energy in the cardiac band: 
+
+Lpull = max(0 , α − Pband (μphys )) , (11) where μphys ∈ RT is denotes the reconstructed physiolog-ical component (pulse-synchronous cardiac signal), Pband (·)
+
+denotes the proportion of power spectral density within 
+
+[f min HR , f max HR ], and α is a fixed minimum energy threshold. 
+
+Orthogonality constraint: Statistical independence be-tween the physiological signal and the residual is encouraged via cosine similarity. For a mini-batch of size B,
+
+Lorth = 1
+
+B
+
+> B
+
+X
+
+> i=1
+
+μ(i)phys · r(i)
+
+∥μ(i)phys ∥2 ∥r(i)∥2
+
+. (12) where r(i) ∈ RT is the residual signal for the i-th sample. Orthogonality is enforced as a soft regularization; separa-tion can degrade under non-stationary motion that spectrally overlaps with cardiac dynamics; the complementary spectral and uncertainty-aware terms mitigate the resulting residual leakage. 
+
+Residual noise constraint: To discourage periodic struc-ture in the residual, cardiac-band energy is penalized: 
+
+Lnoise = Pband (r). (13) Here, Pband (r) denotes the normalized proportion of spectral power of the residual signal r contained within the cardiac frequency band [f min HR , f max HR ], computed relative to its total spectral energy. 
+
+c) Parameter smoothing: Temporal smoothness of de-coded physiological parameters is imposed using total-variation regularization: 
+
+Lsm = Ldiff (f0) + Ldiff (g) + 
+
+> K
+
+X
+
+> k=1
+
+Ldiff (Ak), (14) with 
+
+Ldiff (y) = 1
+
+T − 1 
+
+> T−1
+
+X
+
+> t=1
+
+(yt+1 − yt)2, (15) where f0(t), g(t), and Ak(t) denote the predicted funda-mental frequency, gain, and harmonic amplitudes. 
+
+d) Heart- and respiratory-rate estimation: Heart rate is obtained from the recovered fundamental frequency via reliability-weighted temporal averaging, 
+
+dHR = 60 ·
+
+P 
+
+> t
+
+w(t) f0(t)
+
+P 
+
+> t
+
+w(t) , w(t) = exp  − log σ2(t),
+
+(16) where σ2(t) denotes the time-varying uncertainty predicted by the decoder. Respiratory rate is predicted from a fused representation of decoded physiological modulations by concatenating the estimated gain (amplitude modulation), baseline variation, fundamental frequency, and harmonic amplitude modulations into a feature vector, which is mapped to a scalar estimate 
+
+dRR using a lightweight 1D convolutional sub-network and bounded to [RR min , RR max ] via a sigmoid. Direct ℓ1 super-vision is applied to both vital signs: 
+
+Lhr = dHR − yHR , Lrr = dRR − yRR , (17) where yHR and yRR denote the ground-truth heart and respi-ratory rates, respectively. e) Loss weighting: The total objective combines all losses using homoscedastic uncertainty weighting [25]: 
+
+Ltotal = X    
+
+> ℓ∈{ rec ,sep ,sm ,hr ,rr }
+
+12 τ 2
+
+> ℓ
+
+Lℓ + log τ 2 
+
+> ℓ
+
+, (18) where τ 2 
+
+> ℓ
+
+∈ R+ are learnable scalars that balance the recon-struction, separation, smoothness, HR, and RR losses. III. E XPERIMENTS 
+
+A. Data Acquisition 
+
+PPG-DaLiA: We evaluate our method on the PPG-DaLiA dataset [1], which is designed to benchmark robust vital-sign estimation from wrist-worn sensors under motion-intensive, free-living conditions. The dataset comprises approximately 
+
+36 h of synchronized recordings from 15 subjects performing eight daily-life activities, including sitting, walking, cycling, stair ascent/descent, driving, and working, with labeled tran-sition periods. Wrist data are collected using an Empatica E4 on the non-dominant wrist, providing PPG sampled at 
+
+64 Hz and tri-axial accelerometer data sampled at 32 Hz .Reference signals are acquired using a chest-worn RespiBAN Professional device, including ECG and respiratory inductive plethysmography sampled at 700 Hz . Ground-truth heart rate is derived from the chest-worn ECG signal, while respiratory rate ground truth is obtained from the chest-worn respiration waveform using peak detection on the clean excursion signal, following standard procedures [16], [28]. 
+
+B. Experimental Setup a) Preprocessing: All signals are segmented into 8 s windows with a 2 s stride, following established protocols for wrist PPG analysis [8], [10]. PPG and accelerometer signals are temporally aligned and resampled to a common sampling rate of 64 Hz. PPG windows are normalized to zero mean and unit variance, while accelerometer signals are kept in their original scale and used solely for motion conditioning. 
+
+b) Evaluation protocol: We adopt a leave-one-subject-out (LOSO) evaluation protocol, consistent with prior studies on PPG-DaLiA [1], [10]. In each fold, data from one subject are held out for testing while the remaining subjects are used for training. Performance is reported as the mean across all subjects using mean absolute error (MAE). For RR estimation, the proposed model produces an RR prediction for each 8 s window. To enable fair comparison with prior methods that rely on longer temporal contexts (e.g., 32 s windows [16]), we report results for both the raw 8 s predic-tions, reflecting low-latency estimation, and aggregated 32 s estimates obtained by averaging four consecutive windows. 
+
+c) Training details: All models are implemented in Py-Torch and trained end-to-end using the AdamW optimizer with a learning rate of 6 × 10 −4 and weight decay of 10 −4.Training is conducted for 60 epochs with a batch size of 64, using cosine annealing for learning-rate scheduling. The pro-posed PCHS model contains approximately 1.97M trainable parameters, comparable to recent PPG-based deep learning approaches. 
+
+C. Experimental Results 
+
+To better understand the contribution of each design com-ponent, we conduct ablation studies to isolate the effect of the key architectural and modeling choices in the proposed framework. 
+
+1) Ablation Study: Table I quantifies the contribution of the key components of the proposed Physically-Constrained Harmonic Separation (PCHS) framework through targeted ab-lations. We evaluate the impact of (i) motion-aware condition-ing via FiLM, (ii) explicit residual modeling with separation regularization, (iii) physics-guided harmonic synthesis, and (iv) uncertainty-aware inference. 
+
+a) Motion-aware conditioning: Removing FiLM-based conditioning prevents accelerometer-derived motion context from modulating physiological features, leading to a clear degradation in performance (HR MAE increases from 3.20 to 3.75 bpm; −17 .2% ). This confirms that explicit motion con-ditioning enables adaptive artifact suppression at the feature level, beyond what implicit learning alone can achieve. 
+
+b) Residual modeling and separation: In the full model, the signal is decomposed as x(t) = μphys (t) + r(t), with a separation loss enforcing orthogonality and suppressing cardiac-band energy in the residual. Removing the residual pathway yields the largest performance drop (HR MAE 4.10 bpm; −28 .1% ), indicating that forcing the harmonic model to absorb broadband noise compromises identifiability. Disabling only the separation constraints also degrades accuracy (HR MAE 3.70 bpm), highlighting the necessity of explicit push– pull regularization to prevent physiological leakage. 
+
+c) Physics-guided harmonic synthesis: Replacing the harmonic analysis-by-synthesis generator with direct wave-form regression significantly reduces accuracy (HR MAE 3.92 bpm; −22 .5% ). This demonstrates that enforcing quasi-periodicity and smooth amplitude modulation through a har-monic prior is critical for stable frequency estimation in low-SNR, motion-corrupted conditions. 
+
+d) Uncertainty-aware inference: Disabling reliability-guided temporal aggregation results in a consistent perfor-mance drop (HR MAE 3.55 bpm; −10 .9% ). By down-weighting segments with high predicted uncertainty, the model mitigates transient corruption that cannot be resolved by structural constraints alone. Overall, the ablation results show that PCHS derives its robustness from the complementary interaction of motion conditioning, physics-guided decomposition, explicit residual modeling, and uncertainty-aware inference, rather than from any single component in isolation. 
+
+e) Adaptive Loss Balancing Analysis: As part of the ablation analysis, we examine the effect of adaptive loss balancing using homoscedastic uncertainty weighting [25], as defined in eq.18 Sec. II, which allows the model to dynami-cally prioritize tasks based on their estimated uncertainty. Table II illustrates the evolution of the learned loss weights during training. Once the physics-constrained decoder stabi-lizes, a clear reallocation of task importance emerges. In par-ticular, the Respiratory Rate objective receives the highest final TABLE I ABLATION STUDY ON PPG-D ALIA. A CCURACY CHANGE DENOTES RELATIVE PERFORMANCE DROP COMPARED TO THE FULL PCHS MODEL .                 
+
+> Variant HR MAE ↓(bpm) Accuracy Drop (%)
+> Ours (Full PCHS) 3.20 –w/o FiLM conditioning 3.75 −17 .2
+> w/o Residual pathway 4.10 −28 .1
+> w/o Separation loss 3.70 −15 .6
+> w/o Harmonic synthesis 3.92 −22 .5
+> w/o Reliability weighting 3.55 −10 .9
+
+weight ( λ ≈ 1.32 ), indicating reduced aleatoric uncertainty when respiratory features are extracted from the recovered physiological signal μphys . In contrast, the separation loss (Lsep remains relatively low-weighted ( λ ≈ 0.20 ), reflecting its role as a regularizer rather than a primary optimization target. This adaptive weighting enables the model to prioritize clinically relevant rate estimation without destabilizing the learning of harmonic representations.                              
+
+> TABLE II EVOLUTION OF LEARNED LOSS WEIGHTS (λ)DURING TRAINING .BOLD
+> INDICATES THE HIGHEST FINAL WEIGHT .
+> Loss Term Epoch 1 Epoch 10 Epoch 20 Ep 30
+> Reconstruction ( Lrec )0.10 0.22 0.35 0.41 Separation ( Lsep )0.10 0.15 0.18 0.20 Smoothness ( Lsm )0.10 0.25 0.38 0.45 Heart Rate ( Lhr )0.10 0.55 0.82 0.95 Respiratory Rate ( Lrr )0.10 0.60 1.15 1.32
+
+2) Comparison with the state-of-the-art: a) Heart Rate estimation: Table III shows that the proposed PCHS framework achieves the lowest average HR mean absolute error on the PPG-DaLiA dataset ( 3.20 ± 1.21 
+
+bpm), outperforming state-of-the-art signal-processing and deep learning approaches across all 15 subjects. Performance gains are consistent under both low- and high-motion con-ditions, with particularly strong improvements for subjects affected by severe motion (e.g., S5, S8, and S9). In comparison, existing signal-processing and learning-based methods exhibit reduced robustness under strong mo-tion, reflecting the challenges posed by non-stationary and spectrally overlapping artifacts in free-living conditions. While recent deep learning and knowledge-informed approaches im-prove overall accuracy, variability remains for heavily cor-rupted recordings. By treating motion as a conditioning signal rather than a predictive shortcut, PCHS enables motion-aware physiologi-cal inference without suppressing pulse-synchronous cardiac content. This physiology-driven analysis-by-synthesis formu-lation isolates cardiac structure from motion-related corrup-tion, yielding interpretable and identifiable representations that support robust heart-rate estimation. 
+
+b) Respiratory-rate estimation on PPG-DaLiA: Table IV compares the proposed PCHS model with recent state-of-the-art methods for RR estimation on PPG-DaLiA. Because RR has a low-frequency content (periods of roughly 2–5 s), reliable estimation favors longer temporal context spanning multiple respiratory cycles, which motivates evaluation at two operating points. At Raw 8 s (low-latency inference), PCHS achieves an MAE of 3.54 bpm, competitive with deep learning baselines such as RRWaveNet [17] (3.41 bpm) and substantially better than hybrid heuristic approaches like A– P Synthesis [26] (8.12 bpm). At Agg. 32 s , matching the temporal resolution of prior work, PCHS reaches 2.15 bpm ,outperforming the transfer-learning-based approach of [16] (2.29 bpm) and the MultiScale CNN of [27] (2.70 bpm). 
+
+3) Qualitative interpretability: Beyond quantitative HR/RR accuracy, PCHS provides interpretable intermediate variables for qualitative inspection of the learned decomposition. The decoder explicitly separates the physiologically structured component μphys (t), synthesized from the predicted param-eters, from the additive residual r(t) capturing motion-related distortions. Figure 2 shows a representative example from subject S05, including the raw PPG signal, reconstructed physiological component, and harmonic evolution. The recon-structed harmonic structure remains smooth and exhibits a stable amplitude hierarchy, indicating that cardiac morphol-ogy is explained through the physics-constrained analysis-by-synthesis pathway. Periods of elevated accelerometer activity coincide with increased residual energy and higher predicted uncertainty, consistent with the intended artifact modeling and reliability-aware inference. In contrast, the estimated fundamental frequency remains stable and physiologically plausible throughout the window, demonstrating robust cardiac frequency tracking under motion. Together, these observations support the interpretability and physiological validity of the proposed PCHS framework.     
+
+> Fig. 2. Qualitative visualization of the PCHS decomposition for a represen-tative window from subject S05, showing the raw PPG signal, reconstructed physiological component μphys (t), fundamental frequency, harmonic ampli-tudes {Ak(t)}, and motion-related indicators.
+
+IV. C ONCLUSION 
+
+This work presented a Physically-Constrained Harmonic Separation framework for robust heart-rate and respiratory-rate estimation from wrist photoplethysmography under motion. By casting vital-sign estimation as an analysis-by-synthesis problem, the proposed approach explicitly decomposes the TABLE III PER -SUBJECT HR MAE ( BPM ) ON PPG-D ALIA. B EST RESULTS ARE HIGHLIGHTED IN BOLD .Method S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 S11 S12 S13 S14 S15 Mean 
+
+Signal Processing 
+
+SpaMaPlus [1] (PPG,ACC) 8.86 9.67 6.40 14.10 24.06 11.34 6.31 11.25 16.04 6.17 15.15 12.03 8.50 7.76 8.29 11.06 TAPIR [19] (PPG) 4.50 4.50 3.20 6.00 5.00 3.40 2.80 6.30 8.00 2.90 5.10 4.70 3.10 5.00 4.10 4.57 CurToSS [7] (PPG) 5.40 4.30 3.00 8.00 2.20 2.80 3.30 8.50 12.60 3.60 3.60 6.10 3.00 5.50 3.70 5.04 
+
+Deep Learning 
+
+DeepPPG [1](PPG,ACC) 7.73 6.74 4.03 5.90 18.51 12.88 3.91 10.87 8.79 4.03 9.22 9.35 4.29 4.37 4.17 7.65 TEMPONet [20](PPG,ACC) 4.37 3.74 2.43 5.49 13.48 5.71 2.23 7.86 8.94 3.32 5.34 7.71 2.03 2.94 3.58 5.27 AugmentPPG [20](PPG,ACC) 4.37 3.74 2.43 5.49 9.41 3.63 2.23 7.86 8.94 3.32 5.34 7.64 2.03 2.94 3.58 4.86 PULSE [21](PPG,ACC) 3.78 3.04 2.20 4.41 6.95 3.71 2.39 8.17 6.19 2.60 3.85 5.22 1.98 3.13 2.79 4.03 KID-PPG [10](PPG,ACC) 4.27 3.46 2.07 5.61 3.01 2.74 1.39 7.13 9.53 2.77 3.58 4.52 1.48 2.48 2.84 3.79 EnhancePPG [8](PPG,ACC) 3.35 3.15 2.20 4.38 5.64 2.35 1.93 5.16 6.38 2.87 3.30 5.49 1.84 2.43 2.53 3.54 PCHS(OURS) (PPG,ACC) 3.52 2.92 2.40 5.41 3.23 3.52 1.75 5.07 5.65 2.07 3.13 3.60 1.24 2.20 2.27 3.20 
+
+TABLE IV COMPARISON OF AVERAGE RR MAE ( BPM ) ON THE PPG-D ALIA
+
+> DATASET
+
+. B EST RESULTS ARE HIGHLIGHTED IN BOLD .
+
+Method Input Avg MAE 
+
+CNN [18] PPG 3.16 A-P Synthesis [26] PPG, ACC 8.12 MultiScale CNN [27] PPG, ACC, Gyr 2.70 RRWaveNet [17] PPG 3.41 Transfer Learning [16] PPG, ACC 2.29 
+
+PCHS(OURS) (Raw 8 s) PPG, ACC 3.54 
+
+PCHS(OURS) (Agg. 32 s) PPG, ACC 2.15 
+
+observed PPG into an interpretable physiological component and a motion-driven residual, treating accelerometer measure-ments as explanatory cues for corruption rather than predictive shortcuts. A physics-guided harmonic pulse model enables direct recovery of the cardiac fundamental frequency, while slow envelope and baseline modulations capture respiratory dynamics. A time-varying reliability signal further improves robustness by downweighting corrupted intervals during in-ference. Experiments on the PPG-DaLiA dataset demonstrate improved performance under motion-heavy conditions and yield interpretable decompositions that disentangle pulse struc-ture from motion-induced corruption. Future work will extend the framework to additional datasets and downstream tasks, and investigate efficient deployment strategies for resource-constrained wearable devices. Validation on arrhythmic pop-ulations, where the quasi-periodicity assumption may not hold, is a particularly important open direction. More broadly, this study highlights the value of combining physiological structure with learning-based models to achieve robust and interpretable vital-sign estimation in unconstrained wearable sensing scenarios. REFERENCES [1] A. Reiss et al. , “Deep PPG: Large-scale heart rate estimation with convolutional neural networks,” Sensors , vol. 19, no. 14, p. 3079, 2019. [2] K. B. Kim et al. , “Photoplethysmography in wearable devices: acomprehensive review of technological advances, current challenges, and future directions,” Electronics , vol. 12, no. 13, p. 2923, 2023. [3] P. H. Charlton et al. , “Wearable photoplethysmography for cardiovascu-lar monitoring,” Proc. IEEE , vol. 110, no. 3, pp. 355–381, 2022. [4] Z. Zhang et al. , “TROIKA: A general framework for heart rate moni-toring using wrist-type photoplethysmographic signals during intensive physical exercise,” IEEE Trans. Biomed. Eng. , vol. 62, no. 2, pp. 522– 531, 2015. [5] R. W. C. G. R. Wijshoff et al. , “Reduction of periodic motion artifacts in photoplethysmography,” IEEE Trans. Biomed. Eng. , vol. 64, no. 1, pp. 196–207, 2017. [6] E. K. Naeini et al. , “A Deep Learning-based PPG Quality Assessment Approach for Heart Rate and Heart Rate Variability,” ACM Trans. Comput. Healthcare , vol. 4, no. 4, pp. 1–22, 2023. [7] M. Zhou and N. Selvaraj, “Heart rate monitoring using sparse spectral curve tracing,” in Proc. IEEE EMBC, pp. 5347–5352, 2020. [8] L. Benfenati et al. , “EnhancePPG: Improving PPG-based heart rate estimation with self-supervision and augmentation,” in Proc. IEEE Int. Conf. AI Circuits Syst. (AICAS) , 2025. [9] B. U. Demirel et al. , “Temporal cardiovascular dynamics for improved PPG-based HR estimation,” IEEE J. Biomed. Health Inform. , 2025. [10] C. Kechris et al. , “KID-PPG: Knowledge-informed deep learning for extracting heart rate from a smartwatch,” IEEE Trans. Biomed. Eng. ,2024. [11] E. Perez et al. , “FiLM: Visual reasoning with a general conditioning layer,” in Proc. AAAI Conf. Artif. Intell. , vol. 32, no. 1, 2018. [12] P. H. Charlton et al. , “The 2023 wearable photoplethysmography roadmap,” Physiol. Meas. , vol. 44, no. 11, p. 111001, 2023. [13] J. Allen, “Photoplethysmography and its application in clinical physio-logical measurement,” Physiol. Meas. , vol. 28, no. 3, p. R1, 2007. [14] P. H. Charlton et al. , “An assessment of algorithms to estimate respira-tory rate from the electrocardiogram and photoplethysmogram,” Physiol. Meas. , vol. 37, no. 4, p. 610, 2016. [15] D. Jarchi et al. , “Estimation of respiratory rate from motion con-taminated photoplethysmography signals incorporating accelerometry,” 
+
+Healthcare Technol. Lett. , vol. 6, no. 1, pp. 19–26, 2019. [16] K. Kazemi et al. , “Respiration rate estimation via smartwatch-based photoplethysmography and accelerometer data: A transfer learning ap-proach,” Proc. ACM IMWUT , vol. 9, no. 1, pp. 1–24, 2025. [17] P. Osathitporn et al. , “RRWaveNet: A compact CNN for PPG respiratory rate estimation,” IEEE Internet Things J. , vol. 10, no. 18, pp. 15943– 15952, 2023. [18] D. Bian et al. , “Respiratory rate estimation using PPG: A deep learning approach,” in Proc. IEEE EMBC , pp. 5948–5952, 2020. [19] N. Huang et al. , “Robust PPG-based ambulatory heart rate tracking algorithm,” in Proc. IEEE EMBC , pp. 5929–5934, 2020. [20] A. Burrello et al. , “Improving PPG-based heart-rate monitoring with synthetically generated data,” in Proc. IEEE BioCAS , pp. 153–157, 2022. [21] P. Kasnesis et al. , “Feature-level cross-attentional PPG and motion signal fusion for heart rate estimation,” in Proc. IEEE COMPSAC , pp. 1731– 1736, 2023. [22] J. Engel et al. , “DDSP: Differentiable digital signal processing,” in 
+
+Proc. Int. Conf. Learn. Represent. (ICLR) , 2020. [23] X. Li et al. , “Remote heart rate measurement from face videos under realistic situations,” in Proc. IEEE CVPR , pp. 4264–4271, 2014. [24] R. Yamamoto et al. , “Parallel WaveGAN: Fast waveform generation with GANs,” in Proc. IEEE ICASSP , pp. 6199–6203, 2020. [25] A. Kendall et al. , “Multi-task learning using uncertainty to weigh losses for scene geometry and semantics,” in Proc. IEEE CVPR , pp. 7482– 7491, 2018. [26] N. Huang et al. , “Novel continuous respiratory rate monitoring using an armband wearable sensor,” in Proc. IEEE EMBC , pp. 7470–7475, 2021. [27] K. Kazemi et al. , “Robust CNN-based respiration rate estimation for smartwatch PPG and IMU,” in Proc. Int. Conf. Bioinformatics Res. Appl. (ICBRA) , pp. 94–100, 2023. [28] A. Sch¨ afer et al. , “Estimation of breathing rate from respiratory sinus ar-rhythmia: Comparison of various methods,” Ann. Biomed. Eng. , vol. 36, no. 3, pp. 476–485, 2008.

@@ -1,0 +1,703 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-30T23:51:36.553853+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 9,
+    "deep_cap": 14,
+    "deep_selected": 9,
+    "quick_candidates": 5,
+    "quick_skim_target": 19,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2606.28389v1",
+      "source": "arxiv",
+      "title": "SoccerNet 2026 Player-Centric Ball Action Spotting: Per-Player Attention with Agreement-Based Ensembling",
+      "abstract": "We present our submission to the SoccerNet 2026 Player-Centric Ball Action Spotting challenge, which uses a two-stage pipeline: a Track-Aware Action Detector (TAAD) produces per-player action logits from broadcast video, and a Denoising Sequence Transduction (DST) transformer converts game-state features and TAAD logits into structured event sequences. We improve the TAAD with a temporal transformer that adds cross-frame context, alongside several training fixes. For the DST stage, we introduce a two-stage per-player attention mechanism operating on game-state features, and show that a spatial-first attention ordering (cross-player attention before temporal attention) improves validation Macro-F1 by 1.87%. To exploit architectural diversity, we train four model variants and combine them with a Weighted Event Fusion ensemble that applies agreement filtering to suppress single-model false positives while preserving recall, plus a dedicated exception for the rare tackle class. Our final system improves the challenge Macro-F1 from a baseline of 48.6 to 58.94.",
+      "authors": [
+        "Faisal Altawijri",
+        "Ismail Mathkour"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-23T09:16:04+00:00",
+      "link": "https://arxiv.org/pdf/2606.28389v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "per-player ball action spotting in soccer broadcast video",
+      "llm_evidence_cn": "在足球广播视频中进行逐球员球动作检测",
+      "llm_evidence": "在足球广播视频中进行逐球员球动作检测",
+      "canonical_evidence": "在足球广播视频中进行逐球员球动作检测",
+      "llm_tldr_en": "We propose a two-stage pipeline for player-centric ball action spotting in soccer: a Track-Aware Action Detector with temporal transformer and a Denoising Sequence Transduction with per-player attention. Spatial-first attention ordering yields a 1.87% Macro-F1 gain on SoccerNet 2026.",
+      "llm_tldr_cn": "针对足球广播视频中球员动作检测的挑战，本文提出一种两阶段流程：轨道感知动作检测器通过时序Transformer捕捉跨帧上下文，去噪序列转导Transformer则利用逐人注意力机制建模游戏状态特征。实验表明，空间优先的注意力顺序（先跨球员注意力后时序注意力）在SoccerNet 2026验证集上改进1.87% Macro-F1，为精细化的体育视频事件检测提供了有效方案。",
+      "llm_tldr": "针对足球广播视频中球员动作检测的挑战，本文提出一种两阶段流程：轨道感知动作检测器通过时序Transformer捕捉跨帧上下文，去噪序列转导Transformer则利用逐人注意力机制建模游戏状态特征。实验表明，空间优先的注意力顺序（先跨球员注意力后时序注意力）在SoccerNet 2026验证集上改进1.87% Macro-F1，为精细化的体育视频事件检测提供了有效方案。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Action recognition for sports activities",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.28570v1",
+      "source": "arxiv",
+      "title": "Digitizing Coaching Intelligence: An Agentic Framework for Holistic Athlete Profiling using VLM and RAG",
+      "abstract": "Athlete assessment is a critical process for tracking physical progress and identifying elite talent. However, during mass recruitment drives, traditional methods rely on manual observation, which is inherently subjective and unscalable, or basic computer vision (CV) systems limited to quantitative repetition counting. These standard approaches lack the \"coaching intelligence\" required to evaluate qualitative physiological markers such as form degradation, spinal articulation, and fatigue. This paper presents a novel, LLM-based hybrid agentic framework for automated, holistic athlete profiling that strictly aligns with the Sports Authority of India (SAI) assessment protocols. Orchestrated via LangGraph, our dual-pipeline architecture synthesizes the geometric precision of CV (MediaPipe) for kinematic tracking with the semantic reasoning of Vision-Language Models (Llama-4-scout). To overcome the latency and token constraints associated with multimodal video processing, we introduce a 3 X 3 \"Smart Grid\" temporal chunking strategy, reducing computational overhead by over 88% while preserving critical temporal continuity. To ensure data integrity and mitigate hallucination, the framework pioneers an autonomous \"LLM-as-a-Judge\" self-correction loop that cross-references quantitative and qualitative metrics before persistence. Finally, we implement a dual-persistence Retrieval-Augmented Generation (RAG) pipeline utilizing a vector search engine (ChromaDB). This enables coaches to bypass rigid SQL databases and perform complex semantic queries (e.g., \"Identify athletes with high endurance but poor core rigidity\") using natural language. Experimental results demonstrate that this multi-agent approach significantly bridges the gap between raw biometric tracking and actionable coaching insights, offering a scalable, objective solution for national talent identification.",
+      "authors": [
+        "Deep Ghosal",
+        "Ishani Sen",
+        "Wazib Ansar",
+        "Amlan Chakrabarti"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-06-26T19:53:26+00:00",
+      "link": "https://arxiv.org/pdf/2606.28570v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Holistic athlete profiling evaluating qualitative physiological markers like form degradation, fatigue using LLM-based agentic framework.",
+      "llm_evidence_cn": "整体运动员评估，使用基于LLM的代理框架评估运动形式退化和疲劳等定性生理指标。",
+      "llm_evidence": "整体运动员评估，使用基于LLM的代理框架评估运动形式退化和疲劳等定性生理指标。",
+      "canonical_evidence": "整体运动员评估，使用基于LLM的代理框架评估运动形式退化和疲劳等定性生理指标。",
+      "llm_tldr_en": "Presents an LLM-based agentic framework for automated holistic athlete profiling that captures qualitative physiological markers such as form degradation and fatigue, addressing the limitations of manual and basic computer vision methods for scalable athlete assessment.",
+      "llm_tldr_cn": "针对传统人工观察和基础计算机视觉无法评估定性生理指标的问题，提出基于大语言模型的代理框架，通过视觉语言模型和检索增强生成，自动评估运动形式退化、脊柱活动和疲劳，实现可扩展的运动员整体评估，为人才识别和训练监测提供智能化解决方案。",
+      "llm_tldr": "针对传统人工观察和基础计算机视觉无法评估定性生理指标的问题，提出基于大语言模型的代理框架，通过视觉语言模型和检索增强生成，自动评估运动形式退化、脊柱活动和疲劳，实现可扩展的运动员整体评估，为人才识别和训练监测提供智能化解决方案。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "AI based training load monitoring and injury prevention in sports",
+      "matched_requirement_id": "req-87",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.28805v1",
+      "source": "arxiv",
+      "title": "Physics Models for Sim-to-Real Transfer in Professional-Level Robot Table Tennis",
+      "abstract": "At competitive speeds and spins, a table tennis ball follows complex, counterintuitive trajectories that a robot must track and precisely counter within fractions of a second. Training a reinforcement learning policy capable of these skills is prohibitively expensive and dangerous in the real world, making high-fidelity simulation essential. Transferability of such policies, however, critically depends on how faithfully the simulation captures real-world dynamics--a requirement made even more stringent by the adversarial nature of the game, where any regime in which a model fails to approximate reality becomes an exploitable weakness for the opponent. Prior state-of-the-art in robot table tennis generally focuses on a limited range of velocities and spins and fails to capture the richness of ball behaviors encountered in professional-level play. In this work, we present physics models for the aerodynamic ball flight, for the contact dynamics between the ball and the table, as well as between the ball and the racket that accurately capture the ball behavior over a vast range of speeds and spins relevant to the game. Specifically, we model drag and Magnus force coefficients as functions of Reynolds number and spin ratio in the aerodynamics equations. For the table contact model we model effects of ball buckling on the coefficient of restitution and incorporate residuals into the instantaneous point-contact models. For the racket contact model we introduce a residual neural network component to complement coefficients related to normal and tangential coefficients of restitution as well as torsional spin damping. The resulting models were used for the first real-world robot table tennis AI agent capable of competing against professional players, to train reinforcement learning policies.",
+      "authors": [
+        "Christian Conti",
+        "Bilan Yang",
+        "Alexander Sigrist",
+        "Lorenzo Miele",
+        "Yamen Saraiji",
+        "Peter Dürr",
+        "Naoya Takahashi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-06-27T08:18:49+00:00",
+      "link": "https://arxiv.org/pdf/2606.28805v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Uses reinforcement learning for robot table tennis, directly applying RL to sports strategy",
+      "llm_evidence_cn": "使用强化学习实现机器人乒乓球，直接应用 RL 于体育策略",
+      "llm_evidence": "使用强化学习实现机器人乒乓球，直接应用 RL 于体育策略",
+      "canonical_evidence": "使用强化学习实现机器人乒乓球，直接应用 RL 于体育策略",
+      "llm_tldr_en": "This paper presents physics models for high-fidelity simulation in professional-level robot table tennis, enabling reinforcement learning policies to transfer successfully to real-world competitive play by accurately capturing ball dynamics.",
+      "llm_tldr_cn": "本文针对专业级乒乓球机器人面临的仿真到现实迁移难题，提出高保真物理模型以精确模拟球的复杂轨迹。采用强化学习在仿真中训练跟踪和回球策略，并强调对抗性游戏对模型保真度的严格需求。实验表明，所建物理模型使机器人能以专业级速度和旋转应对来球，成功实现从仿真到现实的策略迁移，推动人工智能在竞技体育中的应用。",
+      "llm_tldr": "本文针对专业级乒乓球机器人面临的仿真到现实迁移难题，提出高保真物理模型以精确模拟球的复杂轨迹。采用强化学习在仿真中训练跟踪和回球策略，并强调对抗性游戏对模型保真度的严格需求。实验表明，所建物理模型使机器人能以专业级速度和旋转应对来球，成功实现从仿真到现实的策略迁移，推动人工智能在竞技体育中的应用。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30156v1",
+      "source": "arxiv",
+      "title": "Physically-Constrained Harmonic Separation for Robust Heart and Respiratory Rate Estimation from Wrist Photoplethysmography",
+      "abstract": "Wrist-worn photoplethysmography (PPG) enables continuous monitoring of cardiopulmonary physiology, but reliable heart rate (HR) and respiratory rate (RR) estimation in free-living conditions remains challenging due to non-stationary motion artifacts that spectrally overlap with physiological dynamics. Existing signal-processing methods degrade under strong motion, while unconstrained deep learning approaches often lack physiological interpretability and identifiable structure. We propose a Physically-Constrained Harmonic Separation (PCHS) framework that formulates HR and RR estimation from wrist PPG as an analysis-by-synthesis problem, where accelerometer measurements condition artifact separation rather than directly regressing vital signs. A physics-guided harmonic generator decomposes the observed signal into quasi-periodic physiological components and a motion-related residual, enabling HR recovery from the fundamental frequency and RR prediction from respiratory-driven modulations of the harmonic parameters. Robust reconstruction objectives, separation constraints, and uncertainty-aware weighting stabilize the decomposition under motion. Experiments on the motion-intensive PPG-DaLiA dataset demonstrate that PCHS outperforms state-of-the-art methods while yielding interpretable signal decompositions that effectively disentangle physiological activity from motion artifacts.",
+      "authors": [
+        "Nouhaila Fraihi",
+        "Ouassim Karrakchou",
+        "Mounir Ghogho"
+      ],
+      "primary_category": "physics.med-ph",
+      "categories": [
+        "physics.med-ph",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-29T11:31:31+00:00",
+      "link": "https://arxiv.org/pdf/2606.30156v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Wrist-worn PPG for robust heart and respiratory rate estimation in free-living conditions, directly applicable to athlete monitoring.",
+      "llm_evidence_cn": "腕戴式PPG在自由生活条件下稳健估计心率和呼吸率，可直接用于运动员生理监测。",
+      "llm_evidence": "腕戴式PPG在自由生活条件下稳健估计心率和呼吸率，可直接用于运动员生理监测。",
+      "canonical_evidence": "腕戴式PPG在自由生活条件下稳健估计心率和呼吸率，可直接用于运动员生理监测。",
+      "llm_tldr_en": "A physically-constrained harmonic separation framework that robustly estimates heart and respiratory rates from wrist PPG by separating motion artifacts using accelerometer signals, enabling accurate cardiopulmonary monitoring in daily life.",
+      "llm_tldr_cn": "针对腕戴光电容积脉搏波(PPG)在自由活动时运动伪影干扰下难以准确估计心率和呼吸率的问题，本文提出物理约束谐波分离(PCHS)框架，利用加速度计信号构建谐波分解模型，在噪声中分离出生理信号，实现了高鲁棒性的心率和呼吸率估计，为运动员日常训练负荷监测提供了可靠的可穿戴生理监测方法。",
+      "llm_tldr": "针对腕戴光电容积脉搏波(PPG)在自由活动时运动伪影干扰下难以准确估计心率和呼吸率的问题，本文提出物理约束谐波分离(PCHS)框架，利用加速度计信号构建谐波分解模型，在噪声中分离出生理信号，实现了高鲁棒性的心率和呼吸率估计，为运动员日常训练负荷监测提供了可靠的可穿戴生理监测方法。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-09-16-676491-v2",
+      "source": "biorxiv",
+      "title": "Fitness Level, but not Sex, affects Exercise-Induced Pain Modulation",
+      "abstract": "In a previous study by our group (Nold et al., 2025), we investigated exercise-induced pain modulation after high-intensity compared to low-intensity exercise in a heterogeneous sample of diverse fitness levels. Exploratory analyses suggested an interaction of sex, fitness level, and drug treatment, indicating that males showed increasing hypoalgesia after high- compared to low-intensity exercise with increasing fitness levels, which was diminished when naloxone was administered. In contrast, these effects were not evident in females. These exploratory findings warranted further investigation to determine if and to what extent exercise-induced pain modulation depends on fitness level and/or sex. In this current study, we investigated an all-female sample (N = 21) of high fitness levels using a similar paradigm as in the previous study, comparing heat and pressure pain ratings after high-intensity and low-intensity exercise. Our data show an interaction of exercise intensity and stimulus intensity in heat pain, with greater pain relief following high-intensity exercise, especially at the highest stimulus intensity. Despite results for pressure pain not reaching significance, a similar trend was evident. These results suggest that females at a high fitness level also show exercise-induced pain modulation for high-intensity compared to low-intensity exercise. Furthermore, we pooled the data of the current and previous study, providing evidence for fitness level but not sex to moderate exercise-induced pain modulation in heat pain. These findings suggest that exercise-induced pain modulation depends on fitness level but not on sex.",
+      "authors": [
+        "Nold, J. I.",
+        "Fadai, T.",
+        "Gerbers, Z. P.",
+        "Buechel, C."
+      ],
+      "primary_category": "physiology",
+      "categories": [
+        "physiology"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.09.16.676491v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Investigates exercise-induced pain modulation, a core topic in exercise physiology.",
+      "llm_evidence_cn": "研究运动诱发的疼痛调节，这是运动生理学的核心主题。",
+      "llm_evidence": "研究运动诱发的疼痛调节，这是运动生理学的核心主题。",
+      "canonical_evidence": "研究运动诱发的疼痛调节，这是运动生理学的核心主题。",
+      "llm_tldr_en": "This study examines whether fitness level and sex influence exercise-induced hypoalgesia, finding that higher fitness enhances pain modulation regardless of sex, advancing understanding of how exercise training affects pain perception.",
+      "llm_tldr_cn": "本研究探讨了运动诱发的痛觉减退是否受健身水平和性别影响。基于先前发现的男性随健身水平提升而表现出更强的运动后痛觉减退而女性未显示该模式，作者以全女性样本进一步验证。结果发现健身水平而非性别显著影响运动诱发的疼痛调节，表明高水平健身可能促进运动后镇痛效应，为理解运动训练如何调节疼痛感知提供了新证据。",
+      "llm_tldr": "本研究探讨了运动诱发的痛觉减退是否受健身水平和性别影响。基于先前发现的男性随健身水平提升而表现出更强的运动后痛觉减退而女性未显示该模式，作者以全女性样本进一步验证。结果发现健身水平而非性别显著影响运动诱发的疼痛调节，表明高水平健身可能促进运动后镇痛效应，为理解运动训练如何调节疼痛感知提供了新证据。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-03-02-709098-v2",
+      "source": "biorxiv",
+      "title": "Synergy-based Feedforward with Minimal Feedback Control Predicts Walking Over Multiple Cycles",
+      "abstract": "Neural feedback is important for the control of movement, and multiple neurological disorders (e.g., stroke, cerebral palsy, Parkinson's disease, incomplete spinal cord injury) are characterized by altered neural feedback. Researchers have created numerous computational neuromusculoskeletal models controlled by simulated neural feedback mechanisms, but these models rarely represent actual human subjects and thus have not found practical clinical application. As a step toward designing patient-specific treatments for individuals with neurological disorders, this study used the Neuromusculoskeletal Modeling Pipeline to develop and evaluate a novel synergy-based feedforward (FF)+feedback (FB) control model using a personalized three-dimensional neuromusculoskeletal walking model of an actual human subject post-stroke. Experimental walking data collected from the subject were used to create the subject's personalized walking model. Then for 5 calibration walking cycles, personalized synergy-based FF+FB control models were created. First, the personalized model was used to estimate lower body muscle activations consistent with the subject's electromyographic, joint motion, and joint moment data. Second, five synergy activations per leg with associated synergy vectors were calculated that closely reconstructed the subject's muscle activations and joint moments simultaneously. Third, nominal FF synergy activation controls were calculated by averaging the synergy activations for each leg. Fourth, the nominal FF synergy controls were scaled by 0, 25, 50, 75, 100, and 125%, and the gap in reproducing the subject's muscle activations was filled by fitting FB synergy activation controls as a function of joint positions, velocities, and moments as surrogates for muscle lengths, muscle velocities, and tendon forces. Next, for 3 testing walking cycles, the six synergy-based FF+FB models were used to control the subject's personalized walking model in predictive simulations. The 100% FF model (which still had minimal FB) reproduced the testing walking cycles the most closely, and only the 75%, 100%, and 125% FF models predicted near-periodic walking motions using initial conditions consistent with experimental values. The 0, 25, and 50% FF models could generate near-periodic walking motions only when the initial conditions were allowed to diverge substantially from experimental values. Our findings suggest that predictive simulations of walking may require substantial feedforward control when modeling an actual human subject.",
+      "authors": [
+        "Williams, S. T.",
+        "Li, G.",
+        "Fregly, B. J."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.03.02.709098v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Develops a personalized synergy-based feedforward-feedback control model for walking, directly contributing to musculoskeletal simulation.",
+      "llm_evidence_cn": "开发个性化协同前馈-反馈控制模型用于行走模拟，直接贡献于肌骨建模与仿真。",
+      "llm_evidence": "开发个性化协同前馈-反馈控制模型用于行走模拟，直接贡献于肌骨建模与仿真。",
+      "canonical_evidence": "开发个性化协同前馈-反馈控制模型用于行走模拟，直接贡献于肌骨建模与仿真。",
+      "llm_tldr_en": "Presents a personalized neuromusculoskeletal model with synergy-based control that predicts walking over multiple cycles, advancing patient-specific movement simulation.",
+      "llm_tldr_cn": "针对现有肌骨模型缺乏个体化的问题，本研究利用个性化三维模型和协同前馈-反馈控制，实现了多步态周期的行走预测。模型验证显示其能够复现正常人步行特征，为神经疾病患者制定个性化治疗提供了可行的计算框架。",
+      "llm_tldr": "针对现有肌骨模型缺乏个体化的问题，本研究利用个性化三维模型和协同前馈-反馈控制，实现了多步态周期的行走预测。模型验证显示其能够复现正常人步行特征，为神经疾病患者制定个性化治疗提供了可行的计算框架。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "musculoskeletal model for movement simulation",
+      "matched_requirement_id": "req-43",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-24-734405-v1",
+      "source": "biorxiv",
+      "title": "A time-dependent mechano-bioenergetics model of muscle contraction",
+      "abstract": "Predictions of skeletal muscle energy consumption under a diverse range of muscle contractile conditions are critical for improving our understanding of locomotion. Existing mathematical models, while capturing the mechanical dependence of energy consuming processes, neglect the time-dependent behaviour and recovery costs associated with regenerating ATP. This time-dependence is important for predicting the energetic response of muscles during repetitive or cyclical tasks like locomotion, where muscle undergoes many contraction cycles. This study presents a novel model to predict energetic rates based on physiological processes: Ca2+ transport costs, cross-bridge cycling costs, and ATP regeneration. Previous mathematical models include the dependence on Ca2+ transport and cross-bridge cycling, but neglect the time-dependent response and the subsequent recovery of ATP following the contraction. Model parameters were obtained from existing data on isolated muscle preparations, and predicted energetic rates were validated on separate datasets across a range of contractile conditions including dynamic, sub-maximal, and twitch contractions. The time-dependent model was able to capture the influence of contraction frequency on peak energetic rates and the time-course of energetic recovery observed experimentally. The model captures key physiological processes while maintaining a minimal number of free parameters and low computational cost. This enables generalisability across muscles and species, and implementation into larger scale musculoskeletal models.",
+      "authors": [
+        "Konno, R. N.",
+        "Lichtwark, G. A.",
+        "Dick, T. J. M."
+      ],
+      "primary_category": "physiology",
+      "categories": [
+        "physiology"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.24.734405v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "models muscle energy consumption during locomotion",
+      "llm_evidence_cn": "模拟运动过程中肌肉能量消耗",
+      "llm_evidence": "模拟运动过程中肌肉能量消耗",
+      "canonical_evidence": "模拟运动过程中肌肉能量消耗",
+      "llm_tldr_en": "Novel muscle model incorporates time-dependent ATP regeneration costs to predict energy consumption during cyclical contractions, enhancing understanding of locomotion energetics.",
+      "llm_tldr_cn": "现有肌肉能量消耗模型忽略重复收缩过程中ATP再生的时间依赖性成本。本研究提出新模型，基于钙离子转运、横桥循环和ATP再生过程预测能量消耗率。实验表明该模型能准确预测多种收缩条件下的肌肉能量消耗，为理解运动过程中的能量学提供关键工具。",
+      "llm_tldr": "现有肌肉能量消耗模型忽略重复收缩过程中ATP再生的时间依赖性成本。本研究提出新模型，基于钙离子转运、横桥循环和ATP再生过程预测能量消耗率。实验表明该模型能准确预测多种收缩条件下的肌肉能量消耗，为理解运动过程中的能量学提供关键工具。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-25-734469-v1",
+      "source": "biorxiv",
+      "title": "Adaptation to postural perturbations under fatigue produces persistent changes in neuromuscular coordination",
+      "abstract": "Postural control depends on the ability to adapt motor responses to changing environmental and physiological conditions. Neuromuscular fatigue (NMF) is known to alter balance and muscle activation patterns, yet its effects on motor adaptation during whole-body postural tasks and on the persistence of learned strategies remain unclear. This study investigated whether localized NMF of the ankle dorsiflexors influences adaptation to a novel postural perturbation task and whether learning under fatigue induces persistent changes during subsequent re-exposure. Twenty-five healthy young adults were assigned to either a fatigue (FAT) or no-fatigue (NoFAT) group and completed two experimental sessions separated by 48-72 h allowing recovery from acute fatigue for fatigued group. Participants adapted to repeated mechanical perturbations while standing upright, while ground reaction forces and electromyographic activity of lower-limb muscles were recorded. NMF did not impair overall adaptation performance, as both groups exhibited similar reductions in performance error across practice. However, participants exposed to fatigue exhibited altered postural recovery dynamics, characterized by a reduced return toward the initial posture following perturbation release. These differences persisted during re-exposure on the subsequent day, despite the absence of acute fatigue. In parallel, NMF modified muscle activation and coactivation patterns involving both fatigued and non-fatigued muscles, several of which were retained during re-exposure. These findings indicate that the central nervous system preserves successful adaptation to postural perturbations under fatigue by reorganizing neuromuscular coordination and stabilization strategies. Learning under fatigue therefore influences not only immediate motor execution, but also shapes the longer-term representation of postural control strategies.",
+      "authors": [
+        "Nardon, M.",
+        "Alessandro, C.",
+        "Singh, T.",
+        "Bertucco, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.25.734469v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Investigates how neuromuscular fatigue affects postural control adaptation and neuromuscular coordination.",
+      "llm_evidence_cn": "研究神经肌肉疲劳如何影响姿势控制适应和神经肌肉协调。",
+      "llm_evidence": "研究神经肌肉疲劳如何影响姿势控制适应和神经肌肉协调。",
+      "canonical_evidence": "研究神经肌肉疲劳如何影响姿势控制适应和神经肌肉协调。",
+      "llm_tldr_en": "Shows that neuromuscular fatigue leads to persistent changes in neuromuscular coordination during postural adaptation, providing insights into how fatigue affects motor learning and balance with implications for training and rehabilitation.",
+      "llm_tldr_cn": "针对疲劳对姿势控制中运动适应影响的不明确问题，通过局部足踝背屈肌疲劳和姿势扰动任务，发现疲劳组在适应后表现出持久的协调改变，且学习效应在重新暴露时保留，为运动训练和康复策略中的疲劳管理提供了神经肌肉层面的依据。",
+      "llm_tldr": "针对疲劳对姿势控制中运动适应影响的不明确问题，通过局部足踝背屈肌疲劳和姿势扰动任务，发现疲劳组在适应后表现出持久的协调改变，且学习效应在重新暴露时保留，为运动训练和康复策略中的疲劳管理提供了神经肌肉层面的依据。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.28604v1",
+      "source": "arxiv",
+      "title": "IMU-HOI: A Symbiotic Framework for Coherent Human-Object Interaction and Motion Capture via Contact-Conscious Inertial Fusion",
+      "abstract": "Capturing full-body human motion with object interactions is crucial for AR/VR and robotics applications, yet it remains challenging for conventional vision-based methods due to occlusions and constrained capture volumes. Inertial measurement units (IMUs) offer a compelling alternative without line-of-sight requirements, but existing IMU-based motion capture assumes an isolated human and ignores object contacts and dynamics. To bridge this gap, we present IMU-HOI, a novel framework that jointly recovers full-body human pose and 6-DoF object trajectory from sparse IMUs on the body and object, explicitly modeling human-object interaction. Our approach first infers probabilistic hand-object contacts directly from IMU streams and uses them as a high-level signal to route between kinematic and inertial reasoning. These contact cues drive a three-stage fusion pipeline that refines human pose and root translation, and fuses hand-based forward kinematics with object-IMU integration for object motion, yielding coherent, drift-resilient trajectories for both human and object. Experiments on challenging human-object interaction scenarios demonstrate substantial accuracy gains over prior inertial motion capture methods. Moreover, IMU-HOI can be plugged into existing sparse-IMU mocap backbones with minimal changes, effectively extending the scope of purely inertial motion capture from isolated humans to full human-object interaction and joint motion estimation.",
+      "authors": [
+        "Lizhou Lin",
+        "Songpengcheng Xia",
+        "Zengyuan Lai",
+        "Lan Sun",
+        "Jiarui Yang",
+        "Ling Pei"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T20:52:54+00:00",
+      "link": "https://arxiv.org/pdf/2606.28604v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "IMU-based full-body human motion capture system that provides motion data suitable for biomechanical analysis",
+      "llm_evidence_cn": "基于IMU的全身人体运动捕捉系统，提供适用于生物力学分析的运动数据",
+      "llm_evidence": "基于IMU的全身人体运动捕捉系统，提供适用于生物力学分析的运动数据",
+      "canonical_evidence": "基于IMU的全身人体运动捕捉系统，提供适用于生物力学分析的运动数据",
+      "llm_tldr_en": "IMU-HOI introduces a contact-conscious inertial fusion framework that jointly captures full-body human pose and object trajectories from sparse IMUs, enabling robust motion capture for human-object interaction. This technology can generate high-quality motion capture data for biomechanical analysis in sports.",
+      "llm_tldr_cn": "IMU-HOI提出一种接触感知的惯性融合框架，利用身体和物体上的稀疏IMU联合恢复人体全身姿态和物体6自由度轨迹。通过建模概率性手-物接触，克服了视觉方法因遮挡和受限捕捉体积带来的挑战，实现了鲁棒的人-物交互运动捕捉。该技术可为运动生物力学分析提供高质量的运动捕捉数据。",
+      "llm_tldr": "IMU-HOI提出一种接触感知的惯性融合框架，利用身体和物体上的稀疏IMU联合恢复人体全身姿态和物体6自由度轨迹。通过建模概率性手-物接触，克服了视觉方法因遮挡和受限捕捉体积带来的挑战，实现了鲁棒的人-物交互运动捕捉。该技术可为运动生物力学分析提供高质量的运动捕捉数据。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "motion capture data for biomechanical analysis",
+      "matched_requirement_id": "req-45",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.24960v1",
+      "source": "arxiv",
+      "title": "Enhancing Clinician Decision-Making via Uncertainty-Aware Multi-Expert Fusion for Stroke Rehabilitation",
+      "abstract": "Tailoring stroke rehabilitation requires assessing how movements are organized, not merely if they succeed. Currently, this assessment is a rate-limiting bottleneck. Instruments like the Action Research Arm Test (ARAT) compress rich behavioral observations into single ordinal endpoints, discarding the movement-quality details that distinguish recovery from compensation. Automated alternatives typically chase accuracy on noisy, single-observer labels to output opaque scores - a technology-centric approach that rarely reaches clinical practice. To address this, we present xAARA: an engine designed to augment rather than replace clinical judgment. From multi-view video, xAARA returns ARAT assessments with calibrated uncertainty and explanations across task, movement-phase, and movement-quality levels. Treating clinical scoring as an ill-posed inference problem, xAARA composes 692 calibrated multimodal models via a Dynamic Bayesian Network with entropy-based gating. It qualifies results against clinical validity rules and defers low-confidence cases. In 105 stroke survivors (788 exercises), xAARA achieved 94.2% task accuracy (Cohen's kappa=0.934) and 81.3% movement-phase accuracy (kappa=0.727), reducing predictive uncertainty by 96.1% compared to single-clinician scoring. For subjective cases, it matched at least one rater 100% of the time and never returned out-of-range scores. Four independent clinicians validated the assessments and indicated willingness to adopt the system. We argue that principled uncertainty quantification and clinician-aligned explainability are the critical bridges moving automated assessment from technical demonstration to a deployable clinical tool.",
+      "authors": [
+        "Tamim Ahmed",
+        "Thanassis Rikakis"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-23T09:00:15+00:00",
+      "link": "https://arxiv.org/pdf/2606.24960v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "video-based movement quality assessment for stroke rehabilitation can be transferred to sports injury recovery",
+      "llm_evidence_cn": "基于视频的运动质量评估用于中风康复可迁移至运动损伤恢复",
+      "llm_evidence": "基于视频的运动质量评估用于中风康复可迁移至运动损伤恢复",
+      "canonical_evidence": "基于视频的运动质量评估用于中风康复可迁移至运动损伤恢复",
+      "llm_tldr_en": "Presents xAARA, an uncertainty-aware multi-expert fusion system for upper-limb rehabilitation assessment from video, with potential application to sports injury rehabilitation.",
+      "llm_tldr_cn": "提出xAARA，一种不确定性感知的多专家视频评估系统，用于上肢康复，可增强临床决策，并有望应用于运动损伤康复。",
+      "llm_tldr": "提出xAARA，一种不确定性感知的多专家视频评估系统，用于上肢康复，可增强临床决策，并有望应用于运动损伤康复。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "Rehabilitation techniques and protocols for sports-related injuries",
+      "matched_requirement_id": "req-84",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-03-02-709099-v2",
+      "source": "biorxiv",
+      "title": "Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke",
+      "abstract": "Background: Personalized computational neuromusculoskeletal models have great potential for optimizing the design of clinical treatments for movement impairments. While many software tools address specific parts of the model personalization and treatment optimization processes, they typically require significant programming experience to use and do not cover the full breadth of these two processes. Furthermore, published neuromusculoskeletal modeling studies typically do not provide all the methodological details needed for others to reproduce the work. Consequently, researchers seeking to develop skills in the model personalization and treatment optimization processes face a steep learning curve due to the lack of detailed training materials that demonstrate both processes for real-life clinical problems using real-life subject movement data. Methods: This article presents detailed training tutorials for the model personalization and treatment optimization processes using two real-life clinical problems and the Neuromusculoskeletal Modeling (NMSM) Pipeline. The first clinical problem involves the design of personalized gait modifications and high tibial osteotomy surgery for an individual with bilateral medial knee osteoarthritis, where the goal is to reduce the peak adduction moment in both knees to a specified target level. The second clinical problem involves the design of a synergy-based functional electrical stimulation prescription for an individual post-stroke with impaired walking function, where the goal is to equalize the propulsive and braking impulses between the two legs. Both tutorials were implemented as course projects given to novice users in a combined undergraduate/graduate mechanical engineering course. Results: Both tutorials produced personalized neuromusculoskeletal models and associated dynamically consistent tracking optimizations that closely reproduced subject-specific experimental joint angles, joint moments, ground reaction forces and moments, and (if applicable) muscle activations measured during walking. Subsequent design optimizations predicted personalized treatments that achieved target values of peak knee adduction moments or propulsive and braking impulses. Conclusions: The detailed step-by-step tutorials presented with this article are the first to walk users through the entire process of creating personalized neuromusculoskeletal models and then using them to design personalized treatments for two subjects with two different clinical problems. These tutorials can be used to introduce new users to the NMSM Pipeline and as projects in neuromusculoskeletal modeling courses.",
+      "authors": [
+        "Salati, R. M.",
+        "Li, G.",
+        "Williams, S. T.",
+        "Fregly, B. J."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.03.02.709099v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "personalized neuromusculoskeletal models for walking impairment treatment optimization transferable to sports biomechanics",
+      "llm_evidence_cn": "个性化神经肌肉骨骼模型用于行走障碍治疗优化可迁移至运动生物力学",
+      "llm_evidence": "个性化神经肌肉骨骼模型用于行走障碍治疗优化可迁移至运动生物力学",
+      "canonical_evidence": "个性化神经肌肉骨骼模型用于行走障碍治疗优化可迁移至运动生物力学",
+      "llm_tldr_en": "Presents reproducible workflow for personalized neuromusculoskeletal modeling and treatment optimization, applicable to sports injury rehabilitation and biomechanics.",
+      "llm_tldr_cn": "提出可复现的个性化神经肌肉骨骼建模与治疗优化工作流程，可应用于运动损伤康复和生物力学。",
+      "llm_tldr": "提出可复现的个性化神经肌肉骨骼建模与治疗优化工作流程，可应用于运动损伤康复和生物力学。",
+      "llm_tags": [
+        "query:sb:composite"
+      ],
+      "matched_query_tag": "query:sb:composite",
+      "matched_query_text": "Papers central to 运动生物力学与计算建模（运动学、动力学、肌骨建模、仿真优化）, especially work that connects or combines: biomechanical analysis of sports movements; kinematic analysis of human motion; musculoskeletal model for movement simulation; optimization of biomechanical simulations; motion capture data for biomechanical analysis; dynamic simulation of musculoskeletal system; What are the latest methods for musculoskeletal modeling in sports biomechanics?; How to perform inverse dynamics analysis for gait analysis?; Optimization algorithms for simulating human movement; Kinematic and kinetic analysis of athletic performance.",
+      "matched_requirement_id": "req-composite-sb",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-05-25-727760-v2",
+      "source": "biorxiv",
+      "title": "Evaluating Long-Range Temporal Structure in Foundation Model-Based Forecasts of Heartbeat Dynamics",
+      "abstract": "We examine the long-range temporal structure of forecasts produced by Time-Series Foundation Models (TSFMs) on heartbeat dynamics using the MIT-BIH Normal Sinus Rhythm Database (NSRDB). Our findings indicate that these models do not adequately capture long-range dependencies, as reflected in growing errors in RR-interval predictions over longer forecast horizons.",
+      "authors": [
+        "Serapio, A.",
+        "Ramsundar, B.",
+        "Subramanian, S."
+      ],
+      "primary_category": "bioinformatics",
+      "categories": [
+        "bioinformatics"
+      ],
+      "published": "2026-06-28T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.05.25.727760v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evaluating foundation models for forecasting RR-interval heartbeat dynamics",
+      "llm_evidence_cn": "评估基础模型在预测RR间期心跳动态中的表现",
+      "llm_evidence": "评估基础模型在预测RR间期心跳动态中的表现",
+      "canonical_evidence": "评估基础模型在预测RR间期心跳动态中的表现",
+      "llm_tldr_en": "We evaluate time-series foundation models for forecasting heartbeat (RR-interval) dynamics. Models fail to capture long-range dependencies, with errors growing over prediction horizon. This highlights limitations for physiological time-series tasks, relevant to athlete monitoring and wearable health.",
+      "llm_tldr_cn": "本文评估时序基础模型在心跳动态（RR间期）预测中的长程依赖捕捉能力。在MIT-BIH NSRDB数据集上，模型预测误差随预测范围增加而显著增大，表明现有模型未能建模生理时序的长程结构。研究对可穿戴健康监测、运动员生理状态预测等场景具有警示与指导意义。",
+      "llm_tldr": "本文评估时序基础模型在心跳动态（RR间期）预测中的长程依赖捕捉能力。在MIT-BIH NSRDB数据集上，模型预测误差随预测范围增加而显著增大，表明现有模型未能建模生理时序的长程结构。研究对可穿戴健康监测、运动员生理状态预测等场景具有警示与指导意义。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-27-733780-v1",
+      "source": "biorxiv",
+      "title": "AnimalTA: A simple yet flexible tool for video tracking and manual corrections.",
+      "abstract": "1. Video-tracking programs have now become an essential tool for researchers measuring animal behavior across biological fields. The panel of available programs is growing rapidly, providing researchers with numerous specific tools that will match their precise needs. However, their proliferation may complicate post-tracking data processing, and some programs do not even provide tools for correcting tracking errors or analysing tracking data. In the case of commercial software, the loss of access to a program due to budget limitations or researchers' mobility from one institution to another could prevent them from accessing and visualizing their tracking data. 2. There is therefore a growing need for an accessible and flexible tool to handle post-tracking processes such as the correction and analysis of tracking data obtained across different video-tracking programs. 3. We present here the latest update of the video tracking and analysis program AnimalTA. With this new release, we propose to solve the above-mentioned problems by providing the scientific community with a program that will allow for data importation from other video-tracking programs. Like in its previous versions, AnimalTA remains a free, open-source, and highly user-friendly program, ensuring that it will always be accessible without restriction. Now, with this new importation option, users who performed their tracking with other programs can benefit from AnimalTA's complete toolset of data visualization, correction, and analysis. 4. Finally, this article gives an overview of the other main improvements associated with this new release. The program is now faster in both video importation and tracking, proposes an amplified toolset for data visualisation and correction, and features new options for data analysis.",
+      "authors": [
+        "Chiara, V.",
+        "Buatois, A.",
+        "Kim, S.-Y."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.27.733780v1.full.pdf",
+      "tags": [
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Open-source video tracking tool for animal behavior, which can be adapted for tracking athletes in sports videos.",
+      "llm_evidence_cn": "用于动物行为视频追踪的开源工具，可适配至体育视频中的运动员追踪。",
+      "llm_evidence": "用于动物行为视频追踪的开源工具，可适配至体育视频中的运动员追踪。",
+      "canonical_evidence": "用于动物行为视频追踪的开源工具，可适配至体育视频中的运动员追踪。",
+      "llm_tldr_en": "AnimalTA is a flexible open-source video tracking software with manual correction capabilities, designed for animal behavior but potentially adaptable to sports player tracking applications.",
+      "llm_tldr_cn": "AnimalTA是一款简单灵活的开源视频追踪软件，允许手动校正追踪错误并分析轨迹数据，虽然在动物行为学中开发，但其视频目标追踪核心功能可迁移至体育领域，用于运动员目标追踪和运动分析。",
+      "llm_tldr": "AnimalTA是一款简单灵活的开源视频追踪软件，允许手动校正追踪错误并分析轨迹数据，虽然在动物行为学中开发，但其视频目标追踪核心功能可迁移至体育领域，用于运动员目标追踪和运动分析。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-22-733849-v2",
+      "source": "biorxiv",
+      "title": "Instrumental-Motor Transfer: The Relative Value of Competing Movement Goals Modulates Implicit Motor Learning",
+      "abstract": "Multiple learning signals can shape motor output, including reward and punishment (via value-based reinforcement learning) and sensorimotor error (via motor adaptation). However, it is unclear if action values, learned via reinforcement learning, interact with error-based motor learning. Here, we asked if the learned value of competing motor goals influences how the motor system learns from sensorimotor errors linked to those goals. We designed a paradigm that required participants (N = 85) to learn about the value associated with different movement targets prior to undergoing implicit visuomotor adaptation at or nearby those same targets. We observed two classes of related effects: repulsion and suppression. When adaptation brought the limb toward targets associated with low-value, learning was attenuated compared to when adaptation brought the limb away from targets associated with low-value, indicating a \"repelling\" effect of low-value actions. Moreover, adaptation was suppressed in all directions when low-value targets were themselves the goal of movement. These findings were asymmetric with respect to valence: we did not observe comparable attraction effects when adaptation brought the limb toward targets associated with high-value, nor did we see overall enhancement of adaptation when targets associated with high-value acted as movement goals. Additional analyses and experiments demonstrated that these effects did not reflect generic biases and were driven by relative rather than absolute goal values. Repulsion and suppression effects were tied to movement directions rather than the targets themselves. These results point to a novel interaction between reinforcement learning and motor memory - a kind of \"instrumental-motor transfer.\"",
+      "authors": [
+        "Al-Fawakhiri, N.",
+        "Chib, V. S.",
+        "McDougle, S. D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-29T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.22.733849v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Shows how learned action values influence implicit motor adaptation, a key process in skill acquisition.",
+      "llm_evidence_cn": "揭示学习到的动作价值如何影响内隐运动适应，是技能习得的关键过程",
+      "llm_evidence": "揭示学习到的动作价值如何影响内隐运动适应，是技能习得的关键过程",
+      "canonical_evidence": "揭示学习到的动作价值如何影响内隐运动适应，是技能习得的关键过程",
+      "llm_tldr_en": "Investigates how the relative value of competing movement goals modulates implicit motor learning. Using a visuomotor adaptation task with N=85, they find that learned values cause repulsion and suppression effects on adaptation. These findings reveal that reinforcement learning interacts with error-based motor learning, with implications for skill training in sports.",
+      "llm_tldr_cn": "研究竞争运动目标的相对价值如何调节内隐运动学习。通过85名被试的视觉运动适应实验，发现学习到的价值会引发排斥和抑制效应。结果表明强化学习与基于误差的运动学习存在交互，为运动技能训练提供新见解。该研究揭示了价值学习对运动适应的影响机制，对运动训练中设计奖励结构以促进技能学习具有指导意义。",
+      "llm_tldr": "研究竞争运动目标的相对价值如何调节内隐运动学习。通过85名被试的视觉运动适应实验，发现学习到的价值会引发排斥和抑制效应。结果表明强化学习与基于误差的运动学习存在交互，为运动技能训练提供新见解。该研究揭示了价值学习对运动适应的影响机制，对运动训练中设计奖励结构以促进技能学习具有指导意义。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
