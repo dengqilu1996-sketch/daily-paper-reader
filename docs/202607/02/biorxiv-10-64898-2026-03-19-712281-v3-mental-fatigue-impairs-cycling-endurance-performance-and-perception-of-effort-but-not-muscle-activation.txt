@@ -1,0 +1,52 @@
+Title: Mental fatigue impairs cycling endurance performance and perception of effort, but not muscle activation
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.03.19.712281v3.full.pdf
+
+Published Time: Thu, 02 Jul 2026 23:15:20 GMT
+
+Number of Pages: 43
+
+Markdown Content:
+> 1/43 Submitted to PCI Health & Movement Science 1Type of article: original research 2
+> 3
+
+## Draft version #2 (2026/07/02). 4
+
+> Mental fatigue impairs cycling endurance performance and perception of effort, 5
+> but not muscle activation 6Robin Souron 1, Aurélie Sarcher 1, Lilian Lacourpaille 1, Inès Boulaouche 1, Calvin Richier 1, Thomas Mangin 3,4 ,7Mathieu Gruet 2, Julie Doron 1, Marc Jubeau 1, Benjamin Pageaux 3,4,5
+> 89
+> 1 Nantes Université, Movement - Interactions - Performance, MIP, UR 4334, F-44000 Nantes, France 10
+> 2 Université de Toulon, Laboratoire IAPS (n°201723207F), Toulon, France 11
+> 3 École de kinésiologie et des sciences de l’activité physique (EKSAP), Faculté de Médecine, Université de 12 Montréal, Montréal, Canada 13
+> 4 Centre de recherche de l’Institut universitaire de gériatrie de Montréal (CRIUGM), Montréal, Canada 14
+> 5 Centre Interdisciplinaire de Recherche sur le Cerveau et l’Apprentissage (CIRCA), Montréal, Canada 15 16 Running head: mental fatigue and cycling endurance performance 17 18 Contact of the authors: 19 Robin.souron@univ-nantes.fr 20 Aurelie.sarcher@univ-nantes.fr 21 Lilian.lacourpaille@univ-nantes.fr 22 Ines.boulaouche@etu.univ-nantes.fr 23 richiercalvin@gmail.com 24 thomas.mangin@umontreal.ca 25 mathieu.gruet@univ-tln.fr 26 Julie.doron@univ-nantes.fr 27 Marc.jubeau@univ-nantes.fr 28 benjamin.pageaux@umontreal.ca 29
+> 30
+> Corresponding author: 31 Robin Souron 32 Laboratoire « Motricité, Interactions, Performance » (EA 4334) 33
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 2/43 25 bis, Boulevard Guy Mollet, BP 72206 - 44322 NANTES cedex 3 34 robin.souron@univ-nantes.fr 35
+
+.CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 3/43 
+
+> ORCID of all authors. 36 Robin Souron: 0000-0001-8096-7913 37 Aurélie Sarcher: 0000-0002-6408-6291 38 Lilian Lacourpaille: 0000-0002-9664-8121 39 Mathieu Gruet: 0000-0002-2658-277X 40 Julie Doron: 0000-0002-3967-709X 41 Marc Jubeau: 0000-0002-4878-7813 42 Benjamin Pageaux: 0000-0001-9302-5183 43 Thomas Mangin: 0000-0002-3393-7946 44 45
+> CRediT statement. 46
+> R. Souron:  conceptualization; data curation; formal analysis; methodology; supervision; writing-47 original draft; writing-review & editing. 48
+> A. Sarcher:  data curation; formal analysis; writing-review & editing. 49
+> L. Lacourpaille:  conceptualization; methodology; writing-review & editing 50
+> I. Boulaouche:  data curation; formal analysis; writing-review & editing 51
+> C. Richier:  data curation; formal analysis; writing-review & editing 52
+> T. Mangin:  methodology; formal analysis; writing-review & editing 53
+> M. Gruet:  conceptualization; methodology; writing-review & editing 54
+> J. Doron:  conceptualization; methodology; writing-review & editing 55
+> M. Jubeau:  conceptualization; methodology; writing-review & editing 56
+> B. Pageaux:  conceptualization; methodology; writing-original draft; writing-review & editing 57 58
+> 59
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 4/43
+> Conflict of interest statement. 60 All authors have declared that no competing interests exist. 61 62
+> Use of AI Generated Tools. 63 The authors used ChatGPT (version 5.2, OpenAI) to assist with English language editing and 64 grammar improvement during manuscript preparation. After using this tool, the authors reviewed and 65 edited the content as needed and take full responsibility for the content of the published article. All 66 scientific content, data interpretation, and conclusions were generated solely by the authors. 67 68
+> Funding statement 69 Benjamin Pageaux is supported by the Chercheur Boursier Junior 1 award from the Fonds de Recherche 70 du Québec—Santé 71
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 5/43
+> Abstract. 72 Mental fatigue is induced by prolonged engagement in cognitively demanding tasks and impairs 73 endurance  performance.  The  neuropsychophysiological  mechanisms  underlying  this  decreased 74 performance remain unclear, with suggestion that mental fatigue may disrupt motor command and 75 consequently muscle activation. We aimed to test this hypothesis in a repeated cross-over design study 76 in which 18 participants completed two experimental sessions involving a time-to-task failure cycling test 77 at 80% of peak power output. Each cycling task was preceded by 1h of a prolonged Stroop task (Stroop 78 condition) or a neutral control task (Control condition). Mental fatigue was assessed using a visual analog 79 scale anchored with "not fatigued at all" and "extremely fatigued". Perception of effort and surface 80 electromyography from ten lower-limb muscles of the right leg were recorded at regular intervals during 81 cycling. Mental fatigue was higher in the Stroop compared to the Control condition ( p = .002). Endurance 82 cycling time was shorter in the Stroop than in the Control condition (887 ± 284 s vs. 998 ± 379 s, 83 respectively; −111 ± 160 s,  p = .009). No significant differences in electromyography parameters were 84 observed between Stroop and Control conditions, for any muscle ( p > .05). Perception of effort was 85 higher in the Stroop condition from the onset of the cycling task ( p = .006), and the rate of increase in 86 perception of effort was significantly higher in the Stroop than Control condition ( p = .031). Our findings 87 do not support the hypothesis that mental fatigue alters motor control or increases central motor 88 command, as no changes in muscle activation were detected. Conversely, our results reinforce the 89 notion that prolonged cognitive engagement impairs endurance performance primarily through an 90 increased perception of effort. Future research should consider combining surface electromyography 91 with more sensitive neurophysiological techniques to investigate potential subtle changes in motor drive 92 during dynamic, whole-body tasks under mental fatigue. 93
+> 94
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 6/43
+> Keywords. 95 Cognitive exertion; physical performance; motor command; electromyography; perceived exertion 96
+
+.CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.64898/2026.03.19.712281 doi: bioRxiv preprint 7/43
