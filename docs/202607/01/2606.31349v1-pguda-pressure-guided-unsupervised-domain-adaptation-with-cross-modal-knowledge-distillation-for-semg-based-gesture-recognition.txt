@@ -1,0 +1,777 @@
+Title: PGUDA: Pressure-Guided Unsupervised Domain Adaptation with Cross-Modal Knowledge Distillation for sEMG-Based Gesture Recognition
+
+URL Source: https://arxiv.org/pdf/2606.31349v1
+
+Published Time: Wed, 01 Jul 2026 00:47:54 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+> JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 1
+
+# PGUDA: Pressure-Guided Unsupervised Domain Adaptation with Cross-Modal Knowledge Distillation for sEMG-Based Gesture Recognition 
+
+Yurui Liu #, Xiao-Cong Zhong #, Qisong Wang, Xuefu Wang, Dan Liu, and Jinwei Sun 
+
+Abstract —Surface electromyography (sEMG)-based gesture recognition has emerged as a promising technology for natural human-computer interaction. However, its practical deployment remains challenging due to severe performance degradation caused by feature distribution discrepancies across different sub-jects and recording sessions. Although domain adaptation (DA) techniques are commonly employed to mitigate such discrepan-cies, conventional methods often struggle to effectively aligning sEMG features, primarily due to their inherent stochasticity and the scarcity of labeled data. To address these limitations, this paper proposes a novel Pressure-Guided Unsupervised Domain Adaptation (PGUDA) framework, which leverages the robustness and stability of pressure signals to introduce a cross-modal knowl-edge distillation strategy that transfers consistent physical seman-tics across modalities. Specifically, a teacher network trained on pressure signals guides an sEMG student network on unlabeled target domains, thereby regularizing the representation learning process with transferable and modality-invariant knowledge. Extensive experiments conducted on a self-collected multimodal dataset involving eleven subjects validate the effectiveness of the proposed PGUDA framework. The results demonstrate that our proposed PGUDA achieves leading performance in both cross-subject and cross-session classification tasks, achieving average accuracies of 58.08% and substantially outperforming existing DA approaches. Notably, PGUDA exhibits remarkable label efficiency: it attains classification accuracy comparable to fully supervised benchmarks while requiring only 5% of labeled data for teacher network training. This framework offers a robust and data-efficient solution that can significantly reduce the calibration burden in practical sEMG-based gesture recognition systems. 
+
+Index Terms —Surface electromyography (sEMG), pressure signal, knowledge distillation, unsupervised domain adaptation (UDA), gesture recognition. 
+
+I. I NTRODUCTION 
+
+# HAND gesture recognition technology serves as a critical technology in human-computer interaction, prosthetic control, and rehabilitation engineering [1], [2]. Among various physiological modalities, surface electromyography (sEMG) has gained widespread adoption due to its non-invasive nature, 
+
+> #
+
+These authors contributed equally to this work. This work was sponsored by the National Natural Science Foundation of China (Grant No. 61471140, 62303420), and the Fundamental Research Funds for the Central Universities (Grant No. IR2021222), Future Science and Technology Innovation Team project of HIT (216506). ( Corresponding authors: Qisong Wang. )Yurui Liu, Xiao-Cong Zhong, Dan Liu, Jinwei Sun, and Qisong Wang are with the School of Instrumentation Science and Engineering, Harbin Insti-tute of Technology, Harbin 150001, China (e-mail: liuyurui@stu.hit.edu.cn; zhongxiaocong@hit.edu.cn; wangxuefu@stu.hit.edu.cn; liudan@hit.edu.cn; jwsun@hit.edu.cn; wangqisong@hit.edu.cn). (a) (b) 
+
+Class1 
+
+Class2 
+
+Subject A 
+
+Subject B 
+
+Fig. 1. t-SNE visualization of feature distributions for different physiological modalities and subjects. (a) sEMG features; (b) Pressure features. 
+
+low latency, and capacity to capture muscle activation patterns associated with movement intent. Recent progress in deep learning has further enabled effective decoding of sEMG signals for complex gesture recognition, as demonstrated by several advanced models [3], [6], [7]. However, the widespread deployment of sEMG-based sys-tems is hindered by significant generalization challenges, especially in cross-subject and cross-session scenarios. Clas-sification models trained on source data often suffer from severe performance degradation when applied to a new target domain. This decline is mainly caused by inherent domain discrepancy, as illustrated in Fig. 1(a), which stems from individual anatomical differences, such as muscle geometry, subcutaneous fat thickness, temporal non-stationarity due to factors like electrode displacement, skin impedance varia-tion, and muscle fatigue [27]. Consequently, maintaining high recognition accuracy typically requires collecting substantial labeled data from each target user, a process that is labor-intensive and heavily dependent on dense annotations, thereby impeding practical usability and user acceptance. To mitigate the reliance on target-domain labels, transfer learning techniques, particularly domain adaptation (DA) [44], have been developed to align feature distributions across dif-ferent domains [35], [42]. Despite DA methods have achieved notable success in fields such as computer vision, their appli-cation to sEMG signals remains challenging. Unlike structured visual images, sEMG signals are inherently stochastic, suscep-tible to environmental noise, and lack visually interpretable patterns. As a result, directly minimizing domain discrepancy without sufficient semantic guidance often leads to negative transfer, where samples from distinct gesture classes become erroneously aligned due to poorly defined decision boundaries  
+
+> arXiv:2606.31349v1 [eess.SP] 30 Jun 2026 JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 2
+
+in the target domain. Meanwhile, while cross-modal knowl-edge distillation (CMKD) has demonstrated effectiveness in integrating heterogeneous signals [11], [10], its potential for addressing domain shift and label scarcity in unsupervised sEMG-based adaptation remains largely unexplored. To address these challenges, this paper proposes a Pressure-Guided Unsupervised Domain Adaptation (PGUDA) frame-work with cross-modal knowledge distillation for sEMG-based gesture recognition. The design is motivated by the obser-vation that tactile pressure signals captured from fingertips directly reflect the mechanical outcomes of hand gestures. As illustrated in Fig. 1, compared with sEMG modality, pressure data exhibit notably greater intra-class compactness, wider inter-class separation, and substantially reduced do-main discrepancy. Consequently, pressure signals demonstrate higher inherent stability and robustness against bio-electrical noise. Although pressure sensors are generally less practical for long-term daily use, they can serve as an ideal teacher modality during offline training. By leveraging cross-modal knowledge distillation, the proposed method transfers robust, domain-invariant knowledge from the pressure modality to the sEMG student network. This semantic guidance acts as a reliable anchor that regularizes the representation learning process and enhances recognition accuracy in unlabeled target domains. The main contribution of this article are summarized as follows:  
+
+> •
+
+We propose a novel multimodal unsupervised domain adaptation framework, called PGUDA, which utilizes pressure signals to guide sEMG feature learning, ef-fectively addressing both domain discrepancy and label scarcity in sEMG-based gesture recognition.  
+
+> •
+
+We introduce a cross-modal knowledge distillation mech-anism that leverages pressure signals as robust semantic guidance to enhance the noise and non-stationarity ro-bustness of sEMG representations, while an alignment module concurrently minimizes global inter-domain dis-tribution discrepancy.  
+
+> •
+
+Extensive experiments are conducted under cross-subject and cross-session protocols, demonstrating that our pro-posed PGUDA achieves greater performance and exhibits superior label efficiency compared to existing domain adaptation and supervised methods. The remainder of this paper is organized as follows. Section II reviews the related works. Section III details the methodol-ogy of the proposed PGUDA framework. Section IV describes the experimental setup and presents a comprehensive analysis of the results. Section V provides a discussion, and Section VI concludes the paper and identify future directions. II. R ELATED WORKS 
+
+A. sEMG-based Gesture Recognition 
+
+Early research on sEMG-based gesture recognition relied primarily on handcrafted feature extraction coupled with con-ventional machine learning algorithms. Englehart et al. [4] introduced a robust method utilizing linear discriminant anal-ysis (LDA), demonstrating its effectiveness in processing four-channels sEMG signals. Oskoei et al. [5] conducted a com-prehensive evaluation showing that support vector machines (SVM) outperform linear classifiers in handling the high-dimensional and nonlinear characteristics of sEMG patterns. More Recently, the rise of deep learning has fundamentally transformed this field by enabling end-to-end automatic feature learning. Guo et al. [6] employed 1D-CNN and InceptionTime architecture for classifying ten hand gestures, achieving test accuracies of 80.98% and 90.89%, respectively. Lai et al. [7] designed a spatial-temporal convolutional network (STCN) to capture both spatial and temporal correlations within sEMG signals, reporting accuracies of 99.8% on the CapgMyo dataset and 75.8% on the BandMyo dataset. Burrello et al. [8] proposed Bioformers, a lightweight transformer-based model, which attained 65.73% accuracy on the Ninapro DB6 dataset with eight gestures while drastically reducing computational cost for ultra-low-power inference. Despite these advances, most existing methods remain lim-ited in generalizing across different subjects and sessions, and are highly dependent on abundant labeled data from new users. These limitations severely hinder their robustness and practical deployment in real-world applications. 
+
+B. Cross-Modal Knowledge Distillation 
+
+Knowledge distillation, originally proposed by Hinton et al. [9], is a learning paradigm in which a compact student model learns to mimic the soft output distributions of a larger teacher model. Initially developed for model compression, this concept has been extended to cross-modal knowledge distillation (CMKD), where knowledge is transferred across different sensory modalities [10]. For example, Gupta et al. 
+
+[11] demonstrated that supervision from a labeled teacher modality can effectively guide a student model trained on a distinct unlabeled modality, substantially enhancing the student’s performance. In the domain of physiological signal processing, CMKD has shown notable success in integrating heterogeneous data streams. For emotion recognition, Liu et al. [14] proposed EmotionKD and Kan et al. [12] introduced cross-modal contrastive representation distillation, both of which leverage multimodal teachers to guide unimodal students and reduce the inherent noise and instability of physiological signals. Similarly, in continuous sign language recognition, Gao et al. [16] employed CMKD to transfer semantic knowledge from visual and textual modalities to sign gloss sequences, improving robustness against complex hand movements. In sEMG-based gesture recognition, Zeng et al. [18] utilized A-mode ultrasound (AUS) to supervise an sEMG network, demonstrating that anatomical knowledge distilled from AUS can significantly enhance sEMG decoding accuracy. Addition-ally, Li et al. [15] explored multi-task learning combined with self-distillation to improve gesture recognition efficiency on edge devices. Despite these advances, existing CMKD studies in sEMG recognition have primarily focused on within-domain settings, largely overlooking the critical issue of domain discrepancy across subjects and sessions. To bridge this gap, we propose a pressure-guided strategy that exploits the physical stability of JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 3
+
+tactile pressure signals to supervise sEMG feature adaptation. This method effectively restores recognition performance in unlabeled target domains, eliminating the need for explicit user calibration or annotation. 
+
+C. Domain Adaptation 
+
+Domain adaptation has been widely studied to overcome the domain discrepancy in sEMG-based gesture recognition. For instance, Wang et al. [22] and Li et al. [26] utilized DA techniques such as correlation alignment (CORAL) [17] to reduce feature distribution discrepancies between source and target domains, improving cross-domain generalization. Zhong 
+
+et al. [43] proposed a plug-and-play subdomain adaptation method (PPSDA) that uses local maximum mean discrep-ancy to refine alignment within discriminative subdomains, addressing structural confusion common in global adaptation strategies. Cˆ ot´ e-Allard et al. [19] proposed transferable adap-tive domain adversarial neural networks, which learn subject-invariant representations by training a feature extractor to confuse a domain discriminator. Su et al. [24] developed a multisource adversarial feature disentanglement method to explicitly separate domain-invariant features from subject-specific noise. Additionally, Fratti et al. [23] demonstrated the effectiveness of transfer learning via fine-tuned multi-scale CNNs, adapting pre-trained models to specific prosthetic con-trol tasks. Beyond unimodal adaptation, recent research in other fields has shifted toward leveraging complementary modalities to bridge the domain gap. Bhalla et al. [21] introduced a cross-modal framework that transfers knowledge from inertial mea-surement units (IMUs) to Doppler radar, enabling label-free activity recognition in the target domain. In 3D semantic seg-mentation, Jaritz et al. [20] proposed a consistency-enforcing strategy between 2D images and 3D point clouds, where the more reliable modality guides adaptation on unlabeled target data. Drawing on the insights from the aforementioned studies, we hold that sEMG-based gesture recognition can similarly benefit from guidance via a stable auxiliary modality. In this work, we leverage tactile pressure signals as a physically grounded anchor to guide the unsupervised adaptation of sEMG networks, ensuring semantic consistency across do-mains without reliance on target-domain labels. III. M ETHODOLOGY 
+
+A. Problem Formulation 
+
+In this work, we address the problem of unsupervised domain adaptation (UDA) for sEMG-based gesture recogni-tion under guidance from a pressure modality. Let E denote the sEMG signal space, P the pressure signal space, and 
+
+Y = 1 , 2, . . . , K the label set of K gesture classes. We define two distinct domains with different feature distributions as follows:  
+
+> •
+
+Source domain Ds: This domain comprises labeled data collected from a source subject or session. It consists of 
+
+Ns samples, denoted as Ds = {(esi , psi , y si )}Ns
+
+> i=1
+
+, where 
+
+esi ∈ E and psi ∈ P represent the sEMG and pressure samples respectively, and ysi ∈ Y is the corresponding ground-truth gesture label.  
+
+> •
+
+Target domain Dt: This domain consists of unlabeled data from a new target subject or session. It includes Nt
+
+samples, expressed as Dt = {(etj , ptj )}Nt
+
+> j=1
+
+, where gesture labels are unavailable during adaptation. The core challenge stems from the probability distribution difference of sEMG signals between the source and target domains, formally expressed as P (es)̸ = P (et). To address this, we leverage the observation that pressure signals exhibit greater cross-subject and cross-session stability, which we formalize as P (ps) ≈ P (pt).Our goal is to learn a robust sEMG student network fθS (·)
+
+that generalizes effectively the unlabeled target domain Dt.Different from conventional UDA approaches, the student network is not directly supervised by source labels. Instead, the training process is structured in two decoupled stages:  
+
+> •
+
+Teacher Training : A teacher network fθT (·) is first trained on the source domain using pressure signals and their corresponding ground-truth labels.  
+
+> •
+
+Student Learning : The student network fθS (·), which takes sEMG signals as input, is then guided by the teacher’s soft predictions on the target domain, thereby regularizing its representation learning without access to target labels. Mathematically, the optimization problem is formulated as minimizing a joint objective function that combines a super-vised classification loss with a cross-modal domain adaptation loss: 
+
+θ∗ 
+
+> S
+
+= arg min  
+
+> θT,θ S
+
+ 1
+
+NsNsX
+
+> i=1
+
+LT (fθT (psi ), y si )+ λ · 1
+
+NtNtX
+
+> j=1
+
+LS (fθS (etj ), fθT (ptj )) 
+
+
+
+,
+
+(1) where LT (·, ·) denotes the supervised classification loss for training the teacher network, and LS (·, ·) represents the cross-modal UDA loss that aligns the student predictions with the teacher’s guidance on the target domain. During inference, only the optimized student model fθ∗ 
+
+> S
+
+(·) is deployed, while the teacher network is no longer required. 
+
+B. Data Segmentation and Feature Extraction 
+
+To process continuous physiological signals, we employed a sliding window technique [27], segmenting both multi-channel sEMG and pressure signals into 200 ms windows with a stride of 100 ms. This configuration was chosen to achieve a trade-off between information content and real-time latency. Synchronization between the sEMG and pressure windows was strictly enforced via timestamp alignment. Feature extraction plays a vital role in compressing high-dimensional raw data into discriminative representations for pattern recognition. Similar the practice in [28], [29], we con-structed a hybrid sEMG feature set by combining time-domain and frequency-domain descriptors. Specifically, the extracted JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 4sEMG  pressure 
+
+Data Acquisition 
+
+Preprocessing 
+
+Teacher model Training 
+
+Student model Distillation 
+
+Source 
+
+Domain 
+
+Target 
+
+Domain 
+
+Teacher 
+
+model s
+
+## pt
+
+## pspltplspztpz
+
+weight 
+
+sharing 
+
+AdaBN 
+
+Target 
+
+Domain t
+
+## pt
+
+## etpltpzteltez
+
+3-120Hz & 50Hz filter 
+
+Feature extraction 
+
+Segmentation 
+
+Teacher 
+
+model 
+
+Teacher 
+
+model 
+
+Student 
+
+model 
+
+Inference 
+
+Test Data 
+
+Preprocessing 
+
+Student 
+
+model 
+
+Softmax 
+
+Hand Gesture T cls mmd 
+
+## = +  S kd align 
+
+## = +   
+
+> Fig. 2. Overview of the proposed PGUDA framework. The left panel presents the multimodal data acquisition and preprocessing pipeline. The middle panel details the two-stage training strategy, including teacher model training and cross-modal knowledge distillation to the student network. The right panel illustrates the inference stage, where only sEMG signals are used for gesture recognition.
+
+feature vector includes: root mean square (RMS), mean ab-solute value (MAV), variance (VAR), waveform length (WL), differential absolute standard deviation (DASDV), power spec-tral area (PSA), and maximum power spectrum (MPS). These features collectively characterize muscle activation patterns. Let xi denote the i-th sample within a segmented window of length N . The mathematical definitions and physiological interpretations of the features are given below: RMS =
+
+vuut 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+xi2, (2) which reflects the signal’s steady-state power and, in the context of sEMG, serves as an estimator of the amplitude of quasi-constant force during non-fatiguing contractions. MAV = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+|xi|, (3) which calculates the average rectified value of the signal. This feature serves as a direct indicator of muscle contraction intensity and is widely used due to its computational efficiency. VAR = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+(xi − x)2, (4) where x denotes the mean of the segment. VAR measures the signal’s deviation from its mean and is interpreted as the AC power of the sEMG, quantifying the degree of signal fluctuation. WL = 
+
+> N−1
+
+X
+
+> i=1
+
+|xi+1 − xi|, (5) which computes the cumulative waveform length over the time window, implicitly capturing information related to signal complexity, amplitude, and frequency content. DASDV =
+
+vuut 1
+
+N − 1 
+
+> N−1
+
+X
+
+> i=1
+
+(xi+1 − xi)2, (6) which is a standard deviation measure applied to the difference between adjacent samples. It is particularly sensitive to high-frequency components of the sEMG signal. To characterize spectral properties, the power spectral den-sity PSD (fi) is obtained via the fast Fourier transform, where 
+
+fi represents the i-th frequency bin. PSA =
+
+> N
+
+X
+
+> i=1
+
+fi · PSD (fi), (7) which estimates the integral of the power spectrum, reflecting the overall energy distribution of the muscle activity across the frequency domain. MPS = max  PSD (fi), (8) which identifies the magnitude of the dominant frequency component, aiding in the discrimination of gestures with similar temporal patterns but distinct spectral signatures. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 51D residual convolutional block (ResBlock)          
+
+> 1DCNN
+> BN
+> ReLU
+> 1DCNN BN iiNCLooNCL
+> 1DCNN
+> BN e
+
+v
+
+> ResBlock output:  64
+> ResBlock  output:  128
+> ResBlock  output:  256
+> Maxpooling e
+
+f
+
+> Projection
+> Head
+> Feature Encoder
+> Classification
+> Head e
+
+zel 
+
+> Fig. 3. The architecture of the sEMG student network.
+
+After extraction, these seven features are concatenated across all channels to form the sEMG feature vector ve ∈
+
+RCe×7, where Ce denotes the total number of sEMG channels. For the pressure modality, given its inherent low-frequency stability, we simply compute the mean amplitude of each window as a represent of contact force intensity. Formally, for the k-th pressure channel, the feature vkp is obtained as: 
+
+vkp = 1
+
+NpNp
+
+X
+
+> n=1
+
+pk[n], (9) where pk[n] is the raw reading at the n-th time step. This yields a compact pressure feature vector vp ∈ RCp×1, with 
+
+Cp being the total number of pressure channels. 
+
+C. Teacher Model Training 
+
+As illustrated in Fig. 2, the proposed PGUDA framework employs a teacher-student architecture. The first training stage focuses on optimizing the teacher model using pressure data from both the source and target domains. 
+
+1) Pressure Teacher Network: Given the low dimensional-ity of pressure signals, the teacher network fθT is implemented as a lightweight multi-layer perceptron (MLP) that processes the pressure feature vector vp ∈ RCp×1. The network com-prises three fully-connected layers with hidden dimensions 
+
+[64 , 128 , 64] . Let hl denote the feature representation at the l-th layer. The transformation to the next layer hl+1 is expressed as: 
+
+hl+1 = F (Wlhl + bl) , (10) where Wl and bl represent the learnable weight matrix and bias, and F(·) denotes a non-linear activation unit composed of batch normalization, ReLU, and dropout. The output of the last hidden layer, denoted as zp ∈ R64 ×1,serves as a latent embedding. This feature vector acts as a robust semantic anchor for guiding the sEMG student network during domain adaptation, while also being mapped to the label space via a linear classifier. 
+
+2) Training Strategy: To obtain a reliable teacher model 
+
+fθT (·), we employ a hybrid adaptation strategy combining joint optimization and adaptive batch normalization (AdaBN) [32]. First, to ensure discriminative capability on the source domain, we minimize the cross-entropy loss Lce on labeled pressure data. The supervised classification loss is formulated as: 
+
+Lcls = 1
+
+NsNsX
+
+> i=1
+
+Lce (fθT (psi ), y si ). (11) Simultaneously, to reduce the domain gap, we align the pressure feature distributions of source and target domains using maximum mean discrepancy (MMD) in a reproducing kernel Hilbert space (RKHS) H:
+
+Lmmd = 1
+
+NsNsX
+
+> i=1
+
+ϕ(zsp,i ) − 1
+
+NtNtX
+
+> j=1
+
+ϕ(ztp,j )
+
+> 2
+> H
+
+, (12) where ϕ(·) denotes the kernel mapping function. The overall objective for the first stage is therefore: 
+
+min 
+
+> θT
+
+LT = Lcls + μ · L mmd , (13) where μ is a hyper-parameter balancing the classification loss and the domain adaptation loss. To further counteract against statistical discrepancies, we apply AdaBN as a post-optimization refinement. Specifically, we freeze the learnable parameters of the teacher network and perform a forward pass over the target data, updating the weights in all batch-normalization layers. This explicitly adapts the teacher model to the target distribution without gradient-based parameter updates. 
+
+D. Student Model Distillation 
+
+As shown in Fig. 3, the second stage performs knowledge distillation to transfer robust physical knowledge from the pressure teacher model to the sEMG student network. 
+
+1) sEMG Student Network: The student network fθS (·)
+
+acts as the inference model. Architecturally, it is divided into a feature-encoding backbone and two task-specific heads. To capture complex temporal and channel-wise dependencies in the sEMG feature vectors ve, we adopt a 1D residual con-volutional network as the backbone. Through stacked residual blocks, the backbone extracts a high-level latent representation 
+
+fe ∈ R256 ×1 without suffering from gradient degradation. Af-ter feature extraction, the network splits into two branches. The first is a projection head that maps fe to a lower-dimensional subspace ze ∈ R64 ×1. Inspired by contrastive learning and domain-adaptation methods [30], [31], we perform feature alignment in this subspace, which preserves intrinsic sEMG structure while mitigating domain discrepancy. The second branch is a classification head that directly maps fe to gesture probabilities, focusing on discriminative performance. During inference, only the backbone and classification head are re-tained, ensuring low-latency prediction. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 6
+
+2) Distillation Strategy: In this stage, the teacher parame-ters θT are frozen, and the student network fθS (·) is optimized using unlabeled target data. We employ a dual-level knowledge transfer that enforces consistency at both the probability and feature levels. For class-specific knowledge transfer, we apply cross-modal knowledge distillation via Kullback-Leibler divergence with a temperature scaling parameter T . Let qk(·, T ) denote the soft probability for class k:
+
+qk(l, T ) = exp( lk/T )
+
+PKj exp( lj /T ) , (14) where l is the output logits. The distillation loss Lkd is defined as: 
+
+Lkd = T 2
+
+> K
+
+X
+
+> k=1
+
+qk(ltp, T ) log 
+
+ qk(ltp, T )
+
+qk(lte, T )
+
+
+
+, (15) where ltp and lte are the logits generated by the teacher and student network on target data, respectively. The factor T 2
+
+aligns the gradient magnitudes with loss scale. Probability-level alignment alone is insufficient for distri-bution matching. To enforce physical semantic consistency at the feature level, we minimize the MMD between the student’s projected features ze and the teacher’s features zp.The alignment loss Lalign is defined as: 
+
+Lalign = 1
+
+NtNtX
+
+> j=1
+
+ϕ(zte,j ) − 1
+
+NtNtX
+
+> j=1
+
+ϕ(ztp,j )
+
+> 2
+> H
+
+. (16) The overall objective for the student stage is: 
+
+min 
+
+> θS
+
+LS = Lkd + α · L align , (17) where α controls the relative weight of feature-level alignment. The complete two-stage training procedure of PGUDA is summarized in Algorithm 1. IV. E XPERIMENT AND RESULT 
+
+A. Datasets Description 
+
+To evaluate the effectiveness of the proposed PGUDA framework, we constructed a multimodal hand-gesture dataset containing synchronized sEMG and pressure signals. Data were collected from eleven healthy participants (21-28 years old, five males and six females, all right-handed) with no his-tory of neuromuscular disorders. Each participant was asked to write informed consent prior to the experiment. As illustrated in Fig. 4(a), participants sat comfortably wearing a custom-made data glove and an sEMG acquisition device [43]. We deployed a four-channel sEMG system with bipolar electrodes placed over the brachioradialis (BR), extensor carpi radialis longus (ECRL), flexor carpi ulnaris (FCU), and extensor digitorum (ED). Nine electrodes were arranged in a standard bipolar configuration, with a single reference electrode at-tached to the humeral epicondyle. sEMG signals were sampled at 500 Hz using a high-precision 24-bit analog-to-digital converter (ADS1299, Texas Instruments) and transmitted to a Raspberry Pi-5 via a serial interface for storage and processing. 
+
+Algorithm 1: Training Procedure of the PGUDA Framework. 
+
+Input : Source domain Ds and target domain Dt;training epochs E1, E 2; batch size B;hyper-parameters α, μ .
+
+Output: Classification results {yj }Nt 
+
+> j=1
+
+on Dt. 
+
+> 1
+
+Initialize parameters θT and θS ; 
+
+> 2
+
+Stage 1: Teacher model Training ; 
+
+> 3
+
+while epoch e < E 1 do  
+
+> 4
+
+Obtain features and logits:  
+
+> 5
+
+(zsp, lsp) ← fθT (ps), 
+
+> 6
+
+(ztp, ltp) ← fθT (pt) ; 
+
+> 7
+
+Calculate Lcls and Lmmd by Eq.(11) and Eq.(12) ;  
+
+> 8
+
+Update θT ← ∇ (Lcls + μLmmd ) by Eq.(13) ;  
+
+> 9
+
+end  
+
+> 10
+
+Freeze θT , Set model to training mode ;  
+
+> 11
+
+for batch pt in Dt do  
+
+> 12
+
+Forward pass fθT (pt) to update BN statistics ;  
+
+> 13
+
+end  
+
+> 14
+
+Set calibrated teacher θ∗ 
+
+> T
+
+← θT ; 
+
+> 15
+
+Stage 2: Student model Distillation ; 
+
+> 16
+
+while epoch e < E 2 do  
+
+> 17
+
+Obtain features and logits:  
+
+> 18
+
+(ztp, ltp) ← fθ∗ 
+
+> T
+
+(pt), 
+
+> 19
+
+(zte, lte) ← fθS (et) ; 
+
+> 20
+
+Calculate Lkd and Lalign by Eq. (15) and Eq. (16) ; 
+
+> 21
+
+Update θS ← ∇ (Lkd + αLalign ) by Eq.(17) ;  
+
+> 22
+
+end  
+
+> 23
+
+Predict labels on the target sEMG feature {ej }Nt 
+
+> j=1
+
+; 
+
+> 24
+
+return Classification results {yj }Nt
+
+> j=1
+
+.EC      
+
+> RL
+> ED
+> BR FCU
+> A301
+> HC -05
+> Serial
+> ADS1299
+> Raspberry Pi 5
+> hand open hand grasp
+> thumbs up index pointing
+> victory sign
+> (a) (b)
+> ADC
+> Fig. 4. Data acquisition details. (a) The hardware architecture system; (b) Five selected hand gestures.
+
+Simultaneously, five force sensors (FlexiForce A301) were embedded in the fingertips of the custom glove. The pressure signals were amplified and digitized, then transmitted to the Raspberry Pi via an HC-05 Bluetooth module at 5 Hz. The experiment included five hand gestures: hand open, hand grasp, thumbs up, index pointing, and victory sign, as shown in Fig. 4(b). Each trial lasted 12 seconds, including 3s of preparation, 5s of gesture holding, and 4s of relaxation. Each gesture was repeated 10 times per session. Ten subjects JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 7           
+
+> TABLE I CLASSIFICATION PERFORMANCE (A CCURACY ± STD % AND F1-SCORE ± STD %)
+> IN CROSS -S UBJECT AND CROSS -S ESSION EVALUTION WITH DIFFERENT METHODS
+
+Method Cross-Subject Cross-Session Acc ± Std F1 ± Std Acc ± Std F1 ± Std KNN 25.95 ± 8.84 22.44 ± 8.83 40.39 ± 7.55 37.60 ± 8.81 MMD [33] 34.16 ± 8.32 28.17 ± 9.68 47.86 ± 8.07 46.43 ± 8.59 CORAL [34] 34.53 ± 8.68 28.58 ± 9.68 48.34 ± 7.56 46.28 ± 8.98 DANN [35] 36.94 ± 9.60 31.87 ± 10.69 49.08 ± 7.90 46.95 ± 10.06 DSAN [36] 36.05 ± 9.41 29.53 ± 9.91 47.64 ± 7.25 45.84 ± 7.79 BNM [37] 36.45 ± 9.12 29.94 ± 10.28 47.75 ± 7.27 45.99 ± 7.42 CDAN [39] 37.89 ± 9.65 32.95 ± 9.87 48.88 ± 7.41 47.42 ± 8.47 MCD [38] 39.03 ± 10.29 33.30 ± 10.83 50.75 ± 8.77 47.49 ± 10.96 MDD [40] 41.14 ± 4.31 33.07 ± 6.10 45.64 ± 8.01 42.84 ± 9.67 
+
+PGUDA 58.08 ± 17.84 54.21 ± 20.30 58.08 ± 10.73 55.31 ± 12.27                
+
+> TABLE II HYPER -PARAMETERS USED DURING TRAINING
+> learning rate E1/E2batch size drop out Tαμ
+> 0.003/0.00001 200/200 256 0.3 1.2 515
+
+participated in a single session (50 trials per subject), while one subject completed five separate sessions on different days (250 trials in total). To ensure high-quality inputs, dedicated preprocessing pipelines were applied to each modality. For sEMG signals, a third-order Butterworth band-pass filter (3-120 Hz) removed motion artifacts and high-frequency noise, and a 50 Hz notch filter suppressed power-line interference. For pressure signals, given variations in sensor sensitivity, we applied min-max normalization to scale each channel’s amplitude to the range [0 , 1] , ensuring numerical stability during model training. 
+
+B. Implementation Details 
+
+To thoroughly evaluate the proposed framework, we de-signed comprehensive unsupervised domain adaptation experi-ments covering both cross-subject and cross-session scenarios. For cross-subject evaluation, we adopted a pairwise transfer protocol among the 10 single-session subjects: each subject served as the labeled source domain, while every other subject was treated as the unlabeled target domain, resulting in 90 transfer tasks. For cross-session evaluation, we utilized the data from the subject with five recording sessions. By selecting one session as the source and another as the target in a pairwise manner, we constructed 20 transfer tasks. With the adopted segmentation strategy, each session contained approximately 250 samples per gesture class. The PGUDA framework was implemented in Python 3.11 using the PyTorch 2.8.0 library. All experiments were conducted on a platform equipped with an Intel Core i9-14900HX CPU and an NVIDIA GeForce RTX 5060 GPU. Network parameters were optimized using the AdamW algorithm, and the CosineAnnealingLR scheduler was employed to adjust the learning rate during training. Detailed hyperparameters settings are listed in Table II. To validate the effectiveness of the PGUDA framework, we performed comparative evaluations against a comprehensive set of existing DA methods, which are summarized as follows:  
+
+> •
+
+MMD [33]: A distance-based method that minimizes the distribution discrepancy between the source and target domains in a Reproducing Kernel Hilbert Space.  
+
+> •
+
+CORAL [34]: A statistical method that aligns the second-order statistics (covariance matrices) of the source and target feature distributions.  
+
+> •
+
+Domain-adversarial neural network (DANN) [35]: Apioneering adversarial method that employs a gradient reversal layer to confuse a domain discriminator, thereby learning domain-invariant features.  
+
+> •
+
+Deep subdomain adaptation network (DSAN) [36]: An extension of MMD that aligns relevant subdomain distri-butions based on local MMD.  
+
+> •
+
+Batch nuclear-norm maximization (BNM) [37]: An unsu-pervised method that maximizes the nuclear norm of the batch output matrix to enhance the discriminability and diversity of predictions on the target domain.  
+
+> •
+
+Conditional domain adversarial network (CDAN) [39]: A conditional adversarial method that conditions the adversarial adaptation on discriminative information to capture multimodal structures.  
+
+> •
+
+Maximum classifier discrepancy (MCD) [38]: A method that utilizes a min-max adversarial game between afeature generator and two classifiers to align distributions by detecting target samples near the decision boundaries.  
+
+> •
+
+Margin disparity discrepancy (MDD) [40]: A theory-driven method that provides rigorous generalization bounds by minimizing margin disparity. To establish a performance benchmark, we employ the K-Nearest Neighbors (KNN) classifier. The evaluation is conducted using accuracy and F1-score. All experimental results are reported in the form of average accuracy ±
+
+standard deviation. 
+
+C. Experimental Results 1) Performance on Cross-Subject Task: The cross-subject experimental results are summarized in the left columns of JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 8Cross-Subject          
+
+> Original CORAL MDD MCD PGUDA
+> Cross-Session
+> Fig. 5. t-SNE visualization of feature distributions with different methods. The top row is the task of Subject 2 →Subject 3, and the bottom row is the task of Session 4 →Session 2. Blue, yellow, green, red, and purple samples denote the hand gestures of hand open, hand grasp, thumbs up, index pointing, and victory sign, respectively.
+
+Table I. This setting is particularly challenging owing to in-herent anatomical variations across individuals, such as muscle geometry and skin impedance. Consequently, the baseline KNN model performs poorly, achieving average accuracies of only 25.95%, which reflects the substantial domain dis-crepancy. Although conventional domain adaptation methods (e.g., CORAL and DANN) yield modest improvements, they are still limited by the complex distribution shifts character-istic of sEMG signals. By contrast, the proposed PGUDA framework demonstrates strong generalization. It surpasses the second-best method by 16.94% in accuracy and 20.91% in F1-score, indicating its ability to extract subject-invariant repre-sentations and effectively mitigate the impact of inter-subject physiological differences. 
+
+2) Performance on Cross-Session Task: We further evaluate the longitudinal robustness of the PGUDA using the cross-session protocol, as presented in the right columns of Table I. Unlike cross-subject scenarios, cross-session adaptation faces challenges from temporal non-stationarity and electrode dis-placement over time. In this setting, both the baseline KNN and DA methods like DANN and CDAN exhibit high variance, largely due to the instability of min-max optimization on time-varying distributions. However, PGUDA demonstrates superior robustness, outperforming the best existing methods by 7.33% in accuracy and 7.82% in F1-score. This result confirms that the physical constraints provided by the pressure modality are inherently time-invariant. By transferring this physical stability to the sEMG network, our method effectively bridges the temporal shifts, verifying its suitability for long-term practical deployment. 
+
+D. Featuer Visualization 
+
+Fig. 5 presents the t-SNE visualization of the feature distributions for CORAL, MCD, MDD, and the proposed PGUDA in both cross-subject and cross-session evaluations. In the original feature space, sEMG features exhibit a chaotic distribution with substantial overlap among different gesture classes. This lack of separability confirms the severity of the domain shift and explains the poor baseline performance. Conventional DA methods ( e.g. CORAL, MDD, and MCD) attempt to align the domain distributions but struggle with complex classes. For instance, the ”victory sign” gesture remains difficult to classify due to persistent overlap. While those methods reduce the confusion to some extent, the resulting decision boundaries are often unclear. In contrast, our PGUDA framework produces notably more discriminative features. Although PGUDA does not enforce strict geometric overlap between source and target domains, it successfully projects the target sEMG data into well-separated, structured clusters. The visualized features exhibit high intra-class com-pactness and clear inter-class separation. This indicates that by leveraging the physical stability of pressure as semantic guidance, PGUDA enables the model to learn robust decision boundaries that are insensitive to subject-specific variations, rather than merely aligning marginal distributions. V. D ISCUSSION 
+
+A. Ablation Experiment 
+
+To systematically investigate the contribution of each com-ponent in the PGUDA framework, we conduct ablation stud-ies under both cross-subject and cross-session protocols. As shown in Fig. 6, we compare the full PGUDA model with three variants: the ”Source Only” baseline, PGUDA trained without teacher guidance (w/o Lkd ), and PGUDA trained without feature alignment (w/o Lalign ). The results provide clear insights into the mechanisms underlying the student network’s learning behavior. A key observation is that PGUDA (w/o Lkd ) yields marginal improvements over the ”Source Only” baseline. Specifically, under the cross-subject protocol, the classification accuracy increases slightly from 28.79% to 29.11%, while in the cross-session task, the accuracy remains nearly unchanged at approximately 40%. This indicates that, given the high stochasticity and complexity of sEMG signals, merely match-ing the statistical distributions of the pressure and sEMG data is insufficient. Without reliable semantic anchors, feature JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 9Cross-Subject Cross-Session   
+
+> 25
+> 30
+> 35
+> 40
+> 45
+> 50
+> 55
+> 60
+> 65
+> 70
+> Accuracy (%)
+> 28.79
+> 39.23
+> 29.11
+> 40.35
+> 57.37 56.62
+> 58.08 58.08
+
+(a)      
+
+> Source Only
+> PGUDA (w/o align )
+> PGUDA (w/o kd )
+> PGUDA
+> Cross-Subject Cross-Session
+> 25
+> 30
+> 35
+> 40
+> 45
+> 50
+> 55
+> 60
+> 65
+> 70
+> F1-score (%)
+> 25.57
+> 37.05
+> 26.07
+> 37.77
+> 53.68 53.78 54.21 55.31
+
+(b)     
+
+> Fig. 6. Ablation study results of the PGUDA. Subplots (a) and (b) illustrate the classification Accuracy and F1-score across cross-subject and cross-session tasks. The ”Source Only” means the baseline model trained solely labeled source data without any adaptation; The terms PGUDA (w/o Lalign ) and PGUDA (w/o Lkd ) denote variants where the feature alignment loss and knowledge distillation loss are removed. The full PGUDA model consistently achieves the highest performance, validating the contribution of each component.
+
+alignment may incorrectly map samples from different classes, failing to establish correct decision boundaries. In contrast, PGUDA (w/o Lalign ) achieves a substantial performance gain, with accuracy rising to 57.37% in cross-subject and 56.62% in cross-session tasks. This highlights the knowledge distillation (KD) module as the primary driver of improvement. Our finding confirm the core hypothesis: the pressure modality is physically robust and domain-invariant. By mimicking the soft logits from the pressure-based teacher, the student network effectively inherits latent knowledge about inter-class relationships. This semantic guidance acts as a strong regularizer, enabling the student to classify target sEMG patterns correctly even without explicit feature distribution constraints. Finally, the PGUDA framework achieves the best performance across all variants. Integrating Lalign with Lkd 
+
+provides additional improvements over KD alone, indicating that the two components are complementary. KD supplies discriminative guidance to correct decision boundaries, while feature alignment further compacts the intra-class representa-tions and reduces global domain shift. Together, they ensure both semantic correctness and distributional consistency. 
+
+B. Label Efficiency Analysis 
+
+In practical sEMG applications, acquiring large-scale an-notations is labor-intensive and time-consuming. To evaluate the label efficiency of our PGUDA framework, we conduct a semi-supervised learning experiments under label scarcity using intra-subject 5-fold cross-validation. We randomly sam-ple subsets of the dataset (1%, 5%, 15%, 50% and 80%) as the labeled set, treating the remaining data as unlabeled. The experiment compares two paradigms: (1) a supervised baseline trained directly on sEMG features with sparse labels, and (2) PGUDA, in which the sparse labels are used only to train 1 5 15 50 80 
+
+Label Ratio (%) 
+
+15 
+
+20 
+
+25 
+
+30 
+
+35 
+
+40 
+
+45 
+
+50 
+
+55 
+
+> Error Rate (%)
+
+Supervised (Acc) 
+
+Supervised ( F1)
+
+PGUDA (Acc) 
+
+PGUDA ( F1) 
+
+> Fig. 7. Error rate comparison (Accuracy and F1-score) under different labeled data ratios. The proposed PGUDA (red) consistently achieves lower error rates than the Supervised baseline (blue) across all settings, demonstrating high label efficiency and robust generalization.
+
+the teacher model, while the sEMG student network is trained via cross-modal distillation from synchronized pressure-sEMG pairs without explicit sEMG annotations. The results are summarized in Fig. 7. As can be seen, the error rate of both methods degrades sharply as the label ratio increases. Our proposed PGUDA outperforms the supervised baseline across all label ratios. Even when both methods use the full set of labels (80%), PGUDA still achieves a lower error rate than the supervised baseline. Notably, PGUDA with only 5% labeled data attains comparable performance to the supervised baseline trained with 80% labels. Specifically, PGUDA reaches an error rate of 20.55% with 5% labels, while JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 10 0 0.1 0.5 1 5 10 20       
+
+> Parameter
+> 52
+> 54
+> 56
+> 58
+> 60
+> Performance (%)
+> Cross-Subject Acc
+> Cross-Subject F1
+> Cross-Session Acc
+> Cross-Session F1
+> Fig. 8. Impact of the trade-off hyperparameter αon model performance. The dual-axis plot displays Accuracy and F1-score for both cross-subject and cross-session protocols.
+
+the baseline achieves 20.00% with 80% labels, a marginal difference of only 0.55%. This demonstrates the high label efficiency of PGUDA. Furthermore, under an extremely low label ratio (1%), PGUDA still significantly reduces the error rate (from the baseline’s 47.59% down to 33.13%), illustrating its strong few-shot learning capability. As the label ratio increases, PGUDA consistently maintains a superior error rate, further validating the robustness and generalization ability of the proposed method. 
+
+C. Parameter Sensitivity Analysis 
+
+The hyper-parameter α in Eq. (17) controls the trade-off between the knowledge distillation and the feature alignment loss. A larger α emphasizes stricter cross-domain distribution matching, while a smaller α prioritizes preserving of discrim-inative features learned from the source domain. To evaluate its impact, we varied α across {0, 0.1, 0.5, 1, 5, 10 , 20 } in both cross-subject and cross-session tasks. The results are presented in Fig. 8. In cross-subject tasks, the model performance re-mains robust and consistently superior to the baseline ( α = 0 )across a wide range of α values [0 .1, 10] , peaking within 
+
+α ∈ [0 .5, 5] . The accuracy peaks around α ∈ [0 .5, 5] . However, when α increases to 20, accuracy and F1-score both de-clines, indicating that excessive alignment weight may induce negative transfer. Overly aggressive distribution alignment can distort the intrinsic structure of sEMG features, thereby degrading the separability of gesture categories. Cross-session tasks exhibits a different sensitivity pattern. Compared with the no-alignment case, using low α values ( 0.1 and 1) leads to only marginal performance gains. Significant performance gains emerge only when α reaches [5 , 10] . This suggests that temporal signal drifts are more persistent or subtle than cross-subject variations, thus requiring stronger regularization to align the time-varying target distribution with the source domain. Based on these observations, we set α = 5 as a balanced and robust setting suitable for both scenarios. 
+
+D. Why Cross-modal Knowledge Distillation Work? 
+
+Experimental results confirm that the cross-modal knowl-edge distillation (CMKD) module is decisive for the success of the PGUDA framework, significantly outperforming pure feature alignment methods. The effectiveness of CMKD stems from three key factors rooted in physiological invariance, latent knowledge transfer and semantic guidance for domain adaptation. The primary challenge in sEMG-based gesture recognition is the high variability of bio-electrical signals caused by domain shift. In contrast, pressure signals capture the mechanical outcome of hand gestures. Regardless of arm morphology or skin condition, the mechanical contact pattern of a ”hand grasp” gesture remains physically consistent across domains. By using the pressure-based model as the teacher, we introduce a domain-invariant physical constraint into the learning process. The distillation forces the sEMG student network to discard domain-specific noise and concentrate on latent features that correlate causally with stable mechanical outputs. In contrast to the categorical hard labels used in supervised learning, the soft logits produced from the teacher encode rich latent knowledge about inter-class relationships. For example, when recognizing an “index pointing” gesture, the teacher may also assign a non-zero probability to the “victory sign” due to similarities in finger extension. This soft probability distribution provides a granular description of the decision boundary manifold. By mimicking these soft targets, the student learns not only the correct class but also the relative affinities among classes. This acts as a regularizer that miti-gates overfitting to the source domain’s specific distribution. Our ablation study reveals that pure feature alignment fails to deliver meaningful improvement. When the domain gap is too large, as in cross-subject tasks, indiscriminate minimization of distribution distance may align samples from different classes and degrade discriminability. The CMKD module provides essential semantic guidance: the teacher generates reliable pseudo-supervision for unlabeled target data, effectively an-choring target features to their correct semantic clusters before the alignment loss further compacts them. In short, CMKD ensures alignment correctness, while feature alignment ensures representational compactness. VI. C ONCLUSION 
+
+This study addresses the challenges of domain discrepancy and label scarcity in sEMG-based gesture recognition by proposing the PGUDA framework. By leveraging the physical stability of pressure signals to guide sEMG feature learn-ing, PGUDA effectively extracts domain-invariant representa-tions across subjects and sessions. Comprehensive evaluations under cross-subject and cross-session protocols demonstrate that our proposed method significantly outperforms existing domain adaptation approaches, achieving an overall accu-racy of 58.08%. Ablation studies verify that the cross-modal knowledge distillation mechanism serves as the primary driver of performance improvement, effectively preventing negative transfer by transferring physically consistent semantic knowl-edge. Furthermore, the framework exhibits exceptional label efficiency, achieving performance comparable to supervised benchmarks while utilizing only 5% of labeled pressure data, thereby substantially reducing the calibration burden for new JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 11 
+
+users. Future work will focus on implementing online incre-mental learning for real-time edge adaptation and extending the framework to continuous force regression tasks. ACKNOWLEDGMENTS 
+
+The authors would like to thank all the subjects who participated in this study. We hereby declare that written informed consent was obtained from all participants prior to the experiments, and all personal data have been anonymized for privacy protection. REFERENCES [1] Y. Gu, Y. Xu, Y. Shen, H. Huang, T. Liu, L. Jin, H. Ren, and J. Wang, “A review of hand function rehabilitation systems based on hand motion recognition devices and artificial intelligence,” Brain Sciences , vol. 12, no. 8, p. 1079, Aug. 2022. [Online]. Available: http://dx.doi.org/10.3390/brainsci12081079 [2] S. Ni, M. A. Al-qaness, A. Hawbani, D. Al-Alimi, M. Abd Elaziz, and A. A. Ewees, “A survey on hand gesture recognition based on surface electromyography: Fundamentals, methods, applications, challenges and future trends,” Applied Soft Computing , vol. 166, p. 112235, Nov. 2024. [Online]. Available: http://dx.doi.org/10.1016/j.asoc.2024.112235 [3] W. Wei, Y. Wong, Y. Du, Y. Hu, M. Kankanhalli, and W. Geng, “A multi-stream convolutional neural network for semg-based gesture recognition in muscle-computer interface,” Pattern Recognition Letters ,vol. 119, p. 131–138, Mar. 2019. [Online]. Available: http://dx.doi.org/ 10.1016/j.patrec.2017.12.005 [4] K. Englehart and B. Hudgins, “A robust, real-time control scheme for multifunction myoelectric control,” IEEE Transactions on Biomedical Engineering , vol. 50, no. 7, p. 848–854, Jul. 2003. [Online]. Available: http://dx.doi.org/10.1109/TBME.2003.813539 [5] M. Oskoei and H. Hu, “Support vector machine-based classification scheme for myoelectric control applied to upper limb,” IEEE Transactions on Biomedical Engineering , vol. 55, no. 8, p. 1956–1965, Aug. 2008. [Online]. Available: http://dx.doi.org/10.1109/TBME.2008. 919734 [6] K. Guo, M. Orban, J. Lu, M. S. Al-Quraishi, H. Yang, and M. Elsamanty, “Empowering hand rehabilitation with ai-powered gesture recognition: A study of an semg-based system,” Bioengineering ,vol. 10, no. 5, p. 557, May 2023. [Online]. Available: http: //dx.doi.org/10.3390/bioengineering10050557 [7] Z. Lai, X. Kang, H. Wang, W. Zhang, X. Zhang, P. Gong, L. Niu, and H. Huang, “Stcn-gr: Spatial-temporal convolutional networks for surface-electromyography-based gesture recognition,” in Neural Infor-mation Processing . Springer International Publishing, 2021, p. 27–39. [Online]. Available: http://dx.doi.org/10.1007/978-3-030-92238-2 3 [8] A. Burrello, F. B. Morghet, M. Scherer, S. Benatti, L. Benini, E. Macii, M. Poncino, and D. J. Pagliari, “Bioformers: Embedding transformers for ultra-low power semg-based gesture recognition,” in 2022 Design, Automation; Test in Europe Conference; Exhibition (DATE) . IEEE, Mar. 2022, p. 1443–1448. [Online]. Available: http://dx.doi.org/10.23919/DATE54114.2022.9774639 [9] G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in a neural network,” 2015. [Online]. Available: https://arxiv.org/abs/1503.02531 [10] J. Gou, B. Yu, S. J. Maybank, and D. Tao, “Knowledge distillation: A survey,” International Journal of Computer Vision , vol. 129, no. 6, p. 1789–1819, Mar. 2021. [Online]. Available: http://dx.doi.org/10.1007/ s11263-021-01453-z [11] S. Gupta, J. Hoffman, and J. Malik, “Cross modal distillation for supervision transfer,” in 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR) , 2016, pp. 2827–2836. [12] S. Kan, H. Wu, Z. Cui, F. Huang, X. Xu, and D. Wu, “Cmcrd: Cross-modal contrastive representation distillation for emotion recognition,” 2025. [Online]. Available: https://arxiv.org/abs/2504.09221 [13] S. Wu, H. Liang, Y. Zhang, Y. Chen, and Z. Jia, “A cross-modal densely guided knowledge distillation based on modality rebalancing strategy for enhanced unimodal emotion recognition,” in Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence , ser. IJCAI-2025. International Joint Conferences on Artificial Intelligence Organization, Sep. 2025, p. 4236–4244. [Online]. Available: http://dx.doi.org/10.24963/ijcai.2025/472 [14] Y. Liu, Z. Jia, and H. Wang, “Emotionkd: A cross-modal knowledge distillation framework for emotion recognition based on physiological signals,” in Proceedings of the 31st ACM International Conference on Multimedia , ser. MM ’23. ACM, Oct. 2023, p. 6122–6131. [Online]. Available: http://dx.doi.org/10.1145/3581783.3612277 [15] J.-Y. Li, H. Prawiro, C.-C. Chiang, H.-Y. Chang, T.-Y. Pan, C.-T. Huang, and M.-C. Hu, “Efficient hand gesture recognition using multi-task multi-modal learning and self-distillation,” in ACM Multimedia Asia 2023 , ser. MMAsia ’23. ACM, Dec. 2023, p. 1–7. [Online]. Available: http://dx.doi.org/10.1145/3595916.3626411 [16] L. Gao, P. Shi, L. Hu, J. Feng, L. Zhu, L. Wan, and W. Feng, “Cross-modal knowledge distillation for continuous sign language recognition,” Neural Networks , vol. 179, p. 106587, Nov. 2024. [Online]. Available: http://dx.doi.org/10.1016/j.neunet.2024.106587 [17] X.-C. Zhong, Q. Wang, D. Liu, J.-X. Liao, R. Yang, S. Duan, G. Ding, and J. Sun, “A deep domain adaptation framework with correlation alignment for eeg-based motor imagery classification,” Computers in Biology and Medicine , vol. 163, p. 107235, Sep. 2023. [Online]. Available: http://dx.doi.org/10.1016/j.compbiomed.2023.107235 [18] J. Zeng, Y. Sheng, Y. Yang, Z. Zhou, and H. Liu, “Cross modality knowledge distillation between a-mode ultrasound and surface electromyography,” IEEE Transactions on Instrumentation and Measurement , vol. 71, p. 1–9, 2022. [Online]. Available: http://dx.doi.org/10.1109/TIM.2022.3195264 [19] U. Cote-Allard, G. Gagnon-Turcotte, A. Phinyomark, K. Glette, E. Scheme, F. Laviolette, and B. Gosselin, “A transferable adaptive domain adversarial neural network for virtual reality augmented emg-based gesture recognition,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 29, p. 546–555, 2021. [Online]. Available: http://dx.doi.org/10.1109/TNSRE.2021.3059741 [20] M. Jaritz, T.-H. Vu, R. de Charette, E. Wirbel, and P. Perez, “Cross-modal learning for domain adaptation in 3d semantic segmentation,” 
+
+IEEE Transactions on Pattern Analysis and Machine Intelligence ,vol. 45, no. 2, p. 1533–1544, Feb. 2023. [Online]. Available: http://dx.doi.org/10.1109/TPAMI.2022.3159589 [21] S. Bhalla, M. Goel, and R. Khurana, “Imu2doppler: Cross-modal domain adaptation for doppler-based activity recognition using imu data,” Proc. ACM Interact. Mob. Wearable Ubiquitous Technol. , vol. 5, no. 4, Dec. 2022. [Online]. Available: https://doi.org/10.1145/3494994 [22] Z. Wang, H. Wan, L. Meng, Z. Zeng, M. Akay, C. Chen, and W. Chen, “Optimization of inter-subject semg-based hand gesture recognition tasks using unsupervised domain adaptation techniques,” Biomedical Signal Processing and Control , vol. 92, p. 106086, Jun. 2024. [Online]. Available: http://dx.doi.org/10.1016/j.bspc.2024.106086 [23] R. Fratti, N. Marini, M. Atzori, H. M¨ uller, C. Tiengo, and F. Bassetto, “A multi-scale cnn for transfer learning in semg-based hand gesture recognition for prosthetic devices,” Sensors , vol. 24, no. 22, p. 7147, Nov. 2024. [Online]. Available: http://dx.doi.org/10.3390/s24227147 [24] K. Su, K. Liu, B. Wan, H. Qiao, J. Huang, M. Feng, and J. Liu, “Multisource adversarial feature disentanglement method for cross-subject gesture recognition using semg signals,” IEEE Transactions on Instrumentation and Measurement , vol. 74, p. 1–12, 2025. [Online]. Available: http://dx.doi.org/10.1109/TIM.2025.3557823 [25] H. Pan, D. Li, C. Chen, and P. B. Shull, “High-density emg grip force estimation during muscle fatigue via domain adaptation,” 
+
+IEEE Transactions on Neural Systems and Rehabilitation Engineering ,vol. 33, p. 925–934, 2025. [Online]. Available: http://dx.doi.org/10. 1109/TNSRE.2025.3541227 [26] J. Li, X. Jiang, J. Fan, Y. Geng, F. Jia, and C. Dai, “Deep end-to-end transfer learning for robust inter-subject and inter-day hand gesture recognition using surface emg,” Biomedical Signal Processing and Control , vol. 100, p. 106892, Feb. 2025. [Online]. Available: http://dx.doi.org/10.1016/j.bspc.2024.106892 [27] D. Xiong, D. Zhang, X. Zhao, and Y. Zhao, “Deep learning for emg-based human-machine interaction: A review,” IEEE/CAA Journal of Automatica Sinica , vol. 8, no. 3, p. 512–533, Mar. 2021. [Online]. Available: http://dx.doi.org/10.1109/JAS.2021.1003865 [28] Y. Wu, X. Hu, Z. Wang, J. Wen, J. Kan, and W. Li, “Exploration of feature extraction methods and dimension for semg signal classification,” Applied Sciences , vol. 9, no. 24, p. 5343, Dec. 2019. [Online]. Available: http://dx.doi.org/10.3390/app9245343 [29] N. Das, S. Endo, H. Kavianirad, and S. Hirche, “Framework for learning a hand intent recognition model from semg for fes-based control,” in 2024 10th IEEE RAS/EMBS International Conference for Biomedical Robotics and Biomechatronics (BioRob) . IEEE, Sep. 2024, p. 1320–1327. [Online]. Available: http://dx.doi.org/10.1109/ BioRob60516.2024.10719910 12 
+
+[30] U. Cote-Allard, C. L. Fall, A. Drouin, A. Campeau-Lecours, C. Gosselin, K. Glette, F. Laviolette, and B. Gosselin, “Deep learning for electromyographic hand gesture signal classification using transfer learning,” IEEE Transactions on Neural Systems and Rehabilitation Engineering , vol. 27, no. 4, p. 760–771, Apr. 2019. [Online]. Available: http://dx.doi.org/10.1109/tnsre.2019.2896269 [31] T. Chen, S. Kornblith, M. Norouzi, and G. Hinton, “A simple framework for contrastive learning of visual representations,” 2020. [Online]. Available: https://arxiv.org/abs/2002.05709 [32] Y. Li, N. Wang, J. Shi, X. Hou, and J. Liu, “Adaptive batch normalization for practical domain adaptation,” Pattern Recognition ,vol. 80, p. 109–117, Aug. 2018. [Online]. Available: http://dx.doi.org/ 10.1016/j.patcog.2018.03.005 [33] A. Gretton, K. M. Borgwardt, M. J. Rasch, B. Sch¨ olkopf, and A. Smola, “A kernel two-sample test,” J. Mach. Learn. Res. , vol. 13, no. 1, p. 723–773, Mar. 2012. [34] B. Sun, J. Feng, and K. Saenko, Correlation Alignment for Unsupervised Domain Adaptation . Springer International Publishing, 2017, p. 153–171. [Online]. Available: http://dx.doi.org/10.1007/ 978-3-319-58347-1 8 [35] Y. Ganin, E. Ustinova, H. Ajakan, P. Germain, H. Larochelle, F. Laviolette, M. Marchand, and V. Lempitsky, “Domain-adversarial training of neural networks,” 2015. [Online]. Available: https: //arxiv.org/abs/1505.07818 [36] Y. Zhu, F. Zhuang, J. Wang, G. Ke, J. Chen, J. Bian, H. Xiong, and Q. He, “Deep subdomain adaptation network for image classification,” 
+
+IEEE Transactions on Neural Networks and Learning Systems ,vol. 32, no. 4, p. 1713–1722, Apr. 2021. [Online]. Available: http://dx.doi.org/10.1109/tnnls.2020.2988928 [37] S. Cui, S. Wang, J. Zhuo, L. Li, Q. Huang, and Q. Tian, “Towards discriminability and diversity: Batch nuclear-norm maximization under label insufficient situations,” in 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) . IEEE, Jun. 2020, p. 3940–3949. [Online]. Available: http://dx.doi.org/10.1109/ CVPR42600.2020.00400 [38] K. Saito, K. Watanabe, Y. Ushiku, and T. Harada, “Maximum classifier discrepancy for unsupervised domain adaptation,” in 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition . IEEE, Jun. 2018, p. 3723–3732. [Online]. Available: http://dx.doi.org/10.1109/ CVPR.2018.00392 [39] M. Long, Z. Cao, J. Wang, and M. I. Jordan, “Conditional adversarial domain adaptation,” 2017. [Online]. Available: https: //arxiv.org/abs/1705.10667 [40] Y. Zhang, T. Liu, M. Long, and M. I. Jordan, “Bridging theory and algorithm for domain adaptation,” 2019. [Online]. Available: https://arxiv.org/abs/1904.05801 [41] Y. Zhu, F. Zhuang, and D. Wang, “Aligning domain-specific distribution and classifier for cross-domain classification from multiple sources,” 
+
+Proceedings of the AAAI Conference on Artificial Intelligence ,vol. 33, no. 01, p. 5989–5996, Jul. 2019. [Online]. Available: http://dx.doi.org/10.1609/aaai.v33i01.33015989 [42] J. Li, Z. Yu, Z. Du, L. Zhu, and H. T. Shen, “A comprehensive survey on source-free domain adaptation,” IEEE Transactions on Pattern Analysis and Machine Intelligence , vol. 46, no. 8, p. 5743–5762, Aug. 2024. [Online]. Available: http://dx.doi.org/10.1109/tpami.2024.3370978 [43] X.-C. Zhong, Q. Wang, D. Liu, X. Wang, R. Li, Y. Wang, M. Zhang, and J. Sun, “Plug-and-play semg-driven hand gesture recognition with subdomain adaptation for exoskeleton rehabilitation gloves,” IEEE Transactions on Instrumentation and Measurement , vol. 74, p. 1–10, 2025. [Online]. Available: http://dx.doi.org/10.1109/TIM.2024.3502881 [44] W. M. Kouw and M. Loog, “A review of domain adaptation without target labels,” IEEE Transactions on Pattern Analysis and Machine Intelligence , vol. 43, no. 3, p. 766–785, Mar. 2021. [Online]. Available: http://dx.doi.org/10.1109/TPAMI.2019.2945942

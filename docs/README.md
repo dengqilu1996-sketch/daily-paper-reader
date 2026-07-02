@@ -6,64 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-06-30
-- 运行时间：2026-06-30 23:57:08 UTC
+- 最新运行日期：2026-07-01
+- 运行时间：2026-07-02 00:09:59 UTC
 - 运行状态：成功
-- 本次总论文数：14
-- 精读区：9
-- 速读区：5
+- 本次总论文数：17
+- 精读区：5
+- 速读区：12
 
 ### 今日简报（AI）
-今日精读14篇AI论文，其中9篇深度拆解，涵盖体育智能与医疗决策。  
-最亮眼的是满分论文用注意力机制精准定位足球运动员动作，以及用大模型构建教练智能体的方案。  
-普通读者可重点关注AI在运动分析和临床辅助中的落地案例，这些技术离日常生活并不远。
-- 详情：[/202606/30/README](/202606/30/README)
+今日追踪体育运动的“微观暴击”：从职业赛球的毫秒级旋转捕捉到足球头球对大脑的隐形冲击。  
+最值得关注：事件相机凝视系统首次实现球类实时旋转估计，头球综述则警示脑组织形变风险与量化监测的紧迫性。  
+普通读者不妨留意这些运动感知与脑损伤前沿，它们正重塑智能训练和运动安全评估。
+- 详情：[/202607/01/README](/202607/01/README)
 
 ### 精读区论文标签
-1. [SoccerNet 2026 Player-Centric Ball Action Spotting: Per-Player Attention with Agreement-Based Ensembling](/202606/30/2606.28389v1-soccernet-2026-player-centric-ball-action-spotting-per-player-attention-with-agreement-based-ensembling)  
-   标签：评分：10.0/10、query:cv-sports
-   evidence：在足球广播视频中进行逐球员球动作检测
-2. [Digitizing Coaching Intelligence: An Agentic Framework for Holistic Athlete Profiling using VLM and RAG](/202606/30/2606.28570v1-digitizing-coaching-intelligence-an-agentic-framework-for-holistic-athlete-profiling-using-vlm-and-rag)  
+1. [Event-based Gaze Control System for Accurate Real-time Spin Estimation in Professional Ball Games](/202607/01/2606.26780v2-event-based-gaze-control-system-for-accurate-real-time-spin-estimation-in-professional-ball-games)  
+   标签：评分：9.0/10、query:cv-sports
+   evidence：事件相机实时跟踪球体进行旋转估算
+2. [Head Kinematics and Brain Tissue Deformation from Soccer Heading: A Review of Implications for Brain Injury Risk](/202607/01/2606.30946v1-head-kinematics-and-brain-tissue-deformation-from-soccer-heading-a-review-of-implications-for-brain-injury-risk)  
    标签：评分：9.0/10、query:sports-sci
-   evidence：整体运动员评估，使用基于LLM的代理框架评估运动形式退化和疲劳等定性生理指标。
-3. [Physics Models for Sim-to-Real Transfer in Professional-Level Robot Table Tennis](/202606/30/2606.28805v1-physics-models-for-sim-to-real-transfer-in-professional-level-robot-table-tennis)  
-   标签：评分：9.0/10、query:sports-rl
-   evidence：使用强化学习实现机器人乒乓球，直接应用 RL 于体育策略
-4. [Physically-Constrained Harmonic Separation for Robust Heart and Respiratory Rate Estimation from Wrist Photoplethysmography](/202606/30/2606.30156v1-physically-constrained-harmonic-separation-for-robust-heart-and-respiratory-rate-estimation-from-wrist-photoplethysmography)  
-   标签：评分：9.0/10、query:sport-tsa
-   evidence：腕戴式PPG在自由生活条件下稳健估计心率和呼吸率，可直接用于运动员生理监测。
-5. [Fitness Level, but not Sex, affects Exercise-Induced Pain Modulation](/202606/30/biorxiv-10-1101-2025-09-16-676491-v2-fitness-level-but-not-sex-affects-exercise-induced-pain-modulation)  
-   标签：评分：9.0/10、query:sport-sci
-   evidence：研究运动诱发的疼痛调节，这是运动生理学的核心主题。
-6. [Synergy-based Feedforward with Minimal Feedback Control Predicts Walking Over Multiple Cycles](/202606/30/biorxiv-10-64898-2026-03-02-709098-v2-synergy-based-feedforward-with-minimal-feedback-control-predicts-walking-over-multiple-cycles)  
-   标签：评分：9.0/10、query:sb
-   evidence：开发个性化协同前馈-反馈控制模型用于行走模拟，直接贡献于肌骨建模与仿真。
-7. [A time-dependent mechano-bioenergetics model of muscle contraction](/202606/30/biorxiv-10-64898-2026-06-24-734405-v1-a-time-dependent-mechano-bioenergetics-model-of-muscle-contraction)  
-   标签：评分：9.0/10、query:sport-sci
-   evidence：模拟运动过程中肌肉能量消耗
-8. [Adaptation to postural perturbations under fatigue produces persistent changes in neuromuscular coordination](/202606/30/biorxiv-10-64898-2026-06-25-734469-v1-adaptation-to-postural-perturbations-under-fatigue-produces-persistent-changes-in-neuromuscular-coordination)  
-   标签：评分：9.0/10、query:sport-sci
-   evidence：研究神经肌肉疲劳如何影响姿势控制适应和神经肌肉协调。
-9. [IMU-HOI: A Symbiotic Framework for Coherent Human-Object Interaction and Motion Capture via Contact-Conscious Inertial Fusion](/202606/30/2606.28604v1-imu-hoi-a-symbiotic-framework-for-coherent-human-object-interaction-and-motion-capture-via-contact-conscious-inertial-fusion)  
+   evidence：荟萃分析足球头球对头部运动学和脑损伤风险的影响。
+3. [SkillSpotter: Pose-Aware Multi-View Skilled Action Detection and Grading in Ego-Exo Videos](/202607/01/2606.31127v1-skillspotter-pose-aware-multi-view-skilled-action-detection-and-grading-in-ego-exo-videos)  
+   标签：评分：9.0/10、query:cv-sports
+   evidence：姿态感知多视图的体育视频技能动作检测与分级
+4. [Accelerometry-Derived Digital Biomarkers for Cardiometabolic Risk: A Population-Representative Tabular Benchmark with Uncertainty Quantification](/202607/01/2606.30702v1-accelerometry-derived-digital-biomarkers-for-cardiometabolic-risk-a-population-representative-tabular-benchmark-with-uncertainty-quantification)  
+   标签：评分：8.0/10、query:sport-tsa
+   evidence：利用髋部加速度计数据和机器学习预测心脏代谢风险，展示可穿戴传感器对生理信号的监测
+5. [Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke](/202607/01/biorxiv-10-64898-2026-03-02-709099-v2-reproducible-research-computational-design-of-personalized-clinical-treatments-for-walking-impairments-caused-by-knee-osteoarthritis-and-stroke)  
    标签：评分：8.0/10、query:sb
-   evidence：基于IMU的全身人体运动捕捉系统，提供适用于生物力学分析的运动数据
+   evidence：用于优化临床治疗设计的个性化计算神经肌骨模型
 
 ### 速读区论文标签
-1. [Enhancing Clinician Decision-Making via Uncertainty-Aware Multi-Expert Fusion for Stroke Rehabilitation](/202606/30/2606.24960v1-enhancing-clinician-decision-making-via-uncertainty-aware-multi-expert-fusion-for-stroke-rehabilitation)  
+1. [Uniaxial poroelastic tendon model with crimped fibre recruitment](/202607/01/2606.24393v1-uniaxial-poroelastic-tendon-model-with-crimped-fibre-recruitment)  
+   标签：评分：7.0/10、query:sb
+   evidence：含卷曲纤维募集的单轴多孔弹性肌腱模型
+2. [Every Step of the Way: Video-based Parkinsonian Turning Step Counting](/202607/01/2606.27918v1-every-step-of-the-way-video-based-parkinsonian-turning-step-counting)  
+   标签：评分：7.0/10、query:cv-sports
+   evidence：基于视频的步数计数框架，利用多样化运动表示
+3. [A Point Cloud Transformer for Remote Monitoring and Automated Assessment of Physical Rehabilitation Exercises](/202607/01/2606.30309v1-a-point-cloud-transformer-for-remote-monitoring-and-automated-assessment-of-physical-rehabilitation-exercises)  
    标签：评分：7.0/10、query:sports-sci
-   evidence：基于视频的运动质量评估用于中风康复可迁移至运动损伤恢复
-2. [Evaluating Long-Range Temporal Structure in Foundation Model-Based Forecasts of Heartbeat Dynamics](/202606/30/biorxiv-10-64898-2026-05-25-727760-v2-evaluating-long-range-temporal-structure-in-foundation-model-based-forecasts-of-heartbeat-dynamics)  
+   evidence：提出使用点云Transformer自动评估物理康复练习，可应用于运动损伤康复
+4. [PGUDA: Pressure-Guided Unsupervised Domain Adaptation with Cross-Modal Knowledge Distillation for sEMG-Based Gesture Recognition](/202607/01/2606.31349v1-pguda-pressure-guided-unsupervised-domain-adaptation-with-cross-modal-knowledge-distillation-for-semg-based-gesture-recognition)  
+   标签：评分：7.0/10、query:cdm-sports
+   evidence：提出新颖的无监督域自适应方法用于sEMG手势识别，可应用于运动可穿戴传感器数据。
+5. [Different stabilizing mechanisms but a common task-level aim in standing and walking](/202607/01/biorxiv-10-1101-2025-11-24-690121-v6-different-stabilizing-mechanisms-but-a-common-task-level-aim-in-standing-and-walking)  
+   标签：评分：7.0/10、query:sb
+   evidence：应用稳定模型比较站立和行走的姿势控制，是运动生物力学的核心
+6. [Dynamic Compression Flows for Neuroscience Data](/202607/01/biorxiv-10-64898-2026-02-12-705535-v2-dynamic-compression-flows-for-neuroscience-data)  
    标签：评分：7.0/10、query:sport-tsa
-   evidence：评估基础模型在预测RR间期心跳动态中的表现
-3. [Instrumental-Motor Transfer: The Relative Value of Competing Movement Goals Modulates Implicit Motor Learning](/202606/30/biorxiv-10-64898-2026-06-22-733849-v2-instrumental-motor-transfer-the-relative-value-of-competing-movement-goals-modulates-implicit-motor-learning)  
+   evidence：用于时间序列数据低维潜在表示的流匹配方法
+7. [Determining Reliable Neural Targets for enhancing Motor Sequence Learning: A preparatory study for focal tDCS](/202607/01/biorxiv-10-64898-2026-06-23-733856-v1-determining-reliable-neural-targets-for-enhancing-motor-sequence-learning-a-preparatory-study-for-focal-tdcs)  
    标签：评分：7.0/10、query:sports-sci
-   evidence：揭示学习到的动作价值如何影响内隐运动适应，是技能习得的关键过程
-4. [Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke](/202606/30/biorxiv-10-64898-2026-03-02-709099-v2-reproducible-research-computational-design-of-personalized-clinical-treatments-for-walking-impairments-caused-by-knee-osteoarthritis-and-stroke)  
-   标签：评分：6.0/10、query:sb
-   evidence：个性化神经肌肉骨骼模型用于行走障碍治疗优化可迁移至运动生物力学
-5. [AnimalTA: A simple yet flexible tool for video tracking and manual corrections.](/202606/30/biorxiv-10-64898-2026-06-27-733780-v1-animalta-a-simple-yet-flexible-tool-for-video-tracking-and-manual-corrections)  
+   evidence：直接研究运动序列学习和tDCS增强，是运动技能习得的基础
+8. [Cortico-muscular control of postural balance in older adults - effects of training on functional connectivity](/202607/01/biorxiv-10-64898-2026-06-24-734264-v1-cortico-muscular-control-of-postural-balance-in-older-adults---effects-of-training-on-functional-connectivity)  
+   标签：评分：7.0/10、query:sport-sci
+   evidence：老年人平衡训练改变皮质-肌肉控制
+9. [Temporal Posed and Spontaneous Gesture Recognition from Electromyography in the Rock-Paper-Scissors Game](/202607/01/2606.29423v1-temporal-posed-and-spontaneous-gesture-recognition-from-electromyography-in-the-rock-paper-scissors-game)  
+   标签：评分：6.0/10、query:sport-tsa
+   evidence：利用肌电可穿戴传感器进行游戏手势识别，在可见动作前实现早期检测。
+10. [CylindTrack: Depth-Aware Cylindrical Motion Modeling for Panoramic Multi-Object Tracking](/202607/01/2606.30097v1-cylindtrack-depth-aware-cylindrical-motion-modeling-for-panoramic-multi-object-tracking)  
    标签：评分：6.0/10、query:cv-sports
-   evidence：用于动物行为视频追踪的开源工具，可适配至体育视频中的运动员追踪。
+   evidence：可应用于体育球员跟踪的全景多目标跟踪方法。
+11. [Federated Learning with Energy-Based Structured Probabilistic Inference](/202607/01/2606.30161v1-federated-learning-with-energy-based-structured-probabilistic-inference)  
+   标签：评分：6.0/10、query:cdm-sports
+   evidence：提出使用条件随机场进行客户端聚合的联邦学习框架，适用于异构传感器数据。
+12. [Planar-SfM: Camera Pose Estimation via Homography Graph Embeddings](/202607/01/2606.31979v1-planar-sfm-camera-pose-estimation-via-homography-graph-embeddings)  
+   标签：评分：6.0/10、query:cv-sports
+   evidence：提出平面场景相机姿态估计，适用于运动场标定
 
 
 <div class="dpr-home-promo-card">

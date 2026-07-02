@@ -1,0 +1,883 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-01T23:58:30.464516+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 5,
+    "deep_cap": 14,
+    "deep_selected": 5,
+    "quick_candidates": 12,
+    "quick_skim_target": 19,
+    "quick_selected": 12
+  },
+  "deep_dive": [
+    {
+      "id": "2606.26780v2",
+      "source": "arxiv",
+      "title": "Event-based Gaze Control System for Accurate Real-time Spin Estimation in Professional Ball Games",
+      "abstract": "Spin plays a crucial role in many ball sports due to its effect on the trajectory of the ball. Vision-based estimation of the ball's spin during a game with conventional cameras is challenging due to the ball's small size, high speed, and fast rotation. To address these challenges, we propose an event-based active vision system that can track unmodified balls and measure their spin in real time. The system consists of an event camera for its high temporal resolution and minimal motion blur, high-speed pan/tilt galvanometer mirrors to keep the ball in the field of view, and a low-latency focus-tunable telephoto lens to increase the spatial resolution on the ball and keep it in focus. To track the ball, we use a hybrid approach that combines 2D event-based detection for centering and 3D positions from a ball localization system for re-initialization. For high-accuracy spin estimation, we propose an offline method that performs contrast maximization on the sphere (s-CMax). This method achieves state-of-the-art accuracy on static balls across multiple sports (table tennis, baseball, tennis, and golf), with mean magnitude and axis errors of 1.2% and 1.5 degrees, respectively. We then develop a low-latency online method for table tennis as a case study in real-time applications. This method uses an uncertainty-aware convolutional neural network trained on pseudo-ground-truth spin labels from the offline approach, combined with a GPU-accelerated batch implementation of contrast maximization for refinement. We demonstrate reliable tracking and spin estimation with a three-view setup during professional table tennis matches, with high accuracy (8.8% magnitude and 6.4 degrees axis mismatch w.r.t. the offline method), 3 ms latency, and 750 Hz throughput.",
+      "authors": [
+        "Yunpu Hu",
+        "Fabian Schilling",
+        "Valentina Cavinato",
+        "Asude Aydin",
+        "Agis Politis",
+        "Ricardo Tapiador Morales",
+        "Kirk Y. W. Scheper",
+        "Peter Dürr",
+        "Naoya Takahashi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "eess.IV"
+      ],
+      "published": "2026-06-25T09:14:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.26780v2",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "event camera tracks ball in real time for spin estimation",
+      "llm_evidence_cn": "事件相机实时跟踪球体进行旋转估算",
+      "llm_evidence": "事件相机实时跟踪球体进行旋转估算",
+      "canonical_evidence": "事件相机实时跟踪球体进行旋转估算",
+      "llm_tldr_en": "Proposes an event-based active vision system that tracks balls in professional ball games and estimates spin in real time, using event camera, high-speed mirrors, and tunable lens to overcome motion blur and small size.",
+      "llm_tldr_cn": "针对传统相机在高速小球体跟踪中运动模糊和分辨率不足的难题，本文提出一种基于事件相机的主动视觉系统，实时跟踪球体并估算其旋转。系统集成高时间分辨率事件相机、高速振镜和低延迟可调焦镜头，在专业球类运动中实现了对球的稳定跟踪和旋转测量，为竞技体育中的视觉分析提供了新的高精度技术手段。",
+      "llm_tldr": "针对传统相机在高速小球体跟踪中运动模糊和分辨率不足的难题，本文提出一种基于事件相机的主动视觉系统，实时跟踪球体并估算其旋转。系统集成高时间分辨率事件相机、高速振镜和低延迟可调焦镜头，在专业球类运动中实现了对球的稳定跟踪和旋转测量，为竞技体育中的视觉分析提供了新的高精度技术手段。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30946v1",
+      "source": "arxiv",
+      "title": "Head Kinematics and Brain Tissue Deformation from Soccer Heading: A Review of Implications for Brain Injury Risk",
+      "abstract": "Purpose: Repeated heading of soccer balls has raised concerns of potential long-term neurological effects. Consequently, numerous studies have estimated head kinematics and brain deformation due to soccer headers across different cohorts and play scenarios to identify higher risk conditions. However, heterogeneity in study design, data collection, and analysis has produced inconsistent findings, and injury risk is infrequently reported. Therefore, a meta-analysis of the existing literature was conducted to identify knowledge gaps and inform future studies assessing injury risk in soccer. Methods: We synthesized data from studies reporting head kinematics or brain deformation from soccer headers on human subjects. The data from these studies were analyzed to obtain the risk of mild traumatic brain injury (mTBI) based on applicable injury metrics and risk curves. Results: The meta-analysis revealed specific trends, indicating that match scenarios, corner and goal-kicks, top and oblique impacts, and older age cohorts were associated with higher head kinematics, while sex-based trends were inconclusive. The choice of sensor system affected the estimated head kinematics, with headband sensors consistently measuring higher kinematics than mouthpiece sensors. The data showed large variability stemming from heterogeneous study designs, limiting the applicability of the observed trends. These factors also influenced injury risk predictions, with estimated concussion risks generally below 20%. Conclusion: This review reveals trends in mTBI risk from soccer heading across different cohorts and play scenarios. It also underscores the need for standardized reporting of kinematics and brain deformation to enable mTBI risk estimation and meaningful cross-study comparisons.",
+      "authors": [
+        "Christopher Lewis",
+        "Anu Tripathi",
+        "Alison Brooks",
+        "Peter Ferrazzano",
+        "Joseph Andrews",
+        "Traci Snedden",
+        "Christian Franck",
+        "Rika Carlsen"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT"
+      ],
+      "published": "2026-06-29T22:01:17+00:00",
+      "link": "https://arxiv.org/pdf/2606.30946v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Meta-analysis of soccer heading impact on head kinematics and brain injury risk.",
+      "llm_evidence_cn": "荟萃分析足球头球对头部运动学和脑损伤风险的影响。",
+      "llm_evidence": "荟萃分析足球头球对头部运动学和脑损伤风险的影响。",
+      "canonical_evidence": "荟萃分析足球头球对头部运动学和脑损伤风险的影响。",
+      "llm_tldr_en": "This review meta-analysed studies on head kinematics and brain deformation from soccer heading to assess injury risk, highlighting methodological heterogeneity and identifying knowledge gaps for future research.",
+      "llm_tldr_cn": "该综述荟萃分析了足球头球对头部运动学和脑组织变形影响的研究，以评估脑损伤风险。结果发现不同研究在实验设计、数据采集和分析上存在较大异质性，导致结论不一致，且损伤风险报告不足。综述指出了未来研究需标准化方法，以更准确评估足球头球相关的神经风险，为运动医学中的损伤预防提供依据。",
+      "llm_tldr": "该综述荟萃分析了足球头球对头部运动学和脑组织变形影响的研究，以评估脑损伤风险。结果发现不同研究在实验设计、数据采集和分析上存在较大异质性，导致结论不一致，且损伤风险报告不足。综述指出了未来研究需标准化方法，以更准确评估足球头球相关的神经风险，为运动医学中的损伤预防提供依据。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "Medical care for athletes, including injury prevention, treatment, and rehabilitation",
+      "matched_requirement_id": "req-80",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.31127v1",
+      "source": "arxiv",
+      "title": "SkillSpotter: Pose-Aware Multi-View Skilled Action Detection and Grading in Ego-Exo Videos",
+      "abstract": "To enable personalized, real-time coaching using Augmented Reality glasses or fixed camera setups in domains such as sports, cooking, or music, a system must understand not just what a person does, but how well they execute an activity. In an ego-exo video setting, this requires simultaneously detecting individual skilled actions and classifying each as correct or needing improvement, which Ego-Exo4D's proficiency demonstration benchmark formalized. We first adapt seven state-of-the-art temporal action detection architectures to this task, extend the evaluation protocol to disentangle detection from grading, and show that existing methods grade near-randomly. We then introduce SkillSpotter, a pose-aware multi-view architecture that jointly detects and grades skilled actions through three task-specific modules: (1) adaptive temporal suppression to handle the varying density of skilled actions across diverse activities, (2) gated 3D body pose fusion to leverage body kinematics as a complementary signal to visual features, and (3) bidirectional cross-view attention to combine ego and exo views effectively. SkillSpotter improves class-specific mAP from 12.40 to 21.82 (+76%) and balanced accuracy from 55.99% to 60.40% over the best baseline. SkillSpotter's modules transfer to other temporal action detection models with consistent gains, and our method generalizes beyond Ego-Exo4D to HoloAssist. Code: https://github.com/eth-siplab/SkillSpotter",
+      "authors": [
+        "Björn Braun",
+        "Christian Holz"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-30T04:43:03+00:00",
+      "link": "https://arxiv.org/pdf/2606.31127v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Pose-aware multi-view skilled action detection and grading in sports videos",
+      "llm_evidence_cn": "姿态感知多视图的体育视频技能动作检测与分级",
+      "llm_evidence": "姿态感知多视图的体育视频技能动作检测与分级",
+      "canonical_evidence": "姿态感知多视图的体育视频技能动作检测与分级",
+      "llm_tldr_en": "SkillSpotter introduces a pose-aware multi-view architecture for detecting and grading skilled actions in ego-exo videos, addressing the challenge of action quality assessment in sports and other domains.",
+      "llm_tldr_cn": "针对体育等领域中个性化教练的需求，SkillSpotter提出了一种姿态感知多视图架构，用于从第一人称和第三人称视频中检测并分级技能动作。现有方法在动作分级上表现接近随机，而SkillSpotter通过分离检测与分级评估，提升了技能动作质量评估的准确性，为AR眼镜实时教练系统提供了技术支持。",
+      "llm_tldr": "针对体育等领域中个性化教练的需求，SkillSpotter提出了一种姿态感知多视图架构，用于从第一人称和第三人称视频中检测并分级技能动作。现有方法在动作分级上表现接近随机，而SkillSpotter通过分离检测与分级评估，提升了技能动作质量评估的准确性，为AR眼镜实时教练系统提供了技术支持。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Action recognition for sports activities",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-03-02-709099-v2",
+      "source": "biorxiv",
+      "title": "Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke",
+      "abstract": "Background: Personalized computational neuromusculoskeletal models have great potential for optimizing the design of clinical treatments for movement impairments. While many software tools address specific parts of the model personalization and treatment optimization processes, they typically require significant programming experience to use and do not cover the full breadth of these two processes. Furthermore, published neuromusculoskeletal modeling studies typically do not provide all the methodological details needed for others to reproduce the work. Consequently, researchers seeking to develop skills in the model personalization and treatment optimization processes face a steep learning curve due to the lack of detailed training materials that demonstrate both processes for real-life clinical problems using real-life subject movement data. Methods: This article presents detailed training tutorials for the model personalization and treatment optimization processes using two real-life clinical problems and the Neuromusculoskeletal Modeling (NMSM) Pipeline. The first clinical problem involves the design of personalized gait modifications and high tibial osteotomy surgery for an individual with bilateral medial knee osteoarthritis, where the goal is to reduce the peak adduction moment in both knees to a specified target level. The second clinical problem involves the design of a synergy-based functional electrical stimulation prescription for an individual post-stroke with impaired walking function, where the goal is to equalize the propulsive and braking impulses between the two legs. Both tutorials were implemented as course projects given to novice users in a combined undergraduate/graduate mechanical engineering course. Results: Both tutorials produced personalized neuromusculoskeletal models and associated dynamically consistent tracking optimizations that closely reproduced subject-specific experimental joint angles, joint moments, ground reaction forces and moments, and (if applicable) muscle activations measured during walking. Subsequent design optimizations predicted personalized treatments that achieved target values of peak knee adduction moments or propulsive and braking impulses. Conclusions: The detailed step-by-step tutorials presented with this article are the first to walk users through the entire process of creating personalized neuromusculoskeletal models and then using them to design personalized treatments for two subjects with two different clinical problems. These tutorials can be used to introduce new users to the NMSM Pipeline and as projects in neuromusculoskeletal modeling courses.",
+      "authors": [
+        "Salati, R. M.",
+        "Li, G.",
+        "Williams, S. T.",
+        "Fregly, B. J."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.03.02.709099v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "personalized computational neuromusculoskeletal models for optimizing clinical treatment design",
+      "llm_evidence_cn": "用于优化临床治疗设计的个性化计算神经肌骨模型",
+      "llm_evidence": "用于优化临床治疗设计的个性化计算神经肌骨模型",
+      "canonical_evidence": "用于优化临床治疗设计的个性化计算神经肌骨模型",
+      "llm_tldr_en": "A reproducible software framework for personalized neuromusculoskeletal model-based treatment design of walking impairments from knee osteoarthritis and stroke, addressing gaps in accessibility and reproducibility.",
+      "llm_tldr_cn": "该论文针对个性化神经肌骨模型用于步行障碍治疗设计中可重现性和可及性不足的问题，提出了一套综合软件框架，覆盖模型个性化和治疗优化全流程。该方法使研究人员能够重现和扩展个性化治疗方案设计。实验表明，该框架有效促进了计算生物力学领域的可重现研究，对于推动运动康复和个性化医疗的临床转化具有重要意义。",
+      "llm_tldr": "该论文针对个性化神经肌骨模型用于步行障碍治疗设计中可重现性和可及性不足的问题，提出了一套综合软件框架，覆盖模型个性化和治疗优化全流程。该方法使研究人员能够重现和扩展个性化治疗方案设计。实验表明，该框架有效促进了计算生物力学领域的可重现研究，对于推动运动康复和个性化医疗的临床转化具有重要意义。",
+      "llm_tags": [
+        "query:sb:composite"
+      ],
+      "matched_query_tag": "query:sb:composite",
+      "matched_query_text": "Papers central to 运动生物力学与计算建模（运动学、动力学、肌骨建模、仿真优化）, especially work that connects or combines: biomechanical analysis of sports movements; kinematic analysis of human motion; musculoskeletal model for movement simulation; optimization of biomechanical simulations; motion capture data for biomechanical analysis; dynamic simulation of musculoskeletal system; What are the latest methods for musculoskeletal modeling in sports biomechanics?; How to perform inverse dynamics analysis for gait analysis?; Optimization algorithms for simulating human movement; Kinematic and kinetic analysis of athletic performance.",
+      "matched_requirement_id": "req-composite-sb",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2606.30702v1",
+      "source": "arxiv",
+      "title": "Accelerometry-Derived Digital Biomarkers for Cardiometabolic Risk: A Population-Representative Tabular Benchmark with Uncertainty Quantification",
+      "abstract": "Structured tabular data dominates clinical medicine, yet existing benchmarks fail to reflect real-world properties like complex survey sampling, demographic oversampling, and subgroup fairness. We introduce the NHANES Accelerometry Cardiometabolic Benchmark, derived from NHANES 2003-2006, comprising 1,381 adults with hip-worn accelerometry, fasting laboratory biomarkers, dietary intake, and anthropometrics. We evaluate three tabular learning methods -- ridge regression, XGBoost, and the foundation model TabPFN v2 -- to predict glycated haemoglobin (HbA1c), fasting triglycerides, and C-reactive protein (CRP) from activity phenotypes and lifestyle covariates. TabPFN v2 achieves the best overall performance (HbA1c R^2=0.156, CRP R^2=0.383), while triglycerides remain largely unpredictable (R^2 < 0.05), consistent with known genetic dominance. We apply split conformal prediction to generate distribution-free 90% prediction intervals and evaluate demographic coverage equity across sex and race/ethnicity subgroups. Marginal coverage aligns with the 90% target for CRP and HbA1c but falls below for triglycerides. At the subgroup level, we observe localized undercoverage (e.g., HbA1c for Mexican American participants), illustrating the gap between marginal guarantees and the conditional coverage required for clinical fairness. Code and data are at https://github.com/felizzi/nhanes-accel-cardiometabolic-benchmark.",
+      "authors": [
+        "Federico Felizzi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "published": "2026-06-29T12:54:14+00:00",
+      "link": "https://arxiv.org/pdf/2606.30702v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses hip-worn accelerometry data and machine learning to predict cardiometabolic risk biomarkers, demonstrating wearable sensor monitoring of physiological signals.",
+      "llm_evidence_cn": "利用髋部加速度计数据和机器学习预测心脏代谢风险，展示可穿戴传感器对生理信号的监测",
+      "llm_evidence": "利用髋部加速度计数据和机器学习预测心脏代谢风险，展示可穿戴传感器对生理信号的监测",
+      "canonical_evidence": "利用髋部加速度计数据和机器学习预测心脏代谢风险，展示可穿戴传感器对生理信号的监测",
+      "llm_tldr_en": "A tabular benchmark from NHANES accelerometry data uses XGBoost and TabPFN v2 to predict HbA1c and other biomarkers, establishing digital biomarkers for cardiometabolic risk from activity phenotypes.",
+      "llm_tldr_cn": "基于NHANES加速度计数据构建群体代表性基准，对比岭回归、XGBoost和TabPFN v2等模型预测糖化血红蛋白等心脏代谢指标，证明可穿戴加速度计衍生的数字生物标志物能有效评估健康风险，为人群级别的活动监测和生理信号分析提供基准。",
+      "llm_tldr": "基于NHANES加速度计数据构建群体代表性基准，对比岭回归、XGBoost和TabPFN v2等模型预测糖化血红蛋白等心脏代谢指标，证明可穿戴加速度计衍生的数字生物标志物能有效评估健康风险，为人群级别的活动监测和生理信号分析提供基准。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "wearable sensor technology for monitoring human activity and physiological signals",
+      "matched_requirement_id": "req-31",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.24393v1",
+      "source": "arxiv",
+      "title": "Uniaxial poroelastic tendon model with crimped fibre recruitment",
+      "abstract": "Fibre recruitment plays an important role in tendon and other biological soft tissue mechanics. Due to their large water content, a popular modelling approach for tendons is poroelasticity. Within this framework some tendon studies have included fibres, though none have included crimped fibre recruitment. We present a one dimensional poroelastic model in which the solid skeleton is composed of a soft neo-Hookean background matrix and crimped fibrils which do not bear load (FIB model). As the tissue is stretched, fibrils are straightened and contribute to load bearing. The fibre-reinforced tissue is compared to a tissue with a purely neo-Hookean (NH) skeleton in response to a uniaxial constant applied load (loading) and release of the load (unloading). The system dynamics are governed by a diffusion equation where the diffusion coefficient depends on stiffness. Within tendon parameter ranges, the FIB model is softer than the NH model, and so approaches steady state more slowly during loading. The presence of crimped fibrils allows the tendon to stretch further without excessively straining the fibrils or the NCM, providing a natural protection mechanism for the tendon's structural components to load, in agreement with experiments. During unloading, the FIB model is much slower to relax as the tissue softens due to fibril re-crimping. This asymmetry in loading and unloading manifests as a hysteresis loop in the stress-strain curve averaged over the tendon. The hysteresis is reduced with increasing applied load. The inclusion of fibrils allows for clearer biological interpretation and potential comparison to data. While the stress law employed in this study is bespoke for the application at hand by accounting for crimp and fibril recruitment, other fibril constitutive laws can readily be considered and incorporated into this framework.",
+      "authors": [
+        "Zoe C. Godard",
+        "Sarah L. Waters",
+        "Derek E. Moulton"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "cond-mat.soft"
+      ],
+      "published": "2026-06-23T10:26:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.24393v1",
+      "tags": [
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sports-sci",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uniaxial poroelastic tendon model with crimped fibre recruitment",
+      "llm_evidence_cn": "含卷曲纤维募集的单轴多孔弹性肌腱模型",
+      "llm_evidence": "含卷曲纤维募集的单轴多孔弹性肌腱模型",
+      "canonical_evidence": "含卷曲纤维募集的单轴多孔弹性肌腱模型",
+      "llm_tldr_en": "This paper presents a one-dimensional poroelastic tendon model incorporating crimped fibre recruitment to capture realistic load-bearing behaviour. Compared to a purely neo-Hookean model, the fibre-reinforced model shows distinct mechanical responses under loading, unloading, and cyclic creep, providing a more accurate tool for sports biomechanics analysis.",
+      "llm_tldr_cn": "该研究针对肌腱力学建模中未考虑卷曲纤维募集的问题，提出了一种一维多孔弹性肌腱模型。模型将肌腱固相分为超弹性基质和卷曲纤维，纤维在拉伸中逐渐伸直并承受载荷，通过与纯超弹性骨架的对比，展示了纤维募集对加载、卸载及循环蠕变的重要影响。该模型为运动生物力学中肌腱行为的精细计算提供了新工具，并有望用于肌腱损伤机制研究。",
+      "llm_tldr": "该研究针对肌腱力学建模中未考虑卷曲纤维募集的问题，提出了一种一维多孔弹性肌腱模型。模型将肌腱固相分为超弹性基质和卷曲纤维，纤维在拉伸中逐渐伸直并承受载荷，通过与纯超弹性骨架的对比，展示了纤维募集对加载、卸载及循环蠕变的重要影响。该模型为运动生物力学中肌腱行为的精细计算提供了新工具，并有望用于肌腱损伤机制研究。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "biomechanical analysis of sports movements",
+      "matched_requirement_id": "req-41",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29423v1",
+      "source": "arxiv",
+      "title": "Temporal Posed and Spontaneous Gesture Recognition from Electromyography in the Rock-Paper-Scissors Game",
+      "abstract": "The importance of gesture recognition has been acknowledged in many domains requiring real-time recognition systems. Two requirements for these are fast recognition in multiuser contexts. Therefore, we explored the temporal characteristics of electromyography (EMG) and its accuracy in recognizing gestures in a Rock-Paper-Scissors (RPS) game. Twenty-four participants played RPS in dyads, while a two-channel EMG was recorded from the forearm. We found out that EMG onsets could be detected at least 800 ms before the gesture's visible onset, and that the EMG peaks around 342 ms before the visible onset of the gesture. Furthermore, we evaluated self-gesture recognition in both posed and spontaneous gesture conditions. The mean accuracy for posed gestures reached 63.4%. The model trained on posed gestures achieved 53.6% for spontaneous gestures, with considerable variation across individuals. We also checked whether detecting a player's gesture from the opponent's EMG was possible. The peak mean accuracy was 65%, peaking at 2082 ms after the visual onset of the gesture. This suggests that the opponent's reaction to an observed gesture contains information about the observed gesture due to the dynamics of the interactions while playing. The temporal predictive advantage of EMG signals, where muscle activation precedes observable movement, offers potential benefits for applications requiring rapid intent recognition, such as human-computer interaction and assistive technologies. Future work should focus on refining onset detection and reducing the impact of spontaneous movement variability across conditions to improve recognition performance in dynamic and real-world environments.",
+      "authors": [
+        "Xin Wei",
+        "Huakun Liu",
+        "Felix Dollack",
+        "Monica Perusquia-Hernandez"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-28T14:36:23+00:00",
+      "link": "https://arxiv.org/pdf/2606.29423v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Uses EMG wearable sensor for gesture recognition in a game, achieving early detection before visible onset.",
+      "llm_evidence_cn": "利用肌电可穿戴传感器进行游戏手势识别，在可见动作前实现早期检测。",
+      "llm_evidence": "利用肌电可穿戴传感器进行游戏手势识别，在可见动作前实现早期检测。",
+      "canonical_evidence": "利用肌电可穿戴传感器进行游戏手势识别，在可见动作前实现早期检测。",
+      "llm_tldr_en": "EMG-based gesture recognition in the Rock-Paper-Scissors game shows that EMG onsets can be detected 800 ms before visible movement, with high classification accuracy for posed and spontaneous gestures.",
+      "llm_tldr_cn": "针对实时手势识别需求，本研究在石头剪刀布游戏中利用双通道前臂肌电信号，发现肌电起始至少可比可见手势早800毫秒检测到，并在姿势和自发手势条件下均获得高识别准确率，展示了可穿戴肌电在活动识别中的潜力。",
+      "llm_tldr": "针对实时手势识别需求，本研究在石头剪刀布游戏中利用双通道前臂肌电信号，发现肌电起始至少可比可见手势早800毫秒检测到，并在姿势和自发手势条件下均获得高识别准确率，展示了可穿戴肌电在活动识别中的潜力。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "human activity recognition using wearable sensor data and machine learning",
+      "matched_requirement_id": "req-35",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.27918v1",
+      "source": "arxiv",
+      "title": "Every Step of the Way: Video-based Parkinsonian Turning Step Counting",
+      "abstract": "As a prominent symptom of Parkinson's disease (PD), turning impairment is evaluated through parameters such as turning angle, duration, and particularly, the number of steps required to complete a turn, which directly reflects motor dysfunction. Accurate step counting is challenging due to variability in real-world turning movements and atypical shuffling patterns in parkinsonian gait. Existing methods are predominantly wearable-based, requiring users to wear and manage dedicated devices, which can be inconvenient for continuous daily use. To address this, we propose a passive, video-based framework that estimates step count in a coarse-to-fine manner using diverse motion representations. Specifically, an initial step count is estimated from foot movement signals derived from 3D human mesh recovery, providing high-level motion structures. To incorporate fine-grained motion details, a motion encoder learns complementary gait dynamics from mesh and optical flow to refine the initial estimate. In this process, coarse foot movement signals query the pixel-level motion cues via cross attention to capture subtle parkinsonian gait dynamics. To handle varying video lengths, we partition each video into clips and integrate clip-wise motion embeddings via multiple instance learning (MIL) for step count residual prediction. Extensive experiments show our method consistently outperforms existing step counting methods on real-world PD turning datasets.",
+      "authors": [
+        "Qiushuo Cheng",
+        "Jingjing Liu",
+        "Catherine Morgan",
+        "Alan Whone",
+        "Majid Mirmehdi"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T10:08:05+00:00",
+      "link": "https://arxiv.org/pdf/2606.27918v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Video-based framework for step counting using diverse motion representations",
+      "llm_evidence_cn": "基于视频的步数计数框架，利用多样化运动表示",
+      "llm_evidence": "基于视频的步数计数框架，利用多样化运动表示",
+      "canonical_evidence": "基于视频的步数计数框架，利用多样化运动表示",
+      "llm_tldr_en": "This paper proposes a video-based step counting framework for Parkinsonian turning using coarse-to-fine estimation with diverse motion representations, offering a method that can be adapted for sport gait analysis and performance evaluation.",
+      "llm_tldr_cn": "针对帕金森病转弯步数计数中可穿戴设备的局限性，本研究提出了一种基于视频的被动步数估计框架。该方法通过多样化运动表示实现从粗到精的步数估计，在帕金森步态视频上取得了准确计数。该视频分析技术可应用于运动员步态监测和运动表现评估。",
+      "llm_tldr": "针对帕金森病转弯步数计数中可穿戴设备的局限性，本研究提出了一种基于视频的被动步数估计框架。该方法通过多样化运动表示实现从粗到精的步数估计，在帕金森步态视频上取得了准确计数。该视频分析技术可应用于运动员步态监测和运动表现评估。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Analyzing sports videos with computer vision",
+      "matched_requirement_id": "req-14",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30097v1",
+      "source": "arxiv",
+      "title": "CylindTrack: Depth-Aware Cylindrical Motion Modeling for Panoramic Multi-Object Tracking",
+      "abstract": "Multi-Object Tracking (MOT) is a core capability for embodied perception, and panoramic cameras are attractive for embodied systems because their 360° field of view reduces blind spots and keeps surrounding targets observable for longer durations. However, panoramic MOT is not a straightforward extension of perspective MOT. In equirectangular panoramic videos, the horizontal image domain is periodic rather than Euclidean, which breaks planar motion assumptions and makes IoU-based association unreliable near the 0°/360° seam. Meanwhile, large-FoV scenes often contain more objects, stronger scale variation, and more frequent interactions, making online association particularly sensitive to unstable frame-wise depth cues. To address these issues, we propose CylindTrack, a depth-aware cylindrical tracking-by-detection framework for panoramic MOT. CylindTrack first introduces Depth-Temporal Trajectory Modeling (DTM), which promotes instance depth from an isolated frame-wise cue to a temporally filtered trajectory-level state. To improve the reliability of depth observations, we further develop Spherical Spatio-Temporal Consistency Learning (SSTC), which combines a Temporal Mixer and Spherical Geometry-aware Attention to enhance temporal coherence and panoramic geometric alignment in depth-aware representations. Finally, we design a Topology-Aware Cylindrical Motion Model (TCMM) that lifts horizontal motion into a continuous angular state space and performs seam-consistent motion prediction and association in the periodic panoramic domain. By jointly modeling trajectory-level depth consistency and panoramic topology, CylindTrack improves identity preservation and trajectory continuity in challenging panoramic scenes. The source code will be released at https://github.com/warriordby/CylindTrack.",
+      "authors": [
+        "Buyin Deng",
+        "Kai Luo",
+        "Lingxin Huang",
+        "Xinqi Liu",
+        "Fei Cheng",
+        "Hang Zheng",
+        "Liming Yin",
+        "Kailun Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO",
+        "eess.IV"
+      ],
+      "published": "2026-06-29T10:32:08+00:00",
+      "link": "https://arxiv.org/pdf/2606.30097v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Panoramic multi-object tracking method that could be applied to sports player tracking.",
+      "llm_evidence_cn": "可应用于体育球员跟踪的全景多目标跟踪方法。",
+      "llm_evidence": "可应用于体育球员跟踪的全景多目标跟踪方法。",
+      "canonical_evidence": "可应用于体育球员跟踪的全景多目标跟踪方法。",
+      "llm_tldr_en": "CylindTrack proposes depth-aware cylindrical motion modeling for panoramic multi-object tracking, addressing seam issues and scale variation, relevant for sports video analysis where wide-angle scenes are common.",
+      "llm_tldr_cn": "CylindTrack针对全景视频中的多目标跟踪问题，提出了一种深度感知的圆柱运动建模方法，解决了等距矩形投影带来的周期边界和尺度变化问题。虽然该方法主要面向具身感知，但其处理360度场景的能力使其有可能用于体育视频中的球员和物体跟踪，尤其是在需要减少盲区的广角场景中。",
+      "llm_tldr": "CylindTrack针对全景视频中的多目标跟踪问题，提出了一种深度感知的圆柱运动建模方法，解决了等距矩形投影带来的周期边界和尺度变化问题。虽然该方法主要面向具身感知，但其处理360度场景的能力使其有可能用于体育视频中的球员和物体跟踪，尤其是在需要减少盲区的广角场景中。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.30309v1",
+      "source": "arxiv",
+      "title": "A Point Cloud Transformer for Remote Monitoring and Automated Assessment of Physical Rehabilitation Exercises",
+      "abstract": "Rehabilitation exercises are essential in restoring lost physical functions of patients suffering from various diseases (e.g., Parkinson's, back pain). Carrying out these rehabilitation exercises, often prescribed by health experts, is costly, unavailable, and requires expert supervision. The availability of RGBD images and movement/position data of joints along with expert annotation of exercise data has prompted the use of automatic assessment of the quality of rehabilitation exercises, which is cost-effective and can be carried out at home. However, existing approaches do not extract relevant features, lack practical application, require expensive pre-processing, or overlook crucial features. This study proposes a transformer-based framework for point clouds to extract features and assess rehabilitation exercises by analyzing joint positions collected through RGBD data. We adapt and utilize a curve-based point-cloud feature aggregation technique to augment point-cloud information that aids model output. The transformer architecture also uses axial self-attention, recognizing important joints and their roles to assist users in performing the exercise better. The guided system outperforms existing approaches and is also practically relevant due to its small size, fast inference, and generalization on specific joints in similar exercises. We conduct our experiments on three crucial baseline datasets for rehabilitation exercises: Kimore, UI-PRMD, and IRDS.",
+      "authors": [
+        "Kazi Rafat",
+        "Md. Ismail Hossain",
+        "M M Lutfe Elahi",
+        "Sifat Momen",
+        "Fuad Rahman",
+        "Nabeel Mohammed",
+        "Shafin Rahman"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-29T13:53:09+00:00",
+      "link": "https://arxiv.org/pdf/2606.30309v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes automated assessment of physical rehabilitation exercises using point cloud transformer, applicable to sports injury rehab",
+      "llm_evidence_cn": "提出使用点云Transformer自动评估物理康复练习，可应用于运动损伤康复",
+      "llm_evidence": "提出使用点云Transformer自动评估物理康复练习，可应用于运动损伤康复",
+      "canonical_evidence": "提出使用点云Transformer自动评估物理康复练习，可应用于运动损伤康复",
+      "llm_tldr_en": "A point cloud transformer model is developed for remote monitoring and automated quality assessment of physical rehabilitation exercises, enabling cost-effective home-based rehab. It processes RGBD and joint data to extract relevant features for exercise evaluation.",
+      "llm_tldr_cn": "为克服传统康复评估依赖专家监督、成本高且不易普及的问题，本文提出一种基于点云Transformer的远程自动评估框架。该方法利用RGBD图像和关节运动位置数据，通过深度学习提取运动特征，对康复动作质量进行客观评分。实验证明，该模型能有效识别康复练习的执行质量，为居家康复提供支持，并有望应用于运动损伤后的恢复评估。",
+      "llm_tldr": "为克服传统康复评估依赖专家监督、成本高且不易普及的问题，本文提出一种基于点云Transformer的远程自动评估框架。该方法利用RGBD图像和关节运动位置数据，通过深度学习提取运动特征，对康复动作质量进行客观评分。实验证明，该模型能有效识别康复练习的执行质量，为居家康复提供支持，并有望应用于运动损伤后的恢复评估。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "Rehabilitation techniques and protocols for sports-related injuries",
+      "matched_requirement_id": "req-84",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.30161v1",
+      "source": "arxiv",
+      "title": "Federated Learning with Energy-Based Structured Probabilistic Inference",
+      "abstract": "Federated learning typically aggregates client updates using fixed or heuristic weighting rules, which can be suboptimal when clients have heterogeneous data and varying contributions to the global model. We propose a framework that refines client aggregation weights using Conditional Random Fields (CRFs). Our method defines unary potentials for individual clients and pairwise potentials for all client pairs, allowing the server to model both client-specific reliability and interactions between clients. The resulting CRF inference produces aggregation weights that enable better convergence of the global training objective. Experiments show that, under non-IID heterogeneity, our approach consistently improves performance over well-established federated learning baselines.",
+      "authors": [
+        "Dario Fenoglio",
+        "Daniil Kirilenko",
+        "Martin Gjoreski",
+        "Marc Langheinrich"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-29T11:38:46+00:00",
+      "link": "https://arxiv.org/pdf/2606.30161v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a federated learning framework using Conditional Random Fields for client aggregation, applicable to heterogeneous sensor data.",
+      "llm_evidence_cn": "提出使用条件随机场进行客户端聚合的联邦学习框架，适用于异构传感器数据。",
+      "llm_evidence": "提出使用条件随机场进行客户端聚合的联邦学习框架，适用于异构传感器数据。",
+      "canonical_evidence": "提出使用条件随机场进行客户端聚合的联邦学习框架，适用于异构传感器数据。",
+      "llm_tldr_en": "A federated learning aggregation method using Conditional Random Fields to model client interactions, improving convergence under non-IID data heterogeneity.",
+      "llm_tldr_cn": "针对联邦学习中客户端异构数据导致聚合权重次优的问题，提出基于条件随机场的结构化概率推理框架，利用一元电位和成对电位建模客户端可靠性和相互作用，优化全局模型聚合，在非独立同分布场景下提升性能，可应用于运动穿戴数据联邦学习。",
+      "llm_tldr": "针对联邦学习中客户端异构数据导致聚合权重次优的问题，提出基于条件随机场的结构化概率推理框架，利用一元电位和成对电位建模客户端可靠性和相互作用，优化全局模型聚合，在非独立同分布场景下提升性能，可应用于运动穿戴数据联邦学习。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "Federated learning frameworks for wearable sensor data in sports",
+      "matched_requirement_id": "req-78",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.31349v1",
+      "source": "arxiv",
+      "title": "PGUDA: Pressure-Guided Unsupervised Domain Adaptation with Cross-Modal Knowledge Distillation for sEMG-Based Gesture Recognition",
+      "abstract": "Surface electromyography (sEMG)-based gesture recognition has emerged as a promising technology for natural human-computer interaction. However, its practical deployment remains challenging due to severe performance degradation caused by feature distribution discrepancies across different subjects and recording sessions. Although domain adaptation (DA) techniques are commonly employed to mitigate such discrepancies, conventional methods often struggle to effectively aligning sEMG features, primarily due to their inherent stochasticity and the scarcity of labeled data. To address these limitations, this paper proposes a novel Pressure-Guided Unsupervised Domain Adaptation (PGUDA) framework, which leverages the robustness and stability of pressure signals to introduce a cross-modal knowledge distillation strategy that transfers consistent physical semantics across modalities. Specifically, a teacher network trained on pressure signals guides an sEMG student network on unlabeled target domains, thereby regularizing the representation learning process with transferable and modality-invariant knowledge. Extensive experiments conducted on a self-collected multimodal dataset involving eleven subjects validate the effectiveness of the proposed PGUDA framework. The results demonstrate that our proposed PGUDA achieves leading performance in both cross-subject and cross-session classification tasks, achieving average accuracies of 58.08% and substantially outperforming existing DA approaches. Notably, PGUDA exhibits remarkable label efficiency: it attains classification accuracy comparable to fully supervised benchmarks while requiring only 5% of labeled data for teacher network training. This framework offers a robust and data-efficient solution that can significantly reduce the calibration burden in practical sEMG-based gesture recognition systems.",
+      "authors": [
+        "Yurui Liu",
+        "Xiao-Cong Zhong",
+        "Qisong Wang",
+        "Xuefu Wang",
+        "Dan Liu",
+        "Jinwei Sun"
+      ],
+      "primary_category": "eess.SP",
+      "categories": [
+        "eess.SP",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T08:45:55+00:00",
+      "link": "https://arxiv.org/pdf/2606.31349v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a novel unsupervised domain adaptation method for sEMG-based gesture recognition, applicable to wearable sensor data in sports.",
+      "llm_evidence_cn": "提出新颖的无监督域自适应方法用于sEMG手势识别，可应用于运动可穿戴传感器数据。",
+      "llm_evidence": "提出新颖的无监督域自适应方法用于sEMG手势识别，可应用于运动可穿戴传感器数据。",
+      "canonical_evidence": "提出新颖的无监督域自适应方法用于sEMG手势识别，可应用于运动可穿戴传感器数据。",
+      "llm_tldr_en": "This paper introduces PGUDA, a pressure-guided unsupervised domain adaptation framework with cross-modal knowledge distillation to improve sEMG-based gesture recognition across different subjects and sessions.",
+      "llm_tldr_cn": "本文针对表面肌电手势识别中跨受试者和记录会话的分布偏移问题，提出了一种新颖的压力引导无监督域自适应框架。该框架利用跨模态知识蒸馏，将压力传感器数据作为辅助模态，有效对齐sEMG特征，缓解了数据稀缺和随机性的挑战。实验表明PGUDA优于传统域自适应方法，为可穿戴手势识别在体育运动监控等领域的实用化提供了新的途径。",
+      "llm_tldr": "本文针对表面肌电手势识别中跨受试者和记录会话的分布偏移问题，提出了一种新颖的压力引导无监督域自适应框架。该框架利用跨模态知识蒸馏，将压力传感器数据作为辅助模态，有效对齐sEMG特征，缓解了数据稀缺和随机性的挑战。实验表明PGUDA优于传统域自适应方法，为可穿戴手势识别在体育运动监控等领域的实用化提供了新的途径。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "domain adaptation techniques in sports",
+      "matched_requirement_id": "req-71",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.31979v1",
+      "source": "arxiv",
+      "title": "Planar-SfM: Camera Pose Estimation via Homography Graph Embeddings",
+      "abstract": "Structure from Motion (SfM) systems traditionally struggle with planar scenes, where standard epipolar geometry-based methods become degenerate. Rather than viewing planar surfaces as a limitation, we propose a unified framework that leverages them as a source of geometric constraints. Our key insight is that each planar surface visible across multiple views provides an independent estimate of relative camera poses through homography decomposition. By aggregating estimates from multiple planes or even from a single dominant plane we achieve robust pose recovery in scenarios where traditional methods fail. We introduce a novel graph-based approach that constructs a pose-graph from homography estimates and employs spectral embedding to identify and filter unreliable edges. Our method maps homography-based pose estimates onto the real line based on their geometric and visual consistency, enabling efficient extraction of a maximally consistent spanning tree for pose recovery. This approach naturally handles both highly planar scenes, such as indoor sports arenas, and general $3$D environments. We demonstrate superior performance on basketball court imagery where existing methods struggle, while matching or exceeding state-of-the-art results on unconstrained outdoor scenes from the IMC Phototourism benchmark.",
+      "authors": [
+        "Gabi Pragier",
+        "Matan Karklinsky",
+        "David Ungarish",
+        "Avi Ben-Cohen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-30T17:18:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.31979v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes camera pose estimation for planar scenes, useful for sports field calibration",
+      "llm_evidence_cn": "提出平面场景相机姿态估计，适用于运动场标定",
+      "llm_evidence": "提出平面场景相机姿态估计，适用于运动场标定",
+      "canonical_evidence": "提出平面场景相机姿态估计，适用于运动场标定",
+      "llm_tldr_en": "A graph-based SfM method that leverages planar homographies for robust camera pose estimation, serving as a key enabler for sports video analytics where planar fields are common.",
+      "llm_tldr_cn": "针对传统SfM在平面场景中退化的问题，提出利用多平面单应性构建姿态图并嵌入优化的相机位姿估计框架。该方法特别适合包含平面场地（如足球场、篮球场）的体育场景，可为动作分析、跟踪等任务提供鲁棒的相机标定基础，从而提升体育视频分析的整体性能。",
+      "llm_tldr": "针对传统SfM在平面场景中退化的问题，提出利用多平面单应性构建姿态图并嵌入优化的相机位姿估计框架。该方法特别适合包含平面场地（如足球场、篮球场）的体育场景，可为动作分析、跟踪等任务提供鲁棒的相机标定基础，从而提升体育视频分析的整体性能。",
+      "llm_tags": [
+        "query:cv-sports:composite"
+      ],
+      "matched_query_tag": "query:cv-sports:composite",
+      "matched_query_text": "Papers central to 计算机视觉在体育中的应用（姿态估计、动作识别、目标跟踪、视频分析）, especially work that connects or combines: Human pose estimation in sports videos; Action recognition for sports activities; Tracking players and objects in sports; Analyzing sports videos with computer vision; Computer vision for sports analytics and statistics; Event detection in sports footage; How is computer vision used for pose estimation in sports?; What are the latest techniques for tracking athletes in sports videos?; Action recognition methods for analyzing sports activities; Video analysis systems for sports performance evaluation.",
+      "matched_requirement_id": "req-composite-cv-sports",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-11-24-690121-v6",
+      "source": "biorxiv",
+      "title": "Different stabilizing mechanisms but a common task-level aim in standing and walking",
+      "abstract": "Intrinsic mechanisms and feedback control work together to stabilize the body in upright tasks, such as standing and walking. Yet if, and how lumped parameters characterizing stabilization change across tasks is unclear. To answer this question, we applied a stabilization model, relating delayed center of mass position and velocity information to current ground reaction forces (corrected for effects of gravity) in unperturbed standing and walking, to estimate and compare the stabilization between tasks. 15 healthy young participants (21+/- 4 yrs, 63 +/- 9 kg, 1.70 +/-0.10 m, 13 females, 2 males) participated in this study, they walked at 1.25 m/s for 5 minutes, and performed 3 different standing tasks: normal standing, unipedal standing, and step posture for 1 minute, repeated 5 times. Whole-body kinematics and ground reaction forces were collected and used to fit the stabilization model and estimate the effective delay and lumped gains. Results showed good model fits for both walking and standing with mean R2 values higher than 0.69. The effective delay was significantly longer in walking than in standing. While the lumped position and velocity gains varied significantly across tasks and directions, the lumped position gains were mostly above critical stiffness and lumped velocity gains all at under-damped level, with an only exception that lumped position gains in the AP direction in walking, which were slightly below critical stiffness. The ratio of lumped position to velocity gains in all tasks remained consistently close to human body's eigenfrequency (sqrt(g/l)) as predicted by the extrapolated center of mass concept. Our findings suggest that stabilization is organized at the task level, with lumped effects of all stabilizing mechanisms acting to preserve a consistent weighting between position and velocity contributions across tasks, effectively regulating the CoM motion to follow a pendulum-like trajectory.",
+      "authors": [
+        "Geng, Y.",
+        "van Dieen, J. H.",
+        "Bruijn, S. M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-30T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.11.24.690121v6.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Applies a stabilization model to compare postural control in standing and walking, core to sports biomechanics",
+      "llm_evidence_cn": "应用稳定模型比较站立和行走的姿势控制，是运动生物力学的核心",
+      "llm_evidence": "应用稳定模型比较站立和行走的姿势控制，是运动生物力学的核心",
+      "canonical_evidence": "应用稳定模型比较站立和行走的姿势控制，是运动生物力学的核心",
+      "llm_tldr_en": "This study models stabilization in standing and walking by relating delayed center of mass to ground reaction forces, revealing task-level similarities in postural control.",
+      "llm_tldr_cn": "该研究通过建立延时质心位置和速度与地面反力的关系模型，比较了站立和行走的稳定机制，揭示了不同直立任务在控制目标层面的相似性。",
+      "llm_tldr": "该研究通过建立延时质心位置和速度与地面反力的关系模型，比较了站立和行走的稳定机制，揭示了不同直立任务在控制目标层面的相似性。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "biomechanical analysis of sports movements",
+      "matched_requirement_id": "req-41",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-02-12-705535-v2",
+      "source": "biorxiv",
+      "title": "Dynamic Compression Flows for Neuroscience Data",
+      "abstract": "While neuroscience experiments have repeatedly demonstrated the involvement of large populations of neurons in even simple behaviors, these studies have just as often reported that the collective dynamics of neural activity are approximately low-dimensional. As a result, methods for identifying low-dimensional latent representations of time series data have become increasingly prominent in neuroscience. However, most existing methods either ignore temporal structure or model time evolution using latent dynamical systems approaches. In the first case, dynamics may be distorted or even scrambled in the latent space, while in the second, many possible latent dynamics may give rise to the same data. Here, we address these challenges using a novel flow-matching approach in which data are generated by a pair of flow fields, one governing time evolution, the other a mapping between data and a low-dimensional latent space. Importantly, the dimension-reducing flow is trained to minimize distortions of the temporal dynamics, learning an identifiable low-dimensional representation that preserves temporal relations in the original data. Additionally, we constrain our latent spaces to have low-dimensional support in a soft, parameterized manner, taking inspiration from ideas on nested dropout. Across both neural and behavioral data, we show that this dual flow approach produces both more interpretable dynamics and higher-quality reconstructions than competing models, including in noise-dominated data sets where conventional approaches fail.",
+      "authors": [
+        "Wei, G.",
+        "Albuquerque, D. d.",
+        "Martinez, M.",
+        "Pan, S.",
+        "Pearson, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-23T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.02.12.705535v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "novel flow-matching approach for low-dimensional latent representations of time series data",
+      "llm_evidence_cn": "用于时间序列数据低维潜在表示的流匹配方法",
+      "llm_evidence": "用于时间序列数据低维潜在表示的流匹配方法",
+      "canonical_evidence": "用于时间序列数据低维潜在表示的流匹配方法",
+      "llm_tldr_en": "A novel flow-matching method for learning low-dimensional latent representations of time series data that preserves temporal dynamics, overcoming limitations of existing methods in neuroscience.",
+      "llm_tldr_cn": "针对现有神经科学时间序列方法忽略时间结构或动力系统不唯一的问题，该论文提出了一种新颖的流匹配方法，用于学习时间序列数据的低维潜在表示，同时保留时间动态特性。实验证明该方法能有效压缩神经数据而不损失动态信息。这一工具为复杂时间序列分析提供了新途径，可广泛应用于可穿戴传感器等体育科学时间序列数据处理。",
+      "llm_tldr": "针对现有神经科学时间序列方法忽略时间结构或动力系统不唯一的问题，该论文提出了一种新颖的流匹配方法，用于学习时间序列数据的低维潜在表示，同时保留时间动态特性。实验证明该方法能有效压缩神经数据而不损失动态信息。这一工具为复杂时间序列分析提供了新途径，可广泛应用于可穿戴传感器等体育科学时间序列数据处理。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "time series analysis methods applied to sequential sensor data",
+      "matched_requirement_id": "req-33",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-23-733856-v1",
+      "source": "biorxiv",
+      "title": "Determining Reliable Neural Targets for enhancing Motor Sequence Learning: A preparatory study for focal tDCS",
+      "abstract": "BackgroundMotor sequence learning (MSL) underlies the acquisition of everyday skilled movements, and transcranial direct current stimulation (tDCS) has shown promise for enhancing it, although reported effects vary considerably. Before such interventions can be applied and interpreted reliably, the behavioural and neural signatures of the underlying task should be shown to be robust. This study therefore characterised an fMRI-based Serial Reaction Time Task (SRTT) protocol and evaluated the consistency of its behavioural and fMRI-based neural signatures in repeated measurements to identify potential network targets for tDCS.\n\nMethodsTwenty healthy young- to middle-aged adults (10 females; mean age 24, SD 4) performed the SRTT during 3T fMRI in two sessions about one week apart, each using one of two matched, non-overlapping task versions in counterbalanced order. We examined block-wise behaviour, task-related and sequence-specific brain activation (general task activation relative to baseline and the SEQ > RND contrast), and functional connectivity using two complementary approaches: the task and temporal dynamics of seed-based connectivity (SBC) within an a priori-defined motor network (M1, SMA, PMC, putamen, and cerebellum), and whole-brain generalised psychophysiological interaction (gPPI) for the SEQ > RND contrast.\n\nResultsReaction time decreased steadily across sequence blocks and returned toward baseline during random blocks, confirming implicit sequence learning; this pattern was consistent across both sessions and both task versions. Test-retest reliability was excellent for random-block reaction time (ICC {approx} .80 - .85), and modest for sequence blocks (ICC {approx} .29 - .53). General task activation (sequence and random performance relative to baseline) engaged the expected sensorimotor network, including the primary motor cortex (M1), premotor cortex, and SMA, with M1 more strongly engaged during sequence than random blocks. The sequence-specific contrast (SEQ > RND) additionally revealed six clusters spanning the left superior parietal cortex, bilateral supplementary and cingulate motor areas, bilateral secondary somatosensory cortex, and left ventral visual cortex together with cerebellar Crus I. The a priori defined motor network was engaged across all task phases and was anchored throughout by strong M1-SMA coupling, with overall network coupling following a non-monotonic course across the session, consistent with successive stages of resource allocation, consolidation, and automatisation. The gPPI analysis identified four sequence-specific connectivity clusters, dominated by a right-lateralised visuomotor network and a somatosensory-visual integration channel.\n\nConclusionsTogether, these findings indicate a two-component architecture for SRTT performance: a left hemispheric cortico-striato-cerebellar network that supports performance and acquisition of the sequence, and a right hemispheric network associated with monitoring its predictable structure. Within this protocol, the SRTT produced robust and stable group-level signatures of implicit motor learning, yielding well-defined network targets for future tDCS interventions..",
+      "authors": [
+        "Khan, A.",
+        "Burke, M.",
+        "Genc, E.",
+        "Kuo, M.-F.",
+        "Nitsche, M."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-29T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.23.733856v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Directly addresses motor sequence learning and tDCS enhancement, foundational for sports skill acquisition",
+      "llm_evidence_cn": "直接研究运动序列学习和tDCS增强，是运动技能习得的基础",
+      "llm_evidence": "直接研究运动序列学习和tDCS增强，是运动技能习得的基础",
+      "canonical_evidence": "直接研究运动序列学习和tDCS增强，是运动技能习得的基础",
+      "llm_tldr_en": "This study characterizes fMRI and behavioral signatures of a Serial Reaction Time Task to identify reliable neural targets for tDCS enhancement of motor sequence learning.",
+      "llm_tldr_cn": "该研究通过fMRI和行为特征分析，确定可靠神经靶点以增强运动序列学习的经颅直流电刺激方案，为运动技能训练提供神经调控依据。",
+      "llm_tldr": "该研究通过fMRI和行为特征分析，确定可靠神经靶点以增强运动序列学习的经颅直流电刺激方案，为运动技能训练提供神经调控依据。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-24-734264-v1",
+      "source": "biorxiv",
+      "title": "Cortico-muscular control of postural balance in older adults - effects of training on functional connectivity",
+      "abstract": "Background. Balance training in older adults can lead to reduced centre of mass accelerations and reduced angular momenta after perturbations of unipedal stance, reflecting an enhanced ability to recover balance. It has been suggested that the co-occurring changes in muscle synergies indicated strategy-specific adaptations in feedback control. Methods. We investigated the cortical involvement in such adaptations by focusing on the interaction between muscle synergies and cortical activity after perturbations. Twenty older adults (>65 years) underwent short-term and three-week long-term balance training, and we assessed their recovery from unpredictable mediolateral perturbations during unipedal stance. We measured high-density EEG and activation of leg and trunk muscles. The representations of the balance-related muscle synergies were localised in the cortex using coherence-based beamformers in the {beta}-frequency band. Results. Balance performance was accompanied by task-specific {beta}-band activation in the somatotopic representation of the lower extremities in the primary motor cortex. The {beta}-power significantly dropped during the response to perturbations, while the coherence with the activation of muscle synergies significantly increased, especially for synergies active in the early stage of balance recovery. The task-related changes in cortico-synergy coherence, especially during the later phase of balance recovery, were significantly affected by short-term training. Conclusion. Refinements of feedback control seem to underlie balance improvements in older adults. The significant changes in the cortico-synergy interaction after balance training suggest cortical involvement in these refinements.",
+      "authors": [
+        "Koster, R.",
+        "Alizadehsaravi, L.",
+        "van Dieen, J. H.",
+        "Bruijn, S.",
+        "Dominici, N.",
+        "Daffertshofer, A."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-06-29T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.24.734264v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "balance training in older adults alters cortico-muscular control",
+      "llm_evidence_cn": "老年人平衡训练改变皮质-肌肉控制",
+      "llm_evidence": "老年人平衡训练改变皮质-肌肉控制",
+      "canonical_evidence": "老年人平衡训练改变皮质-肌肉控制",
+      "llm_tldr_en": "This study investigates how short-term and long-term balance training in older adults affects cortico-muscular functional connectivity and balance recovery, revealing strategy-specific neural adaptations.",
+      "llm_tldr_cn": "该研究探讨了老年人短期和长期平衡训练对姿态平衡恢复的影响，重点关注肌肉协同与皮层活动的交互。通过对20名老年人施加不可预测的内外扰动，测量平衡恢复中的质心加速度和角动量变化，发现训练导致功能连接和肌肉协同的策略特异性适应。这为理解运动训练对神经肌肉控制的可塑性提供了新见解，可启示运动员平衡训练方案的设计。",
+      "llm_tldr": "该研究探讨了老年人短期和长期平衡训练对姿态平衡恢复的影响，重点关注肌肉协同与皮层活动的交互。通过对20名老年人施加不可预测的内外扰动，测量平衡恢复中的质心加速度和角动量变化，发现训练导致功能连接和肌肉协同的策略特异性适应。这为理解运动训练对神经肌肉控制的可塑性提供了新见解，可启示运动员平衡训练方案的设计。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "training science and athletic development",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

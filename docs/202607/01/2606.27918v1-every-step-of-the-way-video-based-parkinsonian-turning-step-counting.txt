@@ -1,0 +1,392 @@
+Title: Every Step of the Way: Video-based Parkinsonian Turning Step Counting
+
+URL Source: https://arxiv.org/pdf/2606.27918v1
+
+Published Time: Mon, 29 Jun 2026 00:40:43 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+> arXiv:2606.27918v1 [cs.CV] 26 Jun 2026
+
+CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 1
+
+# Every Step of the Way: Video-based Parkinsonian Turning Step Counting 
+
+Qiushuo Cheng 1
+
+qiushuo.cheng@bristol.ac.uk 
+
+Jingjing Liu 1
+
+jingjing.liu@bristol.ac.uk 
+
+Catherine Morgan 2
+
+catherine.morgan@bristol.ac.uk 
+
+Alan Whone 2
+
+alan.whone@bristol.ac.uk 
+
+Majid Mirmehdi 1
+
+majid@cs.bris.ac.uk  
+
+> 1
+
+School of Computer Science Faculty of Engineering University of Bristol Bristol, UK  
+
+> 2
+
+North Bristol NHS Trust Bristol, UK 
+
+Abstract 
+
+As a prominent symptom of Parkinson’s disease (PD), turning impairment is eval-uated through parameters such as turning angle, duration, and particularly, the number of steps required to complete a turn, which directly reflects motor dysfunction. Ac-curate step counting is challenging due to variability in real-world turning movements and atypical shuffling patterns in parkinsonian gait. Existing methods are predominantly wearable-based, requiring users to wear and manage dedicated devices, which can be in-convenient for continuous daily use. To address this, we propose a passive, video-based framework that estimates step count in a coarse-to-fine manner using diverse motion representations. Specifically, an initial step count is estimated from foot movement sig-nals derived from 3D human mesh recovery, providing high-level motion structures. To incorporate fine-grained motion details, a motion encoder learns complementary gait dy-namics from mesh and optical flow to refine the initial estimate. In this process, coarse foot movement signals query the pixel-level motion cues via cross attention to capture subtle parkinsonian gait dynamics. To handle varying video lengths, we partition each video into clips and integrate clip-wise motion embeddings via multiple instance learning (MIL) for step count residual prediction. Extensive experiments show our method con-sistently outperforms existing step counting methods on real-world PD turning datasets. 
+
+# 1 Introduction 
+
+As one of the fastest-growing neurological disorders [5], Parkinson’s disease (PD) is char-acterised by motor symptoms including gait impairment, which is more pronounced [60] during turning compared to straight walking in early stages of the disease. Capturing and quantifying symptoms at this point is potentially vitally important for PD diagnosis, symp-tom evaluation and for clinical trials of novel therapeutics which are often targeted at prodro-mal and/or early stage disease. Furthermore, turning abnormalities can predispose to falls [4] 
+
+© 2026. The copyright of this document resides with its authors. It may be distributed unchanged freely in print or electronic forms. 2 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING RGB Flow  Mesh  
+
+> Pivoting Steps Shuffling Steps
+> Color/brightness represent flow direction/magnitude.
+
+Figure 1: Turning steps in Parkinson’s Disease (PD). 3D mesh captures coarse-grained mo-tion structure while optical flow preserves pixel-level motion details. (Left) One foot rotates around the other. (Right) Small, incremental steps. and falls while turning increase the risk of hip fractures being sustained [10]. Thus, quanti-fying fundamental turning parameters, such as turning duration [30, 42] or angle [7, 13, 39], plausibly represents an opportunity to predict falls and fractures in a person with PD. In par-ticular, the number of steps taken to turn [33] can help distinguish between whether a PD patient has taken their medications or not, and correlates strongly with the scores from the gold-standard clinical rating scale, the Movement Disorders Society-sponsored revision of the Unified Parkinson’s Disease rating scale score (MDS-UPDRS) [16]. Furthermore, the number of turning steps can directly reflect core clinical manifestations of PD, i.e. bradyki-nesia [18] and rigidity [52], which can lead to people with PD taking an increased number of slow, short and shuffling steps [22, 31] to complete turning compared to people without PD (see Figure 1 (top row)). Turning and steps are typically assessed within general clinical rating scales [16, 40] or measured using inertial measurement units (IMU) [13, 38]. However, manual ratings are labor-intensive and influenced by instructions and tester bias [31], while IMU-based approaches require managing wearable devices, which could be problematic for this pop-ulation [1]. Moreover, their accuracy and reliability are highly sensitive to sensor place-ment [2, 6, 42]. While effective for general activity tracking [11], wearables may struggle to precisely measure the number of steps during specific activities. Alternatively, pressure sen-sors can provide accurate step-level pressure changes but require specialised footwear [37] or instrumented floors [56], which limits their applicability. In contrast, using video-based sensing enables passive monitoring and benefits from the widespread deployment of cameras in everyday environments, and given the widespread use of smartphones, could be used for clinical purposes in low-, middle- and high-income countries across the world. This work focuses on counting the number of steps from videos to help characterise impaired turning in PD patients. The key challenge is that steps dur-ing turning in naturalistic settings especially for PD, are considerably more heterogeneous than those during straight walking, with various patterns [2] (see Figure 1) such as side-to-side, backward, pivoting, and small shuffling adjustments. Steps also vary substantially CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 3
+
+both within and between individuals [33] and across levels of disease severity [31]. How-ever, existing video-based gait analysis methods [53, 54, 57] primarily focus on steps during general walking on treadmills or scripted walkways [8], with only few studies [50, 53] in-vestigating turning steps of the scripted 180 ◦ turn during the Timed Up and Go (TUG) test. These methods typically use human pose estimation to approximate 3D motion capture for predefined gait assessments, which primarily aim to obtain precise biomechanical measure-ments such as joint angles or step length. Although such measurements can be used to infer step counts, they may not extend well to unconstrained free-living turning actions beyond laboratory settings. In this paper, we introduce a coarse-to-fine framework for counting parkinsonian turning steps from videos. First, we utilise state-of-the-art human pose and shape models [48, 58] to recover a 3D human mesh and construct a foot movement signal, from which an initial step count is obtained via peak detection [55]. While effective at capturing coarse motion structure (Figure 1 (middle row)), the mesh alone is insufficient for the subtle and abnormal foot movements of PD, leading to artifacts such as footskate [43, 62]. We therefore further refine the initial estimate via a motion encoder that fuses mesh-based signals with dense op-tical flow [41] through cross attention. Subtle foot movements are explicitly preserved in the spatially detailed and temporally sensitive flow dynamics (Figure 1 (bottom row)), comple-menting the coarse mesh representation. The refinement process is supervised on real-world PD turning videos of varying lengths using a multiple instance learning (MIL) [23] scheme. Each video is partitioned into clips, which are encoded as fused motion embeddings and ag-gregated via attention-based saliency scores to predict a video-level residual to compensate missing or extra steps. To demonstrate real-world applicability, we evaluate our approach on two clinically an-notated turning datasets: PD-FOG [44] for in-clinic in-place turning assessment and Turn-REMAP [34] for free-living turning at home. We conduct extensive experiments comparing against IMU-based algorithms [3, 25, 27], gait analysis methods [9, 19], and end-to-end repetitive activity counting methods [12, 51]. Since the feature fusion process in our motion encoder is modality-agnostic, we further conduct multimodal ablations with additional in-puts, including RGB and IMU signals. We also validate the clinical relevance of our metrics by correlating with the gold standard MDS-UPDRS score [16]. In summary, the contributions of this work are: (i) we present the first study on automatic step counting for parkinsonian turning action from videos, (ii) our proposed motion encoder fuses coarse mesh motion with fine-grained flow dynamics via cross attention to capture sub-tle parkinsonian foot movements, and (iii) extensive experiments on real-world PD datasets demonstrate that our approach outperforms existing vision-based methods adapted for step count estimation, such as ESCount [51], and notably, surpasses ankle-mounted IMU-based approaches such as Lucot et al. [27], reducing the absolute step-count error from 37.7 to 15.9. 
+
+# 2 Related Works 
+
+Conventional step definitions [9, 19], which assume a clearly identifiable swing phase with toe-off and heel strike, are not well suited to parkinsonian gait evaluation. Many irregularities of gait may be excluded, including shuffling gait with short step length [31] and reduced foot clearance [22], despite the fact that they are clinically informative [33]. In our work, we consider any displacement of the foot during gait as important under the parkinsonian remit. 4 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+Next, we consider works related to turning analysis in general, and those related to step counting with IMUs and/or vision sensors. 
+
+Quantifying Turning Impairment in PD – To assess turning abnormalities in PD, various technologies have been developed to quantify turning-related parameters. For example, clin-ical gait tests can be instrumented with IMUs [13, 28, 40, 44] or analysed from video using human pose estimation [46, 49] to measure turning duration, angle, and angular velocity. Moreover, pressure-sensitive insoles have been used to estimate the centre of pressure or centre of mass for assessing turning stability [45] and balance [36]. Some studies [7, 13, 38] further extend their method to turning actions during daily activities in more naturalistic set-tings. In contrast to these approaches, our method focuses specifically on estimating step count from parkinsonian turning videos and is applicable in both clinical and free-living settings. 
+
+Step Counting with Non-visual Sensors – Ever since the 15th century [2], human steps have been counted and measured by sensors for position tracking [21] or healthcare moni-toring [11]. Modern approaches [3, 25, 27, 28, 38] commonly rely on motion sensors such as inertial measurement units (IMU) embedded in wearable [35] or mobile devices [32], which detect periodic step events by identifying characteristic patterns in acceleration or velocity signals. However, these methods suffer from inherent limitations, as their performance is strongly affected by factors such as sensor type [35], wear location [2, 6], and variations in gait or stepping modes [25]. On the other hand, pressure sensors embedded in insoles [37] or floors [56] can capture ground reaction forces and the resulting pressure changes, pro-viding reliable ground-truth measurements for step-level foot contact events. However, their applicability may be constrained in more natural settings. 
+
+Step Counting in Computer Vision – Advances in human pose estimation have enabled its widespread use in gait analysis [47], which characterises walking patterns by measuring spatio-temporal gait features [53, 54, 57] such as stride length, swing time, and joint an-gles. For example, Connie et al. [9] measure the relative distance between detected ankle keypoints as step length and estimate the number of steps by counting peaks in the result-ing temporal signal. Similarly, Hii et al. [19] detect heel-strike events as the time points at which the relative distance between the toe and hip joints reaches a maximum. However, these studies are primarily based on lab-based assessments with carefully scripted move-ments, whereas turning steps in real-world settings, especially for individuals with PD, are inherently diverse and aperiodic [2, 33], thereby violating the assumptions underlying ex-isting gait analysis methods. Alternatively, casting stepping as a primitive action reduces the task to repetitive activity counting (RAC) [12, 51, 59], which targets high-level activities with strong periodicity (e.g., jump rope), yet PD turning steps exhibit heterogeneous motion patterns with irregular temporal distribution. Our method shares the same spirit of an early method [55] that compress the motion into 1D signal, whereas we similarly construct foot movement signals from human mesh recovery. Furthermore, we introduce a refine process where we use cross attention to query and retrieve detailed motion features from optical flow. 
+
+# 3 Methods 
+
+In the proposed framework (see Figure 2), we first obtain a coarse step count from a foot movement signal derived from 3D human mesh recovery. To capture subtle foot dynamics CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 5MIL learning  
+
+> Feet Optical Flow
+> Prompt
+> HMR
+> RGB Input
+> 3DMesh Sequence
+> Query
+> Key, Value
+> noisy -OR
+> Foot Movement Signal
+> Step
+> Count
+> Reproject
+> Feet
+> Region
+> clips
+
+Figure 2: Overall framework for step detection. A foot movement signal F from 3D hu-man mesh recovery provides coarse step count estimation ˆ y, where a cross attention motion encoder captures fine-grained motion cue by fusing mesh-based representation Z Mj and flow-based representation Z Oj . We learn a clip-level saliency score to adaptively aggregate motion embeddings to predict a video-level residual ∆y.beyond mesh recovery, we introduce a motion encoder that incorporates fine-grained motion cues from optical flow through cross attention. We divide videos into clips and combine the fused clip-level motion embeddings using MIL to predict a video-level residual for step count refinement. 
+
+## 3.1 Foot Movement Signals from Human Mesh Recovery 
+
+First, we consider a step as an effective displacement of the foot that does not necessarily require full foot clearance, allowing the inclusion of clinically meaningful parkinsonian gait events such as shuffling or sliding steps. Then, given an input video X of turning with 
+
+T frames, we reconstruct a 3D human mesh sequence M using a human pose and shape estimation model (e.g., PromptHMR [58]), which also outputs per-joint stationary logits originally introduced for aligning global translation across frames. We repurpose the foot-related logits of M to construct a foot movement signal F = {Fi,t } (see Figure 2), indicating the confidence of whether foot i ∈ { left , right } is moving or stationary at time t ∈ [0, T − 1].Specifically, given the stationary logits r = {rheel  
+
+> i,t
+
+, rtoe  
+
+> i,t
+
+} for the toe and heel joints of both feet, movement probabilities π = {πheel  
+
+> i,t
+
+, πtoe  
+
+> i,t
+
+} are computed as 
+
+πheel  
+
+> i,t
+
+= σ (rheel  
+
+> i,t
+
+), πtoe  
+
+> i,t
+
+= σ (rtoe  
+
+> i,t
+
+), (1) where σ (·) denotes the sigmoid function. Since a step should be counted when either part of the foot exhibits movement, we compute Fi,t by fusing the toe and heel probabilities of each foot using a noisy-OR [29] operation, 
+
+Fi,t = 1 − (1 − πheel  
+
+> i,t
+
+)( 1 − πtoe  
+
+> i,t
+
+). (2) Despite diverse PD turning patterns, each step follows a consistent cycle from static to mov-ing to static; therefore, we obtain an initial step count estimate ˆ y as the number of peaks 6 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+detected on F, computed as ˆy = ∑
+
+> i∈{ L,R}
+
+# ∑
+
+> t
+
+pi,t , (3) where pi,t denotes the soft peak response at time t for foot i. We compute pi,t using a differ-entiable soft local-maximum head that compares each frame with its temporal neighbors 
+
+pi,t = σ (β (Fi,t − Fi,t−1)) σ (β (Fi,t − Fi,t+1)) , (4) where β controls peak sharpness. A sensitivity analysis of β is provided in the ablation study. 
+
+## 3.2 Flow-Assisted Step Count Refinement 
+
+Although the mesh-based representation captures high-level structure of foot motion and provides an initial estimate of step count, recovering subtle and pathological foot move-ments remains challenging. To further refine the estimate, we fuse mesh-based and flow-based motion representations to learn clip-level motion embeddings, which are aggregated for video-level residual prediction. 
+
+Clip-level Motion Encoder – As the temporal length T of input videos varies, we decom-pose X into N non-overlapping temporal clips {x j}N−1 
+
+> j=0
+
+containing l frames each, and use a shared motion encoder to fuse mesh-based and flow-based motion features to obtain clip-level embeddings {h j}N−1 
+
+> j=0
+
+. For the mesh branch, we treat the left and right foot movement signals as two channels and encode the raw motion signal using a temporal 1D convolution to model local temporal dependencies, yielding mesh-based motion tokens Z Mj ∈ Rl×d , where 
+
+d is the token embedding dimension. For the flow branch, we extract dense optical flow O
+
+(using FlowSeek [41]) within the foot region of interest (RoI), obtained by projecting the re-constructed 3D mesh of feet [26] onto the image plane. The raw optical flow is then encoded using ResNet-TSM [24] to capture spatial-temporal context, and subsequently projected to frame-level flow tokens Z Oj ∈ Rl×d . With the fine-grained motion preserved in per-pixel flow displacement field, we employ cross attention, where Z Mj serves as queries over Z Oj as keys and values to retrieve corresponding subtle foot movement details (see Figure 2). Specifi-cally, we compute the embedding h j of the j-th clip as 
+
+h j = Softmax (QK T /pdk)V, (5) where 
+
+Q = WQ ZMj , K = WK ZOj , V = WV ZOj , (6) and WQ,WK ,WV ∈ Rd×d are learnable projection matrices. 
+
+Video-level MIL Learning – For each clip, cross attention enables h j to jointly reason over mesh-based and flow-based motion representations, either reinforcing consistent evidence shared by both representations or leveraging complementary cues from each other to com-pensate missing or spurious mesh-based steps. To adaptively aggregate the fused motion embeddings, we learn a saliency scoring function [23] g for each clip and compute the video representation v via weighted averaging 
+
+v =
+
+> N−1
+
+# ∑
+
+> j=0
+
+a jh j, a j = exp (g(h j)) 
+
+∑N−1 
+
+> n=0
+
+exp (g(hn)) . (7) CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 7
+
+We regress step count offset ∆y using a prediction head over video-level embedding v and the model is optimised with a squared error loss 
+
+Ls = ( y − ( ˆy + ∆y)) 2 . (8) During backpropagation, attention gradually shifts toward more informative clips, often cor-responding to abnormal events (e.g., footskate) that cause counting inaccuracies, as higher-loss clips receive larger gradients that amplify their saliency scores 
+
+∂ Ls
+
+∂ a j
+
+= ∂ Ls
+
+∂ ∆y · ∂ ∆y
+
+∂ v · ∂ v
+
+∂ a j
+
+∝ h j. (9) To better separate reliable and error-prone clips, we also introduce a contrastive regularisa-tion term similar to InfoNCE [17], applied to the top-k and bottom-k clip embeddings [61] ranked by saliency scores a j, such that 
+
+Lc = ∑
+
+> u
+
+− log ∑ j∈u exp (h⊤ 
+
+> u
+
+h j)
+
+∑ j exp (h⊤ 
+
+> u
+
+h j) , (10) where u ∈ { top-k, bottom-k} and h⊤ 
+
+> u
+
+is the anchor embedding obtained using mean pooling. Finally, the total loss is 
+
+L = Ls + λ Lc, (11) where λ is the hyperparameter balancing these two objectives. We ablate the value λ in Section 4.3 to study its influence on performance. 
+
+# 4 Experiments 
+
+## 4.1 Experimental Setup 
+
+Datasets – We validate our step counting method on two real-world PD video datasets (see Table 1), namely PD-FOG [44] and Turn-REMAP [34]. PD-FOG contains 52 long-duration videos of 25 PD patients instructed to perform turning-in-place tasks at their own normal speed in clinical settings, while wearing a 6-axis IMU on one ankle. We exclude videos with-out turning behavior due to severe freezing (e.g., medication-induced foot trembling [14]). Though clinically valuable, freezing is a distinct action category that is not meaningfully measured by step counting. Turn-REMAP contains 3729 trimmed turning videos collected during daily activities from 11 pairs of participants with PD and healthy controls (HCs), during unobstructed free living in a real home environment. Neither dataset includes people with very severe PD for whom turning may be unsafe due to the high risk of falling. The ground-truth step counts for both datasets were annotated by two trained experts, with 50% of the annotations cross-checked by both annotators. 
+
+Evaluation Metrics – For evaluation, we report the mean absolute error (MAE) between the predicted and ground truth step counts as a direct measure of prediction error, as well as accuracy under relative error thresholds of 5%, 10% and 20% of the total number of steps, denoted as ACC 95 , ACC 90 and ACC 80 . We use leave-one-subject-out (LOSO) cross-validation [15] on the PD-FOG dataset due to the limited number of subjects in the turning 8 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+Table 1: PD turning datasets characteristics. PD-FoG contains clinically controlled turning-in-place tasks, while Turn-REMAP captures natural turning behaviour during free-living activities in real-world settings. 
+
+Dataset # videos # HC # PD Avg. duration Avg. # steps 
+
+PD-FoG 52 0 25 118.2s 284.3 Turn-REMAP 2477 11 11 1.88s 2.47 Table 2: Step counting performance on PD-FoG. Mild and moderate groups are defined based on the standard H&Y [20] disease severity score.                                                                                                                        
+
+> Mild Moderate All Methods MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑
+> IMU  Liu et al. [25] 179.6 0.024 0.024 0.146 180.2 0.000 0.000 0.000 179.7 0.019 0.019 0.115 Bi et al. [3] 57.2 0.244 0.415 0.615 54.5 0.273 0.455 0.585 56.6 0.250 0.423 0.615 Lucot et al. [27] 30.6 0.488 0.585 0.854 64.4 0.091 0.364 0.546 37.7 0.404 0.538 0.779
+> pose  Connie et al. [9] 53.4 0.220 0.390 0.610 56.2 0.182 0.273 0.455 54.0 0.212 0.365 0.576 Hii et al. [19] 65.5 0.146 0.268 0.577 80.6 0.000 0.182 0.364 68.7 0.115 0.250 0.634
+> RAC  RepNet [12] 62.2 0.220 0.317 0.634 61.8 0.273 0.455 0.546 62.2 0.231 0.346 0.615 ESCount [51] 47.2 0.244 0.366 0.610 45.5 0.091 0.273 0.524 46.8 0.212 0.346 0.634 Ours 13.1 0.634 0.927 0.951 18.4 0.546 0.818 1.000 15.9 0.615 0.904 0.962
+
+subset. For Turn-REMAP, healthy subjects 1022 and 1027, together with PD subjects 1030 and 1032, are used for validation, while the remaining subjects are used for training. 
+
+Compared Methods – We compare our proposed method against three categories of step-counting approaches: (i) IMU-based methods [3, 25, 27], which estimate step counts from acceleration and angular velocity signals measured by foot-mounted sensors. (ii) Gait-analysis methods [9, 19], which use pose estimation to derive biomechanical measurements from which step counts can be inferred. (iii) Repetitive activity counting (RAC) meth-ods [12, 51], which design end-to-end networks to learn temporal patterns directly from video data. All methods are evaluated using the same train/val split for both dataset. Learnable models, such as RepNet [12], are trained from scratch, while non-trainable baselines, such as IMU-based methods [3, 25], use the training split for algorithmic parameter selection (e.g., detection thresholds and smoothing windows). 
+
+Implementation Details – We use PromptHMR [58] for 3D human mesh recovery, FlowSeek [41] for optical flow extraction, and a K400-pretrained ResNet-TSM [24] backbone for flow feature encoding; all upstream modules are kept frozen during training. Input videos are uni-formly partitioned into non-overlapping clips of 30 frames. Our motion encoder consists of two cross attention layers with the token dimension d = 128. The model is optimised using SGD with momentum 0.9, weight decay 0.001 and a learning rate of 0.0001. The contrastive loss weight λ is set to 0.05 and the top- and bottom-k clips are selected from the top and bottom 25% of clips, respectively. CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 9
+
+Table 3: Step counting performance on Turn-REMAP. Due to the relatively small step counts in this dataset, MAE are reported to three decimal places.                                                                                    
+
+> PD HC All Methods MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑
+> pose  Connie et al. [9] 1.058 0.022 0.216 0.295 0.899 0.000 0.221 0.332 0.986 0.012 0.219 0.312 Hii et al. [19] 0.904 0.019 0.198 0.347 0.651 0.013 0.252 0.438 0.789 0.016 0.223 0.389
+> RAC  RepNet [12] 1.431 0.022 0.045 0.097 1.112 0.035 0.071 0.133 1.286 0.028 0.057 0.113 ESCount [51] 0.634 0.071 0.228 0.474 0.653 0.084 0.208 0.447 0.643 0.077 0.219 0.462
+> Ours 0.615 0.231 0.343 0.470 0.637 0.142 0.239 0.412 0.625 0.190 0.296 0.443
+
+## 4.2 Parkinsonian Step Counting in Real World 
+
+Results on PD-FOG – We group PD-FOG subjects by Hoehn & Yahr (H&Y) severity score [20] into mild (1–2) and moderate (2.5–3) groups. As shown in Table 2, our method consistently outperforms existing IMU-based and adapted vision-based methods for step counting on PD-FOG by a large margin across different severity levels. For example, com-pared to the IMU-based method of Lucot et al. [27], we reduce the absolute error from 37.7 to 15.9 and improve the accuracy at a 20% error threshold from 0.779 to 0.962 (+18.3%). Similar gains are observed over the pose-based gait analysis approach of Connie et al. [9], where the error decreases from 54.0 to 15.9 and the corresponding accuracy improves from 0.576 to 0.962 (+38.6%). Our method consistently outperforms RAC-based methods such as RepNet [12] and ESCount [51], reducing the MAE from 62.2 and 46.8 to 15.9, respec-tively. Correspondingly, the accuracy improves to 0.962 from 0.615 (+34.7%) and 0.634 (+32.8%). Notably, our method yields a lower step count error on participants with moder-ate PD severity, as their stepping patterns are typically more irregular and subtle than those of mild cases. 
+
+Results on Turn-REMAP – Our method again generally outperforms repurposed vision-based methods (see Table 3). For example, compared to Hii et al. [19], the mean absolute step counting error is reduced from 0.789 to 0.625, while accuracy is improved from 0.389 to 0.443 (+5.4%). In particular, our method achieves a substantial gain in accuracy at a 5% error threshold, from 0.077 to 0.190 (+11.3%) over the second-best method, ESCount [51]. The only exception is accuracy at the 20% error threshold, where our method performs slightly worse than ESCount, decreasing from 0.462 to 0.443 (-1.9%). Table 4: Ablations on the proposed designs. 
+
+Settings MAE ↓ ACC 95 ↑ ACC 90 ↑ ACC 80 ↑
+
+w/o cross attention 17.5 0.596 0.846 0.962 
+
+w/o attentional pooling 17.3 0.577 0.846 0.962 
+
+w/o Lc (λ = 0) 16.0 0.615 0.865 0.962 
+
+ours 15.9 0.615 0.904 0.962 
+
+## 4.3 Ablations 
+
+Ablations on Proposed Designs – To understand the impact of each component in our method, we evaluate three variants of our model using the same training and evaluation 10 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+Table 5: Ablations on λ .                                
+
+> Settings MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑
+> λ=0.01 16.0 0.577 0.885 0.962
+> λ=0.05 15.9 0.615 0.904 0.962
+> λ=0.116.9 0.558 0.885 0.962
+> λ=0.216.6 0.577 0.865 0.962
+
+protocol on the PD-FOG dataset. The results are shown in Table 4: (1) w/o cross attention: instead of using mesh features to query flow features, we concatenate them as input tokens and apply self-attention. The performance drop suggests that cross attention introduces a beneficial inductive bias by enforcing directed interactions between coarse mesh features and fine-grained flow features. (2) w/o attentional pooling: substituting the learnable atten-tional pooling with to max pooling leads to worse results, highlighting the effectiveness of attention in capturing informative local cues. (3) w/o Lc: omitting the contrastive regular-isation slightly reduces performance, suggesting that it encourages a more discriminative clip-level embedding space. 
+
+Ablations on λ – We study the effect of λ , the weighting coefficient of the contrastive loss Lc in Eq. (11). As λ increases (see Table 5), the model becomes overly regularised, prioritising the separation of reliable and error-prone clips over informative representation learning. We use λ = 0.05 as the default setting in all experiments. 
+
+Ablations on Multi-modal Motion Feature – In Table 6, we show ablations on additional multi-modal motion representations by incorporating RGB and/or IMU features into the de-fault mesh & flow setting. Specifically, RGB features are extracted using the same ResNet-TSM backbone, while 6-channel IMU signals are encoded with a 1D convolutional network. These features are concatenated with flow features and projected into the token dimension as keys and queries. Adding RGB features does not improve MAE, suggesting that appearance information provides limited complementary cues beyond the motion-aware flow features. Incorporating IMU signals also fails to improve performance, possibly because the relevant motion cues are subtle and easily entangled with incidental body movements. Combining RGB and IMU features also provides no further benefit. Table 6: Ablations on multi-modal feature input. We investigate the integration of additional RGB and IMU modalities into our default mesh & flow setting.                        
+
+> Settings MAE ↓ACC 95 ↑ACC 90 ↑ACC 80 ↑
+> mesh & flow (default) 15.9 0.615 0.904 0.962
+> + RGB 17.4 0.596 0.865 0.962
+> + IMU 18.3 0.560 0.860 0.960 + RGB & IMU 18.6 0.460 0.900 0.960
+
+Table 7: Sensitivity analysis on β on PD-FOG. 
+
+β (sharpness of peaks) 1e4 5e4 1e5 5e5 1e6 ˆy (detected peaks) 297.23 293.64 293.50 293.41 293.41 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 11 Step #1 
+
+> Step #4
+> Step #2
+> (missed)
+> Step #3
+> (missed)
+> Step #4
+> Step #1
+> Step #2
+> Step #3
+> Foot Movement Confidence
+> Left Foot
+> Left Foot
+> Right Foot
+> Right Foot
+
+Figure 3: Cross attention in motion encoder. The horizontal axis corresponds to mesh-based foot movement queries and the vertical axis corresponds to optical flow key-value tokens. The encoder is able to reason over inconsistencies between mesh-based foot motion and optical flow, where the second and third step cycles are missed by the mesh signal but preserved in the optical flow. 
+
+Ablations on β – We study the effect of β in Eq. (4), which controls detector sharpness, on the initial coarse step-count estimate ˆ y. As shown in Table 7, the predicted peak count be-comes insensitive to β for sufficiently large values, where the detector closely approximates hard peak counting while remaining differentiable. a
+
+> c
+
+b    
+
+> Bi et al. [3] :342.00 , error +39.00
+
+a
+
+c
+
+b
+
+Example of turning in place for 2 min        
+
+> Ours :310.49 , error +7.49
+> Hii et al. [19]: 254.00, error –49.00
+> Ours
+> Bi et al . [3]
+> Hii et al . [19]
+> GT steps:303
+
+Figure 4: Step count estimation results on PD-FOG. (Left) Frames from an example from clip PDFE30_2 with 303 steps, where our method achieves lower counting error than prior methods; (Right) Predicted versus ground-truth step counts for Bi et al. [3], Hii et al. [19], and our method. 12 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+Figure 5: Illustration of the correlations between the step-level turning parameters and the MDS-UPDRS III score. 
+
+## 4.4 Qualitative Results 
+
+In Figure 3, we visualise the cross attention map of the last layer of motion encoder for an example containing four small turning steps, following a right-foot/left-foot/right-foot/left-foot stepping sequence. The mesh representation only captures the 1 st and last steps, while the 2 nd and 3 rd steps are smoothed out as footskate, whereas these subtle movements are preserved in the optical flow. The attention focuses on cross-modal inconsistencies, encoding complementary cues for subsequent residual step count refinement in video-level MIL. In Figure 4 (right), we illustrate that our method’s predictions cluster more closely around the ground-truth (dashed diagonal line) and thus yield more accurate step count estimation across subjects compared to prior methods [3, 19]. In Figure 4 (left), frames from a specific example case are shown, alongside the groundtruth count. Prior methods exhibit substantial overcounting or undercounting, whereas our method achieves the smallest count error. 
+
+## 4.5 Clinical Correlation and Statistical Significance 
+
+To demonstrate how our step count estimation can be used to calculate step-level turning parameters to quantify PD motor impairment, we perform a correlation analysis against the gold-standard MDS-UPDRS Part III motor score using Spearman’s ρ and p-values on PD-FOG dataset, which is shown in Figure 5. Average step duration, computed as the duration divided by the number of steps, shows a statistically significant positive correlation with mo-tor symptom severity ( ρ = 0.471, p = 0.019). In contrast, average turning angle per-step, computed as the total turning angle divided by the number of steps, exhibits a statistically significant negative correlation ( ρ = −0.409, p = 0.040). These findings suggest that, as the disease progresses, people with PD require more time to initiate steps and exhibit smaller angular displacements per step during turning-in-place assessments. By enabling quantita-tive, step-level assessment of turning impairment from real-world videos, our approach can provide accessible and sensitive digital biomarkers to support earlier detection of PD, more personalised symptom tracking, and objective endpoints in clinical trials. CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 13 
+
+# 5 Conclusion 
+
+In this work, we introduce a passive video-based framework for automatically counting turn-ing steps in people with PD. To capture the shuffled, subtle, and heterogeneous turning step-ping patterns in PD, we investigate two commonly used motion representations, namely 3D human mesh and optical flow, and design a cross attention feature fusion encoder that uses coarse mesh-based signals as query tokens to retrieve fine-grained motion cues from optical flow. Informative clip-wise motion embeddings are selectively aggregated through a MIL-based strategy for step count residual prediction. Extensive experiments on both in-clinic and at-home free-living PD turning datasets demonstrate superior performance over exist-ing vision-based and IMU-based approaches. Our method provides a practical alternative to wearable-based solutions with broader applicability, enabling more accurate quantification of PD turning abnormalities through step counting. 
+
+# References 
+
+[1] Mirza Mansoor Baig, Hamid GholamHosseini, Aasia A Moqeem, Farhaan Mirza, and Maria Lindén. A systematic review of wearable patient monitoring systems–current challenges and opportunities for clinical adoption. Journal of medical systems , 41(7): 115, 2017. [2] David R Bassett Jr, Lindsay P Toth, Samuel R LaMunion, and Scott E Crouter. Step counting: a review of measurement considerations and health-related applications. 
+
+Sports Medicine , 47(7):1303–1315, 2017. [3] Jingxue Bi, Jianhui Wang, Baoguo Yu, Guobiao Yao, Yunjia Wang, Hongji Cao, Lu Huang, and Huaqiao Xing. Precise step counting algorithm for pedestrians us-ing ultra-low-cost foot-mounted accelerometer. Engineering Applications of Artificial Intelligence , 150:110619, 2025. [4] Bastiaan R Bloem, Yvette AM Grimbergen, Monique Cramer, Mirjam Willemsen, and Aeilko H Zwinderman. Prospective assessment of falls in parkinson’s disease. Journal of neurology , 248(11):950–958, 2001. [5] Bastiaan R Bloem, Michael S Okun, and Christine Klein. Parkinson’s disease. The Lancet , 397(10291):2284–2303, 2021. [6] Carlotta Caramia, Diego Torricelli, Maurizio Schmid, Adriana Muñoz-Gonzalez, Jose Gonzalez-Vargas, Francisco Grandas, and Jose L Pons. Imu-based classification of parkinson’s disease from gait: A sensitivity analysis on sensor location and feature selection. IEEE journal of biomedical and health informatics , 22(6):1765–1774, 2018. [7] Qiushuo Cheng, Catherine Morgan, Arindam Sikdar, Alessandro Masullo, Alan Whone, and Majid Mirmehdi. Your turn: At home turning angle estimation for parkin-son’s disease severity assessment. Artificial Intelligence in Medicine , 167:103194, 2025. [8] Xingye Cheng, Yiran Jiao, Rebecca M Meiring, Bo Sheng, and Yanxin Zhang. Re-liability and validity of current computer vision based motion capture systems in gait analysis: A systematic review. Gait & Posture , 120:150–160, 2025. 14 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+[9] Tee Connie, Timilehin B Aderinola, Thian Song Ong, Michael Kah Ong Goh, Bayu Erfianto, and Bedy Purnama. Pose-based gait analysis for diagnosis of parkinson’s disease. Algorithms , 15(12):474, 2022. [10] Steven R Cummings and Michael C Nevitt. Falls, 1994. [11] Ding Ding, Binh Nguyen, Tracy Nau, Mengyun Luo, Borja del Pozo Cruz, Paddy C Dempsey, Zachary Munn, Barbara J Jefferis, Cathie Sherrington, Elizabeth A Calleja, et al. Daily steps and health outcomes in adults: a systematic review and dose-response meta-analysis. The Lancet Public Health , 10(8):e668–e681, 2025. [12] Debidatta Dwibedi, Yusuf Aytar, Jonathan Tompson, Pierre Sermanet, and Andrew Zisserman. Counting out time: Class agnostic video repetition counting in the wild. In 
+
+Proceedings of the IEEE/CVF conference on computer vision and pattern recognition ,pages 10387–10396, 2020. [13] Mahmoud El-Gohary, Sean Pearson, James McNames, Martina Mancini, Fay Horak, Sabato Mellone, and Lorenzo Chiari. Continuous monitoring of turning in patients with movement disability. Sensors , 14(1):356–369, 2013. [14] AJ Espay, A Fasano, BFL Van Nuenen, MM Payne, AH Snijders, and BR Bloem. “on” state freezing of gait in parkinson disease: a paradoxical levodopa-induced complica-tion. Neurology , 78(7):454–457, 2012. [15] Davoud Gholamiangonabadi, Nikita Kiselov, and Katarina Grolinger. Deep neural networks for human activity recognition with wearable sensors: Leave-one-subject-out cross-validation for model selection. Ieee Access , 8:133982–133994, 2020. [16] Christopher G Goetz, Barbara C Tilley, Stephanie R Shaftman, Glenn T Stebbins, Stan-ley Fahn, Pablo Martinez-Martin, Werner Poewe, Cristina Sampaio, Matthew B Stern, Richard Dodel, et al. Movement disorder society-sponsored revision of the unified parkinson’s disease rating scale (mds-updrs): scale presentation and clinimetric testing results. Movement disorders: official journal of the Movement Disorder Society , 23 (15):2129–2170, 2008. [17] Kaiming He, Haoqi Fan, Yuxin Wu, Saining Xie, and Ross Girshick. Momentum con-trast for unsupervised visual representation learning. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , pages 9729–9738, 2020. [18] Talia Herman, Aner Weiss, Marina Brozgol, Nir Giladi, and Jeffrey M Hausdorff. Gait and balance in parkinson’s disease subtypes: objective measures and classification con-siderations. Journal of neurology , 261(12):2401–2410, 2014. [19] Chang Soon Tony Hii, Kok Beng Gan, Nasharuddin Zainal, Norlinah Mo-hamed Ibrahim, Shahrul Azmin, Siti Hajar Mat Desa, Bart van de Warrenburg, and Huay Woon You. Automated gait analysis based on a marker-free pose estimation model. Sensors , 23(14):6489, 2023. [20] Margaret M Hoehn and Melvin D Yahr. Parkinsonism: onset, progression, and mortal-ity. Neurology , 17(5):427–427, 1967. CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 15 
+
+[21] Xinyu Hou and Jeroen Bergmann. Pedestrian dead reckoning with wearable sensors: A systematic review. IEEE Sensors Journal , 21(1):143–152, 2020. [22] Sophia Hulbert, Ann Ashburn, Lisa Robert, and Geert Verheyden. A narrative review of turning deficits in people with parkinson’s disease. Disability and rehabilitation , 37 (15):1382–1389, 2015. [23] Maximilian Ilse, Jakub Tomczak, and Max Welling. Attention-based deep multiple instance learning. In International conference on machine learning , pages 2127–2136. PMLR, 2018. [24] Ji Lin, Chuang Gan, and Song Han. Tsm: Temporal shift module for efficient video understanding. In Proceedings of the IEEE/CVF international conference on computer vision , pages 7083–7093, 2019. [25] Xin Liu, Ning Li, Geng Xu, and Yonggang Zhang. A novel robust step detection algorithm for foot-mounted imu. IEEE Sensors Journal , 21(4):5331–5339, 2020. [26] Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll, and Michael J Black. Smpl: A skinned multi-person linear model. In Seminal Graphics Papers: Pushing the Boundaries, Volume 2 , pages 851–866. 2023. [27] Quentin Lucot, Erwan Beurienne, and Michel Behr. Multi-activity step counting al-gorithm using deep learning foot flat detection with an imu inside the sole of a shoe. 
+
+Sensors , 24(21):6927, 2024. [28] Benoit Mariani, Mayté Castro Jiménez, François JG Vingerhoets, and Kamiar Aminian. On-shoe wearable sensors for gait and turning assessment of patients with parkinson’s disease. IEEE transactions on biomedical engineering , 60(1):155–158, 2012. [29] Oded Maron and Tomás Lozano-Pérez. A framework for multiple-instance learning. 
+
+Advances in neural information processing systems , 10, 1997. [30] Ríona Mc Ardle, Leigh J Ryan, Rana Zia Ur Rehman, Emily Dignan, Abbie Thomp-son, Silvia Del Din, Brook Galna, Alan J Thomas, Lynn Rochester, and Lisa Alcock. Validation of an algorithm for detecting turning in people with cognitive impairment, considering dementia disease subtype. Gait & posture , 118:141–147, 2025. [31] Anat Mirelman, Paolo Bonato, Richard Camicioli, Terry D Ellis, Nir Giladi, Jamie L Hamilton, Chris J Hass, Jeffrey M Hausdorff, Elisa Pelosin, and Quincy J Almeida. Gait impairments in parkinson’s disease. The Lancet Neurology , 18(7):697–708, 2019. [32] François Modave, Yi Guo, Jiang Bian, Matthew J Gurka, Alice Parish, Megan D Smith, Alexandra M Lee, and Thomas W Buford. Mobile device accuracy for step counting across age groups. JMIR mHealth and uHealth , 5(6):e7870, 2017. [33] Catherine Morgan, Jack Jameson, Ian Craddock, Emma L Tonkin, George Oikonomou, Hanna Kristiina Isotalus, Farnoosh Heidarivincheh, Ryan McConville, Gregory JL Tourte, Kirsi M Kinnunen, et al. Understanding how people with parkinson’s disease turn in gait from a real-world in-home dataset. Parkinsonism & related disorders , 105: 114–122, 2022. 16 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+[34] Catherine Morgan, Emma L Tonkin, Alessandro Masullo, Ferdian Jovan, Arindam Sik-dar, Pushpajit Khaire, Majid Mirmehdi, Ryan McConville, Gregory JL Tourte, Alan Whone, et al. A multimodal dataset of real world mobility activities in parkinson’s disease. Scientific data , 10(1):918, 2023. [35] Takashi Nakagata, Haruka Murakami, Ryoko Kawakami, Julien Tripette, Satoshi Nakae, Yosuke Yamada, Kazuko Ishikawa-Takata, Shigeho Tanaka, and Motohiko Miyachi. Step-count outcomes of 13 different activity trackers: results from labora-tory and free-living experiments. Gait & Posture , 98:24–33, 2022. [36] Thathsara Nanayakkara, HMKKMB Herath, Hadi Sedigh Malekroodi, Nuwan Madu-sanka, Myunggi Yi, and Byeong-il Lee. Multi-domain cop feature analysis of func-tional mobility for parkinson’s disease detection using wearable pressure insoles. Sen-sors , 25(18):5859, 2025. [37] Armelle M Ngueleu, Andréanne K Blanchette, Désirée Maltais, Hélène Moffet, Brad-ford J McFadyen, Laurent Bouyer, and Charles S Batcho. Validity of instrumented insoles for step counting, posture and activity recognition: a systematic review. Sen-sors , 19(11):2438, 2019. [38] Minh H Pham, Morad Elshehabi, Linda Haertner, Silvia Del Din, Karin Srulijes, Tanja Heger, Matthis Synofzik, Markus A Hobert, Gert S Faber, Clint Hansen, et al. Valida-tion of a step detection algorithm during straight walking and turning in patients with parkinson’s disease and older adults using an inertial measurement unit at the lower back. Frontiers in neurology , 8:457, 2017. [39] Minh H Pham, Morad Elshehabi, Linda Haertner, Tanja Heger, Markus A Hobert, Gert S Faber, Dina Salkovic, Joaquim J Ferreira, Daniela Berg, Álvaro Sanchez-Ferro, et al. Algorithm for turning detection and analysis validated under home-like condi-tions in patients with parkinson’s disease and older adults using a 6 degree-of-freedom inertial measurement unit at the lower back. Frontiers in neurology , 8:135, 2017. [40] Diane Podsiadlo and Sandra Richardson. The timed “up & go”: a test of basic func-tional mobility for frail elderly persons. Journal of the American geriatrics Society , 39 (2):142–148, 1991. [41] Matteo Poggi and Fabio Tosi. Flowseek: optical flow made easier with depth founda-tion models and motion bases. In Proceedings of the IEEE/CVF International Confer-ence on Computer Vision , pages 5667–5679, 2025. [42] Rana Zia Ur Rehman, Philipp Klocke, Sofia Hryniv, Brook Galna, Lynn Rochester, Sil-via Del Din, and Lisa Alcock. Turning detection during gait: algorithm validation and influence of sensor location and turning characteristics in the classification of parkin-son’s disease. Sensors , 20(18):5377, 2020. [43] Davis Rempe, Tolga Birdal, Aaron Hertzmann, Jimei Yang, Srinath Sridhar, and Leonidas J Guibas. Humor: 3d human motion model for robust pose estimation. In Proceedings of the IEEE/CVF international conference on computer vision , pages 11488–11499, 2021. CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 17 
+
+[44] Caroline Ribeiro De Souza, Runfeng Miao, Júlia Ávila De Oliveira, Andrea Cristina De Lima-Pardini, Débora Fragoso De Campos, Carla Silva-Batista, Luis Teixeira, So-laiman Shokur, Bouri Mohamed, and Daniel Boari Coelho. A public data set of videos, inertial measurement unit, and clinical scales of freezing of gait in individuals with parkinson’s disease during a turning-in-place task. Frontiers in Neuroscience , 16: 832463, 2022. [45] Kelly A Robb and Stephen D Perry. Textured foot orthotics on dynamic stability and turning performance in parkinson’s disease. Journal of Motor Behavior , 52(4):396– 403, 2020. [46] Patrick Savoie, James AD Cameron, Mary E Kaye, and Erik J Scheme. Automation of the timed-up-and-go test using a conventional video camera. IEEE journal of biomed-ical and health informatics , 24(4):1196–1205, 2019. [47] Dimple Sethi, Sourabh Bharti, and Chandra Prakash. A comprehensive survey on gait analysis: History, parameters, approaches, pose estimation, and future work. Artificial Intelligence in Medicine , 129:102314, 2022. [48] Zehong Shen, Huaijin Pi, Yan Xia, Zhi Cen, Sida Peng, Zechen Hu, Hujun Bao, Ruizhen Hu, and Xiaowei Zhou. World-grounded human motion recovery via gravity-view coordinates. In SIGGRAPH Asia 2024 Conference Papers , pages 1–11, 2024. [49] Jung Hwan Shin, Ri Yu, Jed Noel Ong, Chan Young Lee, Seung Ho Jeon, Hwanpil Park, Han-Joon Kim, Jehee Lee, and Beomseok Jeon. Quantitative gait analysis us-ing a pose-estimation algorithm with a single 2d-video of parkinson’s disease patients. 
+
+Journal of Parkinson’s Disease , 11(3):1271–1283, 2021. [50] Jung Hwan Shin, Ri Yu, Jed Noel Ong, Chan Young Lee, Seung Ho Jeon, Hwanpil Park, Han-Joon Kim, Jehee Lee, and Beomseok Jeon. Quantitative gait analysis us-ing a pose-estimation algorithm with a single 2d-video of parkinson’s disease patients. 
+
+Journal of Parkinson’s Disease , 11(3):1271–1283, 2021. [51] Saptarshi Sinha, Alexandros Stergiou, and Dima Damen. Every shot counts: Using exemplars for repetition counting in videos. In Proceedings of the Asian Conference on Computer Vision , pages 3056–3073, 2024. [52] Joke Spildooren, Sarah Vercruysse, Elke Heremans, Brook Galna, Jochen Vandenboss-che, Kaat Desloovere, Wim Vandenberghe, and Alice Nieuwboer. Head-pelvis cou-pling is increased during turning in patients with p arkinson’s disease and freezing of gait. Movement Disorders , 28(5):619–625, 2013. [53] Jan Stenum, Cristina Rossi, and Ryan T Roemmich. Two-dimensional video-based analysis of human gait using pose estimation. PLoS computational biology , 17(4): e1008935, 2021. [54] Jan Stenum, Melody M Hsu, Alexander Y Pantelyat, and Ryan T Roemmich. Clinical gait analysis using video-based pose estimation: Multiple perspectives, clinical popu-lations, and measuring change. PLOS Digital Health , 3(3):e0000467, 2024. 18 CHENG ET AL: VIDEO-BASED PARKINSONIAN TURNING STEP COUNTING 
+
+[55] Ashwin Thangali and Stan Sclaroff. Periodic motion detection and estimation via space-time sampling. In 2005 Seventh IEEE Workshops on Applications of Computer Vision (WACV/MOTION’05)-Volume 1 , volume 2, pages 176–182. IEEE, 2005. [56] Daniel Treacy, Leanne Hassett, Karl Schurr, Sakina Chagpar, Serene S Paul, and Catherine Sherrington. Validity of different activity monitors to count steps in an inpa-tient rehabilitation setting. Physical therapy , 97(5):581–588, 2017. [57] David Sing Yee Vun, Robert Bowers, and Anthony McGarry. Vision-based motion capture for the gait analysis of neurodegenerative diseases: A review. Gait & posture ,112:95–107, 2024. [58] Yufu Wang, Yu Sun, Priyanka Patel, Kostas Daniilidis, Michael J Black, and Muhammed Kocabas. Prompthmr: Promptable human mesh recovery. In Proceedings of the computer vision and pattern recognition conference , pages 1148–1159, 2025. [59] Ziyu Yao, Xuxin Cheng, and Yuexian Zou. Poserac: Pose saliency transformer for repetitive action counting. arXiv preprint arXiv:2303.08450 , 2023. [60] Cris Zampieri, Arash Salarian, Patricia Carlson-Kuhta, Kamiar Aminian, John G Nutt, and Fay B Horak. The instrumented timed up and go test: potential outcome measure for disease modifying therapies in parkinson’s disease. Journal of Neurology, Neuro-surgery & Psychiatry , 81(2):171–176, 2010. [61] Can Zhang, Meng Cao, Dongming Yang, Jie Chen, and Yuexian Zou. Cola: Weakly-supervised temporal action localization with snippet contrastive learning. In Proceed-ings of the IEEE/CVF conference on computer vision and pattern recognition , pages 16010–16019, 2021. [62] Yuliang Zou, Jimei Yang, Duygu Ceylan, Jianming Zhang, Federico Perazzi, and Jia-Bin Huang. Reducing footskate in human motion reconstruction with ground contact constraints. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision , pages 459–468, 2020.
