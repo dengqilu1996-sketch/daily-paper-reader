@@ -1,0 +1,1543 @@
+Title: Evidence of an optimal error rate for motor skill learning
+
+URL Source: https://www.biorxiv.org/content/10.1101/2023.07.19.549705v5.full.pdf
+
+Published Time: Fri, 03 Jul 2026 23:41:37 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+1
+
+> 1
+
+Evidence of an optimal error rate for motor skill learning 1
+
+2
+
+Naser Al -Fawakhiri 1, Sarosh Kayani 2, & Samuel D. McDougle 3,4 
+
+3
+
+1. Department of Neuroscience, Johns Hopkins School of Medicine, Baltimore MD 21205 4
+
+2. Department of Neuroscience, Yale School of Medicine, New Haven CT 06520 5
+
+3. Department of Psychology, Yale University, New Haven CT 06520 6
+
+4. Wu Tsai Institute, Yale University, New Haven CT 06520 7
+
+8
+
+9
+
+10 
+
+11 
+
+Correspondence : Naser Al -Fawakhiri 12 
+
+aalfawa1@jh.edu 13 
+
+Solomon H Snyder Department of Neuroscience 14 
+
+Johns Hopkins School of Medicine 15 
+
+725 N. Wolfe St., Baltimore MD 21205 16 
+
+17 
+
+18 
+
+Abstract 19 
+
+When acquiring a motor skill, learners must practice the skill at a difficulty that is challenging 20 
+
+but still manageable to gradually improve their performance. In other words, during training , the 21 
+
+learner must experience success as well as failure. Does there exist an optimal proportion of 22 
+
+successes and failures to promote the fastest improvements in skill? Here, we build on a recent 23 
+
+theoretical framework for optimal machine learning, extending it to the learning of motor skills. 24 
+
+We then designed a custom task whose difficulty dynamically changed along with human 25 
+
+subjects’ performance, constraining the error rate during training. In a large behavioral dataset 26 
+
+(N= 19 2), we observe d evidence that learning is greatest at around a ~30% error rate, matching 27 
+
+our theoretical predictions. 28 
+
+Key words: motor skill; motor learning; optimal learning; training curriculum 29 
+
+30 
+
+31 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+2
+
+> 2
+
+Introduction 32 
+
+Acquiring a new motor skill involves reducing errors (Krakauer & Mazzoni, 2011; Ohlsson, 1996; 33 
+
+Tseng et al., 2007) . Consider learning to shoot free throws in basketball: After a miss, the player 34 
+
+uses the observed error information (e.g., “I missed to the right”) to fine -tune future attempts (e.g., 35 
+
+re -orienting the shot slightly left). Such performance errors during motor skill learning drive 36 
+
+improvements in both accuracy and precision and , given enough time and practice , can lead to 37 
+
+automaticity and expertise (Haith et al., 2022; Shmuelof et al., 2012; Yang et al., 2022) .38 
+
+39 
+
+Importantly, one’s error rate during training can relate to if, and how well, they learn a skill. In the 40 
+
+extreme, if one never experienced success, their motor system may have no template upon which 41 
+
+to improve their skill (Sanger, 2004) . On the other hand, learning would be unnecessary if one 42 
+
+always experienced success (e.g., the hoop moved to wherever the ball was thrown) . Thus, it is 43 
+
+reasonable to assume that there is a “sweet spot” error rate that may generate the most efficient 44 
+
+learning process (Guadagnoli & Lee, 2004) . Indeed, in the context of simple non -motor skills (e.g., 45 
+
+perceptual decision -making) it has recently been proposed that an optimal proportion of success 46 
+
+and failure – an optimal “error rate” – can maximize the learning rate of a perceptual skill, such as 47 
+
+binary categorization of sensory input (Wilson et al., 2019) . Here , we extend this logic to the 48 
+
+domain of sensorimotor skill learning. 49 
+
+50 
+
+In any task, errors become more likely as the difficulty of the task increases. Since the difficulty 51 
+
+of the task can often be externally modulated, controlling an individual’s error rate during training 52 
+
+requires dynamically controlling the difficulty of the task in response to their performance, 53 
+
+exemplified by classic psychophysical methods like “staircasing” (Cornsweet, 1962) . But how 54 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+3
+
+> 3
+
+does task difficulty influence learning? Wilson and colleagues (2019) argue that learning using a 55 
+
+gradient descent algorithm mathematically specifies an optimal error rate with very few additional 56 
+
+assumptions. The authors considered the context of a binary discrimination task and, using their 57 
+
+framework, predicted an optimal error rate of ~15%, a value that was validated by multiple 58 
+
+simulations over a range of binary decision -making tasks. 59 
+
+60 
+
+Can a similar framework be applied to motor skill learning? The first relevant issue is the putative 61 
+
+relationship between motor skill learning and gradient descent. It has been suggested that motor 62 
+
+skill learning, at least in the form of gradual improvements in skill that reduce errors and improve 63 
+
+precision (Diedrichsen & Kornysheva, 2015; Sternad, 2018) , does indeed operate via a gradient 64 
+
+descent process (Greenstreet et al., 2025; Haith, 2025; Pierella et al., 2019) . In many motor skills, 65 
+
+the learner begins with an initially noisy policy and gradually refines this policy, reducing the 66 
+
+variability of their actions as their skill improves (Haith, 2025; Sternad, 2018) . For example, a 67 
+
+novice darts player may make errors that span the whole width of the dartboard initially . But , as 68 
+
+they improve, they gradually decrease their variability to hone in on a particular region of the 69 
+
+board. 70 
+
+71 
+
+Fitts & Posner (1967) proposed a three -stage model of motor learning: the cognitive, associative, 72 
+
+and autonomous stages. In the cognitive stage, learners must learn the goals of the task and the 73 
+
+appropriate strategies to adopt to achieve those goals, heavily relying on explicit knowledge to 74 
+
+achieve success in the task. In the associative stage, the learner begins to refine their actions, 75 
+
+steadily reducing e xecution errors and variability. Finally, in the autonomous stage, the learner’s 76 
+
+behavior has been practiced so thoroughly as to become automatic, requiring little cognitive effort. 77 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+4
+
+> 4
+
+To return to the darts analogy, an early novice may begin in the cognitive stage by trying to figure 78 
+
+out the appropriate movements to launch a dart in the general direction of the dartboard. This 79 
+
+process involves figuring out the appropriate strategy to launch the dart and aim at a particular spot 80 
+
+on the board. After learning these strategies, the learner may eliminate any initial biases, but he 81 
+
+will still have highly variable motor output around the region of the board he is aiming at. The 82 
+
+subsequent associative stage marks a period of refinement, or precision improvement, where he 83 
+
+steadily reduces that variability to hone in on the desired region of the board. It is on this stage of 84 
+
+learning that this paper focuses .85 
+
+86 
+
+Here , we hypothesized that the framework proposed by Wilson and colleagues (2019) might apply 87 
+
+to motor skill learning of the form described above , even though motor errors are both signed and 88 
+
+continuous (rather than binary and unsigned , as in perceptual discrimination tasks ). First, we 89 
+
+analytically extended their model to demonstrate that a roughly 32 % error rate may be the optimal 90 
+
+error rate for motor skill learning, given some basic assumptions. After specifying this prediction, 91 
+
+we developed a customized “Pong” task that required precise online visuomotor control and 92 
+
+collected behavioral data on the task from a large sample of human participants (N = 194). Using 93 
+
+a custom dynamic error -control algorithm, we modified the size of subjects’ Pong paddle on a 94 
+
+trial -by -trial basis to impose different error rates on their performance and measured their 95 
+
+improvements in the task. 96 
+
+97 
+
+Strikingly, we found reliable evidence that individuals with an error rate around ~32% showed the 98 
+
+most learning in the task, directly in line with our model simulations. The current work provide s a99 
+
+theoretically grounded specification of a putative optimal error rate for motor learning, and may 100 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+5
+
+> 5
+
+thus inform both practical applications (e.g., sport pedagogy, clinical rehabilitation protocols) and 101 
+
+theories concerning the underlying neural algorithms for motor skill learning. 102 
+
+103 
+
+Methods 104 
+
+An Optimal Error Rate Framework for Motor Skill Learning in One Dimension 105 
+
+In an idealized motor learning task, an agent prepares an action a in response to some set of internal 106 
+
+conditions or policy π and external stimuli or state s. Thus, 107 
+
+𝒂 = Φ(𝛑 , 𝐬 , ϕ) (1) 108 
+
+where  Φ(⋅) represents the function that transforms π and s into motor actions, and  ϕ is a set of 109 
+
+internal, tunable free parameters trained by learning. 110 
+
+111 
+
+Whenever an action is executed, it is evaluated in terms of the discrepancy between the actual 112 
+
+movement outcome a and the intended outcome i. This discrepancy is a motor error e113 
+
+𝑒 = 𝑎 − 𝑖  (2) 114 
+
+Here, motor learning consists of minimizing this error (distance from the center of a dart board, a 115 
+
+golf hole, or a basketball hoop; in our Pong task, the distance of the puck from the center of the 116 
+
+paddle). We further assume that errors are normally distributed around the target action and that 117 
+
+there is no systematic bias (i.e., the mean of the policy is the optimal solution). In the Pong task, 118 
+
+the trial ends when the participant intercepts the puck , and participants are instructed to adopt a 119 
+
+strategy of aiming to intercept the puck directly in the middle of the paddle to afford themselves 120 
+
+the highest chance of intercepting it (i.e. , participants are explicitly provided the stra tegy that 121 
+
+would result in errors with zero -mean) . Thus, e can be rewritten as a Gaussian with zero -mean and 122 
+
+a standard deviation of  σ123 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+6
+
+> 6
+
+𝑒 ~ 𝑁 (0, σ) (3) 124 
+
+While we assume a normal distribution, any symmetrical, zero -mean error distribution can be used 125 
+
+and will converge to an optimal error rate that depends on the specific choice of error distribution 126 
+
+(see Wilson et al. 2019) .127 
+
+128 
+
+Both laboratory and naturalistic motor tasks typically have some degree of error tolerance,  Δ,129 
+
+which still permits task success despite noise. This tolerance can take many forms: the radius of 130 
+
+the green or the hole in golf, the radius of the dartboard when shooting darts, the width of the 131 
+
+basketball hoop; or, in our Pong task, the center -to -edge length of the paddle. 132 
+
+133 
+
+Under these conditions, the error rate at any point in the task can be formalized as: 134 
+
+𝐸𝑅 = 2 ∫ p(e|0, σ) 
+
+> Δ
+> −∞
+
+de = 1 − 𝑒𝑟𝑓 (Δ/σ) = 1 − 𝑒𝑟𝑓 (𝛽 Δ) (4) 135 
+
+where p(⋅) is the standardized error distribution, here a normal distribution,  𝑒𝑟𝑓 (𝑥 ) is the Gauss ian 136 
+
+error function, and  β = 1/σ is the agent’s motor precision. In our case,  β would be the inverse of 137 
+
+the root -mean -squared -error (RMSE) centered around the intended outcome i (i.e., the center of 138 
+
+the paddle in Pong, or the center of the target) .139 
+
+140 
+
+The goal of learning is to reduce error, which would require tuning the parameters  ϕ in order to 141 
+
+generate an action a as close to i as possible. This amounts to tuning the parameters of the policy 142 
+
+to increase the precision of the policy around the optimal solution, thereby increasing  β143 
+
+(Greenstreet et al., 2025; Haith, 2025; Sternad, 2018) . Assuming tuning of these parameters is 144 
+
+done through a gradient descent process, we can formalize the learning process over time as: 145  
+
+> 𝑑 𝜙 𝑖
+> 𝑑𝑡
+
+= −η 𝑑𝐸𝑅 
+
+> 𝑑 𝜙 𝑖
+
+𝑓𝑜𝑟 𝑒𝑎𝑐 ℎ 𝑝𝑎𝑟𝑎𝑚𝑒𝑡𝑒𝑟 𝜙 𝑖  (5) 146 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+7
+
+> 7
+
+where is the stepwise learning rate of the gradient descent algorithm. Given Equation 4, the 147 
+
+derivative of the error rate  𝑑𝐸𝑅 
+
+> 𝑑 𝜙 𝑖
+
+can be rewritten via the chain rule: 148 
+
+> 𝑑𝐸𝑅
+> 𝑑 𝜙 𝑖
+
+= ∂𝐸𝑅  
+
+> ∂β
+
+⋅ 𝑑𝛽 
+
+> 𝑑 𝜙 𝑖
+
+𝑓𝑜𝑟 𝑒𝑎𝑐 ℎ 𝑝𝑎𝑟𝑎𝑚𝑒𝑡𝑒𝑟 𝜙 𝑖  (6) 149 
+
+The first term of the right -hand side is the only term which depends on  Δ, the task error tolerance 150 
+
+(which can be experimentally controlled), as the second term only reflects how precision changes 151 
+
+with the tuning of the relevant internal parameters outside of experimental control. Thus, to 152 
+
+maximize the learning rate in Equation 5, we must maximize  ∂𝐸𝑅  
+
+> ∂β
+
+by optimizing the task error 153 
+
+tolerance  Δ at each time point t in training (see Methods ). Using Equation 4,  ∂𝐸𝑅  
+
+> ∂β
+
+is given by: 154  
+
+> ∂𝐸𝑅
+> ∂β
+
+= ∂ 
+
+> ∂β
+
+(1 − 𝑒𝑟𝑓 (𝛽 ∆)) = −∆𝑒 −(𝛽 ∆)2
+
+(7) 155 
+
+To maximize Equation 7, we must find its critical points by taking the derivative with respect to 156 
+
+the error tolerance  Δ and setting this derivative to zero: 157  
+
+> ∂
+> ∂∆
+> ∂ER
+> ∂β
+
+= ∂ 
+
+> ∂∆
+
+(−∆𝑒 −(𝛽 ∆)2
+
+) = −𝑒 −(𝛽 ∆)2
+
++ (−2𝛽 ∆) ∙ (−𝛽 ∆)𝑒 −(𝛽 ∆)2
+
+= 0 (8) 158 
+
+Simple algebraic manipulation of Equation 8 leads to: 159 
+
+𝛽 ∆∗ = 1 
+
+> √2
+
+(9) 160 
+
+which can be plugged directly into Equation 4 to solve for the optimal error rate: 161 
+
+𝐸 𝑅 ⋆ = 1 − 𝑒𝑟𝑓 ( 1
+
+> √2
+
+) ≈ 0.3173  (10) 162 
+
+In other words, in this framework, the optimal error rate for motor learning in a one -dimensional 163 
+
+task is 31.73%, and an optimal training schedule should aim to maintain performance at a 68.27% 164 
+
+success rate throughout. 165 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+8
+
+> 8
+
+166 
+
+Figure 1. Derivation of an optimal error rate for motor learning. Figure adapted from Wilson et al. (2019). (A) 167 
+
+Probability distributions of a given motor error e, within a certain error tolerance  Δ. Shaded area represents the 168 
+
+probability of a failure, or the error rate. Across training, the magnitude of errors shrinks, resulting in increased 169 
+
+precision  β. (B) As the error tolerance  Δ increases (i.e. decreasing difficulty), fewer actions result in failures, leading 170 
+
+to a decrease in the error rate. (C) The learning rate is given by the derivative of the error rate (ER) with respect to the 171 
+
+agent’s precision  β. Maximal learning occurs at an error tolerance  Δ∗ which changes with skill/training ( β). (D) Same 172 
+
+as C but replotted with the corresponding error rates on the x -axis. The optimal error rate remains constant, regardless 173 
+
+of precision  β, at ~31.73%. 174 
+
+Participants 175 
+
+200 participants ( N=50/ group; 46% female; age: 27±5) were recruited online through Prolific. 176 
+
+Sample size was not determined by a -priori power analysis; instead, this sample size was chosen 177 
+
+to ensure adequate inter -subject variation in error rates for our final analysis, which required 178 
+
+subjects to complete the task with a wide range of experienced error rates. Recruitment was 179 
+
+restricted to right -handed or ambidextrous individuals in the United States between the ages of 18 180 
+
+and 35, who had at least 40 prior Prolific submissions. All participants provided informed consent, 181 
+
+in accordance with procedures approved by the Yale University Institutional Review Board 182 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+9
+
+> 9
+
+(Protocol #2000027351 Psychological Mechanisms of Skill Learning) . Due to participant data not 183 
+
+posting to the database, data was not recorded from two participants . Four participants were further 184 
+
+excluded for not making any recorded movements during the task. In analyses of learning indices 185 
+
+(see Statistical Analyses ), subjects whose learning index deviated by 3 times the group standard 186 
+
+deviation from the group mean were excluded . This excluded 2 subjects. The final experimental 187 
+
+sample was 1 92 subjects. 188 
+
+189 
+
+Task Design and Protocol 190 
+
+Participants were recruited on Prolific to play a modified version of the game Pong, written using 191 
+
+PhaserJS 3 (phaser.io). Participants controlled a 15 -pixel wide rectangular paddle, initially set to 192 
+
+200 pixels (px) in length and fixed 10 px from the left edge of the workspace, inside a 1000 px by 193 
+
+800 px arena enclosed within a white border. Movements of subjects’ mouse or trackpad in the 194 
+
+coronal plane directly translated to displacements of the paddle’s vertical position (i.e., movements 195 
+
+away from the body = up; toward = down). Participants were instructed to move the paddle to 196 
+
+intercept a small circular puck (14 px diameter) which would move toward their paddle at an angle, 197 
+
+bouncing off the walls of the arena. They were specifically instructed to try to cause the puck to 198 
+
+hit the middle of the paddle, as this is the strategy most likely to result in success. This task required 199 
+
+participants to integrate visual sensory information regarding the position of the puck into their 200 
+
+movements of the paddle in order to successfully intercept the puck. 201 
+
+202 
+
+Each trial consisted of the puck crossing from 25 pixels left of the right side of the arena to the left 203 
+
+side of the arena where the participant’s paddle was located, crossing a horizontal distance of 975 204 
+
+px. At the start of each trial, the paddle’s vertical position was always centered, and the puck began 205 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+10 
+
+> 10
+
+at a random vertical position sampled from a uniform distribution extending ±375 px from the 206 
+
+center of the screen. The launch angle of the puck could be ±30 -45°, to ensure that the trajectory 207 
+
+of the puck was unpredictable. The puck began moving 1000ms after the start of the trial. If 208 
+
+participants successfully intercepted the puck, a green “+10” text prompt would appear in the 209 
+
+center of the screen for 1000 ms, indicating success. Otherwise, if the puck hit the edge of the 210 
+
+arena without being intercepted by the paddle, a red “+0” text prompt was displayed in the center 211 
+
+of the screen for 1000 ms, indicating failure. A running points total was displayed above the arena 212 
+
+and participants were told to maximize the points they earned. After presentation of reward 213 
+
+feedback, the paddle was re -centered, and the puck appeared in a new location to start the next 214 
+
+trial. 215 
+
+216 
+
+Calibration and Error -control Algorithm 217 
+
+The experiment began with a 20 -trial calibration phase, in which the horizontal speed of the puck 218 
+
+was calibrated to be comfortable for each participant. The vertical speed of the puck was 219 
+
+determined by the launch angle on a given trial. Since the duration of each trial was dependent on 220 
+
+the horizontal speed of the puck, we needed to calibrate this speed to ensure every participant had 221 
+
+ample time to react to the puck and adjust the paddle. The speed was calibrated using a staircase 222 
+
+procedure: if the participant failed to intercept the puck, the horizontal speed was reduced by 75 223 
+
+px/s; if the participant successfully intercepted the puck, the speed increased by 75 px/s. The speed 224 
+
+was initialized at 800px/s. The minimum allowed speed was 100px/s, but this was never achieved 225 
+
+by any participant. This procedure resulted in a 72% (SD: 12%) success rate during the calibration 226 
+
+phase. 227 
+
+228 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+11 
+
+> 11
+
+Since this calibration phase often ended with a speed that slightly exceeded the comfortable range 229 
+
+for the participant, the speed was cut to 80% of the final speed achieved. At this point, a 10 -trial 230 
+
+baseline began in which the puck speed and the paddle size were held constant. This allowed us to 231 
+
+assess each participants’ initial degree of skill in the game. Mean success was 77% (SD:17%) and 232 
+
+was not different between groups . At this point, the final 70 -trial training phase began, and the 233 
+
+paddle size was allowed to dynamically update according to a custom algorithm that monitored 234 
+
+the recent distribution of errors to constrain participants’ error rates. Each participant was 235 
+
+randomly assigned to one of four groups, each with their own intended error rate: 15%, 30%, 50%, 236 
+
+and 65%. On every trial, the puck’s final vertical position relative to the final vertical position of 237 
+
+the center of the paddle was added to a sliding 20 -trial buffer, regardless of whether the trial was 238 
+
+successful or not. After excluding outliers (defined as 3 times the median absolute deviation from 239 
+
+the median; this is identical to the MATLAB rmoutliers function), we computed the root -mean -240 
+
+squared -error (RMSE) of this 20 -trial history. From this we inferred a zero -mean Gaussian 241 
+
+distribution with the RMSE as the standard deviation and, using the CDF of the Gaussian 242 
+
+distribution, we computed a paddle size that would result in the intended error rate. This outlier 243 
+
+criterion was chosen to only detect extreme outliers that could vastly impact the RMSE calculation 244 
+
+for the duration of the 20 -trial buffer, as determined by pilot experiments. 245 
+
+246 
+
+Statistical Analysis 247 
+
+The primary dependent measure on each trial was the task error, defined as the difference between 248 
+
+the final vertical position of the puck and the final vertical position of the center of the paddle. 249 
+
+Errors from every ten trials were binned to compute the RMSE, and these RMSEs were inverted 250 
+
+in order to estimate precision, . We note that the overall pattern of results does not change if the 251 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+12 
+
+> 12
+
+inverse of the standard deviation of the errors, an alternative measure of precision, was used instead 252 
+
+of the inverse RMSE. RMSE was preferred since participants were instructed to aim to intercept 253 
+
+the puck in the middle of the paddle, so any biases were random and unintentional. Each subject’s 254 
+
+baseline (trials 21 -30) precision was subtracted from every subsequent bin in the training phase in 255 
+
+order to quantify improvement. Average improvement, or the learning index (LI), was quantified 256 
+
+as the average of all training bins after baseline correction. Statistical outliers, defined as 1.75 257 
+
+times the interquartile range (IQR) away from the median of each of the four error rate groups, 258 
+
+were excluded. This excluded 10 people (5.15%), leaving us with a final experimental sample of 259 
+
+184. 260 
+
+261 
+
+Theoretical Modeling 262 
+
+The theoretical predictions plotted in Figure 1 and Figure 3D were computed in the manner 263 
+
+described above. Since the integral of a Gaussian from  −∞ to  𝑥  cannot be analytically solved, it 264 
+
+was estimated using a 100,000 -rectangle Riemann sum from -10 to  𝑥 , a computationally costly but 265 
+
+highly accurate estimate of the integral. 30,000 values of  Δ from 0 to 3 in increments of 0.0001 266 
+
+were used to generate the traces in Figure 1 as well as to generate a function that translated  Δ267 
+
+values into theoretically predicted learning rates  ∂𝐸𝑅 
+
+∂β , using the approxfun function in R (Becker, 268 
+
+2018) . Since the units of these predicted learning rates are arbitrary, we fit scaling and offset free 269 
+
+parameters that allowed the predictions to match the observed precision improvements of our 270 
+
+subjects using R’s optim function most closely, and the resulting trace was plotted in Figure 3C. 271 
+
+272 
+
+Results 273 
+
+Participant performance in one -dimensional Pong adhered to key theoretical assumptions 274 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+13 
+
+> 13
+
+We aimed to test our theoretically grounded “optimal error rate” for motor learning using a motor 275 
+
+skill task fashioned after the video game Pong, where participants (N=192) controlled the vertical 276 
+
+position of a rectangular paddle using a mouse or touchpad to intercept a small white puck that 277 
+
+moved across the screen at various angles. 278 
+
+279 
+
+Participants were instructed to aim for the middle of the paddle, as this would offer them the 280 
+
+greatest chance of successfully intercepting the puck on each trial. This aligned with ensuring that 281 
+
+participants adopted a strategy to minimize their errors from the center of the paddle , and , on 282 
+
+average , had errors with zero mean bias . The mean error from the center of the paddle across all 283 
+
+participants on all trials after the familiarization phase was 1.90 pixels (SD: 102 px) prior to 284 
+
+removing outliers (>3SD from the mean), and 0.84 px (SD: 93 px) after removing outliers . This 285 
+
+was not statistically significantly different from 0 (t( 15185)=1.12, p=0.26). Analyzing each 286 
+
+individual subject’s mean errors, participants averaged errors of 0.64 px from the center of the 287 
+
+paddle (SD across participants: 12 px ; outliers removed ). When tested against zero using a 288 
+
+Student’s t -test, only 7.2% of participants had errors that significantly differed from zero. 289 
+
+290 
+
+Another key assumption of our model was that errors were normally distributed. The overall 291 
+
+distribution of errors across all trials and all participants, after removing outliers, exhibited a 292 
+
+skewness of -0.077 and kurtosis of 0.70. When each participant’s distribution of errors was tested 293 
+
+for normality using a Shapiro -Wilk test, only 11% of participants had errors that significantly 294 
+
+deviated from the normal distribution. Together, 31 participants (16%) had either n on -zero -mean 295 
+
+errors or non -normally -distributed errors , and ex cluding these p articipants did not c hange the 296 
+
+overall pattern of our results .297 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+14 
+
+> 14
+
+298 
+
+A final assumption was that learning proceeded via gradient descent; in other words, learning 299 
+
+proceeded such that participants made actions on subsequent trials to reduce their errors by a 300 
+
+proportion of the error observed on preceding trials (as is the case in classical state -space models 301 
+
+in motor learning ; state -space models are a variant of gradient descent ). State -space learning 302 
+
+models, and gradient descent learning rules in general, are well established in modeling motor 303 
+
+learning in a variety of tasks ( Thoroughman & Shadmehr 2000; Taylor & Ivry 2011; McDougle 304 
+
+et al. 2015; Krakauer et al. 2019; Pierella et al. 2019 ). Here, we employed a linear mixed -effects 305 
+
+model to fit each subject’s error magnitude across trials using a linear model, a quadratic model, 306 
+
+and an exponential model. The exponential model is predicted by gradient descent if participants 307 
+
+reduce their errors on subsequent trials by a proportion of their errors on preceding trials. Model 308 
+
+comparison by BIC showed that the exponential model best fit the data ( ∆BIC linear: -14.9, ∆BIC 309 
+
+quadratic: -0.9), but the quadratic f it could not be rejected. Model performance by R 2 favored the 310 
+
+exponential fit (exponential: 0.10, quadratic: 0.04, linear 0.08). We note the low R 2 values are due 311 
+
+to fitting each individual trial’s error, which is remarkably noisy. Given the well -established nature 312 
+
+of the use of gradient descent models in motor learning, we believe this data is consistent with the 313 
+
+assumption that learning proceeded by gradient descent in our task. 314 
+
+315 
+
+Skill improvement in a one -dimensional motor task is optimized when performance is maintained 316 
+
+near a 30% error rate 317 
+
+To scale the difficulty of the task with participants’ evolving skill level and thus attempt to 318 
+
+maintain a fixed error rate during training , the paddle’s size dynamically changed across trials 319 
+
+according to the distribution of participants’ recent errors (see Methods for details). Participants 320 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+15 
+
+> 15
+
+were randomly sorted into 4 groups, each with an imposed error rate: 15%, 30%, 50%, and 65%. 321 
+
+It should be noted that, while the dynamic paddle size aimed to constrain participants’ er ror rates 322 
+
+to these pre -specified levels, variation in error rate was common , and each participant indeed 323 
+
+experienced their own unique error rate during training (Fig. 2B ). On average , across the 70 -trial 324 
+
+training phase , the dynamic algorithm undershot the intended error rate by 3.1% (SD: 6.6%), or 325 
+
+2.2 (SD: 4.6) trials . The 65% error rate group did have modestly, but significantly greater, success 326 
+
+than the intended 35% success rate (t(48)=3.03, p=0.004, average: 41.6% success, SD: 6.1%) .327 
+
+These slight deviations were ultimately inconsequential, as o ur true goal was to produce a wide 328 
+
+range of error rates during training to correlate each participant’s learning rate with the learning 329 
+
+rate theoretically predicted for their individual error rate. In this goal, our algorithm succeeded. 330 
+
+Participants in the 15% error rate group had error rates ranging from 5% error to 31%. Participants 331 
+
+in the 30% error rate group had error rates ranging from 14% to 40%. Participants in the 50% 332 
+
+group had error rates that ranged from 28% to 55%. Participants in the 65% group had error rates 333 
+
+that ranged from 38 to 65%. 334 
+
+335 
+
+After an initial 20 -trial calibration phase and 10 baseline trials (see Methods ), participants 336 
+
+completed 70 training trials in which the paddle size varied with their performance. To track 337 
+
+performance improvements across the task, we computed the root -mean -squared -error (RMSE) of 338 
+
+the puck’s final position relative to the center of the final position of the user -controlled paddle for 339 
+
+every 10 -trial bin. As a proxy for precision, we inverted this RMSE to yield  β – β is low when 340 
+
+precision is low, and high when precision is high. Since every participant entered the task at various 341 
+
+degrees of skill, we corrected these  β values using the 10 -trial baseline in order to measure each 342 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+16 
+
+> 16
+
+participant’s improvement (i.e., learning) across the length of the task. A “learning index” (LI) was 343 
+
+quantified as the average  β over all 70 training trials. 344 
+
+345 
+
+346 
+
+Figure 2. Task description. (A) Participants played a modified version of Pong, where they could control the paddle’s 347 
+
+vertical position with their mouse in order to intercept the moving puck. (B) The paddle’s length was dynamically 348 
+
+controlled on each trial by an algorithm designed to control the error rate across trials. Each participant was randomly 349 
+
+assigned to one of four groups, each with a specific error rate (“ER”; 15%, 30%, 50%, 65%). The algorithm was 350 
+
+largely successful in limiting the success rates of participants in each group. Shading reflects mean ± 1 S.E.M. 351 
+
+352 
+
+Across all error rate group s, participants improved their precision (inverse RMSE,  β) during the 353 
+
+training phase (Fig. 3A) . Participants' precision in the final 10 trials was significantly greater than 354 
+
+their precision in the first 10 training trials (t( 193 )= 5.68 , p= 4.8x10 -8, d=0. 41 ), and participants' 355 
+
+overall improvement, or Learning Index (LI;  β averaged across all 70 training trials) was 356 
+
+significantly greater than zero (t(193)=4.33, p=2.4x10 -5, d=0.31). 357 
+
+358 
+
+Different error rate groups exhibited different time courses and degrees of improvement (Fig. 3B, 359 
+
+C). As predicted, the 30% error rate group exhibited the greatest LI over all four groups: Their LIs 360 
+
+were significantly greater than the 15% group (t(89)= 3.11, p=0.003, d=0.65), and marginally 361 
+
+greater than the 65% group (t(87)=1.58, p=0.12, d=0.33), but not significantly greater than the 362 
+
+50% group (t(94)=0.98, p=0.32, d=0.20). Critically, as noted above, group -wise comparisons were 363 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+17 
+
+> 17
+
+not particularly appropriate given individual variation in actually realized error rates within each 364 
+
+group .365 
+
+366 
+
+Figure 3. Optimal learning when training has an error rate of ~31.7%. (A) All participants significantly improved 367 
+
+over the course of training.  β values are the baseline -corrected inverse RMSE for each 10 -trial bin (arbitrary units). 368 
+
+(B) Each group displayed different degrees and time courses of improvement. (C) Learning index reflects the average 369 
+
+β across all 7 training bins for each subject. The group with the intended learning rate of 30% exhibited the greatest 370 
+
+learning. (D) Individual subjects’ error rates plotted against their individual learning index . The smooth curve reflects 371 
+
+the theoretically predicted learning rates for each error rate. Inset: Spearman correlation between subjects’ true LI and 372 
+
+theoretically predicted L Is for their experienced error rate during training. Shading in panels A & B and error bars in 373 
+
+panels C reflect standard errors of the mean (SEM). 374 
+
+375 
+
+Our main analysis involved compar ing each participant’s LI to the theoretical learning rate 376 
+
+predicted by our model (Fig. 3D). Supporting our theoretical predictions, p articipants’ learning 377 
+
+rates significantly correlated with the learning rate predicted for their experienced error rate during 378 
+
+training (Pea rson correlation: R=0.25, p=0.001; Spearman correlation: ρ=0.23, p=0.0 03). This is a 379 
+
+remarkable result given that our model does not require any fit parameters to achieve this degree 380 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+18 
+
+> 18
+
+of correlation. The correlation remained significant a fter removing participants with non -zero -381 
+
+mean errors or error s that were not normally distributed (Pea rson correlation: R=0.2 6, p=0.001; 382 
+
+Spearman correlation: ρ=0.23, p=0.0 04).383 
+
+384 
+
+In conclusion , our theoretical prediction of an optimal motor skill learning error rate of ~ 32 % was 385 
+
+supported in a large dataset consisting of people performing and improving at a continuous 386 
+
+visuomotor skill task. These data are consistent with the theoretical framework proposed by 387 
+
+Wilson et al. (2019) , here generalized to the novel case of motor learning. 388 
+
+389 
+
+Discussion 390 
+
+Here , we developed a new theoretical framework on optimal motor skill learning and employed a 391 
+
+novel Pong -based motor skill task to provide behavioral evidence supporting our theoretical 392 
+
+prediction that the optimal error rate for learning this and similar (one -dimensional) motor skill s393 
+
+should be ~ 32 %. By controlling human subjects’ error rates during our Pong task, we could 394 
+
+influence how well they learned throughout the course of training. Our theoretical predictions, 395 
+
+which were closely based on recent work on optimal learning for binary classification tasks 396 
+
+(Wilson et al., 2019) , were supported both by showing the strongest learning in the group with the 397 
+
+near -optimal error rate and by revealing a significant correlation between the model predictions 398 
+
+and the empirical data across a range of individuals’ actual error rates (Figure 3). We propose that 399 
+
+if an error rate of approximately ~ 32 % is maintained throughout training of a simple (one -400 
+
+dimensional ) motor skill, one may expect to observe the greatest improvements in said motor skill. 401 
+
+This discovery echoes work on “error -less” learning paradigms, where high success rates are 402 
+
+maintained throughout training , and the difficulty of the task increases as the learner improves 403 
+
+(Capio et al., 2013; Maxwell et al., 2001) .404 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+19 
+
+> 19
+
+405 
+
+Why does the error rate during training influence learning? 406 
+
+In the mathematical framework proposed by Wilson and colleagues (2019) and extended here, the 407 
+
+relationship between training difficulty and learning is a necessary consequence of tuning the 408 
+
+parameters responsible for generating responses that reduce errors via gradient descent. Such an 409 
+
+approach leaves a key question unanswered: how does training difficulty result in changes in 410 
+
+learning rate? 411 
+
+412 
+
+The “Challenge Point” framework (Guadagnoli & Lee, 2004) proposes that an agent’s 413 
+
+performance at a motor skill is a source of information for future learning and action attempts. 414 
+
+Highly expected outcomes, such as success when the task is easy, yield very little information as 415 
+
+the agent can fully predict the consequences of their action. However, highly unexpected 416 
+
+outcomes, such as success when the task is extremely difficult, are rare but can provide a high 417 
+
+degree of information. The “optimal challenge point” occurs when the task difficulty is calibrated 418 
+
+to ensure a moderately high probability of success and maximally informative feedback. The 419 
+
+balance of maximizing both the expectation of success and the amount of interpretable information 420 
+
+available for learning results in a fixed optimal error rate during training of some skills (Wilson et 421 
+
+al., 2019) .422 
+
+423 
+
+Another psychological explanation focuses on the role of reward and motivation in error -based 424 
+
+learning. Motivation to perform well in a task can drive increased sensitivity to errors (Bengtsson 425 
+
+et al., 2009) , which in turn can prompt faster learning (Wu et al., 2006) . Additionally, rewarding 426 
+
+feedback tends to increase motivation (Bissonette & Roesch, 2016) and can accelerate motor 427 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+20 
+
+> 20
+
+learning (Nikooyan & Ahmed, 2015) . Thus, the recent history of successes and failures may prime 428 
+
+an “optimal” degree of motivation, where errors occur in concert wit h rewarded trials, keeping the 429 
+
+agent’s error sensitivity and motivation for success high. Put another way, if the task is too easy, 430 
+
+learning would be minimal; but, if the task is too difficult, successes are too infrequent to generate 431 
+
+the benefits to motivation and error sensitivity that are crucial for maintaining a high learning rate. 432 
+
+The balance of these two opposing forces could also result in an optimal error rate for learning. 433 
+
+434 
+
+The mathematical framework employed here does not allow us to di stinguish among these 435 
+
+explanations, nor other higher -level psychological theories not mentioned here. The formation of 436 
+
+internal models for motor learning requires obtaining information about how observed sensory 437 
+
+outcomes relate to internally generated action plans (Abdelghani et al., 2008; Pierella et al., 2019; 438 
+
+Thoroughman & Shadmehr, 2000) in line with the Challenge Point hypothesis (Guadagnoli & Lee, 439 
+
+2004) . But reward feedback has also been shown to enhance motor learning (Galea et al., 2015; 440 
+
+Izawa & Shadmehr, 2011; Nikooyan & Ahmed, 2015) , supporting a motivational account as well. 441 
+
+Thus , both explanations are plausible and may reflect how different brain regions (e.g., the 442 
+
+cerebellum and basal ganglia, respectively) contribute to the fine -tuning of motor learning -related 443 
+
+parameters (Greenstreet et al., 2025; Seidler et al., 2013) . In general, we position our current 444 
+
+findings at a more fundamental, algorithmic level. 445 
+
+446 
+
+Extensions and limitations of the current framework 447 
+
+In our experiment, we chose a simple motor task where motor errors are generally assumed to be 448 
+
+normally distributed. However, in some tasks, such as interval timing (Swanton & Matell, 2011) ,449 
+
+the distribution of errors may not be normal and may follow other known distributions. As noted 450 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+21 
+
+> 21
+
+by Wilson and colleagues (2019) , an optimal error rate using non -Gaussian error distributions can 451 
+
+be computed using the same equations described here , without guarantees that the optimal error 452 
+
+rate derived in this manner does not depend on parameters of the error distribution . In tasks where 453 
+
+the error distribution is unknown or cannot be mathematically described, empirical observation or 454 
+
+alternative methods of estimating the distribution must be applied in order to compute the optimal 455 
+
+error rate. 456 
+
+457 
+
+We also restricted our consideration to a simple one -dimensional motor skill task (errors were only 458 
+
+in the vertical dimension). However, many motor tasks involve errors in multiple dimensions (e.g., 459 
+
+a dart or archer’s arrow may miss the bullseye in both the vertical and horizontal dimensions ),460 
+
+which must be concurrently trained. Future work must be done to extend the optimal error rate 461 
+
+framework to these more complex, naturalistic tasks. An important question which must be 462 
+
+considered is whether learning in each dimension is fully independent, or if learning in one 463 
+
+dimension affects learning in the others; the answer to this question would allow us to better model 464 
+
+the error reduction processes involved in learning complex motor skills when multiple dimensions 465 
+
+must be concurrently controlled (Haith et al., 2022; Pierella et al., 2019) . Additionally, 466 
+
+distributions of errors in each dimension may not follow similar mathematical descriptions, 467 
+
+requiring more complicated multi -dimensional integrals to optimize the error rate. Nonetheless, 468 
+
+the general mathematical framework demonstrated here can , in theory , be applied to such multi -469 
+
+dimensional tasks. 470 
+
+471 
+
+Lastly, our task only examines motor learning as defined as the gradual reduction in errors and 472 
+
+improvement of precision over time through practice, which arguably represents only one 473 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+22 
+
+> 22
+
+component of skill learning (i.e., improvements in “motor acuity” ; Krakauer et al., 2019) . Other 474 
+
+components of motor learning, including motor adaptation, may be better modeled as changes in 475 
+
+the mean of the policy, rather than gradual refinement of the precision of the policy (Greenstreet 476 
+
+et al. 2025) . Explicit strategie s, especially early in learning, can cause a learner to abruptly reduce 477 
+
+their errors or discover new solutions (Mazzoni & Krakauer, 2006; Taylor & Ivry, 2011) , abruptly 478 
+
+shifting the mean of the policy instead of gradually learning via gradient descent . Explicit 479 
+
+strategies , sho rt -term memory, and cognitive insights during skill learning likely arise from 480 
+
+separate cognitive processes not considered here, though they still make important contributions 481 
+
+to skill learning (Haith & Krakauer, 2013; Hillman et al., 2025; McDougle et al., 2016, 2022; 482 
+
+McDougle & Hillman, 2025) . The model presented here is primarily concerned with how the 483 
+
+learner learns to decrease the standard deviation of the policy around this mean , assuming the mean 484 
+
+has already been discovered, thereby improving precision and reducing task -relevant variability 485 
+
+(Haith, 2025; Sternad, 2018) .486 
+
+487 
+
+Future Applications 488 
+
+Our results demonstrate that the error rate during training affects the rate of improvement of a 489 
+
+simple visuo motor skill. We think this insight might be broadly applicable across applied domains. 490 
+
+Rehabilitation paradigms, for example, have already recognized the need to adjust the difficulty 491 
+
+of practice to optimally challenge patients and maximize the therapeutic benefit of training 492 
+
+sessions (Lee et al., 2023; Metzger et al., 2014) . In sports coaching, the principle of progressively 493 
+
+increasing the difficulty of practice has been widely applied and shown to facilitate improvements 494 
+
+in skill (Marraffino et al., 2021; Wickens et al., 2013; Zahran et al., 2020) . Optimistically, these 495 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+23 
+
+> 23
+
+approaches, in both sports pedagogy and rehabilitation, may benefit from the theory used here to 496 
+
+mathematically uncover the sweet spot of training difficulty for maximum skill improvement. 497 
+
+498 
+
+Summary 499 
+
+We demonstrate that an optimal error rate for performance improvements in a motor skill may 500 
+
+exist and suggest that this optimal error rate is around ~ 32 %. By testing a large cohort of human 501 
+
+participants in a novel motor skill task (a modified version of Pong), we also provide empirical 502 
+
+support for this prediction and demonstrate the potential importance of maintaining a particular 503 
+
+error rate throughout training to maximize performance improvements. This approach may have 504 
+
+broader implications in other domains concerned with optimizing the acquisition, refinement, and 505 
+
+rehabilitation of motor skills. 506 
+
+507 
+
+Declarations 508 
+
+Funding 509 
+
+This research was conducted without the support of external funding. 510 
+
+Conflict of Interest 511 
+
+The authors have no conflicts of interest to report. 512 
+
+Ethics Approval 513 
+
+This research was approved by the Yale University Institutional Review Board (Protocol 514 
+
+#2000027351 Psychological Mechanisms of Skill Learning). 515 
+
+Consent for Participation and Publication 516 
+
+All participants provided written informed consent for their participation and the publication of 517 
+
+data produced from their participation. 518 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+24 
+
+> 24
+
+Availability of Data, Materials, and Code 519 
+
+This study was not pre -registered. The Pong task used in this experiment can be found at pong -520 
+
+baseball -fast.netlify.app. Error rate can be specified using the URL parameter “GROUP=XX”, 521 
+
+where XX is the intended error rate as a percentage (default value is 30). Data and analysis code 522 
+
+can be found at 523 
+
+https://osf.io/ew726/overview?view_only=61050a15edb746d1998444bb903e0142 .524 
+
+525 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+25 
+
+> 25
+
+References 526 
+
+Abdelghani, M. N., Lillicrap, T. P., & Tweed, D. B. (2008). Sensitivity Derivatives for Flexible 527 
+
+Sensorimotor Learning. Neural Computation , 20 (8), 2085 –2111. 528 
+
+https://doi.org/10.1162/neco.2008.04 -07 -507 529 
+
+Becker, R. (2018). The New S Language . Chapman and Hall/CRC. 530 
+
+https://doi.org/10.1201/9781351074988 531 
+
+Bengtsson, S. L., Lau, H. C., & Passingham, R. E. (2009). Motivation to do Well Enhances Responses to 532 
+
+Errors and Self -Monitoring. Cerebral Cortex , 19 (4), 797 –804. 533 
+
+https://doi.org/10.1093/cercor/bhn127 534 
+
+Bissonette, G. B., & Roesch, M. R. (2016). Neurophysiology of Reward -Guided Behavior: Correlates 535 
+
+Related to Predictions, Value, Motivation, Errors, Attention, and Action. In E. H. Simpson & P. 536 
+
+D. Balsam (Eds.), Behavioral Neuroscience of Motivation (pp. 199 –230). Springer International 537 
+
+Publishing. https://doi.org/10.1007/7854_2015_382 538 
+
+Capio, C. M., Poolton, J. M., Sit, C. H. P., Holmstrom, M., & Masters, R. S. W. (2013). Reducing errors 539 
+
+benefits the field -based learning of a fundamental movement skill in children. Scandinavian 540 
+
+Journal of Medicine & Science in Sports , 23 (2), 181 –188. https://doi.org/10.1111/j.1600 -541 
+
+0838.2011.01368.x 542 
+
+Cornsweet, T. N. (1962). The Staircase -Method in Psychophysics. The American Journal of Psychology ,543 
+
+75 (3), 485 –491. https://doi.org/10.2307/1419876 544 
+
+Diedrichsen, J., & Kornysheva, K. (2015). Motor skill learning between selection and execution. Trends 545 
+
+in Cognitive Sciences , 19 (4), 227 –233. https://doi.org/10.1016/j.tics.2015.02.003 546 
+
+Galea, J. M., Mallia, E., Rothwell, J., & Diedrichsen, J. (2015). The dissociable effects of punishment and 547 
+
+reward on motor learning. Nature Neuroscience , 18 (4), Article 4. https://doi.org/10.1038/nn.3956 548 
+
+Greenstreet, F., Geerts, J. P., Gallego, J. A., & Clopath, C. (2025). Why motor learning involves multiple 549 
+
+systems: An algorithmic perspective (p. 2025.12.19.695526). bioRxiv. 550 
+
+https://doi.org/10.64898/2025.12.19.695526 551 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+26 
+
+> 26
+
+Guadagnoli, M., & Lee, T. (2004). Challenge Point: A Framework for Conceptualizing the Effects of 552 
+
+Various Practice Conditions in Motor Learning. Journal of Motor Behavior , 36 , 212 –224. 553 
+
+https://doi.org/10.3200/JMBR.36.2.212 -224 554 
+
+Haith, A. M. (2025). Policy -Gradient Reinforcement Learning as a General Theory of Practice -Based 555 
+
+Motor Skill Learning (p. 2025.10.17.682587). bioRxiv. 556 
+
+https://doi.org/10.1101/2025.10.17.682587 557 
+
+Haith, A. M., & Krakauer, J. W. (2013). Model -Based and Model -Free Mechanisms of Human Motor 558 
+
+Learning. In M. J. Richardson, M. A. Riley, & K. Shockley (Eds.), Progress in Motor Control 559 
+
+(pp. 1 –21). Springer. https://doi.org/10.1007/978 -1-4614 -5465 -6_1 560 
+
+Haith, A. M., Yang, C. S., Pakpoor, J., & Kita, K. (2022). De novo motor learning of a bimanual control 561 
+
+task over multiple days of practice. Journal of Neurophysiology , 128 (4), 982 –993. 562 
+
+https://doi.org/10.1152/jn.00474.2021 563 
+
+Hillman, H., McClure, T. N., & McDougle, S. D. (2025). Linking motor working memory to explicit and 564 
+
+implicit motor learning. Journal of Neurophysiology , 134 (6), 2036 –2046. 565 
+
+https://doi.org/10.1152/jn.00105.2025 566 
+
+Izawa, J., & Shadmehr, R. (2011). Learning from Sensory and Reward Prediction Errors during Motor 567 
+
+Adaptation. PLOS Computational Biology , 7(3), e1002012. 568 
+
+https://doi.org/10.1371/journal.pcbi.1002012 569 
+
+Krakauer, J., Hadjiosif, A., Xu, J., Wong, A., & Haith, A. (2019). Motor Learning. In Comprehensive 570 
+
+Physiology (Vol. 9, pp. 613 –663). https://doi.org/10.1002/cphy.c170043 571 
+
+Krakauer, J. W., & Mazzoni, P. (2011). Human sensorimotor learning: Adaptation, skill, and beyond. 572 
+
+Current Opinion in Neurobiology, Sensory and Motor Systems , 21 (4), 636 –644. 573 
+
+https://doi.org/10.1016/j.conb.2011.06.012 574 
+
+Lee, H., Choi, Y., Eizad, A., Song, W. -K., Kim, K. -J., & Yoon, J. (2023). A Machine Learning -Based 575 
+
+Initial Difficulty Level Adjustment Method for Balance Exercise on a Trunk Rehabilitation 576 
+
+Robot. IEEE Transactions on Neural Systems and Rehabilitation Engineering , 31 , 1857 –1866. 577 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+27 
+
+> 27
+
+IEEE Transactions on Neural Systems and Rehabilitation Engineering. 578 
+
+https://doi.org/10.1109/TNSRE.2023.3260815 579 
+
+Marraffino, M. D., Schroeder, B. L., Fraulini, N. W., Van Buskirk, W. L., & Johnson, C. I. (2021). 580 
+
+Adapting training in real time: An empirical test of adaptive difficulty schedules. Military 581 
+
+Psychology , 33 (3), 136 –151. https://doi.org/10.1080/08995605.2021.1897451 582 
+
+Maxwell, J. P., Masters, R. S. W., Kerr, E., & Weedon, E. (2001). The implicit benefit of learning without 583 
+
+errors. The Quarterly Journal of Experimental Psychology , 54A (4), 1049 –1068. 584 
+
+https://doi.org/10.1080/713756014 585 
+
+Mazzoni, P., & Krakauer, J. W. (2006). An Implicit Plan Overrides an Explicit Strategy during 586 
+
+Visuomotor Adaptation. The Journal of Neuroscience , 26 (14), 3642 –3645. 587 
+
+https://doi.org/10.1523/JNEUROSCI.5317 -05.2006 588 
+
+McDougle, S. D., & Hillman, H. (2025). Motor working memory. Trends in Cognitive Sciences , S1364 -589 
+
+6613(25)00236 -0. https://doi.org/10.1016/j.tics.2025.08.011 590 
+
+McDougle, S. D., Ivry, R. B., & Taylor, J. A. (2016). Taking Aim at the Cognitive Side of Learning in 591 
+
+Sensorimotor Adaptation Tasks. Trends in Cognitive Sciences , 20 (7), 535 –544. 592 
+
+https://doi.org/10.1016/j.tics.2016.05.002 593 
+
+McDougle, S. D., Wilterson, S. A., Turk -Browne, N. B., & Taylor, J. A. (2022). Revisiting the Role of 594 
+
+the Medial Temporal Lobe in Motor Learning. Journal of Cognitive Neuroscience , 34 (3), 532 –595 
+
+549. https://doi.org/10.1162/jocn_a_01809 596 
+
+Metzger, J. -C., Lambercy, O., Califfi, A., Dinacci, D., Petrillo, C., Rossi, P., Conti, F. M., & Gassert, R. 597 
+
+(2014). Assessment -driven selection and adaptation of exercise difficulty in robot -assisted 598 
+
+therapy: A pilot study with a hand rehabilitation robot. Journal of NeuroEngineering and 599 
+
+Rehabilitation , 11 (1), 154. https://doi.org/10.1186/1743 -0003 -11 -154 600 
+
+Nikooyan, A. A., & Ahmed, A. A. (2015). Reward feedback accelerates motor learning. Journal of 601 
+
+Neurophysiology , 113 (2), 633 –646. https://doi.org/10.1152/jn.00032.2014 602 
+
+Ohlsson, S. (1996). Learning From Performance Errors. Psychological Review , 103 (2), 241 –262. 603 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+28 
+
+> 28
+
+Pierella, C., Casadio, M., Mussa -Ivaldi, F. A., & Solla, S. A. (2019). The dynamics of motor learning 604 
+
+through the formation of internal models. PLOS Computational Biology , 15 (12), e1007118. 605 
+
+https://doi.org/10.1371/journal.pcbi.1007118 606 
+
+Sanger, T. D. (2004). Failure of Motor Learning for Large Initial Errors. Neural Computation , 16 (9), 607 
+
+1873 –1886. https://doi.org/10.1162/0899766041336431 608 
+
+Seidler, R. D., Kwak, Y., Fling, B. W., & Bernard, J. A. (2013). Neurocognitive Mechanisms of Error -609 
+
+Based Motor Learning. In M. J. Richardson, M. A. Riley, & K. Shockley (Eds.), Progress in 610 
+
+Motor Control (pp. 39 –60). Springer. https://doi.org/10.1007/978 -1-4614 -5465 -6_3 611 
+
+Shmuelof, L., Krakauer, J. W., & Mazzoni, P. (2012). How is a motor skill learned? Change and 612 
+
+invariance at the levels of task success and trajectory control. Journal of Neurophysiology ,613 
+
+108 (2), 578 –594. https://doi.org/10.1152/jn.00856.2011 614 
+
+Sternad, D. (2018). It’s not (only) the mean that matters: Variability, noise and exploration in skill 615 
+
+learning. Current Opinion in Behavioral Sciences, Habits and Skills , 20 , 183 –195. 616 
+
+https://doi.org/10.1016/j.cobeha.2018.01.004 617 
+
+Swanton, D. N., & Matell, M. S. (2011). Stimulus compounding in interval timing: The modality –618 
+
+duration relationship of the anchor durations results in qualitatively different response patterns to 619 
+
+the compound cue. Journal of Experimental Psychology: Animal Behavior Processes , 37 (1), 94 –620 
+
+107. https://doi.org/10.1037/a0020200 621 
+
+Taylor, J. A., & Ivry, R. B. (2011). Flexible Cognitive Strategies during Motor Learning. PLOS 622 
+
+Computational Biology , 7(3), e1001096. https://doi.org/10.1371/journal.pcbi.1001096 623 
+
+Thoroughman, K. A., & Shadmehr, R. (2000). Learning of Action Through Adaptive Combination of 624 
+
+Motor Primitives. Nature , 407 (6805), 742 –747. https://doi.org/10.1038/35037588 625 
+
+Tseng, Y., Diedrichsen, J., Krakauer, J. W., Shadmehr, R., & Bastian, A. J. (2007). Sensory Prediction 626 
+
+Errors Drive Cerebellum -Dependent Adaptation of Reaching. Journal of Neurophysiology , 98 (1), 627 
+
+54 –62. https://doi.org/10.1152/jn.00266.2007 628 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 2, 2026. ;https://doi.org/10.1101/2023.07.19.549705 doi: bioRxiv preprint
+
+29 
+
+> 29
+
+Wickens, C. D., Hutchins, S., Carolan, T., & Cumming, J. (2013). Effectiveness of part -task training and 629 
+
+increasing -difficulty training strategies: A meta -analysis approach. Human Factors , 55 (2), 461 –630 
+
+470. 631 
+
+Wilson, R. C., Shenhav, A., Straccia, M., & Cohen, J. D. (2019). The Eighty Five Percent Rule for 632 
+
+optimal learning. Nature Communications , 10 (1), Article 1. https://doi.org/10.1038/s41467 -019 -633 
+
+12552 -4634 
+
+Wu, S. -W., Trommershäuser, J., Maloney, L. T., & Landy, M. S. (2006). Limits to human movement 635 
+
+planning in tasks with asymmetric gain landscapes. Journal of Vision , 6(1), 5. 636 
+
+https://doi.org/10.1167/6.1.5 637 
+
+Yang, C. S., Cowan, N. J., & Haith, A. M. (2022). Control becomes habitual early on when learning a 638 
+
+novel motor skill. Journal of Neurophysiology , 128 (5), 1278 –1291. 639 
+
+https://doi.org/10.1152/jn.00273.2022 640 
+
+Zahran, L., El -Beltagy, M., & Saleh, M. (2020). A Conceptual Framework for the Generation of Adaptive 641 
+
+Training Plans in Sports Coaching. In A. E. Hassanien, K. Shaalan, & M. F. Tolba (Eds.), 642 
+
+Proceedings of the International Conference on Advanced Intelligent Systems and Informatics 643 
+
+2019 (pp. 673 –684). Springer International Publishing. https://doi.org/10.1007/978 -3-030 -31129 -644 
+
+2_62 645 
+
+646

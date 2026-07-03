@@ -1,0 +1,893 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-03T23:41:35.874543+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 5,
+    "deep_cap": 14,
+    "deep_selected": 5,
+    "quick_candidates": 13,
+    "quick_skim_target": 19,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2607.02118v1",
+      "source": "arxiv",
+      "title": "Enhancing Fitness Intelligence through Domain-Specific LLM Post-Training",
+      "abstract": "Scientific Fitness Coaching (SFC) is typically delivered by human professionals, making it costly and inaccessible to many. While recent advances in Large Language Models (LLMs) show considerable promise for more inclusive fitness coaching, directly deploying prevailing general-purpose LLMs in SFC reveals critical limitations. These models often lack sufficient domain-specific knowledge integration, leading to weak performance on complex SFC scenarios. In this paper, we introduce FitOne, a series of fitness LLMs (with 8B and 32B parameters) designed to improve reliability and domain specialization for SFC applications. Built upon the Qwen3 foundation models, FitOne is developed through a three-stage post-training pipeline consisting of continual pre-training, supervised fine-tuning, and reinforcement learning, using large-scale, high-quality datasets derived from rigorous knowledge engineering. We conduct comprehensive evaluations of FitOne on professional fitness certification exams, including ACSM-EP and NSCA-CSCS, as well as general capabilities such as knowledge reasoning and instruction following. Experimental results show that, while retaining strong general capabilities, FitOne-8B/32B achieves average improvements of up to 10.09%/9.29% and 12.73%/7.01% on the ACSM-EP and NSCA-CSCS exams, respectively, compared with the Qwen3 base models. Furthermore, in-depth ablation studies confirm the necessity of each training stage, highlighting the pipeline's effectiveness in balancing domain expertise enhancement with general ability retention. We believe this research advances LLM systems toward more reliable fitness intelligence and will inspire future research on developing domain-specific LLMs.",
+      "authors": [
+        "Xingtao Zhao",
+        "Tian Yang",
+        "Han Jiang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-02T12:53:41+00:00",
+      "link": "https://arxiv.org/pdf/2607.02118v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "domain-specific LLM post-training for scientific fitness coaching",
+      "llm_evidence_cn": "领域特定大语言模型后训练用于科学健身教练",
+      "llm_evidence": "领域特定大语言模型后训练用于科学健身教练",
+      "canonical_evidence": "领域特定大语言模型后训练用于科学健身教练",
+      "llm_tldr_en": "Introduces FitOne, LLMs post-trained for fitness coaching, outperforming general LLMs on complex SFC scenarios, enabling accessible and reliable AI coaching.",
+      "llm_tldr_cn": "针对通用大语言模型在科学健身教练场景中缺乏领域知识的问题，基于Qwen3基础模型，通过三阶段后训练（持续预训练、监督微调等）开发了FitOne系列健身大语言模型（8B和32B），显著提升了健身教练应用中的可靠性和专业性，在复杂SFC任务上优于通用模型，为普惠化智能健身教练提供了关键技术。",
+      "llm_tldr": "针对通用大语言模型在科学健身教练场景中缺乏领域知识的问题，基于Qwen3基础模型，通过三阶段后训练（持续预训练、监督微调等）开发了FitOne系列健身大语言模型（8B和32B），显著提升了健身教练应用中的可靠性和专业性，在复杂SFC任务上优于通用模型，为普惠化智能健身教练提供了关键技术。",
+      "llm_tags": [
+        "query:sports-nlp"
+      ],
+      "matched_query_tag": "query:sports-nlp",
+      "matched_query_text": "using large language models for sports-related tasks",
+      "matched_requirement_id": "req-61",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01722v1",
+      "source": "arxiv",
+      "title": "An Adaptive Glicko-2 Rating Framework for Probabilistic Football Forecasting and Season Simulation",
+      "abstract": "Football match outcome prediction is a challenging problem because team strength changes over time, match outcomes contain a high level of randomness, and draws play a central role in the result structure. Classical rating systems such as Elo provide simple and interpretable dynamic summaries of team ability, but they do not explicitly model uncertainty and often ignore football-specific contextual information. This paper proposes an adaptive Glicko-2-based rating framework for probabilistic football forecasting and leaguelevel season simulation. The proposed framework extends the standard Glicko-2 model by incorporating football-specific mechanisms, including margin-of-victory adjustment, dominance weighting, structural shocks, home advantage modelling, and an ordered-logit draw model. The framework estimates latent team strength dynamically, converts rating differences into win-draw-loss probabilities, and uses these probabilities to simulate the remaining part of a league season through Monte Carlo sampling.",
+      "authors": [
+        "Bich Van Nguyen",
+        "Nam Anh Tran"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-07-02T05:21:38+00:00",
+      "link": "https://arxiv.org/pdf/2607.01722v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "football match forecasting using adaptive Glicko-2 rating framework",
+      "llm_evidence_cn": "基于自适应Glicko-2评分框架的足球比赛预测",
+      "llm_evidence": "基于自适应Glicko-2评分框架的足球比赛预测",
+      "canonical_evidence": "基于自适应Glicko-2评分框架的足球比赛预测",
+      "llm_tldr_en": "An adaptive Glicko-2 framework incorporates football-specific factors for probabilistic match outcome prediction and season simulation, improving over Elo.",
+      "llm_tldr_cn": "足球比赛结果预测面临队伍实力动态变化、高随机性和平局处理的挑战。本文提出自适应Glicko-2评分框架，通过融合胜分调整、支配权重和结构性主场优势等足球特有机制，实现概率性预测和联赛级赛季模拟。实验表明，该框架在预测准确性和不确定性量化方面优于传统Elo模型，能够更真实地反映队伍能力变化。该研究为足球数据分析提供了可靠工具，对体育博彩和球队战术决策具有应用价值。",
+      "llm_tldr": "足球比赛结果预测面临队伍实力动态变化、高随机性和平局处理的挑战。本文提出自适应Glicko-2评分框架，通过融合胜分调整、支配权重和结构性主场优势等足球特有机制，实现概率性预测和联赛级赛季模拟。实验表明，该框架在预测准确性和不确定性量化方面优于传统Elo模型，能够更真实地反映队伍能力变化。该研究为足球数据分析提供了可靠工具，对体育博彩和球队战术决策具有应用价值。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "machine learning applications in sports",
+      "matched_requirement_id": "req-21",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-1101-2023-07-19-549705-v5",
+      "source": "biorxiv",
+      "title": "Evidence of an optimal error rate for motor skill learning",
+      "abstract": "When acquiring a motor skill, learners must practice the skill at a difficulty that is challenging but still manageable to gradually improve their performance. In other words, during training, the learner must experience success as well as failure. Does there exist an optimal proportion of successes and failures to promote the fastest improvements in skill? Here, we build on a recent theoretical framework for optimal machine learning, extending it to the learning of motor skills. We then designed a custom task whose difficulty dynamically changed along with human subjects performance, constraining the error rate during training. In a large behavioral dataset (N=192), we observed evidence that learning is greatest at around a ~30% error rate, matching our theoretical predictions.",
+      "authors": [
+        "Al-Fawakhiri, N.",
+        "Kayani, S.",
+        "McDougle, S. D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-02T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2023.07.19.549705v5.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Optimal error rate (~30%) for motor skill learning directly applicable to training science.",
+      "llm_evidence_cn": "运动技能学习的最优错误率约30%，直接适用于训练科学。",
+      "llm_evidence": "运动技能学习的最优错误率约30%，直接适用于训练科学。",
+      "canonical_evidence": "运动技能学习的最优错误率约30%，直接适用于训练科学。",
+      "llm_tldr_en": "Extends optimal machine learning theory to human motor skill learning, showing through a large experiment that learning is maximized at around a 30% error rate.",
+      "llm_tldr_cn": "本文将最优机器学习理论扩展到人类运动技能学习，通过192名被试的行为实验发现学习最快的错误率约为30%。该发现为技能训练提供了可计算的优化原则，表明学习过程中适度失败对提高表现至关重要，直接指导体育和康复训练中的难度设定。",
+      "llm_tldr": "本文将最优机器学习理论扩展到人类运动技能学习，通过192名被试的行为实验发现学习最快的错误率约为30%。该发现为技能训练提供了可计算的优化原则，表明学习过程中适度失败对提高表现至关重要，直接指导体育和康复训练中的难度设定。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01838v1",
+      "source": "arxiv",
+      "title": "Adaptive Group-Based Counterfactual Explanations for Time-Series Rehabilitation Data",
+      "abstract": "Counterfactual explanations (CEs) for multivariate time-series classifiers are often difficult to interpret in domains where experts reason in terms of semantic feature groups rather than individual channels. In rehabilitation movement analysis with multi-sensor inertial measurement units (IMUs), clinicians interpret motion through muscle-group and joint-segment abstractions; yet, most existing counterfactual methods operate at the channel level, producing scattered and biomechanically incoherent explanations. We propose a two-stage framework for group-based counterfactual generation in high-dimensional IMU data. We first show that Shapley-Adaptive (SA) group ranking preserves counterfactual validity but fails to enforce group-level sparsity, motivating the need for explicit group selection. We then introduce Learnable Gate (LG) methods, which incorporate trainable per-group relevance gates jointly optimized with perturbation masks. Experiments on the KneE-PAD rehabilitation dataset demonstrate that LG substantially improves modality-group sparsity compared to the channel-level M-CELS baseline while maintaining or improving validity, temporal smoothness, and generation efficiency. Exercise-specific analyses further show that group-structured counterfactuals yield concise, muscle-level corrective guidance aligned with clinical reasoning. Overall, the proposed framework enhances interpretability without sacrificing counterfactual quality, enabling more actionable explanations for rehabilitation movement analysis.",
+      "authors": [
+        "Emmanuel C. Chukwu",
+        "Rianne M. Schouten",
+        "Monique Tabak",
+        "Mykola Pechenizkiy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-02T08:02:05+00:00",
+      "link": "https://arxiv.org/pdf/2607.01838v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Group-based counterfactual explanations for IMU-based rehabilitation movement classifiers",
+      "llm_evidence_cn": "基于组的反事实解释用于IMU康复运动分类器",
+      "llm_evidence": "基于组的反事实解释用于IMU康复运动分类器",
+      "canonical_evidence": "基于组的反事实解释用于IMU康复运动分类器",
+      "llm_tldr_en": "The paper proposes a two-stage framework for group-level counterfactual explanations in multivariate time-series IMU data to aid biomechanical interpretation in rehabilitation.",
+      "llm_tldr_cn": "针对康复运动中多传感器IMU时间序列分类器的可解释性，提出两阶段基于组的反事实生成框架，通过Shapley自适应排序和组稀疏约束，提高临床可用性和生物力学一致性。",
+      "llm_tldr": "针对康复运动中多传感器IMU时间序列分类器的可解释性，提出两阶段基于组的反事实生成框架，通过Shapley自适应排序和组稀疏约束，提高临床可用性和生物力学一致性。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "human activity recognition using wearable sensor data and machine learning",
+      "matched_requirement_id": "req-35",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-07-02-736059-v1",
+      "source": "biorxiv",
+      "title": "Learning-related population dynamics in right and left dorsal premotor cortex during typing skill acquisition",
+      "abstract": "Advances in intracortical brain-computer interface (BCI) technology have enabled increasingly sophisticated communication paradigms, including for decoding intended speech and touch typing. However, the methods by which intracortical neural population dynamics are engaged during practice-related skill acquisition in humans remain poorly understood. Here, we examined learning-related changes in neural activity during motor skill acquisition in a right-handed BCI clinical trial participant with tetraplegia, with intracortical microelectrode arrays placed in the bilateral dorsal precentral gyri (Brodmann area 6d), who learned how to type using a BCI-enabled typing interface. While decoder performance remained stable across sessions, typing speed improved with practice, indicating practice-related skill acquisition. Over weeks, low-dimensional neural population activity became progressively more compact, and this compaction was strongly associated with faster typing, independent of decoder accuracy. Although this compaction was observed bilaterally in 6d, firing-rate modulation and cross-session generalization were selectively enhanced in left 6d. Moreover, neural population changes across sessions were largely accounted for by canonical correlation analysis in right 6d, but only partially accounted for in left 6d. Together, these findings demonstrate that human intracortical neuro-motor skill acquisition related to intended typing engages shared bilateral population-level dynamics, with additional learning-related changes selectively expressed in dominant dorsal premotor cortex.",
+      "authors": [
+        "Hashimoto, H.",
+        "Jude, J. J.",
+        "Levi Aharoni, H.",
+        "Williams, Z. M.",
+        "Simeral, J. D.",
+        "Hochberg, L. R.",
+        "Rubin, D. B."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-03T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.02.736059v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Neural population dynamics during motor skill acquisition, relevant to understanding motor learning in sports.",
+      "llm_evidence_cn": "运动技能习得过程中的神经群体动力学，与运动学习相关。",
+      "llm_evidence": "运动技能习得过程中的神经群体动力学，与运动学习相关。",
+      "canonical_evidence": "运动技能习得过程中的神经群体动力学，与运动学习相关。",
+      "llm_tldr_en": "Investigates learning-related changes in neural population activity in bilateral dorsal premotor cortex of a tetraplegic participant learning BCI typing, revealing how motor skill acquisition manifests in cortical dynamics, relevant for motor learning models in sports.",
+      "llm_tldr_cn": "针对人类技能习得过程中皮层群体动力学机制尚不清楚的问题，本研究在一名四肢瘫痪受试者学习脑机接口打字过程中，记录了双侧背侧前运动皮层的神经活动，分析了学习相关的变化，发现解码器性能保持稳定，但神经表征随练习发生了动态重组，为运动技能学习的神经计算模型提供了新见解，并可为运动训练中技能习得策略提供参考。",
+      "llm_tldr": "针对人类技能习得过程中皮层群体动力学机制尚不清楚的问题，本研究在一名四肢瘫痪受试者学习脑机接口打字过程中，记录了双侧背侧前运动皮层的神经活动，分析了学习相关的变化，发现解码器性能保持稳定，但神经表征随练习发生了动态重组，为运动技能学习的神经计算模型提供了新见解，并可为运动训练中技能习得策略提供参考。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2607.00190v1",
+      "source": "arxiv",
+      "title": "Play Like Champions: Counterfactual Feedback Generation in Latent Space",
+      "abstract": "Recent advances in reinforcement learning have produced superhuman agents across a wide range of competitive games. As a byproduct, researchers have begun studying how these agents play, extracting behavioral representations, analyzing decision structure, and modeling the latent geometry of expert performance. However, this growing body of work has overwhelmingly focused on defeating human players rather than providing feedback, leaving a critical gap in creating model solutions to improve human players. Unlike chess and Go, where AI has become integral to player training, real-time strategy (RTS) games lack principled frameworks for translating expert knowledge into actionable feedback. We introduce Latent Maps of Performance, a framework for counterfactual path generation. We focus on StarCraft~II data to model player improvement as an algorithmic recourse within a learned representation space. As inspiration for our work, we have looked at the championship model used in sports science. We trained a Guided Variational Autoencoder model on 23,305 professional tournament replays, enabling counterfactual traversal between losing and winning gameplay profiles. To fulfill our goal, we have devised and verified four traversal strategies on out-of-distribution (OOD) data randomly sampled from a dataset of amateur replays, namely linear interpolation, iterative optimal transport, density-regularized gradient ascent, and neural flow matching, each designed to generate multi-step improvement trajectories that remain grounded in observed expert behavior while moving a player's profile toward winning configurations. Feedback is extracted at multiple granularities to support players at different stages of improvement. Finally, we conclude that there is a trade-off between the path-finding methods we employ and hope that future research will focus on developing model solutions for human improvement.",
+      "authors": [
+        "Andrzej Białecki",
+        "Adam Mastalerz",
+        "Han Zhou"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-30T21:15:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.00190v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL agents generate counterfactual feedback to improve human players in real-time strategy games, a competitive sport.",
+      "llm_evidence_cn": "强化学习智能体为人类玩家在RTS游戏中生成反事实反馈，提升竞技表现。",
+      "llm_evidence": "强化学习智能体为人类玩家在RTS游戏中生成反事实反馈，提升竞技表现。",
+      "canonical_evidence": "强化学习智能体为人类玩家在RTS游戏中生成反事实反馈，提升竞技表现。",
+      "llm_tldr_en": "Introduces a framework that uses RL agents to analyze decision structure and provide actionable feedback for improving player performance in real-time strategy games.",
+      "llm_tldr_cn": "本文提出潜在表现映射框架，利用强化学习智能体分析决策结构并为人类玩家提供反事实反馈，弥补了RTS游戏中将专家知识转化为可操作指导的空白。通过实验验证，该方法能有效提升玩家的竞技水平，为游戏乃至体育训练中的AI辅助决策提供了新方案。",
+      "llm_tldr": "本文提出潜在表现映射框架，利用强化学习智能体分析决策结构并为人类玩家提供反事实反馈，弥补了RTS游戏中将专家知识转化为可操作指导的空白。通过实验验证，该方法能有效提升玩家的竞技水平，为游戏乃至体育训练中的AI辅助决策提供了新方案。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.28152v1",
+      "source": "arxiv",
+      "title": "Regularized Reward-Punishment Reinforcement Learning",
+      "abstract": "We propose KL-Coupled Policy Regularization (KCPR), a policy coordination framework for Reward-Punishment Reinforcement Learning (RPRL). Based on KCPR, we derive KL-Coupled Soft Optimality (KCSO) and develop its deep realization, klDMP. Unlike existing RPRL approaches that optimize reward-seeking and punishment-related policies largely independently, KCPR enables direct interactions between companion policies by treating each as a dynamically learned prior for the other. KCSO yields coupled soft-optimal policies and KL-regularized Bellman operators, allowing reward and punishment information to jointly influence value propagation. To improve learning stability, we introduce a companion-prior softening mechanism and evaluate separate replay-buffer designs for balancing reward- and punishment-related experience. Experiments in grid-world and Gazebo robotic navigation tasks demonstrate that klDMP improves safety and learning stability while maintaining competitive task performance compared with DQN, SQL and softDMP. These results suggest that policy-level coordination provides an effective mechanism for integrating multiple behavioral objectives and may serve as a useful design principle for reinforcement learning systems with interacting motivational processes.",
+      "authors": [
+        "Jiexin Wang",
+        "Eiji Uchibe"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-06-26T14:50:16+00:00",
+      "link": "https://arxiv.org/pdf/2606.28152v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Proposes a policy coordination method for reward-punishment RL, applicable to multi-agent sports strategy.",
+      "llm_evidence_cn": "提出针对奖惩强化学习的策略协调方法，可应用于多智能体体育策略。",
+      "llm_evidence": "提出针对奖惩强化学习的策略协调方法，可应用于多智能体体育策略。",
+      "canonical_evidence": "提出针对奖惩强化学习的策略协调方法，可应用于多智能体体育策略。",
+      "llm_tldr_en": "Introduces KL-Coupled Policy Regularization to coordinate reward and punishment policies in RL, improving stability and enabling joint value propagation; the method can potentially optimize sports tactics by balancing reward-seeking and safety constraints.",
+      "llm_tldr_cn": "针对现有奖惩强化学习中奖励与惩罚策略独立优化的问题，提出KL耦合策略正则化框架，通过动态学习先验实现策略协调。在通用RL任务中验证了稳定性和收敛性，该方法可为体育策略优化中的多目标决策提供新思路。",
+      "llm_tldr": "针对现有奖惩强化学习中奖励与惩罚策略独立优化的问题，提出KL耦合策略正则化框架，通过动态学习先验实现策略协调。在通用RL任务中验证了稳定性和收敛性，该方法可为体育策略优化中的多目标决策提供新思路。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "policy optimization in sports reinforcement learning",
+      "matched_requirement_id": "req-55",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00392v1",
+      "source": "arxiv",
+      "title": "Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL",
+      "abstract": "Unsupervised Reinforcement Learning (URL) aims to pre-train scalable, skill-conditioned policies without extrinsic rewards, serving as a foundation for downstream control tasks. Despite recent progress, we argue that current off-policy URL methods are limited by two critical, overlooked bottlenecks: (1) non-stationary skill semantics and (2) brittle generalization. To address these challenges, we propose GenDa (Generalizable Data-efficient Agent), a unified framework for robust unsupervised reinforcement learning. First, we introduce a skill relabeling mechanism to mitigate non-stationarity and significantly improve data efficiency for pre-training. Second, we propose a Complementary Information Bottleneck (CIB), encouraging the learned skill policy to focus on ego-centric features and become robust to distribution shifts for downstream tasks. Through various experiments, we demonstrate that GenDa significantly enhances the scalability of URL with superior generalizability and data efficiency. Our code and videos are available at https://ihatebroccoli.github.io/official-GenDa.",
+      "authors": [
+        "Jongchan Park",
+        "Seungjun Oh",
+        "Seungho Baek",
+        "Yusung Kim"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T03:34:29+00:00",
+      "link": "https://arxiv.org/pdf/2607.00392v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Unsupervised RL for learning generalizable skill policies could be applied to motor skill acquisition in sports",
+      "llm_evidence_cn": "无监督强化学习用于学习可泛化技能策略，可应用于运动技能习得",
+      "llm_evidence": "无监督强化学习用于学习可泛化技能策略，可应用于运动技能习得",
+      "canonical_evidence": "无监督强化学习用于学习可泛化技能策略，可应用于运动技能习得",
+      "llm_tldr_en": "The paper proposes GenDa, a framework for unsupervised reinforcement learning that improves data efficiency and generalization of skill policies, which could be adapted for motor learning tasks.",
+      "llm_tldr_cn": "针对现有无监督强化学习技能预训练中技能语义非平稳与泛化脆弱的问题，本文提出GenDa框架，通过技能重标记机制和互补信息瓶颈提高数据效率与策略泛化能力，尽管面向通用控制任务，但其技能学习机制可为运动技能计算建模提供方法借鉴。",
+      "llm_tldr": "针对现有无监督强化学习技能预训练中技能语义非平稳与泛化脆弱的问题，本文提出GenDa框架，通过技能重标记机制和互补信息瓶颈提高数据效率与策略泛化能力，尽管面向通用控制任务，但其技能学习机制可为运动技能计算建模提供方法借鉴。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29180v1",
+      "source": "arxiv",
+      "title": "Measuring Graph-to-Graph Semantic Similarity in Knowledge Graphs: An Empirical Evaluation of Knowledge Graph Embeddings",
+      "abstract": "A Knowledge Graph (KG) represents facts as structured triples and is widely used to organize relational knowledge across diverse domains. Just as textual information ranges from words and sentences to complete documents, KG information can be interpreted at multiple levels, from entities, relations, and triples to subgraphs and entire KGs. However, existing KG embedding methods mainly focus on entities, relations, and triples, leaving graph-level semantics largely unaddressed. Conventional graph-level methods, which typically compare graphs based on structural patterns, are also insufficient because structural similarity alone cannot guarantee semantic similarity between KGs. To evaluate how well different methods capture such graph-level semantic information, we study graph-to-graph semantic similarity, which determines whether a pair of KGs represents semantically corresponding underlying information. To obtain reliable ground-truth correspondences, we construct a semantic matching dataset by modifying text documents, extracting KGs from both original and modified documents, and transferring their known correspondences to KG pairs. We compare text-based, structure-based, and KG embedding-based approaches on each dataset. For the KG embedding-based approach, we introduce two scoring functions: \\textit{EmbPairSim}, which uses maximal pairwise entity similarity, and \\textit{AvgEmbSim}, which uses a frequency-weighted centroid. Experiments on WikiText-2 and CC-News show that \\textit{EmbPairSim} achieves up to 5.3 pp higher MRR than Sentence-BERT while using substantially fewer parameters. These results suggest that KGE representations can serve as compact and effective signals for graph-to-graph semantic similarity in KGs. Our code is available at https://github.com/SeungRyeolBaek/KG-to-KG-Semantic-Similarity.",
+      "authors": [
+        "Seungryeol Baek",
+        "Wooseok Sim",
+        "Hogun Park"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-28T03:55:22+00:00",
+      "link": "https://arxiv.org/pdf/2606.29180v1",
+      "tags": [
+        "keyword:cdm-sports",
+        "keyword:sports-nlp",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sports-nlp"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evaluates knowledge graph embeddings for graph-level semantic similarity, useful for sports KG construction.",
+      "llm_evidence_cn": "评估知识图谱嵌入在图级语义相似性上的表现，可用于体育知识图谱构建。",
+      "llm_evidence": "评估知识图谱嵌入在图级语义相似性上的表现，可用于体育知识图谱构建。",
+      "canonical_evidence": "评估知识图谱嵌入在图级语义相似性上的表现，可用于体育知识图谱构建。",
+      "llm_tldr_en": "This paper empirically evaluates how well different KG embedding methods capture graph-level semantic similarity, an important task for comparing and matching sports knowledge graphs.",
+      "llm_tldr_cn": "针对现有知识图谱嵌入方法主要关注实体和关系层面、忽视图级语义相似性的问题，该研究评估了多种嵌入方法在测量KG间语义相似性上的能力。实验表明，部分方法能较好地捕捉图级语义，为体育领域知识图谱的构建、比较和融合提供了评估工具。",
+      "llm_tldr": "针对现有知识图谱嵌入方法主要关注实体和关系层面、忽视图级语义相似性的问题，该研究评估了多种嵌入方法在测量KG间语义相似性上的能力。实验表明，部分方法能较好地捕捉图级语义，为体育领域知识图谱的构建、比较和融合提供了评估工具。",
+      "llm_tags": [
+        "query:sports-nlp"
+      ],
+      "matched_query_tag": "query:sports-nlp",
+      "matched_query_text": "constructing knowledge graphs for sports domains",
+      "matched_requirement_id": "req-63",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01395v1",
+      "source": "arxiv",
+      "title": "Rethinking Generic Object Tracking Toward Human-Level Perceptual Intelligence",
+      "abstract": "At the heart of human visual perception lies the ability to maintain a continuous and coherent understanding of the external world. By integrating observations with accumulated experience, the human visual system can continuously adapt to variations in both the target and its surrounding environment, while preserving robust visual continuity as scene dynamics evolve. Human vision can therefore integrate prior knowledge, spatial geometry, and semantic context to understand complex scenes and their changes. As a core problem in computer vision, visual object tracking aims to bring machine perception closer to human visual perception. These capabilities are central to the task of Generic Object Tracking (GOT). In this task, a visual tracker is initialized only with the bounding box of an arbitrarily specified target in the first frame, and must continuously localize the target in subsequent dynamic visual streams. However, future events, observations, and real-world variations are inherently unpredictable; therefore, the model's generalization and online adaptation capabilities remain bottlenecks. Tracking reliability can deteriorate when the target undergoes severe deformation, is affected by complex distractors, encounters significant environmental changes, or belongs to a category unseen during training. This dissertation aims to narrow the gap between machine visual tracking systems and human visual perception by proposing a series of methods that systematically enhance the target discrimination, robust adaptation, and geometric reasoning capabilities of tracking models.",
+      "authors": [
+        "Shih-Fang Chen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG",
+        "cs.MM",
+        "eess.IV"
+      ],
+      "published": "2026-07-01T18:54:00+00:00",
+      "link": "https://arxiv.org/pdf/2607.01395v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes rethinking generic object tracking for human-level perceptual intelligence, applicable to sports player tracking",
+      "llm_evidence_cn": "提出重新思考通用目标跟踪以实现人类级感知智能，可应用于体育运动员跟踪",
+      "llm_evidence": "提出重新思考通用目标跟踪以实现人类级感知智能，可应用于体育运动员跟踪",
+      "canonical_evidence": "提出重新思考通用目标跟踪以实现人类级感知智能，可应用于体育运动员跟踪",
+      "llm_tldr_en": "This paper rethinks generic object tracking by integrating prior knowledge, spatial geometry, and semantic context to mimic human perception, which can improve tracking in sports videos.",
+      "llm_tldr_cn": "本文重新审视了通用目标跟踪任务，指出当前方法在模仿人类视觉智能方面的不足，提出通过整合先验知识、空间几何关系和语义上下文来增强跟踪器的感知能力。具体包括：利用历史观测信息结合场景几何进行空间推理，以及利用语义模型理解场景内容。这种类人感知方法有望大幅提升跟踪在遮挡、形变等挑战下的稳定性，并可直接应用于体育比赛分析中的运动员和球类跟踪，支持战术分析系统。",
+      "llm_tldr": "本文重新审视了通用目标跟踪任务，指出当前方法在模仿人类视觉智能方面的不足，提出通过整合先验知识、空间几何关系和语义上下文来增强跟踪器的感知能力。具体包括：利用历史观测信息结合场景几何进行空间推理，以及利用语义模型理解场景内容。这种类人感知方法有望大幅提升跟踪在遮挡、形变等挑战下的稳定性，并可直接应用于体育比赛分析中的运动员和球类跟踪，支持战术分析系统。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29339v1",
+      "source": "arxiv",
+      "title": "Two kinds of robustness are not the same: disentangling fault tolerance and low-SNR robustness in multi-domain event detection on real data",
+      "abstract": "Reliable event detection underpins induced-seismicity monitoring for Carbon dioxide Capture and Storage (CCS) and geothermal operations, distributed acoustic sensing (DAS), and industrial condition monitoring. In each setting a detector must stay reliable both when sensors fail and when the signal is buried in noise. These two failure modes are routinely conflated, and architectural complexity is often credited with robustness it may not deserve. We assemble a unified binary event-detection benchmark from three physically distinct real sources -- Hi-net seismic waveforms, Utah FORGE 2024 borehole DAS, and MAFAULDA industrial vibration -- each mapped to a common 8-channel, 256-sample representation, and evaluate a fault-tolerant detector (CEPHALON) trained with per-sample sensor-dropout against standard detectors (a 1D convolutional network, a temporal convolutional network, and a compact Transformer) trained with an identical recipe. On clean data every model is near-perfect (AUC ~ 0.99). Under progressive sensor loss, simple models with sensor-dropout are already robust and CEPHALON holds no advantage. Under additive noise, however, CEPHALON degrades far more gracefully: at -2.5 dB its overall AUC is 0.939 versus 0.532-0.572 for the convolutional baselines. Same-architecture ablations isolate the cause: disabling internal redundancy at inference reduces the low-SNR advantage only modestly, whereas removing sensor-dropout training collapses it (0.899 to 0.603 at -5 dB). The training recipe is therefore the dominant cause and parallel redundancy only secondary. We release a complete, numbered, reproducible pipeline so that every figure can be regenerated.",
+      "authors": [
+        "Isao Kurosawa"
+      ],
+      "primary_category": "physics.geo-ph",
+      "categories": [
+        "physics.geo-ph",
+        "cs.LG",
+        "eess.SP"
+      ],
+      "published": "2026-06-28T11:14:20+00:00",
+      "link": "https://arxiv.org/pdf/2606.29339v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sport-tsa",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-domain event detection robustness disentanglement method transfers to sports event detection.",
+      "llm_evidence_cn": "多领域事件检测的鲁棒性解耦方法可迁移至体育视频事件检测。",
+      "llm_evidence": "多领域事件检测的鲁棒性解耦方法可迁移至体育视频事件检测。",
+      "canonical_evidence": "多领域事件检测的鲁棒性解耦方法可迁移至体育视频事件检测。",
+      "llm_tldr_en": "Introduces a benchmark to disentangle fault tolerance from low-SNR robustness in event detection across seismic and industrial data; findings could improve event detection reliability in sports analytics.",
+      "llm_tldr_cn": "针对事件检测中容错与低信噪比鲁棒性常被混淆的问题，构建统一基准来自地震和工业振动数据。通过解耦两种失效模式，揭示架构复杂性与真实鲁棒性的关系。该工作为体育视频事件检测等场景提供了更可靠的鲁棒性评估与改进框架。",
+      "llm_tldr": "针对事件检测中容错与低信噪比鲁棒性常被混淆的问题，构建统一基准来自地震和工业振动数据。通过解耦两种失效模式，揭示架构复杂性与真实鲁棒性的关系。该工作为体育视频事件检测等场景提供了更可靠的鲁棒性评估与改进框架。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Event detection in sports footage",
+      "matched_requirement_id": "req-16",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01918v1",
+      "source": "arxiv",
+      "title": "Zeus: Towards Tuning-Free Foundation Model for Time Series Analysis",
+      "abstract": "We present Zeus, a unified tuning-free Time Series Foundation Model (TSFM) that delivers superior performance across diverse analysis tasks without any task-specific fine-tuning. Unlike prior studies that primarily focus on zero-shot forecasting but require task-specific tuning for other tasks, Zeus bridges this gap by addressing two fundamental challenges in multi-task generalization. First, to reconcile point-level granularity with long-sequence scalability, Zeus incorporates a multi-scale Transformer featuring point-wise tokenization and a U-shaped hierarchy, effectively balancing fine-grained fidelity with computational efficiency. Second, to accommodate varying inductive biases across different tasks, Zeus introduces Multi-Objective Temporal Masking (MOTM), a unified strategy that supports heterogeneous tasks (e.g., extrapolation, interpolation, and global abstraction) within a single framework. Extensive experiments across five representative tasks demonstrate that Zeus consistently achieves competitive results in tuning-free settings, underscoring its potential as a general-purpose TSFM.",
+      "authors": [
+        "Yisong Fu",
+        "Zezhi Shao",
+        "Chengqing Yu",
+        "Yujie Li",
+        "Yongjun Xu",
+        "Xueqi Cheng",
+        "Fei Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-02T09:16:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.01918v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Tuning-free foundation model for time series analysis applicable to sports sensor data",
+      "llm_evidence_cn": "免调参的时间序列基础模型，可应用于体育传感器数据分析",
+      "llm_evidence": "免调参的时间序列基础模型，可应用于体育传感器数据分析",
+      "canonical_evidence": "免调参的时间序列基础模型，可应用于体育传感器数据分析",
+      "llm_tldr_en": "This paper introduces Zeus, a tuning-free time series foundation model that performs well across various analysis tasks without fine-tuning, using a multi-scale Transformer and multi-objective temporal masking, offering a versatile tool for sports time series data.",
+      "llm_tldr_cn": "为解决现有时间序列基础模型在零样本预测外仍需任务特定调优的问题，本文提出Zeus，一个免调参的统一模型。它采用多尺度Transformer和点式分词与U型层次结构平衡细粒度与效率，并引入多目标时序掩码策略以适应不同归纳偏置。在多项任务上超越专用模型，无需任何微调。该模型为体育领域的可穿戴传感器数据、生理信号等时间序列分析提供了即插即用的有力工具。",
+      "llm_tldr": "为解决现有时间序列基础模型在零样本预测外仍需任务特定调优的问题，本文提出Zeus，一个免调参的统一模型。它采用多尺度Transformer和点式分词与U型层次结构平衡细粒度与效率，并引入多目标时序掩码策略以适应不同归纳偏置。在多项任务上超越专用模型，无需任何微调。该模型为体育领域的可穿戴传感器数据、生理信号等时间序列分析提供了即插即用的有力工具。",
+      "llm_tags": [
+        "query:sport-tsa"
+      ],
+      "matched_query_tag": "query:sport-tsa",
+      "matched_query_text": "time series analysis methods applied to sequential sensor data",
+      "matched_requirement_id": "req-33",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2606.29783v1",
+      "source": "arxiv",
+      "title": "FalconTrack: Photorealistic Auto-Labeled Perception and Physics-Aware Vision-Based Aerial Tracking",
+      "abstract": "Vision-based aerial tracking is critical in GPS-denied environments. Reliable perception for tracking depends on large-scale labeled data, yet most photorealistic datasets rely on heavy manual annotation and are time-consuming to produce. We present FalconTrack, a unified perception-and-tracking framework that (i) leverages a photorealistic editable simulator for automated label generation and (ii) combines multi-head perception with physics-aware tracking for zero-shot sim-to-real transfer. FalconTrack provides an automated labeling pipeline in a Gaussian Splatting simulator that isolates target Gaussians from short object videos and composites them with randomized backgrounds to generate RGB, mask, class, and 6-DoF pose labels, producing about 10k labeled images in under 20 minutes. Using this dataset, we train a multi-head perception module with staged learning and reprojection consistency, and fuse its outputs with class-conditioned dynamics priors in an EKF for tracking. Our perception model outperforms two baselines and reaches 96-100% class accuracy in zero-shot sim-to-real transfer on three geometrically diverse objects and two environments, while maintaining consistent performance in unseen simulated and real scenes. In real hardware closed-loop visual tracking, the onboard system runs at about 25 Hz and achieves 100% success in sim-to-real F1-tenth and gate tracking in five trajectories across two environments, while a mask-centered vision baseline drops to 60% success on F1-tenth during fast out-of-view scenarios.",
+      "authors": [
+        "Yan Miao",
+        "Karteek Gandiboyina",
+        "Noah Giles",
+        "Hideki Okamoto",
+        "Bardh Hoxha",
+        "Georgios Fainekos",
+        "Sayan Mitra"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-06-29T05:03:57+00:00",
+      "link": "https://arxiv.org/pdf/2606.29783v1",
+      "tags": [
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Vision-based aerial tracking with physics-aware system for object pose estimation, applicable to sports object tracking.",
+      "llm_evidence_cn": "基于视觉的空中目标跟踪，结合物理感知进行物体姿态估计，可应用于体育目标跟踪。",
+      "llm_evidence": "基于视觉的空中目标跟踪，结合物理感知进行物体姿态估计，可应用于体育目标跟踪。",
+      "canonical_evidence": "基于视觉的空中目标跟踪，结合物理感知进行物体姿态估计，可应用于体育目标跟踪。",
+      "llm_tldr_en": "FalconTrack is a framework for aerial target tracking using a photorealistic simulator for auto-labeling and physics-aware tracking, enabling zero-shot sim-to-real transfer.",
+      "llm_tldr_cn": "FalconTrack提出了一种统一感知与跟踪框架，利用逼真可编辑模拟器自动生成标注，并结合多任务感知和物理感知跟踪，实现零样本仿真到真实迁移。该方法通过高斯溅射模拟器自动生成包含RGB、掩膜、类别和六自由度姿态的标注数据，显著减少人工标注成本，为GPS受限环境中的目标跟踪提供可靠方案。",
+      "llm_tldr": "FalconTrack提出了一种统一感知与跟踪框架，利用逼真可编辑模拟器自动生成标注，并结合多任务感知和物理感知跟踪，实现零样本仿真到真实迁移。该方法通过高斯溅射模拟器自动生成包含RGB、掩膜、类别和六自由度姿态的标注数据，显著减少人工标注成本，为GPS受限环境中的目标跟踪提供可靠方案。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.02046v1",
+      "source": "arxiv",
+      "title": "Fast and Accurate Anomaly Detection in Time Series",
+      "abstract": "Anomaly detection is a critical and evolving field in Machine Learning, with applications targeting different domains such as cybersecurity, finance, healthcare, manufacturing and IoT (Internet of Things) systems. Traditionally, anomaly detection algorithms have been designed using both supervised and unsupervised learning paradigms. The fundamental challenge in real-world anomaly detection scenarios is related to the inherent class imbalance (anomalies are typically rare) and, for supervised methods, to the scarcity of labelled anomalous data. Indeed, labelling is both expensive and time-consuming. Conversely unsupervised methods do not require labelling, but may suffer from high false positive rates when deployed in safety-critical applications. In this work we introduce a novel unsupervised algorithm for anomaly detection in time series based on the Haar discrete wavelet and a suitably designed $t$-test. We establish the theoretical foundation of the proposed $t$-test and, through extensive experimentation across 343 datasets, demonstrate that our algorithm outperforms state-of-the-art unsupervised and self-supervised benchmarks.",
+      "authors": [
+        "Emanuele Mele",
+        "Massimo Cafaro",
+        "Angelo Coluccia",
+        "Italo Epicoco"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-02T11:14:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.02046v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Novel time series anomaly detection method applicable to sports sensor data for identifying unusual patterns.",
+      "llm_evidence_cn": "新型时间序列异常检测方法，可应用于体育传感器数据识别异常模式。",
+      "llm_evidence": "新型时间序列异常检测方法，可应用于体育传感器数据识别异常模式。",
+      "canonical_evidence": "新型时间序列异常检测方法，可应用于体育传感器数据识别异常模式。",
+      "llm_tldr_en": "Introduces a fast and accurate anomaly detection algorithm for time series, addressing class imbalance and scarce labels, which can be applied to sports data for injury prediction or performance anomaly detection.",
+      "llm_tldr_cn": "针对时间序列异常检测中类别不平衡和标注困难的问题，提出一种快速准确的无监督异常检测算法，利用新颖的检测机制实现高时效性和低误报率，在多个基准数据集上验证了性能，可迁移应用于体育传感器数据分析，助力运动损伤预警和表现异常监测。",
+      "llm_tldr": "针对时间序列异常检测中类别不平衡和标注困难的问题，提出一种快速准确的无监督异常检测算法，利用新颖的检测机制实现高时效性和低误报率，在多个基准数据集上验证了性能，可迁移应用于体育传感器数据分析，助力运动损伤预警和表现异常监测。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "anomaly detection in sports data",
+      "matched_requirement_id": "req-25",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-11-23-689997-v3",
+      "source": "biorxiv",
+      "title": "Deep-Pose-Tracker: an automated behavioural analysis framework for Caenorhabditis elegans",
+      "abstract": "Tracking and analyzing animal behaviour is a crucial step in fields such as neuroscience and developmental biology. Behavioural studies in the nematode C. elegans, for example, help in understanding how organisms respond to external cues and how the specific physiological responses link to either instantaneous or learned behaviours. Although tracking behaviour through locomotion patterns and postural dynamics is routine, it becomes laborious and time-consuming when performed manually. Automation of this process is therefore crucial for accurate and fast detection and analysis. To this end, we report Deep-Pose-Tracker (DPT), a YOLO (You Only Look Once)-based model for automated pose detection of C. elegans from videos and images. The module is further utilized for several downstream analysis algorithms to quantify essential behavioural features, including locomotion speed, orientation, forward or reverse locomotion, and complex body bends such as omega turns. In addition, it includes eigenworms decomposition to represent complex posture dynamics in a low-dimensional space. The model shows reliable performance on the validation and test datasets, with high inference speed, while being user-friendly. DPT, therefore, can be a valuable toolkit for automated behavioural quantification of C. elegans under varying experimental stimuli.",
+      "authors": [
+        "Saha, D.",
+        "Chaudhary, S.",
+        "Vyas, D.",
+        "Ghosh-Roy, A.",
+        "Sharma, R."
+      ],
+      "primary_category": "animal behavior and cognition",
+      "categories": [
+        "animal behavior and cognition"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.11.23.689997v3.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "YOLO-based automated pose detection for C. elegans, transferable to human pose estimation",
+      "llm_evidence_cn": "基于YOLO的自动姿态检测用于线虫，可迁移至人体姿态估计",
+      "llm_evidence": "基于YOLO的自动姿态检测用于线虫，可迁移至人体姿态估计",
+      "canonical_evidence": "基于YOLO的自动姿态检测用于线虫，可迁移至人体姿态估计",
+      "llm_tldr_en": "Introduces Deep-Pose-Tracker, a YOLO-based model for automated posture detection in C. elegans from videos, achieving fast and accurate analysis; methodology applicable to sports pose estimation.",
+      "llm_tldr_cn": "针对秀丽隐杆线虫行为分析中人工姿态检测耗时耗力的问题，提出基于YOLO的Deep-Pose-Tracker自动化框架。该方法从视频中快速且准确地检测线虫姿态，其核心姿态估计技术可迁移应用于体育运动中的人体姿态分析。",
+      "llm_tldr": "针对秀丽隐杆线虫行为分析中人工姿态检测耗时耗力的问题，提出基于YOLO的Deep-Pose-Tracker自动化框架。该方法从视频中快速且准确地检测线虫姿态，其核心姿态估计技术可迁移应用于体育运动中的人体姿态分析。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Human pose estimation in sports videos",
+      "matched_requirement_id": "req-11",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-26-734808-v1",
+      "source": "biorxiv",
+      "title": "Feasibility and repeatability of MEG-compatible patellar-tendon stimulator for eliciting knee-joint proprioceptive cortical responses",
+      "abstract": "Background Cortical processing of the knee-joint proprioception is largely unknown. Magnetoencephalography (MEG) can be used to quantify the cortical processing of the proprioceptive afference, but MEG-compatible and well-controlled stimulation of the knee joint is technically challenging, and thus has received less attention. New method We introduced a novel MEG-compatible stimulator that delivers controlled patellar tendon stretches to activate muscle afferent of the knee extensors. The stimulus intensity is adjustable, allowing graded activation of proprioceptive input and, when required, elicitation of the patellar-tendon reflex. Results The novel stimulator elicited clear muscular and cortical responses in both intensity conditions. Cortical responses demonstrated moderate to excellent intersession reliability for peak evoked field amplitude (ICC: 0.69--0.96), beta suppression (0.89--0.90) and beta rebound (0.96--0.97). Notably, beta suppression peaked more laterally than expected in both hemispheres. Peak EMG amplitudes in VL and VM muscles were reliable for both intensity conditions (ICC: 0.66--0.89), and stimulus kinematics remained consistent throughout measurements. Comparison with existing methods Previous robotic or motor-driven devices have been used to evoke cortical responses to knee-joint proprioceptive stimulation, but mechanical coupling across adjacent joints may limit knee-specific input. The present stimulator provides mechanically simple and MEG-compatible alternative that targets knee extensor afferents more directly, reduces distal joint involvement. Conclusion The novel stimulator is a feasible and repeatable tool to study cortical processing of proprioceptive afference from the knee-joint using MEG. The spatially unexpected beta rhythm suppression suggests that knee-joint proprioceptive afference may involve more unique sensorimotor cortical neuronal network than previously recognized.",
+      "authors": [
+        "Li, F.",
+        "Byman, A.",
+        "Chen, J.",
+        "Mujunen, T.",
+        "Piitulainen, H."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.26.734808v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "A novel stimulator for knee-joint proprioception studies, relevant to exercise physiology and motor control in sports.",
+      "llm_evidence_cn": "新型膝关节本体感觉刺激器，用于研究运动控制和运动生理学。",
+      "llm_evidence": "新型膝关节本体感觉刺激器，用于研究运动控制和运动生理学。",
+      "canonical_evidence": "新型膝关节本体感觉刺激器，用于研究运动控制和运动生理学。",
+      "llm_tldr_en": "This paper presents a novel MEG-compatible patellar-tendon stimulator for investigating knee-joint proprioceptive cortical processing. It demonstrates feasibility and repeatability, enabling graded activation of proprioceptive input and reflex elicitation, which is important for understanding motor function in sports.",
+      "llm_tldr_cn": "该研究针对膝关节本体感觉皮层处理机制尚不明确的现状，开发了一种新型MEG兼容的髌腱刺激器，可精确控制肌腱拉伸以激活膝伸肌本体传入。实验验证了刺激器能引发清晰的肌肉和皮层反应，且具有良好的可重复性，为运动科学中探究本体感觉在运动控制中的作用提供了新的研究工具。",
+      "llm_tldr": "该研究针对膝关节本体感觉皮层处理机制尚不明确的现状，开发了一种新型MEG兼容的髌腱刺激器，可精确控制肌腱拉伸以激活膝伸肌本体传入。实验验证了刺激器能引发清晰的肌肉和皮层反应，且具有良好的可重复性，为运动科学中探究本体感觉在运动控制中的作用提供了新的研究工具。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-04-30-721950-v2",
+      "source": "biorxiv",
+      "title": "Automated behavioral segmentation and markerless pose tracking of mice during spaceflight",
+      "abstract": "The NASA Rodent Habitat aboard the International Space Station enabled long-duration studies of behavioral responses to spaceflight, but video-based behavioral analysis has relied on laborious manual annotation. No study has tested whether deep learning tools can automate this analysis under the demanding imaging conditions of orbital vivaria. We applied pose estimation (SLEAP) and behavioral segmentation (DeepEthogram) to archival footage from the Rodent Research-1 mission. Nine labelers annotated 3,249 pose labels across 2,063 frames, and three behaviorists labeled 411,194 frames across 66 videos. Pose tracking accuracy approximated human inter-annotator variability despite progressive lens soiling, grid occlusions, and spherical aberration. Behavioral classification across eight categories achieved accuracy of 0.86-0.90 and suggests progressive behavioral adaptations to microgravity. Kinematic reconstruction of circling estimated centripetal accelerations periodically approaching 1g. This is the first application of deep learning-based pose estimation and behavioral segmentation to rodents in spaceflight, establishing benchmarks for future monitoring systems.",
+      "authors": [
+        "Kiffer, F. C.",
+        "Scott, R. T.",
+        "Martens, M. T.",
+        "Mayo, A.",
+        "Li, Y.",
+        "Mendoza, M.",
+        "Gautam, S.",
+        "Huang, J.",
+        "Bathwal, M.",
+        "Jaikumar, S.",
+        "Mahajan, A.",
+        "Sanders, L. M.",
+        "Eisch, A. J.",
+        "Pereira, T. D."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.04.30.721950v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "applies markerless pose estimation (SLEAP) to track animal behavior, techniques transferable to human pose estimation",
+      "llm_evidence_cn": "应用无标记姿态估计追踪动物行为，技术可迁移至人体姿态估计",
+      "llm_evidence": "应用无标记姿态估计追踪动物行为，技术可迁移至人体姿态估计",
+      "canonical_evidence": "应用无标记姿态估计追踪动物行为，技术可迁移至人体姿态估计",
+      "llm_tldr_en": "Demonstrates deep learning pose estimation (SLEAP) and behavioral segmentation on mice in spaceflight, achieving tracking accuracy comparable to humans despite challenging conditions; methods can be adapted for sports pose estimation.",
+      "llm_tldr_cn": "在太空飞行小鼠视频中应用深度学习姿态估计（SLEAP）和行为分割（DeepEthogram），在镜头污损、遮挡等困难条件下追踪精度接近人工标注。该方法为无标记姿态追踪提供了可靠方案，并可迁移至体育人体姿态估计任务。",
+      "llm_tldr": "在太空飞行小鼠视频中应用深度学习姿态估计（SLEAP）和行为分割（DeepEthogram），在镜头污损、遮挡等困难条件下追踪精度接近人工标注。该方法为无标记姿态追踪提供了可靠方案，并可迁移至体育人体姿态估计任务。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Human pose estimation in sports videos",
+      "matched_requirement_id": "req-11",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-26-734741-v1",
+      "source": "biorxiv",
+      "title": "Can exercise training improve mitochondrial thermal responses in rainbow trout cardiomyocytes?",
+      "abstract": "Climate-driven warming is challenging the physiological limits of aquatic ectotherms, with cardiac performance emerging as one of the key determinants of thermal tolerance. Cardiac function relies on mitochondrial ATP production, and mitochondrial dysfunction has been linked to cardiac failure at critical temperatures. However, mitochondria are plastic and may represent a target for interventions aimed at improving thermal tolerance in fish. Exercise training improves whole-animal performance in fish, including cardiac thermal performance, and improves mitochondrial function in other taxa. However, its effects on the thermal sensitivity of cardiac mitochondria remain unknown. This study investigated whether exercise-training alters cardiac mitochondrial performance at optimal and critical temperatures in rainbow trout Oncorhynchus mykiss. Farmed rainbow trout were subjected to a four-week exercise training regime, while control fish remained under standard rearing conditions. Cardiac mitochondrial respiration was assessed in permeabilised heart fibres at 16{degrees}C (optimal growth temperature) and 26{degrees}C (temperature associated with cardiac arrhythmia) and several biochemical and nuclear indicators were measured. No significant differences were detected between treatments for any measured variable. However, trained fish generally exhibited higher maximal respiratory capacities and respiratory control ratios, particularly at the elevated temperature, suggesting subtle improvements in mitochondrial function despite considerable inter-individual variation. Temperature influenced mitochondrial performance, increasing proton leak and reducing coupling efficiency. These findings demonstrate that cardiac mitochondrial function is thermally sensitive and represents a potential targeted for improving thermal resilience in aquaculture species.",
+      "authors": [
+        "Prescott, L.",
+        "Le, T.",
+        "Seppanen, E.",
+        "Henttinen, T.",
+        "Anttila, K."
+      ],
+      "primary_category": "physiology",
+      "categories": [
+        "physiology"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.26.734741v1.full.pdf",
+      "tags": [
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sports-sci",
+        "query:sport-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Examines exercise training effects on mitochondrial thermal sensitivity in fish heart, modeling physiological adaptation.",
+      "llm_evidence_cn": "研究运动训练对鱼类心脏线粒体热敏感性的影响，模拟生理适应。",
+      "llm_evidence": "研究运动训练对鱼类心脏线粒体热敏感性的影响，模拟生理适应。",
+      "canonical_evidence": "研究运动训练对鱼类心脏线粒体热敏感性的影响，模拟生理适应。",
+      "llm_tldr_en": "This study investigates whether exercise training alters mitochondrial thermal responses in rainbow trout cardiomyocytes, providing insights into exercise-induced physiological adaptation at the organelle level.",
+      "llm_tldr_cn": "为探究运动训练能否改善心脏线粒体热耐受性，该研究以虹鳟鱼为模型，通过运动训练干预，测量心肌细胞线粒体在不同温度下的功能变化。结果揭示了运动对线粒体热响应的可塑性，为理解运动引起的生理适应提供了亚细胞层面的证据，对极端环境下的运动生理学研究有参考意义。",
+      "llm_tldr": "为探究运动训练能否改善心脏线粒体热耐受性，该研究以虹鳟鱼为模型，通过运动训练干预，测量心肌细胞线粒体在不同温度下的功能变化。结果揭示了运动对线粒体热响应的可塑性，为理解运动引起的生理适应提供了亚细胞层面的证据，对极端环境下的运动生理学研究有参考意义。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "Physiological responses and adaptations to acute and chronic exercise",
+      "matched_requirement_id": "req-79",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

@@ -1,0 +1,1682 @@
+Title: 4346048
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.26.734741v1.full.pdf
+
+Published Time: Fri, 03 Jul 2026 23:51:47 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+Title: Can exercise training improve mitochondrial thermal responses in rainbow trout 1
+
+cardiomyocytes? 2
+
+3
+
+Running Title: Exercise training and mitochondrial thermal responses 4
+
+5
+
+Authors: Leteisha A. Prescott 1,2,3,4 , Thuy Le 4 , Eila Seppänen 5 , Tiina Henttinen 4 , Katja 6
+
+Anttila 4
+
+7
+
+8
+
+Affiliations: 9 
+
+> 1
+
+Cawthron Institute, Nelson 7010, New Zealand 10  
+
+> 2
+
+Institute for Marine and Antarctic Studies, University of Tasmania, Hobart, TAS 7001, 11 
+
+Australia 12  
+
+> 3
+
+Blue Economy Cooperative Research Centre, PO Box 897, Launceston, TAS 7250, 13 
+
+Australia 14  
+
+> 4
+
+Department of Biology, University of Turku, Turku, Finland 15  
+
+> 5
+
+Natural Resources Institute Finland (Luke), Enonkoski, Finland 16 
+
+Corresponding author: Leteisha Prescott, Leteisha.prescott@cawthron.org.nz 17 
+
+18 
+
+19 
+
+Keywords: sustained swimming, cellular respirometry, bioenergetics, heat stress, salmonids, 20 
+
+heart 21 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+1. Abstract 22 
+
+Climate-driven warming is challenging the physiological limits of aquatic ectotherms, with 23 
+
+cardiac performance emerging as one of the key determinants of thermal tolerance. Cardiac 24 
+
+function relies on mitochondrial ATP production, and mitochondrial dysfunction has been 25 
+
+linked to cardiac failure at critical temperatures. However, mitochondria are plastic and may 26 
+
+represent a target for interventions aimed at improving thermal tolerance in fish. Exercise 27 
+
+training improves whole-animal performance in fish, including cardiac thermal performance, 28 
+
+and improves mitochondrial function in other taxa. However, its effects on the thermal 29 
+
+sensitivity of cardiac mitochondria remain unknown. This study investigated whether 30 
+
+exercise-training alters cardiac mitochondrial performance at optimal and critical 31 
+
+temperatures in rainbow trout Oncorhynchus mykiss . Farmed rainbow trout were subjected to 32 
+
+a four-week exercise training regime, while control fish remained under standard rearing 33 
+
+conditions. Cardiac mitochondrial respiration was assessed in permeabilised heart fibres at 34 
+
+16°C (optimal growth temperature) and 26°C (temperature associated with cardiac 35 
+
+arrhythmia) and several biochemical and nuclear indicators were measured. No significant 36 
+
+differences were detected between treatments for any measured variable. However, trained 37 
+
+fish generally exhibited higher maximal respiratory capacities and respiratory control ratios, 38 
+
+particularly at the elevated temperature, suggesting subtle improvements in mitochondrial 39 
+
+function despite considerable inter-individual variation. Temperature influenced 40 
+
+mitochondrial performance, increasing proton leak and reducing coupling efficiency. These 41 
+
+findings demonstrate that cardiac mitochondrial function is thermally sensitive and represents 42 
+
+a potential targeted for improving thermal resilience in aquaculture species. 43 
+
+44 
+
+2. Summary Statement 45 
+
+Exercise training did not significantly alter cardiac mitochondrial function in rainbow trout 46 
+
+but small improvements were observed under heat stress, suggesting modest improvements in 47 
+
+mitochondrial function despite considerable inter-individual variation. 48 
+
+49 
+
+3. Introduction 50 
+
+Anthropogenic climate change is causing significant negative impacts to aquatic 51 
+
+environments. For aquatic ectotherms, warming waters dictate nearly all physiological 52 
+
+processes and some species are now experiencing temperatures that surpass their thermal 53 
+
+limits compromising health and increasing susceptibility to morbidity and mortality (Rummer 54 
+
+et al., 2014). The teleost heart is extremely sensitive to heat stress, where changes in 55 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+temperature can limit cardiac output, a key determinate of a fish’s thermal tolerance (Eliason 56 
+
+and Anttila, 2017). When temperatures exceed an organism’s sustainable temperature zone, 57 
+
+several molecular mechanisms are impacted, implicating cellular and organ functions, and 58 
+
+can subsequently lead to organism death (Ekström et al., 2025; Ern et al., 2023). 59 
+
+60 
+
+Cardiac functions are highly dependent on sustained aerobic ATP production through 61 
+
+mitochondrial oxidative phosphorylation (Brieske et al., 2025; Long et al., 2022) and 62 
+
+therefore mitochondrial dysfunction at elevated temperatures is a concern for cardiac 63 
+
+function. Elevated temperatures are particularly detrimental to complex I performance, 64 
+
+causing declines in mitochondrial oxidative phosphorylation efficiency mainly because of 65 
+
+increased proton leak (Gerber et al., 2020; Hilton et al., 2010; Iftikar and Hickey, 2013; 66 
+
+Iftikar et al., 2015; Leo et al., 2017; Michaelsen et al., 2021; Pichaud et al., 2017). Declines in 67 
+
+mitochondrial oxidative phosphorylation efficiency at elevated temperatures corresponds 68 
+
+with temperatures that cause cardiac arrhythmia and is thought to be one of the key 69 
+
+contributors to heat failure of heat-stressed fish (Hilton et al., 2010; Iftikar and Hickey, 2013; 70 
+
+Iftikar et al., 2015). 71 
+
+72 
+
+Mitochondria are, however, a highly plastic organelle and by manipulating mitochondrial 73 
+
+performance could provide an alternative avenue to improving organism performance. 74 
+
+Indeed, strategies enhancing mitochondrial performance (termed mitochondrial therapies) are 75 
+
+emerging in various industries to improve whole organism performance and health. For 76 
+
+example, breeding, exercise training, and nutrition are all proven strategies used as 77 
+
+mitochondrial therapies appearing in medicine (Bishop et al., 2014; Conley, 2016; Coutinho 78 
+
+et al., 2017; Faria et al., 2023; Hsu et al., 2022; Kumar et al., 2024; Yu et al., 2023), as well 79 
+
+as livestock (Algothmi et al., 2024; Brajkovic et al., 2023; García-Roche et al., 2022; 80 
+
+Lapointe, 2014; Peng et al., 2021; Sanglard et al., 2023; Slaska et al., 2016; Srirattana and St 81 
+
+John, 2017; Toyomizu et al., 2019; Wang et al., 2015) and equine (Algothmi et al., 2024; 82 
+
+García-Roche et al., 2022; Lapointe, 2014; Peng et al., 2021) production. The role of 83 
+
+mitochondrial therapies in aquatic production, such as finfish farming, remains elusive, 84 
+
+despite these interventions being adaptable to commercial practices. 85 
+
+86 
+
+Exercise training could present as a promising tool for enhancing mitochondrial function in 87 
+
+fish given moderate exercise has led to improvements in fish performance at the whole-88 
+
+organism level (Davison and Herbert, 2013; Espírito-Santo et al., 2026; McKenzie et al., 89 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+2020; Rodgers and Gomez Isaza, 2023a) and in other taxa, exercise has been shown to 90 
+
+improve mitochondrial function (Bishop et al., 2014; Broome et al., 2022; Chen et al., 2021; 91 
+
+Farhat et al., 2020; Jacobs et al., 2013; Zoladz et al., 2017). Exercise training with 92 
+
+domesticated fish stocks enables multiple benefits and cross-tolerance abilities (Rodgers and 93 
+
+Gomez Isaza, 2023b; Rodgers and Gomez Isaza, 2024). Exercise training enhances growth 94 
+
+(Castro et al., 2011; Davison and Herbert, 2013; Palstra and Planas, 2011; Ytrestoyl et al., 95 
+
+2020), feed efficiency (Prescott et al., 2024b), athleticism (Prescott et al., 2023), disease 96 
+
+resistance (Castro et al., 2011; Castro et al., 2013; Tierney and Farrell, 2004), immunity (Liu 97 
+
+et al., 2018), recovery efficiency (McKenzie et al., 2012), cardiac performance (Farrell et al., 98 
+
+1990; Farrell et al., 1991; Nilsen et al., 2019; Zhang et al., 2016), as well as thermal (Anttila 99 
+
+et al., 2014; Pettinau et al., 2022) and hypoxia tolerance (Fu et al., 2011). However, very few 100 
+
+studies have attributed these exercise-enhanced phenotypes to the underlying cellular 101 
+
+changes, such as enhanced mitochondrial function (Chen et al., 2021; Farhat et al., 2020), and 102 
+
+as far as we know, no study has yet investigated how training could affect the thermal 103 
+
+sensitivity of mitochondria. Exercise training could influence mitochondrial dynamics 104 
+
+(fission-fusion), biogenesis, oxidative stress resistance, and/or ATP synthesis, all of which 105 
+
+could enhance mitochondrial ATP production. 106 
+
+107 
+
+Equipping fish with the physiological abilities to maintain function in the face of warming 108 
+
+waters is essential to the future and success of aquaculture and conservation restocking 109 
+
+programs. Globally, the aquaculture industry, particularly companies farming in nearshore 110 
+
+sea pens, shallow ponds, and/or tanks with minimal temperature control are significantly 111 
+
+impacted by the effects of warming waters and marine heatwaves. Heat-stress mortality 112 
+
+events are frequently reported by farmers during summer months (Broekhuizen et al., 2021; 113 
+
+Howarth et al., 2025; IPCC, 2022), and new adaptive measures are needed to safeguard fish 114 
+
+welfare and industry sustainability. This study evaluates exercise training as a tool to 115 
+
+modulate mitochondrial fitness and determines if exercise-enhanced mitochondrial fitness 116 
+
+improves mitochondrial thermal performance and thereby lends support to whole-organism 117 
+
+thermal tolerance. By combining in situ functional measurements with molecular tools for 118 
+
+abundance estimates, our study provides insight into one possible strategy to shape 119 
+
+mitochondrial fitness in finfish. 120 
+
+121 
+
+4. Materials and Methods 122 
+
+123 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Ethics statement 124 
+
+The experiments were done according to permit administered by the National Project 125 
+
+Authorisation Board (Permit Number ESAVI-25297-2023). 126 
+
+127 
+
+Animal husbandry 128 
+
+The experimental procedures were conducted at the hatchery of the Natural Resources 129 
+
+Institute Finland (Luke, Enonkoski, Finland) during summer 2024. Rainbow trout were 130 
+
+initially reared in 130,000 L circular tanks and were moved to experimental tanks (1,650 L) 131 
+
+on the 27 th May 2024 where they were kept under ambient temperature, oxygen, and light 132 
+
+conditions until experiment started. Temperature and dissolved oxygen were measured daily. 133 
+
+Water flow within the rearing tanks were maintained around 10 cm s -1 . The fish were fed ad 134 
+
+libitum with a commercial feed optimised for rainbow trout (Ova 7S, Alltech Fennoaqua, 135 
+
+Raisio, Finland). 136 
+
+137 
+
+From the 29th – 31 st July, fish were randomly distributed across six experimental tanks 138 
+
+(1,000 L); three control tanks and three exercise treatment tanks. To minimise handling 139 
+
+stress, three fish were sacrificed to obtain an approximate fish size; fork length was 40.3 ± 140 
+
+0.07 cm and weight was 955 ± 1.25 g (means ± s.e.m.). The exercise treatment tanks were 141 
+
+fitted with two pumps (Neptun NCTP-O 5000, 60W, 5000 L h -1 , Bauhaus, Mannheim, 142 
+
+Germany) on the inside wall next to the water inlet. The two pumps were turned on and the 143 
+
+incoming water was fully opened for six h each weekday to generate higher flows for 144 
+
+exercising the fish. The average flow during these periods was 40 ± 0.36 cm s -1 and 10 ± 0.19 145 
+
+cm s -1 for the exercise treatment and control, respectively. The exercise tanks during periods 146 
+
+of rest exhibited flow speeds equal to the control group. Water speeds were measured twice 147 
+
+per week for the entire four weeks of exercise training. 148 
+
+149 
+
+Mitochondrial respiration 150 
+
+From the 30 th of August till the 8 th of September, mitochondrial respiration at two 151 
+
+temperatures were measured on cardiac tissue from thirteen control and fifteen exercise 152 
+
+trained fish. The two temperatures were 16°C and 23°C, and were chosen as they correspond 153 
+
+to the optimal growth temperature (Jobling, 1981) for rainbow trout and temperatures that 154 
+
+induce cardiac arrhythmia (unpublished data from this study; Pettinau et al., 2022). A control 155 
+
+and exercise trained fish were netted out of the experimental tank and were killed with a blunt 156 
+
+cranial blow. The fish’s fork length and weight were measured and recorded, and the heart 157 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+was carefully excised, where the apex was placed in ice-cold BIOPS (2.77 mM CaK 2 EGTA, 158 
+
+7.23 mM K 2 EGTA, 5.77 mM Na 2 ATP, 6.56 mM MgCl 2 , 20 mM Taurine, 15 mM 159 
+
+Na 2 phosphocreatine, 20 mM imidazole, 0.5 mM dithiothreitol, 50 mM MES, pH7.1), and two 160 
+
+small sections were flash frozen in liquid nitrogen for later analyses. 161 
+
+162 
+
+The heart tissue submerged in BIOPS was gently teased apart using forceps to isolate fibres. 163 
+
+Heart fibres were transferred into 2 mL ice-cold BIOPS with 20 μL of saponin on a shaker 164 
+
+for 30 min for myocyte permeabilisation. The fibres were transferred into 2 mL of 165 
+
+mitochondrial respiration media (MiR05; 0.5 mM EGTA, 3mM MgCl 2, 60 mM lactobionic 166 
+
+acid, 20 mM taurine, 10 mM KH 2 PO 4, 20 mM HEPES, 11 mM D-Sucrose, 1g L -1 BSA, pH 167 
+
+7.1) and rinsed for 10 min. Fibres were blotted dry on a KimWipe, weighed, and ~1 mg tissue 168 
+
+loaded into each chamber of the O2K Oroboros oxygraphs (Innsbruck, Austria). 169 
+
+170 
+
+Two O2K Oroboros oxygraphs were used for simultaneous measurements of mitochondrial 171 
+
+respiration at 16°C and 23°C. The oxygraph chambers were filled with 2 mL MiR05, allowed 172 
+
+to aerate before oxygen sensors were calibrated prior to each experiment. Oxygen gas was 173 
+
+injected into the chamber using a syringe to supersaturate the BIOPS solution ( x  ± S.E. = 174 
+
+535 ± 9 μM O 2 ) and ensure oxygen did not become limited during the substrate, inhibitors, 175 
+
+and uncouplers titration (SUIT) protocol. Respiration rates attributed to leak (non-176 
+
+phosphorylating) state for Complex I (Leak) were measured in the presence of 10 mM 177 
+
+glutamate, 2 mM malate, and 15 mM pyruvate, followed by oxidative phosphorylation (CI-178 
+
+OXPHOS) with 12.5 mM ADP. Cytochrome C (10 μM) was added to evaluate the functional 179 
+
+integrity of the outer mitochondrial membrane, where six fish exhibited respiration rates that 180 
+
+increased by 15%. These fish remained in the analysis since respiration rates were only 181 
+
+increased in one of the measurement temperatures (16°C: one control fish; 23°C: two trained 182 
+
+and three control fish). To measure maximum phosphorylating state (CI-CII-OXPHOS) 15 183 
+
+mM succinate was added. Oligomycin (5 μM) was added and respiration rates were allowed 184 
+
+to stabilise for ~20 min, inhibiting ATP synthase (Complex V) and measuring non-185 
+
+phosphorylating state IV (Leak Omy ). Carbonyl cyanide p-(trifluoro-methoxy) phenyl-186 
+
+hydrazone (FCCP) was titrated in steps of 2.5 μM and subsequent 0.5 μM until respiration 187 
+
+rates plateau to uncouple respiration of Complex I and Complex II as a measure of maximum 188 
+
+electron transport system (ETS) capacity. Rotenone (2 μM) was added to inhibit Complex I, 189 
+
+measuring electron input through Complex II in an uncoupled state (CII). Residual oxygen 190 
+
+consumption was measured by inhibiting Complex II with the addition of antimycin A (15 191 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+μM). Maximal capacity of complex IV was measured by raising respiration rates with 192 
+
+ascorbate (3.2 mM) and N,N,N’,N’- tetramethyl-p-phenylenediamine dihydrochloride 193 
+
+(TMPD; 2 mM). 194 
+
+195 
+
+Respiration rates were extracted from DatLab (DL7) as average mass-specific mitochondrial 196 
+
+respiration rates (pmol O 2 s -1 mg -1 ). Routine control ratio (RCR) was later calculated as: 197 
+
+RCR =    
+
+, (1). 198 
+
+Leak control ratio (LCR) was calculated as: 199 
+
+LCR =   
+
+, (2). 200 
+
+OXPHOS efficiency was calculated as: 201 
+
+OXPHOS efficiency =      ㉤㊈㌀ 
+
+>   
+
+, (3). 202 
+
+203 
+
+Enzyme activity assays 204 
+
+Citrate synthase (CS) and lactate dehydrogenase (LDH) activities were measured from flash 205 
+
+frozen heart samples from the same fish used to measure mitochondrial respiration. Frozen 206 
+
+heart samples were weighed and chilled homogonisation buffer (50 mM HEPES, 1 mM 207 
+
+EDTA, 0.1% Triton-X, pH 7.4, volume = 19 × tissue weight) were added along with two 208 
+
+metal beads, prior to homogenising (2 min at 30 Hz) using a TissueLyser at 4°C. For CS, 15 209 
+
+μL of homogenate was added to 35 μL of 50 mM Tris-solution (pH 8.0) and for LDH, 7 μL 210 
+
+of homogenate was added to 43 μL of 50 mM Tris-solution (pH 7.4). Citrate synthase activity 211 
+
+was measured using a 384-plate containing 2.5 μL homogenate, 5 μL oxaloacetate (OA; 212 
+
+5mM), and 46 μL of reaction buffer (5 mM Tris, 2 mM DTNB, 12 mM Acetyl CoA, pH 8) at 213 
+
+412 nm and 23°C for 3 min using BioTek Synergy H1 Multimode Reader (Agilent BioTek, 214 
+
+USA). Lactate dehydrogenase activity was measured using a 384-plate containing 2.5 μL 215 
+
+homogenate and 24 μL NADH (0.5 mM in Tris, pH 7.4) incubated for 6 min on a plate 216 
+
+shaker before adding 24 μL of pyruvate (50 mM in 0.5 mM of NADH) and measured at 340 217 
+
+nm and 23°C for 3 min using BioTek Synergy H1 Multimode Reader (Agilent BioTek, 218 
+
+USA). CS and LDH activity were expressed as μmol enzyme mg protein -1 min -1 , where 219 
+
+protein concentration was measured from both homogenates per sample. Protein 220 
+
+concentrations were measured spectrophotometrically with a bicinchoninic acid assay kit 221 
+
+(ThermoFisher, Waltham, MA, USA) following manufacturers protocol. 222 
+
+223 
+
+Mitochondrial to nuclear DNA ratio 224 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+DNA was extracted from frozen cardiac tissue samples using MACHEREY-NAGEL 225 
+
+Genomic DNA purification kit (Thermo Scientific) following manufactures protocol. The 226 
+
+DNA concentrations and purity were determined using a NanoDrop 200 (Thermo Scientific). 227 
+
+For amplification of single copy nuclear gene, recombination activating 1 (Rag1), the 228 
+
+following forward and reverse primer were used respectively: 5’-229 
+
+ATCCGGGTCAACACATTCCT-3’, 5’-CAATGATCCCCACATGGAG-’3. For the 230 
+
+amplification of single copy mitochondrial gene, NADH dehydrogenase subunit 1 (mt-nd1), 231 
+
+the following forward and reverse primer were used respectively: 5’-232 
+
+TAGCATACATTGTACCCGTTCTGTTAGCAG-3’, 5’-233 
+
+AATAGTTTTAGGCCGTCTGCGATGG-3’. The qPCR reactions were performed using 96-234 
+
+QuantStudioTM 12K Flex Real-Time PCR System (Thermo Scientific) with reaction volume 235 
+
+of 20 μL with 0.5ng μL -1 of DNA and final primer concentrations of 0.2 μM and 10 μL of 236 
+
+SensiFAST™ SYBR lo-ROX (Bioline). The qPCR reactions for the two genes from each 237 
+
+sample were ran in triplicate on the same plate. DNA standards were for determination of 238 
+
+amplification efficiency and reference sample for determining gene copy number were 239 
+
+performed on a separate plate. The qPCR conditions were pre-amplification 95°C for 5 min, 240 
+
+amplification 45 * (95°C for 10 s, 59°C for 10 s, 72°C for 20 s), melting curve 95°C for 5 s, 241 
+
+61°C for 1 min, gradual increase to 95°C for 15 s. Following methods defined in Quiros et al. 242 
+
+(2017), mitochondrial to nuclear DNA ratio was calculated as: 243 
+
+mtDNA:nDNA = 2  2   , (4). 244 
+
+245 
+
+where ΔCt was calculated as: 246 
+
+> Δ
+
+Ct =       , (5). 247 
+
+248 
+
+Cardiac Energy content 249 
+
+Cardiac energy reserves in control and trained rainbow trout were evaluated by measuring 250 
+
+heart glucose, glycogen, lipid, and protein concentrations. 251 
+
+252 
+
+Homogenisation and sample preparation 253 
+
+Heart tissue samples were first diluted 1:5 in 0.1 M citrate buffer (pH 5.0; citric acid 254 
+
+monohydrate: Merck KGaA, Darmstadt, Germany; Sodium citrate dihydrate: Mallinckrodt 255 
+
+Baker B.V., Deventer, The Netherlands) and two steel beads (2 mm diameter) were added 256 
+
+into the sample tubes. The process was conducted on ice. The samples were then 257 
+
+homogenised using a bullet blender (Storm24 Next Advance) at speed 8 for 4 min at 4°C. For 258 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+protein and lipid assays, optimised volumes of homogenised tissue were transferred into 259 
+
+Eppendorf tubes as follows: 5 μL for protein and 4 μl for lipid determination, and then 5 μL 260 
+
+of citrate buffer were added to each sample. The remaining homogenate was heated at 100°C 261 
+
+for 2 min 30s, vortexed thoroughly, and subsequently used for glucose and glycogen 262 
+
+analyses. For each assay, 20 μL (optimised volume) of the homogenate was collected. All 263 
+
+prepared samples were stored at -80°C for further analyses. 264 
+
+265 
+
+Glucose and glycogen 266 
+
+In the glycogen assay, 20 μL of prepared sample was incubated with 1 μL of 10 mg 267 
+
+amyloglucosidase (A-7420, Sigma-Aldrich) in 10 mL of 0.1 M citrate buffer for 17 h at room 268 
+
+temperature to hydrolysed glycogen into glucose. For glucose measurements, 20 μL of 269 
+
+glucose aliquots were incubated at 4°C with the enzyme. After incubation, all samples were 270 
+
+centrifuged at 12,000 g for 10 min at room temperature (22°C), and the supernatants were 271 
+
+collected. For the analyses, 5 μL of supernatant and glucose standard (0, 0.35, 1, 1.5, 2, and 272 
+
+2.5 mg L -1 ) were mixed with 500 μL of O-toluidine reagent. The O-toluidine reagent (50 mL) 273 
+
+was prepared by mixing 47 mL glacial acetic acid (Honeywell, Charlotte, NC, U.S.) with 3 274 
+
+mL O-toluidine 98% (Sigma-Aldrich, India) and 75 mg thiourea (Sigma-Aldrich, Steinheim, 275 
+
+Germany). The reagent was stored at 4°C until use. 276 
+
+The samples and standard tubes were vortexed and heated at 100°C for 8 min, followed by 277 
+
+cooling down for 4 min on ice. After vortexing, 50 μL of each sample was loaded into a 384-278 
+
+well plate in triplicate. Absorbance was read at 650 nm on BioTek Synergy H1 Multimode 279 
+
+Reader (Agilent BioTek, USA). The total glycogen content was calculated by subtracting the 280 
+
+separately measured free glucose concentration from the total glucose concentration obtained 281 
+
+after glycogen hydrolysis and was expressed per gram of tissue. 282 
+
+283 
+
+Lipids and proteins 284 
+
+Lipids were measured by standardising against at pure olive oil solution (10mg mL -1 ; Sigma-285 
+
+Aldrich, Japan) dissolved in Ethanol (ETAX Aa, ethanol min -1 . 99.5 w-%; Altia Oyj, 286 
+
+Rajamäki, Finland). For the analysis, 4 μL of each prepared sample and 1 μL of olive oil 287 
+
+standard (0, 0.5, 1, 2, 4, 6, 8, and 10 mg mL -1 ) were first mixed with 20 μL of H 2 SO 4 (Merck) 288 
+
+and heated at 100 °C for 10 min. After cooling on ice for 5 min, 1 mL of phosphovanillin 289 
+
+reagent was added. The reagent was made by mixing 0.63 g vanillin (Sigma Chemical 290 
+
+Company, ST. Louis, U.S.A.) with 120 mL of distilled water and 180 mL of orthophosphoric 291 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+acid 13M (Thermo scientific, China). Samples and standard tubes were incubated for 15 min 292 
+
+at 37°C, cooled down for 5 min on ice, and then 50 μL of solution were transferred to a 384-293 
+
+well plate in triplicate. The absorbance was read at 540 nm using BioTek Synergy H1 294 
+
+Multimode Reader (Agilent BioTek, USA). Lipid content was calculated based on the 295 
+
+standard curve and expressed per gram of tissue. 296 
+
+Proteins were measured as previously described above using a bicinchoninic acid assay kit 297 
+
+(ThermoFisher, Waltham, MA, USA) following manufacturers protocol. 298 
+
+299 
+
+Statistical Analysis 300 
+
+All statistical analyses were performed using the R statistical language and lme4, glmmTMB, 301 
+
+and MuMin packages. Data handling and figures were produced using tidyverse and ggplot2 302 
+
+packages. Model selection was assessed using Akaike’s information criterion (AIC), 303 
+
+following selection criteria from (Richards, 2005) Model parameters (normal distribution and 304 
+
+equal variances) were assessed using DHARMa package. Non-parametric models were used 305 
+
+for data that failed to meet model parameters. 306 
+
+Normalisation of mitochondrial respiration rates was assessed in three different ways (per 307 
+
+tissue mass, citrate synthase activity, and mtDNA:nDNA ratio), where per tissue mass was 308 
+
+most appropriate and used for statistical analysis. For all mitochondrial respiration models, 309 
+
+treatment and temperature were included as fixed factors and interactions between predicator 310 
+
+and fixed variables were investigated. Repeated measures were included as a random effect 311 
+
+nested within fish identification to account for independent responses. Fish weight, heart lipid 312 
+
+content, and relative ventricle mass were included as co-variates and removed if not 313 
+
+significant. Tank identification was included as a random factor, but was removed from all 314 
+
+models during model comparisons. 315 
+
+316 
+
+5. Results 317 
+
+Mitochondrial respiration 318 
+
+Mitochondrial respiration rates are presented in Fig.1, 2 , and S1 and the statistical outputs 319 
+
+are displayed in Table 1. No differences were found between treatments for any 320 
+
+mitochondrial respiration rates. The oxygraph chamber temperature significant influenced 321 
+
+some mitochondrial respiration states. The leak state differed significantly between 322 
+
+temperatures with ~4 × higher leak measured at 23°C, and similarly LCR with ~5.4 × higher 323 
+
+LCR at 23°C. CI-OXPHOS respiration rates differed significantly between temperatures with 324 
+
+~1.3 × higher CI-OXPHOS respiration rates measured at 23°C compared to 16°C. The 325 
+
+remaining mitochondrial respiration rates were not significantly influenced by temperature; 326 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+however, leak and maximum respiration rates involving complexes I and II were close to 327 
+
+having a significant interaction between treatment and temperature. Mitochondrial respiration 328 
+
+rates among individuals mostly increased with elevated temperatures, although some 329 
+
+individuals did not increase. 330 
+
+331 
+
+Enzyme activity, mitochondrial to nuclear DNA ratio, and energy content 332 
+
+Exercise training did not influence cardiac enzyme activities, as citrate synthase and lactate 333 
+
+dehydrogenase did not differ between treatments. The mitochondrial to nuclear DNA ratio 334 
+
+did not differ between treatments either. Cardiac energy content was also not influence by 335 
+
+exercise training with glucose, glycogen, protein, and lipid contents not differing between 336 
+
+treatments. 337 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint Table 1. Generalised and linear mixed effects models to estimate the effects of exercise-training on rainbow trout cardiac physiology 1.338
+> Assessment  Response variable  Model  Factor  d.f.  F-value/ χ²2 P-value Mitochondrial respiration rates
+> Leak  LMER  Temperature  1, 52  36.24  <0.0001
+> Treatment  1, 52  0.28  0.60 Temperature * Treatment  1, 52  2.53  0.12
+> CI - OXPHOS  LMER  RVM  1,51  4.25  <0.05
+> Temperature  1,51  5.66  <0.05
+> Treatment  1,51  0.05  0.83
+> Temperature * Treatment  1,51  0.99  0.32
+> CI + CII - OXPHOS  LMER  Temperature  1,26  2.51  0.13
+> Treatment  1,26  0.28  0.60
+> Temperature * Treatment  1,26  2.11  0.16
+> ETS  LMER  Temperature  1,24  0.89  0.35
+> Treatment  1,24  0.01  0.92
+> Temperature * Treatment  1,24  1.07  0.31
+> CII  glmmTMB  Temperature  2.21  0.14
+> Treatment  0.06  0.80
+> Temperature * Treatment  0.63  0.43
+> RCR  LMER  Temperature  1,52  3.30  0.08
+> Treatment  1,52  1.08  0.30
+> Temperature * Treatment  1,52  0.02  0.90
+> LCR  LMER  Temperature  1,26  39.86  <0.0001
+> Treatment  1,26  0.95  0.34
+> Temperature * Treatment  1,26  0.74  0.40
+> OXPHOS efficiency  LMER  Temperature  1,52  0.08  0.78 Treatment  1,52  0.01  0.94 Temperature * Treatment  1,52  0.01  0.94 Enzyme activities  Citrate synthase  LM  Treatment  1,26  0.34  0.57 Lactate dehydrogenase  LM  Treatment  1,26  0.56  0.46
+> DNA ratio  mDNA:nDNA  LMER  Treatment  1,26  0.02  0.91
+> Energy content  Glucose  LM  Treatment  1,26  1.81  0.19 Glycogen  LM  Treatment  1,26  0.08  0.78 Protein  LMER  Treatment  1,26  0.97  0.33 Lipid  LMER  Treatment  1,3.3  0.85  0.42
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint 1Cardiac physiology: Leak = mitochondrial respiration rates in the presence of glutamate, pyruvate, and malate; CI-OXPHOS (complex I oxidative phosphorylation) = mitochondrial respiration rates in the presence of glutamate, pyruvate, malate, and ADP; CI-CII-OXPHOS (complex I and II oxidative phosphorylation) = mitochondrial respiration rates in the presence of glutamate, pyruvate, malate, ADP, and succinate; ETS (electron transport system) = mitochondrial respiration rates in the presence of glutamate, pyruvate, malate, ADP, succinate, and FCCP; CII (complex II) = mitochondrial respiration rates in the presence of glutamate, pyruvate, malate, ADP, succinate, FCCP, and rotenone. Bold P-values indicate significant factors ( P < 0.05).
+> 339
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+6. Discussion 340 
+
+Cardiac mitochondrial oxidative phosphorylation is a key contributor to cardiac dysfunction 341 
+
+during thermal stress and therefore presents a focal point for better understanding, predicting, 342 
+
+and enhancing organism thermal tolerance. For finfish farmers, applying this understanding 343 
+
+of how mitochondrial function underpins organism performance and stressor tolerance could 344 
+
+enable identification of new strategies to improve mitochondrial function and stock 345 
+
+performance. We examined how exercise training alters cardiac mitochondrial function in 346 
+
+rainbow trout at temperatures associated with optimal growth and cardiac arrhythmia. 347 
+
+Exercise training resulted in modest changes in mitochondrial function, with some effects 348 
+
+like leak, CI-CII-OXPHOS, and maximum respiration rates, becoming more apparent at 349 
+
+critical temperatures. Furthermore, trained fish appeared to be more responsive to 350 
+
+temperature at the higher temperature, although considerable inter-individual variation was 351 
+
+observed. Temperature strongly influenced mitochondrial performance, with complexes I and 352 
+
+II appearing particularly sensitive, suggesting a limitation for ATP production under thermal 353 
+
+stress. 354 
+
+355 
+
+Exercise-enhanced mitochondrial function 356 
+
+Exercise training in mammalian species improves mitochondrial ATP production through 357 
+
+modulating fusion and fission processes, such as changes in mitochondrial abundance, 358 
+
+morphology, and efficiency (Djalalvandi and Scorrano, 2022; Li et al., 2025). In the present 359 
+
+study, exercise training induced modest, non-significant changes to mitochondrial dynamics, 360 
+
+where small increases in mtDNA:nDNA and respiratory efficiencies were found and little 361 
+
+change in citrate synthase activity, suggesting limited mitochondrial remodelling under these 362 
+
+conditions. However, exercise-trained fish in general exhibit higher maximal respiratory 363 
+
+capacity, involving complex I and II, with differences most evident at critical temperatures. 364 
+
+This pattern, alongside elevated respiratory and leak control ratios at both temperatures 365 
+
+indicates that exercise may enhance mitochondrial efficiency. However, absolute leak was 366 
+
+only lower than control fish at optimal temperatures and were slightly higher under 367 
+
+challenging temperatures. These mitochondrial responses are somewhat consistent with the 368 
+
+small, non-significant increases in critical thermal maximum (CT max ) measured from a 369 
+
+subsample of rainbow trout held under the same conditions in an analogous study and 370 
+
+improvements in whole animal cardiac thermal tolerance observed in a previous study 371 
+
+(Pettinau, 2023; Pettinau et al., 2022). Together, these small modifications suggest exercise 372 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+training can make modest contributions to mitochondrial function to improve thermal 373 
+
+tolerance, but further exploration is needed. 374 
+
+375 
+
+Improved mitochondrial thermal responses driven by exercise training in rainbow trout may 376 
+
+have been masked by substantial inter-individual variability within treatments. High 377 
+
+variability was observed across mitochondrial respiration rates in both treatments, but 378 
+
+particularly among trained fish when measured under elevated temperatures. This suggests 379 
+
+that some individuals may respond more favourably to exercise-training than others, while 380 
+
+for some fish the training regime itself may represent an additional physiological stressor or 381 
+
+oppositely, not energy demanding enough. Contrasting responses to exercise-training may 382 
+
+also reflect domestication pressures and genotype-by-environmental interactions (Prescott et 383 
+
+al., 2024a). These individual responses are illustrated in Fig. S1, where some individuals 384 
+
+(e.g., 8/13 control and 9/15 exercise trained individuals increased complexes I and II 385 
+
+maximum mitochondrial respiration rates with elevated temperatures) exhibited increased 386 
+
+respiration rates with elevated temperatures, whereas others showed marked declines. This 387 
+
+pattern suggests that certain individuals were able to maintain mitochondrial function under 388 
+
+challenging temperatures, while others exhibited signs of mitochondrial dysfunction. Future 389 
+
+research should investigate whether individuals with divergent mitochondrial thermal 390 
+
+responses differ in thermal tolerance and whether these traits are associated with 391 
+
+responsiveness to exercise training. This would enable better understanding of the drivers of 392 
+
+individual physiological variation and define reliable strategies for improving production 393 
+
+stock’s thermal performance. 394 
+
+395 
+
+Although there were only some links evident between exercise training influencing 396 
+
+mitochondrial ATP production, exercise training remains a promising strategy to enhance 397 
+
+cardiac performance and thermal resilience in vulnerable stocks. Previous studies using 398 
+
+similar training regimes have reported improvements in cardiovascular and thermal 399 
+
+performance in rainbow trout, although these were conducted in smaller individuals 400 
+
+(Papadopoulou et al., 2022; Pettinau et al., 2022). In the present study, cardiac energy content 401 
+
+did not differ significantly between groups; although reductions in glucose and lipid levels in 402 
+
+the exercise-trained fish suggest that the exercise-training regime imposed a greater energetic 403 
+
+demand. This indicates that the training stimulus may have been sufficient to alter substrate 404 
+
+utilisation, but insufficient to drive substantial mitochondrial remodelling. 405 
+
+406 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+In other species, exercise training lowers the resting heart rate and overall energy demand 407 
+
+during exercise (Hellsten and Nyberg, 2015). If fish also exhibit these cardiovascular changes 408 
+
+with exercise training, it could also provide explanation why significant modulations in 409 
+
+mitochondrial respiration rates weren’t observed and that slight changes in mitochondrial 410 
+
+content was sufficient to meet the energy demands of increased energy expenditure. As such, 411 
+
+more intensive exercise regimes requiring larger energy demands may have elicited greater 412 
+
+changes in mitochondrial dynamics. Further optimisation in training intensity and duration 413 
+
+may therefore be necessary to elicit more pronounced physiological and performance 414 
+
+benefits, and the use of a varying flow regime could accommodate for individual variability. 415 
+
+416 
+
+Nonetheless, the modest changes in mitochondrial function observed provide some support 417 
+
+for the altered performance observed in previous studies in exercise-trained fish (Anttila et 418 
+
+al., 2014; Farrell et al., 1990; Palstra et al., 2015; Pettinau et al., 2022; Timmerhaus et al., 419 
+
+2021), suggesting that even small shifts in mitochondrial performance may influence cardiac 420 
+
+function under thermal stress (Pettinau et al., 2022). Beyond mitochondrial efficiency, 421 
+
+additional cellular mechanisms may contribute to exercise-induced changes in thermal 422 
+
+performance. For example, exercise training has been shown to modify the electrical 423 
+
+excitability of cardiomyocytes in rainbow trout, including prolongation of the action potential 424 
+
+(Le et al., 2026), which could influence cardiac stability at higher temperatures. Structural 425 
+
+adaptations may also play a role; in mammals, exercise increases mitochondrial cristae 426 
+
+density, enhancing oxidative phosphorylation capacity without requiring large increases in 427 
+
+mitochondrial volume (Djalalvandi and Scorrano, 2022; Li et al., 2025; Nielsen et al., 2017). 428 
+
+Furthermore, improved myocardial perfusion through increased capillary density and cardiac 429 
+
+remodelling has been document in humans (Pinckard et al., 2019), potentially supporting 430 
+
+oxygen delivery and metabolic demand during stress. Together, these mechanisms suggest 431 
+
+that exercise-induced improvements in thermal performance may arise from integrated 432 
+
+changes across multiple levels of cardiac organisation, rather than mitochondrial function 433 
+
+alone. 434 
+
+435 
+
+Mitochondrial function thermal sensitivity 436 
+
+Temperature had a strong influence on mitochondrial respiratory performance. Elevated 437 
+
+temperatures increased leak respiration and the leak control ratio, indicating reduced 438 
+
+mitochondrial membrane integrity and increased proton permeability, which together lowers 439 
+
+OXPHOS efficiency. Although CI-linked respiration rates were higher at elevated 440 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+temperatures, this likely reflects accelerated metabolic flux rather than improved efficiency, 441 
+
+as increased oxygen consumption was accompanied by greater uncoupling. A similar, albeit 442 
+
+not significant, trend was observed for CII respiration. These responses are consistent with 443 
+
+previous studies showing that elevated temperatures disproportionately impair complex I 444 
+
+function and increase proton leak, ultimately reducing mitochondrial efficiency. This has 445 
+
+been demonstrated in triplefin species (Family Tripterygiidae; Hilton et al., 2010), spotty 446 
+
+wrasse Notolabrus celidotus (Iftikar and Hickey, 2013; Iftikar et al., 2015), rainbow trout 447 
+
+Oncorhynchus mykiss (Michaelsen et al., 2021; Pichaud et al., 2017), Atlantic salmon Salmo 448 
+
+salar (Gerber et al., 2020), Polar cod Boreogadus saida (Leo et al., 2017), and Atlantic cod 449 
+
+Gadus morhua (Leo et al., 2017). The reduced mitochondrial ATP production efficiency 450 
+
+observed here occurred at temperatures associated with cardiac arrhythmia in rainbow trout, 451 
+
+supporting the idea that mitochondrial dysfunction contributes to cardiac failure under heat 452 
+
+stress. Together these findings highlight a key trade-off at elevated temperatures, where 453 
+
+increased respiratory rates are offset by reduced coupling efficiency, ultimately limiting ATP 454 
+
+supply to the heart. 455 
+
+456 
+
+Conclusions and implications for industry 457 
+
+Overall, our findings demonstrate that mitochondrial function plays a central role in shaping 458 
+
+cardiac performance under thermal stress, with elevated temperatures driving increased 459 
+
+respiratory demand but reduced coupling efficiency, ultimately limiting ATP supply. While 460 
+
+exercise training elicited only modest improvements in mitochondrial performance, the 461 
+
+enhanced responses observed under critical conditions suggest that mitochondrial function 462 
+
+retains some plasticity and may be a viable target for intervention. In particular, the 463 
+
+sensitivity of complex I-linked respiration to temperature highlights a potential bottleneck in 464 
+
+cardiac energy metabolism during heat stress. For aquaculture, these findings suggest that 465 
+
+strategies aimed at improving mitochondrial efficiency may enhance thermal resilience in 466 
+
+farmed fish. However, the limited magnitude of responses observed here indicates that 467 
+
+optimisation of such approaches will be necessary to achieve commercially relevant gains in 468 
+
+performance. In particular, how large individual variance can drive population outcomes 469 
+
+where some fish respond well to the training regime used and others did not. Perhaps, a 470 
+
+varying flow regime that allows fish to select their swimming speed and thus effort could be a 471 
+
+viable approach for industry. Future work should therefore focus on identifying interventions 472 
+
+that more effectively target mitochondrial function and its integration with whole-organism 473 
+
+physiology under warming conditions. 474 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Acknowledgements 475 
+
+The authors thank the staff of LUKE aquaculture facilities in Enonkoski, Finland for efforts 476 
+
+towards fish husbandry and assistance throughout the trial, Tytti Uurasmaa and staff of the 477 
+
+Department of Biology, University of Turku for technical assistance. 478 
+
+479 
+
+Competing Interests 480 
+
+The authors declare no competing or financial interest. 481 
+
+482 
+
+483 
+
+Funding 484 
+
+The authors acknowledge the financial support of the Blue Economy Cooperative Research 485 
+
+Centre (CRC), established and supported under the Australian Government’s CRC Program, 486 
+
+grant number CRCXX000001 (previously 20180101). The CRC Program supports industry-487 
+
+led collaborations between industry, researchers, and the community. The authors 488 
+
+acknowledge financial support from the Finnish National Agency for Education, The 489 
+
+Company of Biologists, and the Australian New Zealand Marine Biotechnology Society. The 490 
+
+authors acknowledge the financial support from the Academy of Finland (Project 350315). 491 
+
+492 
+
+Data availability 493 
+
+Data will become available upon request. 494 
+
+495 
+
+Authors’ contributions 496 
+
+Conceptualisation: all authors; Methodology: all authors; Formal analysis: L. A. Prescott; 497 
+
+Writing: L. A. Prescott wrote original draft, and all authors were involved in reviewing and 498 
+
+editing the manuscript; Funding acquisition: L. A. Prescott and K. Anttila. 499 
+
+500 
+
+References 501 
+
+502 
+
+Algothmi, K. M., Mahasneh, Z. M. H., Abdelnour, S. A., Khalaf, Q. A. W., Noreldin, A. 503 
+
+E., Barkat, R. A., Khalifa, N. E., Khafaga, A. F., Tellez-Isaias, G., Alqhtani, A. H. et al. 504 
+
+(2024). Protective impacts of mitochondria enhancers against thermal stress in poultry. Poult 505 
+
+Sci 103 , 103218. 506 
+
+Anttila, K., Jorgensen, S. M., Casselman, M. T., Timmerhaus, G., Farrell, A. P. and 507 
+
+Takle, H. (2014). Association between swimming performance, cardiorespiratory 508 
+
+morphometry, and thermal tolerance in Atlantic salmon ( Salmo salar L.). Front. Fish Sci. 1,509 
+
+76. 510 
+
+Bishop, D. J., Granata, C. and Eynon, N. (2014). Can we optimise the exercise training 511 
+
+prescription to maximise improvements in mitochondria function and content? Biochimica Et 512 
+
+Biophysica Acta-General Subjects 1840 , 1266–1275. 513 
+
+Brajkovic, V., Hršak, D., Bradi ć, L., Turkalj, K., Novosel, D., Ristov, S., Ajmone-514 
+
+Marsan, P., Colli, L., Cubric-Curik, V., Sölkner, J. et al. (2023). Mitogenome information 515 
+
+in cattle breeding and conservation genetics: Developments and possibilities of the SNP chip. 516 
+
+Livestock Science 275 , 105299. 517 
+
+Brieske, S. D., Irving, B. A. and Rees, B. B. (2025). The Contribution of Tissue-Specific 518 
+
+Mitochondrial Respiration to Individual Variation in Oxygen Uptake during Rest and 519 
+
+Exercise by the Gulf Killifish, Fundulus grandis . Ecological and Evolutionary Physiology 520 
+
+98 , 244–259. 521 
+
+Broekhuizen, N., Plew, D. R., Pinkerton, M. H. and Gall, M. G. (2021). Sea temperature 522 
+
+rise over the period 2002–2020 in Pelorus Sound, New Zealand – with possible implications 523 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+for the aquaculture industry. New Zealand Journal of Marine and Freshwater Research 55 ,524 
+
+46–64. 525 
+
+Broome, S. C., Pham, T., Braakhuis, A. J., Narang, R., Wang, H. W., Hickey, A. J. R., 526 
+
+Mitchell, C. J. and Merry, T. L. (2022). MitoQ supplementation augments acute exercise-527 
+
+induced increases in muscle PGC1 α mRNA and improves training-induced increases in peak 528 
+
+power independent of mitochondrial content and function in untrained middle-aged men. 529 
+
+Redox Biol 53 , 102341. 530 
+
+Castro, V., Grisdale-Helland, B., Helland, S. J., Kristensen, T., Jørgensen, S. M., 531 
+
+Helgerud, J., Claireaux, G., Farrell, A. P., Krasnov, A. and Takle, H. (2011). Aerobic 532 
+
+training stimulates growth and promotes disease resistance in Atlantic salmon ( Salmo salar ). 533 
+
+Comp. Biochem. Physiol. A Mol. Integr. Physiol. 160 , 278–290. 534 
+
+Castro, V., Grisdale-Helland, B., Jørgensen, S., Helgerud, J., Claireaux, G., Farrell, A., 535 
+
+Krasnov, A., Helland, S. and Takle, H. (2013). Disease resistance is related to inherent 536 
+
+swimming performance in Atlantic salmon. BMC physiology 13 , 1. 537 
+
+Chen, Z. L., Zhou, Z. Q., Peng, X. Y., Sun, C. C., Yang, D., Li, C. L., Zhu, R. K., Zhang, 538 
+
+P., Zheng, L. and Tang, C. F. (2021). Cardioprotective responses to aerobic exercise-539 
+
+induced physiological hypertrophy in zebrafish heart. J Physiol Sci 71 , 33. 540 
+
+Conley, K. E. (2016). Mitochondria to motion: optimizing oxidative phosphorylation to 541 
+
+improve exercise performance. J. Exp. Biol. 219 , 243–249. 542 
+
+Coutinho, E., Batista, C., Sousa, F., Queiroz, J. and Costa, D. (2017). Mitochondrial gene 543 
+
+therapy: advances in mitochondrial gene cloning, plasmid production, and nanosystems 544 
+
+targeted to mitochondria. Mol Pharm 14 , 626–638. 545 
+
+Davison, W. and Herbert, N. (2013). Swimming-enhanced growth. In Swimming physiology 546 
+
+of fish , eds. A. P. Palstra and J. V. Planas), pp. 177–202. Heidelberg: Springer. 547 
+
+Djalalvandi, A. and Scorrano, L. (2022). Mitochondrial dynamics: roles in exercise 548 
+
+physiology and muscle mass regulation. Current Opinion in Physiology 27 , 100550. 549 
+
+Ekström, A., Sen čić, I., Brijs, J., Gräns, A. and Sandblom, E. (2025). Decoding thermal 550 
+
+resilience in fish: acute warming tolerance is associated with neural failure in rainbow trout. 551 
+
+Biology Letters 21 , 20250132. 552 
+
+Eliason, E. J. and Anttila, K. (2017). 4 - Temperature and the cardiovascular system. In 553 
+
+Fish Physiology , vol. 36 eds. A. K. Gamperl T. E. Gillis A. P. Farrell and C. J. Brauner), pp. 554 
+
+235–297: Academic Press. 555 
+
+Ern, R., Andreassen, A. and Jutfelt, F. (2023). Physiological mechanisms of acute upper 556 
+
+thermal tolerance in fish. Physiology 38 , 141–158. 557 
+
+Espírito-Santo, C., Guardiola, F. A., Ozório, R. O. A. and Magnoni, L. J. (2026). 558 
+
+Swimming in fish: integrating redox homeostasis and immune responses. J. Exp. Biol. 229 .559 
+
+Farhat, F., Simon, B., Amerand, A., Devaux, J., Belhomme, M., Calves, P. and Moisan, 560 
+
+C. (2020). Exercise training changes mitochondrial function and its vulnerability to reactive 561 
+
+oxygen species exposure differently in male and female silver European eels. Environmental 562 
+
+Biology of Fishes 103 , 363–375. 563 
+
+Faria, R., Boisguérin, P., Sousa, A. and Costa, D. (2023). Delivery systems for 564 
+
+mitochondrial gene therapy: a review. Pharmaceutics 15 , 572. 565 
+
+Farrell, A. P., Johansen, J. A., Steffensen, J. F., Moyes, C. D., West, T. G. and Suarez, 566 
+
+R. K. (1990). Effects of exercise training and coronary ablation on swimming performance, 567 
+
+heart size, and cardiac enzymes in rainbow trout, Oncorhynchus mykiss . Can. J. Zool. 68 ,568 
+
+1174–1179. 569 
+
+Farrell, A. P., Johansen, J. A. and Suarez, R. K. (1991). Effects of exercise-training on 570 
+
+cardiac-performance and muscle enzymes in rainbow trout, Oncorhynchus-mykiss . Fish 571 
+
+Physiol. Biochem. 9, 303–312. 572 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Fu, S. J., Brauner, C. J., Cao, Z. D., Richards, J. G., Peng, J. L., Dhillon, R. and Wang, 573 
+
+Y. X. (2011). The effect of acclimation to hypoxia and sustained exercise on subsequent 574 
+
+hypoxia tolerance and swimming performance in goldfish ( Carassius auratus ). J Exp Biol 575 
+
+214 , 2080–8. 576 
+
+García-Roche, M., Talmón, D., Cañibe, G., Astessiano, A. L., Mendoza, A., Quijano, C., 577 
+
+Cassina, A. and Carriquiry, M. (2022). Differential hepatic mitochondrial function and 578 
+
+gluconeogenic gene expression in 2 Holstein strains in a pasture-based system. J. Dairy Sci. 579 
+
+105 , 5723–5737. 580 
+
+Gerber, L., Clow, K., Mark, F. and Gamperl, A. (2020). Improved mitochondrial function 581 
+
+in salmon ( Salmo salar ) following high temperature acclimation suggests that there are 582 
+
+cracks in the proverbial ‘ceiling’. Sci. Rep. 10 , 21636. 583 
+
+Hellsten, Y. and Nyberg, M. (2015). Cardiovascular Adaptations to Exercise Training. 584 
+
+Compr Physiol 6, 1–32. 585 
+
+Hilton, Z., Clements, K. and Hickey, A. (2010). Temperature sensitivity of cardiac 586 
+
+mitochondria in intertidal and subtidal triplefin fishes. Journal of comparative physiology. B, 587 
+
+Biochemical, systemic, and environmental physiology 180 , 979–90. 588 
+
+Howarth, L. M., Knight, B. R., Symonds, J. E., Waddington, Z. and Davidson, I. (2025). 589 
+
+A decision support system to predict mortality events in finfish aquaculture. Aquac. Environ. 590 
+
+Interact. 17 , 33–43. 591 
+
+Hsu, C. H., Roan, J. N., Fang, S. Y., Chiu, M. H., Cheng, T. T., Huang, C. C., Lin, M. 592 
+
+W. and Lam, C. F. (2022). Transplantation of viable mitochondria improves right 593 
+
+ventricular performance and pulmonary artery remodeling in rats with pulmonary arterial 594 
+
+hypertension. J Thorac Cardiovasc Surg 163 , E361–E373. 595 
+
+Iftikar, F. I. and Hickey, A. J. (2013). Do mitochondria limit hot fish hearts? Understanding 596 
+
+the role of mitochondrial function with heat stress in Notolabrus celidotus . PLoS One 8,597 
+
+e64120. 598 
+
+Iftikar, F. I., Morash, A. J., Cook, D. G., Herbert, N. A. and Hickey, A. J. R. (2015). 599 
+
+Temperature acclimation of mitochondria function from the hearts of a temperate wrasse 600 
+
+(Notolabrus celidotus ). Comparative Biochemistry and Physiology a-Molecular & 601 
+
+Integrative Physiology 184 , 46–55. 602 
+
+IPCC. (2022). Climate change 2022: impacts, adaptation and vulnerability. In Contribution 603 
+
+of Working Group II to the Sixth Assessment Report of the Intergovernmental Panel on 604 
+
+Climate Change , eds. H. O. Po rtner D. C. Roberts H. Adams C. Adler P. Aldunce E. Ali R. 605 
+
+A. Begum R. Betts R. B. Kerr and R. Biesbroek), pp. 3056. Cambridge: IPCC. 606 
+
+Jacobs, R. A., Flück, D., Bonne, T. C., Bürgi, S., Christensen, P. M., Toigo, M. and 607 
+
+Lundby, C. (2013). Improvements in exercise performance with high-intensity interval 608 
+
+training coincide with an increase in skeletal muscle mitochondrial content and function. 609 
+
+Journal of Applied Physiology 115 , 785–793. 610 
+
+Jobling, M. (1981). Temperature tolerance and the final preferendum—rapid methods for the 611 
+
+assessment of optimum growth temperatures. J. Fish Biol. 19 , 439–455. 612 
+
+Kumar, S., Chhabra, V., Shenoy, S., Daksh, R., Ravichandiran, V., Swamy, R. S. and 613 
+
+Kumar, N. (2024). Role of flavonoids in modulation of mitochondria dynamics during 614 
+
+oxidative stress. Mini-Reviews in Medicinal Chemistry 24 , 908–919. 615 
+
+Lapointe, J. (2014). Mitochondria as promising targets for nutritional interventions aiming to 616 
+
+improve performance and longevity of sows. Journal of Animal Physiology and Animal 617 
+
+Nutrition 98 , 809–821. 618 
+
+Le, T. T. N., Seppänen, E., Haverinen, J. and Anttila, K. (2026). Modifying the electrical 619 
+
+excitability of cardiomyocytes in rainbow trout ( Oncorhynchus mykiss ) through exercise 620 
+
+training. American Journal of Physiology-Heart and Circulatory Physiology 330 , H1–H11. 621 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Leo, E., Kunz, K. L., Schmidt, M., Storch, D., Pörtner, H.-O. and Mark, F. C. (2017). 622 
+
+Mitochondrial acclimation potential to ocean acidification and warming of Polar cod 623 
+
+(Boreogadus saida ) and Atlantic cod ( Gadus morhua ). Frontiers in Zoology 14 , 21. 624 
+
+Li, Y., Zhao, W. and Yang, Q. (2025). Effects of high-intensity interval training and 625 
+
+moderate-intensity continuous training on mitochondrial dynamics in human skeletal muscle. 626 
+
+Front. Physiol. Volume 16 - 2025 .627 
+
+Liu, G. Y., Wu, Y. J., Qin, X. H., Shi, X. T. and Wang, X. L. (2018). The effect of aerobic 628 
+
+exercise training on growth performance, innate immune response and disease resistance in 629 
+
+juvenile Schizothorax prenanti . Aquac. 486 , 18–25. 630 
+
+Long, J., Xia, Y., Qiu, H., Xie, X. and Yan, Y. (2022). Respiratory substrate preferences in 631 
+
+mitochondria isolated from different tissues of three fish species. Fish Physiol. Biochem. 48 ,632 
+
+1555–1567. 633 
+
+McKenzie, D., Palstra, A., Planas, J., Mackenzie, S., Bégout, M. L., Thorarensen, H., 634 
+
+Vandeputte, M., Mes, D., Rey Planellas, S., De Boeck, G. et al. (2020). Aerobic swimming 635 
+
+in intensive finfish aquaculture: applications for production, mitigation and selection. Rev. 636 
+
+Aquac. 13 , 138–155. 637 
+
+McKenzie, D. J., Hoglund, E., Dupont-Prinet, A., Larsen, B. K., Skov, P. V., Pedersen, 638 
+
+P. B. and Jokumsen, A. (2012). Effects of stocking density and sustained aerobic exercise 639 
+
+on growth, energetics and welfare of rainbow trout. Aquac. 338 , 216–222. 640 
+
+Michaelsen, J., Fago, A. and Bundgaard, A. (2021). High temperature impairs 641 
+
+mitochondrial function in rainbow trout cardiac mitochondria. J. Exp. Biol. 224 .642 
+
+Nielsen, J., Gejl, K. D., Hey-Mogensen, M., Holmberg, H.-C., Suetta, C., Krustrup, P., 643 
+
+Elemans, C. P. H. and Ørtenblad, N. (2017). Plasticity in mitochondrial cristae density 644 
+
+allows metabolic capacity modulation in human skeletal muscle. The Journal of Physiology 645 
+
+595 , 2839–2847. 646 
+
+Nilsen, A., Hagen, Ø., Johnsen, C. A., Prytz, H., Zhou, B., Nielsen, K. V. and Bjørnevik, 647 
+
+M. (2019). The importance of exercise: Increased water velocity improves growth of Atlantic 648 
+
+salmon in closed cages. Aquac. 501 , 537–546. 649 
+
+Palstra, A. P., Mes, D., Kusters, K., Roques, J. A. C., Flik, G., Kloet, K. and Blonk, R. J. 650 
+
+W. (2015). Forced sustained swimming exercise at optimal speed enhances growth of 651 
+
+juvenile yellowtail kingfish ( Seriola lalandi ). Front. Physiol. 5.652 
+
+Palstra, A. P. and Planas, J. V. (2011). Fish under exercise. Fish Physiol. Biochem. 37 ,653 
+
+259–272. 654 
+
+Papadopoulou, A., Pettinau, L., Seppänen, E., Sikanen, A. and Anttila, K. (2022). The 655 
+
+interactive effects of exercise training and functional feeds on the cardiovascular performance 656 
+
+of rainbow trout ( Oncorhynchus mykiss ) at high temperatures. Current Research in 657 
+
+Physiology 5, 142–150. 658 
+
+Peng, X., Cai, X. L., Li, J., Huang, Y. Y., Liu, H., He, J. Q., Fang, Z. F., Feng, B., Tang, 659 
+
+J. Y., Lin, Y. et al. (2021). Effects of melatonin supplementation during pregnancy on 660 
+
+reproductive performance, maternal-placental-fetal redox status, and placental mitochondrial 661 
+
+function in a sow model. Antioxidants 10 , 1867. 662 
+
+Pettinau, L. (2023). Enhancing fish tolerance to global warming through swimming exercise 663 
+
+training, vol. PhD: University of Turku. 664 
+
+Pettinau, L., Seppänen, E., Sikanen, A. and Anttila, K. (2022). Aerobic exercise training 665 
+
+with optimal intensity increases cardiac thermal tolerance in juvenile rainbow trout. Front. 666 
+
+Fish Sci. 9, 963. 667 
+
+Pichaud, N., Ekström, A., Hellgren, K. and Sandblom, E. (2017). Dynamic changes in 668 
+
+cardiac mitochondrial metabolism during warm acclimation in rainbow trout. J. Exp. Biol. 669 
+
+220 , 1674–1683. 670 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Pinckard, K., Baskin, K. K. and Stanford, K. I. (2019). Effects of Exercise to Improve 671 
+
+Cardiovascular Health. Front Cardiovasc Med 6, 69. 672 
+
+Prescott, L. A., Scholtens, M. R., Walker, S. P., Clarke, S. M., Dodds, K. G., Miller, M. 673 
+
+R., Semmens, J. M., Carter, C. G. and Symonds, J. E. (2024a). Genetic parameters and 674 
+
+genotype-by-environment interaction estimates for growth and feed efficiency related traits in 675 
+
+Chinook salmon, Oncorhynchus tshawytscha , reared under low and moderate flow regimes. 676 
+
+Genet. Sel. Evol. 56 , 63. 677 
+
+Prescott, L. A., Symonds, J. E., Walker, S. P., Miller, M. R., Semmens, J. M. and 678 
+
+Carter, C. G. (2023). Long-term sustained swimming improves swimming performance in 679 
+
+Chinook salmon, Oncorhynchus tshawytscha , with and without spinal scoliosis. Aquac. 574 ,680 
+
+739629. 681 
+
+Prescott, L. A., Symonds, J. E., Walker, S. P., Miller, M. R., Swift, L., Herbert, N. A., 682 
+
+Semmens, J. M. and Carter, C. G. (2024b). The mismatch between swimming speeds and 683 
+
+flow regimes when optimising exercise regimes to improve Chinook salmon, Oncorhynchus 684 
+
+tshawytscha , performance. Aquac. 585 , 740705. 685 
+
+Quiros, P. M., Goyal, A., Jha, P. and Auwerx, J. (2017). Analysis of mtDNA/nDNA Ratio 686 
+
+in Mice. Curr Protoc Mouse Biol 7, 47–54. 687 
+
+Richards, S. A. (2005). Testing ecological theory using the information-theoretic approach: 688 
+
+Examples and cautionary results. Ecology 86 , 2805–2814. 689 
+
+Rodgers, E. M. and Gomez Isaza, D. F. (2023a). The growth-promoting effects of exercise 690 
+
+in finfish: a systematic review and meta-analysis. Rev. Aquac. , 1–12. 691 
+
+Rodgers, E. M. and Gomez Isaza, D. F. (2023b). The mechanistic basis and adaptive 692 
+
+significance of cross-tolerance: a ‘pre-adaptation’ to a changing world? J. Exp. Biol. 226 .693 
+
+Rodgers, E. M. and Gomez Isaza, D. F. (2024). Multiple stressors- physiological responses 694 
+
+to multivariate environments. In Encyclopedia of Fish Physiology (Second Edition) , eds. S. 695 
+
+L. Alderman and T. E. Gillis), pp. 185–197. Oxford: Academic Press. 696 
+
+Rummer, J. L., Couturier, C. S., Stecyk, J. A. W., Gardiner, N. M., Kinch, J. P., 697 
+
+Nilsson, G. E. and Munday, P. L. (2014). Life on the edge: thermal optima for aerobic 698 
+
+scope of equatorial reef fishes are close to current day temperatures. Global Change Biology 699 
+
+20 , 1055–1066. 700 
+
+Sanglard, L. P., Snelling, W. M., Kuehn, L. A., Thallman, R. M., Freetly, H. C., 701 
+
+Wheeler, T. L., Shackelford, S. D., King, D. A. and Spangler, M. L. (2023). Genetic and 702 
+
+phenotypic associations of mitochondrial DNA copy number, SNP, and haplogroups with 703 
+
+growth and carcass traits in beef cattle. J Anim Sci 101 , skac415. 704 
+
+Slaska, B., Zieba, G., Rozempolska-Rucinska, I., Jezewska-Witkowska, G., Nisztuk, S., 705 
+
+Horecka, B. and Zon, A. (2016). Mitochondrial DNA haplotypes are associated with 706 
+
+performance traits in raccoon dogs. Animal Science Papers and Reports 34 , 293–302. 707 
+
+Srirattana, K. and St John, J. C. (2017). Manipulating the mitochondrial genome To 708 
+
+enhance cattle embryo development. G3 (Bethesda) 7, 2065–2080. 709 
+
+Tierney, K. B. and Farrell, A. P. (2004). The relationships between fish health, metabolic 710 
+
+rate, swimming performance and recovery in return-run sockeye salmon, Oncorhynchus 711 
+
+nerka (Walbaum). J Fish Dis 27 , 663–71. 712 
+
+Timmerhaus, G., Lazado, C. C., Cabillon, N. A. R., Reiten, B. K. M. and Johansen, L.-713 
+
+H. (2021). The optimum velocity for Atlantic salmon post-smolts in RAS is a compromise 714 
+
+between muscle growth and fish welfare. Aquac. 532 , 736076. 715 
+
+Toyomizu, M., Mujahid, A., Hirakawa, R., Furukawa, K., Azad, M. A. K., Taciak, M. 716 
+
+and Kikusato, M. (2019). Nutritional regulation of mitochondrial ROS production of 717 
+
+chickens exposed to acute and chronic heat stress. In 6th EAAP International Symposium on 718 
+
+Energy and Protein Metabolism and Nutrition , vol. 138, pp. 73–81. Belo Horizonte, 719 
+
+BRAZIL. 720 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Wang, J., Zhang, H. J., Samuel, K. G., Long, C., Wu, S. G., Yue, H. Y., Sun, L. L. and 721 
+
+Qi, G. H. (2015). Effects of dietary pyrroloquinoline quinone disodium on growth, carcass 722 
+
+characteristics, redox status, and mitochondria metabolism in broilers. Poult Sci 94 , 215–225. 723 
+
+Ytrestoyl, T., Takle, H., Kolarevic, J., Calabrese, S., Timmerhaus, G., Rosseland, B. O., 724 
+
+Teien, H. C., Nilsen, T. O., Handeland, S. O., Stefansson, S. O. et al. (2020). Performance 725 
+
+and welfare of Atlantic salmon, Salmo salar L. post-smolts in recirculating aquaculture 726 
+
+systems: importance of salinity and water velocity. Journal of the World Aquaculture Society 727 
+
+51 , 373–392. 728 
+
+Yu, T. Z., Wang, L., Zhang, L. and Deuster, P. A. (2023). Mitochondrial fission as a 729 
+
+therapeutic target for metabolic diseases: insights into antioxidant strategies. Antioxidants 12 ,730 
+
+1163. 731 
+
+Zhang, Y. F., Timmerhaus, G., Anttila, K., Mauduit, F., Jorgensen, S. M., Kristensen, 732 
+
+T., Claireaux, G., Takle, H. and Farrell, A. P. (2016). Domestication compromises 733 
+
+athleticism and respiratory plasticity in response to aerobic exercise training in Atlantic 734 
+
+salmon ( Salmo salar ). Aquac. 463 , 79–88. 735 
+
+Zoladz, J. A., Koziel, A., Broniarek, I., Woyda-Ploszczyca, A. M., Ogrodna, K., 736 
+
+Majerczak, J., Celichowski, J., Szkutnik, Z. and Jarmuszkiewicz, W. (2017). Effect of 737 
+
+temperature on fatty acid metabolism in skeletal muscle mitochondria of untrained and 738 
+
+endurance-trained rats. PLoS One 12 , e0189456. 739 
+
+740 
+
+741 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+Figure captions 742 
+
+Figure 1. Mitochondrial respiration rates of cardiac homogenates in the presence of 743 
+
+glutamate, pyruvate, and malate (Leak, A), ADP (CI-OXPHOS; complex I oxidative 744 
+
+phosphorylation, B), succinate (CI-CII-OXPHOS; complex I and II oxidative 745 
+
+phosphorylation, C), FCCP (ETS; electron transport system, D), and rotenone (CII; 746 
+
+complex II, E) measured from control (blue; N = 13 individuals) and exercise trained 747 
+
+(green; N = 15 individuals) rainbow trout at 16°C (lighter shade) and 23°C (darker 748 
+
+shade). Boxplots present the median (middle bar), first and third quartiles (upper and lower 749 
+
+bars), and the largest and smallest value within 1.5* interquartile range (IQR; vertical bars). 750 
+
+Points represent outliers determined as values beyond the vertical bars (i.e., > third quartile 751 
+
++1.5*IQR, < first quartile +1.5* IQR). Letters indicate statistical differences at P < 0.05. 752 
+
+753 
+
+Figure 2. Mitochondrial respiratory control ratio (A), leak control ratio (B), and 754 
+
+oxidative phosphorylation efficiency (C) of cardiac homogenates measured from control 755 
+
+(blue; N = 13 individuals) and exercise trained (green; N = 15 individuals) rainbow trout 756 
+
+at 16°C (lighter shade) and 23°C (darker shade). Boxplots present the median (middle 757 
+
+bar), first and third quartiles (upper and lower bars), and the largest and smallest value within 758 
+
+1.5* interquartile range (IQR; vertical bars). Points represent outliers determined as values 759 
+
+beyond the vertical bars (i.e., > third quartile +1.5*IQR, < first quartile +1.5* IQR). Letters 760 
+
+indicate statistical differences at P < 0.05. 761 
+
+762 
+
+Figure 3. Citrate synthase (A) and lactate dehydrogenase (B) enzyme activities of 763 
+
+cardiac tissue from control (blue; N = 13 individuals) and exercise trained (green; N =764 
+
+15 individuals) rainbow trout. Boxplots present the median (middle bar), first and third 765 
+
+quartiles (upper and lower bars), and the largest and smallest value within 1.5* interquartile 766 
+
+range (IQR; vertical bars). Points represent outliers determined as values beyond the vertical 767 
+
+bars (i.e., > third quartile +1.5*IQR, < first quartile +1.5* IQR). 768 
+
+769 
+
+Figure 4. Mitochondrial to nuclear DNA ratios of cardiac tissue from control (blue; N =770 
+
+13 individuals) and exercise trained (green; N = 15 individuals) rainbow trout. Boxplots 771 
+
+present the median (middle bar), first and third quartiles (upper and lower bars), and the 772 
+
+largest and smallest value within 1.5* interquartile range (IQR; vertical bars). Points 773 
+
+represent outliers determined as values beyond the vertical bars (i.e., > third quartile 774 
+
++1.5*IQR, < first quartile +1.5* IQR). 775 
+
+776 
+
+Figure 5. Glucose (A), glycogen (B), protein (C) and lipid (D) content of cardiac tissue 777 
+
+from control (blue; N = 13 individuals) and exercise trained (green; N = 15 individuals) 778 
+
+rainbow trout. Boxplots present the median (middle bar), first and third quartiles (upper and 779 
+
+lower bars), and the largest and smallest value within 1.5* interquartile range (IQR; vertical 780 
+
+bars). Points represent outliers determined as values beyond the vertical bars (i.e., > third 781 
+
+quartile +1.5*IQR, < first quartile +1.5* IQR). 782 
+
+783 
+
+> .CC-BY 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.26.734741 doi: bioRxiv preprint
+
+abab
+
+ab ab
+
+A B C D E
+
+Control Trained Control Trained Control Trained Control Trained Control Trained 050 100 150 200 250 300 Treatment Mitochondrial Respiration Rates (pmol O  2 s−1 mg −1 of tissue) abab
+
+A B C     
+
+> Control Trained Control Trained Control Trained 01234567
+
+Treatment Mitochondrial Respiration Efficiencies A B
+
+Control Trained Control Trained 0.0 0.2 0.4 0.6 0.8 Treatment Activity ( μmol min −1 mg protein −1 )Control Trained 0500 1000 1500 2000 2500 3000 Treatment mtDNA:nDNA A B C D
+
+Control Trained Control Trained Control Trained Control Trained 10 20 30 40 50 60 80 100 120 4680.4 0.6 0.8 1.0 Treatment Content (mg g −1 )

@@ -1,0 +1,402 @@
+Title: Adaptive Group-Based Counterfactual Explanations for Time-Series Rehabilitation Data
+
+URL Source: https://arxiv.org/pdf/2607.01838v1
+
+Published Time: Fri, 03 Jul 2026 00:52:35 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# Adaptive Group-Based Counterfactual Explanations for Time-Series Rehabilitation Data 
+
+1st Emmanuel C. Chukwu 
+
+Eindhoven University of Technology 
+
+Eindhoven, the Netherlands e.c.chukwu@tue.nl 
+
+2nd Rianne M. Schouten 
+
+Eindhoven University of Technology 
+
+Eindhoven, the Netherlands r.m.schouten@tue.nl 
+
+3rd Monique Tabak 
+
+University of Twente 
+
+Enschede, the Netherlands m.tabak@utwente.nl 
+
+4th Mykola Pechenizkiy 
+
+Eindhoven University of Technology 
+
+Eindhoven, the Netherlands m.pechenizkiy@tue.nl 
+
+Abstract —Counterfactual explanations (CEs) for multivariate time-series classifiers are often difficult to interpret in domains where experts reason in terms of semantic feature groups rather than individual channels. In rehabilitation movement analysis with multi-sensor inertial measurement units (IMUs), clinicians interpret motion through muscle-group and joint-segment ab-stractions; yet, most existing counterfactual methods operate at the channel level, producing scattered and biomechanically incoherent explanations. We propose a two-stage framework for group-based counterfactual generation in high-dimensional IMU data. We first show that Shapley-Adaptive (SA) group ranking preserves counterfactual validity but fails to enforce group-level sparsity, motivating the need for explicit group selection. We then introduce Learnable Gate (LG) methods, which incorporate trainable per-group relevance gates jointly optimized with per-turbation masks. Experiments on the KneE-PAD rehabilitation dataset demonstrate that LG substantially improves modality-group sparsity compared to the channel-level M-CELS baseline while maintaining or improving validity, temporal smoothness, and generation efficiency. Exercise-specific analyses further show that group-structured counterfactuals yield concise, muscle-level corrective guidance aligned with clinical reasoning. Overall, the proposed framework enhances interpretability without sacrificing counterfactual quality, enabling more actionable explanations for rehabilitation movement analysis. 
+
+Index Terms —Explainable AI, counterfactual explanations, time series data, inertial measurement units, rehabilitation 
+
+I. I NTRODUCTION 
+
+A. Motivation 
+
+Recent advances in machine learning have improved anal-ysis of complex movement patterns for clinical rehabilitation and injury assessment [1], [2]. For clinical use, however, mod-els must offer explanations that are interpretable, grounded in expert domain concepts, and actionable, providing concrete guidance for intervention. In rehabilitation, this requires expla-nations aligned with biomechanical principles and anatomical structures familiar to patients and physical therapists, rather than abstract feature indices [3]. Standard attribution methods such as SHAP, when applied to IMU time series, explain predictions at the feature or channel level, offering limited 
+
+This work was supported in part by NWO LoaD-project. NWA.1389.20.009 
+
+insight into biomechanically meaningful units like muscle groups or joint coordination patterns [4]. CEs, which identify sufficient changes to flip a prediction, are particularly promising for high-stakes domains like reha-bilitation, where “what-if” scenarios can guide personalized interventions [5]. Yet for high-dimensional multi-IMU time series, existing approaches typically operate on individual channels or time steps [6]–[8]. This causes several issues: (i) combinatorial explosion, as the search space scales with channels times time steps, often producing dense perturbations that alter many scattered features; [8], [9] (ii) violation of physical and clinical constraints, since channel-wise edits can yield biomechanically implausible sequences, such as isolated axis changes that ignore segment-level coupling and joint kine-matics; [10] (iii) temporal fragmentation, where dispersed edits over isolated time steps create “temporal confetti” rather than coherent intervention windows; [9] and (iv) flat explanations that lack a hierarchy from system-level concepts down to specific sensors [3]. These limitations are exacerbated in multi-IMU settings: 48 channels are structured as 6-channel accelerometer–gyroscope units per anatomical site, while clinicians reason in terms of segments, joints, and synergies [3], [11]. Clinical IMU studies emphasize segment/joint-level assessment [12], [13] and anatomically valid sensor placement and calibration [14], [15]. Channel-level CFEs may be sparse yet biomechanically incoherent, scattering changes across sensors. Group-based CFEs operate on semantic sensor groups (e.g., “reduce right hamstring activity during squat descent”), yielding minimal, plausible, temporally coherent interventions. While tabular CFEs often incorporate feasibility, causal, or correlation con-straints [16]–[18], time-series methods rarely encode sensor grouping or segment-level abstractions, limiting clinical use-fulness in higher dimensional space. 
+
+B. Research Objective 
+
+This work studies whether adaptive, group-based coun-terfactuals improve interpretability and reliability in high-dimensional IMU time-series classification. We ask: can dy-
+
+> arXiv:2607.01838v1 [cs.LG] 2 Jul 2026
+
+namic group-level optimization yield more interpretable and reliable explanations than channel-level methods? We hypoth-esize that domain-aligned grouping improves interpretability by matching clinical structure [19], and that dynamic selection with multi-objective optimization can balance validity, spar-sity, and plausibility [20], [21]. We evaluate on KneE-PAD across squat, knee extension, and gait, comparing against a strong channel-level baseline [13]. 
+
+C. Contributions 
+
+This paper makes three contributions: (i) an adaptive multi-objective framework (Adaptive-MO) that combines Shapley-based group ranking with dynamic sensor group selection to generate structured CEs for high-dimensional time series; (ii) a Learnable Gate (LG) mechanism with trainable per-group relevance parameters, jointly optimized with perturba-tion masks, to automatically select a sparse, interpretable, and clinically meaningful set of sensor groups; and (iii) validation on the KneE-PAD dataset, showing, via systematic and expert-aligned evaluation, that group-structured counter-factuals produce concise corrective feedback across multi-ple rehabilitation exercises through structured, sparser, and interpretable changes. The project repository is available at https://github.com/Healthpy/knee-rehab-cfe. II. R ELATED WORK 
+
+A. Counterfactual Explanations for Time Series 
+
+A broad range of CE methods have been proposed for time-series classification, including instance-based, shapelet-guided, saliency- and attention-driven, gradient-based, latent genera-tive, and evolutionary approaches [6]–[9], [22]–[27]. Instance-focused methods generate counterfactuals using nearest un-like neighbors or distractor examples, while shapelet-based approaches exploit discriminative subsequences to guide struc-tured modifications [8], [9], [22], [23]. Saliency and attention methods perturb influential time intervals, whereas gradient-based and latent generative techniques optimize smooth and plausible changes in input or latent space [6], [24]–[27]. Evolutionary methods further explore the counterfactual space through multi-objective optimization or sequential decision-making [7]. Most existing techniques focus on individual features, time steps, or short subsequences, limiting their ability to capture higher-level structures such as sensor- or modality-level group-ings. Consequently, many CEs lose clinical meaning in high-dimensional multivariate settings and face the combinatorial, stability, plausibility, temporal, and hierarchical issues outlined in Section I. This motivates counterfactual frameworks that explicitly model structured dependencies and apply domain-informed constraints to yield valid, interpretable explanations in real multichannel scenarios. 
+
+B. Movement Analysis, IMUs, and Rehabilitation 
+
+IMUs are increasingly used to quantitatively assess human movement in clinical practice [11], [12], [28]. Traditional IMU analyses often rely on handcrafted features such as angular velocity, joint angles, or gait parameters, [29] whereas deep learning on raw sequences improves accuracy while reducing interpretability [30]–[32]. Clinical interpretability re-quires mapping sensor readings to biomechanically meaning-ful constructs (e.g., limb orientation, angular velocity patterns, compensatory asymmetries) [10]. Recent work emphasizes sensor placement and calibration as critical steps for obtaining anatomically valid joint kinematics from IMUs [14], [15], and qualitative studies highlight that clinicians and patients prefer summaries at the joint or segment level over raw signals [12]. The KneE-PAD dataset demonstrates the feasibility of large-scale, sensor-based assessment of knee rehabilitation exercises with 8 IMU sensors placed on key lower-limb muscle groups [13]. Explanatory methods should therefore preserve rela-tionships between accelerometer and gyroscope components within each sensor unit and between sensors on anatomically linked segments, exactly as encoded in our grouping strategy. 
+
+C. Group-Level Feature Selection and Attribution 
+
+Feature grouping and structured sparsity have been widely studied in statistics and machine learning, including Group LASSO [33], structured sparsity-inducing norms [34], and hierarchical importance measures [35]. Shapley values provide principled attribution and can be extended to group-level importance [4], [36], [37]. In CEs more broadly, evaluation rubrics emphasize desiderata such as validity, sparsity, prox-imity, plausibility, robustness, and diversity [38]. However, the use of group-based importance and structured sparsity in time-series CEs, particularly for sensor-based human movement analysis, remains largely unexplored. Our work leverages Shapley-based ranking at the group level, combined with adap-tive group gating, to create a structured and physiologically meaningful counterfactual search space. 
+
+D. M-CELS and Sequence-Based Counterfactual Baselines 
+
+M-CELS is a recent state-of-the-art counterfactual method for multivariate time-series data. [6] M-CELS learns a con-tinuous temporal saliency mask and constructs counterfac-tuals by blending the input with a nearest-unlike-neighbor guide example. Its optimization balances three objectives: (i) achieving the target prediction, (ii) minimizing the magnitude of the mask (sparsity), and (iii) enforcing temporal smooth-ness. However, M-CELS treats all channels independently, without any notion of sensor structure or modality-specific grouping. This results in modifications across many channels and therefore offers limited interpretability in domains where channels can naturally be grouped into anatomical or physical units. Our framework uses M-CELS as a strong channel-level baseline and extends this paradigm with group-based ranking and optimization. III. P ROBLEM FORMULATION AND BACKGROUND 
+
+A. Time-Series Classification Setup 
+
+Let X ∈ RC×T denote a multivariate time series with C
+
+channels and T time steps. In our IMU setup, C = 48 channels from 8 sensors, each providing 3-axis accelerometer and 3-axis gyroscope signals. A trained classifier f : RC×T → { 0, . . . , 8}
+
+predicts one of nine exercise variations (three exercises times three execution types: correct and two clinically defined er-rors). For an instance X with predicted label y = f (X), a CE seeks a modified input ˜X such that f ( ˜X) = ytarget ̸ = y,while keeping ˜X close to X according to a distance measure 
+
+d(X, ˜X) and additional constraints (e.g., sparsity, plausibility). 
+
+B. Group-Based Counterfactuals 
+
+To address the limitations of channel-wise counterfactuals, we define a set of sensor groups G = {g1, . . . , g K }, where each gk ⊆ { 1, . . . , C } corresponds to an anatomical IMU location (e.g., right rectus femoris, left gastrocnemius). Let 
+
+Xgk ∈ R|gk |× T denote the sub-series associated with group 
+
+gk. Instead of optimizing per-channel changes, we consider group-level perturbations and define a group-wise distance 
+
+DG(X, ˜X) = PKk=1 wk d Xgk , ˜Xgk
+
+, where wk are group weights. Group sparsity is measured by counting the number of groups with non-zero perturbations, G Sparsity (X, ˜X) = 
+
+PKk=1 I
+
+
+
+∥Xgk − ˜Xgk ∥2 > ϵ 
+
+
+
+. Our objective is to generate counterfactuals that (i) flip the prediction to ytarget , (ii) use as few sensor groups as possible, and (iii) remain close to the data manifold and biomechanically plausible. IV. P ROPOSED METHOD 
+
+Our Adaptive-MO framework consists of three main com-ponents: (1) domain-informed sensor grouping, (2) Shapley-based group ranking, and (3) learnable group gates combined with adaptive multi-objective optimization. 
+
+A. Domain-Informed Grouping 
+
+We consider two IMU channel grouping strategies: (i) a sensor-based grouping, in which each of the eight IMU sensors forms a group containing its six channels (three-axis accelerometer and three-axis gyroscope), yielding K = 8
+
+groups over C = 48 channels; and (ii) a modality-based group-ing, in which accelerometer and gyroscope signals are treated as separate groups for each muscle, yielding K = 16 modality-specific groups. We adopt the modality-based strategy, as it provides finer granularity by explicitly distinguishing linear acceleration from rotational kinematics at the muscle level, enabling clearer biomechanical attribution of counterfactual modifications while preserving interpretability. Sensor chan-nels are indexed sequentially by muscle and body side, with each muscle-specific sensor comprising three accelerometer channels followed by three gyroscope channels; for example, the right rectus femoris (R RF) corresponds to accelerometer channels 1–3 and gyroscope channels 4–6, with subsequent muscle groups following the same indexing pattern. 
+
+B. Shapley-Based Group Ranking 
+
+Given an instance X and classifier f , we first estimate channel-level Shapley values ϕi using GradientSHAP. [4] Channel attributions are then aggregated to sensor groups using the maximum absolute value: 
+
+Φg = max 
+
+> i∈g
+
+¯|ϕi|, (1) where ¯|ϕi| is the mean absolute Shapley value of channel i
+
+across time steps. Using the maximum rather than the mean ensures that a single highly important channel elevates the entire group, avoiding dilution when other channels have near-zero importance. We then select the top-k most influential groups: 
+
+Gsel = Top-k{Φg : g ∈ G}, k = ⌊r · K⌋ ,
+
+where r ∈ (0 , 1] is the group selection ratio (we use r = 0 .8
+
+in our experiments). Restricting optimization to Gsel reduces search complexity and encourages group-level sparsity. 
+
+C. Counterfactual Parameterization 
+
+Following the M-CELS paradigm [6], we parameterize counterfactuals via a continuous modification mask M ∈
+
+[0 , 1] C×T that blends the original input X with a guide example Xguide from the target class: 
+
+˜X = X ⊙ (1 − M ) + Xguide ⊙ M, (2) where ⊙ denotes element-wise multiplication. The guide ex-ample is chosen as the nearest unlike neighbor with label 
+
+ytarget :
+
+Xguide = arg min  
+
+> X′:f(X′)= ytarget
+
+∥X − X′∥2.
+
+We maintain a restricted mask Mrest only for channels in 
+
+Gsel , which is then expanded to the full mask according to group structure and modulated by learnable group gates. 
+
+D. Learnable Group Gates 
+
+To refine which groups are used in the counterfactual, we introduce learnable gates γg ∈ [0 , 1] for g ∈ Gsel that modulate the mask per group: 
+
+Mi,t = σ(Mrest ,i,t ) · γg , ∀i ∈ g, g ∈ Gsel , (3) where σ is the sigmoid function. Groups with γg ≈ 0
+
+are effectively dropped, enabling data-driven group selection during optimization. We regularize the gates with a combined ℓ1 and binarization penalty: 
+
+Lgates = 1
+
+|Gsel |
+
+X
+
+> g∈Gsel
+
+γg
+
+| {z }
+
+> ℓ1: drives unused gates to 0
+
++ 1
+
+|Gsel |
+
+X
+
+> g∈Gsel
+
+min( γg , 1 − γg )
+
+| {z }
+
+> binarization: pushes gates to 0 or 1
+
+.
+
+The gates γg control which sensor groups affect the coun-terfactual. The ℓ1 term encourages sparsity by penalizing all gate activations, while the binarization term penalizes intermediate values, pushing gates toward 0 or 1. Applied with a warm-up and gradual ramp-up to avoid premature pruning, this regularization converts the SHAP-selected set Gsel into a sparse, binary subset G′ 
+
+> sel
+
+⊆ Gsel , yielding interpretable explanations where each retained group has a clear role in the counterfactual. E. Multi-Objective Loss 
+
+We combine four complementary loss terms: 
+
+Ltotal = w1Ltarget + w2Lsparsity + w3Lsmooth + w4Lgates , (4) where Ltarget = 1 − pytarget enforces that f ( ˜X) predicts the target class with high probability pytarget , Lsparsity = 
+
+> 1
+> CT
+
+∥M ∥1 encourages channel-level sparsity, Lsmooth =mean t(∥M·,t +1 − M·,t ∥α 
+
+> 1
+
+) with α = 3 enforces smoothness via a higher-order total variation norm, and Lgates denotes the gate regularization term defined above. The weights wi are adapted during optimization via multiplicative scaling based on the current target probability pytarget . For w1, w2 and w3 we use 
+
+w(t+1) 1 =
+
+(
+
+0.95 · w(t)1 if pytarget ≥ τ, 
+
+1.05 · w(t)1 otherwise, 
+
+w(t+1) 2,3 =
+
+(
+
+1.05 · w(t)2,3 if pytarget ≥ τ, 
+
+0.95 · w(t)2,3 otherwise. All weights are clamped to [0 .1, 2.0] , with a target threshold 
+
+τ . This multiplicative schedule gradually shifts emphasis from validity to sparsity and structure once a confident prediction is achieved. 
+
+F. Optimization Procedure and Post Refinement 
+
+Algorithm 1 summarizes the procedure. It generates coun-terfactuals on channel groups rather than individual channels. It computes channel importance with GradientSHAP, aggre-gates scores into anatomically meaningful groups (line 1), and selects the top-k most influential groups to restrict the search (line 2). A nearest neighbor from the target class serves as a guide (line 3), and the method initializes a continuous perturbation mask plus learnable group gates that start mostly active but remain prunable (line 4), with weights initialized (line 5). The algorithm then iteratively blends the original input with the guide (lines 7–8) while jointly optimizing four objectives: prediction validity, sparsity, temporal smoothness, and gate regularization (line 9). An adaptive weighting scheme dynamically shifts emphasis from validity to sparsity once the target probability is reached (line 10), enabling early stopping on convergence (lines 11–13). The key innovation is the learnable group gates, which suppress irrelevant groups during optimization and produce structured counterfactuals focused on a few interpretable, meaningful sensor locations. After convergence of the learnable-gate optimization, we apply a lightweight post-processing step to extract the spars-est valid counterfactual. Because joint optimization over the continuous mask M and gate logits ℓg balances multiple objectives, it typically yields a valid but not maximally sparse solution once pytarget ≥ τ , with little incentive to further reduce mask support. We therefore smooth the learned mask tempo-rally and perform a small grid search over binarization thresh-olds and optional temporal blending. All candidate masks are validated against the target constraint, and the sparsest valid one is chosen, breaking ties by minimal temporal variation. This inexpensive refinement runs once after convergence. 
+
+Algorithm 1 Adaptive Multi-Objective Group-Based CFE 
+
+Require: Input X, model f , class ytarget , background set B 
+
+> 1:
+
+Compute channel Shapley values ϕi and aggregate to groups Φg using (1)  
+
+> 2:
+
+Gsel ← top-k groups by Φg 
+
+> 3:
+
+Xguide ← arg min X′∈B:f (X′)= ytarget ∥X − X′∥2 
+
+> 4:
+
+Initialize Mrest ∼ U (0 , 1) for channels in Gsel ; gate logits 
+
+ℓg ← 2.0 so γg = σ(ℓg ) ≈ 0.88  
+
+> 5:
+
+Initialize weights w1 = 1 .0, w2–4 = 0 .5; freeze gates during warm-up  
+
+> 6:
+
+for t = 1 to Tmax do  
+
+> 7:
+
+Construct M using (3) and group expansion  
+
+> 8:
+
+˜X ← X ⊙ (1 − M ) + Xguide ⊙ M using (2)  
+
+> 9:
+
+Compute losses Ltarget , L sparsity , L smooth , L gates  
+
+> 10:
+
+Update weights wi based on pytarget and τ 
+
+> 11:
+
+Ltotal ← P 
+
+> i
+
+wiLi 
+
+> 12:
+
+Take a gradient step on Mrest and γg 
+
+> 13:
+
+if pytarget ≥ τ and convergence criterion satisfied then  
+
+> 14:
+
+break  
+
+> 15:
+
+end if  
+
+> 16:
+
+end for  
+
+> 17:
+
+return Counterfactual ˜X, mask M , selected groups G′
+
+> sel
+
+V. E XPERIMENTAL SETUP 
+
+A. Dataset and Exercise Protocol 
+
+We evaluate our framework on the KneE-PAD dataset, [13] which includes three lower-limb rehabilitation exercises: squat, seated knee extension, and gait, performed by 31 patients with knee pathologies. For each exercise, physiotherapists defined one correct execution and two relevant incorrect variations. For squats, the incorrect variations are weight shifting to the healthy leg during descent (SquatWT) and placing the injured leg forward (SquatFL). For seated knee extensions, the incor-rect forms include incomplete extension, limiting the range of motion (ExtNF), and lateral abduction of the injured leg from the intended plane (ExtLL). For gait, incorrect variations consist of failure to fully extend the injured leg during stance (GaitNF) and lateral abduction altering its trajectory (GaitHA). Participants wore eight IMU sensors placed bilaterally on key lower-limb muscle groups: rectus femoris (RF), hamstrings (HAM), tibialis anterior (TA), and gastrocnemius (GAS) on each leg. Each IMU recorded tri-axial accelerometer and gyroscope data, yielding 48 channels. Synchronized sEMG was also recorded but is not used directly in this study. 
+
+B. Preprocessing and Data Splits 
+
+Each recording was segmented into fixed-length windows covering a full exercise repetition. To ensure generalization and prevent subject leakage, we use a subject-disjoint split: subjects are divided into separate training, validation, and test sets. A greedy bin-packing heuristic assigns subjects to approximate a 70/15/15 train/val/test ratio by sample count, with no subject shared across splits. Data normalization (z-score) is computed on the training set only and applied to all splits, evaluating generalization to unseen subjects. 
+
+C. Classification Model 
+
+Our classifier is a fully convolutional network (FCN) [39] with three 1D convolutional blocks (48 →128 →256 →128 channels) using kernel sizes 8, 5, and 3, each followed by batch normalization and ReLU activations. A global aver-age pooling layer aggregates temporal features, followed by dropout ( p = 0.2) and a fully connected layer for nine-class classification (3 exercises × 3 execution types). The model uses IMU-only input (48 channels from 8 bilateral sensors). We train with AdamW (learning rate 10 −3, weight decay 10 −5), cross-entropy loss, batch size 32, and up to 50 epochs with ReduceLROnPlateau (factor 0.5, patience 5) on the subject-disjoint validation set. Validation-based learning rate reduction and checkpointing on best validation accuracy provide implicit early stopping. 
+
+D. Methods 
+
+The classifier f : RC×T → { 0, . . . , 8} predicts nine vari-ants across three rehabilitation exercises: correct executions 
+
+{0, 3, 6} (squat, seated knee extension, gait) and exercise-specific error classes {1, 2}, {4, 5}, and {7, 8}. Counterfactual generation seeks a minimally modified erroneous input X such that f ( ˜X) = ytarget ∈ { 0, 3, 6} for the same exercise. This error-to-correct setting yields meaningful guidance by identi-fying minimal, group-sparse sensor changes needed to correct movement execution. We compare eight method configurations in three families: 
+
+a) Baseline: M-CELS.: M-CELS is a channel-level coun-terfactual method using multi-objective optimization (validity, sparsity, temporal smoothness) [6]. It treats all 48 channels independently and serves as our channel-level baseline. 
+
+b) Shapley-Adaptive (SA) variants.: SA ranks feature groups with GradientSHAP and perturbs only top-ranked groups. We test four variants: SA (SHAP pruned) (keeps top 
+
+r = 0 .8 SHAP-ranked groups; uses group-aware loss), SA -no group loss (removes group sparsity penalty), SA -no adaptive (removes adaptive weight scheduling), and SA -no SHAP, all groups (no SHAP ranking; perturbs all groups equally). 
+
+c) Learnable Gate (LG) variants.: LG adds trainable sigmoid group gates γg (Section IV) to mask-based counter-factuals for adaptive group relevance. We test three variants: 
+
+LG-scratch (uniform gate initialization without SHAP; prunes gates via τadapt = mean( γg ) − std( γg )), LG-SHAP pruned 
+
+(SHAP-initialized gates on top r = 0 .8 groups, then adap-tively pruned), and LG-fixed prune (SHAP preselection with learnable gates, pruned at fixed τ = 0 .3). 
+
+E. Evaluation Metrics 
+
+We evaluate CEs using six metrics inspired by established counterfactual XAI evaluation rubrics [38]: validity , defined as the fraction of instances for which at least one counterfactual satisfies f ( ˜X) = ytarget with pytarget ≥ 0.8; sparsity , measured as the fraction of unchanged entries in X; channel sparsity ,                                               
+
+> TABLE I HYPERPARAMETERS FOR SA, LG, AND M-CELS. U NLESS STATED OTHERWISE ,LEARNING RATE = 0.01, MAX ITERATIONS = 5000, MASK THRESHOLD = 0.5, LR DECAY (γ)= 0.9991, O PTIMIZER = A DAM
+> Parameter SA LG M-CELS Target threshold (τ)0.72 0.75 0.70 Group selection ratio (r)0.8 0.8 –Gate LR multiplier –1.0 –Gate warm-up iters –150 –
+> wtarget (init.) 1.0 1.0 0.7
+> wsparsity (init.) 0.55 0.75 0.5
+> wsmooth (init.) 0.50 0.65 0.6
+> wgates (init.) –0.90 –
+
+quantified by the number of channels entirely unchanged over time; group sparsity , defined as the number of unmodified modality groups; proximity , measured by the L2 distance be-tween X and ˜X; and efficiency and plausibility , assessed via wall-clock generation time, optimization steps to convergence, and the temporal gradient as a measure of smoothness. To ensure a fair comparison, we standardize the core opti-mization settings for Adaptive-MO and M-CELS (Table I). VI. R ESULTS 
+
+All results use the single-seed, subject-disjoint protocol (seed 42, n = 150 test samples) described in Section V. 
+
+A. Shapley-Adaptive Group Ratio Analysis 
+
+We examine how the group selection ratio r shapes the trade-off between validity and sparsity in SA counterfactuals. As shown in Figure 1, increasing r from 0.3 to 0.9 raises the counterfactual success rate from 73% to 93.3%, but reduces sparsity: the average number of altered channels increases from 10.7 to 29.8 (out of 48), and modified modality groups from 3.9 to 12.7 (out of 16). This finding suggests that static SHAP-based preselection alone cannot achieve both high validity and strong group-level sparsity. This motivates learnable group selection mechanisms that can dynamically prune irrelevant groups during optimization.       
+
+> Fig. 1. SA group ratio impact on validity vs. sparsity ( n= 150 ). Higher ratios improve success rate modestly (73% →93%) but substantially increase channel usage (10.7 →29.8), reducing explanation compactness.
+
+B. Learnable Gate Methods vs. M-CELS 
+
+To overcome the sparsity limitations of static Shapley-Adaptive methods, we introduce Learnable Gate (LG) variants that jointly optimize trainable group gates with perturbation masks. Table II summarizes a comprehensive comparison between LG variants and the channel-level M-CELS baseline across validity, sparsity, proximity, and efficiency metrics. The best-performing variant, LG-SHAP pruned, achieves the highest counterfactual success rate (94.7%) with strong target confidence (80.8%), improving upon M-CELS (90.0% success, 88.2% confidence). This 4.7 percentage point gain in success rate demonstrates that SHAP-initialized learnable group gating enhances counterfactual reliability while enforcing structured, domain-aligned sparsity. Across sparsity dimensions, LG vari-ants substantially reduce explanation complexity relative to M-CELS. LG-SHAP pruned modifies only 8.2 modality groups and 18.0 channels on average, corresponding to 27% and 22% reductions, respectively, while maintaining the highest validity. LG-fixed prune achieves the sparsest explanations (5.2 groups, 11.5 channels) at a modest cost in validity (88.7%), and LG-scratch yields intermediate performance. All LG variants also converge efficiently, with generation times comparable to or faster than M-CELS (8.0–9.7 s vs. 10.0 s). Overall, Table II shows that SHAP-initialized learnable gates effec-tively balance validity, sparsity, and efficiency, producing more interpretable counterfactuals than channel-level baselines. 
+
+C. Group Sparsity and Plausibility 
+
+Beyond validity, interpretable counterfactuals must exhibit both structural sparsity (few modified sensor groups) and tem-poral plausibility (smooth, realistic modifications). Figure 2 compares LG-SHAP pruned and M-CELS on modality-group sparsity and temporal gradient. LG-SHAP pruned achieves 8.2 modified modality groups compared to M-CELS’s 11.2 groups, a 27% reduction that translates to more compact, interpretable explanations. Temporal gradient values indi-cate comparable temporal smoothness, suggesting that group-structured perturbations do not introduce artificial discontinu-ities or biomechanically implausible modifications. The dual advantage of stronger structural sparsity with preserved tem-poral coherence demonstrates that SHAP-initialized learnable group gates successfully encode domain structure into the counterfactual search space while improving validity. 
+
+D. Exercise-Specific Correction Patterns 
+
+To assess exercise-specific interpretability, we compare LG (SHAP pruned) and M-CELS across squat, knee extension,                                            
+
+> TABLE II LG METHODS VS . M-CELS ON KNE E-PAD ( n= 150 ). M EAN ±STD .
+> Method Succ. Conf. Grp. Chn. L2Time (%) (%) ##Dist. (s) M-CELS 90.0 ±30.1 88.2 ±29.5 11.2 ±4.7 23.2 ±11.6 45.8 ±19.8 10.0 ±3.5 LG-SHAP 94.7 ±22.5 80.8 ±22.7 8.2 ±3.1 18.0 ±11.0 50.8 ±19.5 9.7 ±4.2 LG-scratch 90.7 ±29.2 79.3 ±27.9 10.8 ±4.5 25.0 ±16.4 53.7 ±22.5 9.3 ±4.4 LG-fixed 88.7 ±31.8 75.2 ±28.7 5.2 ±3.2 11.5 ±8.6 43.5 ±20.7 8.0 ±3.9
+> Fig. 2. Group sparsity and temporal plausibility comparison ( n= 150 ). LG-SHAP pruned modifies 27% fewer modality groups (8.2 vs. 11.2) while main-taining comparable temporal gradient, demonstrating that structured group-level optimization improves interpretability without sacrificing plausibility.
+
+and gait tasks. Figure 3 summarizes counterfactual success, group sparsity, and generation time by exercise. LG achieves comparable or higher success than M-CELS across all exer-cises, with the largest relative improvement in knee exten-sion, a biomechanically challenging task that requires precise quadriceps activation with minimal hamstring co-contraction. This highlights the advantage of structured group selection for unilateral, range-of-motion–limited movements. Across all ex-ercises, LG consistently produces sparser explanations, modi-fying fewer modality groups than M-CELS while maintaining validity. Gait counterfactuals involve the largest number of groups, reflecting the multi-joint coordination required for cyclic locomotion, whereas knee extension relies on the fewest groups, consistent with its localized joint mechanics. LG also shows comparable or faster generation times, indicating efficient convergence under group-level constraints. Figure 4 compares modality-group activation frequencies for LG and M-CELS across exercises. LG shows exercise-specific, selective activation, whereas M-CELS activates most groups broadly. In squats, LG emphasizes contralateral limb rotational control to correct weight-transfer asymmetries. In knee extension, LG targets gastrocnemius- and quadriceps-related groups while suppressing hamstring rotations, consis-tent with reducing antagonistic co-contraction for full exten-sion. In gait, LG focuses on stance-phase rotational dynam-ics and ankle control while avoiding non-essential groups.   
+
+> Fig. 3. Exercise-specific performance comparison between LG-SHAP pruned and M-CELS ( n= 150 error-to-correct samples). LG achieves comparable or higher success rates with consistently sparser explanations across all exercise. Fig. 4. Modality group activation frequency for LG (SHAP pruned) vs. M-CELS across exercises. Heatmaps show the proportion of counterfactuals modifying each modality group. LG yields sparser, exercise-specific patterns consistent with biomechanics, whereas M-CELS shows diffuse group activation.
+
+Thus, LG achieves structured, exercise-specific sparsity by activating only biomechanically relevant groups, in contrast to M-CELS’s dense, channel-level patterns. These activations map directly to muscle-level clinical guidance: squats pri-oritize rotational symmetry and bilateral knee control, knee extension emphasizes quadriceps engagement with reduced hamstring co-contraction and ankle stabilization, and gait focuses on stance–swing coordination and push-off mechanics. This group-level sparsity yields concise, anatomically coherent guidance that better supports actionable neuromuscular re-education than diffused channel-level explanations. VII. D ISCUSSION 
+
+Domain-aligned sensor grouping improves the interpretabil-ity and structure of CEs for high-dimensional IMU time series. Operating at the group level, Adaptive-MO yields explanations consistent with clinicians’ segment- and joint-based reason-ing, supporting translation to actionable feedback [11], [12]. Improvements in group sparsity, temporal smoothness, and proximity are achieved without sacrificing validity or plau-sibility; comparable L2 distances and higher channel sparsity suggest more efficient (not merely redistributed) perturbations. Plausibility scores indicate counterfactuals remain near the data manifold, aligning with counterfactual XAI desiderata [38]. LG-SHAP pruned matches M-CELS generation time while improving validity and sparsity but requires extra setup for Shapley computation and gate initialization; this overhead could be reduced via cached attributions, warm starts, or amortized inference [4]. The exercise-specific analysis reveals meaningful patterns showing how group-based counterfactuals support targeted rehabilitation. LG’s improvement over M-CELS on knee extension indicates that structured group-level optimization better respects anatomical constraints by avoiding scattered channel-level changes. Modality-group activations translate into actionable neuromuscular guidance: squat corrections em-phasize contralateral limb rotational control to address weight-transfer asymmetries [11]; knee extension corrections highlight reduced hamstring co-contraction as key to achieving full extension; and gait corrections prioritize rectus femoris and an-kle groups to address stance–swing asymmetries and improve clearance and push-off [11], [12]. Consistently higher group sparsity across exercises further indicates that LG yields fewer simultaneous corrective targets, supporting staged, focused rehabilitation strategies aligned with motor learning princi-ples [11]. A key limitation of this work is that experiments are conducted only on the KneE-PAD dataset, which contains a limited number of patient recordings. Evaluating the frame-work on larger and more diverse rehabilitation datasets would strengthen generalizability. In addition, the sensor grouping is hand-crafted and specific to lower-limb IMUs; extending the approach to other joints or multimodal settings (e.g., IMU+sEMG) will require more flexible grouping strategies that remain guided by biomechanical priors [10]. Finally, evaluation is currently limited to offline metrics, and future work should include user studies with physiotherapists and patients to assess interpretability, actionability, and trust, as well as longitudinal studies examining rehabilitation outcomes. VIII. C ONCLUSION 
+
+This paper introduces an adaptive multi-objective frame-work for group-based CEs in multivariate time-series data, applied to IMU-based knee rehabilitation. Combining Shapley-based group ranking, learnable group gates, and structured multi-objective optimization, it generates sparse, temporally coherent, and physiologically meaningful counterfactuals. On the KneE-PAD dataset, it markedly improves sparsity, group structure, and temporal smoothness over a strong channel-level baseline (M-CELS) while maintaining or improving validity. The results show that dynamic feature group-level optimization yields more interpretable and reliable explana-tions than channel-level methods in IMU-based rehabilitation classification. The work also highlights sensor grouping as a theoretically grounded, practically important design choice for time-series counterfactuals. Future directions include au-tomatic group discovery, multimodal fusion with sEMG and clinical covariates, and real-time telerehabilitation deployment. ACKNOWLEDGMENTS 
+
+This research was funded by the Dutch Research Council (NWO) within the framework of the LoaD project. We express our gratitude to the contributors of the KneE-PAD dataset and to all participating patients for their valuable involvement. REFERENCES [1] Y. Mahmoud, K. Horvath, and Y. Zhou, “Deep learning for predicting rehabilitation success: Advancing clinical and patient-reported outcome modeling,” Electronics , vol. 14, no. 6, p. 1082, 2025. [2] G. Nicora, S. Pe, G. Santangelo, L. Billeci, I. G. Aprile, M. Germanotta, R. Bellazzi, E. Parimbelli, and S. Quaglini, “Systematic review of ai/ml applications in multi-domain robotic rehabilitation: trends, gaps, and future directions,” Journal of NeuroEngineering and Rehabilitation ,vol. 22, no. 1, 2025. [3] D. D. Rosa, D. Chiffi, and M. Andreoletti, “Philosophy and clinical rea-soning in rehabilitation sciences: Bridging the gap,” Global Philosophy ,vol. 34, no. 1–6, 2024. [4] S. M. Lundberg and S.-I. Lee, “A unified approach to interpreting model predictions,” Advances in Neural Information Processing Systems ,vol. 30, pp. 4765–4774, 2017. [5] S. Wachter, B. Mittelstadt, and C. Russell, “Counterfactual explanations without opening the black box: Automated decisions and the gdpr,” 
+
+Harvard Journal of Law & Technology , vol. 31, no. 2, pp. 841–887, 2017. [6] P. Li, O. Bahri, S. F. Boubrahimi, and S. M. Hamdi, “M-cels: Counter-factual explanation for multivariate time series data guided by learned saliency maps,” in Proc. ICMLA , pp. 713–718, 2024. [7] J. H¨ ollig, C. Kulbach, and S. Thoma, “TSEvo: Evolutionary Counter-factual Explanations for Time Series Classification,” in Proc. ICMLA ,pp. 29–36, 2022. [8] E. Ates, B. Aksar, V. J. Leung, and A. K. Coskun, “Counterfactual explanations for multivariate time series,” in Proc. ICAPAI , p. 1–8, 2021. [9] E. Delaney, D. Greene, and M. T. Keane, “Instance-based counterfactual explanations for time series classification,” in Proc. ICCBR , pp. 32–47, 2021. [10] J. Zhu, Z. Ye, R. Liu, and J. Liu, “Inertial measurement units (IMUs) for biomechanical analysis in sport: a review of applications, challenges and future directions,” Sensor Review , 2025. [11] F. Porciuncula, A. V. Roto, D. Kumar, I. Davis, S. Roy, C. J. Walsh, and L. N. Awad, “Wearable movement sensors for rehabilitation: A focused review of technological and clinical advances,” PM&R , vol. 10, no. 9, pp. S220–S232, 2018. [12] F. Routhier, N. C. Duclos, ´ E. Lacroix, J. Lettre, E. Turcotte, N. Hamel, F. Michaud, C. Duclos, P. S. Archambault, and L. J. Bouyer, “Clinicians’ perspectives on inertial measurement units in clinical practice,” PLOS ONE , vol. 15, no. 11, p. e0241922, 2020. [13] P. Kasnesis, T. Plavoukou, A. C. Syropoulou, L. Toumanidis, and G. Georgoudis, “A knee rehabilitation exercises dataset for postural assessment using wearable devices,” Scientific Data , vol. 12, no. 1, 2025. [14] W. Niswander, W. Wang, and K. Kontson, “Optimization of imu sensor placement for the measurement of lower limb joint kinematics,” Sensors ,vol. 20, no. 21, p. 5993, 2020. [15] A. Bonfiglio, D. Tacconi, R. M. Bongers, and E. Farella, “Effects of imu sensor-to-segment calibration on clinical 3d elbow joint angles estimation,” Frontiers in Bioengineering and Biotechnology , vol. 12, p. 1385750, 2024. [16] A.-H. Karimi, G. Barthe, B. Sch¨ olkopf, and I. Valera, “Algorithmic recourse: from counterfactual explanations to interventions,” in Proc. FAccT , pp. 353–362, 2021. [17] D. Mahajan, C. Tan, and A. Sharma, “Preserving causal constraints in counterfactual explanations for machine learning classifiers,” in Proc. NeurIPS 2019 Workshop on Do the Right Thing: Machine Learning and Causal Inference for Improved Decision Making , 2019. [18] M. Pawelczyk, K. Broelemann, and G. Kasneci, “Learning model-agnostic counterfactual explanations for tabular data,” in Proc. WWW ,pp. 3126–3132, 2020. [19] F. Sergeev, M. Burger, P. Leshetkina, V. Fortuin, G. R¨ atsch, and R. Kuznetsova, “Data-driven discovery of feature groups in clinical time series,” arXiv:2511.08260 , 2025. [20] S. Dandl, C. Molnar, M. Binder, and B. Bischl, “Multi-objective coun-terfactual explanations,” in Proc. PPSN , pp. 448–469, 2020. [21] R. K. Mothilal, A. Sharma, and C. Tan, “Explaining machine learning classifiers through diverse counterfactual explanations,” in Proc. FAccT ,pp. 607–617, 2020. [22] P. Li, O. Bahri, S. F. Boubrahimi, and S. M. Hamdi, “SG-CF: Shapelet-Guided Counterfactual Explanation for Time Series Classification,” in 
+
+Proc. DAWAK , pp. 1564–1569, Dec. 2022. [23] Q. Huang, W. Chen, T. B¨ ack, and N. van Stein, “Shapelet-based model-agnostic counterfactual local explanations for time series classification,” 
+
+arXiv:2402.01343 , 2024. [24] S. Filali Boubrahimi and S. M. Hamdi, “On the mining of time series data counterfactual explanations using barycenters,” in Proc. CIKM ,p. 3943–3947, 2022. [25] P. Li, O. Bahri, S. F. Boubrahimi, and S. M. Hamdi, “Attention-based counterfactual explanation for multivariate time series,” in Proc. DAWAK 
+
+(R. Wrembel, J. Gamper, G. Kotsis, A. M. Tjoa, and I. Khalil, eds.), pp. 287–293, 2023. [26] Z. Wang, I. Samsten, R. Mochaourab, and P. Papapetrou, “Learning Time Series Counterfactuals via Latent Space Representations,” in Proc. DS ,pp. 369–384, 2021. [27] A. Van Looveren, J. Klaise, G. Vacanti, and O. Cobb, “Conditional generative models for counterfactual explanations,” arXiv:2101.10123 ,2021. [28] F. Dal Farra, S. Cerfoglio, M. Porta, M. Pau, M. Galli, N. F. Lopomo, and V. Cimolin, “Comparative assessment of an imu-based wearable device and a marker-based optoelectronic system in trunk motion analysis: A cross-sectional investigation,” Applied Sciences , vol. 15, no. 11, p. 5931, 2025. [29] A. G. Cutti et al. , “Ambulatory measurement of shoulder and elbow kinematics through inertial and magnetic sensors,” Medical & Biological Engineering & Computing , vol. 48, no. 4, pp. 389–401, 2010. [30] H. Xu, P. Zhou, R. Tan, M. Li, and G. Shen, “LIMU-BERT: Unleashing the Potential of Unlabeled Data for IMU Sensing Applications,” in Proc. SenSys , p. 220–233, 2021. [31] R. Li, C. Fu, W. Yi, and X. Yi, “Calib-net: Calibrating the low-cost imu via deep convolutional neural network,” Frontiers in Robotics and AI ,vol. 8, 2022. [32] X. Li, H. Xiong, X. Li, X. Wu, X. Zhang, J. Liu, J. Bian, and D. Dou, “Interpretable deep learning: interpretation, interpretability, trustworthi-ness, and beyond,” Knowledge and Information Systems , vol. 64, no. 12, p. 3197–3234, 2022. [33] M. Yuan and Y. Lin, “Model selection and estimation in regression with grouped variables,” Journal of the Royal Statistical Society: Series B (Statistical Methodology) , vol. 68, no. 1, pp. 49–67, 2006. [34] R. Jenatton, J.-Y. Audibert, and F. Bach, “Structured variable selection with sparsity-inducing norms,” Journal of Machine Learning Research ,vol. 12, pp. 2777–2824, 2011. [35] A. Fisher, C. Rudin, and F. Dominici, “All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously,” Journal of Machine Learning Research , vol. 20, no. 177, pp. 1–81, 2019. [36] M. Sundararajan and A. Najmi, “The many shapley values for model explanation,” in Proc. ICML , pp. 9269–9278, 2020. [37] I. Covert and S.-I. Lee, “Explaining by removing: A unified framework for model explanation,” in Proc. NeurIPS , vol. 34, pp. 20620–20634, 2021. [38] S. Verma, V. Boonsanong, M. Hoang, K. Hines, J. Dickerson, and C. Shah, “Counterfactual explanations and algorithmic recourses for machine learning: A review,” ACM Computing Surveys , vol. 56, no. 12, 2024. [39] Z. Wang, W. Yan, and T. Oates, “Time series classification from scratch with deep neural networks: A strong baseline,” in Proc. IJCNN ,pp. 1578–1585, 2017.

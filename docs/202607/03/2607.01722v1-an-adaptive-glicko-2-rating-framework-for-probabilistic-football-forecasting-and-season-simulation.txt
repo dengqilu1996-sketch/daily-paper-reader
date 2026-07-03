@@ -1,0 +1,267 @@
+Title: An Adaptive Glicko-2 Rating Framework for Probabilistic Football Forecasting and Season Simulation
+
+URL Source: https://arxiv.org/pdf/2607.01722v1
+
+Published Time: Fri, 03 Jul 2026 00:33:03 GMT
+
+Number of Pages: 17
+
+Markdown Content:
+# An Adaptive Glicko-2 Rating Framework for Probabilistic Football Forecasting and Season Simulation 
+
+Bich Van Nguyen 1,∗
+
+Tran Nam Anh 1
+
+> 1
+
+Institute for Artificial Intelligence, VNU University of Engineering and Technology, Vietnam National University, Hanoi, Vietnam 
+
+> ∗
+
+Corresponding author: nbvan@vnu.edu.vn 
+
+Abstract 
+
+Football match outcome prediction is a challenging problem because team strength changes over time, match outcomes contain a high level of randomness, and draws play a central role in the result structure. Classical rating systems such as Elo provide simple and interpretable dynamic summaries of team ability, but they do not explicitly model uncer-tainty and often ignore football-specific contextual information. This paper proposes an adaptive Glicko-2-based rating framework for probabilistic football forecasting and league-level season simulation. The proposed framework extends the standard Glicko-2 model by incorporating football-specific mechanisms, including margin-of-victory adjustment, dom-inance weighting, structural shocks, home advantage modelling, and an ordered-logit draw model. The framework estimates latent team strength dynamically, converts rating differ-ences into win-draw-loss probabilities, and uses these probabilities to simulate the remain-ing part of a league season through Monte Carlo sampling. Experiments are conducted on 3,040 English Premier League matches from the 2008/2009 to 2015/2016 seasons using a time-respecting rolling-origin evaluation protocol. The best configuration achieves a Brier Score of 0.158688, improving the standard Glicko-2 baseline by 4.04%. Compared with a market-implied benchmark, the proposed model remains competitive, with performance gaps of 2.82% in Brier Score, 2.23% in Ranked Probability Score, and 1.35% in multi-class Log Loss. In season simulation experiments on the 2013/2014–2015/2016 seasons, the model achieves an average Spearman rank correlation of 0.8495 between simulated and actual final standings, with an average point mean absolute error of 5.49 and an average rank error of 2.12 positions. These results suggest that adaptive rating-based systems can provide accurate, interpretable, and computationally efficient tools for football ana-lytics, especially when both match-level prediction and season-level decision support are required. 
+
+Keywords: Glicko-2; adaptive rating system; football forecasting; probabilistic prediction; sports analytics; evolving systems; Monte Carlo simulation. 1
+
+> arXiv:2607.01722v1 [stat.AP] 2 Jul 2026
+
+# 1 Introduction 
+
+Forecasting football match outcomes is an important and difficult task in sports analytics. Reliable probabilistic forecasts can support tactical analysis, player recruitment, risk assess-ment, league simulation, and long-term strategic planning. However, football is particularly challenging for prediction models because it is a low-scoring sport, contains frequent draws, and is strongly influenced by short-term events such as injuries, tactical changes, fixture con-gestion, referee decisions, transfer activity, and random in-game incidents. A single goal or unexpected event can substantially change the final result of a match. A central difficulty in football forecasting is that team strength is not directly observable. It must be inferred from a time-ordered sequence of matches. Moreover, team strength is not static. A team may improve after acquiring key players, decline after losing important players, or experience a temporary change in form due to managerial changes, injuries, or congested schedules. Therefore, a forecasting system should not only rank teams, but also update its belief about team ability as new evidence becomes available. Rating systems provide an attractive solution to this problem. The Elo system is widely used because it summarizes team strength through a single numerical score and updates this score after each match. However, Elo has two major limitations in football analytics. First, it does not explicitly quantify uncertainty in the rating estimate. Second, the basic Elo update rule usually depends only on the final result and ignores football-specific signals such as margin of victory, home advantage, draws, and structural changes between transfer windows. The Glicko and Glicko-2 systems extend Elo by representing each player or team using not only a rating value but also a rating deviation and a volatility parameter. This makes Glicko-2 more suitable for dynamic environments in which the reliability of each rating changes over time. In football, this uncertainty-aware representation is especially useful because teams may have long breaks, changing squads, or unstable performance patterns. Nevertheless, standard Glicko-2 was not designed specifically for football. A direct application may fail to capture important domain-specific information. This paper proposes an adaptive Glicko-2-based framework for probabilistic football fore-casting and season simulation. The framework treats team strength as a dynamic latent state and updates this state sequentially using only information available before each prediction. It extends the standard Glicko-2 system by incorporating several football-specific mechanisms: margin-of-victory adjustment, dominance weighting, structural shocks, home advantage mod-elling, and an ordered-logit draw model. The resulting system produces win-draw-loss prob-abilities for individual matches and can be used to simulate league-level outcomes through Monte Carlo sampling. The main contributions of this paper can be summarized as follows: (i) We propose an adaptive and interpretable Glicko-2-based framework for football match outcome forecasting. (ii) We incorporate football-specific mechanisms into the rating update and prediction pipeline, including margin of victory, dominance weighting, structural shocks, home advantage, 2and draw modelling. (iii) We evaluate the framework using a time-respecting rolling-origin protocol, which avoids look-ahead bias and reflects realistic forecasting conditions. (iv) We compare the proposed framework with a standard Glicko-2 baseline and a market-implied benchmark using probabilistic scoring rules. (v) We extend match-level prediction to league-level season simulation and evaluate the quality of simulated final standings. The remainder of the paper is organized as follows. Section 2 reviews related work on rating systems and football forecasting. Section 3 presents the proposed adaptive Glicko-2 framework. Section 4 describes the experimental design. Section 5 reports and discusses the empirical results. Section 6 presents limitations and future work. Section 7 concludes the paper. 
+
+# 2 Related Work 
+
+2.1 Rating systems in sports 
+
+Rating systems are widely used to estimate the relative strength of competitors in games and sports. The Elo rating system was originally developed for chess and has since been adapted to many competitive environments [1]. In Elo, each competitor is represented by a single rating, and the expected result of a match is computed as a logistic function of rating difference. After the match, ratings are updated according to the difference between the observed result and the expected result. Despite its simplicity and interpretability, Elo has several limitations. It does not explicitly model uncertainty in a rating estimate and often uses a fixed update parameter. This can be problematic in dynamic sports environments, where the reliability of a rating depends on recent activity, squad stability, and the amount of available historical information. Glicko and Glicko-2 address these limitations by introducing rating deviation and volatility [2, 3]. In Glicko-2, each competitor is represented by a rating, a rating deviation, and a volatility parameter. The rating deviation represents uncertainty about the rating estimate, while volatility reflects the degree of performance fluctuation. This structure makes Glicko-2 suitable for dynamic paired-comparison problems. 
+
+2.2 Football match outcome prediction 
+
+Football forecasting has been studied using several approaches, including Poisson models, ordered logistic regression, Bayesian models, machine learning classifiers, and rating-based systems. Poisson models are commonly used to model the number of goals scored by each team. Ordered logistic models are useful because football outcomes have an ordinal structure: home win, draw, and away win can be interpreted through an underlying continuous strength difference. 3Rating-based methods are particularly attractive because they are interpretable, computa-tionally efficient, and naturally sequential. Hvattum and Arntzen [4] showed that Elo ratings can be used effectively for association football prediction when combined with ordered logistic regression. Other studies have modified rating systems to incorporate goal differences, team form, or additional contextual information [5, 6, 9]. In football, market-implied probabilities are often strong benchmarks because they aggre-gate large amounts of public and private information. However, rating-based systems remain valuable because they are transparent, lightweight, and do not require access to market in-formation. A key research question is therefore whether an adaptive rating system without direct market inputs can approach the performance of market-implied probabilities. 
+
+2.3 Adaptive and evolving forecasting systems 
+
+An evolving system adapts to changes in its environment as new data become available. Football provides a natural application domain for evolving systems: team strength changes continuously, new evidence arrives after every match, and the uncertainty of each team state varies over time. A suitable forecasting model should therefore update its internal state sequentially, avoid using future information, and remain responsive to structural changes. The framework proposed in this paper follows this philosophy. It maintains a dynamic state for each team, updates this state after each match, and modifies the update process using football-specific mechanisms. In this sense, the proposed model can be interpreted as an adaptive rating-based forecasting system for a non-stationary sports environment. 
+
+# 3 Proposed Method 
+
+3.1 Problem formulation 
+
+Consider a football league with a set of teams T . At time t, the system has access only to the matches that have already been played before t. For each team i ∈ T , the model maintains a dynamic state 
+
+Si,t = ( Ri,t , RD i,t , σ i,t ), (1) where Ri,t is the rating of team i, RD i,t is the rating deviation, and σi,t is the volatility. The rating represents the estimated latent strength of the team. The rating deviation measures uncertainty about this estimate. The volatility captures instability in team performance. For a match between home team h and away team a, the model uses the current states 
+
+Sh,t and Sa,t , together with contextual features, to estimate a probability vector 
+
+ph,a,t = ( pH , p D, p A), (2) where pH , pD, and pA denote the probabilities of a home win, draw, and away win, respectively. The probabilities satisfy 
+
+pH + pD + pA = 1 . (3) 4The main objective is to produce calibrated probability forecasts while respecting the temporal ordering of matches. Therefore, information from future matches is never used when predicting a match at time t.
+
+3.2 Standard Glicko-2 state representation 
+
+The Glicko-2 system operates internally on transformed rating and rating deviation values. Given a rating R and rating deviation RD on the traditional Glicko scale, the internal pa-rameters are defined as 
+
+μ = R − 1500 173 .7178 , ϕ = RD 
+
+173 .7178 . (4) For two teams i and j, the expected score of team i against team j is computed using 
+
+Eij = 11 + exp[ −g(ϕj )( μi − μj )] , (5) where 
+
+g(ϕj ) = 1
+
+> √
+
+1 + 3 ϕ2 
+
+> j
+
+/π 2 . (6) The standard Glicko-2 update then adjusts rating, rating deviation, and volatility based on the observed result. In football, the match result is encoded as sij ∈ { 1, 0.5, 0}, corresponding to win, draw, and loss. 
+
+3.3 Home advantage 
+
+Home advantage is an important factor in football. The simplest way to incorporate home advantage is to add a constant shift to the home team rating before computing the expected score. Let H denote a global home advantage parameter. The adjusted rating difference is 
+
+∆h,a = ( Rh + H) − Ra. (7) This shift increases the expected score of the home team and allows the model to capture systematic home-field effects. In this study, home advantage is treated as a tunable component of the forecasting framework. 
+
+3.4 Margin-of-victory adjustment 
+
+The basic Glicko-2 update uses only the categorical outcome of the match. However, in football, a narrow 1–0 win and a dominant 4–0 win contain different information about relative team strength. To exploit this signal, the proposed framework introduces a margin-of-victory adjustment. Let Gh and Ga be the numbers of goals scored by the home and away teams. The goal difference is 
+
+m = Gh − Ga. (8) Instead of using only the discrete result, the model maps the margin of victory into a contin-5uous adjusted score. The adjusted score remains anchored around the observed match result but reflects the strength of the victory. Larger and more convincing victories lead to stronger updates, while narrow or less informative results lead to smaller updates. The general form of the adjusted score is 
+
+sM OV h,a = f (sh,a , m, E h,a ), (9) where sh,a is the observed categorical score, m is the goal difference, and Eh,a is the pre-match expected score. This design allows the update to depend not only on whether a team won but also on whether the result was surprising or convincing relative to pre-match expectations. 
+
+3.5 Dominance weighting 
+
+Some matches are misleading if judged only by final score. A team may win despite being dominated in shots, possession, or chance creation. Conversely, a team may lose despite producing a strong performance. To account for this phenomenon, the framework introduces a dominance weighting mechanism. Let D be a normalized dominance index derived from post-match statistics. This index summarizes the extent to which the home team dominated or was dominated during the match. The update weight is defined as 
+
+ω = max {0.1, 1 + κ · sign( sh,a − 0.5) · D}, (10) where κ controls the strength of the dominance adjustment. The lower bound 0.1 prevents the model from completely ignoring the final result. When a victory is supported by strong dominance, the rating update is amplified. When a victory appears less convincing, the update is dampened. This component is useful in football because the final score may not fully reflect the balance of play. Dominance weighting provides a way to integrate additional post-match evidence while preserving the core Glicko-2 update structure. 
+
+3.6 Structural shocks 
+
+Football teams often experience structural changes between transfer windows or between seasons. Transfers, managerial changes, and squad turnover can alter the true strength of a team before sufficient match evidence becomes available. Standard rating systems may react too slowly to such changes because they assume continuity in team strength. To address this issue, the proposed framework introduces structural shocks. At predefined structural transition points, such as the beginning of a new season or after a transfer window, 6the system modifies the team state: 
+
+Rnew i,t = Rold i,t + δR, (11) 
+
+RD new i,t = RD old i,t + δRD , (12) 
+
+σnew i,t = σold i,t + δσ. (13) The rating adjustment δR allows the model to account for expected changes in team strength. The increase in RD reflects higher uncertainty after a structural change. The volatility ad-justment allows the model to become more responsive during unstable periods. 
+
+3.7 Draw modelling through ordered logit 
+
+Football outcomes are not binary. Draws are frequent and must be modelled explicitly. The proposed framework converts the expected score into a three-class probability vector using an ordered-logit draw model. Let z be a latent strength difference derived from the adjusted rating difference. Two thresholds θ1 and θ2 separate the latent space into away win, draw, and home win regions. The cumulative probabilities are modelled as 
+
+P (Y ≤ k) = 11 + exp[ −(θk − z)] , k = 1 , 2. (14) The final probabilities are then 
+
+pA = P (Y ≤ 1) , (15) 
+
+pD = P (Y ≤ 2) − P (Y ≤ 1) , (16) 
+
+pH = 1 − P (Y ≤ 2) . (17) This ordered structure is well suited to football because the three outcomes can be interpreted as ordered categories on an underlying performance-difference scale. 
+
+3.8 Overall framework 
+
+Figure 1 summarizes the proposed adaptive rating-based forecasting framework. The fore-casting process consists of two phases: prediction and update. In the prediction phase, before each match, the model uses the current team states and contextual features to compute the expected score and the win-draw-loss probability vector. These probabilities are stored as the model forecast. In the update phase, after the actual result becomes available, the model applies the margin-of-victory adjustment and dominance weighting, then updates the Glicko-2 state of both teams. Structural shocks are applied at predefined transition points. The procedure can be summarized as follows: 
+
+Step 1. Initialize each team state Si = ( Ri, RD i, σ i).
+
+Step 2. For each match in chronological order, apply structural shock adjustments if a structural transition point is detected. 7Figure 1: Workflow and integrated architecture of the proposed adaptive Glicko-2 framework. The diagram is adapted from the thesis framework in Fig. 3.1 and highlights the data inges-tion, preprocessing, prediction, update, and period-loop components. 8Step 3. Compute the adjusted rating difference including home advantage. 
+
+Step 4. Compute the expected score using the Glicko-2 expected score function. 
+
+Step 5. Convert the expected score into win-draw-loss probabilities using the ordered-logit draw model. 
+
+Step 6. Store the probability forecast. 
+
+Step 7. After observing the match result, compute margin-of-victory adjustment and dominance weight. 
+
+Step 8. Update the Glicko-2 states of both teams. 
+
+Step 9. Evaluate forecasts using probabilistic scoring metrics and use predicted proba-bilities for Monte Carlo season simulation. 
+
+3.9 Monte Carlo season simulation 
+
+The match-level probability forecasts can be extended to league-level simulation. At a chosen cut-off round, the model takes the current league table, team states, and remaining fixtures as inputs. For each remaining fixture, a match outcome is sampled from the predicted probability vector (pH , p D, p A). Points are assigned according to standard football rules: three points for a win, one point for a draw, and zero points for a loss. Repeating this process many times produces a distribution over final league tables. From this distribution, one can estimate the probability of each team finishing in a given position, qualifying for the top four, winning the league, or being relegated. This makes the framework useful not only for individual match prediction but also for long-term decision support. 
+
+# 4 Experimental Design 
+
+4.1 Dataset 
+
+The experiments use English Premier League match data from the 2008/2009 to 2015/2016 seasons. The dataset contains 3,040 matches. Each match includes the two teams, home-away status, final score, match outcome, and additional match statistics used to construct contextual features such as dominance indicators. The data are processed chronologically. This is essential because the task is a time-dependent forecasting problem. At each prediction point, the model is allowed to use only matches that occurred earlier in time. 
+
+4.2 Forecasting protocol 
+
+A rolling-origin evaluation protocol is used. This protocol simulates real forecasting conditions by repeatedly training or updating the model on past data and evaluating predictions on future matches. Unlike random train-test splitting, rolling-origin evaluation prevents information leakage from future matches into past predictions. 9The standard Glicko-2 model is used as the main baseline. The proposed framework is evaluated by adding football-specific extensions and by selecting the best configuration based on validation performance. The final evaluation is performed on holdout seasons from 2013/2014 to 2015/2016. 
+
+4.3 Compared models 
+
+The following configurations are considered: (1) Baseline Glicko-2: Standard Glicko-2 without football-specific extensions. (2) Glicko-2 + Home Advantage: Baseline model with global home advantage. (3) Glicko-2 + Margin of Victory: Baseline model with continuous score adjustment based on goal difference. (4) Glicko-2 + Structural Shocks: Baseline model with state adjustment at structural transition points. (5) Glicko-2 + Dominance Weighting: Baseline model with update weighting based on dominance indicators. (6) Optimized Configuration P ∗: The best combined configuration selected through multi-stage hyperparameter optimization. (7) Market Benchmark: A benchmark derived from market-implied match probabilities. The proposed model does not directly rely on market information in its main optimized configuration. The market benchmark is used only as a strong external reference. 
+
+4.4 Evaluation metrics 
+
+Because the model outputs probabilities, evaluation should focus on probabilistic accuracy rather than only classification accuracy. Four metrics are used. The Brier Score measures the squared error between predicted probabilities and the ob-served outcome vector: 
+
+BS = 1
+
+N
+
+> N∑
+> i=1 3∑
+> k=1
+
+(pik − yik )2. (18) The multi-class Log Loss penalizes overconfident incorrect predictions: 
+
+LL = − 1
+
+N
+
+> N∑
+> i=1 3∑
+> k=1
+
+yik log( pik ). (19) The Ranked Probability Score is suitable for ordered outcomes and is defined as the squared difference between cumulative predicted and observed distributions: 
+
+RP S = 1
+
+N
+
+> N∑
+> i=1
+
+1
+
+K − 1
+
+> K−1∑
+> k=1
+> 
+> k∑
+> j=1
+
+pij −
+
+> k∑
+> j=1
+
+yij 
+
+> 
+> 2
+
+. (20) 10 Accuracy is also reported as a supplementary metric by selecting the outcome with the highest predicted probability. For season simulation, the evaluation metrics include point mean absolute error, mean absolute rank error, Spearman rank correlation, and top-four prediction accuracy. 
+
+# 5 Results and Discussion 
+
+5.1 Match-level probabilistic forecasting 
+
+Before comparing the optimized configuration with the market benchmark, we first report the detailed ablation results obtained from the independent evaluation of football-specific extensions. Table 1 summarizes the effect of each component on Brier Score. Lower Brier Score indicates better probabilistic accuracy. Table 2 reports the corresponding performance for the three-class win-draw-loss prediction task using Ranked Probability Score, multi-class Log Loss, and Accuracy. Table 1: Ablation results for rating-level evaluation using Brier Score. Model Brier Score Relative Improvement over Baseline (%) Stacking (with market data) 0.154785 6.404677 Stacking (without market data) 0.159193 3.738757 Global home advantage 0.161107 2.581955 Margin of victory 0.164228 0.694470 Team-specific home advantage (random walk) 0.164378 0.603920 Structural shocks 0.164835 0.327442 Team-specific home advantage (Bayesian) 0.165183 0.117284 FIFA prior 0.165231 0.087721 Form 0.165368 0.005259 Vanilla Glicko-2 baseline 0.165376 0.000000 Table 2: Ablation results for win-draw-loss probability prediction. Model RPS Multi-class Log Loss Accuracy Dominance weighting 0.205580 0.997123 0.524561 FIFA prior 0.205780 0.997746 0.523684 Structural shocks 0.205872 0.997977 0.524561 Team-specific home advantage (random walk) 0.205936 0.998177 0.522807 Form 0.205977 0.998323 0.521930 Margin of victory 0.205978 0.998940 0.516667 Team-specific home advantage (Bayesian) 0.206005 0.998387 0.522807 Global home advantage 0.206041 0.998488 0.522807 Vanilla Glicko-2 baseline 0.206041 0.998488 0.522807 Stacking (with market data) 0.206912 1.001244 0.521053 Stacking (without market data) 0.219102 1.036235 0.464035 The ablation results indicate that the most effective component depends on the eval-uation level. At the rating-evaluation level, stacking with market data gives the largest Brier improvement, while the non-market stacking configuration, global home advantage, and 11 margin-of-victory adjustment also improve the baseline. For the final win-draw-loss prob-ability task, dominance weighting provides the best RPS among the independently tested extensions. These observations motivate the subsequent multi-stage optimization of the full configuration P ∗.Table 3 compares the standard Glicko-2 baseline, the optimized proposed configuration 
+
+P ∗, and the market benchmark. Table 3: Comparison between the proposed model and the market benchmark. Model Brier Score Log Loss RPS Baseline Glicko-2 0.165376 – –Proposed P ∗ 0.158688 0.992780 0.204079 Market Benchmark 0.154339 0.979541 0.199623 The optimized configuration P ∗ achieves a Brier Score of 0.158688, compared with 0.165376 for the standard Glicko-2 baseline. This corresponds to a relative improvement of 4.04%. The improvement indicates that football-specific extensions help the rating system capture infor-mation that is not fully represented in the standard Glicko-2 formulation. Compared with the market benchmark, the proposed model remains competitive. The performance gap is 2.82% in Brier Score, 2.23% in Ranked Probability Score, and 1.35% in Log Loss. This is notable because the proposed configuration does not rely directly on market-implied probabilities. Market probabilities often aggregate information about injuries, lineups, team news, and public expectations. Therefore, a small remaining gap is expected and suggests that additional pre-match information could further improve the model. 
+
+5.2 Performance gain over baseline 
+
+Table 4 reports the relative improvement over the Glicko-2 baseline and the remaining distance to the market benchmark. Table 4: Improvement over baseline and remaining gap to the market benchmark. Model Brier Score Improvement over Baseline Gap to Market Baseline Glicko-2 0.165376 0.00% 0.011037 Proposed P ∗ 0.158688 4.04% 0.004349 Market Benchmark 0.154339 6.67% 0.000000 The optimized configuration closes a substantial part of the gap between the baseline rating model and the market benchmark. This suggests that the proposed adaptive extensions improve the informational efficiency of the rating system while retaining interpretability and independence from market information. 
+
+5.3 Effect of football-specific extensions 
+
+The empirical results show that the football-specific extensions do not contribute equally. Margin-of-victory adjustment and home advantage provide clear improvements because they 12 directly modify the relationship between observed match results and inferred team strength. Structural shocks produce a smaller but meaningful improvement by increasing the model’s responsiveness around periods of squad change. Dominance weighting provides an additional way to distinguish convincing results from potentially noisy outcomes. Some extensions, such as team-specific home advantage or short-term form, may require richer data or longer observation windows to become reliable. This is an important find-ing: adding more components does not automatically improve forecasting performance. For adaptive sports forecasting systems, each extension must be tested under a time-respecting evaluation protocol. 
+
+5.4 Why the adaptive framework improves over standard Glicko-2 
+
+The standard Glicko-2 model updates team strength using the observed match result. How-ever, football results are noisy. A narrow win, a lucky win, and a dominant win are all treated similarly if only the final result category is used. The proposed framework improves this process in three ways. First, margin-of-victory adjustment allows the model to distinguish weak and strong ev-idence. A larger and more unexpected victory provides stronger evidence of team strength than a narrow expected win. Second, dominance weighting uses additional match statistics to moderate the update. This reduces the risk of overreacting to noisy outcomes and helps the rating system better approximate underlying team quality. Third, structural shocks increase uncertainty around periods of change. This is consistent with the evolving nature of football teams: after transfers or managerial changes, previous ratings may become less reliable. Together, these mechanisms make the rating system more adaptive while preserving the interpretability and computational efficiency of Glicko-2. 
+
+5.5 Comparison with market benchmark 
+
+The market benchmark remains the strongest reference model. This is expected because market-implied probabilities aggregate a large amount of information, including injuries, line-ups, tactical expectations, and expert judgement. However, the proposed model substantially narrows the gap between a pure rating-based system and the market benchmark. The result is practically meaningful for two reasons. First, the proposed model is transpar-ent: its predictions can be decomposed into rating difference, uncertainty, home advantage, and update mechanisms. Second, it does not require access to market data. This makes it useful in settings where market information is unavailable, incomplete, or undesirable for methodological reasons. 
+
+5.6 Season simulation results 
+
+The match-level probabilities generated by the proposed model are also used for Monte Carlo simulation of the remaining season. The simulation experiments are conducted on the 2013/2014, 2014/2015, and 2015/2016 English Premier League seasons. The simulation starts after round 19 and predicts the remaining part of the season. 13 Table 5: Summary of Monte Carlo season simulation results. Metric Average result Point MAE 5.49 Point RMSE 6.50 Mean absolute rank error 2.12 Spearman rank correlation 0.8495 Top-four prediction accuracy 91.67% The average Spearman rank correlation of 0.8495 indicates that the simulated standings are strongly aligned with the actual final standings. The point mean absolute error of 5.49 over the remaining half-season suggests that the model provides useful quantitative estimates of final point totals. The average rank error of 2.12 positions further indicates that the model captures the broad structure of league strength. The top-four prediction accuracy of 91.67% is also practically relevant because top-four qualification is a key target in the English Premier League. These results demonstrate that the proposed framework can be extended beyond match-level prediction to season-level decision support. 
+
+5.7 Practical implications 
+
+The proposed framework has several practical advantages. It is interpretable, computationally efficient, and sequential. It can be updated after each match without retraining a complex black-box model from scratch. The uncertainty representation allows analysts to distinguish between stable and uncertain team ratings. The Monte Carlo simulation layer provides a natural way to communicate long-term league risks and opportunities. For clubs, analysts, and researchers, such a system can support tasks such as monitoring team strength, evaluating the impact of structural changes, forecasting league outcomes, and comparing model-based expectations with actual performance. 
+
+# 6 Limitations and Future Work 
+
+This study has several limitations. First, the empirical evaluation is restricted to the En-glish Premier League from 2008/2009 to 2015/2016. Although this provides a coherent and competitive testing environment, future work should evaluate the framework on more recent seasons and across multiple leagues, such as La Liga, Bundesliga, Serie A, and Ligue 1. Second, the model represents match outcomes through rating-derived expected scores and an ordered-logit draw model. While this is interpretable and efficient, it does not fully exploit richer pre-match information such as injuries, lineups, tactical formations, fixture congestion, rest days, and weather conditions. Integrating such features may further reduce the gap with market-implied probabilities. Third, the structural shock mechanism is applied in a relatively general way. In practice, the effect of transfers or managerial changes differs across teams. Future work should develop 14 team-specific or player-level structural shock models. Fourth, some extensions, such as short-term form and team-specific home advantage, require further validation. These components may be more effective when supported by larger datasets or richer match-level features. Finally, the hyperparameter optimization strategy can be improved. Future work may use Bayesian optimization, nested cross-validation, or online learning strategies to tune model components more systematically. 
+
+# 7 Conclusion 
+
+This paper proposed an adaptive Glicko-2-based framework for probabilistic football forecast-ing and league-level season simulation. The framework extends the standard Glicko-2 system with football-specific mechanisms, including home advantage, margin-of-victory adjustment, dominance weighting, structural shocks, and ordered-logit draw modelling. Experiments on 3,040 English Premier League matches show that the optimized configu-ration improves the standard Glicko-2 baseline by 4.04% in Brier Score. The proposed model also remains close to a market-implied benchmark, despite not directly using market informa-tion. In addition, Monte Carlo simulation experiments demonstrate that the framework can produce meaningful league-level forecasts, achieving strong rank correlation with actual final standings. The results suggest that adaptive rating-based systems provide a promising direction for football analytics. They combine interpretability, uncertainty awareness, sequential updating, and practical forecasting performance. Future work should extend the framework to multiple leagues, incorporate richer pre-match information, and develop more individualized models of structural change. 
+
+Acknowledgements 
+
+This research is partially supported by the Institute of Mathematics, VAST under grant number CSCL01.01/25-26. 
+
+# References 
+
+[1] Elo, A. E. (1978). The Rating of Chessplayers, Past and Present . Arco Publishing. [2] Glickman, M. E. (1999). Parameter estimation in large dynamic paired comparison ex-periments. Journal of the Royal Statistical Society: Series C (Applied Statistics) , 48(3), 377–394. [3] Glickman, M. E. (2022). Example of the Glicko-2 System . Boston University. Available at: https://www.glicko.net/glicko/glicko2.pdf .[4] Hvattum, L. M., & Arntzen, H. (2010). Using ELO ratings for match result prediction in association football. International Journal of Forecasting , 26(3), 460–470. 15 [5] Dixon, M. J., & Coles, S. G. (1997). Modelling association football scores and inefficiencies in the football betting market. Journal of the Royal Statistical Society: Series C (Applied Statistics) , 46(2), 265–280. [6] Rue, H., & Salvesen, O. (2000). Prediction and retrospective analysis of soccer matches in a league. Journal of the Royal Statistical Society: Series D (The Statistician) , 49(3), 399–418. [7] Suzuki, A. K., Salasar, L. E. B., Leite, J. G., & Louzada-Neto, F. (2010). A Bayesian approach for predicting match outcomes: The 2006 Association Football World Cup. 
+
+Journal of the Operational Research Society , 61(10), 1530–1539. [8] Ryall, R., & Bedford, A. (2010). An optimized ratings-based model for forecasting Aus-tralian Rules football. International Journal of Forecasting , 26(3), 511–517. [9] Constantinou, A. C., & Fenton, N. (2013). Determining the level of ability of football teams by dynamic ratings based on the relative discrepancies in scores between adver-saries. Journal of Quantitative Analysis in Sports , 9(1), 37–50. [10] Pollard, R. (1986). Home advantage in soccer: A retrospective analysis. Journal of Sports Sciences , 4(3), 237–248. [11] Ponzo, M., & Scoppa, V. (2018). Does the home advantage depend on crowd support? Evidence from same-stadium derbies. Journal of Sports Economics , 19(6), 890–909. [12] Nevill, A. M., Balmer, N. J., & Williams, A. M. (2002). The influence of crowd noise and experience upon refereeing decisions in football. Psychology of Sport and Exercise , 3(4), 261–272. [13] Sors, F., Grassi, M., Agostini, T., & Murgia, M. (2021). The sound of silence in association football: Home advantage and referee bias decrease in matches played without spectators. 
+
+European Journal of Sport Science , 21(12), 1597–1605. [14] Iso-Ahola, S. E., & Dotson, C. O. (2016). Psychological momentum: A key to continued success. Frontiers in Psychology , 7, Article 1328. [15] Janse van Rensburg, D. C., et al. (2021). Managing travel fatigue and jet lag in athletes: A review and consensus statement. British Journal of Sports Medicine , 55(10), 555–568. [16] Marques, A., Travassos, B., Branquinho, L., & Ferraz, R. (2022). Periods of competitive break in soccer: Implications on individual and collective performance. The Open Sports Sciences Journal , 15. [17] Ren, Y., & Susnjak, T. (2022). Predicting football match outcomes with explainable machine learning and the Kelly index. arXiv preprint arXiv:2211.15734 .[18] Sally, D., & Anderson, C. (2013). The Numbers Game: Why Everything You Know About Soccer Is Wrong . Penguin Books. 16 [19] Brier, G. W. (1950). Verification of forecasts expressed in terms of probability. Monthly Weather Review , 78(1), 1–3. [20] Heijboer, M. (2022). Predicting Football Match Outcomes Using Machine Learning Algo-rithms . Master’s thesis, Tilburg University. 17

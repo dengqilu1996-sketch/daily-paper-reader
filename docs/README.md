@@ -6,52 +6,76 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-07-02
-- 运行时间：2026-07-02 23:21:14 UTC
+- 最新运行日期：2026-07-03
+- 运行时间：2026-07-03 23:52:56 UTC
 - 运行状态：成功
-- 本次总论文数：10
+- 本次总论文数：18
 - 精读区：5
-- 速读区：5
+- 速读区：13
 
 ### 今日简报（AI）
-今日精读5篇、速读5篇，聚焦脑力疲劳如何瓦解耐力表现与机器人如何打出职业级乒乓。  
-最值得跟进的发现：精神疲劳不改变肌肉本身，却悄悄改写你对“努力”的感知，从而拖累骑行成绩；另一篇则证明，用物理模型能让机器人面对高速旋转球时真正从仿真走进现实。  
-建议你下次长跑或高强度训练前，先留意自己的脑力状态；对科技好奇的话，不妨搜一下“机器人乒乓球”的最新比赛视频，看看它如何接住刁钻旋转球。
-- 详情：[/202607/02/README](/202607/02/README)
+今日解锁AI+体育的科学洞察：从健身大模型微调、足球预测新框架到冠军级反事实反馈生成。  
+最值得关注：领域专用LLM极大提升健身智能，自适应Glicko-2评级革新足球预测，物体追踪迈向人类级感知。  
+建议读者深入体育科技中的LLM落地与数据高效强化学习，关注反事实分析与通用技能策略的结合。
+- 详情：[/202607/03/README](/202607/03/README)
 
 ### 精读区论文标签
-1. [Mental fatigue impairs cycling endurance performance and perception of effort, but not muscle activation](/202607/02/biorxiv-10-64898-2026-03-19-712281-v3-mental-fatigue-impairs-cycling-endurance-performance-and-perception-of-effort-but-not-muscle-activation)  
-   标签：评分：10.0/10、query:sport-sci
-   evidence：精神疲劳损害骑行耐力表现
-2. [Physics Models for Sim-to-Real Transfer in Professional-Level Robot Table Tennis](/202607/02/2606.28805v2-physics-models-for-sim-to-real-transfer-in-professional-level-robot-table-tennis)  
-   标签：评分：9.0/10、query:sports-rl
-   evidence：利用物理模型进行机器人乒乓球模拟到真实的强化学习策略转移
-3. [Towards Continual Motion-Language Agents: LoRA Variants for Incremental Motion Understanding and Generation](/202607/02/2606.30266v1-towards-continual-motion-language-agents-lora-variants-for-incremental-motion-understanding-and-generation)  
-   标签：评分：9.0/10、query:cv-sports
-   evidence：构建持续学习运动语言智能体，用于理解和生成运动动作，直接支持体育动作识别。
-4. [Unilateral resistance training induces greater rate coding adaptations in high-threshold motor units during maximal voluntary contractions](/202607/02/biorxiv-10-64898-2026-06-26-734811-v1-unilateral-resistance-training-induces-greater-rate-coding-adaptations-in-high-threshold-motor-units-during-maximal-voluntary-contractions)  
-   标签：评分：9.0/10、query:sport-sci
-   evidence：研究抗阻训练后最大收缩期间的神经适应，与运动生理学和人类表现直接相关。
-5. [Partial Skeleton Visibility for Action Recognition: A Constrained Field-of-View Approach](/202607/02/2607.00716v1-partial-skeleton-visibility-for-action-recognition-a-constrained-field-of-view-approach)  
-   标签：评分：8.0/10、query:cv-sports
-   evidence：基于骨架的动作识别对部分可见性鲁棒，有助于体育视频中遮挡情况下的动作分析
+1. [Enhancing Fitness Intelligence through Domain-Specific LLM Post-Training](/202607/03/2607.02118v1-enhancing-fitness-intelligence-through-domain-specific-llm-post-training)  
+   标签：评分：10.0/10、query:sports-nlp
+   evidence：领域特定大语言模型后训练用于科学健身教练
+2. [An Adaptive Glicko-2 Rating Framework for Probabilistic Football Forecasting and Season Simulation](/202607/03/2607.01722v1-an-adaptive-glicko-2-rating-framework-for-probabilistic-football-forecasting-and-season-simulation)  
+   标签：评分：9.0/10、query:ml-sports
+   evidence：基于自适应Glicko-2评分框架的足球比赛预测
+3. [Evidence of an optimal error rate for motor skill learning](/202607/03/biorxiv-10-1101-2023-07-19-549705-v5-evidence-of-an-optimal-error-rate-for-motor-skill-learning)  
+   标签：评分：9.0/10、query:sports-sci
+   evidence：运动技能学习的最优错误率约30%，直接适用于训练科学。
+4. [Adaptive Group-Based Counterfactual Explanations for Time-Series Rehabilitation Data](/202607/03/2607.01838v1-adaptive-group-based-counterfactual-explanations-for-time-series-rehabilitation-data)  
+   标签：评分：8.0/10、query:sport-tsa
+   evidence：基于组的反事实解释用于IMU康复运动分类器
+5. [Learning-related population dynamics in right and left dorsal premotor cortex during typing skill acquisition](/202607/03/biorxiv-10-64898-2026-07-02-736059-v1-learning-related-population-dynamics-in-right-and-left-dorsal-premotor-cortex-during-typing-skill-acquisition)  
+   标签：评分：8.0/10、query:sports-sci
+   evidence：运动技能习得过程中的神经群体动力学，与运动学习相关。
 
 ### 速读区论文标签
-1. [Measuring Graph-to-Graph Semantic Similarity in Knowledge Graphs: An Empirical Evaluation of Knowledge Graph Embeddings](/202607/02/2606.29180v2-measuring-graph-to-graph-semantic-similarity-in-knowledge-graphs-an-empirical-evaluation-of-knowledge-graph-embeddings)  
-   标签：评分：7.0/10、query:sports-nlp
-   evidence：评估知识图谱嵌入在图级语义相似度的表现，可辅助构建和比较体育知识图谱。
-2. [Reproducible Research: Computational Design of Personalized Clinical Treatments for Walking Impairments Caused by Knee Osteoarthritis and Stroke](/202607/02/biorxiv-10-64898-2026-03-02-709099-v2-reproducible-research-computational-design-of-personalized-clinical-treatments-for-walking-impairments-caused-by-knee-osteoarthritis-and-stroke)  
-   标签：评分：7.0/10、query:sb
-   evidence：个性化神经肌肉骨骼模型用于运动优化
-3. [RGLD: Randomized Global-Local Density Estimation for Tabular Anomaly Detection](/202607/02/2606.28970v1-rgld-randomized-global-local-density-estimation-for-tabular-anomaly-detection)  
-   标签：评分：6.0/10、query:ml-sports
-   evidence：提出RGLD，一种新型无监督表格异常检测方法，可应用于检测体育数据中的异常。
-4. [Simultaneous Inference for Partially Observed Functional Time Series](/202607/02/2606.31269v1-simultaneous-inference-for-partially-observed-functional-time-series)  
-   标签：评分：6.0/10、query:sport-tsa
-   evidence：部分观测函数时间序列的统计推断方法可用于体育传感器数据
-5. [A Lightweight Self-Supervised Learning Framework for Multivariate Time Series using Hierarchical-JEPA on ECG Data](/202607/02/2607.01145v1-a-lightweight-self-supervised-learning-framework-for-multivariate-time-series-using-hierarchical-jepa-on-ecg-data)  
-   标签：评分：6.0/10、query:sport-tsa
-   evidence：针对心电图数据的多元时间序列自监督学习
+1. [Play Like Champions: Counterfactual Feedback Generation in Latent Space](/202607/03/2607.00190v1-play-like-champions-counterfactual-feedback-generation-in-latent-space)  
+   标签：评分：7.0/10、query:sports-rl
+   evidence：强化学习智能体为人类玩家在RTS游戏中生成反事实反馈，提升竞技表现。
+2. [Learning Generalizable Skill Policy with Data-Efficient Unsupervised RL](/202607/03/2607.00392v1-learning-generalizable-skill-policy-with-data-efficient-unsupervised-rl)  
+   标签：评分：7.0/10、query:sports-sci
+   evidence：无监督强化学习用于学习可泛化技能策略，可应用于运动技能习得
+3. [Rethinking Generic Object Tracking Toward Human-Level Perceptual Intelligence](/202607/03/2607.01395v1-rethinking-generic-object-tracking-toward-human-level-perceptual-intelligence)  
+   标签：评分：7.0/10、query:cv-sports
+   evidence：提出重新思考通用目标跟踪以实现人类级感知智能，可应用于体育运动员跟踪
+4. [Zeus: Towards Tuning-Free Foundation Model for Time Series Analysis](/202607/03/2607.01918v1-zeus-towards-tuning-free-foundation-model-for-time-series-analysis)  
+   标签：评分：7.0/10、query:sport-tsa
+   evidence：免调参的时间序列基础模型，可应用于体育传感器数据分析
+5. [Fast and Accurate Anomaly Detection in Time Series](/202607/03/2607.02046v1-fast-and-accurate-anomaly-detection-in-time-series)  
+   标签：评分：7.0/10、query:ml-sports
+   evidence：新型时间序列异常检测方法，可应用于体育传感器数据识别异常模式。
+6. [Feasibility and repeatability of MEG-compatible patellar-tendon stimulator for eliciting knee-joint proprioceptive cortical responses](/202607/03/biorxiv-10-64898-2026-06-26-734808-v1-feasibility-and-repeatability-of-meg-compatible-patellar-tendon-stimulator-for-eliciting-knee-joint-proprioceptive-cortical-responses)  
+   标签：评分：7.0/10、query:sport-sci
+   evidence：新型膝关节本体感觉刺激器，用于研究运动控制和运动生理学。
+7. [Regularized Reward-Punishment Reinforcement Learning](/202607/03/2606.28152v1-regularized-reward-punishment-reinforcement-learning)  
+   标签：评分：6.0/10、query:sports-rl
+   evidence：提出针对奖惩强化学习的策略协调方法，可应用于多智能体体育策略。
+8. [Measuring Graph-to-Graph Semantic Similarity in Knowledge Graphs: An Empirical Evaluation of Knowledge Graph Embeddings](/202607/03/2606.29180v1-measuring-graph-to-graph-semantic-similarity-in-knowledge-graphs-an-empirical-evaluation-of-knowledge-graph-embeddings)  
+   标签：评分：6.0/10、query:sports-nlp
+   evidence：评估知识图谱嵌入在图级语义相似性上的表现，可用于体育知识图谱构建。
+9. [Two kinds of robustness are not the same: disentangling fault tolerance and low-SNR robustness in multi-domain event detection on real data](/202607/03/2606.29339v1-two-kinds-of-robustness-are-not-the-same-disentangling-fault-tolerance-and-low-snr-robustness-in-multi-domain-event-detection-on-real-data)  
+   标签：评分：6.0/10、query:cv-sports
+   evidence：多领域事件检测的鲁棒性解耦方法可迁移至体育视频事件检测。
+10. [FalconTrack: Photorealistic Auto-Labeled Perception and Physics-Aware Vision-Based Aerial Tracking](/202607/03/2606.29783v1-falcontrack-photorealistic-auto-labeled-perception-and-physics-aware-vision-based-aerial-tracking)  
+   标签：评分：6.0/10、query:cv-sports
+   evidence：基于视觉的空中目标跟踪，结合物理感知进行物体姿态估计，可应用于体育目标跟踪。
+11. [Deep-Pose-Tracker: an automated behavioural analysis framework for Caenorhabditis elegans](/202607/03/biorxiv-10-1101-2025-11-23-689997-v3-deep-pose-tracker-an-automated-behavioural-analysis-framework-for-caenorhabditis-elegans)  
+   标签：评分：6.0/10、query:cv-sports
+   evidence：基于YOLO的自动姿态检测用于线虫，可迁移至人体姿态估计
+12. [Automated behavioral segmentation and markerless pose tracking of mice during spaceflight](/202607/03/biorxiv-10-64898-2026-04-30-721950-v2-automated-behavioral-segmentation-and-markerless-pose-tracking-of-mice-during-spaceflight)  
+   标签：评分：6.0/10、query:cv-sports
+   evidence：应用无标记姿态估计追踪动物行为，技术可迁移至人体姿态估计
+13. [Can exercise training improve mitochondrial thermal responses in rainbow trout cardiomyocytes?](/202607/03/biorxiv-10-64898-2026-06-26-734741-v1-can-exercise-training-improve-mitochondrial-thermal-responses-in-rainbow-trout-cardiomyocytes)  
+   标签：评分：6.0/10、query:sports-sci
+   evidence：研究运动训练对鱼类心脏线粒体热敏感性的影响，模拟生理适应。
 
 
 <div class="dpr-home-promo-card">
