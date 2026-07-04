@@ -1,0 +1,357 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-04T22:22:47.744675+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 1,
+    "deep_cap": 14,
+    "deep_selected": 1,
+    "quick_candidates": 6,
+    "quick_skim_target": 19,
+    "quick_selected": 6
+  },
+  "deep_dive": [
+    {
+      "id": "biorxiv-10-64898-2026-07-03-736031-v1",
+      "source": "biorxiv",
+      "title": "Supershoes or Superhumans? A controlled analysis of sex-specific road-running performance evolution in the era of advanced footwear technology",
+      "abstract": "Advanced footwear technology (AFT) improves running economy and is widely credited with recent performance improvements in road running, with observational analyses consistently demonstrating that women have improved more than men. In contrast, laboratory studies generally report similar running economy responses to AFT in both sexes, leaving the observational-experimental divergence unresolved. A fundamental limitation of observational work is the absence of a control condition, making it impossible to separate AFT-related gains from concurrent performance trends. We addressed this by comparing performances between pre-AFT (2009-2015) and AFT (2017-2024) eras across road-running events (10km, half marathon, marathon) and throwing events (shot put, discus, javelin, hammer), the latter serving as an active control condition subject to the same broad athletic trends but unaffected by footwear technology. The top 50 performances per event, era, and sex were converted to World Athletics points and analysed using linear mixed-effects models. Performances improved significantly between eras ({beta} = 0.294, p < .001), with gains substantially larger in road running than in throwing ({beta} = 0.731, p < .001). The sex-specific pattern of improvement also differed between event categories (era x event type x sex interaction, {beta} = 0.786, p < .001): road-running improvements were greater in women than men (4.51% vs 2.62%), whereas throwing improvements did not differ by sex (0.93% vs 1.14%). These findings suggest that AFT benefits women more than men in competition, whether through a greater physiological response or more effective translation of economy gains to race performance, and suggest current laboratory protocols may be insufficiently sensitive to detect potential sex-specific effects.",
+      "authors": [
+        "Blattmann, L.",
+        "Hamacher, D.",
+        "Tucker, R.",
+        "Healey, L.",
+        "Mason, J."
+      ],
+      "primary_category": "physiology",
+      "categories": [
+        "physiology"
+      ],
+      "published": "2026-07-03T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.07.03.736031v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "road-running performance evolution with advanced footwear technology",
+      "llm_evidence_cn": "使用先进鞋履技术的路跑表现演变",
+      "llm_evidence": "使用先进鞋履技术的路跑表现演变",
+      "canonical_evidence": "使用先进鞋履技术的路跑表现演变",
+      "llm_tldr_en": "This study examines sex-specific road-running performance changes between pre-AFT and AFT eras, finding that women improved more than men in some events, but the evidence is mixed when controlling for concurrent trends.",
+      "llm_tldr_cn": "该研究通过对比先进鞋履技术前后的路跑表现，分析性别差异，发现女性在某些项目上进步更大，但在控制同期趋势后证据混杂。这为运动生理学和表现提升提供了关键见解。",
+      "llm_tldr": "该研究通过对比先进鞋履技术前后的路跑表现，分析性别差异，发现女性在某些项目上进步更大，但在控制同期趋势后证据混杂。这为运动生理学和表现提升提供了关键见解。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "exercise physiology and human performance",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.29861v1",
+      "source": "arxiv",
+      "title": "SUMO: Segment and Track Any Motion with Nonlinear State Space Models",
+      "abstract": "Visual Object Tracking (VOT) and Moving Object Segmentation (MOS) are two fundamental tasks in computer vision that involve both spatial and temporal object dynamics. Existing methods rely predominantly on visual cues and thus often falter in real-world scenarios where object motions are inherently complex and nonlinear. To address this limitation, we propose SUMO, a zero-shot, training-free, unified framework integrating nonlinear dynamics with vision-based segmentation for accurate and consistent VOT and MOS. Specifically, we develop a nonlinear State Space Model (SSM) inspired by robotics principles to capture the complex object dynamics. Building on this model, we propose a Selective Unscented Filter (SUF) for accurate state estimation, which features a joint scoring mechanism and dynamically fuses multi-source predictions to identify the most plausible object state over time. Furthermore, we apply a memory selection mechanism to evaluate the reliability of memory frames. Our extensive experimental results show that SUMO achieves state-of-the-art performance on both VOT and MOS tasks.",
+      "authors": [
+        "Kexin Tian",
+        "Sixu Li",
+        "Keshu Wu",
+        "Yang Zhou",
+        "Zhengzhong Tu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-29T06:55:13+00:00",
+      "link": "https://arxiv.org/pdf/2606.29861v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "zero-shot tracking framework for complex motions, can track athletes in sports footage",
+      "llm_evidence_cn": "零样本非线性状态空间模型跟踪框架，可应用于体育视频中的运动员跟踪",
+      "llm_evidence": "零样本非线性状态空间模型跟踪框架，可应用于体育视频中的运动员跟踪",
+      "canonical_evidence": "零样本非线性状态空间模型跟踪框架，可应用于体育视频中的运动员跟踪",
+      "llm_tldr_en": "SUMO is a training-free framework integrating nonlinear dynamics and vision-based segmentation for accurate object tracking and segmentation, suitable for tracking athletes in sports videos. It uses a Selective Unscented Filter for state estimation and offers a zero-shot solution for complex motions.",
+      "llm_tldr_cn": "针对视觉对象跟踪和运动分割中复杂非线性运动的挑战，提出SUMO零样本统一框架，结合非线性状态空间模型与基于视觉的分割，采用选择性无迹滤波进行状态估计。该方法无需训练即可精确跟踪和分割物体，能有效处理运动员等复杂动态，为体育视频分析中的运动跟踪提供了一种灵活准确的解决方案。",
+      "llm_tldr": "针对视觉对象跟踪和运动分割中复杂非线性运动的挑战，提出SUMO零样本统一框架，结合非线性状态空间模型与基于视觉的分割，采用选择性无迹滤波进行状态估计。该方法无需训练即可精确跟踪和分割物体，能有效处理运动员等复杂动态，为体育视频分析中的运动跟踪提供了一种灵活准确的解决方案。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-23-733972-v2",
+      "source": "biorxiv",
+      "title": "Precision-Controlled Active Inference Accounts for Sensory Reweighting in Quiet Standing",
+      "abstract": "Human quiet standing depends on the context-dependent reweighting of vestibular, proprio-ceptive, and visual information. Posturography has empirically characterized this phenomenon, but a minimal generative-control account of how changes in sensory reliability propagate from state estimation to postural action remains incomplete. Here, we test a minimal continuous-time active inference model of quiet standing. In this model, sensory reweighting is implemented as channel-specific precision control over prediction errors. A one-link inverted pendulum receives vestibular, proprioceptive, and visual observations, estimates posture using a generalized-coordinate variational free-energy objective, and selects ankle torque by minimizing the same objective under an upright generalized sensory goal. Context changes alter the relative precision of sensory channels, without changing the plant, action optimizer, or goal dynamics. Across controlled sensory perturbations, reducing the precision of an unreliable visual or proprioceptive channel reduced perturbation-driven postural shifts by approximately 82%. An automatic-differentiation-based state-update gradient contribution closely matched the reduction, identifying the mechanistic locus of reweighting in the perceptual update. A linear reliability-to-precision law,{lambda} (c) = 1 + 7c, monotonically controlled sensory contribution, and a fixed-precision ablation showed that global precision reduction did not produce reweighting: the behavioral bias remained comparable to the equal-precision condition unless precision was changed selectively across channels. These results support the claim that postural sensory reweighting can be understood as relative, context-selective precision control in a continuous active inference loop.",
+      "authors": [
+        "Kobayashi, J."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-01T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.23.733972v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "active inference model simulates sensory reweighting in quiet standing, an optimization approach for human movement simulation",
+      "llm_evidence_cn": "主动推理模型模拟安静站立中的感觉重加权，是一种人体运动模拟的优化方法",
+      "llm_evidence": "主动推理模型模拟安静站立中的感觉重加权，是一种人体运动模拟的优化方法",
+      "canonical_evidence": "主动推理模型模拟安静站立中的感觉重加权，是一种人体运动模拟的优化方法",
+      "llm_tldr_en": "This paper presents a minimal active inference model of quiet standing that implements sensory reweighting as precision control, successfully reproducing empirical postural sway patterns and explaining how sensory reliability drives postural actions.",
+      "llm_tldr_cn": "该研究针对安静站立中感觉重新加权的计算机制不明问题，构建了一个连续时间主动推理模型。模型中通过通道特定的精度控制实现感觉重加权，利用单环节倒立摆接收前庭、本体感觉和视觉输入，优化踝关节力矩。模拟结果复现了经验性姿势摆动特征，阐明了感觉可靠性变化如何传递到姿势动作，为神经运动控制提供了生成模型框架。",
+      "llm_tldr": "该研究针对安静站立中感觉重新加权的计算机制不明问题，构建了一个连续时间主动推理模型。模型中通过通道特定的精度控制实现感觉重加权，利用单环节倒立摆接收前庭、本体感觉和视觉输入，优化踝关节力矩。模拟结果复现了经验性姿势摆动特征，阐明了感觉可靠性变化如何传递到姿势动作，为神经运动控制提供了生成模型框架。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "Optimization algorithms for simulating human movement",
+      "matched_requirement_id": "req-49",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.31979v2",
+      "source": "arxiv",
+      "title": "Planar-SfM: Camera Pose Estimation via Homography Graph Embeddings",
+      "abstract": "Structure from Motion (SfM) systems traditionally struggle with planar scenes, where standard epipolar geometry-based methods become degenerate. Rather than viewing planar surfaces as a limitation, we propose a unified framework that leverages them as a source of geometric constraints. Our key insight is that each planar surface visible across multiple views provides an independent estimate of relative camera poses through homography decomposition. By aggregating estimates from multiple planes or even from a single dominant plane we achieve robust pose recovery in scenarios where traditional methods fail. We introduce a novel graph-based approach that constructs a pose-graph from homography estimates and employs spectral embedding to identify and filter unreliable edges. Our method maps homography-based pose estimates onto the real line based on their geometric and visual consistency, enabling efficient extraction of a maximally consistent spanning tree for pose recovery. This approach naturally handles both highly planar scenes, such as indoor sports arenas, and general $3$D environments. We demonstrate superior performance on basketball court imagery where existing methods struggle, while matching or exceeding state-of-the-art results on unconstrained outdoor scenes from the IMC Phototourism benchmark.",
+      "authors": [
+        "Gabi Pragier",
+        "Matan Karklinsky",
+        "David Ungarish",
+        "Avi Ben-Cohen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-30T17:18:27+00:00",
+      "link": "https://arxiv.org/pdf/2606.31979v2",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Robust camera pose estimation for planar scenes, enabling sports field registration and video analysis.",
+      "llm_evidence_cn": "为平面场景提供鲁棒的相机姿态估计，有助于体育场注册和视频分析。",
+      "llm_evidence": "为平面场景提供鲁棒的相机姿态估计，有助于体育场注册和视频分析。",
+      "canonical_evidence": "为平面场景提供鲁棒的相机姿态估计，有助于体育场注册和视频分析。",
+      "llm_tldr_en": "Proposes a graph-based approach to estimate camera poses from homographies in planar scenes, enabling robust SfM where traditional methods fail; applicable to sports video analytics for field registration and tracking.",
+      "llm_tldr_cn": "针对传统SfM在平面场景中退化的问题，本文提出一种基于图的框架，利用单应性分解和谱嵌入从多平面几何约束中稳健恢复相机姿态。该方法可应用于体育视频分析，实现场地注册和精准跟踪，在标准方法失效时仍能稳健运行。实验证明了在多种平面场景下的有效性，为体育计算机视觉提供了一种实用的相机定位工具。",
+      "llm_tldr": "针对传统SfM在平面场景中退化的问题，本文提出一种基于图的框架，利用单应性分解和谱嵌入从多平面几何约束中稳健恢复相机姿态。该方法可应用于体育视频分析，实现场地注册和精准跟踪，在标准方法失效时仍能稳健运行。实验证明了在多种平面场景下的有效性，为体育计算机视觉提供了一种实用的相机定位工具。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Analyzing sports videos with computer vision",
+      "matched_requirement_id": "req-14",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-1101-2025-11-11-687771-v3",
+      "source": "biorxiv",
+      "title": "Eye-hand coordination beyond vision: preceding gaze history shapes reaching memories",
+      "abstract": "Skilled reaching behaviors, such as grasping a cup or catching a ball, require adaptive changes in response to error signals. In natural behavior, reaches are typically coordinated with preceding eye movements toward the target. Despite this behavioral relevance, the potential linkage between preceding eye movements themselves, rather than static gaze positions, and memory formation for reaching has been largely overlooked. Here, we used a visuomotor rotation task to investigate how recent dynamic gaze states contribute to the formation and retrieval of reaching memories. We show that, in the learning of two conflicting visuomotor maps that would normally interfere with one another (namely, clockwise and counterclockwise rotation), not only the static spatial relationship between the gaze and the target but also the dynamic state of the eye movements themselves can serve as contextual cues that enable learning. We further show that the generalization pattern of reach learning across different gaze conditions can be explained by the gaze state's distance computed with temporal weighting. These findings indicate that reaching memories are encoded in tight association with the recent history of preceding gaze states. Our results expand the functional role of eye-hand coordination beyond visual guidance, revealing its importance in orchestrating flexible motor learning.",
+      "authors": [
+        "Abekawa, N.",
+        "Gomi, H."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-03T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.1101/2025.11.11.687771v3.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "eye movement history influences motor memory formation in reaching",
+      "llm_evidence_cn": "眼动历史影响伸手动作记忆形成",
+      "llm_evidence": "眼动历史影响伸手动作记忆形成",
+      "canonical_evidence": "眼动历史影响伸手动作记忆形成",
+      "llm_tldr_en": "This study shows that preceding eye movements, not just gaze position, shape the formation and retrieval of reaching memories, reducing interference between conflicting visuomotor maps.",
+      "llm_tldr_cn": "针对先前注视动态如何影响伸手动作记忆形成被忽视的问题，通过视觉运动旋转任务发现，近期眼动历史而非静态凝视位置提供了重要的上下文信息，减少了两个冲突视觉运动映射之间的干扰，促进独立记忆形成，揭示了眼手协调中记忆形成的新机制，对运动学习训练有启示意义。",
+      "llm_tldr": "针对先前注视动态如何影响伸手动作记忆形成被忽视的问题，通过视觉运动旋转任务发现，近期眼动历史而非静态凝视位置提供了重要的上下文信息，减少了两个冲突视觉运动映射之间的干扰，促进独立记忆形成，揭示了眼手协调中记忆形成的新机制，对运动学习训练有启示意义。",
+      "llm_tags": [
+        "query:sports-sci"
+      ],
+      "matched_query_tag": "query:sports-sci",
+      "matched_query_text": "computational models of motor learning and skill acquisition in sports",
+      "matched_requirement_id": "req-85",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-08-730632-v2",
+      "source": "biorxiv",
+      "title": "Acute running improves mood via changes in interoceptive sensibility",
+      "abstract": "Purpose: Interoception is the sensing and interpretation of internal bodily signals and may be a key process linking exercise-induced bodily changes to mood. This study examined whether acute moderate-intensity treadmill running changes interoception and mood states and whether running-related changes in interoception statistically account for mood improvement. Methods: Twenty-seven healthy young adults completed a within-subject crossover experiment consisting of 15 min of moderate-intensity treadmill running at 50% estimated [V]O2peak and seated rest on separate days. Before and after each condition, cardiac interoceptive accuracy was assessed using heartbeat counting and heartbeat tapping tasks, present-moment interoceptive sensibility using a state-adapted Body Perception Questionnaire (BPQ), and mood using the Profile of Mood States. Running-related changes were calculated as {Delta}RUN - {Delta}CTL. Results: Compared with seated rest, running reduced total mood disturbance (TMD) and tension-anxiety (TA) and increased vigor-activity (VA). Running did not significantly change task-based indices of cardiac interoceptive accuracy but increased BPQ scores. Greater running-related increases in BPQ scores were associated with greater reductions in TMD (r = -.61, p < .001), TA (r = -.45, p = .018), and depression-dejection (r = -.49, p = .009). Greater increases in heartbeat tapping task d' were associated with greater increases in VA (r = .56, p = .003). Mediation analysis indicated that BPQ changes were statistically consistent with an indirect pathway linking running to reduced TMD, with weaker exploratory evidence for TA. Conclusions: A single bout of moderate-intensity running improved mood and increased present-moment interoceptive sensibility, but not task-based cardiac interoceptive accuracy. Enhanced subjective awareness of bodily sensations may be one proximal process related to the mood benefits of acute running.",
+      "authors": [
+        "Fujihara, H.",
+        "Kuwamizu, R."
+      ],
+      "primary_category": "neuroscience",
+      "categories": [
+        "neuroscience"
+      ],
+      "published": "2026-07-03T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.08.730632v2.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "acute running improves mood via changes in interoceptive sensibility",
+      "llm_evidence_cn": "急性跑步通过改变内感受敏感性改善情绪",
+      "llm_evidence": "急性跑步通过改变内感受敏感性改善情绪",
+      "canonical_evidence": "急性跑步通过改变内感受敏感性改善情绪",
+      "llm_tldr_en": "Acute moderate-intensity running improves mood, mediated by changes in interoceptive sensibility, highlighting a psychological mechanism.",
+      "llm_tldr_cn": "本研究通过受试者内交叉实验，观察急性中等强度跑步后情绪和内感受的变化，发现跑步通过改善内感受敏感性来提升情绪，为运动改善心理健康提供了新的生理心理机制解释，对运动心理学和锻炼干预具有启示。",
+      "llm_tldr": "本研究通过受试者内交叉实验，观察急性中等强度跑步后情绪和内感受的变化，发现跑步通过改善内感受敏感性来提升情绪，为运动改善心理健康提供了新的生理心理机制解释，对运动心理学和锻炼干预具有启示。",
+      "llm_tags": [
+        "query:sport-sci"
+      ],
+      "matched_query_tag": "query:sport-sci",
+      "matched_query_text": "sport psychology and mental performance",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "biorxiv-10-64898-2026-06-29-735269-v1",
+      "source": "biorxiv",
+      "title": "Effects of Tempo, Dynamics, and String on Physical Exposure in Professional Violinists",
+      "abstract": "This study examined how tempo, dynamics, and string influence upper-extremity physical exposure in professional violinists and how exposure variability is distributed among musical characteristics, between-subject differences, and residual variability. Twelve violinists performed seven standardized scales while bilateral upper-arm and wrist kinematics and shoulder and forearm muscle activity were recorded. Linear mixed-effects models showed that faster tempo increased right upper-arm velocity and bilateral forearm activity while reducing right upper-arm and wrist ranges of motion. Louder dynamics increased bilateral forearm and right trapezius activity and right-wrist ranges of motion. Higher-posture strings increased right upper-arm elevation and right shoulder muscle activity. Variance analysis identified exposures predominantly related to musical characteristics, jointly related to musical characteristics and between-subject differences, predominantly related to between-subject differences, or mainly unexplained. These findings support future exposure prediction from musical characteristics and targeted prevention through repertoire-based workload management, structured recovery, and individualized technique-focused strategies.",
+      "authors": [
+        "Fan, X.",
+        "Mathiassen, S. E.",
+        "Johansson, P. J.",
+        "Jackson, J. A.",
+        "Nyman, T."
+      ],
+      "primary_category": "bioengineering",
+      "categories": [
+        "bioengineering"
+      ],
+      "published": "2026-07-03T00:00:00+00:00",
+      "link": "https://www.biorxiv.org/content/10.64898/2026.06.29.735269v1.full.pdf",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "bilateral upper-arm and wrist kinematics recorded in violinists",
+      "llm_evidence_cn": "记录小提琴家双侧上臂和腕部运动学",
+      "llm_evidence": "记录小提琴家双侧上臂和腕部运动学",
+      "canonical_evidence": "记录小提琴家双侧上臂和腕部运动学",
+      "llm_tldr_en": "This study measures upper-extremity kinematics and muscle activity in violinists to assess effects of tempo, dynamics, and string on physical exposure.",
+      "llm_tldr_cn": "针对职业小提琴家上肢物理暴露与音乐特征关系不明的问题，通过记录12名演奏者双侧上臂/腕部运动学及肌肉活动，分析速度、力度和琴弦的影响，发现快速增加右臂速度与前臂活动但减小活动范围，大力度增强双侧前臂/斜方肌激活，高把位增加右上臂抬高，个体差异是关键变异源，为职业演奏者负荷管理提供实证指导。",
+      "llm_tldr": "针对职业小提琴家上肢物理暴露与音乐特征关系不明的问题，通过记录12名演奏者双侧上臂/腕部运动学及肌肉活动，分析速度、力度和琴弦的影响，发现快速增加右臂速度与前臂活动但减小活动范围，大力度增强双侧前臂/斜方肌激活，高把位增加右上臂抬高，个体差异是关键变异源，为职业演奏者负荷管理提供实证指导。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "kinematic analysis of human motion",
+      "matched_requirement_id": "req-42",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

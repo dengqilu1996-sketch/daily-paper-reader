@@ -1,0 +1,1028 @@
+Title: Effects of Tempo, Dynamics, and String on Physical Exposure in Professional Violinists
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.29.735269v1.full.pdf
+
+Published Time: Sat, 04 Jul 2026 22:24:35 GMT
+
+Number of Pages: 33
+
+Markdown Content:
+1
+
+# Effects of Tempo, Dynamics, and String 1
+
+# on Physical Exposure in Professional 2
+
+# Violinists 3
+
+Xuelong Fan a,c *, Svend Erik Mathiassen b, Peter J. Johansson a,c , Jennie A. Jackson b,† , Teresia Nyman a,c,† 
+
+4 
+
+> a
+
+Department of Medical Sciences, Occupational and Environmental Medicine, Uppsala University, SE-5
+
+751 85 Uppsala, Sweden. 6 
+
+> b
+
+Department of Occupational Health, Psychology, and Sports Sciences, University of Gävle, SE-801 76 7
+
+Gävle, Sweden. 8 
+
+> c
+
+Department of Occupational and Environmental Medicine, Uppsala University Hospital, SE-751 85 9
+
+Uppsala, Sweden. 10  
+
+> †
+
+These authors contributed equally as co-senior authors. 11 
+
+*Corresponding author: Xuelong.fan@uu.se 12 
+
+# 1. Abstract 13 
+
+This study examined how tempo, dynamics, and string influence upper-extremity physical exposure in 14 professional violinists and how exposure variability is distributed among musical characteristics, between-15 subject differences, and residual variability. Twelve violinists performed seven standardized scales while 16 bilateral upper-arm and wrist kinematics and shoulder and forearm muscle activity were recorded. Linear 17 mixed-effects models showed that faster tempo increased right upper-arm velocity and bilateral forearm 18 activity while reducing right upper-arm and wrist ranges of motion. Louder dynamics increased bilateral 19 forearm and right trapezius activity and right-wrist ranges of motion. Higher-posture strings increased 20 right upper-arm elevation and right shoulder muscle activity. Variance analysis identified exposures 21 predominantly related to musical characteristics, jointly related to musical characteristics and between-22 subject differences, predominantly related to between-subject differences, or mainly unexplained. These 23 findings support future exposure prediction from musical characteristics and targeted prevention through 24 repertoire-based workload management, structured recovery, and individualized technique-focused 25 strategies. 26 
+
+# 2. Highlights 27 
+
+• Tempo, dynamics, and string produced distinct upper-extremity exposures. 28 
+
+• Faster tempo and louder dynamics increased bilateral forearm muscle activity. 29 
+
+• Higher-posture strings increased right upper-arm elevation and shoulder activity. 30 
+
+• Distinct musical, between-subject, and residual variance patterns were identified. 31 
+
+• Findings support repertoire-based and individualized PRMSD prevention. 32 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+2
+
+# 3. Introduction 33 
+
+Occupational musculoskeletal disorders (MSDs), often referred to as playing-related MSDs (PRMSDs) in 34 musicians, are prevalent among classical musicians (Cruder et al., 2020, 2023; Leaver et al., 2011; 35 Stanhope et al., 2022; Vastamäki et al., 2020). The most common pain locations reported by university 36 level or professional musicians include the neck, shoulders, and lower back (Leaver et al., 2011). 37 Professional orchestra musicians are 50% more likely to develop back pain and 160% more likely to 38 develop shoulder pain than the general workforce (Vastamäki et al., 2020). For musicians, occupational 39 exposure includes time spent practicing alone, rehearsing with other musicians, recording music, and 40 performing in front of an audience. While the overall practicing load has been shown to be dependent on 41 experience, for violinists, it generally includes 4–6 hours per day and 17–28 hours per week (Chi et al., 42 2020) 43 Among classical musicians, upper string players, including violinists and violists, have a higher prevalence 44 of PRMSDs than musicians playing other instruments (Kok et al., 2018; Leaver et al., 2011; Nyman et al., 45 2007; Paarup et al., 2011). Playing an upper string instrument involves elevated and unsupported arms 46 performing asymmetric tasks requiring static loading, repetitive movements, and precise motor control. 47 The non-bowing arm (the left arm) stabilizes the instrument and performs repeated shoulder rotations 48 and precise finger movements to depress the strings in exact locations while producing rhythmic 49 oscillation of the fingertip to produce vibrato. The bowing arm (the right arm) performs repetitive 50 movements involving the shoulder, elbow, wrist, and fingers to draw the bow across the strings with 51 precise motor control required to produce any specific type of sound (ex. quiet vs loud, and slow vs fast). 52 Furthermore, the two upper extremities must also continuously coordinate postural support, fine motor 53 control, and force regulation to arrive at the desired sound. This bilateral coordination may increase 54 physical exposure across both sides of the upper body, particularly during technically demanding passages 55 of music. 56 Upper-extremity exposures are likely influenced by the characteristics of the music played, including the 57 speed at which notes are played (tempo), the volume of the sound generated (dynamics), and the string 58 on which the notes are played. Previous studies have examined the effects of tempo and dynamics on 59 shoulder and forearm muscle activity; however, these studies have included musicians with different 60 proficiency levels, and their results may not reflect the exposure patterns of highly skilled professional 61 musicians (Mann et al., 2021; Mann, Paarup, et al., 2023). Less is known about how these musical 62 characteristics affect kinematic physical exposures, including upper-arm and wrist postures and 63 movement velocities, exposures that have previously been associated with neck and shoulder 64 musculoskeletal disorders in other types of work (Nordander et al., 2016). Tempo is expected to influence 65 movement velocity, particularly in the bowing arm and in the fingers of the non-bowing hand. Dynamics 66 are expected to influence the amount of force required to produce sound, with playing louder, i.e., 67 fortissimo (ff), requiring greater bowing force than playing softer, i.e., pianissimo (pp). The string played 68 is expected to affect both posture and muscle activity of both the bowing and non-bowing arms, as 69 illustrated in Figure 1 . The placement order of the four strings of a violin, E, A, D, and G, dictate the playing 70 posture bilaterally, where playing on the E-string (the string with the highest pitch) requires the lowest 71 right shoulder elevation and the largest external rotation of the left shoulder, and playing on the G-string 72 (the string with the lowest pitch) requires the highest shoulder elevation and the smallest external 73 rotation of the left shoulder). Together, these biomechanical considerations suggest that musical 74 characteristics may shape violinists’ intrinsic physical loads, including upper extremity posture, movement 75 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+3velocity, and muscle activity (Rensing et al., 2018). Identifying how tempo, dynamics, and string choice 76 affect these playing-related exposures is therefore important for characterizing workload in violinists, 77 understanding PRMSD mechanisms, and developing targeted prevention strategies. 78 In addition to musical characteristics, individual playing technique has been shown to affect the 79 biomechanical exposures of professional violinists, where a high intra-subject repeatability has been 80 reported for violinists performing the same piece of music twice (Fjellman-Wiklund et al., 2004; Mann, 81 Paarup, et al., 2023; Visentin et al., 2015). However, little is known about the relative extent to which 82 exposure variability between violinists is attributable to musical characteristics versus individual factors. 83 Such information is needed as a first step towards being able to predict exposures while playing complex 84 pieces of music, and thus developing a basis for, e.g., structuring rehearsal plans and choice of repertoire. 85 86 
+
+> Figure 1. Illustration showing the change in upper extremity postures in a violinist playing on different strings, with the darker
+
+87 
+
+> grey position showing postures while playing on the E-string (the string with the highest pitch, the lowest right arm elevation, and
+
+88 
+
+> the largest external rotation of the left shoulder) and the light grey position showing the postures while playing on the G-string
+
+89 
+
+> (the string with the lowest pitch, the highest arm elevation and the smallest external rotation of the left shoulder).
+
+90 91 Hence, the primary aim of this study was to investigate the effects of three musical characteristics, i.e., 92 tempo, dynamics, and string, on upper extremity posture, movement velocity, and muscle activity in 93 professional violinists. The secondary aim was to investigate the proportion of the variance in each 94 physical exposure that was attributed to musical characteristics relative to that residing in individual 95 playing technique. 96 
+
+# 4. Materials and methods 97 
+
+4.1. Participants 98 
+
+Twelve professional violinists, employed in a Swedish symphony orchestra or working freelance and who 99 were not currently on sick leave, participated in the study. All participants were informed about the study 100 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+4protocol, provided written informed consent, and completed a screening regarding musculoskeletal pain 101 experienced during the past seven days (yes/no) and the past twelve months 102 (never/seldom/sometimes/often/very often) (Jonker et al., 2015). The study was approved by the 103 Regional Ethical Review Board in Uppsala (Dnr 2018/412, 2018/412-1) and the Swedish Ethical Review 104 Authority (Dnr 2019-04617). 105 
+
+4.2. Experimental protocol 106 
+
+Each violinist participated in a laboratory experiment, during which muscle activity and kinematics were 107 recorded in the shoulders, upper arms, forearms, and wrists. Playing performances were simultaneously 108 video recorded for reference. 109 The study followed an experimental crossover design. During the experiment, participants performed 110 seven one-octave scales (eight ascending and eight descending notes) at 120 beats per minute with a time 111 signature of 4/4. The seven scales systematically varied in three musical characteristics: tempo (2 levels: 112 whole notes [30 notes per minute] and sixteenth notes [480 notes per minute]), dynamics (2 levels: 113 pianissimo [pp] and fortissimo [ff]), and the strings in which the scales were played, operationalized using 114 scale key as a proxy (3 levels: E major, A major, and G major). 115 In this study, the four violin strings were grouped as “higher-posture” and “lower-posture” strings, based 116 on the right-arm, or bowing-arm, posture required to play them, rather than on their pitch ( Figure 1 ). The 117 E and A strings were therefore considered lower-posture strings, whereas the D and G strings were 118 considered higher-posture strings. To complete a one-octave scale, the notes can be played either across 119 two strings with the same left-hand position or on one string with a shift in left-hand position. The A-120 major scale was played on the A and E strings with the same left-hand position and was used as the lower-121 posture reference. The G-major scale was played on the G and D strings with the same left-hand position 122 and was used as the higher-posture comparison. Thus, the comparison between the G- and A-major scales 123 was treated as the primary contrast for assessing differences between higher- and lower-posture strings. 124 The E-major scale was played solely on the E string but required a shift in left-hand position on the neck 125 of the violin. It was therefore included as an additional lower-posture condition. Comparisons between 126 the G- and E-major scales were used as additional higher- versus lower-posture contrasts, whereas 127 comparisons between the E- and A-major scales were treated as secondary contrasts to examine 128 differences related to left-hand position and playing exposure within lower-posture strings. ( Table 1 ). 129 Additionally, a metronome was used throughout to ensure the speed was consistent. Participants were 130 asked to play the scales as if performing them for an audience, using their best vibrato and producing 131 their best sound. To ensure scales were played in the same manner across all participants, the fingering 132 was provided for each scale. All scales were played with smooth movements and with the bow constantly 133 on the string (called legato bowing). Participants were seated on a chair without a backrest. Music sheet 134 was placed on a stand positioned at a self-selected comfortable height and distance, and page turning 135 was not required. Participants were given sufficient time to feel warmed up and to then rest before 136 beginning the experiment. 137 
+
+> Table 1. Descriptions of the seven scale tasks performed by the participants, defined by combinations of tempo, dynamics, and
+
+138 key/string. All scales were one-octave played with eight ascending and eight descending notes, at 120 beats per minute and a 4/4 139 time signature, with one note per bow stroke. Tempo was defined by note value: whole notes corresponded to 30 notes per minute, 140 and sixteenth notes corresponded to 480 notes per minute. For dynamics, pp denotes pianissimo, and ff denotes fortissimo. All 141 scales started with playing the open string, i.e., the E major scale started on an open E-string. § The scale key was used as a proxy 142 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+5
+
+> for the strings played during each scale: The E major scale was played only on the E string, the A major scale on the A and E strings,
+
+143 and the G major scale on the G and D strings. 144 
+
+Scale Order # of Bars Tempo Dynamics Key/String§ 
+
+E-pp 1 32 Whole note pp EE-ff 2 32 Whole note ff EA-pp 4 32 Whole note pp AA-ff 3 32 Whole note ff AA-ff-16 5 4 Sixteenth note ff AG-pp 7 32 Whole note pp GG-ff 6 32 Whole note ff G
+
+4.3. Measurement of kinematics 145 
+
+Kinematic measurements of the upper arms were obtained using two accelerometers (AX3, Axivity Ltd., 146 Newcastle, UK) recording at 25 Hz (Fan et al., 2021). The sensors were positioned beneath the deltoid 147 muscles on both upper arms. 148 Bilateral wrist kinematics were recorded using two biaxial goniometers (Biometrics Ltd., Cwmfelinfach, 149 Gwent, UK) at a sampling frequency of 1000 Hz. The goniometer was placed with one block over the third 150 metacarpal bone, and the other block positioned at the midline between the two forearm bones, as 151 presented in Simonsen et al. (Simonsen et al., 2018). 152 Upper-arm elevation was defined as inclination angles relative to a neutral vertical reference posture 153 performed by each participant while sitting with a lateral lean until the upper arm hung vertically while 154 holding a 2 kg dumbbell (Bernmark & Wiktorin, 2002). The positive direction in the elevation/depression 155 movement for the upper arm was elevation. The reference posture for the wrist (0 degrees flexion and 156 deviation) was defined by having the participants place their hands flat on a horizontal surface, with the 157 hand adjusted so that a straight line was formed between the third metacarpal bone and the forearm, as 158 presented by Nordander et al (Nordander et al., 2016). The maximal flexion/extension range of motion of 159 the wrist was determined by having the participant perform maximal wrist flexion and extension three 160 times while seated with their elbows supported on a table and the forearms positioned horizontally. 161 Maximal ulnar and radial deviation range of motion were determined for each participant through three 162 voluntary range of motion trials performed with the palm flat on a horizontal surface. The positive 163 direction in the flexion/extension movement for the wrist was defined as flexion, while that in the 164 deviation movement was defined as radial deviation. 165 
+
+4.4. Measurement of muscle activity 166 
+
+Muscle activity of the upper trapezius, deltoid, and forearm muscles was monitored bilaterally using 167 surface electromyography (sEMG). Self-adhesive bipolar Ag/AgCl electrodes (N-00-S/25, Ambu A/S, 168 Copenhagen, Denmark) were applied with an inter-electrode distance of 2 cm at each location. Before 169 electrode placement, the skin was shaved and cleaned with alcohol to reduce impedance. Electrodes were 170 secured using conductive gel and adhesive fixation to maintain contact during movement. The signals 171 were transmitted via actively shielded cables to a digital data logger (Oldenzaal, The Netherlands), 172 sampled at 1000 Hz per channel using a 24-bit A/D converter. 173 For the upper trapezius, electrodes were positioned 2 cm lateral to the midpoint between the C7 spinous 174 process and the acromion (Mathiassen et al., 1995). For the deltoid, electrodes were placed according to 175 the SENIAM (Surface EMG for the Non-Invasive Assessment of Muscles) guidelines for the middle/lateral 176 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+6deltoid at the midpoint between the acromion and the deltoid tuberosity along the muscle belly (Hermie 177 J. Hermens et al., n.d.). Forearm muscle activity was recorded using a through-forearm placement of sEMG 178 electrodes (Fan et al., 2026; Takala & Toivonen, 2013). This electrode placement was selected to capture 179 the combined activity from both forearm extensors and flexors, thereby enhancing the accuracy of 180 forearm workload estimation. Specifically, electrodes were placed just lateral to the midpoint of the belly 181 of the extensor digitorum communis muscle and just lateral to the belly of the flexor digitorum 182 superficialis muscle (Takala & Toivonen, 2013). 183 Submaximal reference voluntary electrical activations (RVE) trials were recorded during the reference 184 voluntary contractions (RVCs). Reference contractions for the upper trapezius and deltoid were 185 performed with participants standing in a neutral posture, elevating both arms to 90 degrees (Mathiassen 186 et al., 1995). For the forearm muscles, submaximal reference contractions were obtained one side at a 187 time with the forearm supported on a table from elbow to wrist, the hand extended over the edge of the 188 table, and a 1 kg weight hung from a soft strap that was positioned across the third proximal 189 interphalangeal joint of the fingers on the hand. Each reference contraction was repeated three times for 190 each participant. All RVC trials were 15 s in duration, interspersed by 30 s of rest (Åkesson et al., 1997; G.-191 Å. Hansson et al., 2000). 192 
+
+4.5. Data processing 193 
+
+The EMG signals were processed through the following processing pipeline. First, the raw signals were 194 digitally bandpass-filtered between 20 and 400 Hz and then passed through a 50 Hz comb notch filter to 195 remove power-line interference. The root mean square (RMS) values of the filtered signals were 196 computed using 125-ms epochs and subsequently corrected for noise by power subtraction. The resulting 197 RMS values were normalized to the corresponding RVE level, calculated as the mean RMS value from the 198 three RVC trials, and expressed as %RVE (Mathiassen et al., 1995). The 50th percentile (P50) was 199 calculated for each muscle site and for each scale. (Fan et al., 2024; G.-Å. Hansson et al., 2000). 200 Accelerometer data were low-pass filtered at 5 Hz using a Blackman window filter and subsequently 201 converted into elevation angles for the upper arms, with positive values indicating elevation. The 50th 202 percentile was calculated as a summary metric for elevation. Ranges of motion were computed as the 203 difference between the 90th and 10th percentiles (P90 – P10) of the angle distributions. Angular velocities 204 were obtained as the first derivatives of the corresponding angular signals, as described in previous 205 studies (Fan et al., 2021; G. Hansson et al., 2001), and 50th percentile values were calculated even for 206 velocity. 207 Goniometer signals were resampled to 20 Hz, low-pass filtered at 5 Hz using a Blackman window filter, 208 and calibrated by subtracting the wrist angle measured in the neutral reference posture (G.-Å. Hansson 209 et al., 1996), yielding deviation and flexion angles, which were used to calculate the range of motion and 210 angular velocity. Consequently, data processing yielded one numeric value for each scale and physical 211 exposure measure for each participant, and these values were subsequently used in the statistical 212 analyses. 213 
+
+4.6. Statistical analysis 214 
+
+All analyses were conducted in MATLAB R2023a (The MathWorks, Inc., Natick, MA, USA). 215 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+7Descriptive results of measured physical exposures were summarized and presented in box plots and 216 tables, and pairwise differences within each musical characteristic were summarized as median 217 differences with first and third quartiles. 218 Associations between musical characteristics and physical exposures were evaluated using linear mixed-219 effects (LME) models in a repeated-measures design accounting for both the effects of the musical 220 characteristics (fixed effects) and the between-subject variability (random effects). Thus, in the LME 221 models, the physical exposure measures were treated as outcomes, while musical characteristics (tempo, 222 dynamics, and string) were set as fixed effects, and subjects were a random intercept. The significance 223 level was set at α = 0.05. 224 Model construction followed a forward, likelihood-based stepwise procedure with strong heredity for 225 interaction terms. The base model, 𝑚𝑒𝑎𝑠𝑢𝑟𝑒 !" = 𝛽 # + 𝑢 ! + 𝜖 !" , was fitted using maximum likelihood 226 (ML) to allow comparisons between models with different fixed-effect structures and was treated as the 227 compact model. Interaction terms were considered between fixed effects only after inclusion of the 228 corresponding main effects, and were restricted to the dynamics × string interaction, in accordance with 229 the study design. At each step, a single candidate term from the set of the remaining candidate terms was 230 added independently to the compact model to form a full model; the resulting set of models was 231 compared using a likelihood-ratio test (LRT) under ML. The candidate with the smallest p-value was 232 retained if p < α (primary criterion). When multiple candidates showed comparable evidence near the 233 threshold, changes in the Bayesian Information Criterion (ΔBIC) were used as a secondary criterion, 234 favoring greater reductions in BIC. The process was repeated until the process reached a point where no 235 additional candidate met the inclusion threshold α or no candidates were left. The maximal model that 236 can be reached in theory was as follows (based on the current study design, E.1): 237 
+
+𝑚𝑒𝑎𝑠𝑢𝑟𝑒 !" = 𝛽 # + 𝛽 $𝑡𝑒𝑚𝑝𝑜 !" + 𝛽 %𝑑𝑦𝑛𝑎𝑚𝑖𝑐 !" + 𝛽 &𝑠𝑡𝑟𝑖𝑛𝑔 !" + 𝛽 '(𝑑𝑦𝑛𝑎𝑚𝑖𝑐𝑠 × 𝑠𝑡𝑟𝑖𝑛𝑔 )!" + 𝑢 ! + 𝜖 !" E.1 , where 𝑖 indexes participants and 𝑗 indexes observations, 𝛽 # represents the fixed intercept, and 𝛽 $('238 represent the fixed-effect coefficients for tempo, dynamics, string, and the interaction between dynamics 239 and string. 𝑢 ! denotes the participant-specific random intercept, and 𝜖 !" denotes the residual error. 240 For each outcome, residuals from the base model were screened for homoscedasticity (primary) and 241 normality (secondary). Homoscedasticity was assessed using the Breusch–Pagan test and a median-based 242 Levene test across fitted-value quartiles (Breusch & Pagan, 1979; Brown & Forsythe, 1974). 243 Homoscedasticity was concluded only when both tests were non-significant (p ≥ α). Normality was 244 evaluated using the Shapiro–Wilk test (Shapiro & Wilk, 1965). When heteroscedasticity was detected, a 245 monotonic Box–Cox transformation with an optimally estimated λ was applied, and model selection was 246 repeated on the transformed scale (Box & Cox, 1964). Otherwise, analyses were performed on the original 247 scale, given the relative robustness of LME models to moderate deviations from normality (Blanca et al., 248 2017). 249 After fixed-effect selection, the final linear mixed-effects model was refitted using restricted maximum 250 likelihood (REML) to obtain less biased variance-component estimates and final parameter estimates for 251 the selected fixed effects. Post hoc pairwise comparisons were then conducted to evaluate categorical 252 fixed effects of the three musical characteristics. For two-level factors (i.e., tempo and dynamics), the 253 model coefficient directly represented the adjusted mean difference. For factors with more than two 254 levels (i.e., string), pairwise contrasts were computed using linear combinations of fixed-effect estimates 255 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+8derived from the fitted model. P-values were adjusted for multiple comparisons using Bonferroni 256 correction. 257 When models were fitted using a Box–Cox transformation to address distributional assumptions, 258 statistical inference was performed on the transformed scale. For interpretability, model-predicted values 259 were back-transformed to the original scale using the estimated transformation parameter (λ), and 260 model-performance parameters, such as root mean square errors (RMSEs), were computed on the 261 original scale using the inverse Box–Cox function. 262 To quantify the relative contributions of musical characteristics, between-subject differences, and residual 263 variability, variance metrics were calculated following established methods, including marginal R 2 (𝑅 ) 
+
+> %
+
+;264 fixed effects), conditional R 2 (𝑅 *
+
+> %
+
+; fixed and random effects), and the intraclass correlation coefficient (ICC) 265 (Nakagawa & Schielzeth, 2013). Additionally, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+and 1 − 𝑅 * 
+
+> %
+
+were calculated to quantify the 266 proportions of variance attributable to between-subject differences and residual variability. Together, 267 
+
+𝑅 ) 
+
+> %
+
+, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+, and 1 − 𝑅 * 
+
+> %
+
+partitioned the total variance into components attributable to musical 268 characteristics, between-subject differences, and residual variability. 269 Larger 𝑅 ) 
+
+> %
+
+values indicate a stronger contribution of the investigated musical characteristics; larger 𝑅 * 
+
+> %
+
+−270 
+
+𝑅 ) 
+
+> %
+
+values indicate greater between-subject variability captured by the random intercept; and larger 271 
+
+1 − 𝑅 * 
+
+> %
+
+values indicate greater residual variability. The ICC represents between-subject variance relative 272 to between-subject plus residual variance, with larger values indicating greater between-subject 273 variability relative to residual variability. Although these measures are mathematically related and contain 274 overlapping information, 𝑅 ) 
+
+> %
+
+, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+, 1 − 𝑅 * 
+
+> %
+
+, and the ICC were examined jointly to facilitate 275 identification of recurring variance patterns across exposures. The equations for these variance measures 276 are provided in Eqs. 2–6: 277 
+
+𝑅 ) 
+
+> %
+
+= 𝑉 +
+
+𝑉 + + 𝜎 , 
+
+> %
+
++ 𝜎 - 
+
+> %
+
+E.2 
+
+𝑅 * 
+
+> %
+
+= 𝑉 + + 𝜎 ,
+
+> %
+
+𝑉 + + 𝜎 , 
+
+> %
+
++ 𝜎 - 
+
+> %
+
+E.3 
+
+1 − 𝑅 * 
+
+> %
+
+= 𝜎 -
+
+> %
+
+𝑉 + + 𝜎 , 
+
+> %
+
++ 𝜎 - 
+
+> %
+
+E.4 
+
+𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+= 𝜎 ,
+
+> %
+
+𝑉 + + 𝜎 , 
+
+> %
+
++ 𝜎 - 
+
+> %
+
+E.5 
+
+𝐼𝐶𝐶 = 𝜎 ,
+
+> %
+
+𝜎 , 
+
+> %
+
++ 𝜎 - 
+
+> %
+
+E.6 , where 𝑉 + is the variance of the fixed-effects predictions, 𝜎 , 
+
+> %
+
+is the total variance of the random effects, 278 and 𝜎 - 
+
+> %
+
+is the residual variance estimated from the model. 279 
+
+# 5. Results 280 
+
+On average, participants were 49 years old, 171 cm tall, and weighed 70 kg. More than half of the 281 participants were female (58%), and most participants were right-handed (91%). All held the violin in their 282 left hand and held the bow in their right hand. More than half (58%) of the participants had had pain in at 283 least one body part in the last 7 days, and half reported having had pain often or very often in at least one 284 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+9upper extremity area part in the last 12 months. Nonetheless, all participants stated that they were not 285 on sick leave and could play normally as they intended ( Table 2 ). All 12 participants completed all scales. 286 All three musical characteristics, i.e., tempo, dynamics, and string, affected kinematic and muscle activity 287 physical exposure metrics, but in different ways. For all exposure metrics, descriptive results, including 288 distribution of values, median values, and first and third quartile values, are shown in Figure 2 and Figure 289 
+
+3, and a complete set of numerical results is shown in Table S1 . Tables 3–5 show within-subject 290 differences for each musical characteristic, and Table 6 shows the results of the statistical tests of these 291 differences and variance-related metrics. These tables are described in more detail below. 292 From the modelled data, no interaction between dynamics and string was found (all p > 0.7). 293 
+
+> Table 2. The demographic characteristics of the participants.
+
+294 
+
+Characteristic Value 
+
+Female, N (%) 7 (58) 
+
+Age, years, mean (SD) 49 (10) 
+
+Height, cm, mean (SD) 171 (7) † 
+
+Weight, kg, mean (SD) 70 (8) † 
+
+Right-handed, N (%) 10 (91) † 
+
+Had pain in the last seven days, N of Yes (%) 
+
+Neck 4 (33) 
+
+Shoulder 4 (33) 
+
+Elbow 1 (8) 
+
+Wrist/hand 0 (0) 
+
+Had pain in the last twelve months, N of Often and Very Often (%) 
+
+Neck 2 (17) 
+
+Shoulder 3 (25) 
+
+Elbow 2 (17) 
+
+Wrist/hand 1 (8) †: data missing from one participant 
+
+5.1. Effects of tempo 295 
+
+Changing the tempo from whole notes to sixteenth notes (from slow to fast) produced clear changes in 296 kinematic and muscle activity, especially on the right side ( Figure 2, Figure 3, Table 3, Table 6 ). The median 297 velocity of the right upper-arm elevation increased by 26°/s ([Q1, Q3], [23, 40]; p < 0.001 ), the median 298 elevation angle decreased by 9° ([−10, −6]; p < 0.001), and the median range of elevation (P90–P10) 299 decreased by 11° ([−16, −4]; p < 0.001). These kinematic changes were accompanied by altered shoulder 300 muscle activity, including a 14 %RVE ([8, 18]; p < 0.001) increase in median right deltoid activity and a 301 27 %RVE ([−39, −10]; p < 0.001) decrease in median right trapezius activity. 302 In the right forearm, the median range of right-wrist deviation and flexion decreased by 12° ([−18, −6]; p 303 < 0.001) and 34° ([−36, −22]; p < 0.001) ( Table 3, Table 6 ) and the median forearm muscle activity in the 304 bowing (right) arm increased by 48 %RVE ([15, 66]; p < 0.001). 305 The effects of tempo on the kinematics and muscle activity of the left side were either non-significant or 306 small in magnitude ( Table 3, Table 6 ) with the exception of the left forearm muscle activity, which 307 increased by 40 %RVE ([-2, 46]; p = 0.001) when playing at the faster tempo. 308 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+10 Overall, kinematic and muscle activity changes in both the shoulder and forearm regions occurred when 309 playing at a faster tempo and were predominantly evident in the bowing (right) arm, except for forearm 310 muscle activity, which increased bilaterally. 311 312 
+
+Figure 2. Boxplots of the median (P50) exposures of the upper arms (u.arm) and shoulder muscles on both the right and left sides 313 under different musical characteristics. Elev. stands for elevation, and rng. stands for range. The central line within each box 314 indicates the median, while the box edges represent the 1st and 3rd quartiles, and the whiskers denote the minimum and 315 
+
+maximum values. Round markers indicate individual data points, and symbols marked “+” denote Tukey outliers. Blue markers 316 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+11 
+
+and bars represent scales played whole notes at pianissimo; red markers and bars represent whole notes at fortissimo; and yellow 317 markers and bars represent scales played with sixteenth notes. 318 
+
+5.2. Effects of dynamics 319 
+
+Dynamics also affected both kinematic measures and muscle activity ( Figure 2 , Figure 3, Table 4, Table 6, 320 
+
+Table S1 ). On the right side, louder dynamics increased median trapezius activity by 25%RVE ([Q1, Q3] [8, 321 37]; p < 0.001) and forearm muscle activity by 24%RVE ([12, 39]; p < 0.001). Louder dynamics also 322 increased the range of right wrist deviation by 10° ([5, 14]; p < 0.001) and the range of right wrist flexion 323 by 14° ([4, 21]; p < 0.001). Other right-sided kinematic measures also changed significantly, although the 324 magnitudes were relatively small. Dynamics also affected the left side; however, the only sizeable change 325 when playing louder ( ff ) compared to softer ( pp ) was observed in forearm muscle activity, which increased 326 by 23%RVE ([11, 40]; p < 0.001) ( Table 4, Table 6 ). Other changes in physical exposures were minor in 327 magnitude or non-significant. 328 Overall, dynamics predominantly affected right shoulder muscle activity, forearm muscle activity on both 329 sides, and the range of motion of the right wrist. 330 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+12 331 
+
+Figure 3. Boxplots of the median (P50) exposures of the wrists and lower arms on both the right and left sides under different 332 musical characteristics. The central line within each box indicates the median, while the box edges represent the 1st and 3rd 333 quartiles, and the whiskers denote the minimum and maximum values. Round markers indicate individual data points, and “+” 334 
+
+symbols denote Tukey outliers. Blue markers and bars represent scales played whole notes at pianissimo; red markers and bars 335 represent whole notes at fortissimo; and yellow markers and bars represent scales played with sixteenth notes. 336 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+13 
+
+Table 3. Median differences in physical exposure between different music tempi. L/R indicates the left or right side; Q1 and Q3 denote the first and third quartiles; and the reference 337 (Ref) is the whole note. 338 
+
+Tempo: Sixteenth note vs (Ref) Whole note, Difference, Median [Q1, Q3] 
+
+Section Posture 
+
+Posture (°) Range of motion (°) Velocity (°/s) 
+
+Muscle 
+
+Muscle activity (%RVE) 
+
+P50 P90 - P10 P50 P50 
+
+Difference Difference Difference Difference 
+
+Shoulder/ Upper arm Elevation L -5 [-6, -1] -2 [-4, 0] 6 [3, 13] Deltoid L 2 [-6, 6] 
+
+Upper arm R -9 [-10, -6] -11 [-16, -4] 26 [23, 40] R 14 [8, 18] 
+
+Trapezius L 1 [-8, 12] 
+
+R -27 [-39, -10] 
+
+Forearm/ Wrist Deviation L -4 [-6, -3] -2 [-4, 0] 5 [3, 7] Through* L 40 [-2, 46] 
+
+Wrist R -2 [-4, 2] -12 [-18, -6] 6 [3, 11] R 48 [15, 66] 
+
+Flexion L -6 [-11, -4] -6 [-8, -3] 4 [0, 6] 
+
+R 1 [-3, 5] -34 [-36, -22] -3 [-17, 1] 
+
+* Forearm muscle activity measured by the through-forearm EMG placement 
+
+339 
+
+Table 4. Median differences in physical exposure between different music dynamics. L/R indicates the left or right side; Q1 and Q3 denote the first and third quartiles; and the 340 
+
+reference (Ref) is pp. 341 
+
+Dynamics: ff vs (Ref) pp, Difference, Median [Q1, Q3] 
+
+Section Posture 
+
+Posture (°) Range of motion (°) Velocity (°/s) 
+
+Muscle 
+
+Muscle activity (%RVE) 
+
+P50 P90 - P10 P50 P50 
+
+Difference Difference Difference Difference 
+
+Shoulder/ Upper arm Elevation L -1 [-2, 0] 2 [1, 4] 2 [1, 3] Deltoid L -8 [-11, -1] 
+
+Upper arm R 3 [0, 7] 6 [3, 8] 6 [3, 7] R 3 [0, 8] 
+
+Trapezius L 2 [0, 7] 
+
+R 25 [8, 37] 
+
+Forearm/ Wrist Deviation L 1 [-1, 1] 0 [0, 3] 0 [0, 1] Through* L 23 [11, 40] 
+
+Wrist R 4 [-1, 7] 10 [5, 14] 5 [3, 8] R 24 [12, 39] 
+
+Flexion L 1 [-1, 2] 2 [0, 3] 1 [1, 2] 
+
+R -9 [-14, -3] 14 [4, 21] 8 [2, 14] 
+
+* Forearm muscle activity measured by the through-forearm EMG placement 
+
+342 14 
+
+5.3. Effects of string 343 
+
+As described in the Methods, string effects were evaluated using scale key as a proxy, with the G- versus 344 A-major comparison serving as the primary contrast between higher- and lower-posture strings. 345 Comparisons involving the E-major scale were used as additional contrasts to assess whether similar 346 patterns were observed across lower-posture conditions and whether left-hand position influenced the 347 results. Overall, string-related differences were most evident on the right side, whereas left-hand-348 position-related differences were more limited and mainly observed on the left side ( Figure 2 , Figure 3 ,349 
+
+Table 5, Table 6, Table S1 ). 350 The largest right-sided changes were observed when the G-major scale, which involved higher-posture 351 strings, was compared with the A- and E-major scales, which involved lower-posture strings ( Table 5, 352 
+
+Table 6 ). Compared with the A-major scale, the G-major scale increased right upper-arm elevation by 19° 353 ([Q1, Q3] [17, 24]; p < 0.001). Compared with the E-major scale, the G-major scale increased right upper-354 arm elevation by 24° ([21, 29]; p < 0.001). In contrast, no significant difference was observed between the 355 A- and E-major scales, suggesting that right upper-arm elevation was mainly associated with differences 356 in strings used during the scale rather than left-hand position. 357 A similar pattern was observed for right shoulder muscle activity ( Table 5, Table 6 ). Right trapezius activity 358 increased by 34%RVE when comparing the G-major scale with the A-major scale ([12, 49]; p < 0.001) and 359 by 37%RVE when comparing the G-major scale with the E-major scale ([8, 52]; p < 0.001), with no 360 significant difference between the A- and E-major scales. Right deltoid activity increased by 16%RVE from 361 the A-major scale to the G-major scale ([14, 21]; p < 0.001) and by 20%RVE from the E-major scale to the 362 G-major scale ([15, 25]; p < 0.001), again with no significant difference between the A- and E-major scales. 363 Notably, the magnitude of the increase was consistently larger when comparing the G-major scale with 364 the E-major scale than with the A-major scale. Other right-sided physical exposures were either non-365 significant or small in magnitude. 366 On the left side, changes were mainly observed in wrist deviation and deltoid activity ( Table 5, Table 6 ). 367 Similar to the right-sided pattern, left wrist radial deviation increased when comparing the G-major scale 368 with the A-major scale by 7° ([4, 9]; p < 0.001) and with the E-major scale by 8° ([4, 10]; p < 0.001), while 369 no significant difference was observed between the A- and E-major scales. 370 In contrast, left deltoid activity showed a different pattern ( Table 5, Table 6 ). It increased by 11%RVE 371 when comparing the E-major scale with the G-major scale ([4, 13]; p < 0.001), whereas the difference 372 between the A- and G-major scales was not significant. Moreover, when comparing the two lower-posture 373 conditions, the E-major scale was associated with a 7%RVE decrease in left deltoid activity compared with 374 the A-major scale ([-10, -2]; p = 0.002). This suggests that left deltoid activity may be influenced more by 375 left-hand position than by the strings used during the scale. Other left-sided exposures were either non-376 significant or small in magnitude. 377 Overall, differences between strings played in each scale were mainly reflected in right upper-arm 378 elevation and right shoulder muscle activity, with moderate changes in left-wrist deviation. In contrast, 379 differences in left-hand positions on similar lower-posture strings appeared to affect mainly left deltoid 380 activity, with limited or no influence on right-sided exposures. 381 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+15 
+
+Table 5. Median differences in physical exposure between different strings proxied by the scales played in different major keys. L/R indicates the left or right side; Q1 and Q3 denote 382 the first and third quartiles; and the reference (Ref) is the key after “vs”. § The scale key was used as a proxy for the strings played during each scale. 383 
+
+Key: Key 1 vs (Ref) Key 2, Difference, Median [Q1, Q3] 
+
+Section Posture Key/String§ 
+
+Posture (°) Range of motion (°) Velocity (°/s) 
+
+Muscle Key/String§ 
+
+Muscle activity (%RVE) 
+
+P50 P90 – P10 P50 P50 
+
+Difference Difference Difference Difference 
+
+Shoulder/ Arm Elevation L G vs A -2 [-2, 0] -1 [-3, 0] 0 [-1, 1] Deltoid L G vs A 4 [1, 6] 
+
+Upper arm G vs E 1 [-2, 4] -1 [-2, 1] 1 [0, 1] G vs E 11 [4, 13] 
+
+E vs A -3 [-5, 0] 0 [-2, 1] 0 [-1, 0] E vs A -7 [-10, -2] 
+
+R G vs A 19 [17, 24] -2 [-7, 2] -2 [-4, -1] R G vs A 16 [14, 21] 
+
+G vs E 24 [21, 29] -1 [-6, 3] -2 [-5, 0] G vs E 20 [15, 25] 
+
+E vs A -4 [-6, -2] -3 [-4, -1] 0 [-1, 1] E vs A -1 [-3, -1] 
+
+Trapezius L G vs A 3 [1, 10] 
+
+G vs E 4 [1, 12] 
+
+E vs A 0 [-5, 3] 
+
+R G vs A 34 [12, 49] 
+
+G vs E 37 [8, 52] 
+
+E vs A -6 [-12, 0] 
+
+Forearm/ Wrist Deviation L G vs A 7 [4, 9] -1 [-3, -1] 0 [-1, 0] Through* L G vs A 4 [0, 8] 
+
+Wrist G vs E 8 [4, 10] -3 [-5, 0] 0 [-1, 0] G vs E -1 [-11, 6] 
+
+E vs A -2 [-3, 1] 1 [-1, 3] 0 [-1, 0] E vs A 3 [0, 8] 
+
+R G vs A -1 [-3, 0] 1 [-1, 2] 0 [0, 1] R G vs A 2 [0, 5] 
+
+G vs E -2 [-3, -1] 1 [-2, 2] 0 [-1, 2] G vs E 1 [-2, 3] 
+
+E vs A 0 [-1, 1] 0 [-1, 1] 0 [0, 1] E vs A 2 [-1, 3] 
+
+Flexion L G vs A 4 [3, 5] 0 [-2, 3] 0 [-1, 1] 
+
+G vs E 3 [1, 9] 0 [-5, 5] 0 [-1, 2] 
+
+E vs A -1 [-4, 3] -1 [-4, 3] 0 [-1, 1] 
+
+R G vs A 1 [-3, 3] 3 [-4, 8] 2 [-3, 5] 
+
+G vs E 2 [-3, 7] 3 [-6, 9] 3 [-4, 6] 
+
+E vs A -2 [-3, 1] 1 [-1, 3] 0 [-1, 2] 
+
+* Forearm muscle activity measured by the through-forearm EMG placement 
+
+384 16 
+
+5.4. Variance analysis and model performance 385 
+
+Variance analysis identified four distinct patterns across the physical exposure variables ( Table 6 , Figure 386 
+
+S1 ). The four patterns represented exposures predominantly related to musical characteristics, jointly 387 related to musical characteristics and between-subject differences, predominantly related to between-388 subject differences, or characterized by substantial unexplained variability, with little variation 389 attributable to either the examined musical characteristics or between-subject differences. 390 The first pattern showed the strongest dependence on musical characteristics. It was characterized by 391 moderate-to-large 𝑅 ) 
+
+> %
+
+values (0.37–0.69), low-to-moderate 1 − 𝑅 * 
+
+> %
+
+values (0.18–0.42), small 𝑅 * 
+
+> %
+
+− 𝑅 )
+
+> %
+
+392 values (0.11–0.22), and low-to-moderate ICCs (0.23–0.40). This pattern was most evident for right upper-393 arm elevation velocity, which had 𝑅 ) 
+
+> %
+
+=0.69, 1 − 𝑅 * 
+
+> %
+
+=0.18, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+=0.12, and ICC = 0.40. Bilateral 394 forearm muscle activity showed a similar pattern, with 𝑅 ) 
+
+> %
+
+values of 0.48–0.57, 1 − 𝑅 * 
+
+> %
+
+values of 0.32– 395 0.40, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+values of 0.11–0.12, and ICCs of 0.23–0.26. Bilateral wrist-deviation velocity also belonged 396 to this pattern. These exposures were therefore influenced substantially by musical characteristics, while 397 between-subject differences accounted for only a small proportion of the total variance. In most cases, 398 the unexplained residual variance exceeded the variance attributable to between-subject differences. 399 The second pattern reflected substantial contributions from both musical characteristics and between-400 subject differences. It combined moderate-to-large 𝑅 ) 
+
+> %
+
+values (0.33–0.65), relatively small 1 − 𝑅 * 
+
+> %
+
+values 401 (0.07–0.28), and 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+values (0.28–0.54) with moderate-to-high ICCs (0.51–0.81). Right upper-arm 402 elevation posture showed this pattern, with 𝑅 ) 
+
+> %
+
+=0.65, 1 − 𝑅 * 
+
+> %
+
+=0.07, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+=0.28, and ICC = 0.80. A 403 similar pattern was observed for left upper-arm elevation velocity, right-wrist deviation and flexion ranges 404 of motion, and right deltoid and trapezius activity. For these exposures, musical characteristics and 405 between-subject differences together explained most of the variance, leaving comparatively little residual 406 variability. 407 The third and most common pattern was dominated by between-subject differences. It was characterized 408 by small 𝑅 ) 
+
+> %
+
+values (0.01–0.21), low-to-moderate 1 − 𝑅 * 
+
+> %
+
+values (0.04–0.40), moderate-to-large 𝑅 * 
+
+> %
+
+− 𝑅 )
+
+> %
+
+409 values (0.48–0.95), and moderate-to-high ICCs (0.57–0.96). For example, left upper-arm elevation posture 410 had 𝑅 ) 
+
+> %
+
+=0.01, 1 − 𝑅 *
+
+> %
+
+=0.04, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+=0.95, and ICC = 0.96. Left deltoid activity showed a similar pattern 411 (𝑅 ) 
+
+> %
+
+=0.03, 1 − 𝑅 * 
+
+> %
+
+=0.06, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+=0.91, ICC = 0.94). This pattern was also observed for left trapezius 412 activity, bilateral wrist postures, bilateral wrist-flexion velocity, and left wrist-deviation range of motion. 413 For these exposures, between-subject differences accounted for the largest proportion of variance, while 414 musical characteristics made a comparatively limited contribution. 415 The fourth pattern was characterized by substantial unexplained variability. It comprised left wrist-flexion 416 range of motion and bilateral upper-arm elevation range of motion, which had relatively small 𝑅 ) 
+
+> %
+
+values 417 (0.12–0.26), large 1 − 𝑅 * 
+
+> %
+
+values (0.52–0.63), small 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+values (0.17–0.26), and low ICCs (0.21–0.30). 418 Thus, neither musical characteristics nor between-subject differences explained a large proportion of the 419 variance in these three exposures; instead, most variability remained unexplained by the models. 420 RMSEs were generally small relative to the magnitude of the corresponding outcomes, particularly for the 421 kinematic measures, indicating acceptable average prediction error at the group level ( Table 6 , Table S1 ). 422 Overall, the variance analysis distinguished exposures predominantly related to musical characteristics, 423 jointly related to musical characteristics and between-subject differences, predominantly related to 424 between-subject differences, or largely dependent on residual factors not captured by the models. 425 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+17 
+
+Table 6. Effects of the three musical characteristics and variances explained by the models. RMSE denotes the root-mean-square error; 𝑅 ! 
+
+> "
+
+and 𝑅 # 
+
+> "
+
+represent the conditional and 426 marginal 𝑅 ", respectively; and ICC indicates the intraclass correlation coefficient. P-values are Bonferroni-adjusted for pairwise contrasts. P<0.05 is considered significant. § The 427 
+
+scale key was used as a proxy for the strings played during each scale. 428 
+
+Variable Body section Direction Side Tempo Dynamics Key/String§ RMSE 𝑹 𝒎  
+
+> 𝟐
+
+𝟏 − 𝑹 𝒄  
+
+> 𝟐
+
+𝑹 𝒄  
+
+> 𝟐
+
+− 𝑹 𝒎  
+
+> 𝟐
+
+ICC 
+
+16th vs whole ff vs pp Overall G vs A G vs E E vs A 
+
+Posture Wrist Deviation L <0.001 - <0.001 <0.001 <0.001 >0.999 3.1 0.19 0.15 0.66 0.82 
+
+(°) R - <0.001 - - - - 3.3 0.10 0.30 0.60 0.67 
+
+Flexion L <0.001 - 0.009 0.010 0.133 0.980 3.8 0.08 0.10 0.82 0.89 
+
+R - <0.001 - - - - 6.5† 0.07 0.24 0.68 0.74 
+
+Upper arm Elevation L <0.001 - 0.002 0.098 0.456 0.002 2.0 0.01 0.04 0.95 0.96 
+
+R <0.001 <0.001 <0.001 <0.001 <0.001 <0.001 3.2 0.65 0.07 0.28 0.80 
+
+Range of motion, (P90 - P10) Wrist Deviation L 0.034 - 0.007 0.087 0.009 >0.999 4.3† 0.07 0.39 0.53 0.57 
+
+(°) R <0.001 <0.001 - - - - 4.0 0.39 0.27 0.34 0.55 
+
+Flexion L <0.001 - - - - - 4.4† 0.12 0.63 0.26 0.29 
+
+R <0.001 <0.001 - - - - 8.4 0.44 0.28 0.29 0.51 
+
+Upper arm Elevation L 0.032 <0.001 - - - - 1.8† 0.20 0.63 0.17 0.21 
+
+R <0.001 <0.001 - - - - 4.5 0.25 0.52 0.22 0.30 
+
+Velocity Wrist Deviation L <0.001 0.002 - - - - 1.3† 0.37 0.42 0.21 0.34 
+
+(°/s) R <0.001 <0.001 - - - - 4.9† 0.42 0.37 0.22 0.37 
+
+Flexion L <0.001 <0.001 - - - - 1.4† 0.21 0.31 0.48 0.61 
+
+R 0.007 <0.001 - - - - 6.2 0.15 0.36 0.49 0.58 
+
+Upper arm Elevation L <0.001 <0.001 - - - - 3.0† 0.47 0.14 0.39 0.73 
+
+R <0.001 <0.001 0.004 0.024 0.008 >0.999 8.2† 0.69 0.19 0.12 0.40 
+
+Muscle activity Through* L 0.001 <0.001 - - - - 13.2† 0.49 0.40 0.12 0.23 
+
+(%RVE) R <0.001 <0.001 - - - - 13.3† 0.57 0.32 0.11 0.26 
+
+Deltoid L - <0.001 <0.001 0.090 <0.001 0.002 5.9 0.03 0.06 0.91 0.94 
+
+R <0.001 0.004 <0.001 <0.001 <0.001 0.310 5.8† 0.34 0.12 0.54 0.82 
+
+Trapezius L - 0.015 - - - - 12.0 0.03 0.36 0.62 0.63 
+
+R <0.001 <0.001 <0.001 <0.001 <0.001 0.578 15.8† 0.33 0.23 0.44 0.66 
+
+* Forearm muscle activity measured by the through-forearm EMG placement 
+
+† Estimated on the Box–Cox–transformed scale and back-transformed to the original outcome scale. 
+
+429 18 
+
+# 6. Discussion 430 
+
+This study examined how three musical characteristics—tempo, dynamics, and string—were associated 431 with upper-extremity kinematics and muscle activity in professional violinists. All three characteristics 432 affected physical exposure, but in distinct ways. 433 Faster tempo primarily affected the right, or bowing, side, increasing right upper-arm velocity and forearm 434 muscle activity while reducing right upper-arm and wrist ranges of motion. Louder dynamics mainly 435 increased muscle activity in both forearms and the right upper trapezius and increased right-wrist ranges 436 of motion. Playing on higher-posture strings mainly affected the right side, increasing right upper-arm 437 elevation and right shoulder muscle activity, whereas effects related to left-hand position were limited 438 and were observed mainly in left deltoid activity. 439 Variance analysis further showed that the sources of variability differed across exposures. Right upper-440 arm elevation velocity, bilateral forearm muscle activity, and wrist-deviation velocity were predominantly 441 related to musical characteristics. Right upper-arm elevation posture, left upper-arm elevation velocity, 442 right-wrist ranges of motion, and right shoulder muscle activity reflected contributions from both musical 443 characteristics and between-subject differences. In contrast, many wrist postures, wrist-flexion velocities, 444 and left shoulder exposures were predominantly related to between-subject differences. Finally, left 445 wrist-flexion range of motion and bilateral upper-arm elevation range of motion were characterized 446 mainly by residual variability not explained by the investigated musical characteristics or between-subject 447 differences. 448 
+
+6.1. Effects of music characteristics on exposure 449 
+
+Each musical characteristic influenced physical exposure in distinct patterns, suggesting different 450 underlying mechanisms. 451 Tempo primarily affected right-sided kinematics and muscle activity. Faster tempo increased right upper-452 arm velocity and muscle activity in the right deltoid and both forearms, while reducing the ranges of 453 motion of the right upper arm and wrist. These findings are partly consistent with previous studies 454 showing increased physical demand at higher tempi (Mann, Paarup, et al., 2023; Rensing et al., 2018; 455 Reynolds et al., 2014), but extend them by demonstrating concurrent reductions in ranges of motion in 456 both the right wrist and upper arm. This combination suggests a movement strategy characterized by 457 faster but more constrained motion, potentially limiting unnecessary joint movement and supporting 458 rapid and precise bowing. A notable contrast to this combination was the decrease in right trapezius 459 activity despite increased right deltoid and forearm activity. Earlier studies reported either no change or 460 increased right trapezius activity at higher tempi (Mann, Paarup, et al., 2023; Reynolds et al., 2014). 461 Because previous studies included mixed-skill populations, whereas the present study involved only 462 professional violinists, the discrepancy may reflect skill- and experience-dependent motor strategies. 463 Professional violinists may redistribute muscular effort within the shoulder complex during faster playing, 464 reducing trapezius activity while maintaining bowing performance. 465 Dynamics mainly modulated muscle activity, particularly in both forearms and the right upper trapezius. 466 This pattern partly aligns with previous findings of increased right-forearm activity and left-finger force at 467 stronger dynamics (Kinoshita & Obata, 2009; Mann, Paarup, et al., 2023; Rensing et al., 2018), but the 468 present results also showed clearer bilateral forearm engagement. Unlike tempo, stronger dynamics 469 increased the ranges and velocities of right-wrist flexion and deviation. This suggests that louder playing 470 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+19 may rely on wider and faster distal joint ranges of motion to help forearm and shoulder muscles generate 471 bow force and sound intensity, whereas changes in upper-arm posture were comparatively small. 472 Although string use was assessed using scales played in different keys, the results suggest that the strings 473 used during the scale were the main driver of right-sided exposure differences. The G-major scale was 474 played on higher-posture strings, namely the G and D strings, whereas the A-major scale was played on 475 lower-posture strings, namely the A and E strings. The E-major scale represented another lower-posture 476 condition, as it was played only on the E string but with two different left-hand positions. As string position 477 became higher, right-sided shoulder exposure showed a graded increase, with the G-major scale 478 producing the greatest right upper-arm elevation and right deltoid and upper-trapezius activity, followed 479 by the A-major and then the E-major scales. This is consistent with previous reports that shoulder 480 movement increases when playing shifts from the E string toward the G string (Shan & Visentin, 2003; 481 Wolf et al., 2019). In contrast, differences between the A- and E-major scales had limited effects on right-482 sided exposures, suggesting that neither left-hand position alone nor the shift between the A and E strings 483 was sufficient to substantially alter right-arm demands. 484 On the left side, the string-related pattern differed. Left wrist deviation changed when the G-major scale 485 was compared with the other keys, showing a pattern broadly consistent with the right-sided response. 486 However, left deltoid activity differed between the A- and E-major scales and increased significantly only 487 between the G- and E-major scales. This suggests that left deltoid activity may be more sensitive to left-488 hand position or instrument-stabilizing demands than to the strings used alone. 489 Thus, across musical characteristics, both similarities and contrasts emerged. Tempo and dynamics both 490 increased forearm muscle activity, indicating that both demanded force generation and control. However, 491 they differed in their kinematic patterns: an increase in tempo was associated with reduced joint ranges 492 of motion, whereas louder dynamics increased wrist ranges of motion. In contrast, string effects were 493 primarily proximal, affecting upper-arm elevation and shoulder muscle activity, and reflected positional 494 requirements rather than dynamic or temporal demands. Together, these findings suggest that the 495 investigated characteristics influenced physical exposure through largely distinct mechanisms. 496 
+
+6.2. Variance explained by musical characteristics, between-subject differences, and 497 
+
+residual variability 498 
+
+A key finding of this study was that physical exposures differed not only in their responses to the 499 investigated musical characteristics, but also in how their total variance was distributed among musical 500 characteristics, between-subject differences, and residual variability. Joint consideration of 𝑅 ) 
+
+> %
+
+, 𝑅 * 
+
+> %
+
+− 𝑅 ) 
+
+> %
+
+,501 
+
+1 − 𝑅 * 
+
+> %
+
+, and the ICC identified four distinct patterns: exposures predominantly related to musical 502 characteristics, exposures jointly related to musical characteristics and between-subject differences, 503 exposures predominantly related to between-subject differences, and exposures characterized mainly by 504 residual variability. 505 The first pattern represented the strongest dependence on musical characteristics and was observed for 506 right upper-arm elevation velocity, bilateral forearm muscle activity, and bilateral wrist-deviation velocity. 507 For these exposures, tempo, dynamics, or string accounted for a substantial proportion of the total 508 variance, whereas between-subject differences contributed comparatively little. This suggests that these 509 physical exposures are strongly shaped and constrained by the demands imposed by the musical 510 characteristics, allowing relatively little variation in average exposure levels between violinists. Although 511 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+20 musical characteristics explained more variance than between-subject differences, a substantial 512 proportion of the variance remained unexplained for bilateral forearm muscle activity and bilateral wrist-513 deviation velocity. Therefore, these exposures cannot be considered fully predictable from the 514 investigated musical characteristics alone, and additional factors not included in the present study likely 515 contribute to their variability. The importance of this residual variability may differ across exposures. For 516 example, wrist-deviation velocity, particularly on the left side, showed relatively limited variation across 517 the investigated scales, suggesting that part of the unexplained variance may reflect measurement noise 518 or short-term fluctuations with limited practical importance. In contrast, for bilateral forearm muscle 519 activity, the residual component may reflect a combination of measurement-related variability and 520 unmeasured aspects of performance. Previous studies have reported low-to-moderate variability in 521 forearm EMG during simple and standardized manual tasks, indicating that some variability is inherent to 522 EMG measurements themselves (Fan et al., 2026). In addition, subtle differences in sound quality, artistic 523 expression, and other performance-related nuances requiring fine motor control of the forearms and 524 hands may contribute to variability that was not captured by the present models and therefore appears 525 as residual variance. 526 The second pattern reflected substantial contributions from both musical characteristics and between-527 subject differences. It was observed for right upper-arm elevation posture, left upper-arm elevation 528 velocity, right-wrist deviation and flexion ranges of motion, and right deltoid and trapezius activity. 529 Musical characteristics and between-subject differences together explained most of the variance in these 530 exposures, leaving relatively little residual variability. Right upper-arm elevation posture contrasted 531 particularly clearly with right upper-arm elevation velocity: both were strongly related to musical 532 characteristics, but posture also showed substantial between-subject variability relative to its small 533 residual component. Thus, the musical characteristics shifted these exposures systematically, while 534 average exposure levels also differed between violinists. Such differences may reflect technique, 535 anthropometry, habitual posture, instrument setup, or motor strategy, although the random-intercept 536 models cannot determine the contribution of each factor. 537 The third and most common pattern was dominated by between-subject differences and included left 538 upper-arm elevation posture, left deltoid and trapezius activity, bilateral wrist postures, bilateral wrist-539 flexion velocity, and left wrist-deviation range of motion. For these exposures, musical characteristics 540 explained comparatively little variance, whereas differences between violinists accounted for the largest 541 component. This suggests that their average levels may depend more strongly on individual posture, 542 technique, anthropometry, instrument setup, or motor strategy than on the investigated musical 543 characteristics. This interpretation is consistent with previous findings of substantial between-subject 544 differences in trapezius activity during violin playing (Fjellman-Wiklund et al., 2004). The same study 545 reported relatively low within-subject variability during repeated performances, suggesting that muscle-546 activity levels may remain comparatively consistent within individual musicians even when similar 547 material is performed repeatedly. However, because the present models included random intercepts 548 rather than random slopes, they describe differences in average exposure levels between violinists and 549 do not establish that violinists responded differently to changes in musical characteristics. 550 The fourth pattern was characterized mainly by residual variability and comprised three exposures: left 551 wrist-flexion range of motion and bilateral upper-arm elevation range of motion. Neither musical 552 characteristics nor between-subject differences explained a large proportion of their variance. Similar to 553 the first pattern, the unexplained variability exceeded the variability attributable to between-subject 554 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+21 differences. In contrast to the exposures in the first pattern, however, these ranges of motion showed 555 relatively small changes across the investigated scales, indicating that the examined musical 556 characteristics had limited influence on them. Their variability may instead reflect short-term movement 557 adjustments, certain technique (e.g., use of vibrato in the left hand), measurement variability, interactions 558 not represented in the models, or other factors not captured in the present study, rather than systematic 559 effects of musical characteristics or stable differences between violinists. 560 Together, these patterns show that physical exposures during violin performance differ in whether they 561 are predominantly related to musical characteristics, jointly related to musical characteristics and 562 between-subject differences, predominantly related to between-subject differences, or largely 563 unexplained by the present models. This distinction has practical implications. Exposures strongly related 564 to musical characteristics may be more predictable from repertoire and more amenable to workload 565 management based on the duration and sequencing of demanding passages. Exposures with substantial 566 between-subject contributions may require individualized attention to technique, posture, instrument 567 setup, and motor strategy. For exposures dominated by residual variability, the unexplained variance may 568 partly reflect factors not included in the present models, such as sound production, i.e., use of vibrato, 569 artistic expression, and other performance-related nuances requiring fine motor control that were not 570 measured in this study. Further studies are needed to identify additional explanatory factors and to 571 determine the extent to which these performance-related factors contribute to the observed variability 572 before targeted interventions are developed. 573 
+
+6.3. Physical exposures and risk of developing musculoskeletal disorders 574 
+
+The magnitude of a physical exposure is meaningful for PRMSD risk only when considered together with 575 its temporal profile, including how long, how often, and in what sequence the exposure occurs. Many risk 576 and exposure assessment studies focus on the whole-day exposure (6–8 hours) in occupations with 577 relatively homogenous work tasks. For example, proposed action levels are exposure thresholds above 578 which preventive measures should be considered to reduce the risk of work-related musculoskeletal 579 disorders (Arvidsson et al., 2021). These thresholds are based on prolonged measurements, often 580 covering an approximately 8-hour working day, whereas the present study examined short standardized 581 scale tasks. However, scales with similar musical characteristics are recurring components of violinists’ 582 daily practice, rehearsal, and performance. The observed task-specific exposures can therefore inform 583 approximate exposure scenarios for days dominated by music with similar characteristics, although they 584 should not be interpreted as directly equivalent to full-day occupational measurements. 585 Within this context, several exposures reached magnitudes comparable to those reported in physically 586 demanding occupations. Median right upper-arm elevation involving lower-posture strings was generally 587 approximately 30°–50° and increased to around 70° during the G-major scale involving higher-posture 588 strings. These values are comparable to or larger than those reported in occupations such as hairdressing 589 (29° at the 50 th percentile) and retail shelf stocking (55° at the 90 th percentile) (Forsman et al., 2017; 590 Nordander et al., 2016). High arm elevation has been associated with an increased risk of shoulder 591 disorders (Van Der Molen et al., 2017). Specifically, median right upper-arm elevation exceeded the 592 proposed action level of 30° was considered as a risk factor for developing MSDs, which was lower than 593 the right-arm elevation observed in most scales (Arvidsson et al., 2021). This indicates that elevated right-594 arm posture represents a substantial baseline exposure in violin playing, while music involving higher-595 posture strings may further increase the accumulated shoulder load. 596 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+22 Right trapezius activity also varied with musical characteristics. Playing louder increased trapezius activity, 597 particularly when combined with higher-posture strings, whereas activity during playing softer was lower. 598 Direct comparison with occupational action levels can be difficult because the present study used RVE 599 normalization and task-specific exposure measures, whereas the proposed action levels are based on 600 prolonged occupational measurements and MVE-normalized muscle activity. Nevertheless, the observed 601 pattern indicates that louder dynamics and higher-posture strings may add substantially to shoulder 602 muscle load, and therefore the risk of PRMSDs around neck and shoulder, when such passages are 603 repeated or sustained over longer periods. 604 Taken together, the potential risk of PRMSDs in violinists is likely determined by the combination of 605 consistently elevated baseline exposures and additional increases associated with specific musical 606 characteristics, accumulated across practice, rehearsal, and performance. Because different musical 607 characteristics produced distinct exposure patterns, some loads may be mitigated through repertoire 608 variation during practicing and rehearsal, for example by alternating passages with different dynamics or 609 passages involving higher- and lower-posture strings. However, the musical characteristics required within 610 a given piece are often intrinsic to the repertoire and cannot be modified directly, especially during 611 performance. Their temporal profile nevertheless provides an important degree of freedom for 612 intervention. Demanding passages may be distributed across practice sessions, alternated with passages 613 involving lower exposures, limited in uninterrupted duration, and separated by structured recovery 614 periods. Thus, even when the magnitude of exposure associated with particular musical characteristics 615 cannot be reduced, workload-management strategies can target its duration, frequency, sequencing, and 616 recovery pattern. 617 
+
+6.4. Practical implications 618 
+
+The present findings have potential implications for occupational workload management based on 619 repertoire selection and therefore strategies for preventing PRMSDsat an organizational level. 620 First, the results demonstrate that different musical characteristics impose distinct biomechanical 621 demands, meaning that physical exposure can vary substantially depending on what music piece is being 622 played, even when practice duration remains constant. This is particularly relevant in professional 623 orchestras, where rehearsal schedules are typically fixed despite variations in repertoire (Nyman et al., 624 2007). Introducing variation in practice and rehearsal schemes based on musical characteristics, such as 625 alternating between passages with different dynamics or between music played predominantly on lower 626 and higher strings, may help distribute mechanical load across rehearsal periods and reduce localized 627 fatigue and disorder risk. 628 Second, the diverse variance patterns across physical exposures indicate that different risk-mitigation 629 strategies may be required. Exposures predominantly related to musical characteristics, such as right 630 upper-arm elevation velocity and bilateral forearm muscle activity, may be partly managed through 631 repertoire variation and scheduling. Identifying these characteristic-dependent exposures also provides a 632 basis for estimating physical exposure from musical characteristics and may ultimately support exposure 633 prediction directly from sheet music. In contrast, right upper-arm elevation posture remained consistently 634 high across conditions, although its variance reflected contributions from both musical characteristics and 635 between-subject differences. Repertoire selection alone is therefore unlikely to reduce this exposure 636 substantially while conventional violin-playing techniques are maintained. A combination of repertoire-637 based workload management, technique optimization, ergonomic adjustment, structured breaks, and 638 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+23 recovery may be more appropriate. Previous work has similarly suggested that dividing challenging 639 passages into shorter practice sessions and distributing them throughout the day can support adequate 640 rest and recovery (Chan & Ackermann, 2014). 641 Third, the substantial between-subject variability observed in many exposures indicates that interventions 642 should not rely solely on generalized recommendations. Individualized approaches that consider 643 technique, posture, instrument setup, and motor strategy may be particularly important for exposures 644 predominantly related to between-subject differences or jointly related to musical characteristics and 645 between-subject differences. This variability may also help explain why assistive devices, such as dynamic 646 supports or ergonomic chin and shoulder rests, have shown at most marginal benefits and, in some cases, 647 adverse effects on muscle activity or perceived exertion (Kok et al., 2019; Mann, Olsen, et al., 2023). These 648 findings highlight the limited effectiveness of interventions that do not account for the complex 649 relationships among musical demands, physical exposure, and individual playing strategy. By 650 distinguishing exposures related primarily to musical characteristics, between-subject differences, or 651 both, the present study provides a basis for developing more targeted and individualized interventions. 652 Finally, the observed motor patterns, such as coordinated bilateral engagement, redistribution of 653 shoulder muscle activity, and task-specific wrist adjustments, may inform pedagogical approaches in violin 654 teaching. Encouraging efficient movement strategies observed in some experienced musicians may help 655 reduce unnecessary loading and improve long-term musculoskeletal health. More broadly, knowing how 656 musical characteristics affect physical exposures, and how these effects vary across individuals, may help 657 tailor general prevention strategies to the specific repertoire, practice routines, and technical needs of 658 individual violinists. 659 
+
+6.5. Strengths and limitations 660 
+
+A key strength of this study is that it systematically examined the influence of three fundamental musical 661 characteristics, i.e., tempo, dynamics, and string, on kinematics and muscle activity in the upper body and 662 upper extremities of professional violinists. 663 The investigated tasks, i.e. playing scales, incorporated controlled variations in dynamics and string, thus 664 enabling assessment of the influence of each characteristic on biomechanical exposure. However, to 665 maintain a manageable experimental duration, the range of tempi was limited, and not all combinations 666 of tempo, dynamics and string were tested. Specially, the choice of strings was proxied by the scale key, 667 while in practice, there are four strings in combination with multiple main left-hand positions, which was 668 not fully tested with high resolution. As a result, the observed effects, especially the interaction effects 669 between the three characteristics, should only be evaluated to a limited extent. Future studies should 670 investigate a broader range of interactions between musical characteristics to determine whether their 671 effects on physical exposure are independent or combined. Moreover, real musical performance is 672 substantially more complex than scale playing, and the effects observed here may not fully reflect those 673 present when playing an actual repertoire. Future studies should therefore investigate the generalizability 674 of these findings in more ecologically valid musical contexts. 675 Some participants reported musculoskeletal pain within the preceding 7 days or 12 months. However, all 676 participants were active professional orchestral musicians who did not report pain to be sufficiently severe 677 to require sick leave; thus, they were able to perform as usual. In addition, the prevalence of reported 678 pain in this sample was lower than that typically observed in other populations of musicians (Ioannou et 679 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+24 al., 2018; Kenny et al., 2018). Therefore, any influence of pain on performance is likely to have been 680 minimal. 681 The sample consisted of 12 professional violinists with a mean age of 49 years, which limits the 682 generalizability of the findings. The primary aim of our study was to assess associations between musical 683 characteristics and exposure, rather than to develop fully validated tools for predicting exposure while 684 playing complex pieces of music. Future work should include larger and more diverse samples of string 685 players, and investigate more complex and realistic musical tasks, in order to develop predictive models 686 and evaluate their practical applicability. Also, studies are needed to examine whether informed 687 interventions for violinists, such as alternations between music pieces of different complexity or changed 688 schedules for rehearsal and concerts, can beneficially change patterns of physical exposures and lead to 689 reduced PRMSDs. 690 
+
+# 7. Conclusion 691 
+
+This study demonstrated that three musical characteristics, i.e., tempo, dynamics, and string, were 692 systematically associated with upper-extremity biomechanical exposures during standardized scale 693 playing by professional violinists. The associations differed across musical characteristics and exposure 694 variables. Variance analysis further revealed that some exposures were predominantly related to musical 695 characteristics, others reflected substantial contributions from both musical characteristics and between-696 subject differences, and others were predominantly related to between-subject differences or residual 697 variability. 698 Future research should validate these findings in larger samples and more complex musical contexts to 699 determine whether the observed effects are also evident during the performance of complete musical 700 pieces. Estimating physical exposure from musical characteristics may ultimately support exposure 701 prediction directly from sheet music. Moreover, understanding how musical characteristics influence 702 physical exposure may clarify mechanisms contributing to the risk of PRMSDs among violinists and support 703 the development of targeted interventions, including repertoire-based workload management, optimized 704 rehearsal and practice schedules, structured breaks and recovery, and individualized technique-focused 705 strategies. 706 
+
+# 8. Acknowledgements 707 
+
+The authors thank Professor Mikael Forsman for support and consultancy during the early stages of the 708 project, and PhD Ida-Märta Rhén and PhD student Johan Rydgård for their assistance with the illustration 709 of violin playing. The authors also express their sincere gratitude to all violinists participating in this study. 710 
+
+# 9. Declaration of conflicts of interest 711 
+
+No conflicts of interest to declare 712 
+
+# 10. Funding sources 713 
+
+This work was supported by the Swedish Research Council for Health, Working Life and Welfare (FORTE) 714 [DNr: 2017-01119]. 715 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+25 
+
+# 11. CRediT author statement 716 
+
+Xuelong Fan : Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, 717 Validation, Visualization, Writing – original draft, Writing – review & editing. Svend Erik Mathiassen :718 Conceptualization, Funding acquisition, Investigation, Methodology, Writing – review & editing. Peter J. 719 
+
+Johansson : Conceptualization, Investigation, Resources, Writing – review & editing. Jennie A. Jackson :720 Conceptualization, Investigation, Methodology, Project administration, Resources, Supervision, Writing – 721 review & editing. Teresia Nyman : Conceptualization, Funding acquisition, Investigation, Methodology, 722 Project administration, Supervision, Writing – review & editing. 723 
+
+# 12. Declaration of generative AI and AI-assisted technologies in the 724 
+
+# manuscript preparation process. 725 
+
+Statement: During the preparation of this work the author(s) used ChatGPT in order to improve language 726 and readability. After using this tool/service, the author(s) reviewed and edited the content as needed 727 and take(s) full responsibility for the content of the published article. 728 
+
+# 13. References 729 
+
+Åkesson, I., Hansson, G.-Å., Balogh, I., Moritz, U., & Skerfving, S. (1997). Quantifying work load in neck, 730 shoulders and wrists in female dentists. International Archives of Occupational and Environmental 731 
+
+Health , 69 (6), 461–474. https://doi.org/10.1007/s004200050175 732 Arvidsson, I., Dahlqvist, C., Enquist, H., & Nordander, C. (2021). Action Levels for the Prevention of Work-733 Related Musculoskeletal Disorders in the Neck and Upper Extremities: A Proposal. Annals of Work 734 
+
+Exposures and Health , 65 (7), 741–747. https://doi.org/10.1093/annweh/wxab012 735 Bernmark, E., & Wiktorin, C. (2002). A triaxial accelerometer for measuring arm movements. Applied 736 
+
+Ergonomics , 33 (6), 541–547. https://doi.org/10.1016/S0003-6870(02)00072-8 737 Blanca, M., Alarcón, R., Arnau, J., Bono, R., & Bendayan, R. (2017). Non-normal data: Is ANOVA still a valid 738 option? Psicothema , 4(29), 552–557. https://doi.org/10.7334/psicothema2016.383 739 Box, G. E. P., & Cox, D. R. (1964). An Analysis of Transformations. Journal of the Royal Statistical Society 740 
+
+Series B: Statistical Methodology , 26 (2), 211–243. https://doi.org/10.1111/j.2517-741 6161.1964.tb00553.x 742 Breusch, T. S., & Pagan, A. R. (1979). A Simple Test for Heteroscedasticity and Random Coefficient 743 Variation. Econometrica , 47 (5), 1287. https://doi.org/10.2307/1911963 744 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+26 Brown, M. B., & Forsythe, A. B. (1974). Robust Tests for the Equality of Variances. Journal of the American 745 
+
+Statistical Association , 69 (346), 364–367. https://doi.org/10.1080/01621459.1974.10482955 746 Chan, C., & Ackermann, B. (2014). Evidence-informed physical therapy management of performance-747 related musculoskeletal disorders in musicians. Frontiers in Psychology , 5.748 https://doi.org/10.3389/fpsyg.2014.00706 749 Chi, J.-Y., Halaki, M., & Ackermann, B. J. (2020). Ergonomics in violin and piano playing: A systematic 750 review. Applied Ergonomics , 88 , 103143. https://doi.org/10.1016/j.apergo.2020.103143 751 Cruder, C., Barbero, M., Koufaki, P., Soldini, E., & Gleeson, N. (2020). Prevalence and associated factors of 752 playing-related musculoskeletal disorders among music students in Europe. Baseline findings 753 from the Risk of Music Students (RISMUS) longitudinal multicentre study. PLOS ONE , 15 (12), 754 e0242660. https://doi.org/10.1371/journal.pone.0242660 755 Cruder, C., Soldini, E., Gleeson, N., & Barbero, M. (2023). Factors associated with increased risk of playing-756 related disorders among classical music students within the Risk of Music Students (RISMUS) 757 longitudinal study. Scientific Reports , 13 (1), 22939. https://doi.org/10.1038/s41598-023-49965-7 758 Fan, X., Lind, C. M., Rhen, I.-M., & Forsman, M. (2021). Effects of Sensor Types and Angular Velocity 759 Computational Methods in Field Measurements of Occupational Upper Arm and Trunk Postures 760 and Movements. Sensors , 21 (16), 5527. https://doi.org/10.3390/s21165527 761 Fan, X., Rydgård, J., Yang, L., & Johansson, P. J. (2026). Assessing forearm exertion in manual tasks with 762 surface EMG: A comparative analysis of through-forearm vs. muscle-specific EMG placements. 763 
+
+Applied Ergonomics , 132 , 104699. 10.1101/2024.12.10.627589. 764 https://doi.org/10.1016/j.apergo.2025.104699 765 Fan, X., Yang, L., Young, N., Kaner, I., Kjellman, M., & Forsman, M. (2024). Ergonomics and performance 766 of using prismatic loupes in simulated surgical tasks among surgeons – a randomized controlled, 767 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+27 cross-over trial. Frontiers in Public Health , 11 , 1257365. 768 https://doi.org/10.3389/fpubh.2023.1257365 769 Fjellman-Wiklund, A., Grip, H., Karlsson, J. S., & Sundelin, G. (2004). EMG trapezius muscle activity pattern 770 in string players: Part I—is there variability in the playing technique? International Journal of 771 
+
+Industrial Ergonomics , 33 (4), 347–356. https://doi.org/10.1016/j.ergon.2003.10.007 772 Forsman, M., Barkstedt, V., Dahlqvist, X. F. C., Enquist, H., & Nordander, C. (2017). Är jobbet för tungt? 773 
+
+Företag och anställda bör nu klara av mätningen själva – test av ny precis och kostnadseffektiv 774 
+
+kartläggning – i städbranschen (AFA slutrapport Dnr. 150181). Institutet för miljömedicin, 775 Karolinska Institutet. 776 Hansson, G., Asterland, P., Holmer, N.-G., & Skerfving, S. (2001). Validity and reliability of triaxial 777 accelerometers for inclinometry in posture analysis. Medical and Biological Engineering and 778 
+
+Computing , 39 (4), 405–413. https://doi.org/10.1007/BF02345361 779 Hansson, G.-Å., Balogh, I., Ohlsson, K., Rylander, L., & Skerfving, S. (1996). Goniometer measurement and 780 computer analysis of wrist angles and movements applied to occupational repetitive work. 781 
+
+Journal of Electromyography and Kinesiology , 6(1), 23–35. https://doi.org/10.1016/1050-782 6411(95)00017-8 783 Hansson, G.-Å., Nordander, C., Asterland, P., Ohlsson, K., Strömberg, U., Skerfving, S., & Rempel, D. (2000). 784 Sensitivity of trapezius electromyography to differences between work tasks—Influence of gap 785 definition and normalisation methods. Journal of Electromyography and Kinesiology , 10 (2), 103– 786 115. https://doi.org/10.1016/S1050-6411(99)00030-9 787 Hermie J. Hermens, Bart Freriks, Roberto Merletti, Dick Stegeman, Joleen Blok, Günter Rau, Cathy 788 Disselhorst-Klug, & Göran Hägg. (n.d.). Surface ElectroMyoGraphy for the Non-Invasive 789 
+
+Assessment of Muscles (SENIAM) . Retrieved May 11, 2026, from http://www.seniam.org/ 790 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+28 Ioannou, C. I., Hafer, J., Lee, A., & Altenmuller, E. (2018). Epidemiology, Treatment Efficacy, and Anxiety 791 Aspects of Music Students Affected by Playing-Related Pain: A Retrospective Evaluation with 792 Follow-up. Medical Problems of Performing Artists , 33 (1), 26–38. 793 https://doi.org/10.21091/mppa.2018.1006 794 Jonker, D., Gustafsson, E., Rolander, B., Arvidsson, I., & Nordander, C. (2015). Health surveillance under 795 adverse ergonomics conditions – validity of a screening method adapted for the occupational 796 health service. Ergonomics , 58 (9), 1519–1528. https://doi.org/10.1080/00140139.2015.1019575 797 Kenny, D. T., Driscoll, T., & Ackermann, B. J. (2018). Effects of Aging on Musical Performance in 798 Professional Orchestral Musicians. Medical Problems of Performing Artists , 33 (1), 39–46. 799 https://doi.org/10.21091/mppa.2018.1007 800 Kinoshita, H., & Obata, S. (2009). Left hand finger force in violin playing: Tempo, loudness, and finger 801 differences. The Journal of the Acoustical Society of America , 126 (1), 388–395. 802 https://doi.org/10.1121/1.3139908 803 Kok, L. M., Groenewegen, K. A., Huisstede, B. M. A., Nelissen, R. G. H. H., Rietveld, A. B. M., & Haitjema, S. 804 (2018). The high prevalence of playing-related musculoskeletal disorders (PRMDs) and its 805 associated factors in amateur musicians playing in student orchestras: A cross-sectional study. 806 
+
+PLOS ONE , 13 (2), e0191772. https://doi.org/10.1371/journal.pone.0191772 807 Kok, L. M., Schrijvers, J., Fiocco, M., Van Royen, B., & Harlaar, J. (2019). Use of a Shoulder Rest for Playing 808 the Violin Revisited: An Analysis of the Effect of Shoulder Rest Height on Muscle Activity, Violin 809 Fixation Force, and Player Comfort. Medical Problems of Performing Artists , 34 (1), 39–46. 810 https://doi.org/10.21091/mppa.2019.1009 811 Leaver, R., Harris, E. C., & Palmer, K. T. (2011). Musculoskeletal pain in elite professional musicians from 812 British symphony orchestras. Occupational Medicine , 61 (8), 549–555. 813 https://doi.org/10.1093/occmed/kqr129 814 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+29 Mann, S., Olsen, H. B., Paarup, H. M., & Søgaard, K. (2023). The effects of an ergonomic chinrest among 815 professional violin players. A biomechanical investigation in a randomised crossover design. 816 
+
+Applied Ergonomics , 110 , 104018. https://doi.org/10.1016/j.apergo.2023.104018 817 Mann, S., Paarup, H. M., & Søgaard, K. (2023). Effects of different violin playing techniques on workload 818 in forearm and shoulder muscles. Applied Ergonomics , 110 , 103999. 819 https://doi.org/10.1016/j.apergo.2023.103999 820 Mann, S., Panduro, M. B., Paarup, H. M., Brandt, L., & Søgaard, K. (2021). Surface electromyography of 821 forearm and shoulder muscles during violin playing. Journal of Electromyography and Kinesiology ,822 
+
+56 , 102491. https://doi.org/10.1016/j.jelekin.2020.102491 823 Mathiassen, S. E., Winkel, J., & Hägg, G. M. (1995). Normalization of surface EMG amplitude from the 824 upper trapezius muscle in ergonomic studies—A review. Journal of Electromyography and 825 
+
+Kinesiology , 5(4), 197–226. https://doi.org/10.1016/1050-6411(94)00014-X 826 Nakagawa, S., & Schielzeth, H. (2013). A general and simple method for obtaining R2 from generalized 827 linear mixed-effects models. Methods in Ecology and Evolution , 4(2), 133–142. 828 https://doi.org/10.1111/j.2041-210x.2012.00261.x 829 Nordander, C., Hansson, G.-Å., Ohlsson, K., Arvidsson, I., Balogh, I., Strömberg, U., Rittner, R., & Skerfving, 830 S. (2016). Exposure–response relationships for work-related neck and shoulder musculoskeletal 831 disorders – Analyses of pooled uniform data sets. Applied Ergonomics , 55 , 70–84. 832 https://doi.org/10.1016/j.apergo.2016.01.010 833 Nyman, T., Wiktorin, C., Mulder, M., & Johansson, Y. L. (2007). Work postures and neck–shoulder pain 834 among orchestra musicians. American Journal of Industrial Medicine , 50 (5), 370–376. 835 https://doi.org/10.1002/ajim.20454 836 Paarup, H. M., Baelum, J., Holm, J. W., Manniche, C., & Wedderkopp, N. (2011). Prevalence and 837 consequences of musculoskeletal symptoms in symphony orchestra musicians vary by gender: A 838 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+30 cross-sectional study. BMC Musculoskeletal Disorders , 12 (1), 223. https://doi.org/10.1186/1471-839 2474-12-223 840 Rensing, N., Schemmann, H., & Zalpour, C. (2018). Musculoskeletal Demands in Violin and Viola Playing: 841 A Literature Review. Medical Problems of Performing Artists , 33 (4), 265–274. 842 https://doi.org/10.21091/mppa.2018.4040 843 Reynolds, J. F., Leduc, R. E., Kahnert, E. K., & Ludewig, P. M. (2014). Development of three-dimensional 844 shoulder kinematic and electromyographic exposure variation analysis methodology in violin 845 musicians. Ergonomics , 57 (7), 1021–1039. https://doi.org/10.1080/00140139.2014.907448 846 Shan, G., & Visentin, P. (2003). A Quantitative Three-dimensional Analysis of Arm Kinematics in Violin 847 Performance. Medical Problems of Performing Artists , 18 (1), 3–10. 848 https://doi.org/10.21091/mppa.2003.1002 849 Shapiro, S. S., & Wilk, M. B. (1965). An Analysis of Variance Test for Normality (Complete Samples). 850 
+
+Biometrika , 52 (3/4), 591. https://doi.org/10.2307/2333709 851 Simonsen, J. G., Dahlqvist, C., Enquist, H., Nordander, C., Axmon, A., & Arvidsson, I. (2018). Assessments 852 of Physical Workload in Sonography Tasks Using Inclinometry, Goniometry, and 853 Electromyography. Safety and Health at Work , 9(3), 326–333. 854 https://doi.org/10.1016/j.shaw.2017.08.007 855 Stanhope, J., Cook, A., Pisaniello, D., & Weinstein, P. (2022). Musculoskeletal Symptoms in Professional 856 Musicians: Do Self-employed and Employer-employed Musicians Differ? Annals of Work 857 
+
+Exposures and Health , 66 (8), 1056–1069. https://doi.org/10.1093/annweh/wxac046 858 Takala, E.-P., & Toivonen, R. (2013). Placement of forearm surface EMG electrodes in the assessment of 859 hand loading in manual tasks. Ergonomics , 56 (7), 1159–1166. 860 https://doi.org/10.1080/00140139.2013.799235 861 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+31 Van Der Molen, H. F., Foresti, C., Daams, J. G., Frings-Dresen, M. H. W., & Kuijer, P. P. F. M. (2017). Work-862 related risk factors for specific shoulder disorders: A systematic review and meta-analysis. 863 
+
+Occupational and Environmental Medicine , 74 (10), 745–755. https://doi.org/10.1136/oemed-864 2017-104339 865 Vastamäki, M., Ristolainen, L., Heliövaara, M., & Vastamäki, H. (2020). Musculoskeletal pain among 866 Finnish orchestra musicians versus core workforce. Occupational Medicine , 70 (7), 507–513. 867 https://doi.org/10.1093/occmed/kqaa146 868 Visentin, P., Li, S., Tardif, G., & Shan, G. (2015). Unraveling mysteries of personal performance style; 869 biomechanics of left-hand position changes (shifting) in violin performance. PeerJ , 3, e1299. 870 https://doi.org/10.7717/peerj.1299 871 Wolf, E., Möller, D., Ballenberger, N., Morisse, K., & Zalpour, K. (2019). Marker-Based Method for 872 Analyzing the Three-Dimensional Upper Body Kinematics of Violinists and Violists: Development 873 and Clinical Feasibility. Medical Problems of Performing Artists , 34 (4), 179–190. 874 https://doi.org/10.21091/mppa.2019.4029 875 
+
+> was not certified by peer review) is the author/funder. All rights reserved. No reuse allowed without permission. The copyright holder for this preprint (which this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.29.735269 doi: bioRxiv preprint
+
+32 
+
+# Supplemental material 876 
+
+Table S1. Descriptive results (median [Q1, Q3]) of the exposures in each playing condition. L/R indicates the left or right side; Q1 and Q3 denote the first and third quartiles. * 877 Forearm muscle activity measured by the through-forearm EMG placement. § The scale key was used as a proxy for the strings played during each scale. 878 
+
+Scale G-pp A-pp E-pp G-ff A-ff E-ff A-ff 
+
+Tempo Whole Whole Whole Whole Whole Whole Sixteenth 
+
+Dynamics pp pp pp ff ff ff ff 
+
+Key/String§ G A E G A E A
+
+Posture P50 Wrist Deviation L 27 [19, 33] 17 [13, 26] 16 [12, 26] 26 [21, 30] 19 [13, 22] 17 [11, 27] 15 [9, 18] 
+
+(°) R -14 [-22, -10] -14 [-19, -7] -15 [-20, -7] -10 [-14, -9] -10 [-15, -7] -10 [-15, -8] -10 [-16, -6] 
+
+Flexion L 11 [9, 24] 9 [5, 20] 16 [6, 21] 13 [10, 26] 8 [6, 21] 17 [7, 20] 4 [1, 10] 
+
+R 10 [-3, 19] 3 [0, 15] 6 [-2, 10] -4 [-14, 1] -1 [-13, 1] -5 [-16, 3] -5 [-10, 2] 
+
+Upper arm Elevation L 31 [28, 47] 33 [30, 49] 30 [27, 45] 34 [28, 44] 31 [29, 45] 29 [26, 44] 26 [23, 45] 
+
+R 67 [62, 72] 45 [37, 53] 42 [32, 48] 69 [61, 74] 50 [45, 54] 45 [40, 50] 40 [35, 46] 
+
+Motion of range (P90 - P10) Wrist Deviation L 7 [6, 9] 8 [7, 12] 11 [8, 14] 9 [6, 10] 10 [8, 15] 9 [8, 13] 8 [6, 10] 
+
+(°) R 12 [10, 16] 12 [9, 20] 14 [11, 19] 24 [19, 31] 24 [17, 30] 22 [17, 30] 11 [9, 15] 
+
+Flexion L 12 [9, 19] 12 [11, 18] 16 [10, 18] 16 [13, 19] 15 [12, 19] 15 [11, 20] 9 [7, 13] 
+
+R 43 [29, 57] 49 [32, 55] 51 [37, 57] 59 [52, 77] 56 [50, 70] 59 [53, 69] 21 [18, 36] 
+
+Upper arm Elevation L 5 [5, 6] 6 [5, 8] 6 [5, 7] 7 [6, 9] 9 [7, 10] 9 [8, 11] 7 [5, 9] 
+
+R 20 [16, 20] 20 [16, 27] 19 [14, 23] 23 [20, 27] 27 [25, 31] 26 [21, 30] 16 [15, 18] 
+
+Velocity P50 Wrist Deviation L 2 [2, 2] 2 [2, 3] 2 [2, 2] 2 [2, 3] 3 [2, 3] 3 [2, 3] 7 [6, 9] 
+
+(°/s) R 8 [6, 9] 7 [6, 10] 7 [6, 10] 14 [11, 17] 14 [10, 17] 12 [10, 17] 22 [17, 28] 
+
+Flexion L 5 [4, 6] 5 [4, 6] 4 [4, 6] 6 [5, 7] 6 [5, 7] 6 [4, 7] 11 [7, 12] 
+
+R 24 [17, 34] 29 [15, 33] 30 [17, 35] 38 [31, 45] 38 [26, 41] 35 [27, 41] 24 [21, 41] 
+
+Upper arm Elevation L 4 [4, 5] 5 [3, 6] 4 [3, 5] 6 [5, 8] 6 [5, 9] 6 [4, 8] 15 [9, 21] 
+
+R 6 [4, 8] 7 [6, 11] 9 [5, 12] 11 [9, 12] 13 [13, 17] 13 [12, 16] 39 [36, 58] 
+
+Muscle activity P50 Through-forearm* L 49 [42, 64] 53 [40, 61] 55 [43, 64] 68 [62, 98] 70 [58, 90] 83 [61, 103] 98 [78, 131] 
+
+(%RVE) R 30 [25, 37] 28 [23, 37] 29 [24, 36] 56 [43, 79] 46 [39, 76] 49 [44, 73] 95 [87, 111] 
+
+Deltoid L 47 [34, 59] 41 [33, 56] 35 [29, 55] 36 [30, 47] 34 [26, 42] 31 [20, 37] 39 [33, 48] 
+
+R 36 [22, 46] 14 [7, 23] 13 [5, 21] 37 [22, 51] 17 [8, 31] 18 [9, 27] 43 [22, 47] 
+
+Trapezius L 24 [10, 41] 26 [6, 35] 17 [6, 31] 36 [12, 40] 29 [9, 36] 30 [15, 57] 31 [14, 48] 
+
+R 54 [51, 102] 24 [14, 61] 20 [10, 25] 77 [59, 109] 52 [32, 77] 59 [30, 67] 22 [18, 44] 
+
+879 33 880 
+
+Figure S1. Visualization of variance analysis results of the measured physical exposures. The visualization was generated by 881 ClustVis 2.0 (BIIT, Estonia). A new parameter, 1-R2c, was added to facilitate clustering. No scaling or centering is applied to 882 columns or rows. Rows are clustered using correlation distance and average linkage. The legend shows the magnitude of variance 883 metrics. 884

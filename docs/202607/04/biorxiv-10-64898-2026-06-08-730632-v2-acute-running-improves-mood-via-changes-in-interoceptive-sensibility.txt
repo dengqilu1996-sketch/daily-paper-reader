@@ -1,0 +1,1649 @@
+Title: Acute running improves mood via changes in interoceptive sensibility
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.08.730632v2.full.pdf
+
+Published Time: Sat, 04 Jul 2026 22:23:57 GMT
+
+Number of Pages: 34
+
+Markdown Content:
+1
+
+# Acute running improves mood via changes in interoceptive 1
+
+# sensibility 2
+
+3
+
+Hideaki Fujihara 1 (https://orcid.org/0000-0001-9001-4526), Ryuta Kuwamizu 2
+
+4
+
+(https://orcid.org/0000-0001-9659-3506) 5
+
+6
+
+> 1
+
+Graduate School of Technology, Industrial and Social Sciences, Tokushima 7
+
+University, Tokushima, Japan, 8
+
+> 2
+
+Advanced Research Initiative for Human High Performance (ARIHHP), 9
+
+Institutes of Health and Sport Sciences, University of Tsukuba, Ibaraki, Japan 10 
+
+11 
+
+Corresponding Author: Hideaki Fujihara, Ph.D. 12 
+
+1-1 Minamijosanjima-cho, Tokushima 770-8502, Japan 13 
+
+Tel/Fax: +81-88-656-7103 14 
+
+E-mail: fujihara.hideaki@tokushima-u.ac.jp 15 
+
+16 
+
+Abstract 17 
+
+Purpose : Interoception is the sensing and interpretation of internal bodily signals and may 18 
+
+be a key process linking exercise-induced bodily changes to mood. This study examined 19 
+
+whether acute moderate-intensity treadmill running changes interoception and mood states 20 
+
+and whether running-related changes in interoception statistically account for mood 21 
+
+improvement. 22 
+
+Methods : Twenty-seven healthy young adults completed a within-subject crossover 23 
+
+experiment consisting of 15 min of moderate-intensity treadmill running at 50% estimated 24 
+
+V̇O ₂peak and seated rest on separate days. Before and after each condition, cardiac 25 
+
+interoceptive accuracy was assessed using heartbeat counting and heartbeat tapping tasks, 26 
+
+present-moment interoceptive sensibility using a state-adapted Body Perception 27 
+
+Questionnaire (BPQ), and mood using the Profile of Mood States. Running-related changes 28 
+
+were calculated as ΔRUN − ΔCTL. 29 
+
+Results : Compared with seated rest, running reduced total mood disturbance (TMD) and 30 
+
+tension–anxiety (TA) and increased vigor–activity (VA). Running did not significantly change 31 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+2
+
+task-based indices of cardiac interoceptive accuracy but increased BPQ scores. Greater 32 
+
+running-related increases in BPQ scores were associated with greater reductions in TMD ( r33 
+
+= −.61, p < .001), TA ( r = −.45, p = .018), and depression–dejection ( r = −.49, p = .009). 34 
+
+Greater increases in heartbeat tapping task d′ were associated with greater increases in VA 35 
+
+(r = .56, p = .003). Mediation analysis indicated that BPQ changes were statistically 36 
+
+consistent with an indirect pathway linking running to reduced TMD, with weaker exploratory 37 
+
+evidence for TA. 38 
+
+Conclusions : A single bout of moderate-intensity running improved mood and increased 39 
+
+present-moment interoceptive sensibility, but not task-based cardiac interoceptive accuracy. 40 
+
+Enhanced subjective awareness of bodily sensations may be one proximal process related 41 
+
+to the mood benefits of acute running. 42 
+
+Keywords 43 
+
+affective state; anxiety; body awareness; heartbeat perception; moderate-intensity exercise 44 
+
+Introduction 45 
+
+Acute aerobic exercise has been widely studied as a strategy for improving mood, 46 
+
+particularly by reducing anxiety. Previous studies have reported that even a single bout of 47 
+
+exercise can significantly reduce state anxiety relative to pre-exercise levels (1). Recent 48 
+
+meta-analytic evidence has also shown that moderate- to high-intensity exercise is 49 
+
+associated with reduced anxiety in healthy adults (1,2,3). However, not all individuals benefit 50 
+
+from acute exercise to the same extent (3), suggesting that the anxiolytic effects of exercise 51 
+
+may not be uniform across individuals. Therefore, to establish exercise more firmly as a 52 
+
+strategy for promoting mental health and reducing anxiety-related mood disturbances, it is 53 
+
+necessary to clarify the proximal mechanisms underlying exercise-induced reductions in 54 
+
+anxiety, as well as the factors that contribute to individual differences in these effects. 55 
+
+A growing body of physiological evidence has identified several neurological 56 
+
+mechanisms through which exercise may improve mood states, including the regulation of 57 
+
+monoaminergic systems and the hypothalamic–pituitary–adrenal axis, the release of 58 
+
+endogenous opioids and endocannabinoids, and the expression of neurotrophic factors such 59 
+
+as brain-derived neurotrophic factor (BDNF) (4,5,6,7). Psychological mechanisms, such as 60 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+3
+
+enhanced self-efficacy and attentional distraction, have also been proposed (8,9). However, 61 
+
+these mechanisms explain only certain aspects of the complex responses induced by 62 
+
+exercise, and it remains difficult to account for, within a single pathway, the proximal process 63 
+
+by which exercise-induced changes in bodily states are perceived, evaluated, and ultimately 64 
+
+linked to subjective changes in mood states (10). These considerations raise the possibility 65 
+
+that individual differences in the mood-enhancing effects of exercise may depend not only 66 
+
+on the magnitude of physiological changes induced by exercise, but also on how these bodily 67 
+
+changes are perceived, interpreted, and integrated into subjective emotional experience. 68 
+
+Accordingly, the present study focused on interoception. Interoception is defined as the 69 
+
+process by which the nervous system senses, interprets, and integrates internal signals from 70 
+
+bodily systems, such as the cardiovascular, respiratory, and gastrointestinal systems, to form 71 
+
+representations of bodily states (11,12). From a neuroanatomical perspective, interoceptive 72 
+
+processing is supported by a network centered on the insular cortex (insula) and anterior 73 
+
+cingulate cortex (ACC), both of which are deeply involved in emotion generation and 74 
+
+subjective emotional experience (11,13,14). In particular, the integration of bodily signals in 75 
+
+the insula has been associated with subjective anxiety (14,15), suggesting that interoception 76 
+
+may constitute a fundamental mechanism linking bodily states to emotional experience. 77 
+
+Acute aerobic exercise produces salient changes in internal bodily states, including 78 
+
+increases in heart rate (HR) and respiration. Such exercise-induced bodily signals are 79 
+
+thought to engage interoceptive pathways involving afferent feedback from the body and 80 
+
+brain regions such as the insula and ACC, thereby influencing cognitive, motivational, and 81 
+
+emotional processes (16). Such changes may make bodily signals more noticeable and alter 82 
+
+how individuals perceive and attend to their bodily states, thereby leading to changes in 83 
+
+interoceptive processing (17). Importantly, anxiety has been linked to altered interoceptive 84 
+
+processing, particularly heightened attention to bodily sensations, negative evaluation of 85 
+
+these sensations, and difficulties describing bodily signals and emotions (18,19). Intentional 86 
+
+activities such as exercise may provide a context in which bodily signals are generated in a 87 
+
+relatively clear and predictable manner. By increasing the salience and interpretability of 88 
+
+bodily signals, exercise may alter interoception and facilitate the integration of bodily changes 89 
+
+into subjective emotional experience, thereby contributing to changes in mood states (12,20). 90 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+4
+
+Indeed, previous studies have suggested that acute physical activity can improve 91 
+
+performance on heartbeat perception tasks (e.g., Ref. 21), possibly by increasing the 92 
+
+salience of cardiac signals (22,23). However, it remains unclear whether exercise-induced 93 
+
+changes in interoception are associated with changes in mood states, and whether 94 
+
+interoception can account for individual differences in mood improvement after acute 95 
+
+exercise. In particular, few studies have tested the exercise–interoception–mood pathway 96 
+
+using a mediation model. 97 
+
+Based on this background, the present study examined the effects of acute moderate-98 
+
+intensity aerobic exercise, specifically treadmill running, on mood states and interoception in 99 
+
+healthy university students. Moderate-intensity exercise is commonly recommended for 100 
+
+health promotion (24), and the present study operationalized moderate-intensity running as 101 
+
+50% of estimated peak oxygen uptake (V̇O ₂peak ). Treadmill running was selected because 102 
+
+recent evidence suggests that the effects of exercise on mood may differ depending on 103 
+
+exercise modality. For example, several studies have reported that cycling exercise 104 
+
+increases arousal, whereas its effects on pleasant mood are relatively limited (25,26,27). In 105 
+
+contrast, running has been shown to increase both arousal and pleasant mood (28,29). 106 
+
+Although the mechanisms underlying these modality-specific effects remain unclear, one 107 
+
+possible explanation is that running-specific mechanical stimulation, such as head 108 
+
+acceleration, may contribute to changes in mood and cognition (29,30). Therefore, the 109 
+
+present study hypothesized that changes in interoception induced by moderate-intensity 110 
+
+running would contribute to reductions in negative mood states and broader improvements 111 
+
+in mood. We tested this hypothesis using a quasi-randomized crossover design and 112 
+
+examined whether running-related changes in interoception were associated with, and 113 
+
+statistically accounted for, changes in mood states. 114 
+
+Methods 115 
+
+Participants 116 
+
+Thirty healthy young adults participated in this study. All participants were native 117 
+
+Japanese speakers, were right-handed, and had normal or corrected-to-normal vision and 118 
+
+normal color vision. No participants reported taking medication affecting the central nervous 119 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+5
+
+system or endocrine system. Participants were excluded if they had severe depressive 120 
+
+symptoms, defined as a Beck Depression Inventory-II (BDI-II) score of 29 or higher (n = 1), 121 
+
+or if they did not follow the task instructions correctly (n = 2). Consequently, 27 participants 122 
+
+(14 female) were included in the final analysis. Participant characteristics are shown in Table 123 
+
+1. 124 
+
+The final sample size was considered acceptable for the present within-subject 125 
+
+crossover design. Based on Green’s guideline (31), at least 31 observations are required for 126 
+
+multiple regression analysis with three predictors when assuming a large effect size (f² > 127 
+
+0.35), as used in the causal mediation analyses. In the present study, 27 participants 128 
+
+completed both the running and control conditions, yielding 54 condition-level observations 129 
+
+for the mediation analyses. 130 
+
+This study was approved by the Institutional Ethics Committee of the Graduate School 131 
+
+of Social and Industrial Science and Technology, Tokushima University (approval number 132 
+
+367). All procedures were conducted in accordance with the Declaration of Helsinki. 133 
+
+Complete information about the study was provided to participants, and written informed 134 
+
+consent was obtained from all participants before participation. 135 
+
+Table 1. Participant characteristics. 136 
+
+Variable N = 27 
+
+Sex (male/female) 13/14 
+
+Age (yr) 19.74 ± 1.20 
+
+Weight (kg) 58.77 ± 11.06 
+
+Height (cm) 165.80 ± 9.20 
+
+BMI (kg/m 2) 20.69 ± 1.74 
+
+Estimated V̇O 2peak (mL∙kg −1 ∙min −1 ) 41.46 ± 7.76 
+
+Speed at 50% estimated V̇O 2peak (km/h) 5.17 ± 1.16 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+6
+
+BDI-II score 6.00 ± 4.21 
+
+Note. Values are presented as mean ± SD unless otherwise indicated. BMI = body mass 137 
+
+index; V̇O 2peak = peak oxygen uptake; BDI-II = Beck Depression Inventory-II. 138 
+
+Experimental design and procedure 139 
+
+The study consisted of a baseline assessment day and two main experimental sessions. 140 
+
+On Day 1, participants completed the single-stage submaximal treadmill walking test 141 
+
+(SSTWT) to estimate maximal oxygen uptake and determine the individualized treadmill 142 
+
+workload corresponding to 50% of estimated peak oxygen uptake (V̇O 2peak ) for the RUN 143 
+
+condition. On the same day, participants also completed the Body Perception Questionnaire– 144 
+
+Body Awareness Very Short Form, Japanese version (BPQ-BAVSF-J), BDI-II, and 145 
+
+anthropometric measurements of height and weight. 146 
+
+The main experiment consisted of two conditions: a moderate-intensity running condition 147 
+
+(RUN) and a seated resting control condition (CTL). All participants completed both 148 
+
+conditions on separate days after the baseline assessment session. The order of the RUN 149 
+
+and CTL conditions was quasi-randomized across participants to reduce potential order 150 
+
+effects. The two main experimental sessions were separated by at least 48 h. 151 
+
+To control for external influences, participants were instructed to refrain from exercise 152 
+
+and alcohol consumption for at least 24 h before each main experimental session and to 153 
+
+avoid caffeine on the day of each experimental session. Interoceptive measures and mood 154 
+
+states were assessed immediately before and after each condition using the same task order 155 
+
+and procedure across conditions. The overall experimental procedure is shown in Figure 1. 156 
+
+157 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+7
+
+Figure 1 . Experimental design for testing acute running effects on interoception and 158 
+
+mood. 159 
+
+160 
+
+Interoceptive measures and mood were assessed immediately before and after each 161 
+
+condition. In the RUN condition, participants completed 15 min of moderate-intensity 162 
+
+treadmill running, whereas in the CTL condition, they remained seated quietly for 15 min. 163 
+
+Interoceptive measures included the Heartbeat counting task (HCT), Heartbeat tapping task 164 
+
+(HTT), and Body perception questionnaire (BPQ). In the HCT, participants silently counted 165 
+
+perceived heartbeats during intervals of 25, 35, and 45 s and then reported the number. In 166 
+
+the HTT, participants clicked a mouse button whenever they felt a heartbeat during a 60-s 167 
+
+trial. Both tasks were preceded by a 10-s practice trial. The BPQ assessed self-reported 168 
+
+present-moment interoceptive sensibility. 169 
+
+Note: RUN = moderate-intensity running condition; CTL = seated resting control condition. 170 
+
+Single-stage submaximal treadmill walking test 171 
+
+Participants performed an SSTWT to estimate V̇O 2peak and to determine an 172 
+
+individualized moderate-intensity exercise workload corresponding to 50% intensity, in 173 
+
+accordance with the guidelines of the American College of Sports Medicine (32). The SSTWT, 174 
+
+originally developed by Ebbeling and colleagues, is a widely used method for estimating 175 
+
+V̇O 2peak (33), as previous studies have demonstrated a strong association between predicted 176 
+
+and directly measured V̇O 2peak values ( r = 0.96, with a multiple correlation 0.86)(34). The test 177 
+
+consisted of two consecutive 4-minute stages. During the initial stage, each participant 178 
+
+Interoceptive measures POMS Moderate-intensity running Rest 
+
+> 15 min 15 min 4 min 6 min
+> Rest  1 min
+
+POMS 
+
+> 4 min 6 min
+
+# RUN CTL 
+
+Interoceptive measures 
+
+# + Please report the number of heartbeats you felt 
+
+# +
+
+Heartbeat counting task Heartbeat tapping task Body perception questionnaire  
+
+> Start Stop for intervals of 25, 35, 45 s
+
+Mood scale Mood scale 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+8
+
+walked on a treadmill at a self-selected speed ranging from 2.0 to 4.5 mph with no incline, 179 
+
+serving as a warm-up period. Then, treadmill speed was gradually adjusted until the 180 
+
+participant’s heart rate reached approximately 60–70% of their age-predicted maximal heart 181 
+
+rate (HR max ), calculated using the equation 207 − (0.67 × age). Throughout the second 4-min 182 
+
+stage, participants were required to maintain the speed they had established during the first 183 
+
+stage while the treadmill was raised to a 5% grade. Steady-state heart rate (SSHR) was 184 
+
+calculated as the average heart rate during the last 2 min of the second stage and, together 185 
+
+with age, sex, and final treadmill speed, was used to estimate V̇O ₂peak using the following 186 
+
+equation: V̇O 2peak (mL/kg/min) = 15.1 + 21.8 × speed (mph) − 0.327 × SSHR (bpm) − 0.263 187 
+
+× speed × age (years) + 0.00504 × SSHR × age + 5.98 × sex (32), where speed indicates 188 
+
+the final treadmill speed in mph and sex is coded as 0 for female and 1 for male. Then, based 189 
+
+on the ACSM metabolic equation for treadmill running (35), the treadmill running speed 190 
+
+corresponding to 50% of the estimated V̇O 2peak at 0% incline was individually determined for 191 
+
+each participant (Table 1). This intensity corresponds to the moderate-intensity range 192 
+
+according to the ACSM guidelines for exercise prescription (36). 193 
+
+Exercise and control conditions 194 
+
+In the RUN condition, participants performed 15 min of treadmill running at an 195 
+
+individualized workload corresponding to 50% of each participant’s estimated V̇O 2peak at 0% 196 
+
+incline. This intensity was selected because 50% V̇O 2peak is classified as moderate intensity 197 
+
+according to the American College of Sports Medicine (36). The exercise duration was set at 198 
+
+15 min because previous studies have suggested that at least 10–20 min of running can 199 
+
+improve mood (28,37,38). 200 
+
+During the RUN condition, HR and RPE were monitored every minute to verify exercise 201 
+
+intensity. In the CTL condition, participants remained seated quietly on a chair for 15 min. 202 
+
+The duration of the CTL condition was matched to that of the RUN condition. 203 
+
+Interoceptive measures and mood states were assessed immediately before and after 204 
+
+both the RUN and CTL conditions using the same procedure and task order. 205 
+
+Interoceptive accuracy tasks 206 
+
+Heartbeat counting task (HCT) 207 
+
+The HCT used in the present study was based on the Mental Tracking Method originally 208 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+9
+
+proposed by Schandry (39). Participants completed three trials with intervals of 25, 35, and 209 
+
+45 s, presented in a randomized order across participants. A 20-s rest period was provided 210 
+
+between trials. The beginning and end of each trial were signaled by the appearance and 211 
+
+disappearance of a fixation point presented at the center of the screen. 212 
+
+Participants were instructed to remain seated quietly and to count their own heartbeats 213 
+
+as accurately as possible during each interval, even if they were uncertain about their 214 
+
+responses. After each trial, they reported the number of counted heartbeats by entering the 215 
+
+value on an on-screen numeric keypad using a mouse, with no time limit for responding. 216 
+
+Before the experimental trials, one 10-s practice trial was administered to ensure that 217 
+
+participants understood the task instructions and became familiar with the procedure. 218 
+
+Heartbeat tapping task (HTT) 219 
+
+Although the HCT is widely used to assess interoceptive accuracy, its performance can 220 
+
+be influenced by non-interoceptive factors, such as prior knowledge or beliefs about one’s 221 
+
+own heart rate and estimation strategies, rather than solely by the perception of actual 222 
+
+heartbeat sensations (40,41,42). Therefore, in addition to the HCT, the present study 223 
+
+included an HTT, which requires participants to tap in synchrony with their perceived 224 
+
+heartbeats and allows the temporal correspondence between cardiac events and behavioral 225 
+
+responses to be assessed. The design of this task was based on similar procedures reported 226 
+
+in previous studies (17,43,44,45,46). 227 
+
+A fixation point was continuously presented at the center of the screen throughout each 228 
+
+trial. Participants were instructed to respond by clicking the left mouse button in synchrony 229 
+
+with their own heartbeat as accurately as possible while the fixation point was displayed. 230 
+
+Even when they were uncertain, they were asked to respond based on their best estimate. 231 
+
+This instruction is consistent with standard procedures commonly used in heartbeat 232 
+
+perception tasks (17,47). Before the experimental trial, one 10-s practice trial was 233 
+
+administered to facilitate understanding of the task procedure. After the practice trial, 234 
+
+participants performed one 60-s experimental trial. 235 
+
+Interoceptive sensibility 236 
+
+Interoceptive sensibility was assessed using the Japanese version of the Body 237 
+
+Perception Questionnaire (BPQ) –Body Awareness Very Short Form. The BPQ was originally 238 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+10 
+
+developed in English as a measure of bodily awareness (48,49). In the present study, we 239 
+
+used the validated Japanese version of the BPQ-BAVSF (50), a concise 12-item scale 240 
+
+designed to assess individual differences in sensitivity to internal bodily sensations and 241 
+
+physiological functions. The items cover bodily experiences related to respiration, 242 
+
+cardiovascular activity, muscle tension, gastrointestinal processes, and other internal bodily 243 
+
+cues. Responses are rated on a 5-point Likert scale ranging from “Never” to “Always.” Total 244 
+
+scores range from 12 to 60, with higher scores indicating greater sensitivity to bodily 245 
+
+sensations. For clarity and brevity, scores derived from the BPQ-BAVSF-J are referred to as 246 
+
+“BPQ scores” throughout this study. 247 
+
+The standard BPQ-BAVSF-J is administered in a trait-based format, asking respondents 248 
+
+to rate their awareness of bodily sensations during most situations. However, because the 249 
+
+present study aimed to examine state-related changes in interoceptive sensibility before and 250 
+
+after the experimental sessions, the wording of the instructions was modified with permission 251 
+
+from the first author of the Japanese version (50). In the modified version used in this study, 252 
+
+participants were asked to rate each item according to their present-moment bodily 253 
+
+experience at the time of assessment. For example, an item such as “My mouth being dry” 254 
+
+was rated with reference to the participant’s current bodily state. This adaptation was 255 
+
+intended to allow the BPQ-BAVSF-J to capture short-term fluctuations in interoceptive 256 
+
+sensibility associated with the running intervention. 257 
+
+To examine whether this state-based adaptation retained continuity with the original trait-258 
+
+based construct, participants completed the original trait version of the BPQ-BAVSF-J on 259 
+
+Day 1. Because the RUN and CTL sessions took place on either Day 2 or Day 3 depending 260 
+
+on the participant, we examined correlations between the modified BPQ scores obtained at 261 
+
+the pre-assessment prior to each session on Day 2 and Day 3 and the original baseline BPQ 262 
+
+scores obtained on Day 1. The modified BPQ scores were significantly positively correlated 263 
+
+with scores on the original version on both Day 2 and Day 3 (Day 2: r = .50, p = .009; Day 3: 264 
+
+r = .56, p = .002). These correlations provide preliminary support that the modified version 265 
+
+retained continuity with the construct measured by the original trait-based BPQ-BAVSF-J. 266 
+
+Given the state-adapted nature of the modified instructions, BPQ scores in the present study 267 
+
+are described as self-reported present-moment interoceptive sensibility. 268 
+
+269 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+11 
+
+Mood states 270 
+
+Mood states were assessed using the Japanese version of the Profile of Mood States 271 
+
+2nd Edition–Adult Short Form (POMS 2-A Short) (51,52). The POMS 2-A Short is a 35-item 272 
+
+self-report instrument designed to evaluate transient mood states. It yields scores on seven 273 
+
+mood dimensions: anger–hostility (AH), confusion–bewilderment (CB), depression–dejection 274 
+
+(DD), fatigue–inertia (FI), tension–anxiety (TA), vigor–activity (VA), and friendliness (F). 275 
+
+Participants rated each item on a 5-point Likert scale ranging from 0 (“not at all”) to 4 276 
+
+(“extremely”). 277 
+
+Higher scores on the VA and F subscales reflect more positive mood states, whereas 278 
+
+higher scores on the remaining five subscales indicate greater severity of negative mood 279 
+
+symptoms. In addition to the subscale scores, an overall index of mood disturbance, the TMD 280 
+
+score, was computed. The total mood disturbance (TMD) score was calculated as AH + CB 281 
+
++ DD + FI + TA − VA, with higher values representing greater TMD. 282 
+
+Electrocardiographic measurement 283 
+
+Electrocardiographic (ECG) signals were recorded using biosignalsplux acquisition 284 
+
+devices (PLUX Wireless Biosignals, Lisbon, Portugal) at a sampling rate of 1000 Hz to 285 
+
+continuously assess the electrical timing of participants’ heartbeats throughout the 286 
+
+interoceptive accuracy tasks. The ECG sensor’s three-electrode montage, including ground, 287 
+
+was attached to the left side of the chest, with two recording electrodes approximately 288 
+
+positioned over the V4–V5 region and the ground electrode placed inferior to them to ensure 289 
+
+stable signal acquisition. 290 
+
+ECG and behavioral response data were processed offline using MATLAB code 291 
+
+developed in-house. R-peaks were detected automatically from the ECG signal, and the 292 
+
+detected peaks were subsequently visually inspected to verify the absence of obvious 293 
+
+artifacts, outliers, or abnormal detections. 294 
+
+During the SSTWT and the RUN session, instantaneous HR was monitored and 295 
+
+recorded using a myBeat device with ECG electrodes (UNION TOOL, Tokyo, Japan) placed 296 
+
+over the V1–V2 region. This recording was used to monitor participants’ heart rate responses 297 
+
+during exercise and to ensure that the exercise intensity was appropriately maintained 298 
+
+throughout the treadmill protocol. 299 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+12 
+
+Perceptual measures 300 
+
+The HCT score was calculated across the three trials using the following formula: HCT 301 
+
+score = 1/3 Σ (1 − |actual number of heartbeats − self-reported number of heartbeats| / actual 302 
+
+number of heartbeats). Higher scores were interpreted as indicating greater interoceptive 303 
+
+accuracy. 304 
+
+For the HTT, perceptual performance was evaluated using three indices adapted from 305 
+
+the general framework proposed by Fittipaldi et al. (44): mean distance (md), modified 306 
+
+Schandry index (mSI), and d′. The md index quantifies the discrepancy between cardiac 307 
+
+frequency and tapping frequency across overlapping time windows, with lower values 308 
+
+indicating closer correspondence between heartbeat rhythm and tapping rhythm. The mSI 309 
+
+quantifies the correspondence between the total number of detected R-peaks and the total 310 
+
+number of taps, with higher values indicating greater response-count agreement. The d′311 
+
+index, based on Signal Detection Theory, quantifies participants’ sensitivity in discriminating 312 
+
+heartbeat-related signals from non-signal responses, with higher values indicating greater 313 
+
+sensitivity. Detailed calculation procedures for these indices are provided in Supplemental 314 
+
+Methods (see Supplemental Methods, Supplemental Digital Content 1, which provides 315 
+
+detailed calculation procedures for the HTT-derived md, mSI, and d′ indices). 316 
+
+Statistical analyses 317 
+
+Statistical analyses were performed in R version 4.3.2. Interoceptive accuracy, 318 
+
+interoceptive sensibility, and mood scores were analyzed using repeated-measures two-way 319 
+
+ANOVAs with condition (RUN, CTL) and time (Pre, Post) as within-subject factors. These 320 
+
+analyses were conducted using the afex package (version 1.4.1), with Type III sums of 321 
+
+squares and partial eta squared ( ηp ²) reported as the effect size. When significant condition 322 
+
+× time interactions were observed, Bonferroni-corrected post hoc comparisons were 323 
+
+conducted using the emmeans package (version 1.11.2). In addition, for complementary 324 
+
+purposes, change scores for each condition were calculated as Post − Pre, and paired t-tests 325 
+
+were used to compare ΔRUN and ΔCTL. To examine the association between running-326 
+
+related changes in interoception and mood, contrast scores representing running-related 327 
+
+effects were computed as ΔRUN − ΔCTL, and Pearson’s correlation analyses were 328 
+
+conducted between contrast scores for interoceptive measures and those for POMS 329 
+
+outcomes. All statistical tests were two-sided, and statistical significance was set a priori at 330 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+13 
+
+p < .05. 331 
+
+Mediation analyses were performed using the mediation package (version 4.5.0) (53) to 332 
+
+examine whether running-related changes in interoceptive accuracy or present-moment 333 
+
+interoceptive sensibility were statistically consistent with an indirect pathway linking running 334 
+
+to mood improvement. Because the present study used a within-subject crossover design, 335 
+
+mediation analyses were conducted using fixed-effects linear models with participant ID 336 
+
+included as a fixed effect. For each participant and condition, condition-specific change 337 
+
+scores were calculated as Post − Pre. The exposure variable was condition, coded as 1 for 338 
+
+RUN and 0 for CTL. In each mediation model, the mediator was defined as the condition-339 
+
+specific change in an interoceptive measure, and the outcome was defined as the condition-340 
+
+specific change in the corresponding mood score. The mediator model included condition 341 
+
+and participant fixed effects, and the outcome model included condition, the mediator, and 342 
+
+participant fixed effects. The total effect, average direct effect (ADE), average causal 343 
+
+mediation effect (ACME), and proportion mediated were estimated using quasi-Bayesian 344 
+
+confidence intervals based on 5,000 simulations. Candidate mediation models were selected 345 
+
+based on two criteria: first, both the interoceptive measure and the mood outcome showed 346 
+
+significant condition × time interactions, indicating running-related changes; second, running-347 
+
+related changes in the interoceptive measure were significantly correlated with running-348 
+
+related changes in the mood outcome. TMD was specified as the primary mood outcome, 349 
+
+and POMS subscales meeting these criteria were treated as exploratory outcomes. Because 350 
+
+changes in the mediator and outcome were assessed over the same pre–post interval, these 351 
+
+mediation analyses were interpreted as preliminary and as testing whether the data were 352 
+
+statistically consistent with an indirect pathway, rather than as providing definitive evidence 353 
+
+of causal mediation. 354 
+
+355 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+14 
+
+Results 356 
+
+Verification of moderate-intensity running 357 
+
+We first verified that the RUN condition induced moderate-intensity physiological 358 
+
+responses. HR and rating of perceived exertion (RPE) were monitored every minute during 359 
+
+the running session (54). During the last minute of running, average HR and RPE were 360 
+
+141.28 ± 13.34 bpm and 12.63 ± 1.80, respectively. These values correspond to the 361 
+
+moderate-intensity range according to ACSM-based exercise intensity criteria (36). We 362 
+
+further examined whether the RUN condition led to increased cardiac activity at the time of 363 
+
+the subsequent interoceptive accuracy task. A two-way repeated-measures ANOVA on the 364 
+
+number of R-peaks recorded during the 60-s HTT revealed a significant condition × time 365 
+
+interaction ( F (1, 26) = 68.33, p < .001, ηp ² = .724). Post hoc comparisons showed that R-366 
+
+peak counts significantly increased between pre and post in the RUN condition (75.22 ± 9.99 367 
+
+to 89.70 ± 11.58; t (26) = −7.83, p < .001, d = −1.51). At post, R-peak counts were significantly 368 
+
+higher in the RUN condition than in the CTL condition (89.70 ± 11.58 vs. 71.89 ± 11.60; t (26) 369 
+
+= 7.88, p < .001, d = 1.52). These findings indicate that moderate-intensity running led to 370 
+
+increased cardiac activity at the time of the post-exercise interoceptive accuracy task. 371 
+
+Interoceptive accuracy and sensibility 372 
+
+We next examined whether moderate-intensity running altered objective and subjective 373 
+
+aspects of interoception. Interoceptive accuracy was assessed using heartbeat perception 374 
+
+tasks. Present-moment interoceptive sensibility was assessed using BPQ scores. Changes 375 
+
+in these measures before and after the RUN and CTL conditions are shown in Figure 2. 376 
+
+For the interoceptive accuracy indices, repeated-measures two-way ANOVAs with 377 
+
+condition (RUN, CTL) and time (Pre, Post) as within-subject factors revealed no significant 378 
+
+condition × time interactions for HCT score, HTT md, HTT mSI, or HTT d′ (see Supplemental 379 
+
+Table 1, Supplemental Digital Content 1, which presents repeated-measures ANOVA results 380 
+
+for interoceptive accuracy indices and present-moment interoceptive sensibility; Figure 2A– 381 
+
+D). These findings indicate that moderate-intensity running did not significantly alter task-382 
+
+based measures of interoceptive accuracy in the present study. 383 
+
+For BPQ scores, the repeated-measures two-way ANOVA also revealed a significant 384 
+
+condition × time interaction ( F (1, 26) = 4.29, p = .048, ηp ² = .14). However, Bonferroni-385 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+15 
+
+corrected post hoc comparisons did not reveal significant differences between pre- and post-386 
+
+session scores within either condition or between conditions at either time point (Figure 2E). 387 
+
+In the complementary change-score analysis, the increase in BPQ score was significantly 388 
+
+greater in the RUN condition than in the CTL condition ( t (26) = 2.07, p = .048, d =389 
+
+0.40)(Figure 2F). These findings suggest that moderate-intensity running increased self-390 
+
+reported present-moment interoceptive sensibility compared with seated rest. 391 
+
+392 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+16 
+
+Figure 2. Effects of running on interoceptive accuracy indices and present-393 
+
+moment interoceptive sensibility. 394 
+
+395 
+
+(A) HCT scores before and after the RUN and CTL conditions. (B) HTT mean distance (md) 396 
+
+before and after the RUN and CTL conditions. Lower md values indicate closer 397 
+
+correspondence between heartbeat rhythm and tapping rhythm. (C) HTT modified Schandry 398 
+
+index (mSI) before and after the RUN and CTL conditions. (D) HTT d′ scores before and after 399 
+
+the RUN and CTL conditions. (E) BPQ scores before and after the RUN and CTL conditions. 400 
+
+BPQ scores were used as an index of self-reported present-moment interoceptive sensibility. 401 
+
+(F) Changes in BPQ scores for the RUN and CTL conditions. The increase in BPQ score was 402 
+
+significantly greater in the RUN condition than in the CTL condition, suggesting that 403 
+
+moderate-intensity running enhanced self-reported present-moment interoceptive sensibility. 404 
+
+Note : * p < 0.05. In panels A–E, bars represent means and error bars indicate 95% confidence 405 
+
+intervals. In panel F, box-and-whisker plots are drawn in the Tukey manner, overlaid error 406 
+
+bars indicate mean ± 2 SD, dashed horizontal lines indicate zero, and line plots represent 407 
+
+individual data. RUN = moderate-intensity running condition; CTL = seated resting control 408 
+
+condition; HCT = heartbeat counting task; HTT = heartbeat tapping task; md = mean 409 
+
+distance; mSI = modified Schandry index; BPQ = Body Perception Questionnaire. 410 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+17 
+
+Mood states 411 
+
+We next examined whether moderate-intensity running improved mood states assessed 412 
+
+using the POMS 2-A Short. Figure 3 A shows changes in TMD scores before and after the 413 
+
+RUN and CTL conditions. For TMD score, a repeated-measures two-way ANOVA with 414 
+
+condition (RUN, CTL) and time (Pre, Post) as within-subject factors revealed a significant 415 
+
+condition × time interaction, F (1, 26) = 11.95, p = .002, ηp ² = .32. Bonferroni-corrected post 416 
+
+hoc comparisons showed that TMD score significantly decreased between the pre- and post-417 
+
+sessions in the RUN condition ( t (26) = 3.39, p = .002, d = 0.65), indicating that moderate-418 
+
+intensity running reduced TMD. Consistent with this interaction, TMD decreased significantly 419 
+
+more in the RUN condition than in the CTL condition (t (26) = −3.46, p = .002, d =420 
+
+−0.67)(Figure 3B), indicating a greater reduction in TMD after running than after seated rest. 421 
+
+Significant condition × time interactions were also observed for the POMS subscale 422 
+
+scores of TA and VA (see Supplemental Table 2, Supplemental Digital Content 1, which 423 
+
+presents repeated-measures ANOVA results for POMS subscale scores). For TA, Bonferroni-424 
+
+corrected post hoc comparisons showed that the score significantly decreased between the 425 
+
+pre- and post-sessions in the RUN condition, whereas no significant pre–post change was 426 
+
+observed in the CTL condition (Figure 3C). TA decreased significantly more in the RUN 427 
+
+condition than in the CTL condition ( t (26) = −2.49, p = .02, d = −0.48) (Figure 3D). For VA, a 428 
+
+significant condition × time interaction was also observed, although Bonferroni-corrected post 429 
+
+hoc comparisons did not reach statistical significance (Figure 3E). Nevertheless, VA 430 
+
+increased significantly more in the RUN condition than in the CTL condition ( t (26) = 2.49, p431 
+
+= .02, d = 0.48) (Figure 3F). These findings indicate that moderate-intensity running reduced 432 
+
+TMD and TA, while increasing VA, relative to seated rest. 433 
+
+434 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+18 
+
+Figure 3 . Effects of running on mood states. 435 
+
+436 
+
+(A) TMD scores before and after the RUN and CTL conditions. Moderate-intensity running 437 
+
+led to significantly reduced TMD scores between pre- and post-sessions, indicating a 438 
+
+reduction in overall mood disturbance. (B) Changes in TMD scores for the RUN and CTL 439 
+
+conditions. The decrease in TMD score was significantly greater in the RUN condition than 440 
+
+in the CTL condition. (C) TA scores before and after the RUN and CTL conditions. Moderate-441 
+
+intensity running significantly reduced TA scores between pre- and post-sessions. (D) 442 
+
+Changes in TA scores for the RUN and CTL conditions. The decrease in TA score was 443 
+
+significantly greater in the RUN condition than in the CTL condition. (E) VA scores before and 444 
+
+after the RUN and CTL conditions. (F) Changes in VA scores for the RUN and CTL conditions. 445 
+
+The increase in VA score was significantly greater in the RUN condition than in the CTL 446 
+
+condition. 447 
+
+Note : * p < 0.05, ** p < 0.01. In panels A, C, and E, bars represent means and error bars 448 
+
+indicate 95% confidence intervals. In panels B, D, and F, box-and-whisker plots are drawn in 449 
+
+the Tukey manner, overlaid error bars indicate mean ± 2 SD, dashed horizontal lines indicate 450 
+
+zero, and line plots represent individual data. RUN = moderate-intensity running condition; 451 
+
+CTL = seated resting control condition; TMD = total mood disturbance; TA = tension–anxiety; 452 
+
+VA = vigor–activity. 453 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+19 
+
+Correlation analyses of running-related changes in interoception and mood states 454 
+
+We examined whether individual differences in running-related changes in 455 
+
+interoception were associated with changes in mood states (see Supplemental Figure 1, 456 
+
+Supplemental Digital Content 1, which shows exploratory correlations between running-457 
+
+related changes in interoceptive measures and mood scores). Running-related changes 458 
+
+were quantified as contrast scores, calculated as the pre–post change in the RUN condition 459 
+
+minus the pre–post change in the CTL condition (ΔRUN − ΔCTL). Greater running-related 460 
+
+increases in BPQ scores were significantly associated with greater reductions in TMD 461 
+
+scores ( r = −.61, p < .001; Figure 4A), TA scores ( r = −.45, p = .018; Figure 4B), and DD 462 
+
+scores ( r = −.49, p = .009; Figure 4C). In addition, greater running-related increases in HTT 463 
+
+d′ were significantly associated with greater increases in VA scores ( r = .56, p = .003; 464 
+
+Figure 4D). These findings suggest that greater running-related increases in present-465 
+
+moment interoceptive sensibility were associated with greater reductions in negative mood 466 
+
+states, whereas greater increases in heartbeat-signal discriminability were associated with 467 
+
+greater increases in positive mood. 468 
+
+469 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+20 
+
+Figure 4. Correlations between running-related changes in interoception and mood 470 
+
+states. 471 
+
+472 
+
+(A) Association between running-related changes in BPQ score (ΔRUN − ΔCTL) and TMD 473 
+
+score (ΔRUN − ΔCTL). (B) Association between running-related changes in BPQ score 474 
+
+(ΔRUN − ΔCTL) and TA score (ΔRUN − ΔCTL). (C) Association between running-related 475 
+
+changes in BPQ score (ΔRUN − ΔCTL) and DD score (ΔRUN − ΔCTL). (D) Association 476 
+
+between running-related changes in HTT d′ (ΔRUN − ΔCTL) and VA score (ΔRUN − 477 
+
+ΔCTL). 478 
+
+Note : BPQ = Body Perception Questionnaire; TMD = total mood disturbance; TA = tension– 479 
+
+anxiety; DD = depression–dejection; VA = vigor–activity; HTT = heartbeat tapping task. 480 
+
+Running-related changes were calculated as contrast scores (ΔRUN − ΔCTL), where Δ 481 
+
+represents post–pre change. In all panels, the black line represents the linear regression 482 
+
+line, and the gray band represents the 95% confidence interval. 483 
+
+484 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+21 
+
+Mediation analysis of interoceptive sensibility and mood 485 
+
+We examined whether changes in present-moment interoceptive sensibility statistically 486 
+
+accounted for the effect of moderate-intensity running on mood improvement (Figure5A). 487 
+
+Because changes in the mediator and outcome were assessed over the same pre–post 488 
+
+interval, these mediation analyses were interpreted as preliminary and as testing whether 489 
+
+the data were statistically consistent with an indirect pathway. Mediation analyses showed 490 
+
+that changes in BPQ score partially mediated the effect of running on reductions in TMD 491 
+
+score (ACME = −1.36, 95% CI [−3.04, −0.01], p = .04; ADE = −2.33, 95% CI [−4.11, −0.54], 492 
+
+p = .01; total effect = −3.69, 95% CI [−5.82, −1.56], p = .002; proportion mediated = 0.36, 493 
+
+95% CI [0.03, 0.78], p = .04) (Figure 5B). These findings suggest that increased present-494 
+
+moment interoceptive sensibility may partly account for the reduction in TMD after running. 495 
+
+We also conducted an exploratory mediation analysis for TA, given its significant 496 
+
+association with running-related changes in BPQ score. Changes in BPQ score showed a 497 
+
+significant indirect association between running and reductions in TA score (ACME = −0.36, 498 
+
+95% CI [−0.90, −0.01], p = .046). However, the ADE was not significant (ADE = −0.60, 95% 499 
+
+CI [−1.32, 0.13], p = .12), and the proportion mediated did not reach conventional statistical 500 
+
+significance (proportion mediated = 0.35, 95% CI [−0.002, 1.31], p = .05) (Figure 5C). Thus, 501 
+
+the mediation result for TA should be interpreted as modest and exploratory. 502 
+
+503 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+22 
+
+Figure 5. Mediation analysis of interoceptive sensibility and mood changes. 504 
+
+505 
+
+(A) Mediation model testing whether changes in present-moment interoceptive sensibility, 506 
+
+indexed by Body Perception Questionnaire (BPQ) score, statistically accounted for the 507 
+
+effect of moderate-intensity running on changes in mood states. For each condition, 508 
+
+change scores were calculated as post-session minus pre-session scores, and the 509 
+
+exposure variable was condition (0 = CTL, 1 = RUN). (B) Results of mediation analysis for 510 
+
+total mood disturbance (TMD), the primary mood outcome. Changes in BPQ score showed 511 
+
+a significant average causal mediation effect (ACME), while the average direct effect (ADE) 512 
+
+also remained significant, suggesting that the data were statistically consistent with partial 513 
+
+mediation. (C) Results of exploratory mediation analysis for tension–anxiety (TA). Changes 514 
+
+in BPQ score showed a significant ACME, whereas the ADE was not significant and the 515 
+
+proportion mediated did not reach conventional statistical significance; therefore, this 516 
+
+indirect association should be interpreted as modest and exploratory. 517 
+
+Note: BPQ = Body Perception Questionnaire; TMD = total mood disturbance; TA = tension– 518 
+
+anxiety; RUN = moderate-intensity running condition; CTL = seated resting control 519 
+
+condition; ACME = average causal mediation effect; ADE = average direct effect. In panels 520 
+
+B and C, points represent estimated effects, and error bars indicate 95% confidence 521 
+
+intervals. * p < .05, ** p < .01; ns, not significant. 522 
+
+# B CA 
+
+> Moderate-intensity running
+> [0 = Control, 1 = Running]
+> Mood states
+> [Δ Running – ΔControl]
+> Interoceptive sensitivity (BPQ score)
+> [ΔRunning – ΔControl]
+> XY
+> MADE ACME
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+23 
+
+Discussion 523 
+
+The present study examined whether acute moderate-intensity running changes 524 
+
+interoception and mood states, and whether running-related changes in interoception are 525 
+
+associated with mood improvement. The main findings were as follows. First, moderate-526 
+
+intensity treadmill running increased self-reported present-moment interoceptive sensibility, 527 
+
+as indexed by BPQ scores, but did not significantly change task-based measures of cardiac 528 
+
+interoceptive accuracy, including HCT score and HTT-derived md, mSI, and d′ . Second, 529 
+
+running reduced TMD and TA and increased VA compared with seated rest. Third, greater 530 
+
+running-related increases in BPQ scores were associated with greater reductions in TMD, 531 
+
+TA, and DD. Greater running-related increases in HTT d′ were also associated with greater 532 
+
+increases in VA. Finally, mediation analyses suggested that changes in BPQ score partly 533 
+
+accounted for the effect of running on reduced TMD, with weaker and exploratory evidence 534 
+
+for TA. These findings suggest that subjective awareness of bodily sensations may be one 535 
+
+process related to mood improvement after acute running. 536 
+
+The present study found that moderate-intensity running improved mood states, as 537 
+
+reflected by reduced TMD and TA and increased VA. This pattern is consistent with 538 
+
+previous evidence showing that acute aerobic exercise can reduce anxiety and improve 539 
+
+affective states (1,4). It is also consistent with running-specific findings showing that even a 540 
+
+brief bout of moderate-intensity running can increase pleasant mood and arousal (28,29). 541 
+
+In the present study, the RUN condition was performed at 50% of estimated V̇O ₂peak and 542 
+
+lasted 15 min, indicating that a relatively short bout of moderate-intensity running was 543 
+
+sufficient to improve both negative and positive mood states. These findings support the 544 
+
+practical value of moderate-intensity running as a simple exercise mode for improving 545 
+
+transient mood states in healthy young adults. 546 
+
+A key finding of the present study is that running-related increases in BPQ scores were 547 
+
+associated with improvements in mood states and statistically accounted for part of the 548 
+
+effect of moderate-intensity running on TMD. A similar, although more modest and 549 
+
+exploratory, pattern was observed for TA. These findings are consistent with the possibility 550 
+
+of an exercise–interoception–mood pathway, in which exercise-induced changes in 551 
+
+subjective interoceptive sensibility contribute to mood improvement. Physical activity has 552 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+24 
+
+been proposed to increase visceral-afferent input and the salience of bodily signals 553 
+
+entering the interoceptive system, thereby influencing how bodily changes are processed 554 
+
+and integrated with cognitive, motivational, and affective responses (11,16,20,55). Thus, 555 
+
+acute running may have produced salient bodily changes, including increased HR and 556 
+
+respiration, and individuals who became more aware of these changes may have been 557 
+
+better able to integrate them into subjective emotional experiences. This interpretation is 558 
+
+also consistent with interoceptive exposure accounts, which suggest that salient 559 
+
+physiological arousal induced by physical activity may increase familiarity with bodily 560 
+
+arousal cues and reduce catastrophic or negative interpretations of these sensations (56). 561 
+
+Accordingly, subjective interoceptive sensibility may be one proximal process through 562 
+
+which moderate-intensity running contributes to improvements in mood states (Figure 6), 563 
+
+although it likely operates alongside other physiological and psychological mechanisms, 564 
+
+such as neurochemical changes, autonomic regulation, self-efficacy, and attentional 565 
+
+distraction (4,9). 566 
+
+567 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+25 
+
+Figure 6. Conceptual schematic of the proposed running–interoception–mood 568 
+
+pathway. 569 
+
+570 
+
+Conceptual schematic illustrating the proposed pathway suggested by the present findings. 571 
+
+Acute moderate-intensity running may increase present-moment interoceptive sensibility, 572 
+
+reflected as greater awareness of internal bodily states. Internal bodily signals arising from 573 
+
+organs such as the heart, lungs, stomach, and intestines are represented as contributing to 574 
+
+this interoceptive sensibility. Increased interoceptive sensibility may, in turn, be related to 575 
+
+reduced mood disturbance. This schematic is intended as a conceptual summary of the 576 
+
+present results and does not imply that all depicted pathways were directly tested. 577 
+
+578 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+26 
+
+In contrast to our initial expectation, moderate-intensity running did not significantly 579 
+
+change task-based indices of interoceptive accuracy. No significant condition × time 580 
+
+interactions were observed for HCT score or for the HTT-derived indices of md, mSI, and 581 
+
+d′ . This suggests that running did not produce a robust group-level improvement in cardiac 582 
+
+interoceptive accuracy in the present study, despite increased cardiac activity after running. 583 
+
+This finding differs from previous studies showing that cardiac awareness or heartbeat 584 
+
+perception performance can improve during or after exercise (21,22,23). However, those 585 
+
+studies involved stronger exercise-induced cardiac activation, assessment during exercise, 586 
+
+or higher-intensity physical activity than the present protocol. Thus, one possible 587 
+
+explanation is that the bodily signals induced by the present moderate-intensity running 588 
+
+protocol may not have been strong enough, or sufficiently specific to cardiac sensations, to 589 
+
+improve task-based heartbeat perception. This interpretation is also consistent with the 590 
+
+idea that improvement in heartbeat perception performance may require sufficiently 591 
+
+increased salience of cardiac sensations. For example, Smith et al. (17) showed that 592 
+
+healthy participants improved heartbeat tapping performance during an inspiratory breath-593 
+
+hold condition designed to amplify cardiac sensations. Breath holding may improve 594 
+
+heartbeat perception performance relatively directly by increasing the salience of cardiac 595 
+
+sensations. In contrast, the post-running state is likely to involve a broader set of exercise-596 
+
+related bodily cues, including cardiovascular, respiratory, thermal, muscular, and effort-597 
+
+related sensations (57,58). Such broad exercise-related bodily cues may influence affective 598 
+
+responses but may not necessarily enhance cardiac sensations in a sufficiently specific or 599 
+
+direct manner to improve heartbeat perception performance. Thus, differences in exercise 600 
+
+intensity, the specificity of bodily manipulation, and assessment timing may help explain 601 
+
+why task-based interoceptive accuracy did not improve in the present study. 602 
+
+Although moderate-intensity running did not produce a significant group-level increase 603 
+
+in HTT d′ , the exploratory association between running-related changes in HTT d′ and VA 604 
+
+suggests that individual differences in cardiac signal discrimination may be related to 605 
+
+positive activation-related mood responses. Specifically, individuals who showed greater 606 
+
+increases in d′ also showed greater increases in vigor–activity. One possible interpretation 607 
+
+is that individuals who became more sensitive to cardiac signals after running may have 608 
+
+experienced exercise-induced bodily activation as a more salient and energizing state. In 609 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+27 
+
+this sense, changes in HTT d′ may not reflect a general improvement in interoceptive 610 
+
+accuracy, but rather an individual difference in how cardiac bodily signals are integrated 611 
+
+into positive mood states. This possibility is consistent with broader accounts proposing 612 
+
+that interoceptive processing contributes to emotional experience and affective regulation 613 
+
+(12,20). However, because this association was exploratory and the present study did not 614 
+
+directly manipulate cardiac signal discrimination, this interpretation should be regarded as 615 
+
+preliminary. 616 
+
+The present findings may also be considered in relation to predictive processing or 617 
+
+active inference accounts of interoception and emotion, although the present study was not 618 
+
+designed to directly test these frameworks. From this perspective, emotional experience is 619 
+
+not determined solely by peripheral bodily changes themselves but by how the brain 620 
+
+interprets, weighs, and updates internal bodily signals (59,60). Moderate-intensity running 621 
+
+produces clear and salient changes in bodily states, such as increased HR and respiration. 622 
+
+Importantly, these bodily changes occur in a context in which their causes are identifiable 623 
+
+and predictable, namely the physiological demands of physical activity. One speculative 624 
+
+interpretation is that exercise-induced bodily signals may provide relatively clear 625 
+
+interoceptive evidence for updating the subjective representation of bodily states, rather 626 
+
+than remaining ambiguous internal sensations. This framework may help explain why 627 
+
+changes in BPQ scores, but not all indices of interoceptive accuracy, were associated with 628 
+
+mood improvement: what may be critical is not simply detecting cardiac signals more 629 
+
+accurately, but becoming subjectively aware of bodily changes in a context in which those 630 
+
+signals can be meaningfully interpreted and integrated into emotional experience (12,20). 631 
+
+However, because the present study did not directly measure bodily appraisal, neural 632 
+
+prediction errors, precision weighting, or brain activity, this interpretation should be 633 
+
+regarded as a theoretical account rather than direct evidence for predictive coding 634 
+
+mechanisms (60,61). 635 
+
+In conclusion, a single bout of moderate-intensity treadmill running improved mood 636 
+
+states and increased present-moment interoceptive sensibility in healthy young adults. 637 
+
+Specifically, running reduced TMD and TA, increased VA, and increased BPQ scores, but 638 
+
+did not significantly alter task-based indices of cardiac interoceptive accuracy. Running-639 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+28 
+
+related increases in BPQ scores were associated with reductions in negative mood states 640 
+
+and were statistically consistent with an indirect pathway linking running to reduced TMD. 641 
+
+These findings suggest that enhanced subjective interoceptive sensibility may be one 642 
+
+proximal process related to the mood benefits of acute running. Together, the present 643 
+
+findings support the possibility of an exercise–interoception–mood pathway, in which 644 
+
+exercise-induced bodily changes are linked to subjective mood states through increased 645 
+
+awareness of bodily sensations. 646 
+
+647 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+29 
+
+Acknowledgements 648 
+
+The authors thank all participants for their involvement in this study. 649 
+
+Conflicts of Interest and Source of Funding 650 
+
+The authors declare no conflicts of interest, financial or otherwise. H.F. was supported by 651 
+
+JSPS KAKENHI Grant Numbers 25K23304 and 26K16944. R.K. was supported by JSPS 652 
+
+KAKENHI Grant Numbers 23H04830 and 24K20598. H.F. and R.K. were also supported by 653 
+
+the Cooperative Research Grant from the Advanced Research Initiative for Human High 654 
+
+Performance, University of Tsukuba. The results of the study are presented clearly, honestly, 655 
+
+and without fabrication, falsification, or inappropriate data manipulation. The results of the 656 
+
+present study do not constitute endorsement by the American College of Sports Medicine. 657 
+
+Data availability 658 
+
+The de-identified datasets supporting the findings of this study and the analysis code used 659 
+
+to reproduce the main statistical analyses and figures are available from the corresponding 660 
+
+author upon reasonable request. Data and code will be shared for research purposes, where 661 
+
+appropriate, in accordance with institutional and ethical requirements. 662 
+
+Supplemental Digital Content 663 
+
+Supplemental materials are available at https://osf.io/h4yns/files/dfahv. 664 
+
+References 665 
+
+1. Ensari I, Greenlee TA, Motl RW, Petruzzello SJ. Meta-analysis of acute exercise effects on 666 state anxiety: An update of randomized controlled trials over the past 25 years. Depress 667 Anxiety. 2015;32(8):624-634. doi:10.1002/da.22370. 668 
+
+2. Tian J, Kong Q, Yu H, Liu P, Shen L, Luo Y. Comparative efficacy of acute exercise 669 intervention on anxiety in adolescents and young adults: A network meta-analysis. 670 Scand J Med Sci Sports. 2024;34(10):e14735. doi:10.1111/sms.14735. 671 
+
+3. Weinstein AA, van Aert RCM, Donovan K, Muskens L, Kop WJ. Affective Responses to 672 Acute Exercise: A Meta-Analysis of the Potential Beneficial Effects of a Single Bout of 673 Exercise on General Mood, Anxiety, and Depressive Symptoms. Psychosom Med. 674 2024;86(6):486-497. doi:10.1097/PSY.0000000000001321. 675 
+
+4. Basso JC, Suzuki WA. The effects of acute exercise on mood, cognition, neurophysiology, 676 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+30 and neurochemical pathways: A review. Brain Plast. 2017;2(2):127-152. 677 doi:10.3233/BPL-160040. 678 
+
+5. Desai S, Borg B, Cuttler C, Crombie KM, Rabinak CA, Hill MN, et al. A Systematic 679 Review and Meta-Analysis on the Effects of Exercise on the Endocannabinoid System. 680 Cannabis Cannabinoid Res. 2022;7(4):388-408. doi:10.1089/can.2021.0113. 681 
+
+6. Heyman E, Gamelin FX, Goekint M, Piscitelli F, Roelands B, Leclair E, et al. Intense 682 exercise increases circulating endocannabinoid and BDNF levels in humans: Possible 683 implications for reward and depression. Psychoneuroendocrinology. 2012;37(6):844-684 851. doi:10.1016/j.psyneuen.2011.09.017. 685 
+
+7. Kuwamizu R, Yamazaki Y, Aoike N, Hiraga T, Hata T, Yassa MA, et al. Pupil dynamics 686 during very light exercise predict benefits to prefrontal cognition. Neuroimage. 687 2023;277:120244. doi:10.1016/j.neuroimage.2023.120244. 688 
+
+8. Anderson E, Shivakumar G. Effects of exercise and physical activity on anxiety. Front 689 Psychiatry. 2013;4:27. doi:10.3389/fpsyt.2013.00027. 690 
+
+9. Salmon P. Effects of physical exercise on anxiety, depression, and sensitivity to stress: A 691 unifying theory. Clin Psychol Rev. 2001;21(1):33-61. doi:10.1016/S0272-692 7358(99)00032-X. 693 
+
+10. Fang Z, Qian Y, Sun S, Qin H, Zhu Y, Tang J, et al. Mechanisms of exercise against 694 anxiety disorder: A review of the research progress. Sports Med Health Sci. 695 2025;8(2):145-152. doi:10.1016/j.smhs.2025.09.005. 696 
+
+11. Craig AD. Interoception: The sense of the physiological condition of the body. Curr 697 Opin Neurobiol. 2003;13(4):500-505. doi:10.1016/S0959-4388(03)00090-4. 698 
+
+12. Khalsa SS, Adolphs R, Cameron OG, Critchley HD, Davenport PW, Feinstein JS, et al. 699 Interoception and mental health: A roadmap. Biol Psychiatry Cogn Neurosci 700 Neuroimaging. 2018;3(6):501-513. doi:10.1016/j.bpsc.2017.12.004. 701 
+
+13. Craig AD. How do you feel̶ now? The anterior insula and human awareness. Nat Rev 702 Neurosci. 2009;10(1):59-70. doi:10.1038/nrn2555. 703 
+
+14. Terasawa Y, Shibata M, Moriguchi Y, Umeda S. Anterior insular cortex mediates bodily 704 sensibility and social anxiety. Soc Cogn Affect Neurosci. 2013;8(3):259-266. 705 doi:10.1093/scan/nss108. 706 
+
+15. Critchley HD, Wiens S, Rotshtein P, Ohman A, Dolan RJ. Neural systems supporting 707 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+31 interoceptive awareness. Nat Neurosci. 2004;7(2):189-195. doi:10.1038/nn1176. 708 
+
+16. McMorris T. The acute exercise-cognition interaction: From the catecholamines 709 hypothesis to an interoception model. Int J Psychophysiol. 2021;170:75-88. 710 doi:10.1016/j.ijpsycho.2021.10.005. 711 
+
+17. Smith R, Feinstein JS, Kuplicki R, Forthman KL, Stewart JL, Paulus MP, et al. Perceptual 712 insensitivity to the modulation of interoceptive signals in depression, anxiety, and 713 substance use disorders. Sci Rep. 2021;11(1):2108. doi:10.1038/s41598-021-81307-3. 714 
+
+18. Paulus MP, Stein MB. Interoception in anxiety and depression. Brain Struct Funct. 715 2010;214(5‒6):451-463. doi:10.1007/s00429-010-0258-9. 716 
+
+19. Clemente R, Murphy A, Murphy J. The relationship between self-reported interoception 717 and anxiety: A systematic review and meta-analysis. Neurosci Biobehav Rev. 718 2024;167:105923. doi:10.1016/j.neubiorev.2024.105923. 719 
+
+20. Critchley HD, Garfinkel SN. Interoception and emotion. Curr Opin Psychol. 2017;17:7-720 14. doi:10.1016/j.copsyc.2017.04.020. 721 
+
+21. Wallman-Jones A, Palser ER, Benzing V, Schneider M. Acute physical-activity related 722 increases in interoceptive ability are not enhanced with simultaneous interoceptive 723 attention. Sci Rep. 2022;12:15054. doi:10.1038/s41598-022-19235-z. 724 
+
+22. Jones GE, Hollandsworth JG. Heart rate discrimination before and after exercise-725 induced augmented cardiac activity. Psychophysiology. 1981;18(3):252-257. 726 doi:10.1111/j.1469-8986.1981.tb03029.x. 727 
+
+23. Montgomery WA, Jones GE, Hollandsworth JG. The effects of physical fitness and 728 exercise on cardiac awareness. Biol Psychol. 1984;18(1):11-22. doi:10.1016/0301-729 0511(84)90022-x. 730 
+
+24. Pescatello LS, editor. ACSM's guidelines for exercise testing and prescription. 731 Philadelphia: Lippincott Williams & Wilkins; 2014. 732 
+
+25. Byun K, Hyodo K, Suwabe K, Ochi G, Sakairi Y, Kato M, et al. Positive effect of acute 733 mild exercise on executive function via arousal-related prefrontal activations: An fNIRS 734 study. Neuroimage. 2014;98:336-345. doi:10.1016/j.neuroimage.2014.04.067. 735 
+
+26. Kujach S, Olek RA, Byun K, Suwabe K, Sitek EJ, Ziemann E, et al. Acute sprint interval 736 exercise increases both cognitive functions and peripheral neurotrophic factors in 737 humans: The possible involvement of lactate. Front Neurosci. 2020;13:1455. 738 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+32 doi:10.3389/fnins.2019.01455. 739 
+
+27. Yamazaki Y, Sato D, Yamashiro K, Tsubaki A, Takehara N, Uetake Y, et al. Inter-740 individual differences in working memory improvement after acute mild and moderate 741 aerobic exercise. PLoS One. 2018;13(12):e0210053. doi:10.1371/journal.pone.0210053. 742 
+
+28. Damrongthai C, Kuwamizu R, Suwabe K, Ochi G, Yamazaki Y, Fukuie T, et al. Benefit of 743 human moderate running boosting mood and executive function coinciding with 744 bilateral prefrontal activation. Sci Rep. 2021;11(1):22657. doi:10.1038/s41598-021-745 01654-z. 746 
+
+29. Damrongthai C, Kuwamizu R, Yamazaki Y, Aoike N, Lee D, Byun K, et al. Slow running 747 benefits: Boosts in mood and facilitation of prefrontal cognition even at very light 748 intensity. bioRxiv. 2024. doi:10.1101/2024.01.29.575971. 749 
+
+30. Ryu Y, Maekawa T, Yoshino D, Sakitani N, Takashima A, Inoue T, et al. Mechanical 750 regulation underlies effects of exercise on serotonin-induced signaling in the prefrontal 751 cortex neurons. iScience. 2020;23(2):100874. doi:10.1016/j.isci.2020.100874. 752 
+
+31. Green SB. How Many Subjects Does It Take To Do A Regression Analysis. Multivariate 753 Behav Res. 1991;26(3):499-510. doi:10.1207/s15327906mbr2603_7. 754 
+
+32. Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM. Development of a single-stage 755 submaximal treadmill walking test. Med Sci Sports Exerc. 1991;23(8):966-973. 756 
+
+33. Chu CH, Kramer AF, Song TF, Wu CH, Hung TM, Chang YK. Acute exercise and 757 neurocognitive development in preadolescents and young adults: An ERP study. Neural 758 Plast. 2017;2017:2631909. doi:10.1155/2017/2631909. 759 
+
+34. Noonan V, Dean E. Submaximal exercise testing: Clinical application and interpretation. 760 Phys Ther. 2000;80(8):782-807. 761 
+
+35. Glass S, Dwyer GB, American College of Sports Medicine, editors. ACSM's metabolic 762 calculations handbook. Philadelphia: Lippincott Williams & Wilkins; 2007. 763 
+
+36. Riebe D, Ehrman JK, Liguori G, Magal M, editors. ACSM's guidelines for exercise 764 testing and prescription. 10th ed. Philadelphia: Wolters Kluwer; 2018. 765 
+
+37. Rudolph DL, Butki BD. Self-efficacy and affective responses to short bouts of exercise. J 766 Appl Sport Psychol. 1998;10(2):268-280. 767 
+
+38. Yeh HP, Stone JA, Churchill SM, Brymer E, Davids K. Physical and emotional benefits of 768 different exercise environments designed for treadmill running. Int J Environ Res Public 769 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+33 Health. 2017;14(7):752. doi:10.3390/ijerph14070752. 770 
+
+39. Schandry R. Heart beat perception and emotional experience. Psychophysiology. 771 1981;18(4):483-488. doi:10.1111/j.1469-8986.1981.tb02486.x. 772 
+
+40. Desmedt O, Luminet O, Corneille O. The heartbeat counting task largely involves non-773 interoceptive processes: Evidence from both the original and an adapted counting task. 774 Biol Psychol. 2018;138:185-188. doi:10.1016/j.biopsycho.2018.09.004. 775 
+
+41. Murphy J, Millgate E, Geary H, Ichijo E, Coll MP, Brewer R, et al. Knowledge of resting 776 heart rate mediates the relationship between intelligence and the heartbeat counting 777 task. Biol Psychol. 2018;133:1-3. doi:10.1016/j.biopsycho.2018.01.012. 778 
+
+42. Ring C, Brener J, Knapp K, Mailloux J. Effects of heartbeat feedback on beliefs about 779 heart rate and heartbeat counting: A cautionary tale about interoceptive awareness. Biol 780 Psychol. 2015;104:193-198. doi:10.1016/j.biopsycho.2014.12.010. 781 
+
+43. Canales-Johnson A, Silva C, Huepe D, Rivera-Rei Á, Noreika V, Garcia MdelC, et al. 782 Auditory feedback differentially modulates behavioral and neural markers of objective 783 and subjective performance when tapping to your heartbeat. Cereb Cortex. 784 2015;25(11):4490-4503. doi:10.1093/cercor/bhv076. 785 
+
+44. Fittipaldi S, Abrevaya S, Fuente A, Pascariello GO, Hesse E, Birba A, et al. A 786 multidimensional and multi-feature framework for cardiac interoception. Neuroimage. 787 2020;212:116677. doi:10.1016/j.neuroimage.2020.116677. 788 
+
+45. Ludwick-Rosenthal R, Neufeld RW. Heart beat interoception: A study of individual 789 differences. Int J Psychophysiol. 1985;3(1):57-65. doi:10.1016/0167-8760(85)90020-0. 790 
+
+46. Minenko I, Limonova A, Sukmanova A, Kutsenko V, Nazarova M, Ershova A, et al. 791 Comparison of three behavioral cardioception tasks and heartbeat evoked potentials in 792 the same group of healthy volunteers. Sci Rep. 2025;15(1):35773. doi:10.1038/s41598-793 025-08779-5. 794 
+
+47. Pollatos O, Herbert BM, Matthias E, Schandry R. Heart rate response after emotional 795 picture presentation is modulated by interoceptive awareness. Int J Psychophysiol. 796 2007;63(1):117-124. doi:10.1016/j.ijpsycho.2006.09.003. 797 
+
+48. Kolacz J, Holmes L, Porges SW. Body Perception Questionnaire (BPQ) manual. 2018. 798 Available from: https://www.stephenporges.com/body-scales 799 
+
+49. Porges SW. Body perception questionnaire. College Park (MD): Laboratory of 800 
+
+> .CC-BY 4.0 International license made available under a (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is The copyright holder for this preprint this version posted July 3, 2026. ;https://doi.org/10.64898/2026.06.08.730632 doi: bioRxiv preprint
+
+34 Developmental Assessment, University of Maryland; 1993. 801 
+
+50. Kobayashi R, Honda T, Machizawa M, Ichikawa N, Nakao T. Factor structure, reliability 802 and validation of the Japanese version of the Body Perception Questionnaire-Body 803 Awareness Very Short Form (BPQ-BAVSF-J). Jpn J Res Emot. 2021;28(2):38-48. 804 
+
+51. Heuchert JP, McNair DM. Profile of Mood States 2nd edition™. 2012. 805 doi:10.1037/t05057-000. 806 
+
+52. Yokoyama K, Watanabe K. Japanese translation of POMS 2: Profile of Mood States. 2nd 807 ed. Tokyo: Kaneko Shobo; 2015. 808 
+
+53. Tingley D, Yamamoto T, Hirose K, Keele L, Imai K. mediation: R package for causal 809 mediation analysis. J Stat Softw. 2014;59(5):1-38. doi:10.18637/jss.v059.i05. 810 
+
+54. Borg GA. Psychophysical bases of perceived exertion. Med Sci Sports Exerc. 811 1982;14(5):377-381. 812 
+
+55. Wallman-Jones A, Perakakis P, Tsakiris M, Schmidt M. Physical activity and 813 interoceptive processing: Theoretical considerations for future research. Int J 814 Psychophysiol. 2021;166:38-49. doi:10.1016/j.ijpsycho.2021.05.002. 815 56. Sabourin BC, Stewart SH, Watt MC, Krigolson OE. Running as interoceptive exposure 816 for decreasing anxiety sensitivity: Replication and extension. Cogn Behav Ther. 817 2015;44(4):264-274. doi:10.1080/16506073.2015.1015163. 818 
+
+57. Ekkekakis P. Pleasure and displeasure from the body: Perspectives from exercise. Cogn 819 Emot. 2003;17(2):213-239. doi:10.1080/02699930302292. 820 
+
+58. Ekkekakis P. The dual-mode theory of affective responses to exercise in metatheoretical 821 context: II. Bodiless heads, ethereal cognitive schemata, and other improbable dualistic 822 creatures, exercising. Int Rev Sport Exerc Psychol. 2009;2(2):139-160. 823 doi:10.1080/17509840902829323. 824 
+
+59. Barrett LF, Simmons WK. Interoceptive predictions in the brain. Nat Rev Neurosci. 825 2015;16(7):419-429. doi:10.1038/nrn3950. 826 
+
+60. Seth AK. Interoceptive inference, emotion, and the embodied self. Trends Cogn Sci. 827 2013;17(11):565-573. doi:10.1016/j.tics.2013.09.007. 828 
+
+61. Owens AP, Allen M, Ondobaka S, Friston KJ. Interoceptive inference: From 829 computational neuroscience to clinic. Neurosci Biobehav Rev. 2018;90:174-183. 830 doi:10.1016/j.neubiorev.2018.04.017. 831

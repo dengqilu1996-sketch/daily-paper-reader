@@ -1,0 +1,336 @@
+Title: Precision-Controlled Active Inference Accounts for Sensory Reweighting in Quiet Standing
+
+URL Source: https://www.biorxiv.org/content/10.64898/2026.06.23.733972v2.full.pdf
+
+Published Time: Sat, 04 Jul 2026 22:24:38 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# Precision-Controlled Active Inference Accounts for Sensory Reweighting in Quiet Standing 
+
+Jun Kobayashi ∗11Department of Intelligent and Control Systems, Graduate School of Computer Science and Systems Engineering, Kyushu Institute of Technology, 680-4 Kawazu, Iizuka, Fukuoka 820-8502, Japan 
+
+Abstract 
+
+Human quiet standing depends on the context-dependent reweighting of vestibular, proprio-ceptive, and visual information. Posturography has empirically characterized this phenomenon, but a minimal generative-control account of how changes in sensory reliability propagate from state estimation to postural action remains incomplete. Here, we test a minimal continuous-time active inference model of quiet standing. In this model, sensory reweighting is imple-mented as channel-specific precision control over prediction errors. A one-link inverted pen-dulum receives vestibular, proprioceptive, and visual observations, estimates posture using a generalized-coordinate variational free-energy objective, and selects ankle torque by minimiz-ing the same objective under an upright generalized sensory goal. Context changes alter the relative precision of sensory channels, without changing the plant, action optimizer, or goal dynamics. Across controlled sensory perturbations, reducing the precision of an unreliable vi-sual or proprioceptive channel reduced perturbation-driven postural shifts by approximately 82%. An automatic-differentiation-based state-update gradient contribution closely matched the reduction, identifying the mechanistic locus of reweighting in the perceptual update. Alinear reliability-to-precision law, λ(c) = 1 + 7 c, monotonically controlled sensory contribution, and a fixed-precision ablation showed that global precision reduction did not produce reweight-ing: the behavioral bias remained comparable to the equal-precision condition unless precision was changed selectively across channels. These results support the claim that postural sensory reweighting can be understood as relative, context-selective precision control in a continuous active inference loop. 
+
+Keywords: active inference; adaptive behavior; quiet standing; sensory reweighting; postural control; vestibular control 
+
+# 1 Introduction 
+
+Adaptive postural control requires the nervous system to combine sensory information whose re-liability changes with context. In quiet standing, visual, vestibular, and proprioceptive sensory signals do not contribute with fixed weights: standing on a firm surface with stable vision differs from standing with unreliable vision or a moving support surface. Human posturography has de-scribed this behavior as sensory reweighting, with perturbation-response curves changing as sensory 
+
+> ∗
+
+Corresponding author: kobayashi.jun184@m.kyutech.ac.jp. ORCID: 0009-0002-6318-2617. 
+
+1
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+reliability changes (Peterka, 2002). The computational question is how to express such reweighting as a control mechanism rather than a condition-specific gain schedule. Active inference offers a natural formulation of this problem. In continuous active inference, perception updates beliefs by reducing sensory and dynamical prediction errors, and action changes the world so that sensory input conforms to preferred predictions (Friston, 2010; Friston et al., 2010; Adams et al., 2013). Crucially, prediction errors are precision weighted. Precision, the inverse variance or confidence assigned to a sensory channel, determines how strongly that channel contributes to belief updating and therefore to action (Feldman and Friston, 2010; Parr et al., 2022). This suggests a minimal mechanistic hypothesis: postural sensory reweighting is context-dependent precision control over vestibular, proprioceptive, and visual prediction errors. The present study tests that hypothesis in a deliberately minimal model. We do not attempt a complete biophysical model of the vestibulospinal tract, a clinical account of vestibular disorders, or a full musculoskeletal simulation. Instead, we ask whether the core signature of sensory reweighting can be generated in a one-link quiet-standing plant with a single ankle-torque action variable. This restricted model is useful because it isolates the mechanism: the plant, action optimizer, and upright goal prior (the preferred sensory trajectory toward upright stance) are held fixed while only relative sensory precision changes. The contribution is threefold. First, we formulate quiet-standing control as a continuous active inference loop that integrates vestibular, proprioceptive, and visual observations. Second, we define a gradient-based reweighting index, the per-channel state-update contribution, that measures how strongly each sensory prediction error pulls the posture belief. Third, we show that context-dependent, channel-selective precision qualitatively reproduces Peterka-style perturbation-response curves, whereas fixed-precision ablations fail to express the same context-dependent reweighting. 
+
+# 2 Related Work 
+
+2.1 Sensory reweighting in human postural control 
+
+Human stance control has long been understood as a multisensory problem rather than a purely spinal or fixed-gain feedback loop. Visual, vestibular, and somatosensory signals each provide par-tial information about body orientation, and their reliability changes with lighting, support-surface motion, fatigue, and task context. Early dynamic-posturography work showed that stance control adapts to altered support and visual conditions, including in patients with vestibular deficits (Nash-ner et al., 1982). The empirical phenomenon most directly targeted here is sensory reweighting: the nervous system changes the effective contribution of sensory signals as their reliability changes. Peterka’s system-identification experiments showed that human postural responses to visual and support-surface rotations change with perturbation amplitude and sensory context, motivating perturbation-response curves and sensory weights as core descriptors of quiet-standing control (Pe-terka, 2002). Related experiments showed simultaneous reweighting of visual and tactile informa-tion during posture control (Oie et al., 2002). Subsequent work emphasized that these weights are dynamically regulated rather than fixed constants (Peterka and Loughlin, 2004), and later studies explicitly modeled and measured sensory-reweighting dynamics (Carver et al., 2006; Assl¨ ander and Peterka, 2014). Mergner’s review similarly framed reactive stance control as an interaction between body mechanics, sensory transformation, and context-dependent feedback organization (Mergner, 2010). The present model does not fit human posturography data quantitatively. Instead, it uses Peterka-style curve flattening as a qualitative benchmark: when the model treats a sensory channel 2
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+as unreliable, the perturbation-response curve should flatten without changing the plant or manually retuning a feedback controller. 
+
+2.2 Computational models of multisensory stance control 
+
+Several computational accounts have formalized postural control as state estimation and feedback control under uncertainty. Adaptive sensory-integration models of stance control showed how sen-sory channel gains can be adjusted as environmental conditions change (van der Kooij et al., 2001). Stochastic and multisensory fusion models further related postural sway to the integration of noisy sensory streams (Kiemel et al., 2002). Work on the informational content of postural signals also emphasized that velocity-related sensory information can be more useful than position or acceler-ation alone for controlling upright stance (Jeka et al., 2004). These models are important because they moved the field beyond single-channel reflex explanations and toward closed-loop estimation-control accounts. Bayesian and optimal-control approaches provide a broader normative background. In senso-rimotor learning, Bayesian models predict that uncertain sensory signals should be weighted less than reliable sensory signals (Ernst and Banks, 2002; K¨ ording and Wolpert, 2004; Knill and Pouget, 2004). In a full-body task, Stevenson and colleagues showed that visual uncertainty could be in-corporated into models combining Bayesian estimation and nonlinear feedback control (Stevenson et al., 2009). These studies motivate the present focus on reliability-dependent weighting, but they generally separate state estimation and control policy design. Our contribution is to express the reweighting mechanism inside a single variational objective, and to measure the actual contribution of each sensory channel to the belief update. Two recent MyoSuite arm studies provide a more local computational background. A predic-tive state observer study examined how the sensory prediction-error correction gain can be adap-tively adjusted in closed-loop muscle-driven reaching (Kobayashi, 2026a). A subsequent reliability-weighting study tested adaptive priors and learned source weighting for target-position estimation under violations of fixed-precision assumptions (Kobayashi, 2026b). Those studies addressed reach-ing and target/state estimation in a musculoskeletal arm model; the present work asks a different question, namely, whether precision changes can implement sensory reweighting in a closed-loop postural active inference model. 
+
+2.3 Active inference, precision, and motor control 
+
+Active inference treats perception and action as coupled minimization of variational free energy (Friston, 2010; Friston et al., 2010). In motor control, Adams, Shipp, and Friston argued that descending motor signals can be understood as predictions of proprioceptive sensations rather than classical commands (Adams et al., 2013). This view is especially relevant to posture because reflex-like action can be interpreted as the fulfillment of predicted sensory states. Separately, work on attention and free energy formalized precision as the inverse uncertainty assigned to prediction errors, with precision modulating the gain of error signals during inference (Feldman and Friston, 2010). Recent surveys have positioned active inference as a framework for robotic state estimation and control under uncertainty, while also noting challenges in scaling, tuning, and benchmarking (Lanillos et al., 2021). A complementary survey has focused specifically on continuous-time active inference models of motor control (Priorelli et al., 2023). The present work aligns with that robotics literature but deliberately narrows: it tests one mechanistic claim, namely that changing relative sensory precision is sufficient to generate closed-loop postural reweighting in a minimal stance 3
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Figure 1: One-link stance plant and sensory perturbation geometry. Body tilt is θ, support-surface tilt is ϕ, visual offset is ovis , and the action variable is ankle torque τ . Vestibular, proprioceptive, and visual observations follow from this geometry. model. 
+
+2.4 Gap addressed by the present work 
+
+Prior postural-control models have characterized sensory reweighting, and Bayesian/optimal-control models have explained why uncertain sensory signals should be weighted less. Active inference provides the additional link that precision weighting affects both belief updating and action within a single objective. What has been missing is a minimal closed-loop demonstration showing that channel-specific precision changes reduce the actual state-update gradient contribution 
+
+of unreliable postural perturbations and that this reduction propagates to perturbation-driven posture. This is the gap addressed here. 
+
+# 3 Methods 
+
+3.1 One-link stance plant 
+
+The plant geometry is shown in Fig. 1. The plant was a sagittal-plane one-link inverted pendulum with state x = [ θ, ω ]⊤, where θ is body tilt about the ankle. The action variable was ankle torque 
+
+τ . The continuous-time plant dynamics were ˙θ = ω, (1) ˙ω = mgL sin θ + τ − bω I , I = mL 2, (2) 4
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+where ω is angular velocity, m is the lumped body mass, L is the center-of-mass height above the ankle, b is passive ankle damping, and I is the moment of inertia about the ankle. The sign convention makes the gravitational torque mgL sin θ destabilizing around upright; positive torque increases positive angular acceleration. The plant was integrated with a time step of 0 .005 s for 10 s. Unless otherwise noted, simulations started from θ0 = 0 .05 rad and ˙θ0 = 0. Here, sensory perturbations refer to externally imposed visual offsets ( ovis ) or support-surface tilts ( ϕ). Angles were represented in radians in the model equations and simulations; perturbation amplitudes and posture shifts are reported in degrees where this improves interpretability. Sensory perturbations were applied from 2 s to 6 s. Their effects were evaluated from the model response during the late perturbation window, defined as the mean posture over 5 s to 6 s. The one-link plant is an isolating model of the sensory-reweighting mechanism. It is not intended to capture multi-joint strategies, muscle dynamics, or the full anatomy of vestibulospinal pathways. Those extensions are left for future work. 
+
+3.2 Multisensory observation model 
+
+The model received vestibular, proprioceptive, and visual observations derived from the sensory perturbation geometry in Fig. 1. The instantaneous (zeroth-order) observation vector was 
+
+y0 =
+
+h
+
+yvest ,θ yvest , ˙θ yprop yvis 
+
+i⊤
+
+, (3) with channel values generated from the body state and perturbation variables as 
+
+yvest ,θ = θ, (4) 
+
+yvest , ˙θ = ˙θ, (5) 
+
+yprop = θ − ϕ, (6) 
+
+yvis = θ + ovis , (7) where ϕ is support-surface tilt and ovis is visual offset. The first-order observation block was the time derivative of the instantaneous observation vector, 
+
+y1 = ˙ y0 =  ˙θ ¨θ ˙θ − ˙ϕ ˙θ + ˙ ovis 
+
+⊤ . (8) Generalized observations used two orders, ˜ y = [ y0, y 1]⊤. In the simulations, perturbation amplitudes were constant during the perturbation window, so ˙ϕ = 0 and ˙ ovis = 0 away from perturbation onset and offset. The vestibular angular-acceleration component ¨θ was supplied directly from the plant dynamics. For the action step, the physical action-observation mapping followed the plant dynamics: torque changed the predicted vestibular angular acceleration by τ /I , while angle-level observations changed only through subsequent plant integration. 
+
+3.3 Continuous active inference model 
+
+Figure 2 summarizes the perception-action loop used in the model. The generative model used generalized coordinates and minimized a variational free-energy objective of the form 
+
+F = 12 ε⊤ 
+
+> y
+
+˜Πyεy + 12 ε⊤ 
+
+> x
+
+˜Πxεx, (9) 5
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+where 
+
+εy = ˜ y − g(˜ μx, ˜μv), (10) 
+
+εx = D ˜μx − f (˜ μx, ˜μv). (11) Here ˜ μx is the generalized state belief, that is, the model’s posterior expectation over the body state and its generalized derivatives. ˜ μv denotes generalized causes or inputs in the active inference notation; it is not the physical ankle torque τ . Although the equations are written in the standard active inference form with generalized causes ˜ μv, the reported simulations did not include a separate hidden-cause input. Thus, g and f depended only on the state belief ˜ μx. In the two-order model used here, writing ˜ μx = [ ˆθ, ˆω, ˆω, ˆα]⊤ with ˆ ω = ˆ˙θ and ˆ α = ˆ¨θ, the observation model was 
+
+g(˜ μx) = ˆθ ˆω ˆθ ˆθ ˆω ˆα ˆω ˆω⊤ . (12) External visual and support-surface perturbations entered the actual observation ˜ y, not the pre-diction g(˜ μx), thereby producing sensory prediction errors. During the A-step, the physical action-observation mapping used 
+
+ga(˜ μx, τ ) = g(˜ μx) + 0 0 0 0 0 τ /I 0 0⊤ , (13) so ankle torque affected the predicted vestibular angular-acceleration channel only. g is the ob-servation model, f is the generative dynamics prior that predicts the generalized state derivative, 
+
+D is the generalized-coordinate shift operator, and ˜Πy and ˜Πx are generalized sensory and state precisions. The final model used a smoothness prior on belief dynamics, f (˜ μx, ˜μv) = 0, meaning that this prior penalized rapid belief changes rather than imposing an explicit inverted-pendulum dynamics model inside the estimator. Thus, the state-prediction error reduced to the smoothness penalty εx = D ˜μx. This choice did not remove the physical plant dynamics, which were simulated separately by Eq. (2); nor does it claim that the human nervous system uses a zero dynamics model. This modeling choice should not be interpreted as denying internal models of body dynamics or cerebellar contributions to postural control; it only limits the estimator used in the present min-imal demonstration. Instead, the smoothness prior served as a minimal estimator regularizer for isolating the sensory-precision mechanism. A linearized inverted-pendulum prior was tested during model development but destabilized the belief-driven baseline because the open-loop unstable prior contaminated state estimation; it was not used in the reported results. Perception was implemented as a dynamic-expectation-maximization (DEM) D-step. Here, DEM denotes Dynamic Expectation Maximization, and “D-step” denotes the belief update that changes ˜ μx to reduce F for the current observations. Action was implemented as an A-step, where “A-step” denotes the action update that changes ankle torque τ to reduce F through the action-observation mapping. The A-step used a scalar Newton step. This Hessian-normalized action update avoids confounding the physical torque scale with the units of the action gradient. 
+
+3.4 Upright generalized sensory goal 
+
+A static upright sensory goal was insufficient for closed-loop standing in this model. It allowed the A-step to reduce acceleration error through the vestibular angular-acceleration channel, but did not provide a tilt-dependent restoring effect that drove body tilt back toward upright. The final controller therefore encoded the preferred trajectory as an upright goal prior in generalized sensory coordinates. Here, “prior” denotes the model’s preferred sensory trajectory, specified before the current observation is used for action: ¨θgoal = −ω2 
+
+> n
+
+ˆθ − 2ζω n ˆ˙θ, (14) 6
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Figure 2: Continuous active inference loop. Observations update the generalized state belief through a D-step, the upright sensory goal prior specifies a preferred acceleration, and the A-step selects torque by minimizing the same variational free-energy objective through the action-observation mapping. where ˆθ and ˆ˙θ are the D-step beliefs, ωn is the natural frequency of the upright goal prior, and ζ
+
+is its damping ratio. We used ωn = 4 .0 and ζ = 1 .0 in the reported simulations. Although this expression has the form of a second-order return-to-upright acceleration law, it is not a separately applied proportional-derivative controller. Operationally, the D-step and A-step used different sensory targets in the same free-energy form: ˜yD = ˜ yobs , (15) ˜yA = ˜ ygoal = 0 0 0 0 0 ¨θgoal 0 0⊤ . (16) Thus, Eq. (14) did not overwrite the belief acceleration ˆ α in g(˜ μx). Instead, it supplied the desired value in the A-step goal observation. For the vestibular angular-acceleration channel, the A-step prediction error was therefore 
+
+εA 
+
+> vest ,¨θ
+
+= ¨θgoal −
+
+
+
+ˆα + τI
+
+
+
+. (17) The goal prior specifies a desired sensory acceleration, and torque is still selected by minimizing free energy through the physical action mapping. 
+
+3.5 Channel-block sensory precision 
+
+Sensory precision was assigned per channel: ˜Πy = R ⊗ diag( λvest , λ vest , λ prop , λ vis ), (18) 7
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+where R is a fixed generalized-coordinate precision structure, not a quantity fitted from data. It is constructed from the standard DEM smooth-fluctuation assumption; with the two-order embedding and sy = 1 .0 used here, this reduces to R = I2. The scalar precisions λvest , λprop , and λvis weight vestibular, proprioceptive, and visual prediction errors, respectively. In this minimal model, the vestibular angle and angular-velocity components were treated as one modality block and therefore shared λvest ; this is not a biological claim that their reliabilities must be identical. Precision triples below are reported as ( λvest , λ prop , λ vis ). Equal precision was (8 , 8, 8) for vestibular, proprioceptive, and visual channels. To model an unreliable sensory channel, the target channel precision was reduced to 1, yielding (8 , 8, 1) for visual precision reduction and (8 , 1, 8) for proprioceptive precision reduction. The values 1 and 8 are dimensionless model precisions, not biological bounds. They were chosen to provide a fixed high–low precision contrast around the stable equal-precision baseline while keeping the plant, goal, and action optimizer unchanged across conditions. Operationally, these precisions are the model’s sensory weights. They do not act as a separate normalized weighting rule; they enter the free-energy objective through ˜Πy. Consequently, the sensory part of the D-step gradient can be read, up to sign, as a sum of channel contributions, 
+
+∂F y
+
+∂ ˜μx
+
+= − X
+
+> i
+
+J⊤ 
+
+> i
+
+˜Πy,i εy,i , Ji = ∂g i
+
+∂ ˜μx
+
+, (19) where i indexes the vestibular, proprioceptive, and visual channel blocks. Reducing λi therefore reduces how strongly the prediction error from channel i pulls the posture belief during the D-step. The resulting belief then enters the upright goal prior in Eq. (14) and the A-step action-observation mapping, so the altered sensory weighting propagates to ankle torque without changing the plant or the action optimizer. For the reliability-sweep experiment, we imposed a dimensionless reliability parameter c and mapped it to the target-channel precision using the minimal linear law 
+
+λ(c) = 1 + 7 c, c ∈ [0 , 1] , (20) where c = 0 represents low reliability and c = 1 represents full reliability. This mapping was an experimental schedule for the sweep, not a fitted psychophysical reliability function. The precision parameters were not inferred or updated online during a simulation. Instead, each simulation used the precision values specified by its experimental condition, and those values were held fixed for the duration of that simulation. 
+
+3.6 State-update gradient contribution 
+
+To quantify reweighting at the mechanism level, we measured how strongly each sensory channel would update the posture belief during the D-step. In active inference, sensory prediction errors update the state belief through the free-energy gradient with respect to ˜ μx. If the precision of a channel is reduced, the same sensory conflict should make a smaller contribution to that gradient. For channel i, the channel-masked sensory free energy is 
+
+Fy,i = 12 (mi ⊙ εy)⊤ ˜Πy(mi ⊙ εy), (21) where mi selects the vestibular, proprioceptive, or visual components and sets the other sensory components to zero. The primary contribution index was 
+
+Ci = ∂F y,i 
+
+∂ ˜μx, 0 2
+
+, (22) 8
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+where ˜ μx, 0 = [ ˆθ, ˆ˙θ]⊤ is the posture-relevant zeroth-order state belief. Thus, Ci is the absolute magnitude of the update pressure that channel i exerts on the estimated body tilt and angular velocity. For example, Cvis denotes this quantity for the visual channel and Cprop denotes it for the proprioceptive channel. Gradients were evaluated by automatic differentiation rather than finite differences. This absolute contribution was used as the primary mechanism-level reweight-ing index because normalized shares can remain conserved under belief redistribution. In the results below, the reported state-update gradient contributions and gradient reductions are val-ues or condition-wise changes of Ci, evaluated for the perturbation-relevant channel: visual for visual-offset perturbations and proprioceptive for support-surface-tilt perturbations. 
+
+3.7 Experiments 
+
+We report three analysis sets, all using the same plant, action optimizer, and upright goal prior. Sensory perturbations were applied from 2 s to 6 s and evaluated over the late response window from 5 s to 6 s. First, perturbation-amplitude sweeps tested whether target-channel precision reduction flattened perturbation-response curves. The signed perturbation amplitude, apert , denotes the im-posed visual offset ovis or support-surface tilt ϕ. Visual offsets and support tilts were swept from 
+
+−8 to +8 degrees, including intermediate amplitudes of −4, −2, 0, +2, and +4 degrees. Second, reliability sweeps varied the imposed reliability parameter c to test whether λ(c) = 1 + 7 c mono-tonically controlled state-update contribution for visual and proprioceptive perturbations. Third, fixed-precision ablations compared three precision regimes: context-selective precision reduction, equal precision (8 , 8, 8), and global low precision (1 , 1, 1). The behavioral readout was late posture, θlate , defined as the mean body tilt θ over 5 s to 6 s. Perturbation gain was the signed response ratio 
+
+Gpert = θlate 
+
+apert 
+
+, apert ̸ = 0 . (23) Here, apert is the signed amplitude of the imposed visual or support-surface perturbation. Each simulation was considered stable when free energy remained finite, belief and action variables contained no non-finite values, the plant did not diverge, and actuator saturation did not dominate the response. The developmental checks leading to these analyses were staged to verify plant scaling, fixed-precision standing, signed perturbation entry, and the gradient-contribution mechanism before drawing the reweighting conclusion. 
+
+# 4 Results 
+
+4.1 A stable active inference standing baseline required an upright generalized goal 
+
+Initial finite-smoke tests showed that the D-step and A-step remained finite, but a static upright sensory goal did not stabilize the closed-loop plant. The reason was structural: action entered the generative model via vestibular angular acceleration, so a static zero-goal could cancel acceleration without creating a restoring-position servo. Adding a physically scaled action mapping and direct vestibular acceleration observations clarified the problem, but this alone did not stabilize posture. Stable fixed-precision standing emerged when the preferred generalized observation encoded the return-to-upright acceleration ¨θgoal = −ω2 
+
+> n
+
+ˆθ − 2ζω n ˆ˙θ. With ωn = 4 .0 and ζ = 1 .0, the model maintained standing for 10 s without torque saturation and converged from the initial tilt toward 9
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+upright. This baseline enabled sensory perturbations to be studied without altering the action optimizer or plant. 
+
+4.2 Controlled sensory probes entered the intended channels 
+
+Before testing reweighting, we verified that sensory perturbation conflicts produced the expected signed sensory prediction errors. A positive visual offset increased the visual prediction error, whereas a positive support-surface tilt decreased the proprioceptive prediction error because yprop =
+
+θ − ϕ. In the fixed-precision probe set, the visual error increased from approximately 0.0125 to 0.089 rad under a positive visual offset, and the proprioceptive error changed from approximately 0.0125 to −0.078 rad under a positive support-surface tilt. This scale was consistent with the imposed +5 ◦ perturbation amplitude (0 .087 rad) and with the opposite sign of support-surface tilt in yprop = θ − ϕ. These signed-error checks used the plant-state-driven probe baseline, where perturbation entry could be isolated before closing the precision-to-action loop. Switching the upright goal prior from plant-state-driven to belief-driven estimates was then necessary for these perturbation conflicts to propagate into action. This established the fixed-precision baseline on which context-dependent precision could act. 
+
+4.3 Context-dependent precision reduced perturbation-driven postural bias 
+
+When sensory precision was equal, imposed perturbations strongly biased posture. Under a +5 ◦
+
+visual offset, the belief-driven fixed-precision model shifted the late posture by −4.09 ◦. Reducing visual precision reduced this shift to −0.71 ◦, an 82.7% reduction. Under a +5 ◦ support-surface tilt, the equal-precision model shifted posture by +4 .13 ◦, and proprioceptive precision reduction reduced the shift to +0 .74 ◦, an 82.0% reduction. In a combined visual-proprioceptive conflict condition (ovis = +5 ◦, ϕ = −5◦), both non-vestibular channels were shifted away from the vestibular body-state signal; under this condition, the corresponding posture-shift reduction was 69.9%. Thus, changing only the relative precision of the unreliable sensory channel was sufficient to change closed-loop postural behavior. 
+
+4.4 State-update gradients identified the mechanism of reweighting 
+
+The state-update gradient contribution confirmed that behavioral reweighting originated in the perceptual update. Visual precision reduction reduced the visual state-update contribution, Cvis ,by 82.3%, closely matching the 82.7% reduction in visual perturbation-driven posture shift. Pro-prioceptive precision reduction produced the same pattern: the proprioceptive state-update con-tribution, Cprop , decreased by 82.3%, matching an 82.0% behavioral reduction. In the combined visual-proprioceptive conflict condition, the perturbation-channel contribution decreased by 70.0%, matching the 69.9% posture-shift reduction. Two simpler summaries were considered but not used as primary indices: normalized contribution shares, which divide each channel’s contribution by the summed contribution across channels, and λ|ε| scores, which multiply scalar precision by absolute prediction error without accounting for the observation-model Jacobian. They were not used as pri-mary indices because such ratios can remain approximately conserved when the belief redistributes prediction errors across channels. 
+
+4.5 Precision control reproduced Peterka-style perturbation-response curves 
+
+The full perturbation-amplitude sweep showed the qualitative hallmark of sensory reweighting: target-channel precision reduction flattened the perturbation-response curve without changing the 10 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Figure 3: Precision control reproduces Peterka-style sensory reweighting curves. (A) Visual perturbation-response curve. Equal precision produced a steep posture response to visual off-sets, whereas visual precision reduction flattened the response. (B) Support-surface perturbation-response curve showed the symmetric pattern for support-surface tilt. Table 1: Summary of perturbation gain and state-update gradient reduction for the perturbation-response sweeps. Perturbation Equal precision Reduced target precision Gradient reduction Visual offset |Gpert | ≈ 0.82 |Gpert | ≈ 0.14 82.3% Support-surface tilt |Gpert | ≈ 0.82 |Gpert | ≈ 0.14 82.3% plant, action optimizer, or upright goal prior (Fig. 3; Table 1). For visual offsets, equal precision produced an approximately linear perturbation gain of −0.82, whereas visual precision reduction reduced the gain magnitude to approximately 0.14. For support tilt, equal precision produced a perturbation gain of approximately +0 .82, whereas proprioceptive precision reduction reduced the gain to approximately +0 .14. Averaged over the nonzero perturbation amplitudes, Cvis decreased by approximately 82.3% in the visual-offset sweep, and Cprop decreased by approximately 82.3% in the support-surface-tilt sweep. 
+
+4.6 A reliability-to-precision law continuously controlled contribution 
+
+The minimal law λ(c) = 1 + 7 c produced monotonic control of state-update contribution (Fig. 4). For a visual offset, the visual gradient contribution increased from 0.082 at c = 0 to 0.465 at 
+
+c = 1, with intermediate values 0.205, 0.306, and 0.392. The proprioceptive sweep showed the same monotonic pattern, increasing from 0.082 to 0.465. Behavioral posture shift also increased in magnitude with target reliability, showing that reliability-controlled precision propagated from belief updating to action. All simulations satisfied the stability criteria: finite free energy, no non-finite belief or action values, no plant divergence, and no dominant actuator saturation. 
+
+4.7 Fixed-precision ablations defined the claim boundary 
+
+The fixed-precision ablation distinguished channel-selective sensory reweighting from global preci-sion reduction (Fig. 5). For a +5 ◦ visual offset, context-selective visual precision reduction pro-11 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Figure 4: A reliability-to-precision law continuously controls sensory contribution. The target-channel precision followed λ(c) = 1 + 7 c. (A) Visual state-update gradient contribution increased monotonically with visual reliability. (B) The corresponding visual-offset posture shift increased in magnitude across the same visual-reliability sweep. (C) Proprioceptive state-update gradient con-tribution increased monotonically with proprioceptive reliability. (D) The corresponding support-surface-tilt posture shift increased in magnitude across the same proprioceptive-reliability sweep. duced a small posture shift ( −0.71 ◦) and a perturbation-channel gradient contribution of 0.082. Equal precision produced a larger shift ( −4.09 ◦) and a gradient contribution of 0.465. Global low precision (1 , 1, 1) reduced the absolute gradient contribution to 0.058, but posture still shifted by −4.05 ◦, essentially the same behavioral bias as equal precision. The proprioceptive condition showed the same structure: context-selective proprioceptive precision reduction produced a small shift (+0 .74 ◦), whereas equal precision and global low precision produced larger shifts (+4 .13 ◦
+
+and +4 .11 ◦). Therefore, absolute gradient magnitude alone is insufficient to identify reweighting. Reweighting requires a context-selective change in relative precision, and a behavioral posture shift is necessary to distinguish it from global uncertainty. 
+
+# 5 Discussion 
+
+The present results support a minimal active inference account of sensory reweighting in quiet standing. In the model, context did not select a new controller or retune the feedback gain. Instead, context changed the relative precision of sensory prediction errors. This precision change altered how strongly each perturbation channel updated the posture belief, and the altered belief propagated through the same free-energy-minimizing action loop to produce different postural responses. The gradient-based contribution measure is important for interpreting this result. If reweight-ing were assessed solely by the experimenter-specified precision values, the result would be circular. If it were assessed only by normalized prediction-error shares, the result could be missed because the belief can redistribute errors across channels. The absolute state-update gradient contribu-12 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Figure 5: Fixed-precision ablation defines the claim boundary. (A,B) Visual offset and support-surface tilt conditions, respectively. In each condition, the upper panel shows the behavioral pos-ture shift and the lower panel shows the corresponding perturbation-channel gradient contribution. Context-selective precision reduction reduced both posture shift and channel-specific gradient con-tribution, whereas global low precision reduced absolute gradient magnitude without reducing be-havioral perturbation bias. Behavioral reweighting therefore depends on relative, context-selective precision rather than a global decrease in precision. tion addresses these two problems by measuring the actual pull of a channel’s prediction error on the posture belief. However, as the global-low-precision ablation shows, the absolute gradient magnitude is not, by itself, sufficient to identify reweighting. Its close quantitative match to the behavioral posture-shift reduction is what indicates that precision-controlled belief updating is the mechanism through which reweighting affects action in this model. The global low-precision ablation clarifies the claim boundary. Lowering all sensory precisions reduces absolute gradient magnitudes, but it does not change the relative balance among channels. Consequently, the perturbed channel still biases posture by nearly the same amount as in the equal-precision regime. Thus, sensory reweighting should not be identified with low precision per se. It is a relative and context-selective redistribution of precision across sensory channels. This study has several limitations. The plant is a one-link inverted pendulum, not a full mus-culoskeletal model. The action is a single ankle torque, not muscle activation. The vestibular, proprioceptive, and visual observation models are deliberately minimal, and the reliability law 
+
+λ(c) = 1 + 7 c is a proof of principle rather than a fitted psychophysical model. The perturbation-response curves are approximately linear within each precision regime; the model does not repro-duce the amplitude-dependent gain reduction reported in human posturography. The Peterka-style comparison in this paper is therefore limited to between-regime flattening induced by changes in precision. The simulations are deterministic and do not include observation noise or multi-seed 13 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+variability. The smoothness dynamics prior should also not be read as a literal claim that human postural control uses a zero dynamics model. Human stance control may combine internal dynam-ics, reflex pathways, passive body mechanics, and continuity constraints in a more distributed way. The results should therefore be interpreted as a mechanistic proof of concept for adaptive behavior and postural control, not as a complete model of human vestibulospinal physiology. Future work should extend the model to multi-joint stance, muscle-level actuation, and richer sensory contexts. It should also compare the model more directly with human posturography data, including fitted reweighting curves and individual differences. A further direction is to integrate this precision control mechanism into locomotor active inference models that account for changes in sensory reliability across contact phases and terrain conditions. 
+
+# 6 Conclusion 
+
+A minimal continuous active inference model reproduced key signatures of postural sensory reweighting. Channel-selective precision control reduced perturbation-driven posture shifts, pro-duced flattened Peterka-style perturbation-response curves, and monotonically controlled sensory contribution under a simple reliability law. Fixed-precision ablations showed that reweighting is not a global reduction in precision, but a context-selective change in relative precision across sensory channels. These findings support precision-controlled active inference as a generative account of adaptive sensory reweighting in quiet standing. 
+
+# Preprint 
+
+This manuscript is an updated version of the bioRxiv preprint posted at: https://doi.org/10. 64898/2026.06.23.733972 .
+
+# Author Contributions 
+
+Jun Kobayashi is the sole author and was responsible for conceptualization, methodology, software, validation, formal analysis, investigation, data curation, visualization, writing–original draft, and writing–review and editing. 
+
+# Statements and Declarations 
+
+Ethical Considerations 
+
+This study used computational simulations only and did not involve human participants, human data, human tissue, or animal experiments. Ethical approval was not required. 
+
+Consent to Participate 
+
+Not applicable. 
+
+Consent for Publication 
+
+Not applicable. 14 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Declaration of Conflicting Interests 
+
+The author declares no potential conflicts of interest with respect to the research, authorship, and/or publication of this article. 
+
+Funding 
+
+The author received no financial support for the research, authorship, and/or publication of this article. 
+
+Data and Code Availability 
+
+Code and analysis scripts are available at github.com/jkoba0512/vst-aif-posture and archived on Zenodo at 10.5281/zenodo.21051806. The GitHub release corresponding to the submitted ver-sion is v0.1.0-biorxiv-v1. Manuscript and submission files are kept separate from the public code repository. 
+
+Use of Generative AI and AI-Assisted Technologies 
+
+AI-assisted tools were used for language editing, code-review assistance, checklist preparation, and workflow support. The author reviewed all outputs and takes full responsibility for the submitted work. No AI tool is listed as an author. 
+
+# References 
+
+Adams, R. A., Shipp, S., and Friston, K. J. (2013). Predictions not commands: active inference in the motor system. Brain Structure and Function , 218(3):611–643. Assl¨ ander, L. and Peterka, R. J. (2014). Sensory reweighting dynamics in human postural control. 
+
+Journal of Neurophysiology , 111(9):1852–1864. Carver, S., Kiemel, T., and Jeka, J. J. (2006). Modeling the dynamics of sensory reweighting. 
+
+Biological Cybernetics , 95(2):123–134. Ernst, M. O. and Banks, M. S. (2002). Humans integrate visual and haptic information in a statistically optimal fashion. Nature , 415(6870):429–433. Feldman, H. and Friston, K. J. (2010). Attention, uncertainty, and free-energy. Frontiers in Human Neuroscience , 4:215. Friston, K. (2010). The free-energy principle: a unified brain theory? Nature Reviews Neuroscience ,11(2):127–138. Friston, K., Daunizeau, J., Kilner, J., and Kiebel, S. J. (2010). Action and behavior: a free-energy formulation. Biological Cybernetics , 102(3):227–260. Jeka, J., Kiemel, T., Creath, R., Horak, F., and Peterka, R. (2004). Controlling human upright posture: velocity information is more accurate than position or acceleration. Journal of Neuro-physiology , 92(4):2368–2379. Kiemel, T., Oie, K. S., and Jeka, J. J. (2002). Multisensory fusion and the stochastic structure of postural sway. Biological Cybernetics , 87:262–277. 15 
+
+> .CC-BY-NC-ND 4.0 International license available under a was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made The copyright holder for this preprint (which this version posted July 1, 2026. ;https://doi.org/10.64898/2026.06.23.733972 doi: bioRxiv preprint
+
+Knill, D. C. and Pouget, A. (2004). The bayesian brain: the role of uncertainty in neural coding and computation. Trends in Neurosciences , 27(12):712–719. Kobayashi, J. (2026a). How a predictive state observer can self-adapt its sensory prediction-error correction gain: closed-loop evidence from a muscle-driven reaching task. bioRxiv .Kobayashi, J. (2026b). Reliability-weighted target-position estimation in a musculoskeletal arm model: adaptive priors and learned source weighting under violations of fixed-precision assump-tions. bioRxiv .K¨ ording, K. P. and Wolpert, D. M. (2004). Bayesian integration in sensorimotor learning. Nature ,427:244–247. Lanillos, P., Meo, C., Pezzato, C., Meera, A. A., Baioumy, M., Ohata, W., Tschantz, A., Millidge, B., Wisse, M., Buckley, C. L., and Tani, J. (2021). Active inference in robotics and artificial agents: survey and challenges. arXiv .Mergner, T. (2010). A neurological view on reactive human stance control. Annual Reviews in Control , 34(2):177–198. Nashner, L. M., Black, F. O., and Wall, C. (1982). Adaptation to altered support and visual condi-tions during stance: patients with vestibular deficits. The Journal of Neuroscience , 2(5):536–544. Oie, K. S., Kiemel, T., and Jeka, J. J. (2002). Multisensory fusion: simultaneous re-weighting of vision and touch for the control of human posture. Cognitive Brain Research , 14(1):164–176. Parr, T., Pezzulo, G., and Friston, K. J. (2022). Active Inference: The Free Energy Principle in Mind, Brain, and Behavior . MIT Press. Peterka, R. J. (2002). Sensorimotor integration in human postural control. Journal of Neurophys-iology , 88(3):1097–1118. Peterka, R. J. and Loughlin, P. J. (2004). Dynamic regulation of sensorimotor integration in human postural control. Journal of Neurophysiology , 91(1):410–423. Priorelli, M., Maggiore, F., Maselli, A., Donnarumma, F., Maisto, D., Mannella, F., Stoianov, I. P., and Pezzulo, G. (2023). Modeling motor control in continuous-time active inference: a survey. 
+
+arXiv .Stevenson, I. H., Fernandes, H. L., Vilares, I., Wei, K., and K¨ ording, K. P. (2009). Bayesian integration and non-linear feedback control in a full-body motor task. PLoS Computational Biology , 5(12):e1000629. van der Kooij, H., Jacobs, R., Koopman, B., and van der Helm, F. (2001). An adaptive model of sensory integration in a dynamic environment applied to human stance control. Biological Cybernetics , 84:103–115. 16
