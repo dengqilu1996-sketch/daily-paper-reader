@@ -1,0 +1,540 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-07-05T22:24:25.410318+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 9,
+    "deep_divecandidates": 3,
+    "deep_cap": 14,
+    "deep_selected": 3,
+    "quick_candidates": 8,
+    "quick_skim_target": 19,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2606.30092v1",
+      "source": "arxiv",
+      "title": "Hierarchical Reinforcement Learning in StarCraft Micromanagement with Influence Maps and Cluster-based Scripts",
+      "abstract": "Real-time strategy (RTS) games present significant AI challenges, characterized by expansive state-action spaces arising from multi-unit coordination in continuous battlefields, and sparse delayed rewards stemming from final win/lose signals. Existing approaches face a trade-off between managing the dimensionality explosion of joint actions and maintaining the interpretability of complex state representations. This complexity is further intensified by the limitation of traditional hierarchical structures in adaptively decomposing tasks into effective tactical modules. Such difficulties are compounded by the black-box nature of deep learning models and their reliance on sparse rewards, which together result in limited sample efficiency and a lack of decision-making transparency. To address these limitations, this paper proposes HRL-IM/CBS, a hierarchical reinforcement learning framework with influence map hashing and cluster-based scripts for StarCraft micromanagement. Influence map hashing encodes global battlefield situations into compact hexadecimal codes, capturing spatial control and relative advantage. Cluster-based scripts enable dynamic local coordination through adaptive unit partitioning. The hierarchical multi-Q-table architecture decomposes decision-making into upper-level clustering strategy selection and lower-level tactical execution, with reward allocation providing dense learning signals. Experiments across six asymmetric scenarios demonstrate competitive performance against deep RL baselines while offering advantages in sample efficiency and interpretability through transparent Q-table representations.",
+      "authors": [
+        "Chunhui Bai",
+        "Changhe Li",
+        "Dequan Li",
+        "Xinye Cai",
+        "Shengxiang Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-29T10:29:41+00:00",
+      "link": "https://arxiv.org/pdf/2606.30092v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "hierarchical reinforcement learning for multi-unit coordination in strategy games",
+      "llm_evidence_cn": "用于策略游戏中多单位协调的分层强化学习",
+      "llm_evidence": "用于策略游戏中多单位协调的分层强化学习",
+      "canonical_evidence": "用于策略游戏中多单位协调的分层强化学习",
+      "llm_tldr_en": "Proposes hierarchical RL with influence maps and cluster scripts for StarCraft micromanagement, addressing multi-agent coordination which can be applied to sports strategy.",
+      "llm_tldr_cn": "针对实时策略游戏的多单元协调挑战，提出融合影响地图和聚类脚本的分层强化学习方法，有效处理状态空间爆炸和稀疏奖励，可迁移至体育战术优化和团队仿真。",
+      "llm_tldr": "针对实时策略游戏的多单元协调挑战，提出融合影响地图和聚类脚本的分层强化学习方法，有效处理状态空间爆炸和稀疏奖励，可迁移至体育战术优化和团队仿真。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.02426v1",
+      "source": "arxiv",
+      "title": "QFedAgent: Quantum-Enhanced Personalized Federated Learning for Multi-Agent Activity Recognition",
+      "abstract": "Federated learning (FL) enables collaborative model training across distributed devices without sharing raw data, making it suitable for privacy-sensitive robotic sensing applications. However, multi-agent systems generate heterogeneous and non-independent and identically distributed (non-IID) multimodal sensor streams that degrade conventional FL algorithms, while classical fusion modules introduce substantial parameter overhead and communication cost. This paper proposes QFedAgent, a hybrid quantum-classical personalized FL framework for multi-agent activity recognition. The approach integrates a variational quantum circuit fusion module that models accelerometer--gyroscope interactions through quantum state encoding and entanglement, requiring only 72 quantum rotation parameters versus 33K in classical multi-layer perceptron-based fusion, achieving approximately 10x total parameter reduction. Experiments on the OPPORTUNITY dataset under subject-based non-IID partitions demonstrate 97.7% mean test accuracy, confirming that parameter-efficient quantum fusion remains competitive with conventional federated baselines.",
+      "authors": [
+        "Quoc Bao Phan",
+        "Tuy Tan Nguyen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T16:54:35+00:00",
+      "link": "https://arxiv.org/pdf/2607.02426v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-sci"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Quantum-enhanced personalized federated learning for activity recognition with multimodal sensors",
+      "llm_evidence_cn": "量子增强的个性化联邦学习用于多模态传感器活动识别",
+      "llm_evidence": "量子增强的个性化联邦学习用于多模态传感器活动识别",
+      "canonical_evidence": "量子增强的个性化联邦学习用于多模态传感器活动识别",
+      "llm_tldr_en": "QFedAgent is a hybrid quantum-classical FL framework that uses variational quantum circuits to fuse accelerometer and gyroscope data for personalized activity recognition in multi-agent systems, reducing communication cost while handling non-IID data.",
+      "llm_tldr_cn": "针对多智能体系统中异构传感器数据和非独立同分布问题，提出量子增强个性化联邦学习框架QFedAgent。该框架利用变分量子电路融合加速度计与陀螺仪数据，通过量子态编码和纠缠建模传感器交互，在保护隐私的同时实现高精度活动识别。实验证明其通信效率高且优于经典FL方法，适用于可穿戴设备的分布式监护场景。",
+      "llm_tldr": "针对多智能体系统中异构传感器数据和非独立同分布问题，提出量子增强个性化联邦学习框架QFedAgent。该框架利用变分量子电路融合加速度计与陀螺仪数据，通过量子态编码和纠缠建模传感器交互，在保护隐私的同时实现高精度活动识别。实验证明其通信效率高且优于经典FL方法，适用于可穿戴设备的分布式监护场景。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "Federated learning frameworks for wearable sensor data in sports",
+      "matched_requirement_id": "req-78",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2607.01990v1",
+      "source": "arxiv",
+      "title": "Training-free Controllable Human Motion Generation under Heterogeneous Constraints",
+      "abstract": "Training-free controllable motion generation has attracted growing interest for enabling flexible constraint enforcement without constraint-specific training. However, existing training-free methods require constraints to be continuous objective-based with differentiable losses, while many real-world requirements are criterion-based and provide only discontinuous, sparse, or even black-box feedback. In this paper, we propose Motion-Inference-as-Control (MIC), the first training-free motion generation framework that handles both continuous objective-based and criterion-based motion constraints under a shared mechanism. The key idea is to cast diffusion-based motion generation as a stochastic control problem. This perspective not only provides principled and practically effective step-wise control laws that support criterion-based constraints without requiring differentiability and naturally accommodate objective-based constraints as a special case, but also motivates a control-oriented constraint coordination mechanism that adaptively balances and reconciles motion constraints during generation. Experiments across diverse constraint settings demonstrate the effectiveness of our framework.",
+      "authors": [
+        "Xiaofei Hui",
+        "Bo Yan",
+        "Haoxuan Qu",
+        "Hossein Rahmani",
+        "Jun Liu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-02T10:24:50+00:00",
+      "link": "https://arxiv.org/pdf/2607.01990v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Controllable human motion generation under heterogeneous constraints",
+      "llm_evidence_cn": "异构约束下可控人体运动生成",
+      "llm_evidence": "异构约束下可控人体运动生成",
+      "canonical_evidence": "异构约束下可控人体运动生成",
+      "llm_tldr_en": "Proposes Motion-Inference-as-Control (MIC), a training-free framework for generating human motion under both continuous and criterion-based constraints by casting diffusion-based generation as stochastic control.",
+      "llm_tldr_cn": "针对现有训练无关运动生成方法仅支持连续可微约束的局限，提出MIC框架，将扩散模型生成转化为随机控制问题，首次同时处理连续目标型和准则型约束。通过采样空间映射实现灵活约束满足，无需特定训练，为体育动作模拟等需要多样约束的人体运动生成场景提供了通用解决方案。",
+      "llm_tldr": "针对现有训练无关运动生成方法仅支持连续可微约束的局限，提出MIC框架，将扩散模型生成转化为随机控制问题，首次同时处理连续目标型和准则型约束。通过采样空间映射实现灵活约束满足，无需特定训练，为体育动作模拟等需要多样约束的人体运动生成场景提供了通用解决方案。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "generative models for sports simulation",
+      "matched_requirement_id": "req-73",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2606.28943v1",
+      "source": "arxiv",
+      "title": "A3M: Adaptive, Adversarial and Multi-Objective Learning for Strategic Bidding in Repeated Auctions",
+      "abstract": "Learning to bid in repeated multi-unit auctions with bandit feedback poses a fundamental challenge. Existing methods often rely on rigid explore-then-exploit schedules, assume stationary adversaries, and optimize solely for bidder utility, thereby limiting adaptability and strategic robustness. To address these limitations, we introduce the A3M framework, which integrates adaptive deep reinforcement learning (DRL), explicit adversarial reasoning, and principled multi-objective reward design for online auction strategy optimization. A3M employs an actor-critic DRL backbone to dynamically balance exploration and exploitation, an opponent model for fictitious play against non-stationary adversaries, and a composite reward function to jointly maximize utility, auctioneer revenue, and fairness. We provide the first comprehensive empirical evaluation of this integrated approach against established baselines in both discriminatory and uniform price auctions. Results show that A3M reduces final regret by 30--40\\% in standard settings, maintains robust performance against adversarial strategy shifts, scales favorably with the number of units $K$, and enables tunable multi-objective trade-offs. An extensive ablation study confirms the necessity of each core component. Our work establishes A3M as a powerful and flexible framework for learning in complex auction environments.",
+      "authors": [
+        "Junhan Li",
+        "Yuxin Zhang",
+        "Haoran Wang",
+        "Minghao Chen"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-27T14:30:43+00:00",
+      "link": "https://arxiv.org/pdf/2606.28943v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sports-rl",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sports-nlp",
+        "query:sports-rl"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Uses RL with opponent modeling and multi-objective reward for strategic bidding, transferable to sports tactics",
+      "llm_evidence_cn": "利用强化学习与对手建模及多目标奖励进行战略出价，可迁移至体育战术",
+      "llm_evidence": "利用强化学习与对手建模及多目标奖励进行战略出价，可迁移至体育战术",
+      "canonical_evidence": "利用强化学习与对手建模及多目标奖励进行战略出价，可迁移至体育战术",
+      "llm_tldr_en": "Proposes A3M framework using adaptive DRL, adversarial reasoning, and multi-objective rewards for auction bidding, which can inspire RL-based sports strategy optimization.",
+      "llm_tldr_cn": "针对重复拍卖中传统方法适应性不足、假设静止对手等问题，提出A3M框架，集成自适应深度强化学习、对抗性推理和多目标奖励，以优化在线策略。实验表明能动态平衡探索与利用，对抗非平稳对手。该方法框架可迁移至体育战术优化中的强化学习应用，提供对手建模与多目标决策参考。",
+      "llm_tldr": "针对重复拍卖中传统方法适应性不足、假设静止对手等问题，提出A3M框架，集成自适应深度强化学习、对抗性推理和多目标奖励，以优化在线策略。实验表明能动态平衡探索与利用，对抗非平稳对手。该方法框架可迁移至体育战术优化中的强化学习应用，提供对手建模与多目标决策参考。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.00524v1",
+      "source": "arxiv",
+      "title": "Geometric Shape Optimization for Limbless Locomotion",
+      "abstract": "The simulation of locomotion in limbless, deformable organisms remains a challenging problem across computer graphics, soft robotics, and computational modeling. In this work, we present a novel differential-geometric framework for modeling the motion of slender soft bodies, such as snakes. The body is represented as a three-dimensional parametric curve using a Fourier-Chebyshev polynomial basis. Motion is computed by solving an optimization problem that determines the interaction between the curve and its environment by estimating polynomial coefficients. To ensure physically plausible and non-self-intersecting behavior, bending and torsional energy terms are incorporated into the formulation. The resulting curve is then used to drive a surface representation via interpolation, enabling realistic visualization analogous to skinning techniques. We evaluate the proposed approach across a range of complex scenarios and parameter settings to demonstrate its robustness and versatility. Comparative analysis with state-of-the-art methods indicates that our approach achieves improved simulation quality and generates more physically realistic motion.",
+      "authors": [
+        "Utpal Khanal",
+        "Avirup Mandal"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-07-01T07:12:31+00:00",
+      "link": "https://arxiv.org/pdf/2607.00524v1",
+      "tags": [
+        "keyword:sb",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Differential-geometric optimization for limbless locomotion simulation, transferable to human movement simulation",
+      "llm_evidence_cn": "微分几何优化方法模拟无肢运动，可迁移至人体运动仿真",
+      "llm_evidence": "微分几何优化方法模拟无肢运动，可迁移至人体运动仿真",
+      "canonical_evidence": "微分几何优化方法模拟无肢运动，可迁移至人体运动仿真",
+      "llm_tldr_en": "Presents a shape optimization framework using Fourier-Chebyshev basis for simulating soft body locomotion, which could be adapted for human biomechanical simulation.",
+      "llm_tldr_cn": "针对细长软体运动仿真难题，提出基于傅里叶-切比雪夫多项式的微分几何框架，通过优化谐波系数确定环境交互，加入弯曲与扭转能量确保物理合理性。该方法虽面向无肢运动，但其形状优化思想可迁移至人体运动仿真与生物力学优化计算。",
+      "llm_tldr": "针对细长软体运动仿真难题，提出基于傅里叶-切比雪夫多项式的微分几何框架，通过优化谐波系数确定环境交互，加入弯曲与扭转能量确保物理合理性。该方法虽面向无肢运动，但其形状优化思想可迁移至人体运动仿真与生物力学优化计算。",
+      "llm_tags": [
+        "query:sb"
+      ],
+      "matched_query_tag": "query:sb",
+      "matched_query_text": "Optimization algorithms for simulating human movement",
+      "matched_requirement_id": "req-49",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2606.30476v1",
+      "source": "arxiv",
+      "title": "PS-MOT: Cultivating Instance Awareness from Point Seeds for Multi-Object Tracking",
+      "abstract": "We introduce Point-supervised Multi-Object Tracking (PS-MOT) as a cost-effective alternative to traditional bounding box supervision, shifting the focus from spatial fitting to topological center-driven representation. However, PS-MOT faces challenges, e.g., spatial ambiguity and identity drift due to the lack of explicit geometric structure and scale constraints. To address these, we propose PS-Track, a hierarchical pipeline transitioning from points to instances across data, model, and loss levels. At the data level, we introduce Temporal-Feedback Prompting (TFP) to evolve points into temporally consistent pseudo-labels using negative spatial cues and motion priors. At the model level, we design the Point-Excited Wavelet Attention (PEWA) module, which leverages semantic correlations to activate high-frequency components, ``hallucinating'' object boundaries. At the loss level, Uncertainty-Guided Gaussian Learning (UGL) models pseudo-labels as probabilistic distributions, dynamically calibrating supervision intensity. Experiments on DanceTrack, EmboTrack, SportsMOT, and JRDB demonstrate that PS-Track provides a feasible and effective point-supervised alternative across diverse tracking scenarios, establishing a new state-of-the-art for point-supervised tracking. The source code is available at https://github.com/xifen523/PS-MOT.",
+      "authors": [
+        "Kai Luo",
+        "Fei Teng",
+        "Mengfei Duan",
+        "Wanjun Jia",
+        "Xu Wang",
+        "Hao Shi",
+        "Kunyu Peng",
+        "Zhiyong Li",
+        "Kailun Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.RO",
+        "eess.IV"
+      ],
+      "published": "2026-06-29T15:36:00+00:00",
+      "link": "https://arxiv.org/pdf/2606.30476v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "point-supervised multi-object tracking method reduces annotation cost for tracking applications",
+      "llm_evidence_cn": "点监督多目标跟踪方法可降低运动跟踪的标注成本",
+      "llm_evidence": "点监督多目标跟踪方法可降低运动跟踪的标注成本",
+      "canonical_evidence": "点监督多目标跟踪方法可降低运动跟踪的标注成本",
+      "llm_tldr_en": "PS-Track introduces a point-supervised multi-object tracking framework that achieves competitive performance without bounding box labels, useful for sports player tracking.",
+      "llm_tldr_cn": "该文针对多目标跟踪中密集边界框标注成本高的问题，提出PS-Track框架，仅用点标注即可训练，结合时间反馈提示伪标签进化、点激励小波注意力机制和拓扑感知损失，在多个跟踪数据集上达到与全监督方法可比的效果，为体育场景中运动员跟踪降低了标注负担，具有应用潜力。",
+      "llm_tldr": "该文针对多目标跟踪中密集边界框标注成本高的问题，提出PS-Track框架，仅用点标注即可训练，结合时间反馈提示伪标签进化、点激励小波注意力机制和拓扑感知损失，在多个跟踪数据集上达到与全监督方法可比的效果，为体育场景中运动员跟踪降低了标注负担，具有应用潜力。",
+      "llm_tags": [
+        "query:cv-sports"
+      ],
+      "matched_query_tag": "query:cv-sports",
+      "matched_query_text": "Tracking players and objects in sports",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.01525v1",
+      "source": "arxiv",
+      "title": "Mean Field Reinforcement Learning",
+      "abstract": "This monograph provides an introduction to mean field reinforcement learning through the lens of Markov decision processes arising from large-population stochastic control with mean field interactions and common noise. Starting from the connection between multi-agent reinforcement learning and mean field control, it develops the probabilistic, mathematical, and control-theoretic framework needed to formulate representative-agent learning problems, analyze their relationship with finite-population systems, and study both general and linear-quadratic models. The presentation includes dynamic programming principles, propagation-of-chaos limits, and theoretical analyses of tabular Q-learning and policy-gradient methods. It also discusses numerical implementations, including tabular schemes and deep reinforcement learning methods such as deep deterministic policy gradient. The goal is to give readers a coherent bridge between mean field control theory and reinforcement learning methodology, emphasizing the mathematical structure of the problems and the design of tractable learning approaches for large stochastic populations.",
+      "authors": [
+        "René Carmona",
+        "Mathieu Laurière"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "cs.MA",
+        "math.PR"
+      ],
+      "published": "2026-07-01T22:44:24+00:00",
+      "link": "https://arxiv.org/pdf/2607.01525v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sb",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:sb",
+        "query:sport-sci",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Comprehensive introduction to mean field RL for large-population multi-agent systems, applicable to sports strategy simulation.",
+      "llm_evidence_cn": "平均场强化学习的全面介绍，适用于体育策略仿真等多智能体场景。",
+      "llm_evidence": "平均场强化学习的全面介绍，适用于体育策略仿真等多智能体场景。",
+      "canonical_evidence": "平均场强化学习的全面介绍，适用于体育策略仿真等多智能体场景。",
+      "llm_tldr_en": "This monograph develops mean field RL theory and algorithms for large-population games, which can be adapted to simulate and optimize strategies in team sports.",
+      "llm_tldr_cn": "该专著从多智能体强化学习与平均场控制的联系出发，系统介绍了平均场强化学习的概率、数学和控制论框架，涵盖动态规划原理、混沌传播极限以及表格Q学习和策略梯度方法的理论分析。所提方法可扩展至体育中的策略优化和对手建模，为大规模多智能体体育仿真提供基础。",
+      "llm_tldr": "该专著从多智能体强化学习与平均场控制的联系出发，系统介绍了平均场强化学习的概率、数学和控制论框架，涵盖动态规划原理、混沌传播极限以及表格Q学习和策略梯度方法的理论分析。所提方法可扩展至体育中的策略优化和对手建模，为大规模多智能体体育仿真提供基础。",
+      "llm_tags": [
+        "query:sports-rl:composite"
+      ],
+      "matched_query_tag": "query:sports-rl:composite",
+      "matched_query_text": "Papers central to 强化学习在体育策略与决策中的应用（战术优化、博弈仿真、对手建模）, especially work that connects or combines: applying reinforcement learning to sports strategy; optimizing sports tactics using reinforcement learning; opponent modeling with reinforcement learning in sports; multi-agent simulation for sports strategy; policy optimization in sports reinforcement learning; artificial intelligence in competitive sports with reinforcement learning; How to apply reinforcement learning for sports tactical optimization?; Simulating opponent behavior with reinforcement learning in sports; Decision making systems for sports strategy using reinforcement learning.",
+      "matched_requirement_id": "req-composite-sports-rl",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.00164v1",
+      "source": "arxiv",
+      "title": "Verifiable Rewards for Calibrated Probabilistic Forecasting",
+      "abstract": "Reinforcement learning with verifiable rewards can in principle train calibrated probabilistic forecasters, since a proper scoring rule such as the Brier score is computed from outcomes alone and is minimized in expectation by the true probability. In practice it degrades calibration, and existing remedies address epistemic uncertainty, where a model's confidence accompanies a verifiably correct or incorrect answer. We study aleatoric forecasting, where the forecast itself is the output and the label is one stochastic outcome, taking NFL in-game win probability as a testbed with the betting market as a reference. Rewarding the realized per-play outcome fails, because the single outcome is a noisy target and the policy gradient corrupts the chain of thought. We introduce a verifiable, label-free reward, a state-conditioned empirical win rate estimated from past outcomes, that removes the label noise, and we keep the gradient off the reasoning, by direct prediction or a gradient mask, so it cannot be corrupted. Trained with this reward alone, without human labels or supervised fine-tuning, a 7B model reaches the calibration of the betting market by direct prediction and is better calibrated than a zero-shot frontier model. That frontier model and a tabular estimator reach the same Brier score as this model, identifying the market's small remaining edge as live in-game information beyond their shared inputs. Masking the gradient, rather than dropping the chain of thought, preserves reasoning from which the forecast follows, which ordinary chain-of-thought training corrupts.",
+      "authors": [
+        "Sadanand Singh",
+        "Allam Reddy",
+        "Manan Chopra"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-30T20:42:45+00:00",
+      "link": "https://arxiv.org/pdf/2607.00164v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:sb",
+        "query:sport-sci",
+        "query:sport-tsa",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "uses reinforcement learning for calibrated probabilistic forecasting of NFL in-game win probability, a sports analytics application",
+      "llm_evidence_cn": "使用强化学习对NFL比赛胜率进行校准概率预测，属于体育分析应用",
+      "llm_evidence": "使用强化学习对NFL比赛胜率进行校准概率预测，属于体育分析应用",
+      "canonical_evidence": "使用强化学习对NFL比赛胜率进行校准概率预测，属于体育分析应用",
+      "llm_tldr_en": "This paper tackles calibration degradation in RL-based probabilistic forecasting by studying aleatoric uncertainty, using NFL win probability as a testbed, and proposes methods to improve forecast calibration in sports analytics.",
+      "llm_tldr_cn": "该论文研究使用可验证奖励的强化学习训练校准概率预测器，以NFL比赛胜率预测为应用场景。针对单次结果噪声导致的策略梯度破坏校准问题，提出改进方法，提升了体育预测的校准度，为体育分析中的概率预测提供了新思路。",
+      "llm_tldr": "该论文研究使用可验证奖励的强化学习训练校准概率预测器，以NFL比赛胜率预测为应用场景。针对单次结果噪声导致的策略梯度破坏校准问题，提出改进方法，提升了体育预测的校准度，为体育分析中的概率预测提供了新思路。",
+      "llm_tags": [
+        "query:ml-sports"
+      ],
+      "matched_query_tag": "query:ml-sports",
+      "matched_query_text": "machine learning applications in sports",
+      "matched_requirement_id": "req-21",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.01657v1",
+      "source": "arxiv",
+      "title": "Domain Generalization via Text-Anchored Information Bottleneck",
+      "abstract": "Visual recognition models often fail when deployed in new environments. Domain Generalization (DG) addresses this by learning representations that remain invariant to environment-specific variations. Recent approaches increasingly rely on large vision-language models, assuming that preserving their expressive visual representations improves robustness. However, we show that such visual expressiveness can instead propagate spurious cues that tie representations to the training environments, hindering invariant learning. We therefore discard visual guidance and instead treat the language embedding space as the primary source of domain invariance, naturally acting as an information bottleneck that preserves core semantics while suppressing domain-specific variations. Extensive experiments across diverse backbones exhibit state-of-the-art performance and further analyze what makes guidance effective for robust generalization. These findings shift the focus of DG from improving representations to designing supervision that enforces invariance.",
+      "authors": [
+        "Eunyi Lyou",
+        "Yunjeong Choi",
+        "Junho Lee",
+        "Joonseok Lee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-02T03:31:34+00:00",
+      "link": "https://arxiv.org/pdf/2607.01657v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sports-nlp",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Domain generalization method via text-anchored information bottleneck, applicable to sports visual tasks",
+      "llm_evidence_cn": "通过文本锚定信息瓶颈的领域泛化方法，可用于体育视觉任务",
+      "llm_evidence": "通过文本锚定信息瓶颈的领域泛化方法，可用于体育视觉任务",
+      "canonical_evidence": "通过文本锚定信息瓶颈的领域泛化方法，可用于体育视觉任务",
+      "llm_tldr_en": "The paper presents a domain generalization method that uses language embeddings as an information bottleneck to learn invariant visual representations, improving robustness across environments for tasks like sports video analysis.",
+      "llm_tldr_cn": "该论文针对视觉识别模型在新环境中的泛化问题，提出利用语言嵌入空间作为信息瓶颈来学习领域不变表征的方法。通过丢弃视觉引导，模型能更好地抑制环境特定线索，在多个基准上验证了有效性，可望用于提升体育动作识别等任务在不同拍摄条件下的鲁棒性。",
+      "llm_tldr": "该论文针对视觉识别模型在新环境中的泛化问题，提出利用语言嵌入空间作为信息瓶颈来学习领域不变表征的方法。通过丢弃视觉引导，模型能更好地抑制环境特定线索，在多个基准上验证了有效性，可望用于提升体育动作识别等任务在不同拍摄条件下的鲁棒性。",
+      "llm_tags": [
+        "query:cdm-sports"
+      ],
+      "matched_query_tag": "query:cdm-sports",
+      "matched_query_text": "domain adaptation techniques in sports",
+      "matched_requirement_id": "req-71",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2607.01498v1",
+      "source": "arxiv",
+      "title": "Towards Learning Representations of Policies in Two-Player Zero-Sum Imperfect-Information Games",
+      "abstract": "We investigate the problem of learning useful policy representations (embeddings) in two-player zero-sum imperfect-information games. We make three contributions: First, we introduce methods of creating datasets of policies for a given game. Second, we propose methods to learn policy representations. Third, we introduce downstream tasks to evaluate the effectiveness of such representations.   We evaluate each dataset method, embedding method, and downstream task on Kuhn and Leduc Poker. Although our methods are very basic, we demonstrate that useful behavioral representations are present in the learned embeddings. To our knowledge, this work is among the first to systematically compare self-supervised learning techniques for learning policy representations in games. Our code is available at https://github.com/VitamintK/ssl-project for others to extend.",
+      "authors": [
+        "Kevin Wang",
+        "Kevin Yang",
+        "Arjun Prakash",
+        "Amy Greenwald"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.GT"
+      ],
+      "published": "2026-07-01T21:56:51+00:00",
+      "link": "https://arxiv.org/pdf/2607.01498v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sport-sci",
+        "keyword:sport-tsa",
+        "keyword:sports-nlp",
+        "keyword:sports-rl",
+        "keyword:sports-sci",
+        "query:ML-Sports",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sports-nlp",
+        "query:sports-rl",
+        "query:sports-sci"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "learning policy representations in two-player zero-sum games, relevant to sports strategy and opponent modeling",
+      "llm_evidence_cn": "学习双人零和博弈中的策略表示，适用于体育策略与对手建模",
+      "llm_evidence": "学习双人零和博弈中的策略表示，适用于体育策略与对手建模",
+      "canonical_evidence": "学习双人零和博弈中的策略表示，适用于体育策略与对手建模",
+      "llm_tldr_en": "Introduces methods to learn embeddings of policies in two-player zero-sum imperfect-information games, demonstrating that useful behavioral representations can be learned and evaluated with downstream tasks on Kuhn and Leduc Poker.",
+      "llm_tldr_cn": "针对双人零和不完美信息博弈中策略表示学习问题，提出策略嵌入学习方法，并在Kuhn和Leduc扑克上通过下游任务评估，证明学到的策略嵌入含有有意义的行为表征，为游戏策略分析和迁移提供基础。",
+      "llm_tldr": "针对双人零和不完美信息博弈中策略表示学习问题，提出策略嵌入学习方法，并在Kuhn和Leduc扑克上通过下游任务评估，证明学到的策略嵌入含有有意义的行为表征，为游戏策略分析和迁移提供基础。",
+      "llm_tags": [
+        "query:sports-rl"
+      ],
+      "matched_query_tag": "query:sports-rl",
+      "matched_query_text": "applying reinforcement learning to sports strategy",
+      "matched_requirement_id": "req-51",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2607.02148v1",
+      "source": "arxiv",
+      "title": "SAMoR: Motion Modelling for Articulated Objects of Any Skeleton and Topology",
+      "abstract": "Modeling motion for articulated objects of arbitrary skeleton topology remains difficult: existing motion generators target a fixed human skeleton, and prior adaptations either fail to share a vocabulary across rigs or discard motion detail through global pooling. Our key observation is that while joint-level motion does not correspond cleanly across species, motion of functional joint groups does: a human arm, a wolf foreleg, and a bird wing share motion structure despite differing joint counts and connectivity, a correspondence that joint names (e.g., \"forearm\", \"wing_L1\") partially expose even when topology does not. We introduce SAMoR (Skeleton-Aware Motion Representation for Articulated Objects), a cross-topology motion representation that encodes each motion segment as a small fixed number ($K=8$) of part tokens shared across arbitrary skeletons. A graph-transformer encoder consumes per-joint motion features, kinematic graph structure, and joint-name embeddings, then compresses them into part-level tokens via cross-attention pooling and residual vector quantization, yielding a discrete motion codebook shared across rigs. To keep the part queries from collapsing into redundant global representations, we introduce a topology-agnostic attention supervision loss, with joint-name dropout to reduce over-reliance on text labels. We curate a heterogeneous corpus from HumanML3D, Truebones Zoo, and animated Objaverse-XL assets, and evaluate SAMoR on held-out characters with unseen skeletons. It supports accurate reconstruction and cross-topology transfer, and enables text-conditioned generation and part-wise editing via a MaskGIT token generator. SAMoR reaches $2.75 \\times 10^{-2}$ normalized MPJPE on cross-topology reconstruction, $5.8\\times$ below the strongest adapted variable-$J$ tokenizer baseline, while remaining competitive with fixed-skeleton specialists on HumanML3D.",
+      "authors": [
+        "Yuhao Zhang",
+        "Gerard Pons-Moll",
+        "Tolga Birdal"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-02T13:24:47+00:00",
+      "link": "https://arxiv.org/pdf/2607.02148v1",
+      "tags": [
+        "keyword:ML-Sports",
+        "keyword:cdm-sports",
+        "keyword:cv-sports",
+        "keyword:sb",
+        "keyword:sport-tsa",
+        "keyword:sports-sci",
+        "query:cdm-sports",
+        "query:cv-sports",
+        "query:sb",
+        "query:sport-tsa"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "cross-topology motion representation for articulated objects, applicable to human motion modeling in sports biomechanics",
+      "llm_evidence_cn": "跨拓扑运动表示，可用于人体运动建模，对运动生物力学有应用价值",
+      "llm_evidence": "跨拓扑运动表示，可用于人体运动建模，对运动生物力学有应用价值",
+      "canonical_evidence": "跨拓扑运动表示，可用于人体运动建模，对运动生物力学有应用价值",
+      "llm_tldr_en": "SAMoR introduces a cross-topology motion representation that captures functional joint group motion across species, enabling motion modeling for articulated objects of any skeleton, which can advance biomechanical simulations of sports movements.",
+      "llm_tldr_cn": "SAMoR提出了一种跨拓扑运动表示，通过功能关节组捕捉运动结构，适用于任意骨架的关节对象运动建模。该方法解决了关节级运动在不同拓扑间难以对齐的问题，可应用于运动生物力学中对不同体型运动员动作的仿真与分析。",
+      "llm_tldr": "SAMoR提出了一种跨拓扑运动表示，通过功能关节组捕捉运动结构，适用于任意骨架的关节对象运动建模。该方法解决了关节级运动在不同拓扑间难以对齐的问题，可应用于运动生物力学中对不同体型运动员动作的仿真与分析。",
+      "llm_tags": [
+        "query:sb:composite"
+      ],
+      "matched_query_tag": "query:sb:composite",
+      "matched_query_text": "Papers central to 运动生物力学与计算建模（运动学、动力学、肌骨建模、仿真优化）, especially work that connects or combines: biomechanical analysis of sports movements; kinematic analysis of human motion; musculoskeletal model for movement simulation; optimization of biomechanical simulations; motion capture data for biomechanical analysis; dynamic simulation of musculoskeletal system; What are the latest methods for musculoskeletal modeling in sports biomechanics?; How to perform inverse dynamics analysis for gait analysis?; Optimization algorithms for simulating human movement; Kinematic and kinetic analysis of athletic performance.",
+      "matched_requirement_id": "req-composite-sb",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

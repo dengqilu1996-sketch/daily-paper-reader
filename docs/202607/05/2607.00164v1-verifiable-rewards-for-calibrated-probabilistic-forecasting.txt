@@ -1,0 +1,359 @@
+Title: Verifiable Rewards for Calibrated Probabilistic Forecasting
+
+URL Source: https://arxiv.org/pdf/2607.00164v1
+
+Published Time: Thu, 02 Jul 2026 00:08:46 GMT
+
+Number of Pages: 14
+
+Markdown Content:
+# Verifiable Rewards for Calibrated Probabilistic Forecasting 
+
+## Sadanand Singh Allam Reddy Manan Chopra 
+
+Cascade Research 
+
+Abstract 
+
+Reinforcement learning with verifiable rewards can in principle train calibrated probabilistic forecasters, since a proper scoring rule such as the Brier score is computed from outcomes alone and is minimized in expectation by the true probability. In practice it degrades calibration, and existing remedies address epistemic uncertainty, where a model’s confidence accompanies a verifiably correct or incorrect answer. We study aleatoric forecasting, where the forecast itself is the output and the label is one stochastic outcome, taking NFL in-game win probability as a testbed with the betting market as a reference. Rewarding the realized per-play outcome fails, because the single outcome is a noisy target and the policy gradient corrupts the chain of thought. We introduce a verifiable, label-free reward, a state-conditioned empirical win rate estimated from past outcomes, that removes the label noise, and we keep the gradient off the reasoning, by direct prediction or a gradient mask, so it cannot be corrupted. Trained with this reward alone, without human labels or supervised fine-tuning, a 7B model reaches the calibration of the betting market by direct prediction and is better calibrated than a zero-shot frontier model. That frontier model and a tabular estimator reach the same Brier score as this model, identifying the market’s small remaining edge as live in-game information beyond their shared inputs. Masking the gradient, rather than dropping the chain of thought, preserves reasoning from which the forecast follows, which ordinary chain-of-thought training corrupts. 
+
+# 1 Introduction 
+
+Reinforcement learning with verifiable rewards (RLVR) post-trains a language model against a reward computed from observed outcomes [ 1 , 2]. Calibrated probabilistic prediction is a natural target for it: a proper scoring rule such as the Brier score is computable from outcomes alone and is minimized in expectation by the true prob-ability [ 3, 4 ], so optimizing it should produce forecasts whose probabilities match observed frequencies. In practice, reinforcement learning does the opposite, degrading calibration and leaving models overconfident, whether the reward is human feedback [ 5] or a verifiable correctness signal [ 6, 7]. The work that corrects this ad-dresses epistemic uncertainty, where the model answers a question that has a correct answer and the goal is a calibrated confidence that the answer is right [6, 8]. A second kind of uncertainty is left untreated. It is aleatoric: the output is itself a probability, and the label is a single realized outcome of a stochastic event, with no answer that can be called correct. NFL in-game win probability is a clear instance. At any point in a game the forecaster states the probability that the team in possession wins; the realized result is one Bernoulli draw from a rate that no model observes directly; and the betting market provides a strong, independent estimate of that rate. Whether RLVR can train a calibrated forecaster in this regime, and what makes it fail, has not been studied. Reinforcement learning against the per-play Brier score decalibrates such a forecaster through two mecha-nisms. The label for a play is a single realized outcome, one draw from the rate being estimated, so a reward scored against it has high variance and pulls the pol-icy toward whichever result occurred. When the model reasons in language before answering, a second prob-lem appears: optimizing the final probability rewrites the reasoning into incoherent arguments. We remove the variance by rewarding a state-conditioned empiri-cal win rate estimated from past outcomes, a verifiable and label-free target, and we remove the corruption by keeping the policy gradient off the reasoning, through direct prediction or a gradient mask over the answer tokens (fig. 1). We train Qwen2.5-7B-Instruct without supervised fine-tuning and evaluate on held-out seasons against the betting market, a frontier model, and the empirical-rate table. Trained by direct prediction, the model matches the market’s calibration on held-out games, at an expected calibration error (ECE) of 0.029 against the market’s 
+
+0.027 , and it is better calibrated than a zero-shot frontier model, with no human labels and no access to the market. On the Brier score it matches that frontier model and a tabular estimator, the limit that the public game state allows; the market’s small remaining edge is the live in-game information none of them can see. Masking the gradient instead of discarding the reasoning keeps the chain of thought faithful, lowering the rate at which the stated probability does not follow from it from 22 .4% to 
+
+4.4% , at a small cost in sharpness. 
+
+Contributions. 
+
+1. Our reward, a state-conditioned empirical win rate estimated from realized outcomes, is verifiable and label-free, and replaces the single realized outcome, whose variance decalibrates per-play Brier training; 1
+
+> arXiv:2607.00164v1 [cs.LG] 30 Jun 2026
+
+Game state x
+
+score, time, spread 
+
+# Naive 
+
+reward the outcome, train the whole completion 
+
+chain of thought P = 88% 
+
+single outcome 
+
+y ∈ {0, 1}
+
+one noisy Bernoulli draw 
+
+r = 1 − (p − y)2
+
+policy gradient over the whole completion 
+
+reasoning is corrupted 
+
+overconfident 
+
+# Ours 
+
+reward the rate, train the answer span chain of thought P = 61% 
+
+empirical rate ˆp(x)
+
+win rate over similar states 
+
+r = 1 − (p − ˆp)2
+
+gradient on the answer span only 
+
+reasoning is preserved 
+
+calibrated to the market    
+
+> Figure 1: The same game state, two ways to train a 7B model against outcomes. Rewarding the single realized outcome and updating the whole completion drives the chain of thought to extreme, overconfident numbers. Rewarding a state-conditioned empirical win rate ˆp(x)and confining the gradient to the answer span leaves the reasoning intact and calibrates the forecaster to the betting market, using no human labels and no supervised fine-tuning.
+
+on held-out games it scores within 0.007 Brier of the betting market (section 4.1). 2. Reinforcement learning decalibrates the forecaster through the gradient on the chain of thought, not through the reward: with the rate target, training the full completion drives held-out ECE from 0.19 to 
+
+0.30 , whereas confining the gradient to the answer, by direct prediction or an answer-span mask, holds it near the market’s (section 4.2). 3. With the chain of thought dropped, the model reaches the information ceiling of the public game state: it matches the market’s calibration ( 0.029 against 0.027 
+
+ECE), is better calibrated than a zero-shot frontier model, and reaches the same Brier score as that fron-tier model and a tabular rate estimator, leaving the market’s edge as live in-game information (section 6). Code, the prepared data, the per-play predictions, and the trained adapters are publicly available. 1 
+
+> 1Code: https://github.com/jasper-research/
+
+# 2 Related work 
+
+Reinforcement learning improves accuracy but degrades calibration, leaving models overconfident. Leng et al. [5] attribute this, under human feedback, to a reward model that prefers confident answers. Ma et al. [6] identify a conflict between the accuracy and calibration gradients under verifiable rewards, and decouple the two with a masked-gradient update. Bereket and Leskovec [7] attribute the overconfidence on binary stochastic outcomes to the standard-deviation normalization in the group-relative advantage, which they remove. These analyses take the realized outcome as the target. With a denoised conditional-rate target we find instead that the normalization is necessary, and that the overconfidence is driven by the gradient on the reasoning rather than by the advantage. A second class of methods rewards a proper scoring      
+
+> nfl-rlvr-release .Data and trained adapters: https: //doi.org/10.5281/zenodo.21082572 .
+
+2rule on a verbalized confidence. Damani et al. [8] add a Brier-score term to a correctness reward, Bani-Harouni et al. [9] use the logarithmic score, and Band et al. [10] reward a downstream reader’s accuracy. These score a confidence in an answer that is right or wrong. We score the forecast itself against a state-conditioned empirical rate, where the label is a single stochastic outcome and correctness is undefined. Language models are also trained and evaluated as event forecasters. Halawi et al. [11] approach human-crowd accuracy through retrieval and aggregation, and Pratt et al. [12] find that prompting strategies do not yield calibrated forecasts. Turtel et al. [13] reward real-ized outcomes on prediction-market and news questions, and Turtel et al. [14] rank self-generated forecasts against outcomes. Both improve calibration while keeping the chain of thought and rewarding the outcome, whereas we reward the conditional rate and mask the gradient off the reasoning. Paleka et al. [15] and Karger et al. [16] document temporal leakage in such evaluations, which our season-disjoint test on resolved games avoids. Our training is a choice of credit assignment within group-relative optimization [ 1]. DAPO [ 17 ] and GPG [18 ] remove the KL penalty and reference model, as we do. Zhang et al. [19] analyze the instability of the KL estimator when the gradient concentrates on a few tokens. Wang et al. [20] restrict updates to high-entropy tokens, and Wang et al. [21] , Tan et al. [22] treat reasoning and answer tokens differently. Our answer-span mask restricts the gradient by token role. Win-probability estimation for the NFL ranges from random forests [ 23 ] to the boosted models of the nflverse pipeline [ 24 , 25 ], which we use as static baselines. Brill et al. [26] show that play-by-play data bounds the accu-racy of any such model, consistent with our reading of the market’s edge as structural. Polson and Stern [27] treat the point spread as an implied volatility. The betting market is known to predict outcomes more accurately than statistical models or individual bettors [ 28 – 31 ]. We convert market odds to probabilities following Štrumbelj [32] and use them only as a reference. 
+
+# 3 Setting and background 
+
+We forecast in-game win probability in American foot-ball. The state at a given play comprises the score margin, the quarter and time remaining, down and dis-tance, field position, the team in possession, and the public pregame point spread. The forecaster returns a single probability that the team in possession wins. We draw states from regular-season National Football League games and partition them by season, training on 2015 through 2022, selecting on 2023, and testing on 2024, so that no game appears in more than one split. The only market signal in the prompt is the pregame point spread, which is fixed before kickoff and public; the live win probability the market quotes during the game is withheld from both the model and the reward, and enters only at evaluation. The output is a probability, and the label is a single realized outcome of a stochastic event. This separates the task from the calibration problems usually studied in reinforcement learning, where the model answers a question that has a correct answer and the quantity of interest is its confidence that the answer is right [ 6, 8]. That uncertainty is epistemic, and a stronger model can in principle reduce it. The uncertainty here is aleatoric: the outcome is random given the state, and no forecaster can remove it. The target of calibration is therefore the conditional win rate η(x) = Pr (win | x), not the correctness of an answer. We measure a forecaster by how closely its probabil-ities match observed frequencies. The Brier score, the mean squared error (p − y)2 between a forecast p and an outcome y ∈ { 0, 1} [3 ], is strictly proper: among all functions of the state, its expectation is minimized uniquely by η(x) [4]. It decomposes into reliability, res-olution, and uncertainty [ 33 ]. Reliability is calibration, the agreement between stated probabilities and realized frequencies; resolution is sharpness, the spread of fore-casts across states of differing outcome rate; uncertainty is fixed by the base rate. Because two forecasters can be equally calibrated yet differ in Brier score through resolu-tion alone, we report calibration on its own, through the expected and maximum calibration error and reliability diagrams [ 34 – 36 ]. We compare forecasters with a paired bootstrap over plays [ 37 ]. Calibration error also tests whether training found η rather than memorizing the training outcomes, since a model that memorized them would be miscalibrated on held-out games. We take the betting market as the ceiling: it quotes a live win probability for each state and predicts outcomes more accurately than statistical models built from game features [ 28 , 29 ]. We convert its odds to a probability [32 ]. The gap between a forecaster and the market then measures the live in-game information that the public state lacks. 
+
+# 4 Method 
+
+We post-train the forecaster with group-relative rein-forcement learning, computing the reward from a state-conditioned estimate of the win rate rather than from the realized outcome, and restricting the policy gradient to the tokens that carry the answer rather than to the whole completion. 3Reward target Brier ECE Realized outcome y ∈ { 0, 1} 0.166 0.10 Blend 12 y + 12 ˆp 0.181 0.121 Empirical rate ˆp (ours) 0.154 0.050      
+
+> Table 1: Reward-target ablation under identical training (direct prediction, section 4.2; in-training held-out, n=128 ). The realized-outcome reward is higher-variance and its calibration drifts; blending the outcome back in is worse on both axes; the conditional rate ˆpis the most accurate and the most stable.
+
+## 4.1 Conditional-rate reward 
+
+The ideal reward would score each forecast against the true rate η(x), but η(x) is never observed. The only label for a play is its realized outcome y, a single draw from that rate. A reward built on the draw, r = 1 − (p − y)2,is unbiased but noisy, since two identical favorites, one that wins and one that loses, produce equal and opposite gradients. The noise does not average out with more plays at a fixed state, because it is intrinsic to a binary label, and in the small groups that GRPO compares [ 1 ]it overwhelms the per-state signal. We score each forecast against an estimate of the rate instead. We bin the training plays by score margin, time remaining, and pregame point spread, and set each bin to the fraction of its plays the possession team won. Bins with few plays are shrunk toward the overall rate by an empirical-Bayes prior, so a sparse bin is not governed by its few plays [ 38 ]. The estimate ˆp(x) uses only realized outcomes and the public pregame line, never the live market probability, which we hold out for evaluation. The reward is 
+
+r = 1 − (p − ˆp(x))2. (1) The target uses no human labels. It comes from the same outcomes a binary reward would use, averaged over states to yield a low-variance estimate of η(x). On held-out 2024 games it scores a Brier of 0.143 , close to the market’s 0.136 , and it supplies a dense reward at every state. We call ˆp the teacher, because a model trained on eq. (1) can be no better calibrated than ˆp
+
+itself. An ablation under identical training isolates the target as the cause (table 1). Rewarding the realized outcome reaches a Brier of 0.166 , but its calibration error drifts to 0.10 as the policy fits individual outcomes. An equal blend of outcome and rate is worse on both, 0.181 and 
+
+0.121 , because it reintroduces the outcome’s noise. The rate alone is best on both, at 0.154 and 0.050 .
+
+## 4.2 Decoupling reasoning from the gra-dient 
+
+The rate target alone is not enough, because a chain of thought before the answer lets the same reward make calibration worse. Applied to the full completion, the reward of eq. (1) drives the held-out Brier score from the base model’s 0.25 to 0.34 and the calibration error from 0.19 to 0.30 (fig. 2). The policy gradient passes through the reasoning tokens, so raising the reward on the final probability rewrites the reasoning before it into pseudo-quantitative arguments for ever more extreme numbers. This is the accuracy-calibration gradient con-flict reported for verifiable-reward training [6]. Two changes keep the reward and stop the gradient from reaching the reasoning. The first, the direct model, drops the chain of thought and emits the probability directly. With no reasoning tokens to corrupt, the reward calibrates the model, and the held-out Brier score reaches the teacher’s level within fifty steps and stays there. The second, the masked model, keeps the chain of thought but masks the gradient. We narrow the completion mask, which selects the tokens that receive advantage, to the final “Probability: NN%” span, so the reasoning is still sampled and still conditions the answer but gets no gradient. Masking the gradient needs the KL penalty turned off, because on the few tokens of the answer span the gradient is concentrated enough to make the penalty’s estimator overflow and the loss diverge, and the masked reasoning no longer needs the reference-model anchor. With the mask in place, the masked model calibrates as well as the direct model. The masked model is slightly less accurate than the direct model. On held-out 2024 games the direct model reaches a Brier of 0.144 and the masked model 0.152 ,a gap of 0.008 by a paired bootstrap over plays (95% CI [0 .006 , 0.010] ). The gap is small, and far below the base-to-teacher gap that the reward closes. Both trained models trail the market on Brier, but the shortfall is in resolution, not calibration: the direct model’s calibration error of 0.029 matches the market’s 0.027 , and its Brier is higher only because the static prompt cannot see the live information the market uses to separate states more sharply (section 6). The masked model keeps its reasoning coherent. A blinded judge read each completion and decided whether the stated probability follows from the reasoning, and the rate of inconsistent completions falls from 22 .4% 
+
+for the base model to 4.4% after masked training. Full-completion reinforcement learning leaves the base rate unchanged, so the gain comes from the masked objective and not from reinforcement learning in general, and a control that applies the masked prompt without training accounts for only part of it. The base model writes arith-metic that does not sum and then reports an unrelated number, or rates a clear favorite below an even chance, 40 50 100 150 200 250 
+
+> training step
+> 0.15
+> 0.20
+> 0.25
+> 0.30
+> 0.35
+> Brier (held-out,  n = 128 )
+
+(a)      
+
+> 050 100 150 200 250
+> training step
+> 0.10
+> 0.15
+> 0.20
+> 0.25
+> 0.30
+> ECE (held-out,  n = 128 )
+
+(b)   
+
+> Coupled CoT-RLVR Masked-CoT RLVR (ours) Direct RLVR (ours)
+
+Figure 2: Held-out calibration during training (fixed n = 128 ). Applied to the full completion, the reward of eq. (1) drives a chain-of-thought policy away from calibration on both Brier (a) and ECE (b). Removing the reasoning from the gradient, by direct prediction or by masking the gradient to the answer span, recovers calibration to the teacher’s level. The full-completion and masked runs share the same reward, prompt, and base model, and differ only in the gradient mask. 
+
+Paired comparison (Brier) ∆ 95% CI Direct − Masked-CoT -0.0079 ∗ [-0.0101, -0.0057] 
+
+Direct − Market +0.0088 ∗ [0.0068, 0.0107] 
+
+Masked-CoT − Market +0.0167 ∗ [0.0140, 0.0194] 
+
+Direct − DeepSeek-V4 +0.0005 [-0.0019, 0.0028] 
+
+DeepSeek-V4 − Market +0.0083 ∗ [0.0064, 0.0102] 
+
+Table 2: Paired bootstrap over held-out 2024 plays ( n =5185 , 10 4 resamples). Masking the gradient to the answer span costs a small but significant amount of Brier relative to discarding the reasoning; both decoupled models trail the market by a similar, significant margin that section 6 attributes to resolution rather than calibration. 
+
+while the masked model reads the live state and states a probability that follows from it (fig. 4). A probability lookup cannot do this, so the masked model is the better choice when a forecast must be explained, at the cost of slightly lower sharpness than direct prediction. 
+
+# 5 Experimental setup 
+
+States are drawn from National Football League regular-season play-by-play for the 2015 through 2024 seasons, using the public nflfastR data [ 24 , 25 ]. Each play is one training example: the game state of section 3, paired with the realized outcome of whether the team in posses-sion won. We split by season into 40 ,246 training states for 2015 through 2022, 5,241 for selection in 2023, and 
+
+5,185 for test in 2024, so that no game appears in two splits. The empirical-rate target is estimated only from training-season outcomes, and no prompt contains the live market win probability; we verified that it appears in none of the 40 ,246 training prompts. The base model is Qwen2.5-7B-Instruct, a dense non-thinking model, used with no supervised fine-tuning; the only training is reinforcement learning against the reward of eq. (1). We use group-relative policy optimiza-tion [ 1] as implemented in the TRL library, with vLLM rollouts colocated in the training process, on a single NVIDIA L40S (48 GB) GPU. The policy is adapted with LoRA (rank 16 , α = 32 , dropout 0.05 ) on the attention and feed-forward projections, in bfloat16; at this scale one card holds the policy, the reference model, and the rollout engine without quantization. Each step samples eight completions per state at temperature 0.9, uses a token-level loss [ 17 ], and performs a single on-policy update. We disable TRL’s vLLM importance-sampling correction, which otherwise masks the loss under the small per-token mismatch between vLLM and training log-probabilities; with single-pass updates this recovers standard group-relative optimization. Training runs for 
+
+250 steps with a 20 -step warmup, saving every 50 ; we select the checkpoint by Brier score on the full 2023 split and report it on 2024. The two models differ as in section 4.2: the direct model emits the probability in at most 48 tokens, while the masked model emits up to 640 tokens of reasoning and applies the gradient only to the final probability span. Both accumulate gradients over sixteen micro-batches and keep reward scaling on. The direct model uses a learning rate of 2 × 10 −5 and a KL coefficient of 0.01 ;the masked model uses 3 × 10 −5 and a KL coefficient of 50 5 10 15 20 25 30   
+
+> inconsistent reasoning: stated probability does not follow from the CoT (%), 95% CI
+> Base (CoT)
+> Naive CoT-RLVR ( ̂preward)
+> Naive CoT-RLVR (outcome reward)
+> Base (masked prompt)
+> Masked-CoT RLVR (ours)
+> 22.4%
+> 18.8%
+> 14.0%
+> 6.8%
+> 4.4%
+
+Figure 3: Rate at which the stated probability does not follow from the model’s own chain of thought, on a blinded-judge sample of held-out plays (95% bootstrap intervals). Full-completion chain-of-thought reinforcement learning leaves the base rate unchanged; masked training reduces it sharply, beyond what the masked prompt format alone accounts for. 
+
+Example 1. Q4, 2:21 left. WAS trailing by 12, 2nd & 6 at the NYG 8-yard line. Pregame line: WAS favored by 7.5. Empirical rate ˆp = 0 .07 ; WAS lost. 
+
+Base (CoT) “[ . . . ] Touchdown and Extra Point: 0.8 × 0.95 = 0 .76 or 76%. Touchdown and Two-Point Conversion: 0.8 × 0.4 = 0 .32 or 32%. Total Probability: 0.76 + 0 .32 = 1 .08 , but since we can’t exceed 100%, we cap it at 100%. [ . . . ] approximately 32%.” 
+
+0.32 
+
+Masked-CoT (ours) “[ . . . ] a 12-point deficit with only 2 minutes and 21 seconds left [ . . . ] makes a comeback extremely challenging. Probability: 8%.” 
+
+0.08 
+
+Example 2. Q4, 7:57 left. CHI leading by 3, 3rd & 6 at the CAR 42-yard line. Pregame line: CHI favored by 3. Empirical rate ˆp = 0 .80 ; CHI won. 
+
+Base (CoT) “[ . . . ] Base Probability (Favored by 3): 60–70%. Adjustment for Poor Performance: −10 to 
+
+−20% . Final Probability: 40–50%.” (a leading, favored team, with the stated value at the bottom of its own adjusted range) 
+
+0.40 
+
+Masked-CoT (ours) “[ . . . ] CHI is in a strong position to maintain their lead, as they are favored and have the ball [ . . . ] ample time to either score a touchdown or at least a field goal. Probability: 85%.” 
+
+0.85 
+
+Figure 4: Reasoning before and after gradient-masked CoT training, on identical game states (blinded-judge sample, 2023). In the base completions the stated probability does not follow from the text: an addition that sums to 108% reports one of its branches, and a leading favorite is rated below an even chance. The masked-CoT model reads the live state and states a probability consistent with it, close to the empirical rate ˆp. Inconsistency of this kind falls from 22.4% of base completions to 4.4% after masked training (fig. 3). 
+
+zero. These values come from a learning-rate, batch-size, and KL sweep reported in section B. We compare against the untrained Qwen2.5-7B-Instruct, prompted with and without a chain of thought; a frontier model, DeepSeek-V4, prompted zero-shot through its API; the empirical-rate teacher ˆp; the nflverse win-probability model and a gradient-boosted model on the standard feature set (section 6); and the betting market, converted from odds to a win probability [ 32 ]and used as a near-ceiling reference. We report the Brier score, the expected and maximum calibration error over ten equal-width bins, accuracy against the realized winner, and the Murphy decomposition. Confidence intervals are nonparametric bootstraps over plays with 
+
+10 4 resamples, and two forecasters are compared on the same plays with a paired bootstrap of the per-play Brier difference. Reliability diagrams use the same ten bins. Checkpoint selection during training uses a fixed random sample of 128 held-out 2023 states, scored greedily at each save point; all reported numbers use the full splits. 
+
+# 6 Results 
+
+Reinforcement learning against the conditional-rate re-ward calibrates the forecaster to the level of the betting 6System Brier ECE MCE Acc. Resolution Qwen2.5-7B zero-shot (direct) 0.2057 [0.2016, 0.2098] 0.0569 0.2539 0.644 0.0388 Qwen2.5-7B zero-shot (CoT) 0.1681 [0.1626, 0.1736] 0.0687 0.1493 0.756 0.0875 Masked-CoT RLVR (ours) 0.1522 [0.1466, 0.1577] 0.0293 0.0684 0.777 0.0986 Direct RLVR (ours) 0.1443 [0.1394, 0.1491] 0.0292 0.0596 0.784 0.1058 DeepSeek-V4 zero-shot 0.1438 [0.1392, 0.1483] 0.0430 0.0716 0.790 0.1078 Empirical rate ˆp 0.1432 [0.1384, 0.1480] 0.0437 0.0993 0.783 0.1083 Betting market 0.1355 [0.1307, 0.1403] 0.0273 0.0824 0.799 0.1148 
+
+Table 3: Held-out 2024 ( n = 5185 ). Brier with 95% bootstrap interval, expected and maximum calibration error, accuracy, and Murphy resolution. The trained models reach the teacher and frontier-model tier, the direct model matches the market on calibration, and both trail the market on Brier through resolution rather than reliability. 0.0 0.5 1.0         
+
+> 0.0
+> 0.5
+> 1.0
+> Brier 0.168
+> ECE 0.069
+> Qwen2.5-7B zero-shot (CoT)
+> 0.0 0.5 1.0
+> 0.0
+> 0.5
+> 1.0
+> Brier 0.144
+> ECE 0.029
+> Direct RLVR (ours)
+> 0.0 0.5 1.0
+> 0.0
+> 0.5
+> 1.0
+> Brier 0.152
+> ECE 0.029
+> Masked-CoT RLVR (ours)
+> 0.0 0.5 1.0
+> 0.0
+> 0.5
+> 1.0
+> Brier 0.144
+> ECE 0.043
+> DeepSeek-V4 zero-shot
+> 0.0 0.5 1.0
+> 0.0
+> 0.5
+> 1.0
+> Brier 0.136
+> ECE 0.027
+> Betting market
+
+predicted win probability 
+
+> observed win frequency
+
+Figure 5: Reliability on held-out 2024; points on the diagonal are perfectly calibrated and their area is proportional to the plays in the bin. The trained forecasters follow the diagonal as closely as the market, while the untrained chain-of-thought model is overconfident. 
+
+market. On the held-out 2024 season the direct model reaches an ECE of 0.029 , against the market’s 0.027 and the untrained model’s 0.057 . Its maximum calibration error, 0.060 , is below the market’s 0.082 , and its reli-ability curve lies on the diagonal where the untrained model’s does not (fig. 5). Its Brier score of 0.144 im-proves on the untrained 0.206 and trails the market’s 
+
+0.136 (table 3). The masked chain-of-thought model is as well calibrated, at an ECE of 0.030 , with a slightly higher Brier score of 0.152 .The direct model matches the market on calibration but trails it on Brier by 0.008 . By the Murphy decom-position this gap is resolution, not reliability: the model is as well calibrated as the market but less sharp, 0.106 
+
+against 0.115 . It assigns the right probability to the states it can describe, but separates fewer of them. The missing sharpness comes from information the prompt does not contain, and no static forecaster does better. The frontier model and the teacher reach the same Brier score as the direct model, 0.144 and 0.143 against 70.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20 0.21  
+
+> Brier score on held-out 2024 (lower is better), 95% CI
+> Qwen2.5-7B zero-shot (direct)
+> Qwen2.5-7B zero-shot (CoT)
+> Masked-CoT RLVR (ours)
+> Direct RLVR (ours)
+> DeepSeek-V4 zero-shot
+> Empirical rate  ̂ p
+> Betting market
+> 0.2057
+> 0.1681
+> 0.1522
+> 0.1443
+> 0.1438
+> 0.1432
+> 0.1355
+
+Figure 6: Held-out 2024 Brier with 95% bootstrap intervals. A label-free 7B model trained by direct prediction, a frontier model prompted zero-shot, and the empirical-rate teacher converge near 0.143 and trail the market by the same significant margin, placing the residual gap in the available information rather than in model capacity. 
+
+Static-feature forecaster Brier ECE Coarse ˆp (our reward) 0.1432 0.0437 nflverse WP model 0.1562 0.0188 GBM, all features 0.1584 0.0260 Direct RLVR (ours) 0.1443 0.0292 Betting market 0.1355 0.0273 
+
+Table 4: Held-out 2024 Brier and ECE for static-feature forecasters. Two models with more features than the coarse buckets are worse on Brier; the coarse empirical rate is the best static estimator, and the direct model reaches its level. 
+
+0.144 , and a paired bootstrap separates none of the three. All three trail the market by 0.008 , significant in each case (fig. 6), and the direct model is better calibrated than the frontier model, 0.029 against 0.043 .No richer static model improves on the coarse rate. The tuned nflverse model and a gradient-boosted model on the full feature set score 0.156 and 0.158 against 0.143 
+
+(table 4), since the extra features add play-level noise without game-level signal. Brill et al. [26] reach the same bound analytically, showing that the correlated structure of play-by-play data limits the accuracy of any such model. The market’s 0.008 edge is therefore live in-game information that no static input contains. On the test season the direct model is better calibrated than the teacher it was trained on. Its ECE is 0.029 
+
+against the teacher’s 0.044 , and its maximum calibration error 0.060 against 0.099 , at the same Brier score. The policy smooths the bucketed target into a calibrated function of the state. The decalibration of full-completion chain-of-thought training (section 4.2) does not come from misreading the game state. A blinded judge scored five state-reading errors (possession, score, spread, clock, and pregame anchoring) and found each in one to ten percent of com-pletions across the base, full-completion, and masked models, so all of them read the game correctly. The full-completion models fail instead at the step from those facts to a number. They write pseudo-quantitative argu-ments whose probabilities exceed one and report a figure their own text does not support (fig. 4). The error is an inconsistency between the reasoning and the answer (fig. 3), not a factual mistake. Masking the gradient leaves the reading of the state untouched and keeps the number consistent with it, which restores calibration. 
+
+# 7 Conclusion 
+
+We have shown that reinforcement learning can calibrate a probabilistic forecaster to the level of the betting mar-ket using only realized game outcomes, without human labels or supervised fine-tuning. Verifiable-reward train-ing has used the realized label as the reward, which is well behaved when that label is deterministic but in-jects irreducible variance when the outcome is stochastic. We reward an aggregate of those same labels, a state-conditioned empirical rate, which is equally verifiable and far less noisy, and which turns a proper scoring rule into a usable training signal for events that have no correct answer. This carries verifiable-reward training from tasks with a right answer to forecasting, where the answer is itself a probability. Even with the denoised target, taking the gradient through a chain of thought decalibrates the model, be-8cause optimizing the final probability rewrites the reason-ing that produced it. This refines earlier accounts: the accuracy-calibration gradient conflict [ 6] and the over-confidence attributed to the group-standard-deviation normalization of the advantage [ 7] both take the realized outcome as the target, whereas with a denoised target that normalization is instead necessary and the problem that remains is the gradient’s reach into the reasoning. Confining the gradient to the answer removes it, by drop-ping the reasoning or by masking the gradient on it, and the masked variant keeps a chain of thought from which the forecast follows. Three unrelated estimators converge on the same Brier score: a reinforcement-trained small model, a frontier model, and a tabular rate. The convergence is strong evidence that the score is the limit set by the information in the public game state, not a property of any one of them. It is also a practical test of whether a forecaster has exhausted its inputs: once unrelated methods agree, further accuracy must come from new information, not a larger model. A market, where one exists, supplies the independent reference that makes the test sharp. The method reaches a strong reference only where the public state already carries most of the predictive sig-nal, and where outcomes are dense and resolved quickly enough to estimate a reliable empirical rate; sparse or long-horizon events would weaken both the reward and the comparison against a market. Within these limits the empirical rate could be enriched with more state features or replaced by a learned rate model to raise the ceiling it imposes, and the same reward and gradient mask should extend to other aleatoric domains where calibrated probabilities matter and outcomes are even-tually observed, from weather to elections to clinical prognosis. Calibrated forecasting can be learned from outcomes alone, and a small open model can match a market once its reward and its gradient are aligned with the quantity it is asked to forecast, while still exposing the reasoning behind each prediction. 
+
+# References 
+
+[1] Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y. K. Li, Y. Wu, and Daya Guo. DeepSeek-Math: Pushing the limits of mathematical rea-soning in open language models. arXiv preprint arXiv:2402.03300 , 2024. [2] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, et al. DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning. Nature , 645 (8081):633–638, 2025. arXiv:2501.12948. [3] Glenn W. Brier. Verification of forecasts expressed in terms of probability. Monthly Weather Review ,78(1):1–3, 1950. [4] Tilmann Gneiting and Adrian E. Raftery. Strictly proper scoring rules, prediction, and estimation. 
+
+Journal of the American Statistical Association , 102 (477):359–378, 2007. [5] Jixuan Leng, Chengsong Huang, Banghua Zhu, and Jiaxin Huang. Taming overconfidence in LLMs: Reward calibration in RLHF. arXiv preprint arXiv:2410.09724 , 2024. [6] Zhengzhao Ma, Xueru Wen, Boxi Cao, Yaojie Lu, Hongyu Lin, Jinglin Yang, Min He, Xianpei Han, and Le Sun. Decoupling reasoning and confidence: Resurrecting calibration in reinforcement learning from verifiable rewards. In Proceedings of the 43rd International Conference on Machine Learning (ICML) , 2026. arXiv:2603.09117. [7] Michael Bereket and Jure Leskovec. Uncal-ibrated reasoning: GRPO induces overconfi-dence for stochastic outcomes. arXiv preprint arXiv:2508.11800 , 2025. [8] Mehul Damani, Isha Puri, Stewart Slocum, Idan Shenfeld, Leshem Choshen, Yoon Kim, and Jacob Andreas. Beyond binary rewards: Training LMs to reason about their uncertainty. arXiv preprint arXiv:2507.16806 , 2025. [9] David Bani-Harouni, Chantal Pellegrini, Paul Stan-gel, Ege Özsoy, Kamilia Zaripova, Nassir Navab, and Matthias Keicher. Rewarding doubt: A re-inforcement learning approach to calibrated confi-dence expression of large language models. arXiv preprint arXiv:2503.02623 , 2025. [10] Neil Band, Xuechen Li, Tengyu Ma, and Tatsunori Hashimoto. Linguistic calibration of long-form gen-erations. In Proceedings of the 41st International Conference on Machine Learning (ICML) , 2024. arXiv:2404.00474. [11] Danny Halawi, Fred Zhang, Chen Yueh-Han, and Jacob Steinhardt. Approaching human-level fore-casting with language models. In Advances in Neural Information Processing Systems (NeurIPS) ,2024. arXiv:2402.18563. [12] Sarah Pratt, Seth Blumberg, Pietro Kreitlon Car-olino, and Meredith Ringel Morris. Can language models use forecasting strategies? arXiv preprint arXiv:2406.04446 , 2024. [13] Benjamin Turtel, Danny Franklin, Kris Skotheim, Luke Hewitt, and Philipp Schoenegger. Outcome-based reinforcement learning to predict the future. 
+
+arXiv preprint arXiv:2505.17989 , 2025. 9[14] Benjamin Turtel, Danny Franklin, and Philipp Schoenegger. LLMs can teach themselves to better predict the future. arXiv preprint arXiv:2502.05253 ,2025. [15] Daniel Paleka, Shashwat Goel, Jonas Geiping, and Florian Tramèr. Pitfalls in evaluating language model forecasters. arXiv preprint arXiv:2506.00723 ,2025. [16] Ezra Karger, Houtan Bastani, Chen Yueh-Han, Zachary Jacobs, Danny Halawi, Fred Zhang, and Philip E. Tetlock. ForecastBench: A dynamic bench-mark of AI forecasting capabilities. arXiv preprint arXiv:2409.19839 , 2024. [17] Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan, Xiaochen Zuo, Yu Yue, et al. DAPO: An open-source LLM reinforcement learning system at scale. 
+
+arXiv preprint arXiv:2503.14476 , 2025. [18] Xiangxiang Chu, Hailang Huang, Xiao Zhang, Fei Wei, and Yong Wang. GPG: A simple and strong reinforcement learning baseline for model reasoning. In International Conference on Learning Represen-tations (ICLR) , 2026. arXiv:2504.02546. [19] Yifan Zhang, Yifeng Liu, Huizhuo Yuan, Yang Yuan, Quanquan Gu, and Andrew Chi-Chih Yao. On the design of KL-regularized policy gradient algo-rithms for LLM reasoning. In International Con-ference on Learning Representations (ICLR) , 2026. arXiv:2505.17508. [20] Shenzhi Wang, Le Yu, Chang Gao, Chujie Zheng, Shixuan Liu, Rui Lu, Kai Dang, Xionghui Chen, Jianxin Yang, Zhenru Zhang, Yuqiong Liu, An Yang, Andrew Zhao, Yang Yue, Shiji Song, Bowen Yu, Gao Huang, and Junyang Lin. Beyond the 80/20 rule: High-entropy minority tokens drive effective reinforcement learning for LLM reasoning. In Ad-vances in Neural Information Processing Systems (NeurIPS) , 2025. arXiv:2506.01939. [21] Jiakang Wang, Runze Liu, Fuzheng Zhang, Xiu Li, Guorui Zhou, and Ling Pan. Stabilizing knowledge, promoting reasoning: Dual-token constraints for RLVR. arXiv preprint arXiv:2507.15778 , 2025. [22] Hongze Tan, Zihan Wang, Jianfei Pan, Jinghao Lin, Hao Wang, Yifan Wu, Tao Chen, Zhihang Zheng, Zhihao Tang, and Haihua Yang. GTPO and GRPO-S: Token and sequence-level reward shaping with policy entropy. arXiv preprint arXiv:2508.04349 ,2025. [23] Dennis Lock and Dan Nettleton. Using random forests to estimate win probability before each play of an NFL game. Journal of Quantitative Analysis in Sports , 10(2):197–205, 2014. [24] Ronald Yurko, Samuel Ventura, and Maksim Horowitz. nflWAR: A reproducible method for offensive player evaluation in football. Journal of Quantitative Analysis in Sports , 15(3), 2019. arXiv:1802.00998. [25] Sebastian Carl and Ben Baldwin. nflfastR: Func-tions to Efficiently Access NFL Play by Play Data ,2024. URL https://www.nflfastr.com/ . R pack-age. [26] Ryan S. Brill, Ronald Yurko, and Abraham J. Wyner. Exploring the difficulty of estimating win probability: A simulation study. Journal of Quan-titative Analysis in Sports , 2025. arXiv:2406.16171. [27] Nicholas G. Polson and Hal S. Stern. The implied volatility of a sports game. Journal of Quantitative Analysis in Sports , 11(3):145–153, 2015. [28] Bryan L. Boulier and H. O. Stekler. Predicting the outcomes of national football league games. In-ternational Journal of Forecasting , 19(2):257–270, 2003. [29] Steven D. Levitt. Why are gambling markets or-ganised so differently from financial markets? The Economic Journal , 114(495):223–246, 2004. [30] Egon Franck, Erwin Verbeek, and Stephan Nüesch. Prediction accuracy of different market structures: Bookmakers versus a betting exchange. Interna-tional Journal of Forecasting , 26(3):448–459, 2010. [31] Justin Cox, Adam L. Schwartz, Bonnie F. Van Ness, and Robert A. Van Ness. The predictive power of college football spreads: Regular season versus bowl games. Journal of Sports Economics , 22(3):251–273, 2021. [32] Erik Štrumbelj. On determining probability fore-casts from betting odds. International Journal of Forecasting , 30(4):934–943, 2014. [33] Allan H. Murphy. A new vector partition of the probability score. Journal of Applied Meteorology ,12(4):595–600, 1973. [34] Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger. On calibration of modern neural net-works. In Proceedings of the 34th International Conference on Machine Learning (ICML) , 2017. arXiv:1706.04599. [35] Jochen Bröcker and Leonard A. Smith. Increasing the reliability of reliability diagrams. Weather and Forecasting , 22(3):651–661, 2007. 10 [36] Timo Dimitriadis, Tilmann Gneiting, and Alexan-der I. Jordan. Stable reliability diagrams for prob-abilistic classifiers. Proceedings of the National Academy of Sciences , 118(8):e2016191118, 2021. [37] Bradley Efron. Bootstrap methods: Another look at the jackknife. The Annals of Statistics , 7(1):1–26, 1979. [38] Bradley Efron and Carl Morris. Data analysis using Stein’s estimator and its generalizations. Journal of the American Statistical Association , 70(350): 311–319, 1975. 11 A The empirical-rate target 
+
+The reward target ˆp(x) is a state-conditioned empirical win rate estimated from training-season outcomes. Each play is placed in a bucket defined by three game-level features: the score margin of the team in possession, in fourteen bins with edges at ±1, ±4, ±7, ±10 , ±14 , and ±21 points; the time remaining, in seven bins with edges at 2, 5, 10 , 15 , 30 , and 45 minutes; and the public pregame point spread, in nine bins with edges at ±0.5, ±3, ±7,and ±10 points. A bucket’s raw value is the fraction of its training plays whose possession team won. Sparse buckets are shrunk toward their coarser parents by a hierarchical empirical-Bayes rule: writing n and w for the count and wins in a bucket and ˆpparent for its parent estimate, the bucket value is (w + M ˆpparent )/(n + M ) with pseudocount M = 25 , applied from the global rate downward. The estimate for an evaluation play is read from the training-season table alone, so no test outcome enters its own target. Finer state features do not raise the target. A fine table that adds field position and down under the same hierarchical backoff matches the coarse table on game-level calibration: on the 2023 split the coarse target scores 
+
+0.153 Brier and 0.012 ECE against the fine table’s 0.153 and 0.010 , both close to the market’s 0.150 and 0.019 
+
+(table 5). Field position and down shape the current drive rather than the game outcome, so the reward uses the coarse score-by-time-by-spread table.                  
+
+> Target (eval 2023) Brier ECE Coarse: score ×time ×spread 0.1532 0.0117 Fine: +field position +down 0.1534 0.0099 Betting market 0.1495 0.0193
+> Table 5: Teacher-granularity ablation on held-out 2023. Adding field position and down to the coarse buckets does not improve game-level calibration, so the reward target stays coarse.
+
+# B Training and hyperparameter selection 
+
+Every checkpoint is selected by Brier score on a fixed random sample of 128 held-out 2023 states, scored greedily at each 50 -step save, and the two models are tuned separately. The numbers below are this in-training selection metric, with one setting varied at a time around a reference configuration; the reported test numbers use the full splits. For the direct model the learning rate matters most. Raising it from 5 × 10 −6 to 1 × 10 −5 lowers the in-training Brier from 0.160 to 0.154 at equal calibration error, and 2 × 10 −5 sharpens further at a higher calibration error; on the larger batch this higher rate is the optimum. Effective batch size, set by gradient accumulation, improves Brier up to four games per step and then saturates. Three negatives are decisive (table 6): turning off reward scaling collapses resolution, blending the realized outcome back into the target at λ = 0 .5 reintroduces its variance, and lowering the KL coefficient below 0.01 worsens the calibration error. Temperature is neutral between 0.7 and 1.0,and the selected configuration varies by 0.004 Brier across three seeds. The reported direct model uses a learning rate of 2 × 10 −5, gradient accumulation over sixteen micro-batches, a KL coefficient of 0.01 , and reward scaling on. The masked model differs in two settings. The KL anchor must be removed: with the gradient concentrated on the few answer tokens, a coefficient of 0.01 makes the k3 KL estimator overflow and the loss diverge, and 
+
+1 × 10 −3 degrades calibration over training, while β = 0 is stable because the answer-span mask already protects the reasoning the reference model would otherwise anchor. The learning rate follows an inverted-U with a higher optimum than for the direct model (table 7): held-out Brier improves from 5 × 10 −6 to a peak at 3 × 10 −5 and collapses at 4 × 10 −5, where the unanchored update drives probabilities to extremes. The reported masked model uses a learning rate of 3 × 10 −5 and β = 0 .
+
+# C Blinded-judge protocol for reasoning quality 
+
+To measure reasoning quality we collect, for each model, its chain of thought on 250 held-out 2023 plays stratified across game states, with the ground-truth game facts taken from each play’s features. A separate model judges every completion blind to its source and decides, with a quote from the completion supporting each judgment, whether the chain of thought misreads any of five game facts (possession, score, spread, clock, and the pregame favorite) and whether the stated probability follows from the reasoning. We audited the judge by reading every 12 Lever Setting Brier ECE Reference lr 1×10 −5, 2 games/step, rate target 0.154 0.050 Learning rate 5 × 10 −6 0.160 0.052 
+
+2 × 10 −5 0.152 0.079 Effective batch 4 games/step (grad. accum. 16) 0.149 0.099 8 games/step (grad. accum. 32) 0.152 0.100 Reward target realized outcome y 0.166 0.065 blend 12 y + 12 ˆp 0.181 0.121 KL coefficient 0.003 0.157 0.100 Reward scaling off 0.178 0.064 Temperature 1.0 0.147 0.090 
+
+Table 6: Direct-model ablation, in-training selection metric (greedy, fixed n = 128 held-out 2023, best-Brier checkpoint). Each row changes one setting from the reference. The learning rate and the effective batch size trade sharpness against calibration; reward scaling, the rate target, and a non-zero KL coefficient are decisive negatives when removed. Lever Setting Brier KL coefficient 
+
+β = 0 0.174 
+
+β = 1 × 10 −3 0.190 
+
+β = 0 .01 diverges Learning rate ( β = 0 )
+
+5 × 10 −6 0.1745 
+
+1 × 10 −5 0.1740 
+
+2 × 10 −5 0.1717 
+
+3 × 10 −5 0.1708 
+
+4 × 10 −5 over-sharpens 
+
+Table 7: Masked-model ablation, held-out 2024 (n = 1000 subset, best checkpoint). The KL anchor must be removed, and the learning rate follows an inverted-U with an optimum at 3 × 10 −5, above which the unanchored, concentrated gradient drives the maximum calibration error past 0.5.
+
+flagged case; each flag carries a specific checkable reason, and the judge flags the masked model alongside the others. State-reading errors are low and flat across the base model, the two full-completion reinforcement runs, and the masked model. Possession and score are misread in about one percent of completions, the pregame favorite in two to seven percent, the spread in three to six percent, and the clock in seven to ten percent, the last a base-model weakness that no training variant changes. Reinforcement learning does not corrupt the reading of the game. The models separate instead on whether the stated probability follows from the reasoning (table 8). The base model is inconsistent on 22 .4% of completions, and full-completion reinforcement learning does not improve it; the failures are broken probability arithmetic, drive-level and game-level probabilities conflated, and a final number the text does not support. The masked model is inconsistent on 4.4% . The masked prompt format accounts for much of the reduction, since a base model read under the masked prompt is inconsistent on 6.8% , and masked training lowers it further. At 250 plays the format and training intervals overlap on this checkpoint, while a separate control on the reported checkpoint isolates a significant training effect. 
+
+Model Inconsistent reasoning [95% CI] Base (chain of thought) 22.4% [17.6, 27.6] 
+
+Full-completion RL (run A) 18.8% [14.4, 23.6] 
+
+Full-completion RL (run B) 14.0% [10.0, 18.4] 
+
+Base, masked prompt (no training) 6.8% [4.0, 9.6] 
+
+Masked-CoT RLVR (ours) 4.4% [2.0, 7.2] 
+
+Table 8: Rate at which the stated probability does not follow from the chain of thought, blinded judge over 250 held-out 2023 plays. Full-completion reinforcement learning does not improve on the base rate; the masked prompt format reduces it sharply and masked training reduces it further. 
+
+13 D Data-integrity audit 
+
+The prompt exposes one market-derived quantity, the public pregame point spread, and never the live in-game win probability that serves as the evaluation reference. We scanned all 40 ,246 training prompts and the 2023 and 2024 evaluation prompts for the market win probability and found no occurrence. The empirical-rate target is built only from realized outcomes and the pregame spread, and the target for an evaluation play is computed from the training-season table alone, so neither the market probability nor any test outcome enters training. The splits are disjoint by season, training on 2015 through 2022, selecting on 2023, and testing on 2024, so no game appears in more than one split. Every reported number is recomputed from the per-play predictions by a single deterministic script, so the tables and figures reproduce from the released predictions without a GPU. 14
